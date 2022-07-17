@@ -78,6 +78,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -580,6 +581,25 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      fucking exploding man_14: 1614837138384162508
+      fucking exploding man_16: 9023929747133316822
+      fucking exploding man_7: -8675508985735378343
+      fucking exploding man_8: 5504090970255239070
+      fucking exploding man_1: 3439300539962897183
+      fucking exploding man_17: -6348950434691455517
+      fucking exploding man_10: -6374576207127714041
+      fucking exploding man_15: 6179895759579906755
+      fucking exploding man_0: 4542869429176983606
+      fucking exploding man_2: -9040761712013961068
+      fucking exploding man_13: 8084266048982808308
+      fucking exploding man_9: 8655156815518891823
+      fucking exploding man_4: 4200561349976513025
+      fucking exploding man_5: 4870646157563897103
+      fucking exploding man_12: -7968824832847517947
+      fucking exploding man_11: 1607626075386273958
+      fucking exploding man_3: -9128448944652845311
+      fucking exploding man_6: -4865860164882512296
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
