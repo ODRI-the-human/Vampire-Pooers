@@ -17,6 +17,10 @@ public class Enemy_Movement : MonoBehaviour
     int slowTimer = 0;
     int slowsPlayerHas = 0;
     int creepTimer = 0;
+    Vector2 collisionVector;
+    int knockBack = 0;
+    float knockBackTimer = 0;
+    float maxKnockBack = 0;
 
     public float moveSpeed = 5f;
     public GameObject Bullet;
@@ -46,14 +50,29 @@ public class Enemy_Movement : MonoBehaviour
     {
         // weapon cooldown
         fireTimer -= 1;
+        knockBackTimer--;
 
-        // getting player and enemy pos, getting the vector, and moving towards player
+        if (knockBackTimer < 1)
+        {
+            knockBack = 0;
+        }
+
         enemyPos.x = rob.transform.position.x;
         enemyPos.y = rob.transform.position.y;
         playerPos.x = GameObject.Find("Player").transform.position.x;
         playerPos.y = GameObject.Find("Player").transform.position.y;
         vectorToPlayer = (playerPos - enemyPos).normalized;
-        rob.velocity = new Vector2(vectorToPlayer.x * moveSpeed * (2-isSlowed)/2, vectorToPlayer.y * moveSpeed * (2 - isSlowed) / 2);
+
+        if (knockBack == 0)
+        {
+            rob.velocity = (moveSpeed * (2 - isSlowed) / 2) * new Vector2(vectorToPlayer.x, vectorToPlayer.y);
+        }
+        // getting player and enemy pos, getting the vector, and moving towards player
+
+        if (knockBack == 1)
+        {
+            rob.velocity = 6*(knockBackTimer/maxKnockBack) * new Vector2(collisionVector.x, collisionVector.y) + ((maxKnockBack - knockBackTimer)/maxKnockBack)*(moveSpeed * (2 - isSlowed) / 2) * new Vector2(vectorToPlayer.x, vectorToPlayer.y);
+        }
 
         slowTimer--;
         if (slowTimer < 1)
@@ -99,6 +118,10 @@ public class Enemy_Movement : MonoBehaviour
         if (col.gameObject.tag == "PlayerBullet")
         {
             HP -= GameObject.Find("Player").GetComponent<Player_Movement>().trueDamageValue;
+            collisionVector = new Vector2(transform.position.x - col.transform.position.x, transform.position.y - col.transform.position.y);
+            knockBack = 1;
+            knockBackTimer = 20f*col.transform.localScale.x;
+            maxKnockBack = knockBackTimer;
             //Debug.Log(GameObject.Find("Player").GetComponent<Player_Movement>().HP.ToString());
         }
 

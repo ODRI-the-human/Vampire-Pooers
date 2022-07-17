@@ -88,6 +88,7 @@ public class Player_Movement : MonoBehaviour
 
     void Start()
     {
+        //itemsHeld.Add((int)ITEMLIST.PIERCING);
         UpdateStats();
         HP = maxHP;
         converterDamageMult = 0;
