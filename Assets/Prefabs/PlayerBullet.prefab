@@ -116,7 +116,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -136,6 +136,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 503381878361641298, guid: b6497a04b59007949bbf8c093c340484, type: 3}
   ATGMissile: {fileID: 1481696186931666123, guid: 73804054511bf914ea4c54328ca8abe8, type: 3}
+  destroyDelay: 25
   moveSpeed: 15
   rb: {fileID: 4255455733749829592}
 --- !u!114 &1446115092270715649

@@ -6,7 +6,10 @@ using TMPro;
 public class Player_Movement : MonoBehaviour
 {
 
-    public float moveSpeed = 5f;
+    [HideInInspector] public static Player_Movement instance; //Static refrence for anyone who wants access
+
+    public float moveSpeedInitial = 5f;
+    float moveSpeed;
     public float shotSpeed = 5f;
 
     public Animator animator;
@@ -21,6 +24,7 @@ public class Player_Movement : MonoBehaviour
     public GameObject PlayerDieAudio;
     public GameObject PlayerXPAudio;
     public GameObject PlayerHPAudio;
+    public GameObject creep;
     public TextMeshProUGUI HPText;
     public TextMeshProUGUI XPText;
     public TextMeshProUGUI DMGText;
@@ -32,10 +36,11 @@ public class Player_Movement : MonoBehaviour
     float fireTimer = 0f;
     int maxHPInitial = 100;
     int maxHP;
-    int HP;
+    public int HP;
     int noExtraShots = 0;
-    public float damageStatInitial = 1f;
-    public float damageStat;
+    public float damageStat = 50;
+    public float damageMult = 1;
+    float converterDamageMult = 0;
     int iFramesTimer = 50;
     int iFrames = 0;
     int XP = 0;
@@ -48,14 +53,44 @@ public class Player_Movement : MonoBehaviour
     int itemAppeared;
     int itemChosen;
     public int levelConstantMul = 1;
+    float wapantTimer = 0;
+    public int noWapants = 0;
+    public float wapantTimerLength;
+    public float initialWapantLength = 300f;
+    public GameObject wapantCircle;
+    int mantisCharges = 0;
+    int mantisInstances = 0;
+    int damageReduction;
+    int converterInstances = 0;
+    int easierTimesInstances = 0;
+    float avoidsDamage;
+    public int stopwatchInstances = 0;
+    public int bounceInstances = 0;
+    float finalDamageMult = 1;
+    int martyInstances = 0;
+    int martyCounter = 0;
+    int numberOfMarties = 0;
+    public float trueDamageValue;
+    public int pierceInstances = 0;
+    int creepInstances = 0;
+    int creepTimer = 0;
 
     private Vector2 moveDirection;
     public List<int> itemsHeld = new List<int>();
+
+    void Awake() //start is proberly fine aswell, better safe than pooey (Issac)
+    {
+        if (instance == null)
+            instance = this; //this is the instance
+        else
+            Destroy(this); //should never be multiple instances
+    }
 
     void Start()
     {
         UpdateStats();
         HP = maxHP;
+        converterDamageMult = 0;
         SetStatsText();
     }
 
@@ -63,7 +98,7 @@ public class Player_Movement : MonoBehaviour
     {
         HPText.text = "HP: " + HP.ToString() + "/" + maxHP.ToString();
         XPText.text = "XP: " + XP.ToString();
-        DMGText.text = "DMG: " + (50 * damageStat).ToString();
+        DMGText.text = "DMG: " + ((damageStat)*(damageMult+converterDamageMult)*finalDamageMult).ToString();
         LevelText.text = "Level: " + level.ToString();
     }
 
@@ -82,9 +117,22 @@ public class Player_Movement : MonoBehaviour
     void UpdateStats()
     {
         maxHP = maxHPInitial;
-        damageStat = damageStatInitial;
+        damageStat = 50;
+        damageMult = 1;
         fireTimerLength = initialFireTimerLength;
         noExtraShots = 0;
+        noWapants = 0;
+        wapantTimerLength = initialWapantLength;
+        moveSpeed = moveSpeedInitial;
+        mantisInstances = 0;
+        mantisCharges = mantisInstances;
+        converterInstances = 0;
+        easierTimesInstances = 0;
+        stopwatchInstances = 0;
+        finalDamageMult = 1;
+        martyInstances = 0;
+        pierceInstances = 0;
+        creepInstances = 0;
 
         // applying stat ups
         foreach (int item in itemsHeld)
@@ -98,22 +146,56 @@ public class Player_Movement : MonoBehaviour
                     maxHP += 50;
                     break;
                 case (int)ITEMLIST.DMGADDPT5:
-                    damageStat += 0.5f;
+                    damageStat += 25;
                     break;
                 case (int)ITEMLIST.DMGMLT2:
-                    damageStat *= 2;
+                    damageMult += 1;
                     break;
                 case (int)ITEMLIST.FIRERATE:
                     fireTimerLength /= 1.15f;
                     break;
                 case (int)ITEMLIST.SOY:
                     fireTimerLength /= 5;
-                    damageStat /= 3;
+                    finalDamageMult /= 3;
                     break;
                 case (int)ITEMLIST.MORESHOT:
                     noExtraShots += 1;
                     break;
+                case (int)ITEMLIST.WAPANT:
+                    noWapants += 1;
+                    wapantTimerLength /= 1.5f;
+                    break;
+                case (int)ITEMLIST.HOLYMANTIS:
+                    mantisInstances += 1;
+                    mantisCharges = mantisInstances;
+                    break;
+                case (int)ITEMLIST.CONVERTER:
+                    converterInstances++;
+                    //Debug.Log("Converters: " + converterInstances.ToString());
+                    break;
+                case (int)ITEMLIST.EASIERTIMES:
+                    easierTimesInstances++;
+                    break;
+                case (int)ITEMLIST.STOPWATCH:
+                    stopwatchInstances++;
+                    break;
+                case (int)ITEMLIST.BOUNCY:
+                    bounceInstances++;
+                    break;
+                case (int)ITEMLIST.FOURDIRMARTY:
+                    martyInstances++;
+                    break;
+                case (int)ITEMLIST.PIERCING:
+                    pierceInstances++;
+                    break;
+                case (int)ITEMLIST.CREEP:
+                    creepInstances++;
+                    break;
             }
+
+            converterDamageMult += ((0.03f) * (1 - HP / maxHP))*converterInstances;
+            Debug.Log(converterDamageMult.ToString());
+            trueDamageValue = (damageStat) * (damageMult + converterDamageMult) * finalDamageMult;
         }
     }
 
@@ -139,14 +221,30 @@ public class Player_Movement : MonoBehaviour
                 playerPos.y = playerPos3.y;
                 vectorToMouse = (mousePos - playerPos).normalized;
                 //firing a number of bullets depending on how many extra shots the player has
+                martyCounter++;
                 for (int i = -1; i < noExtraShots; i++)
                 {
                     GameObject newObject = Instantiate(PlayerBullet, transform.position, transform.rotation) as GameObject;
-                    newObject.transform.localScale = new Vector3(0.2f * damageStat + 0.2f, 0.2f * damageStat + 0.2f, 0.2f * damageStat + 0.2f);
+                    newObject.transform.localScale = new Vector3(trueDamageValue*0.0015f+.45f, trueDamageValue * 0.0015f+.45f, trueDamageValue * 0.0015f+.45f);
                     bulletRB = newObject.GetComponent<Rigidbody2D>();
                     currentAngle = 0.3f * (0.5f * noExtraShots - i - 1);
                     newShotVector = new Vector2(vectorToMouse.x * Mathf.Cos(currentAngle) - vectorToMouse.y * Mathf.Sin(currentAngle), vectorToMouse.x * Mathf.Sin(currentAngle) + vectorToMouse.y * Mathf.Cos(currentAngle));
                     bulletRB.velocity = new Vector2(newShotVector.x * shotSpeed, newShotVector.y * shotSpeed);
+                }
+
+                if (martyCounter * (1.5f*martyInstances) > 6)
+                {
+                    martyCounter = 0;
+                    for (int i = 0; i < 4; i++)
+                    {
+                        GameObject newObject = Instantiate(PlayerBullet, transform.position, transform.rotation) as GameObject;
+                        newObject.transform.localScale = new Vector3(trueDamageValue * 0.0015f + .4f, trueDamageValue * 0.0015f + .4f, trueDamageValue * 0.0015f + .4f);
+                        bulletRB = newObject.GetComponent<Rigidbody2D>();
+                        currentAngle = (Mathf.PI / 4)*Mathf.Sin(numberOfMarties*Mathf.PI/2) + i * Mathf.PI / 2;
+                        newShotVector = new Vector2(Mathf.Cos(currentAngle) - Mathf.Sin(currentAngle), Mathf.Sin(currentAngle) + Mathf.Cos(currentAngle));
+                        bulletRB.velocity = new Vector2(newShotVector.x * shotSpeed, newShotVector.y * shotSpeed);
+                    }
+                    numberOfMarties++;
                 }
                 Instantiate(PlayerShootAudio);
                 fireTimer = fireTimerLength;
@@ -157,7 +255,7 @@ public class Player_Movement : MonoBehaviour
         if (HP <= 0)
         {
             Destroy(Player);
-            Debug.Log("Owned Lu zer");
+            //Debug.Log("Owned Lu zer");
             Instantiate(Barry63, new Vector3(0, 0, -1), new Quaternion(1, Mathf.PI, 0, 0));
             Instantiate(PlayerDieAudio);
         }
@@ -176,6 +274,9 @@ public class Player_Movement : MonoBehaviour
                 gameObject.transform.localScale = new Vector3(-1f, 1f, 1);
             }
         }
+
+        Debug.Log("Damage: " + ((damageStat) * (damageMult + converterDamageMult) * finalDamageMult).ToString() + " damageStat: " + damageStat.ToString() + " damageMult: " + damageMult.ToString() + " converterDamageMult: " + converterDamageMult.ToString() + " finalDamageMult: " + finalDamageMult.ToString());
+        trueDamageValue = (damageStat) * (damageMult + converterDamageMult) * finalDamageMult; // Dunno why but if I put this calculation in updatestats it gives a damage value of 0 so it's here for now
     }
 
     void FixedUpdate()
@@ -188,6 +289,28 @@ public class Player_Movement : MonoBehaviour
 
         // reducing iframes
         iFrames -= 1;
+
+        wapantTimer--;
+
+        if (noWapants > 0)
+        {
+            if (wapantTimer < 1)
+            {
+                wapantTimer = wapantTimerLength;
+                Instantiate(wapantCircle, transform.position + new Vector3(0,0,0.5f), transform.rotation);
+            }
+        }
+
+        creepTimer--;
+        if (creepInstances > 0)
+        {
+            if (creepTimer < 1)
+            {
+                creepTimer = 5;
+                GameObject newObject5 = Instantiate(creep, transform.position + new Vector3(0, 0, 0.5f), transform.rotation) as GameObject;
+                newObject5.transform.localScale = new Vector3(6 + 2*creepInstances, 6 + 2 * creepInstances, 6 + 2 * creepInstances);
+            }
+        }
     }
 
     // if player has skill issue and consequently gets hit (bad at game)
@@ -198,11 +321,32 @@ public class Player_Movement : MonoBehaviour
         {
             if (iFrames < 0)
             {
-                HP -= 50;
-                //Debug.Log("Collided");
+                if (easierTimesInstances > 0)
+                {
+                    avoidsDamage = Random.Range(0, 7 + 3 * Mathf.Log(easierTimesInstances + 3.5f, 3));
+                }
+                else
+                {
+                    avoidsDamage = 0;
+                }
+
+                if (avoidsDamage < 7)
+                {
+                    if (mantisCharges > 0)
+                    {
+                        damageReduction = Mathf.RoundToInt(30 * Mathf.Pow(1.05f, 0.5f * mantisCharges));
+                    }
+                    else
+                    {
+                        damageReduction = 0;
+                    }
+                    HP -= 50 - damageReduction;
+                    mantisCharges--;
+                    //Debug.Log("Collided");
+                    Instantiate(PlayerHurtAudio);
+                    SetStatsText();
+                }
                 iFrames = iFramesTimer;
-                Instantiate(PlayerHurtAudio);
-                SetStatsText();
             }
         }
     }
@@ -232,6 +376,16 @@ public class Player_Movement : MonoBehaviour
                 HP = maxHP;
             }
             Instantiate(PlayerHPAudio);
+            SetStatsText();
+        }
+
+        // selecting an item
+        if (col.gameObject.tag == "item")
+        {
+            itemAppeared = col.GetComponent<itemPedestal>().itemChosen;
+            itemsHeld.Add(itemAppeared);
+            itemScreenText.text = ((ITEMLIST)itemAppeared).ToString();
+            UpdateStats();
             SetStatsText();
         }
     }

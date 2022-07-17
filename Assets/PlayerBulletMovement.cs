@@ -12,11 +12,14 @@ public class PlayerBulletMovement : MonoBehaviour
     Vector2 bulletPos;
     Vector3 currentNearest;
     float ATGProc;
-    private int Timer = 0;
     int homingInstances = 0;
     int ATGInstances = 0;
     List<int> Sploinky = new List<int>();
-
+    public float destroyDelay = 25; //in seconds
+    int bounces;
+    float speed;
+    Vector2 enemyPos;
+    int pierces;
 
     public float moveSpeed = 5f;
 
@@ -38,15 +41,16 @@ public class PlayerBulletMovement : MonoBehaviour
                     break;
             }
         }
+
+        Invoke(nameof(DestorySelf), destroyDelay); //will invoke (run the function) in so many seconds
+        bounces = GameObject.Find("Player").GetComponent<Player_Movement>().bounceInstances;
+        speed = GameObject.Find("Player").GetComponent<Player_Movement>().shotSpeed;
+        pierces = GameObject.Find("Player").GetComponent<Player_Movement>().pierceInstances;
     }
 
-    void Update()
+    void DestorySelf() //deeath
     {
-        Timer += 1;
-        if (Timer > 1500)
-        {
-            Destroy(gameObject);
-        }
+        Destroy(gameObject);
     }
 
     void FixedUpdate()
@@ -82,12 +86,15 @@ public class PlayerBulletMovement : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D col)
+    void OnTriggerEnter2D(Collider2D col)
     {
-        if (ATGInstances > 0) 
+
+        if (col.gameObject.tag == "Hostile")
         {
+            if (ATGInstances > 0)
+            {
                 ATGProc = Random.Range(0, 10);
-                if (ATGProc > (8-0.5*ATGInstances))
+                if (ATGProc > (8 - 0.5 * ATGInstances))
                 {
                     GameObject[] gos;
                     gos = GameObject.FindGameObjectsWithTag("Player");
@@ -105,9 +112,35 @@ public class PlayerBulletMovement : MonoBehaviour
                             currentNearest = go.transform.position;
                         }
                     }
-                Instantiate(ATGMissile, currentNearest, new Quaternion(1,0,0,0));
+                    Instantiate(ATGMissile, currentNearest, new Quaternion(1, 0, 0, 0));
                 }
+            }
         }
-        Destroy(gameObject);
+
+        if (col.gameObject.tag == "Wall")
+        {
+            bounces = 0;
+        }
+
+        if (bounces > 0)
+        {
+            bulletPos.x = gameObject.transform.position.x;
+            bulletPos.y = gameObject.transform.position.y;
+            enemyPos.x = col.transform.position.x;
+            enemyPos.y = col.transform.position.y;
+            rb.velocity = speed * (bulletPos - enemyPos).normalized;
+            bounces--;
+        }
+        else
+        {
+            if (pierces > 0)
+            {
+                pierces--;
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 }

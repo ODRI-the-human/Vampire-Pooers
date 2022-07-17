@@ -9,7 +9,9 @@ public class Barry63 : MonoBehaviour
     float time2;
     Vector3 scaleChange;
 
-    // Update is called once per frame
+    
+
+
     void Update()
     {
         time2 = 0.02f*time + Mathf.Sin(0.01234f*time);
@@ -18,4 +20,5 @@ public class Barry63 : MonoBehaviour
         transform.rotation = new Quaternion(0f, 0.01f*time, 0f, 0f);
         time += 3;
     }
+
 }

@@ -84,7 +84,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61a2999de240c3d4b94a9101409206f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeedInitial: 5
   shotSpeed: 5
   animator: {fileID: 6042566988791242225}
   rb: {fileID: 503381878361641300}
@@ -96,11 +96,26 @@ MonoBehaviour:
   PlayerDieAudio: {fileID: 7927511119378929990, guid: 5524052d8b9da4f43a8bffc27f9db6d9, type: 3}
   PlayerXPAudio: {fileID: 8667424581410965265, guid: 49d370b240303f34381b4ae05a28b442, type: 3}
   PlayerHPAudio: {fileID: 4987830794770548166, guid: 81d4b6a18bc37b445ac1234855012a5a, type: 3}
+  creep: {fileID: 158271131209982302, guid: a877495fbdb19004d800b5d8b28128cb, type: 3}
   HPText: {fileID: 0}
   XPText: {fileID: 0}
   DMGText: {fileID: 0}
-  fireTimerLength: 25
-  damageStatInitial: 1
+  LevelText: {fileID: 0}
+  itemScreenText: {fileID: 0}
+  initialFireTimerLength: 200
+  HP: 0
+  damageStat: 0
+  damageMult: 1
+  levelConstantMul: 600
+  noWapants: 0
+  wapantTimerLength: 100
+  initialWapantLength: 300
+  wapantCircle: {fileID: 5382661700902760516, guid: 447893d0ea2030c49b4fe6333ad3e60f, type: 3}
+  stopwatchInstances: 0
+  bounceInstances: 0
+  trueDamageValue: 0
+  pierceInstances: 0
+  itemsHeld: 
 --- !u!212 &503381878361641301
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -146,7 +161,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.83, y: 2.78}
+  m_Size: {x: 1.28, y: 1.28}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

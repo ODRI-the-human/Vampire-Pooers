@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 110440509597865854}
   - component: {fileID: 110440509597865853}
   - component: {fileID: 872533961012419464}
+  - component: {fileID: -8992504674895983747}
   m_Layer: 7
   m_Name: Bullet
   m_TagString: Hostile
@@ -136,6 +137,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyShootAudio: {fileID: 1343821369956803891, guid: 04da9c57f71492c40818fe9dcb49315f, type: 3}
   moveSpeed: 10
+  destroyDelay: 25
   rb: {fileID: 110440509597865849}
 --- !u!114 &872533961012419464
 MonoBehaviour:
@@ -150,3 +152,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: 200
+--- !u!114 &-8992504674895983747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110440509597865848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0537a72541778e14fb5daed7ada4db83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

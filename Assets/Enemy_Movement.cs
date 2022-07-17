@@ -13,17 +13,34 @@ public class Enemy_Movement : MonoBehaviour
     public GameObject HPDrop;
     public int canFireBullets = 1;
     public GameObject explosion;
-    GameObject Player;
+    int isSlowed = 0;
+    int slowTimer = 0;
+    int slowsPlayerHas = 0;
+    int creepTimer = 0;
 
     public float moveSpeed = 5f;
     public GameObject Bullet;
 
     public Rigidbody2D rob;
 
-    public int fireTimerLength = 200;
-    int fireTimer = 0;
+    public float fireTimerLength = 200f;
+    float fireTimer = 0;
 
-    public float HP = 100f;
+    float HP = 100f;
+
+    void Awake()
+    {
+        slowsPlayerHas = GameObject.Find("Player").GetComponent<Player_Movement>().stopwatchInstances;
+
+        if (slowsPlayerHas > 0)
+        {
+            for (int i = 0; i < slowsPlayerHas; i++)
+            {
+                moveSpeed *= 0.9f;
+                fireTimerLength /= 0.9f;
+            }
+        }
+    }
 
     void FixedUpdate()
     {
@@ -36,12 +53,18 @@ public class Enemy_Movement : MonoBehaviour
         playerPos.x = GameObject.Find("Player").transform.position.x;
         playerPos.y = GameObject.Find("Player").transform.position.y;
         vectorToPlayer = (playerPos - enemyPos).normalized;
-        rob.velocity = new Vector2(vectorToPlayer.x * moveSpeed, vectorToPlayer.y * moveSpeed);
+        rob.velocity = new Vector2(vectorToPlayer.x * moveSpeed * (2-isSlowed)/2, vectorToPlayer.y * moveSpeed * (2 - isSlowed) / 2);
+
+        slowTimer--;
+        if (slowTimer < 1)
+        {
+            isSlowed = 0;
+        }
 
         // firing bullets (heavy weapons man)
         if (canFireBullets == 1) // makes it so enemies only fire if it's been set to 1.
         {
-            if (fireTimer < 0)
+            if (fireTimer + isSlowed*fireTimerLength < 0)
             {
                 if ((playerPos - enemyPos).magnitude < 4) // makes it so enemies only shoot if they're close.
                 {
@@ -51,34 +74,55 @@ public class Enemy_Movement : MonoBehaviour
             }
         }
 
+        creepTimer--;
+
         // >dies
         if (HP <= 0)
         {
             Instantiate(deathAudio);
             int doesSpawnHP = Random.Range(0, 15);
-            Debug.Log(doesSpawnHP);
+            //Debug.Log(doesSpawnHP);
             if (doesSpawnHP > 13)
             {
                 Instantiate(HPDrop, transform.position, transform.rotation);
             }
             else
             {
-                Instantiate(XP, transform.position, transform.rotation);
+                //Instantiate(XP, transform.position, transform.rotation);
             }
             Destroy(gameObject);
         }
     }
 
-    void OnCollisionEnter2D(Collision2D col)
+    void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.tag == "PlayerBullet")
         {
-            HP -= ((col.transform.localScale.x - 0.2f)*5*50);
+            HP -= GameObject.Find("Player").GetComponent<Player_Movement>().trueDamageValue;
+            //Debug.Log(GameObject.Find("Player").GetComponent<Player_Movement>().HP.ToString());
         }
 
         if (col.gameObject.tag == "ATGExplosion")
         {
-            HP -= 15*FindObjectOfType<Player_Movement>().damageStat;
+            HP -= GameObject.Find("Player").GetComponent<Player_Movement>().trueDamageValue;
+        }
+    }
+
+    void OnTriggerStay2D(Collider2D col)
+    {
+        if (col.gameObject.tag == "Slowing")
+        {
+            isSlowed = 1;
+            slowTimer = 200;
+        }
+
+        if (col.gameObject.tag == "Creep")
+        {
+            if (creepTimer < 1)
+            {
+                HP -= 0.08f * GameObject.Find("Player").GetComponent<Player_Movement>().trueDamageValue;
+                creepTimer = 5;
+            }
         }
     }
 }
