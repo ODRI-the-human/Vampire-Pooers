@@ -14,13 +14,14 @@ public class secondEnemySpawner : MonoBehaviour
     float spawnScaleRate = 0.17f;
     float SpawnPosX;
     float SpawnPosY;
-    float SpawnType;
+    int SpawnType;
     public TextMeshProUGUI waveText;
     public GameObject itemPedestal;
     int noSpawnsBeforeNewWave = 4; // actually should be one more than the desired number, for some reason.
 
     public GameObject Enemy;
     public GameObject funnyEnemy;
+    public GameObject funnyerEnemy;
 
     // Update is called once per frame
     void FixedUpdate()
@@ -75,44 +76,77 @@ public class secondEnemySpawner : MonoBehaviour
     {
         float numberEnemiesSpawned = Random.Range(minSpawnMultiplier * ((spawnNumber + waveNumber * 3) * spawnScaleRate), maxSpawnMultiplier * ((spawnNumber + waveNumber * 3) * spawnScaleRate)); // determines no. of enemies to spawn
         int numberEnemiesSpawnedInt = Mathf.RoundToInt(numberEnemiesSpawned);
-        SpawnType = Random.Range(-1f, 1f);
-        if (SpawnType > 0f)
+        SpawnType = Random.Range(0, 3);
+        switch (SpawnType)
         {
-            SpawnPosX = 0;
-            SpawnPosY = 0;
-            while (Mathf.Abs(SpawnPosX) < 10)
-            {
-                SpawnPosX = Random.Range(-12, 12);
-            }
-            while (Mathf.Abs(SpawnPosY) < 6)
-            {
-                SpawnPosY = Random.Range(-8, 8);
-            }
-            for (int i = 0; i < numberEnemiesSpawnedInt; i++)
-            {
-                float SpawnPosXVariation = Random.Range(-1f, 1f);
-                float SpawnPosYVariation = Random.Range(-1f, 1f);
-                Instantiate(Enemy, new Vector3(SpawnPosX + SpawnPosXVariation, SpawnPosY + SpawnPosYVariation, 0), new Quaternion(1, 0, 0, 0));
-            }
-        }
-        else
-        {
-            for (int i = 0; i < numberEnemiesSpawnedInt; i++)
-            {
-                SpawnPosX = 0;
-                SpawnPosY = 0;
-                while (Mathf.Abs(SpawnPosX) < 10)
+            case (2):
                 {
-                    SpawnPosX = Random.Range(-12, 12);
+
+                    SpawnPosX = 0;
+                    SpawnPosY = 0;
+                    while (Mathf.Abs(SpawnPosX) < 10)
+                    {
+                        SpawnPosX = Random.Range(-12, 12);
+                    }
+                    while (Mathf.Abs(SpawnPosY) < 6)
+                    {
+                        SpawnPosY = Random.Range(-8, 8);
+                    }
+
+                    float SpawnPosXVariation = Random.Range(-1f, 1f);
+                    float SpawnPosYVariation = Random.Range(-1f, 1f);
+                    Vector2 SpawnScaleVariation = new Vector2(8, 10);
+                    SpawnScaleVariation.y *= 1 + numberEnemiesSpawnedInt / 8;
+                    SpawnScaleVariation.x *= 1 + numberEnemiesSpawnedInt / 16;
+                    GameObject spawned = Instantiate(funnyerEnemy, new Vector3(SpawnPosX + SpawnPosXVariation, SpawnPosY + SpawnPosYVariation, 0), Quaternion.identity);
+                    spawned.transform.localScale = SpawnScaleVariation;
+                    spawned.GetComponent<Player_Movement>().HP *= numberEnemiesSpawnedInt;
+
+                    break;
                 }
-                while (Mathf.Abs(SpawnPosY) < 6)
+
+            case (0):
                 {
-                    SpawnPosY = Random.Range(-8, 8);
+
+                    SpawnPosX = 0;
+                    SpawnPosY = 0;
+                    while (Mathf.Abs(SpawnPosX) < 10)
+                    {
+                        SpawnPosX = Random.Range(-12, 12);
+                    }
+                    while (Mathf.Abs(SpawnPosY) < 6)
+                    {
+                        SpawnPosY = Random.Range(-8, 8);
+                    }
+                    for (int i = 0; i < numberEnemiesSpawnedInt; i++)
+                    {
+                        float SpawnPosXVariation = Random.Range(-1f, 1f);
+                        float SpawnPosYVariation = Random.Range(-1f, 1f);
+                        Instantiate(Enemy, new Vector3(SpawnPosX + SpawnPosXVariation, SpawnPosY + SpawnPosYVariation, 0), new Quaternion(1, 0, 0, 0));
+                    }
+
+                    break;
                 }
-                float SpawnPosXVariation = Random.Range(-1f, 1f);
-                float SpawnPosYVariation = Random.Range(-1f, 1f);
-                Instantiate(funnyEnemy, new Vector3(SpawnPosX + SpawnPosXVariation, SpawnPosY + SpawnPosYVariation, 0), new Quaternion(1, 0, 0, 0));
-            }
+            case (1):
+                {
+                    for (int i = 0; i < numberEnemiesSpawnedInt; i++)
+                    {
+                        SpawnPosX = 0;
+                        SpawnPosY = 0;
+                        while (Mathf.Abs(SpawnPosX) < 10)
+                        {
+                            SpawnPosX = Random.Range(-12, 12);
+                        }
+                        while (Mathf.Abs(SpawnPosY) < 6)
+                        {
+                            SpawnPosY = Random.Range(-8, 8);
+                        }
+                        float SpawnPosXVariation = Random.Range(-1f, 1f);
+                        float SpawnPosYVariation = Random.Range(-1f, 1f);
+                        Instantiate(funnyEnemy, new Vector3(SpawnPosX + SpawnPosXVariation, SpawnPosY + SpawnPosYVariation, 0), new Quaternion(1, 0, 0, 0));
+                    }
+                    break;
+                }
         }
     }
 
