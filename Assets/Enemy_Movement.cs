@@ -71,7 +71,7 @@ public class Enemy_Movement : MonoBehaviour
 
         if (knockBack == 1)
         {
-            rob.velocity = 6*(knockBackTimer/maxKnockBack) * new Vector2(collisionVector.x, collisionVector.y) + ((maxKnockBack - knockBackTimer)/maxKnockBack)*(moveSpeed * (2 - isSlowed) / 2) * new Vector2(vectorToPlayer.x, vectorToPlayer.y);
+            rob.velocity = 0.8f*maxKnockBack*(knockBackTimer/maxKnockBack) * new Vector2(collisionVector.x, collisionVector.y) + ((maxKnockBack - knockBackTimer)/maxKnockBack)*(moveSpeed * (2 - isSlowed) / 2) * new Vector2(vectorToPlayer.x, vectorToPlayer.y);
         }
 
         slowTimer--;
@@ -120,7 +120,7 @@ public class Enemy_Movement : MonoBehaviour
             HP -= GameObject.Find("Player").GetComponent<Player_Movement>().trueDamageValue;
             collisionVector = new Vector2(transform.position.x - col.transform.position.x, transform.position.y - col.transform.position.y);
             knockBack = 1;
-            knockBackTimer = 20f*col.transform.localScale.x;
+            knockBackTimer = 10f*col.transform.localScale.x;
             maxKnockBack = knockBackTimer;
             //Debug.Log(GameObject.Find("Player").GetComponent<Player_Movement>().HP.ToString());
         }
