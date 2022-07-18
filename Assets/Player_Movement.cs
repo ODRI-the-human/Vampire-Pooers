@@ -317,7 +317,7 @@ public class Player_Movement : MonoBehaviour
     void OnCollisionEnter2D(Collision2D col)
     {
         // if player has skill issue and consequently gets hit (bad at game)
-        if (col.gameObject.tag == "Hostile")
+        if (col.gameObject.tag == "Hostile" || col.gameObject.tag == "enemyBullet")
         {
             if (iFrames < 0)
             {

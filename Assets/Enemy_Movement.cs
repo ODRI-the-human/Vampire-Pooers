@@ -11,12 +11,20 @@ public class Enemy_Movement : MonoBehaviour
     public GameObject deathAudio;
     public GameObject XP;
     public GameObject HPDrop;
-    public int canFireBullets = 1;
     public GameObject explosion;
     int isSlowed = 0;
     int slowTimer = 0;
     int slowsPlayerHas = 0;
     int creepTimer = 0;
+    Vector2 collisionVector;
+    int knockBack = 0;
+    float knockBackTimer = 0;
+    float maxKnockBack = 0;
+    public int fireType;
+    float currentAngle;
+    Rigidbody2D bulletRB;
+    public GameObject enemyShootAudio;
+    public float shotSpeed;
 
     public float moveSpeed = 5f;
     public GameObject Bullet;
@@ -46,6 +54,12 @@ public class Enemy_Movement : MonoBehaviour
     {
         // weapon cooldown
         fireTimer -= 1;
+        knockBackTimer--;
+
+        if (knockBackTimer < 1)
+        {
+            knockBack = 0;
+        }
 
         // getting player and enemy pos, getting the vector, and moving towards player
         enemyPos.x = rob.transform.position.x;
@@ -54,9 +68,16 @@ public class Enemy_Movement : MonoBehaviour
         playerPos.x = playerTrans.position.x; 
         playerPos.y = playerTrans.position.y;
         vectorToPlayer = (playerPos - enemyPos).normalized;
-        Vector2 wantedVelocity = new Vector2(vectorToPlayer.x * moveSpeed * (2-isSlowed)/2, vectorToPlayer.y * moveSpeed * (2 - isSlowed) / 2);
 
-        rob.velocity = wantedVelocity;
+        if (knockBack == 0)
+        {
+            rob.velocity = (moveSpeed * (2 - isSlowed) / 2) * new Vector2(vectorToPlayer.x, vectorToPlayer.y);
+        }
+
+        if (knockBack == 1)
+        {
+            rob.velocity = maxKnockBack * (knockBackTimer / maxKnockBack) * new Vector2(collisionVector.x, collisionVector.y) + ((maxKnockBack - knockBackTimer) / maxKnockBack) * (moveSpeed * (2 - isSlowed) / 2) * new Vector2(vectorToPlayer.x, vectorToPlayer.y);
+        }
 
         slowTimer--;
         if (slowTimer < 1)
@@ -65,16 +86,34 @@ public class Enemy_Movement : MonoBehaviour
         }
 
         // firing bullets (heavy weapons man)
-        if (canFireBullets == 1) // makes it so enemies only fire if it's been set to 1.
+        if (fireTimer + isSlowed*fireTimerLength < 0)
         {
-            if (fireTimer + isSlowed*fireTimerLength < 0)
+            if ((playerPos - enemyPos).magnitude < 6) // makes it so enemies only shoot if they're close.
             {
-                if ((playerPos - enemyPos).magnitude < 4) // makes it so enemies only shoot if they're close.
+                switch (fireType) // Makes enemy shoot in a particular way depending on their fireType.
                 {
-                    Instantiate(Bullet, transform.position, transform.rotation);
-                    fireTimer = fireTimerLength;
+                    case 0:
+                        //fucking nothing
+                        break;
+                    case 1:
+                        GameObject newObject = Instantiate(Bullet, transform.position, transform.rotation) as GameObject;
+                        bulletRB = newObject.GetComponent<Rigidbody2D>();
+                        bulletRB.velocity = shotSpeed * new Vector2(vectorToPlayer.x, vectorToPlayer.y);
+                        Instantiate(enemyShootAudio);
+                        break;
+                    case 2:
+                        for (int i = 0; i < 8; i++)
+                        {
+                            GameObject newObject2 = Instantiate(Bullet, transform.position, transform.rotation) as GameObject;
+                            bulletRB = newObject2.GetComponent<Rigidbody2D>();
+                            currentAngle = (Mathf.PI / 4) * i;
+                            bulletRB.velocity = shotSpeed * new Vector2(Mathf.Cos(currentAngle) - Mathf.Sin(currentAngle), Mathf.Sin(currentAngle) + Mathf.Cos(currentAngle));
+                        }
+                        Instantiate(enemyShootAudio);
+                        break;
                 }
             }
+            fireTimer = fireTimerLength;
         }
 
         creepTimer--;
@@ -102,6 +141,10 @@ public class Enemy_Movement : MonoBehaviour
         if (col.gameObject.tag == "PlayerBullet")
         {
             HP -= GameObject.Find("Player").GetComponent<Player_Movement>().trueDamageValue;
+            collisionVector = 0.5f*new Vector2(transform.position.x - col.transform.position.x, transform.position.y - col.transform.position.y).normalized;
+            knockBack = 1;
+            knockBackTimer = 15f * col.transform.localScale.x;
+            maxKnockBack = knockBackTimer;
             //Debug.Log(GameObject.Find("Player").GetComponent<Player_Movement>().HP.ToString());
         }
 
