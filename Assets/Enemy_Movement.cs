@@ -24,7 +24,10 @@ public class Enemy_Movement : MonoBehaviour
     float currentAngle;
     Rigidbody2D bulletRB;
     public GameObject enemyShootAudio;
+    public GameObject enemyLazerAudio;
+    public GameObject chargeLazerAudio;
     public float shotSpeed;
+    Vector2 fireVector;
 
     public float moveSpeed = 5f;
     public GameObject Bullet;
@@ -111,6 +114,11 @@ public class Enemy_Movement : MonoBehaviour
                         }
                         Instantiate(enemyShootAudio);
                         break;
+                    case 3:
+                        fireVector = vectorToPlayer;
+                        Invoke(nameof(FunnyLazer), 0.25f);
+                        Instantiate(chargeLazerAudio);
+                        break;
                 }
             }
             fireTimer = fireTimerLength;
@@ -133,6 +141,15 @@ public class Enemy_Movement : MonoBehaviour
                 //Instantiate(XP, transform.position, transform.rotation);
             }
             Destroy(gameObject);
+        }
+    }
+
+    void FunnyLazer()
+    {
+        Instantiate(enemyLazerAudio);
+        for (int i = 0; i < 30; i++)
+        {
+            Instantiate(Bullet, enemyPos + fireVector * 0.63f * i, Quaternion.Euler(0, 0, (180 / (Mathf.PI)) * Mathf.Atan(fireVector.y / fireVector.x)));
         }
     }
 

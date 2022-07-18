@@ -23,6 +23,7 @@ public class secondEnemySpawner : MonoBehaviour
     public GameObject funnyEnemy;
     public GameObject funnyerEnemy;
     public GameObject funniestEnemyEver;
+    public GameObject funniestEnemyEverBUTFUNNIER;
 
     // Update is called once per frame
     void FixedUpdate()
@@ -77,7 +78,8 @@ public class secondEnemySpawner : MonoBehaviour
     {
         float numberEnemiesSpawned = Random.Range(minSpawnMultiplier * ((spawnNumber + waveNumber * 3) * spawnScaleRate), maxSpawnMultiplier * ((spawnNumber + waveNumber * 3) * spawnScaleRate)); // determines no. of enemies to spawn
         int numberEnemiesSpawnedInt = Mathf.RoundToInt(numberEnemiesSpawned);
-        SpawnType = Mathf.RoundToInt(Random.Range(-0.5f, 3.5f));
+        //SpawnType = Mathf.RoundToInt(Random.Range(-0.5f, 3.5f));
+        SpawnType = Mathf.RoundToInt(Random.Range(-0.5f, 4.5f));
         switch (SpawnType)
         {
             case (2):
@@ -167,6 +169,30 @@ public class secondEnemySpawner : MonoBehaviour
                             float SpawnPosXVariation = Random.Range(-1f, 1f);
                             float SpawnPosYVariation = Random.Range(-1f, 1f);
                             Instantiate(funniestEnemyEver, new Vector3(SpawnPosX + SpawnPosXVariation, SpawnPosY + SpawnPosYVariation, 0), new Quaternion(1, 0, 0, 0));
+                        }
+
+                        break;
+                    }
+                }
+            case (4):
+                {
+                    {
+
+                        SpawnPosX = 0;
+                        SpawnPosY = 0;
+                        while (Mathf.Abs(SpawnPosX) < 10)
+                        {
+                            SpawnPosX = Random.Range(-12, 12);
+                        }
+                        while (Mathf.Abs(SpawnPosY) < 6)
+                        {
+                            SpawnPosY = Random.Range(-8, 8);
+                        }
+                        for (int i = 0; i < numberEnemiesSpawnedInt; i++)
+                        {
+                            float SpawnPosXVariation = Random.Range(-1f, 1f);
+                            float SpawnPosYVariation = Random.Range(-1f, 1f);
+                            Instantiate(funniestEnemyEverBUTFUNNIER, new Vector3(SpawnPosX + SpawnPosXVariation, SpawnPosY + SpawnPosYVariation, 0), new Quaternion(1, 0, 0, 0));
                         }
 
                         break;

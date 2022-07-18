@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7595636950658824700}
   - component: {fileID: 7595636950658824698}
   m_Layer: 6
-  m_Name: ShootingEnemy
+  m_Name: LazerEnemy
   m_TagString: Hostile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -88,13 +88,13 @@ MonoBehaviour:
   XP: {fileID: 6124614279667160435, guid: b448494b9362a2a429b8d6416d89f7e6, type: 3}
   HPDrop: {fileID: 2464607902253061138, guid: e984eceff48e0254289a377bc86a995c, type: 3}
   explosion: {fileID: 2618228907162695756, guid: 860e4c358ddeb35429ce12834ff4cb34, type: 3}
-  fireType: 1
+  fireType: 3
   enemyShootAudio: {fileID: 1343821369956803891, guid: 04da9c57f71492c40818fe9dcb49315f, type: 3}
   enemyLazerAudio: {fileID: 5479809658896167308, guid: 7f84fcad1e4a9dd4d8e8cdd93bd8a954, type: 3}
   chargeLazerAudio: {fileID: 3265559195969855234, guid: a961552cb74833447b69d1ea5444aff7, type: 3}
   shotSpeed: 10
   moveSpeed: 1.5
-  Bullet: {fileID: 110440509597865848, guid: 86b090c27b6523a4c99b4b66761df257, type: 3}
+  Bullet: {fileID: 4757702110831107538, guid: da4f2ddac4335334aa0747e0ced25bbc, type: 3}
   rob: {fileID: 7595636950658824699}
   fireTimerLength: 50
   HP: 75
@@ -140,7 +140,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 0, b: 0.6719456, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

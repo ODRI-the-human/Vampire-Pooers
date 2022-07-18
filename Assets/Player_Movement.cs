@@ -313,46 +313,45 @@ public class Player_Movement : MonoBehaviour
         }
     }
 
-    // if player has skill issue and consequently gets hit (bad at game)
-    void OnCollisionEnter2D(Collision2D col)
+    void OnTriggerEnter2D(Collider2D col)
     {
-        // if player has skill issue and consequently gets hit (bad at game)
-        if (col.gameObject.tag == "Hostile" || col.gameObject.tag == "enemyBullet")
         {
-            if (iFrames < 0)
+            // if player has skill issue and consequently gets hit (bad at game)
+            if (col.gameObject.tag == "Hostile" || col.gameObject.tag == "enemyBullet")
             {
-                if (easierTimesInstances > 0)
+                if (iFrames < 0)
                 {
-                    avoidsDamage = Random.Range(0, 7 + 3 * Mathf.Log(easierTimesInstances + 3.5f, 3));
-                }
-                else
-                {
-                    avoidsDamage = 0;
-                }
-
-                if (avoidsDamage < 7)
-                {
-                    if (mantisCharges > 0)
+                    if (easierTimesInstances > 0)
                     {
-                        damageReduction = Mathf.RoundToInt(30 * Mathf.Pow(1.05f, 0.5f * mantisCharges));
+                        avoidsDamage = Random.Range(0, 7 + 3 * Mathf.Log(easierTimesInstances + 3.5f, 3));
                     }
                     else
                     {
-                        damageReduction = 0;
+                        avoidsDamage = 0;
                     }
-                    HP -= 50 - damageReduction;
-                    mantisCharges--;
-                    //Debug.Log("Collided");
-                    Instantiate(PlayerHurtAudio);
-                    SetStatsText();
+
+                    if (avoidsDamage < 7)
+                    {
+                        if (mantisCharges > 0)
+                        {
+                            damageReduction = Mathf.RoundToInt(30 * Mathf.Pow(1.05f, 0.5f * mantisCharges));
+                        }
+                        else
+                        {
+                            damageReduction = 0;
+                        }
+                        HP -= 50 - damageReduction;
+                        mantisCharges--;
+                        //Debug.Log("Collided");
+                        Instantiate(PlayerHurtAudio);
+                        SetStatsText();
+                    }
+                    iFrames = iFramesTimer;
                 }
-                iFrames = iFramesTimer;
             }
         }
-    }
 
-    void OnTriggerEnter2D(Collider2D col)
-    {
+
         // picking up xp
         if (col.gameObject.tag == "XP")
         {
