@@ -35,7 +35,7 @@ public class Bullet_Movement : MonoBehaviour
         Destroy(gameObject);
     }
 
-    void OnCollisionEnter2D(Collision2D col)
+    void OnTriggerEnter2D(Collider2D col)
     {
         Destroy(gameObject);
     }
