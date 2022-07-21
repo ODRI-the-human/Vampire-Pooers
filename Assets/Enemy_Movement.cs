@@ -121,7 +121,7 @@ public class Enemy_Movement : MonoBehaviour
                         break;
                     case 3:
                         fireVector = vectorToPlayer;
-                        Invoke(nameof(FunnyLazer), 0.5f);
+                        Invoke(nameof(FunnyLazer), 0.7f);
                         lazerWarningActive = 1;
                         Instantiate(chargeLazerAudio);
                         break;
