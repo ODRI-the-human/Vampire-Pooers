@@ -98,7 +98,7 @@ MonoBehaviour:
   moveSpeed: 1.5
   Bullet: {fileID: 4757702110831107538, guid: da4f2ddac4335334aa0747e0ced25bbc, type: 3}
   rob: {fileID: 7595636950658824699}
-  fireTimerLength: 50
+  fireTimerLength: 75
   HP: 75
 --- !u!212 &7595636950658824698
 SpriteRenderer:
