@@ -103,7 +103,7 @@ public class secondEnemySpawner : MonoBehaviour
                     SpawnScaleVariation.x *= 1 + numberEnemiesSpawnedInt / 16;
                     GameObject spawned = Instantiate(funnyerEnemy, new Vector3(SpawnPosX + SpawnPosXVariation, SpawnPosY + SpawnPosYVariation, 0), Quaternion.identity);
                     spawned.transform.localScale = SpawnScaleVariation;
-                    spawned.GetComponent<Enemy_Movement>().HP *= 0.5f + 0.5f*numberEnemiesSpawnedInt;
+                    spawned.GetComponent<Enemy_Movement>().HP *= 0.8f + 0.2f*numberEnemiesSpawnedInt;
 
                     break;
                 }
