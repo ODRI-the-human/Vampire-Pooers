@@ -135,19 +135,20 @@ public class Enemy_Movement : MonoBehaviour
 
         if (lazerWarningActive == 1)
         {
-            for (int i = 0; i < 30; i++)
-            {
-                Instantiate(lazerWarning, fireVector * 0.4f + enemyPos + fireVector * 0.63f * i, Quaternion.Euler(0, 0, (180 / (Mathf.PI)) * Mathf.Atan(fireVector.y / fireVector.x)));
-            }
+            //for (int i = 0; i < 40; i++)
+            //{
+            GameObject LazerMarty = Instantiate(lazerWarning, fireVector * 19f + enemyPos, Quaternion.Euler(0, 0, (180 / (Mathf.PI)) * Mathf.Atan(fireVector.y / fireVector.x))) as GameObject;
+            LazerMarty.transform.localScale = new Vector3(60, 1, 1);
+            //}
         }
 
         if (isShootingLazer == 1)
         {
-            for (int i = 0; i < 30; i++)
-            {
-                GameObject LazerMoment = Instantiate(Bullet, fireVector * 0.4f + enemyPos + fireVector * 0.63f * i, Quaternion.Euler(0, 0, (180 / (Mathf.PI)) * Mathf.Atan(fireVector.y / fireVector.x))) as GameObject;
-                LazerMoment.transform.localScale = new Vector3(1, 1/lazerTimer, 1);
-            }
+            //for (int i = 0; i < 6; i++)
+            //{
+            GameObject LazerMoment = Instantiate(Bullet, fireVector * 19f + enemyPos, Quaternion.Euler(0, 0, (180 / (Mathf.PI)) * Mathf.Atan(fireVector.y / fireVector.x))) as GameObject;
+            LazerMoment.transform.localScale = new Vector3(60, 1 / lazerTimer, 1);
+            //}
         }
 
         if (lazerTimer > 9)

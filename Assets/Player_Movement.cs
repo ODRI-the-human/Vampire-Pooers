@@ -313,6 +313,42 @@ public class Player_Movement : MonoBehaviour
         }
     }
 
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "Hostile" || col.gameObject.tag == "enemyBullet")
+        {
+            if (iFrames < 0)
+            {
+                if (easierTimesInstances > 0)
+                {
+                    avoidsDamage = Random.Range(0, 7 + 3 * Mathf.Log(easierTimesInstances + 3.5f, 3));
+                }
+                else
+                {
+                    avoidsDamage = 0;
+                }
+
+                if (avoidsDamage < 7)
+                {
+                    if (mantisCharges > 0)
+                    {
+                        damageReduction = Mathf.RoundToInt(30 * Mathf.Pow(1.05f, 0.5f * mantisCharges));
+                    }
+                    else
+                    {
+                        damageReduction = 0;
+                    }
+                    HP -= 50 - damageReduction;
+                    mantisCharges--;
+                    //Debug.Log("Collided");
+                    Instantiate(PlayerHurtAudio);
+                    SetStatsText();
+                }
+                iFrames = iFramesTimer;
+            }
+        }
+    }
+
     void OnTriggerEnter2D(Collider2D col)
     {
         {
