@@ -28,6 +28,11 @@ public class Enemy_Movement : MonoBehaviour
     public GameObject chargeLazerAudio;
     public float shotSpeed;
     Vector2 fireVector;
+    int isShootingLazer = 0;
+    float lazerTimer = 0;
+    int lazerWarningActive = 0;
+    public GameObject lazerWarning;
+    public int enemyRange;
 
     public float moveSpeed = 5f;
     public GameObject Bullet;
@@ -91,7 +96,7 @@ public class Enemy_Movement : MonoBehaviour
         // firing bullets (heavy weapons man)
         if (fireTimer + isSlowed*fireTimerLength < 0)
         {
-            if ((playerPos - enemyPos).magnitude < 6) // makes it so enemies only shoot if they're close.
+            if ((playerPos - enemyPos).magnitude < enemyRange) // makes it so enemies only shoot if they're close.
             {
                 switch (fireType) // Makes enemy shoot in a particular way depending on their fireType.
                 {
@@ -116,12 +121,38 @@ public class Enemy_Movement : MonoBehaviour
                         break;
                     case 3:
                         fireVector = vectorToPlayer;
-                        Invoke(nameof(FunnyLazer), 0.25f);
+                        Invoke(nameof(FunnyLazer), 0.5f);
+                        lazerWarningActive = 1;
                         Instantiate(chargeLazerAudio);
                         break;
                 }
             }
             fireTimer = fireTimerLength;
+        }
+
+
+        lazerTimer++;
+
+        if (lazerWarningActive == 1)
+        {
+            for (int i = 0; i < 30; i++)
+            {
+                Instantiate(lazerWarning, fireVector * 0.4f + enemyPos + fireVector * 0.63f * i, Quaternion.Euler(0, 0, (180 / (Mathf.PI)) * Mathf.Atan(fireVector.y / fireVector.x)));
+            }
+        }
+
+        if (isShootingLazer == 1)
+        {
+            for (int i = 0; i < 30; i++)
+            {
+                GameObject LazerMoment = Instantiate(Bullet, fireVector * 0.4f + enemyPos + fireVector * 0.63f * i, Quaternion.Euler(0, 0, (180 / (Mathf.PI)) * Mathf.Atan(fireVector.y / fireVector.x))) as GameObject;
+                LazerMoment.transform.localScale = new Vector3(1, 1/lazerTimer, 1);
+            }
+        }
+
+        if (lazerTimer > 9)
+        {
+            isShootingLazer = 0;
         }
 
         creepTimer--;
@@ -147,10 +178,9 @@ public class Enemy_Movement : MonoBehaviour
     void FunnyLazer()
     {
         Instantiate(enemyLazerAudio);
-        for (int i = 0; i < 30; i++)
-        {
-            Instantiate(Bullet, enemyPos + fireVector * 0.63f * i, Quaternion.Euler(0, 0, (180 / (Mathf.PI)) * Mathf.Atan(fireVector.y / fireVector.x)));
-        }
+        isShootingLazer = 1;
+        lazerTimer = 0;
+        lazerWarningActive = 0;
     }
 
     void OnTriggerEnter2D(Collider2D col)

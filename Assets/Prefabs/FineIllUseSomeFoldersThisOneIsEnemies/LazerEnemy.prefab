@@ -92,7 +92,9 @@ MonoBehaviour:
   enemyShootAudio: {fileID: 1343821369956803891, guid: 04da9c57f71492c40818fe9dcb49315f, type: 3}
   enemyLazerAudio: {fileID: 5479809658896167308, guid: 7f84fcad1e4a9dd4d8e8cdd93bd8a954, type: 3}
   chargeLazerAudio: {fileID: 3265559195969855234, guid: a961552cb74833447b69d1ea5444aff7, type: 3}
-  shotSpeed: 10
+  shotSpeed: 7
+  lazerWarning: {fileID: 4757702110831107538, guid: 943429d159e1f76479c77efbab038306, type: 3}
+  enemyRange: 15
   moveSpeed: 1.5
   Bullet: {fileID: 4757702110831107538, guid: da4f2ddac4335334aa0747e0ced25bbc, type: 3}
   rob: {fileID: 7595636950658824699}

@@ -90,7 +90,11 @@ MonoBehaviour:
   explosion: {fileID: 2618228907162695756, guid: 860e4c358ddeb35429ce12834ff4cb34, type: 3}
   fireType: 2
   enemyShootAudio: {fileID: 1343821369956803891, guid: 04da9c57f71492c40818fe9dcb49315f, type: 3}
+  enemyLazerAudio: {fileID: 0}
+  chargeLazerAudio: {fileID: 0}
   shotSpeed: 5
+  lazerWarning: {fileID: 0}
+  enemyRange: 6
   moveSpeed: 1.5
   Bullet: {fileID: 110440509597865848, guid: 86b090c27b6523a4c99b4b66761df257, type: 3}
   rob: {fileID: 7595636950658824699}
