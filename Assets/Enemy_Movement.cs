@@ -22,6 +22,7 @@ public class Enemy_Movement : MonoBehaviour
     float maxKnockBack = 0;
     public int fireType;
     float currentAngle;
+    Vector2 newShotVector;
     Rigidbody2D bulletRB;
     public GameObject enemyShootAudio;
     public GameObject enemyLazerAudio;
@@ -129,6 +130,16 @@ public class Enemy_Movement : MonoBehaviour
                         Invoke(nameof(FunnyLazer), 0.7f);
                         lazerWarningActive = 1;
                         Instantiate(chargeLazerAudio);
+                        break;
+                    case 4:
+                        for (int i = -1; i < 3; i++)
+                        {
+                            GameObject newObject3 = Instantiate(Bullet, transform.position, transform.rotation) as GameObject;
+                            bulletRB = newObject3.GetComponent<Rigidbody2D>();
+                            currentAngle = 0.6f * (0.5f * 3 - i - 1);
+                            newShotVector = new Vector2(vectorToPlayer.x * Mathf.Cos(currentAngle) - vectorToPlayer.y * Mathf.Sin(currentAngle), vectorToPlayer.x * Mathf.Sin(currentAngle) + vectorToPlayer.y * Mathf.Cos(currentAngle));
+                            bulletRB.velocity = new Vector2(newShotVector.x * shotSpeed, newShotVector.y * shotSpeed); Instantiate(enemyShootAudio);
+                        }
                         break;
                 }
             }

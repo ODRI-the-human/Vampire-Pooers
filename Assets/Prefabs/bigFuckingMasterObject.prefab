@@ -29,6 +29,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 5, z: 0}
   m_LocalScale: {x: 4, y: 4, z: 3}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -85,8 +86,11 @@ MonoBehaviour:
   spawnTimerLength: 500
   minSpawnMultiplier: 4
   maxSpawnMultiplier: 7
-  spawnScaleRate: 0.4
   waveText: {fileID: 0}
   itemPedestal: {fileID: 7674381605585770215, guid: ccd2011bfb2e96e4dbabac692441a45c, type: 3}
   Enemy: {fileID: 7595636950658824701, guid: 6f49e8f201231cf46ab6ee4a3e6506fa, type: 3}
   funnyEnemy: {fileID: 8034279136360660190, guid: 4dcdba7b6fc2b4e4f9977ed78b46f5c9, type: 3}
+  funnyerEnemy: {fileID: 5685454981733204260, guid: 9cb06ff4930a2534d8c05ad2b7f3fae6, type: 3}
+  funniestEnemyEver: {fileID: 7595636950658824701, guid: be15b6667c335324cbb54b95f1e2a4c7, type: 3}
+  funniestEnemyEverBUTFUNNIER: {fileID: 7595636950658824701, guid: b4c7c42ade9b891489dcf0b857265e12, type: 3}
+  funniestEnemyEverBUTFUNNIERANDEVENFUNNIER: {fileID: 7595636950658824701, guid: c38b3fcace58ec641a6541aa1aa821b5, type: 3}
