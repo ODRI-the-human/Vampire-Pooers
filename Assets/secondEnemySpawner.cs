@@ -35,7 +35,7 @@ public class secondEnemySpawner : MonoBehaviour
         {
             if (GameObject.FindGameObjectsWithTag("item").Length < 1)
             {
-                if (spawnNumber % noSpawnsBeforeNewWave != 0)
+                if (spawnNumber - waveNumber != noSpawnsBeforeNewWave)
                 {
                     PickAction();
                     spawnNumber += 1;
@@ -65,7 +65,7 @@ public class secondEnemySpawner : MonoBehaviour
 
     void PickAction()
     {
-        if (spawnNumber % noSpawnsBeforeNewWave != 0)
+        if (spawnNumber - waveNumber != noSpawnsBeforeNewWave)
         {
             SpawnEnemies();
         }
@@ -237,7 +237,6 @@ public class secondEnemySpawner : MonoBehaviour
         {
             GameObject newObject = Instantiate(itemPedestal, new Vector3(5 * i - 5, 3, 0), transform.rotation) as GameObject;
             newObject.transform.localScale = new Vector3(5, 5, 5);
-            noSpawnsBeforeNewWave++;
         }
         StartWave();
     }
