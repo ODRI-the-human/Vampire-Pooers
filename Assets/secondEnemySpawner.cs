@@ -126,7 +126,8 @@ public class secondEnemySpawner : MonoBehaviour
                     {
                         float SpawnPosXVariation = Random.Range(-1f, 1f);
                         float SpawnPosYVariation = Random.Range(-1f, 1f);
-                        Instantiate(Enemy, new Vector3(SpawnPosX + SpawnPosXVariation, SpawnPosY + SpawnPosYVariation, 0), new Quaternion(1, 0, 0, 0));
+                        GameObject spawned2 = Instantiate(Enemy, new Vector3(SpawnPosX + SpawnPosXVariation, SpawnPosY + SpawnPosYVariation, 0), new Quaternion(1, 0, 0, 0));
+                        spawned2.GetComponent<Enemy_Movement>().HP *= 0.8f + 0.2f * waveNumber;
                     }
 
                     break;
@@ -147,7 +148,8 @@ public class secondEnemySpawner : MonoBehaviour
                         }
                         float SpawnPosXVariation = Random.Range(-1f, 1f);
                         float SpawnPosYVariation = Random.Range(-1f, 1f);
-                        Instantiate(funnyEnemy, new Vector3(SpawnPosX + SpawnPosXVariation, SpawnPosY + SpawnPosYVariation, 0), new Quaternion(1, 0, 0, 0));
+                        GameObject spawned3 = Instantiate(funnyEnemy, new Vector3(SpawnPosX + SpawnPosXVariation, SpawnPosY + SpawnPosYVariation, 0), new Quaternion(1, 0, 0, 0));
+                        spawned3.GetComponent<Enemy_Movement>().HP *= 0.8f + 0.2f * waveNumber;
                     }
                     break;
                 }
@@ -169,7 +171,8 @@ public class secondEnemySpawner : MonoBehaviour
                         {
                             float SpawnPosXVariation = Random.Range(-1f, 1f);
                             float SpawnPosYVariation = Random.Range(-1f, 1f);
-                            Instantiate(funniestEnemyEver, new Vector3(SpawnPosX + SpawnPosXVariation, SpawnPosY + SpawnPosYVariation, 0), new Quaternion(1, 0, 0, 0));
+                            GameObject spawned4 = Instantiate(funniestEnemyEver, new Vector3(SpawnPosX + SpawnPosXVariation, SpawnPosY + SpawnPosYVariation, 0), new Quaternion(1, 0, 0, 0));
+                            spawned4.GetComponent<Enemy_Movement>().HP *= 0.8f + 0.2f * waveNumber;
                         }
 
                         break;
@@ -193,7 +196,8 @@ public class secondEnemySpawner : MonoBehaviour
                         {
                             float SpawnPosXVariation = Random.Range(-1f, 1f);
                             float SpawnPosYVariation = Random.Range(-1f, 1f);
-                            Instantiate(funniestEnemyEverBUTFUNNIER, new Vector3(SpawnPosX + SpawnPosXVariation, SpawnPosY + SpawnPosYVariation, 0), new Quaternion(1, 0, 0, 0));
+                            GameObject spawned5 = Instantiate(funniestEnemyEverBUTFUNNIER, new Vector3(SpawnPosX + SpawnPosXVariation, SpawnPosY + SpawnPosYVariation, 0), new Quaternion(1, 0, 0, 0));
+                            spawned5.GetComponent<Enemy_Movement>().HP *= 0.8f + 0.2f * waveNumber;
                         }
 
                         break;
@@ -217,7 +221,8 @@ public class secondEnemySpawner : MonoBehaviour
                         {
                             float SpawnPosXVariation = Random.Range(-1f, 1f);
                             float SpawnPosYVariation = Random.Range(-1f, 1f);
-                            Instantiate(funniestEnemyEverBUTFUNNIERANDEVENFUNNIER, new Vector3(SpawnPosX + SpawnPosXVariation, SpawnPosY + SpawnPosYVariation, 0), new Quaternion(1, 0, 0, 0));
+                            GameObject spawned6 = Instantiate(funniestEnemyEverBUTFUNNIERANDEVENFUNNIER, new Vector3(SpawnPosX + SpawnPosXVariation, SpawnPosY + SpawnPosYVariation, 0), new Quaternion(1, 0, 0, 0));
+                            spawned6.GetComponent<Enemy_Movement>().HP *= 0.8f + 0.2f * waveNumber;
                         }
 
                         break;
