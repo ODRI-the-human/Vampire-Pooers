@@ -30,6 +30,7 @@ public class Player_Movement : MonoBehaviour
     public TextMeshProUGUI DMGText;
     public TextMeshProUGUI LevelText;
     public TextMeshProUGUI itemScreenText;
+    public SpriteRenderer sprite;
 
     public float initialFireTimerLength = 200f;
     float fireTimerLength;
@@ -41,8 +42,8 @@ public class Player_Movement : MonoBehaviour
     public float damageStat = 50;
     public float damageMult = 1;
     float converterDamageMult = 0;
-    int iFramesTimer = 50;
-    int iFrames = 0;
+    float iFramesTimer = 50;
+    float iFrames = 0;
     int XP = 0;
     Vector2 playerPos;
     Vector2 mousePos;
@@ -74,6 +75,10 @@ public class Player_Movement : MonoBehaviour
     public int pierceInstances = 0;
     int creepInstances = 0;
     int creepTimer = 0;
+    float dodgeTimer;
+    float dodgeTimerLength = 75;
+    int isDodging = 0;
+    public GameObject dodgeAudio;
 
     private Vector2 moveDirection;
     public List<int> itemsHeld = new List<int>();
@@ -84,6 +89,8 @@ public class Player_Movement : MonoBehaviour
             instance = this; //this is the instance
         else
             Destroy(this); //should never be multiple instances
+
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     void Start()
@@ -194,7 +201,7 @@ public class Player_Movement : MonoBehaviour
             }
 
             converterDamageMult += ((0.03f) * (1 - HP / maxHP))*converterInstances;
-            Debug.Log(converterDamageMult.ToString());
+            //Debug.Log(converterDamageMult.ToString());
             trueDamageValue = (damageStat) * (damageMult + converterDamageMult) * finalDamageMult;
         }
     }
@@ -203,10 +210,12 @@ public class Player_Movement : MonoBehaviour
     void Update()
     {
         // input
-        float moveX = Input.GetAxisRaw("Horizontal");
-        float moveY = Input.GetAxisRaw("Vertical");
-
-        moveDirection = new Vector2(moveX, moveY).normalized;
+        if (isDodging == 0)
+        {
+            float moveX = Input.GetAxisRaw("Horizontal");
+            float moveY = Input.GetAxisRaw("Vertical");
+            moveDirection = new Vector2(moveX, moveY).normalized;
+        }
 
         // firing the FUNNY weapon
         if (Input.GetButton("Fire1"))
@@ -251,8 +260,35 @@ public class Player_Movement : MonoBehaviour
             }
         }
 
-        // >dies
-        if (HP <= 0)
+        if (dodgeTimer < -400)
+        {
+            if (Input.GetButton("Dodge"))
+            {
+                Debug.Log("Dodge the Roll");
+                dodgeTimer = dodgeTimerLength;
+                //iFrames = dodgeTimerLength;
+                isDodging = 1;
+                Instantiate(dodgeAudio);
+            }
+        }
+
+        dodgeTimer--;
+
+        if (isDodging == 1)
+        {
+            if (dodgeTimer > 0)
+            {
+                gameObject.GetComponent<Collider2D>().enabled = false;
+            }
+            else
+            {
+                isDodging = 0;
+                gameObject.GetComponent<Collider2D>().enabled = true;
+            }
+        }
+
+            // >dies
+            if (HP <= 0)
         {
             Destroy(Player);
             //Debug.Log("Owned Lu zer");
@@ -275,14 +311,14 @@ public class Player_Movement : MonoBehaviour
             }
         }
 
-        Debug.Log("Damage: " + ((damageStat) * (damageMult + converterDamageMult) * finalDamageMult).ToString() + " damageStat: " + damageStat.ToString() + " damageMult: " + damageMult.ToString() + " converterDamageMult: " + converterDamageMult.ToString() + " finalDamageMult: " + finalDamageMult.ToString());
+        //Debug.Log("Damage: " + ((damageStat) * (damageMult + converterDamageMult) * finalDamageMult).ToString() + " damageStat: " + damageStat.ToString() + " damageMult: " + damageMult.ToString() + " converterDamageMult: " + converterDamageMult.ToString() + " finalDamageMult: " + finalDamageMult.ToString());
         trueDamageValue = (damageStat) * (damageMult + converterDamageMult) * finalDamageMult; // Dunno why but if I put this calculation in updatestats it gives a damage value of 0 so it's here for now
     }
 
     void FixedUpdate()
     {
         // movement
-        rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
+        rb.velocity = (1+isDodging*2) * new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
 
         // reducing cooldown timer of weapon
         fireTimer -= 1;
@@ -309,6 +345,21 @@ public class Player_Movement : MonoBehaviour
                 creepTimer = 5;
                 GameObject newObject5 = Instantiate(creep, transform.position + new Vector3(0, 0, 0.5f), transform.rotation) as GameObject;
                 newObject5.transform.localScale = new Vector3(6 + 2*creepInstances, 6 + 2 * creepInstances, 6 + 2 * creepInstances);
+            }
+        }
+
+        Color tmp = sprite.color;
+        if (iFrames > 0)
+        {
+            if (iFrames % 2 == 0)
+            {
+                tmp.a = 0f;
+                sprite.color = tmp;
+            }
+            else
+            {
+                tmp.a = 1f;
+                sprite.color = tmp;
             }
         }
     }

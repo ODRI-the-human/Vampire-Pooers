@@ -33,6 +33,9 @@ public class Enemy_Movement : MonoBehaviour
     int lazerWarningActive = 0;
     public GameObject lazerWarning;
     public int enemyRange;
+    public SpriteRenderer sprite;
+    Color originalColor;
+    float colorChangeTimer = 0;
 
     public float moveSpeed = 5f;
     public GameObject Bullet;
@@ -47,6 +50,8 @@ public class Enemy_Movement : MonoBehaviour
     void Awake()
     {
         slowsPlayerHas = GameObject.Find("Player").GetComponent<Player_Movement>().stopwatchInstances;
+        sprite = GetComponent<SpriteRenderer>();
+        originalColor = sprite.color;
 
         if (slowsPlayerHas > 0)
         {
@@ -174,6 +179,13 @@ public class Enemy_Movement : MonoBehaviour
             }
             Destroy(gameObject);
         }
+
+        colorChangeTimer--;
+
+        if (colorChangeTimer == 0)
+        {
+            sprite.color = originalColor;
+        }    
     }
 
     void FunnyLazer()
@@ -194,6 +206,8 @@ public class Enemy_Movement : MonoBehaviour
             knockBackTimer = 15f * col.transform.localScale.x;
             maxKnockBack = knockBackTimer;
             //Debug.Log(GameObject.Find("Player").GetComponent<Player_Movement>().HP.ToString());
+            sprite.color = Color.red;
+            colorChangeTimer = 3;
         }
 
         if (col.gameObject.tag == "ATGExplosion")
