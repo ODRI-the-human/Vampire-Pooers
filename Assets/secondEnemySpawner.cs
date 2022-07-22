@@ -77,7 +77,7 @@ public class secondEnemySpawner : MonoBehaviour
 
     void SpawnEnemies()
     {
-        float numberEnemiesSpawned = Random.Range(minSpawnMultiplier * ((spawnNumber + waveNumber * 3) * spawnScaleRate), maxSpawnMultiplier * ((spawnNumber + waveNumber * 3) * spawnScaleRate)); // determines no. of enemies to spawn
+        float numberEnemiesSpawned = Random.Range(minSpawnMultiplier * ((spawnNumber + waveNumber * 2) * spawnScaleRate), maxSpawnMultiplier * ((spawnNumber + waveNumber * 2) * spawnScaleRate)); // determines no. of enemies to spawn
         int numberEnemiesSpawnedInt = Mathf.RoundToInt(numberEnemiesSpawned);
         //SpawnType = Mathf.RoundToInt(Random.Range(-0.5f, 3.5f));
         SpawnType = Mathf.RoundToInt(Random.Range(-0.5f, 5.5f));
