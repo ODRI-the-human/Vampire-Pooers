@@ -159,11 +159,11 @@ public class Player_Movement : MonoBehaviour
                     damageMult += 1;
                     break;
                 case (int)ITEMLIST.FIRERATE:
-                    fireTimerLength /= 1.15f;
+                    fireTimerLength /= 1.25f;
                     break;
                 case (int)ITEMLIST.SOY:
                     fireTimerLength /= 5;
-                    finalDamageMult /= 3;
+                    finalDamageMult /= 4;
                     break;
                 case (int)ITEMLIST.MORESHOT:
                     noExtraShots += 1;
