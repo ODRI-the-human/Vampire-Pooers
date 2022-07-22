@@ -39,7 +39,7 @@ public class secondEnemySpawner : MonoBehaviour
                 {
                     PickAction();
                     spawnNumber += 1;
-                    spawnTimerLength /= 1.05f;
+                    spawnTimerLength /= 1.025f;
                     spawnTimer = spawnTimerLength;
                 }
                 else
@@ -48,7 +48,7 @@ public class secondEnemySpawner : MonoBehaviour
                     {
                         PickAction();
                         spawnNumber += 1;
-                        spawnTimerLength /= 1.05f;
+                        spawnTimerLength /= 1.025f;
                         spawnTimer = spawnTimerLength;
                     }
                 }
@@ -232,6 +232,7 @@ public class secondEnemySpawner : MonoBehaviour
         {
             GameObject newObject = Instantiate(itemPedestal, new Vector3(5 * i - 5, 3, 0), transform.rotation) as GameObject;
             newObject.transform.localScale = new Vector3(5, 5, 5);
+            noSpawnsBeforeNewWave++;
         }
         StartWave();
     }

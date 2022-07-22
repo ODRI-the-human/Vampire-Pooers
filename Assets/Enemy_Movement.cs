@@ -142,6 +142,7 @@ public class Enemy_Movement : MonoBehaviour
                             newShotVector = new Vector2(vectorToPlayer.x * Mathf.Cos(currentAngle) - vectorToPlayer.y * Mathf.Sin(currentAngle), vectorToPlayer.x * Mathf.Sin(currentAngle) + vectorToPlayer.y * Mathf.Cos(currentAngle));
                             bulletRB.velocity = new Vector2(newShotVector.x * shotSpeed, newShotVector.y * shotSpeed); Instantiate(enemyShootAudio);
                         }
+                        Instantiate(enemyShootAudio);
                         break;
                 }
             }
