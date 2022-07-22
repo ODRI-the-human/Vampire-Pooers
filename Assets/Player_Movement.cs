@@ -76,7 +76,7 @@ public class Player_Movement : MonoBehaviour
     int creepInstances = 0;
     int creepTimer = 0;
     float dodgeTimer;
-    float dodgeTimerLength = 75;
+    float dodgeTimerLength = 100;
     int isDodging = 0;
     public GameObject dodgeAudio;
 
@@ -318,7 +318,7 @@ public class Player_Movement : MonoBehaviour
     void FixedUpdate()
     {
         // movement
-        rb.velocity = (1+isDodging*2) * new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
+        rb.velocity = (1+isDodging*1.5f) * new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
 
         // reducing cooldown timer of weapon
         fireTimer -= 1;
