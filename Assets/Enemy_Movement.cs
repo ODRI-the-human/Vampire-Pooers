@@ -37,6 +37,7 @@ public class Enemy_Movement : MonoBehaviour
     public SpriteRenderer sprite;
     Color originalColor;
     float colorChangeTimer = 0;
+    GameObject Player;
 
     public float moveSpeed = 5f;
     public GameObject Bullet;
@@ -50,7 +51,8 @@ public class Enemy_Movement : MonoBehaviour
 
     void Awake()
     {
-        slowsPlayerHas = GameObject.Find("Player").GetComponent<Player_Movement>().stopwatchInstances;
+        Player = GameObject.Find("Player");
+        slowsPlayerHas = Player.GetComponent<Player_Movement>().stopwatchInstances;
         sprite = GetComponent<SpriteRenderer>();
         originalColor = sprite.color;
 
@@ -78,7 +80,7 @@ public class Enemy_Movement : MonoBehaviour
         // getting player and enemy pos, getting the vector, and moving towards player
         enemyPos.x = rob.transform.position.x;
         enemyPos.y = rob.transform.position.y;
-        Transform playerTrans = GameObject.Find("Player").transform;
+        Transform playerTrans = Player.transform;
         playerPos.x = playerTrans.position.x; 
         playerPos.y = playerTrans.position.y;
         vectorToPlayer = (playerPos - enemyPos).normalized;
@@ -211,19 +213,19 @@ public class Enemy_Movement : MonoBehaviour
     {
         if (col.gameObject.tag == "PlayerBullet")
         {
-            HP -= GameObject.Find("Player").GetComponent<Player_Movement>().trueDamageValue;
+            HP -= Player.GetComponent<Player_Movement>().trueDamageValue;
             collisionVector = 0.5f*new Vector2(transform.position.x - col.transform.position.x, transform.position.y - col.transform.position.y).normalized;
             knockBack = 1;
             knockBackTimer = 15f * col.transform.localScale.x;
             maxKnockBack = knockBackTimer;
-            //Debug.Log(GameObject.Find("Player").GetComponent<Player_Movement>().HP.ToString());
             sprite.color = Color.red;
             colorChangeTimer = 3;
         }
 
         if (col.gameObject.tag == "ATGExplosion")
         {
-            HP -= GameObject.Find("Player").GetComponent<Player_Movement>().trueDamageValue;
+            HP -= Player.GetComponent<Player_Movement>().trueDamageValue;
+            colorChangeTimer = 3;
         }
     }
 
@@ -239,8 +241,9 @@ public class Enemy_Movement : MonoBehaviour
         {
             if (creepTimer < 1)
             {
-                HP -= 0.08f * GameObject.Find("Player").GetComponent<Player_Movement>().trueDamageValue;
+                HP -= 0.08f * Player.GetComponent<Player_Movement>().trueDamageValue;
                 creepTimer = 5;
+                colorChangeTimer = 3;
             }
         }
     }
