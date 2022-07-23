@@ -19,12 +19,13 @@ public enum ITEMLIST
     BOUNCY, // Your bullets bounce +1 time.
     FOURDIRMARTY, // Every 5 shots, shoot 4 bullets in the cardinal directions.
     PIERCING, // Piercing shots
-    CREEP // Leave creep on the ground.
+    CREEP, // Leave creep on the ground.
+    DODGESPLOSION, // Deal damage to enemies in a circle around you at the end of a dodge. Stacks increase radius and damage.
+    BETTERDODGE, // Dodge further, faster, with a shorter cooldown, and have iframes for a while after the dodge.
+    ORBITAL1, // Long-range orbital that deals damage to enemies and blocks their shots.
+    ORBITAL2 // Short-range orbital that shoots bullets that deal 1/4 of your bullets and inheret all effects.
     // Contact damage with an enemy pushes all enemies away from you, dealing 50 damage.
-    // Deal 50 damage to any nearby enemies when you dodge.
-    // Dodge length and iframes increased
     // Gain an orbital that shoots the same projectiles as you, dealing 1/3 the damage, and blocks enemy shots.
-    // Gain a long-range orbital that blocks shots and deals damage to enemies.
     // Bullets that hit you are reflected back as a piercing shot that deals double the damage of the enemy's shot.
     // Every frame you're not firing, get a temporary damage and firerate up.
     // HP and damage up

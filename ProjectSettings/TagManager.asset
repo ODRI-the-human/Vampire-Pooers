@@ -15,6 +15,10 @@ TagManager:
   - Wall
   - Creep
   - enemyBullet
+  - dodgeExplosion
+  - OrbitalContact
+  - OrbitalShoot
+  - Orbital Bullet
   layers:
   - Default
   - TransparentFX
@@ -27,7 +31,7 @@ TagManager:
   - Player
   - PlayerBullets
   - Wall
-  - 
+  - Projectile Blocking
   - 
   - 
   - 

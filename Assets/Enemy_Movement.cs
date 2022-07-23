@@ -15,6 +15,7 @@ public class Enemy_Movement : MonoBehaviour
     int isSlowed = 0;
     int slowTimer = 0;
     int slowsPlayerHas = 0;
+    int dodgeSplosionsPlayerHas = 0;
     int creepTimer = 0;
     Vector2 collisionVector;
     int knockBack = 0;
@@ -38,6 +39,7 @@ public class Enemy_Movement : MonoBehaviour
     Color originalColor;
     float colorChangeTimer = 0;
     GameObject Player;
+    int orbital2PlayerHas;
 
     public float moveSpeed = 5f;
     public GameObject Bullet;
@@ -53,6 +55,8 @@ public class Enemy_Movement : MonoBehaviour
     {
         Player = GameObject.Find("Player");
         slowsPlayerHas = Player.GetComponent<Player_Movement>().stopwatchInstances;
+        dodgeSplosionsPlayerHas = Player.GetComponent<Player_Movement>().dodgeSplosionInstances;
+        orbital2PlayerHas = Player.GetComponent<Player_Movement>().orbital2Instances;
         sprite = GetComponent<SpriteRenderer>();
         originalColor = sprite.color;
 
@@ -189,7 +193,7 @@ public class Enemy_Movement : MonoBehaviour
             }
             else
             {
-                //Instantiate(XP, transform.position, transform.rotation);
+                Instantiate(XP, transform.position, transform.rotation);
             }
             Destroy(gameObject);
         }
@@ -223,9 +227,31 @@ public class Enemy_Movement : MonoBehaviour
             colorChangeTimer = 3;
         }
 
+        if (col.gameObject.tag == "Orbital Bullet")
+        {
+            HP -= 0.25f * orbital2PlayerHas * Player.GetComponent<Player_Movement>().trueDamageValue;
+            collisionVector = 0.5f * new Vector2(transform.position.x - col.transform.position.x, transform.position.y - col.transform.position.y).normalized;
+            knockBack = 1;
+            knockBackTimer = 15f * col.transform.localScale.x;
+            maxKnockBack = knockBackTimer;
+            sprite.color = Color.red;
+            colorChangeTimer = 3;
+        }
+
         if (col.gameObject.tag == "ATGExplosion")
         {
             HP -= Player.GetComponent<Player_Movement>().trueDamageValue;
+            colorChangeTimer = 3;
+        }
+
+        if (col.gameObject.tag == "dodgeExplosion")
+        {
+            HP -= 20+20*dodgeSplosionsPlayerHas;
+            collisionVector = new Vector2(transform.position.x - col.transform.position.x, transform.position.y - col.transform.position.y).normalized;
+            knockBack = 1;
+            knockBackTimer = 15;
+            maxKnockBack = knockBackTimer;
+            sprite.color = Color.red;
             colorChangeTimer = 3;
         }
     }
@@ -246,6 +272,13 @@ public class Enemy_Movement : MonoBehaviour
                 creepTimer = 5;
                 colorChangeTimer = 3;
             }
+        }
+
+        if (col.gameObject.tag == "OrbitalContact")
+        {
+            HP -= 6;
+            sprite.color = Color.red;
+            colorChangeTimer = 3;
         }
     }
 }
