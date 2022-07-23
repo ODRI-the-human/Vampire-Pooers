@@ -193,7 +193,7 @@ public class Enemy_Movement : MonoBehaviour
             }
             else
             {
-                Instantiate(XP, transform.position, transform.rotation);
+                //Instantiate(XP, transform.position, transform.rotation);
             }
             Destroy(gameObject);
         }
