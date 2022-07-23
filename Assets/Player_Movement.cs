@@ -425,6 +425,11 @@ public class Player_Movement : MonoBehaviour
                 sprite.color = tmp;
             }
         }
+        else
+        {
+            tmp.a = 1f;
+            sprite.color = tmp;
+        }
     }
 
     void OnCollisionEnter2D(Collision2D col)
