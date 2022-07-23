@@ -339,8 +339,11 @@ public class Player_Movement : MonoBehaviour
             {
                 isDodging = 0;
                 gameObject.GetComponent<Collider2D>().enabled = true;
-                GameObject explodyDodge = Instantiate(dodgeSplosion, transform.position, transform.rotation);
-                explodyDodge.transform.localScale *= 2.5f + 2 * dodgeSplosionInstances;
+                if (dodgeSplosionInstances > 0)
+                {
+                    GameObject explodyDodge = Instantiate(dodgeSplosion, transform.position, transform.rotation);
+                    explodyDodge.transform.localScale *= 2.5f + 2 * dodgeSplosionInstances;
+                }    
                 iFrames = 3*betterDodgeInstances;
             }
         }
