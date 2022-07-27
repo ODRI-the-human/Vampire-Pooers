@@ -79,7 +79,6 @@ public class secondEnemySpawner : MonoBehaviour
     {
         float numberEnemiesSpawned = Random.Range(minSpawnMultiplier * ((spawnNumber + waveNumber * 2) * spawnScaleRate), maxSpawnMultiplier * ((spawnNumber + waveNumber * 2) * spawnScaleRate)); // determines no. of enemies to spawn
         int numberEnemiesSpawnedInt = Mathf.RoundToInt(numberEnemiesSpawned);
-        //SpawnType = Mathf.RoundToInt(Random.Range(-0.5f, 3.5f));
         SpawnType = Mathf.RoundToInt(Random.Range(-0.5f, 5.5f));
         switch (SpawnType)
         {
@@ -126,7 +125,7 @@ public class secondEnemySpawner : MonoBehaviour
                     {
                         float SpawnPosXVariation = Random.Range(-1f, 1f);
                         float SpawnPosYVariation = Random.Range(-1f, 1f);
-                        GameObject spawned2 = Instantiate(Enemy, new Vector3(SpawnPosX + SpawnPosXVariation, SpawnPosY + SpawnPosYVariation, 0), new Quaternion(1, 0, 0, 0));
+                        GameObject spawned2 = Instantiate(Enemy, new Vector3(SpawnPosX + SpawnPosXVariation, SpawnPosY + SpawnPosYVariation, 0), transform.rotation);
                         spawned2.GetComponent<Enemy_Movement>().HP *= 0.8f + 0.2f * waveNumber;
                     }
 
@@ -148,7 +147,7 @@ public class secondEnemySpawner : MonoBehaviour
                         }
                         float SpawnPosXVariation = Random.Range(-1f, 1f);
                         float SpawnPosYVariation = Random.Range(-1f, 1f);
-                        GameObject spawned3 = Instantiate(funnyEnemy, new Vector3(SpawnPosX + SpawnPosXVariation, SpawnPosY + SpawnPosYVariation, 0), new Quaternion(1, 0, 0, 0));
+                        GameObject spawned3 = Instantiate(funnyEnemy, new Vector3(SpawnPosX + SpawnPosXVariation, SpawnPosY + SpawnPosYVariation, 0), transform.rotation);
                         spawned3.GetComponent<Enemy_Movement>().HP *= 0.8f + 0.2f * waveNumber;
                     }
                     break;
@@ -171,7 +170,7 @@ public class secondEnemySpawner : MonoBehaviour
                         {
                             float SpawnPosXVariation = Random.Range(-1f, 1f);
                             float SpawnPosYVariation = Random.Range(-1f, 1f);
-                            GameObject spawned4 = Instantiate(funniestEnemyEver, new Vector3(SpawnPosX + SpawnPosXVariation, SpawnPosY + SpawnPosYVariation, 0), new Quaternion(1, 0, 0, 0));
+                            GameObject spawned4 = Instantiate(funniestEnemyEver, new Vector3(SpawnPosX + SpawnPosXVariation, SpawnPosY + SpawnPosYVariation, 0), transform.rotation);
                             spawned4.GetComponent<Enemy_Movement>().HP *= 0.8f + 0.2f * waveNumber;
                         }
 
@@ -196,7 +195,7 @@ public class secondEnemySpawner : MonoBehaviour
                         {
                             float SpawnPosXVariation = Random.Range(-1f, 1f);
                             float SpawnPosYVariation = Random.Range(-1f, 1f);
-                            GameObject spawned5 = Instantiate(funniestEnemyEverBUTFUNNIER, new Vector3(SpawnPosX + SpawnPosXVariation, SpawnPosY + SpawnPosYVariation, 0), new Quaternion(1, 0, 0, 0));
+                            GameObject spawned5 = Instantiate(funniestEnemyEverBUTFUNNIER, new Vector3(SpawnPosX + SpawnPosXVariation, SpawnPosY + SpawnPosYVariation, 0), transform.rotation);
                             spawned5.GetComponent<Enemy_Movement>().HP *= 0.8f + 0.2f * waveNumber;
                         }
 
@@ -221,7 +220,7 @@ public class secondEnemySpawner : MonoBehaviour
                         {
                             float SpawnPosXVariation = Random.Range(-1f, 1f);
                             float SpawnPosYVariation = Random.Range(-1f, 1f);
-                            GameObject spawned6 = Instantiate(funniestEnemyEverBUTFUNNIERANDEVENFUNNIER, new Vector3(SpawnPosX + SpawnPosXVariation, SpawnPosY + SpawnPosYVariation, 0), new Quaternion(1, 0, 0, 0));
+                            GameObject spawned6 = Instantiate(funniestEnemyEverBUTFUNNIERANDEVENFUNNIER, new Vector3(SpawnPosX + SpawnPosXVariation, SpawnPosY + SpawnPosYVariation, 0), transform.rotation);
                             spawned6.GetComponent<Enemy_Movement>().HP *= 0.8f + 0.2f * waveNumber;
                         }
 

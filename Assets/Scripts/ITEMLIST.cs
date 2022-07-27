@@ -23,7 +23,8 @@ public enum ITEMLIST
     DODGESPLOSION, // Deal damage to enemies in a circle around you at the end of a dodge. Stacks increase radius and damage.
     BETTERDODGE, // Dodge further, faster, with a shorter cooldown, and have iframes for a while after the dodge.
     ORBITAL1, // Long-range orbital that deals damage to enemies and blocks their shots.
-    ORBITAL2 // Short-range orbital that shoots bullets that deal 1/4 of your bullets and inheret all effects.
+    ORBITAL2, // Short-range orbital that shoots bullets that deal 1/4 of your bullets and inheret all effects.
+    SPLIT // Your shots split on hit.
     // Contact damage with an enemy pushes all enemies away from you, dealing 50 damage.
     // Gain an orbital that shoots the same projectiles as you, dealing 1/3 the damage, and blocks enemy shots.
     // Bullets that hit you are reflected back as a piercing shot that deals double the damage of the enemy's shot.

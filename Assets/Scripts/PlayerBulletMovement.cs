@@ -11,23 +11,26 @@ public class PlayerBulletMovement : MonoBehaviour
     Vector2 mousePos;
     Vector2 bulletPos;
     Vector3 currentNearest;
+    Vector2 newShotVector;
+    Vector2 ShotVector;
     float ATGProc;
     int homingInstances = 0;
     int ATGInstances = 0;
     List<int> Sploinky = new List<int>();
     public float destroyDelay = 25; //in seconds
     int bounces;
-    float speed;
     Vector2 enemyPos;
     int pierces;
-
-    public float moveSpeed = 5f;
+    int splits;
+    float speed;
+    Rigidbody2D bulletRB;
 
     public Rigidbody2D rb;
 
     void Start()
     {
         Sploinky = FindObjectOfType<Player_Movement>().itemsHeld;
+        Player = GameObject.Find("Player");
         foreach (int item in Sploinky)
         {
             //Debug.Log(item.ToString());
@@ -43,9 +46,10 @@ public class PlayerBulletMovement : MonoBehaviour
         }
 
         Invoke(nameof(DestorySelf), destroyDelay); //will invoke (run the function) in so many seconds
-        bounces = GameObject.Find("Player").GetComponent<Player_Movement>().bounceInstances;
-        speed = GameObject.Find("Player").GetComponent<Player_Movement>().shotSpeed;
-        pierces = GameObject.Find("Player").GetComponent<Player_Movement>().pierceInstances;
+        bounces = Player.GetComponent<Player_Movement>().bounceInstances;
+        speed = Player.GetComponent<Player_Movement>().shotSpeed;
+        pierces = Player.GetComponent<Player_Movement>().pierceInstances;
+        splits = Player.GetComponent<Player_Movement>().splitInstances;
     }
 
     void DestorySelf() //deeath
@@ -88,7 +92,6 @@ public class PlayerBulletMovement : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-
         if (col.gameObject.tag == "Hostile")
         {
             if (ATGInstances > 0)
@@ -113,6 +116,29 @@ public class PlayerBulletMovement : MonoBehaviour
                         }
                     }
                     Instantiate(ATGMissile, currentNearest, new Quaternion(1, 0, 0, 0));
+                }
+            }
+            if (splits > 0)
+            {
+                if (gameObject.tag == "PlayerBullet")
+                {
+                    bulletPos.x = gameObject.transform.position.x;
+                    bulletPos.y = gameObject.transform.position.y;
+                    enemyPos.x = col.transform.position.x;
+                    enemyPos.y = col.transform.position.y;
+                    ShotVector = speed * (bulletPos - enemyPos).normalized;
+                    GameObject splitty = Instantiate(gameObject, transform.position, transform.rotation);
+                    splitty.transform.localScale = 0.4f * transform.localScale;
+                    splitty.tag = "playerBulletSplit";
+                    bulletRB = splitty.GetComponent<Rigidbody2D>();
+                    newShotVector = new Vector2(ShotVector.x * Mathf.Cos(-Mathf.PI / 2) - ShotVector.y * Mathf.Sin(-Mathf.PI / 2), ShotVector.x * Mathf.Sin(-Mathf.PI / 2) + ShotVector.y * Mathf.Cos(-Mathf.PI / 2));
+                    bulletRB.velocity = new Vector2(newShotVector.x, newShotVector.y);
+                    GameObject splitty2 = Instantiate(gameObject, transform.position, transform.rotation);
+                    splitty2.transform.localScale = 0.4f * transform.localScale;
+                    splitty2.tag = "playerBulletSplit";
+                    bulletRB = splitty2.GetComponent<Rigidbody2D>();
+                    newShotVector = new Vector2(ShotVector.x * Mathf.Cos(Mathf.PI / 2) - ShotVector.y * Mathf.Sin(Mathf.PI / 2), ShotVector.x * Mathf.Sin(Mathf.PI / 2) + ShotVector.y * Mathf.Cos(Mathf.PI / 2));
+                    bulletRB.velocity = new Vector2(newShotVector.x, newShotVector.y);
                 }
             }
         }

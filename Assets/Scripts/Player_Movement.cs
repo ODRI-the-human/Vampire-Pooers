@@ -76,7 +76,7 @@ public class Player_Movement : MonoBehaviour
     int creepInstances = 0;
     int creepTimer = 0;
     float dodgeTimer;
-    float dodgeTimerLength = 100;
+    float dodgeTimerLength = 15;
     int isDodging = 0;
     public GameObject dodgeAudio;
     public int dodgeSplosionInstances = 0;
@@ -87,6 +87,7 @@ public class Player_Movement : MonoBehaviour
     int orbital1Instances = 0;
     public int orbital2Instances = 0;
     float orbital2Timer = 0;
+    public int splitInstances = 0;
 
     private Vector2 moveDirection;
     public List<int> itemsHeld = new List<int>();
@@ -103,6 +104,30 @@ public class Player_Movement : MonoBehaviour
 
     void Start()
     {
+        itemsHeld.Add((int)ITEMLIST.SPLIT);
+        itemsHeld.Add((int)ITEMLIST.SPLIT);
+        itemsHeld.Add((int)ITEMLIST.SPLIT);
+        itemsHeld.Add((int)ITEMLIST.SPLIT);
+        itemsHeld.Add((int)ITEMLIST.SPLIT);
+        itemsHeld.Add((int)ITEMLIST.SPLIT);
+        itemsHeld.Add((int)ITEMLIST.SPLIT);
+        itemsHeld.Add((int)ITEMLIST.SPLIT);
+        itemsHeld.Add((int)ITEMLIST.SPLIT);
+        itemsHeld.Add((int)ITEMLIST.SPLIT);
+        itemsHeld.Add((int)ITEMLIST.SPLIT);
+        itemsHeld.Add((int)ITEMLIST.SPLIT);
+        itemsHeld.Add((int)ITEMLIST.SPLIT);
+        itemsHeld.Add((int)ITEMLIST.SPLIT);
+        itemsHeld.Add((int)ITEMLIST.SPLIT);
+        itemsHeld.Add((int)ITEMLIST.SPLIT);
+        itemsHeld.Add((int)ITEMLIST.SPLIT);
+        itemsHeld.Add((int)ITEMLIST.SPLIT);
+        itemsHeld.Add((int)ITEMLIST.SPLIT);
+        itemsHeld.Add((int)ITEMLIST.SPLIT);
+        itemsHeld.Add((int)ITEMLIST.SPLIT);
+        itemsHeld.Add((int)ITEMLIST.SPLIT);
+        itemsHeld.Add((int)ITEMLIST.SPLIT);
+        itemsHeld.Add((int)ITEMLIST.SPLIT);
         UpdateStats();
         HP = maxHP;
         converterDamageMult = 0;
@@ -152,6 +177,7 @@ public class Player_Movement : MonoBehaviour
         betterDodgeInstances = 0;
         orbital1Instances = 0;
         orbital2Instances = 0;
+        splitInstances = 0;
 
         // applying stat ups
         foreach (int item in itemsHeld)
@@ -232,6 +258,9 @@ public class Player_Movement : MonoBehaviour
                         orbital2Timer = 0;
                     }
                     orbital2Instances++;
+                    break;
+                case (int)ITEMLIST.SPLIT:
+                    splitInstances++;
                     break;
             }
 
@@ -315,7 +344,7 @@ public class Player_Movement : MonoBehaviour
             }
         }
 
-        if (dodgeTimer < -400 + 50*betterDodgeInstances)
+        if (dodgeTimer < -30 + 5*betterDodgeInstances)
         {
             if (Input.GetButton("Dodge"))
             {
@@ -326,8 +355,6 @@ public class Player_Movement : MonoBehaviour
                 Instantiate(dodgeAudio);
             }
         }
-
-        dodgeTimer--;
 
         if (isDodging == 1)
         {
@@ -344,7 +371,7 @@ public class Player_Movement : MonoBehaviour
                     GameObject explodyDodge = Instantiate(dodgeSplosion, transform.position, transform.rotation);
                     explodyDodge.transform.localScale *= 2.5f + 2 * dodgeSplosionInstances;
                 }    
-                iFrames = 3*betterDodgeInstances;
+                iFrames = 7*betterDodgeInstances;
             }
         }
 
@@ -383,6 +410,7 @@ public class Player_Movement : MonoBehaviour
 
         orbital2Timer++;
 
+        dodgeTimer--;
         // reducing cooldown timer of weapon
         fireTimer -= 1;
 

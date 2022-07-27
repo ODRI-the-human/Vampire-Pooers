@@ -40,6 +40,7 @@ public class Enemy_Movement : MonoBehaviour
     float colorChangeTimer = 0;
     GameObject Player;
     int orbital2PlayerHas;
+    int splitsPlayerHas;
 
     public float moveSpeed = 5f;
     public GameObject Bullet;
@@ -57,6 +58,7 @@ public class Enemy_Movement : MonoBehaviour
         slowsPlayerHas = Player.GetComponent<Player_Movement>().stopwatchInstances;
         dodgeSplosionsPlayerHas = Player.GetComponent<Player_Movement>().dodgeSplosionInstances;
         orbital2PlayerHas = Player.GetComponent<Player_Movement>().orbital2Instances;
+        splitsPlayerHas = Player.GetComponent<Player_Movement>().splitInstances;
         sprite = GetComponent<SpriteRenderer>();
         originalColor = sprite.color;
 
@@ -220,6 +222,17 @@ public class Enemy_Movement : MonoBehaviour
         {
             HP -= Player.GetComponent<Player_Movement>().trueDamageValue;
             collisionVector = 0.5f*new Vector2(transform.position.x - col.transform.position.x, transform.position.y - col.transform.position.y).normalized;
+            knockBack = 1;
+            knockBackTimer = 15f * col.transform.localScale.x;
+            maxKnockBack = knockBackTimer;
+            sprite.color = Color.red;
+            colorChangeTimer = 3;
+        }
+
+        if (col.gameObject.tag == "playerBulletSplit")
+        {
+            HP -= 0.5f * splitsPlayerHas * Player.GetComponent<Player_Movement>().trueDamageValue;
+            collisionVector = 0.5f * new Vector2(transform.position.x - col.transform.position.x, transform.position.y - col.transform.position.y).normalized;
             knockBack = 1;
             knockBackTimer = 15f * col.transform.localScale.x;
             maxKnockBack = knockBackTimer;
