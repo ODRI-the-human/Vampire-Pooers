@@ -104,30 +104,6 @@ public class Player_Movement : MonoBehaviour
 
     void Start()
     {
-        itemsHeld.Add((int)ITEMLIST.SPLIT);
-        itemsHeld.Add((int)ITEMLIST.SPLIT);
-        itemsHeld.Add((int)ITEMLIST.SPLIT);
-        itemsHeld.Add((int)ITEMLIST.SPLIT);
-        itemsHeld.Add((int)ITEMLIST.SPLIT);
-        itemsHeld.Add((int)ITEMLIST.SPLIT);
-        itemsHeld.Add((int)ITEMLIST.SPLIT);
-        itemsHeld.Add((int)ITEMLIST.SPLIT);
-        itemsHeld.Add((int)ITEMLIST.SPLIT);
-        itemsHeld.Add((int)ITEMLIST.SPLIT);
-        itemsHeld.Add((int)ITEMLIST.SPLIT);
-        itemsHeld.Add((int)ITEMLIST.SPLIT);
-        itemsHeld.Add((int)ITEMLIST.SPLIT);
-        itemsHeld.Add((int)ITEMLIST.SPLIT);
-        itemsHeld.Add((int)ITEMLIST.SPLIT);
-        itemsHeld.Add((int)ITEMLIST.SPLIT);
-        itemsHeld.Add((int)ITEMLIST.SPLIT);
-        itemsHeld.Add((int)ITEMLIST.SPLIT);
-        itemsHeld.Add((int)ITEMLIST.SPLIT);
-        itemsHeld.Add((int)ITEMLIST.SPLIT);
-        itemsHeld.Add((int)ITEMLIST.SPLIT);
-        itemsHeld.Add((int)ITEMLIST.SPLIT);
-        itemsHeld.Add((int)ITEMLIST.SPLIT);
-        itemsHeld.Add((int)ITEMLIST.SPLIT);
         UpdateStats();
         HP = maxHP;
         converterDamageMult = 0;
