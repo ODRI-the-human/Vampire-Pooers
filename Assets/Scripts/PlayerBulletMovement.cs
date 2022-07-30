@@ -25,7 +25,10 @@ public class PlayerBulletMovement : MonoBehaviour
     float speed;
     Rigidbody2D bulletRB;
     int homingCheckTimer;
+    int explodes;
     GameObject closest;
+    public GameObject explosion;
+    public GameObject explosionplayerhit;
 
     public Rigidbody2D rb;
 
@@ -52,6 +55,7 @@ public class PlayerBulletMovement : MonoBehaviour
         speed = Player.GetComponent<Player_Movement>().shotSpeed;
         pierces = Player.GetComponent<Player_Movement>().pierceInstances;
         splits = Player.GetComponent<Player_Movement>().splitInstances;
+        explodes = Player.GetComponent<Player_Movement>().explodeInstances;
     }
 
     void DestorySelf() //deeath
@@ -126,6 +130,15 @@ public class PlayerBulletMovement : MonoBehaviour
                     Instantiate(ATGMissile, currentNearest, new Quaternion(1, 0, 0, 0));
                 }
             }
+
+            if (explodes > 0)
+            {
+                GameObject boombo = Instantiate(explosion, transform.position, transform.rotation);
+                boombo.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+                GameObject boombo2 = Instantiate(explosionplayerhit, transform.position, transform.rotation);
+                boombo2.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+            }
+
             if (splits > 0)
             {
                 if (gameObject.tag == "PlayerBullet")

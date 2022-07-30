@@ -89,6 +89,8 @@ public class Player_Movement : MonoBehaviour
     public int orbital2Instances = 0;
     float orbital2Timer = 0;
     public int splitInstances = 0;
+    float shotAngleCoeff = 1;
+    public int explodeInstances = 0;
 
     private Vector2 moveDirection;
     public List<int> itemsHeld = new List<int>();
@@ -106,7 +108,7 @@ public class Player_Movement : MonoBehaviour
 
     void Start()
     {
-        weaponHeld = (int)WEAPONS.PISTOL;
+        weaponHeld = (int)WEAPONS.GRENADELAUNCHER;
         //itemsHeld.Add((int)ITEMLIST.HOMING);
         UpdateStats();
         HP = maxHP;
@@ -159,6 +161,8 @@ public class Player_Movement : MonoBehaviour
         orbital1Instances = 0;
         orbital2Instances = 0;
         splitInstances = 0;
+        shotAngleCoeff = 1;
+        explodeInstances = 0;
 
         // applying stat ups
         foreach (int item in itemsHeld)
@@ -244,11 +248,27 @@ public class Player_Movement : MonoBehaviour
                     splitInstances++;
                     break;
             }
-
-            converterDamageMult += ((0.03f) * (1 - HP / maxHP))*converterInstances;
-            //Debug.Log(converterDamageMult.ToString());
-            trueDamageValue = (damageStat) * (damageMult + converterDamageMult) * finalDamageMult;
         }
+
+        switch (weaponHeld)
+        {
+            case (int)WEAPONS.PISTOL:
+                break; //nothing, pistol is default
+            case (int)WEAPONS.SHOTGUN:
+                fireTimerLength *= 2;
+                noExtraShots += 4;
+                finalDamageMult *= 0.9f;
+                shotAngleCoeff = 0.7f;
+                break;
+            case (int)WEAPONS.GRENADELAUNCHER:
+                fireTimerLength *= 2;
+                explodeInstances += 2;
+                break;
+        }
+
+        converterDamageMult += ((0.03f) * (1 - HP / maxHP))*converterInstances;
+        //Debug.Log(converterDamageMult.ToString());
+        trueDamageValue = (damageStat) * (damageMult + converterDamageMult) * finalDamageMult;
     }
 
     // Update is called once per frame
@@ -281,7 +301,7 @@ public class Player_Movement : MonoBehaviour
                     GameObject newObject = Instantiate(PlayerBullet, transform.position, transform.rotation) as GameObject;
                     newObject.transform.localScale = new Vector3(trueDamageValue*0.0015f+.45f, trueDamageValue * 0.0015f+.45f, trueDamageValue * 0.0015f+.45f);
                     bulletRB = newObject.GetComponent<Rigidbody2D>();
-                    currentAngle = 0.3f * (0.5f * noExtraShots - i - 1);
+                    currentAngle = 0.3f * shotAngleCoeff * (0.5f * noExtraShots - i - 1);
                     newShotVector = new Vector2(vectorToMouse.x * Mathf.Cos(currentAngle) - vectorToMouse.y * Mathf.Sin(currentAngle), vectorToMouse.x * Mathf.Sin(currentAngle) + vectorToMouse.y * Mathf.Cos(currentAngle));
                     bulletRB.velocity = new Vector2(newShotVector.x * shotSpeed, newShotVector.y * shotSpeed);
                 }
@@ -300,7 +320,7 @@ public class Player_Movement : MonoBehaviour
                         newObject.transform.localScale = new Vector3(trueDamageValue * 0.0015f * 0.25f * orbital2Instances + .45f, trueDamageValue * 0.0015f * 0.25f * orbital2Instances + .45f, trueDamageValue * 0.0015f * 0.25f * orbital2Instances + .45f);
                         newObject.gameObject.tag = "Orbital Bullet";
                         bulletRB = newObject.GetComponent<Rigidbody2D>();
-                        currentAngle = 0.3f * (0.5f * noExtraShots - i - 1);
+                        currentAngle = 0.3f * shotAngleCoeff * (0.5f * noExtraShots - i - 1);
                         newShotVector = new Vector2(vectorToMouse.x * Mathf.Cos(currentAngle) - vectorToMouse.y * Mathf.Sin(currentAngle), vectorToMouse.x * Mathf.Sin(currentAngle) + vectorToMouse.y * Mathf.Cos(currentAngle));
                         bulletRB.velocity = new Vector2(newShotVector.x * shotSpeed, newShotVector.y * shotSpeed);
                     }

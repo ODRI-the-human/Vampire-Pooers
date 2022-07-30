@@ -254,6 +254,11 @@ public class Enemy_Movement : MonoBehaviour
         if (col.gameObject.tag == "ATGExplosion")
         {
             HP -= Player.GetComponent<Player_Movement>().trueDamageValue;
+            collisionVector = 0.75f * new Vector2(transform.position.x - col.transform.position.x, transform.position.y - col.transform.position.y).normalized;
+            knockBack = 1;
+            knockBackTimer = 15;
+            maxKnockBack = knockBackTimer;
+            sprite.color = Color.red;
             colorChangeTimer = 3;
         }
 

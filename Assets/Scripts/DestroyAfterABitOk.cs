@@ -11,9 +11,14 @@ public class DestroyAfterABitOk : MonoBehaviour
     void FixedUpdate()
     {
         timer -= 1;
+        if (timer <= 24)
+        {
+            Destroy(GetComponent<Collider>());
+        }
+
         if (timer <= 0)
-            {
+        {
             Destroy(gameObject);
-            }
+        }
     }
 }

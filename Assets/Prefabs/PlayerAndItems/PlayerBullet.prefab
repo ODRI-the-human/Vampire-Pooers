@@ -139,6 +139,8 @@ MonoBehaviour:
   Player: {fileID: 503381878361641298, guid: b6497a04b59007949bbf8c093c340484, type: 3}
   ATGMissile: {fileID: 1481696186931666123, guid: 73804054511bf914ea4c54328ca8abe8, type: 3}
   destroyDelay: 25
+  explosion: {fileID: 2618228907162695756, guid: 860e4c358ddeb35429ce12834ff4cb34, type: 3}
+  explosionplayerhit: {fileID: 2618228907162695756, guid: 62f5118e9b542ce4baa8a477917067c3, type: 3}
   rb: {fileID: 4255455733749829592}
 --- !u!114 &1446115092270715649
 MonoBehaviour:
