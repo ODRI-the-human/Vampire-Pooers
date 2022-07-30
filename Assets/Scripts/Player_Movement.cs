@@ -526,8 +526,8 @@ public class Player_Movement : MonoBehaviour
             if (XP >= 50 * (level + 1) + 2.5f * Mathf.Pow(1.8f, 1.1f * (level + 1)))
             {
                 level += 1;
+                UpdateStats();
             }
-            UpdateStats();
             SetStatsText();
         }
 
