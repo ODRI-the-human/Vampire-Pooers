@@ -103,6 +103,7 @@ MonoBehaviour:
   DMGText: {fileID: 0}
   LevelText: {fileID: 0}
   itemScreenText: {fileID: 0}
+  FirerateText: {fileID: 0}
   sprite: {fileID: 0}
   initialFireTimerLength: 200
   HP: 0
@@ -122,6 +123,11 @@ MonoBehaviour:
   dodgeSplosion: {fileID: 158271131209982302, guid: a6cddd7832ec6b944aca45590a236ca5, type: 3}
   Orbital: {fileID: 158271131209982302, guid: e7fcea5ac75d2f14fae343a2069f30fc, type: 3}
   Orbital2: {fileID: 158271131209982302, guid: 9840ed0acf6d7024b81a886fadfdc9f3, type: 3}
+  orbital2Instances: 0
+  splitInstances: 0
+  explodeInstances: 0
+  swordHitbox: {fileID: 2618228907162695756, guid: 1b20862ce1984e843a94d4cf71532e7d, type: 3}
+  Shield: {fileID: 158271131209982302, guid: c38418415a4048f4990addbb96205a0a, type: 3}
   itemsHeld: 
 --- !u!212 &503381878361641301
 SpriteRenderer:

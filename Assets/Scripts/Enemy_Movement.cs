@@ -223,7 +223,7 @@ public class Enemy_Movement : MonoBehaviour
             HP -= Player.GetComponent<Player_Movement>().trueDamageValue;
             collisionVector = 0.5f*new Vector2(transform.position.x - col.transform.position.x, transform.position.y - col.transform.position.y).normalized;
             knockBack = 1;
-            knockBackTimer = 15f * col.transform.localScale.x;
+            knockBackTimer = 7f;
             maxKnockBack = knockBackTimer;
             sprite.color = Color.red;
             colorChangeTimer = 3;
@@ -234,7 +234,7 @@ public class Enemy_Movement : MonoBehaviour
             HP -= 0.5f * splitsPlayerHas * Player.GetComponent<Player_Movement>().trueDamageValue;
             collisionVector = 0.5f * new Vector2(transform.position.x - col.transform.position.x, transform.position.y - col.transform.position.y).normalized;
             knockBack = 1;
-            knockBackTimer = 15f * col.transform.localScale.x;
+            knockBackTimer = 3f;
             maxKnockBack = knockBackTimer;
             sprite.color = Color.red;
             colorChangeTimer = 3;
@@ -245,7 +245,7 @@ public class Enemy_Movement : MonoBehaviour
             HP -= 0.25f * orbital2PlayerHas * Player.GetComponent<Player_Movement>().trueDamageValue;
             collisionVector = 0.5f * new Vector2(transform.position.x - col.transform.position.x, transform.position.y - col.transform.position.y).normalized;
             knockBack = 1;
-            knockBackTimer = 15f * col.transform.localScale.x;
+            knockBackTimer = 5f;
             maxKnockBack = knockBackTimer;
             sprite.color = Color.red;
             colorChangeTimer = 3;
@@ -256,7 +256,7 @@ public class Enemy_Movement : MonoBehaviour
             HP -= Player.GetComponent<Player_Movement>().trueDamageValue;
             collisionVector = 0.75f * new Vector2(transform.position.x - col.transform.position.x, transform.position.y - col.transform.position.y).normalized;
             knockBack = 1;
-            knockBackTimer = 15;
+            knockBackTimer = 8;
             maxKnockBack = knockBackTimer;
             sprite.color = Color.red;
             colorChangeTimer = 3;

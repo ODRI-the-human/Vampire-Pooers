@@ -91,6 +91,11 @@ public class Player_Movement : MonoBehaviour
     public int splitInstances = 0;
     float shotAngleCoeff = 1;
     public int explodeInstances = 0;
+    bool normieBullets = true;
+    public GameObject swordHitbox;
+    public GameObject Shield;
+    int swordTimer = 50;
+    public int contactInstances = 0;
 
     private Vector2 moveDirection;
     public List<int> itemsHeld = new List<int>();
@@ -108,8 +113,7 @@ public class Player_Movement : MonoBehaviour
 
     void Start()
     {
-        weaponHeld = (int)WEAPONS.GRENADELAUNCHER;
-        //itemsHeld.Add((int)ITEMLIST.HOMING);
+        weaponHeld = (int)WEAPONS.SWORD;
         UpdateStats();
         HP = maxHP;
         converterDamageMult = 0;
@@ -163,6 +167,8 @@ public class Player_Movement : MonoBehaviour
         splitInstances = 0;
         shotAngleCoeff = 1;
         explodeInstances = 0;
+        contactInstances = 0;
+        normieBullets = true;
 
         // applying stat ups
         foreach (int item in itemsHeld)
@@ -247,6 +253,9 @@ public class Player_Movement : MonoBehaviour
                 case (int)ITEMLIST.SPLIT:
                     splitInstances++;
                     break;
+                case (int)ITEMLIST.CONTACT:
+                    contactInstances++;
+                    break;
             }
         }
 
@@ -257,12 +266,20 @@ public class Player_Movement : MonoBehaviour
             case (int)WEAPONS.SHOTGUN:
                 fireTimerLength *= 2;
                 noExtraShots += 4;
-                finalDamageMult *= 0.9f;
+                finalDamageMult -= 0.1f;
                 shotAngleCoeff = 0.7f;
                 break;
             case (int)WEAPONS.GRENADELAUNCHER:
                 fireTimerLength *= 2;
                 explodeInstances += 2;
+                break;
+            case (int)WEAPONS.SWORD:
+                normieBullets = false;
+                finalDamageMult += 0.75f;
+                if (GameObject.FindGameObjectsWithTag("Shield").Length == 0)
+                {
+                    //Instantiate(Shield);
+                }
                 break;
         }
 
@@ -296,14 +313,22 @@ public class Player_Movement : MonoBehaviour
                 vectorToMouse = (mousePos - playerPos).normalized;
                 //firing a number of bullets depending on how many extra shots the player has
                 martyCounter++;
-                for (int i = -1; i < noExtraShots; i++)
+                switch (normieBullets)
                 {
-                    GameObject newObject = Instantiate(PlayerBullet, transform.position, transform.rotation) as GameObject;
-                    newObject.transform.localScale = new Vector3(trueDamageValue*0.0015f+.45f, trueDamageValue * 0.0015f+.45f, trueDamageValue * 0.0015f+.45f);
-                    bulletRB = newObject.GetComponent<Rigidbody2D>();
-                    currentAngle = 0.3f * shotAngleCoeff * (0.5f * noExtraShots - i - 1);
-                    newShotVector = new Vector2(vectorToMouse.x * Mathf.Cos(currentAngle) - vectorToMouse.y * Mathf.Sin(currentAngle), vectorToMouse.x * Mathf.Sin(currentAngle) + vectorToMouse.y * Mathf.Cos(currentAngle));
-                    bulletRB.velocity = new Vector2(newShotVector.x * shotSpeed, newShotVector.y * shotSpeed);
+                    case true:
+                        for (int i = -1; i < noExtraShots; i++)
+                        {
+                            GameObject newObject = Instantiate(PlayerBullet, transform.position, transform.rotation) as GameObject;
+                            newObject.transform.localScale = new Vector3(trueDamageValue * 0.0015f + .45f, trueDamageValue * 0.0015f + .45f, trueDamageValue * 0.0015f + .45f);
+                            bulletRB = newObject.GetComponent<Rigidbody2D>();
+                            currentAngle = 0.3f * shotAngleCoeff * (0.5f * noExtraShots - i - 1);
+                            newShotVector = new Vector2(vectorToMouse.x * Mathf.Cos(currentAngle) - vectorToMouse.y * Mathf.Sin(currentAngle), vectorToMouse.x * Mathf.Sin(currentAngle) + vectorToMouse.y * Mathf.Cos(currentAngle));
+                            bulletRB.velocity = new Vector2(newShotVector.x * shotSpeed, newShotVector.y * shotSpeed);
+                        }
+                        break;
+                    case false:
+                        swordTimer = 0;
+                        break;
                 }
 
                 if (orbital2Instances > 0)
@@ -316,13 +341,20 @@ public class Player_Movement : MonoBehaviour
                     //firing a number of bullets depending on how many extra shots the player has
                     for (int i = -1; i < noExtraShots; i++)
                     {
-                        GameObject newObject = Instantiate(PlayerBullet, transform.position + new Vector3(0.8f * Mathf.Sin(0.08f * orbital2Timer),0.8f * Mathf.Cos(0.08f * orbital2Timer),0), transform.rotation) as GameObject;
-                        newObject.transform.localScale = new Vector3(trueDamageValue * 0.0015f * 0.25f * orbital2Instances + .45f, trueDamageValue * 0.0015f * 0.25f * orbital2Instances + .45f, trueDamageValue * 0.0015f * 0.25f * orbital2Instances + .45f);
-                        newObject.gameObject.tag = "Orbital Bullet";
-                        bulletRB = newObject.GetComponent<Rigidbody2D>();
-                        currentAngle = 0.3f * shotAngleCoeff * (0.5f * noExtraShots - i - 1);
-                        newShotVector = new Vector2(vectorToMouse.x * Mathf.Cos(currentAngle) - vectorToMouse.y * Mathf.Sin(currentAngle), vectorToMouse.x * Mathf.Sin(currentAngle) + vectorToMouse.y * Mathf.Cos(currentAngle));
-                        bulletRB.velocity = new Vector2(newShotVector.x * shotSpeed, newShotVector.y * shotSpeed);
+                        switch (normieBullets)
+                        {
+                            case true:
+                                GameObject newObject = Instantiate(PlayerBullet, transform.position + new Vector3(0.8f * Mathf.Sin(0.08f * orbital2Timer), 0.8f * Mathf.Cos(0.08f * orbital2Timer), 0), transform.rotation) as GameObject;
+                                newObject.transform.localScale = new Vector3(trueDamageValue * 0.0015f * 0.25f * orbital2Instances + .45f, trueDamageValue * 0.0015f * 0.25f * orbital2Instances + .45f, trueDamageValue * 0.0015f * 0.25f * orbital2Instances + .45f);
+                                newObject.gameObject.tag = "Orbital Bullet";
+                                bulletRB = newObject.GetComponent<Rigidbody2D>();
+                                currentAngle = 0.3f * shotAngleCoeff * (0.5f * noExtraShots - i - 1);
+                                newShotVector = new Vector2(vectorToMouse.x * Mathf.Cos(currentAngle) - vectorToMouse.y * Mathf.Sin(currentAngle), vectorToMouse.x * Mathf.Sin(currentAngle) + vectorToMouse.y * Mathf.Cos(currentAngle));
+                                bulletRB.velocity = new Vector2(newShotVector.x * shotSpeed, newShotVector.y * shotSpeed);
+                                break;
+                            case false:
+                                break;
+                        }
                     }
                 }
 
@@ -331,12 +363,19 @@ public class Player_Movement : MonoBehaviour
                     martyCounter = 0;
                     for (int i = 0; i < 4; i++)
                     {
-                        GameObject newObject = Instantiate(PlayerBullet, transform.position, transform.rotation) as GameObject;
-                        newObject.transform.localScale = new Vector3(trueDamageValue * 0.0015f + .4f, trueDamageValue * 0.0015f + .4f, trueDamageValue * 0.0015f + .4f);
-                        bulletRB = newObject.GetComponent<Rigidbody2D>();
-                        currentAngle = (Mathf.PI / 4)*Mathf.Sin(numberOfMarties*Mathf.PI/2) + i * Mathf.PI / 2;
-                        newShotVector = new Vector2(Mathf.Cos(currentAngle) - Mathf.Sin(currentAngle), Mathf.Sin(currentAngle) + Mathf.Cos(currentAngle));
-                        bulletRB.velocity = new Vector2(newShotVector.x * shotSpeed, newShotVector.y * shotSpeed);
+                        switch (normieBullets)
+                        {
+                            case true:
+                                GameObject newObject = Instantiate(PlayerBullet, transform.position, transform.rotation) as GameObject;
+                                newObject.transform.localScale = new Vector3(trueDamageValue * 0.0015f + .4f, trueDamageValue * 0.0015f + .4f, trueDamageValue * 0.0015f + .4f);
+                                bulletRB = newObject.GetComponent<Rigidbody2D>();
+                                currentAngle = (Mathf.PI / 4) * Mathf.Sin(numberOfMarties * Mathf.PI / 2) + i * Mathf.PI / 2;
+                                newShotVector = new Vector2(Mathf.Cos(currentAngle) - Mathf.Sin(currentAngle), Mathf.Sin(currentAngle) + Mathf.Cos(currentAngle));
+                                bulletRB.velocity = new Vector2(newShotVector.x * shotSpeed, newShotVector.y * shotSpeed);
+                                break;
+                            case false:
+                                break;
+                        }
                     }
                     numberOfMarties++;
                 }
@@ -371,8 +410,11 @@ public class Player_Movement : MonoBehaviour
                 {
                     GameObject explodyDodge = Instantiate(dodgeSplosion, transform.position, transform.rotation);
                     explodyDodge.transform.localScale *= 2.5f + 2 * dodgeSplosionInstances;
-                }    
-                iFrames = 7*betterDodgeInstances;
+                }
+                if (iFrames <= 7 * betterDodgeInstances)
+                {
+                    iFrames = 7 * betterDodgeInstances;
+                }
             }
         }
 
@@ -406,6 +448,27 @@ public class Player_Movement : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (swordTimer < 4)
+        {
+            for (int i = -1; i < noExtraShots; i++)
+            {
+                float fuckinshittyangles = 0.3f * shotAngleCoeff * (0.5f * noExtraShots - i - 1) * 180 / Mathf.PI - 40 + 20f * swordTimer + Vector2.Angle(vectorToMouse, new Vector2(1, 0));
+
+                if (vectorToMouse.y <= 0)
+                {
+                    fuckinshittyangles *= -1;
+                }
+
+                currentAngle = fuckinshittyangles;
+                GameObject newObject2 = Instantiate(swordHitbox, transform.position, transform.rotation) as GameObject;
+                newObject2.transform.rotation = Quaternion.Euler(0, 0, currentAngle);
+                newObject2.transform.localScale *= 2.5f;
+            }
+        }
+
+        swordTimer++;
+
+
         // movement
         rb.velocity = (1+(isDodging*1.5f*(1 + 0.2f*betterDodgeInstances))) * new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
 

@@ -20,6 +20,7 @@ TagManager:
   - OrbitalShoot
   - Orbital Bullet
   - playerBulletSplit
+  - Shield
   layers:
   - Default
   - TransparentFX

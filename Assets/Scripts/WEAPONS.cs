@@ -4,5 +4,6 @@ public enum WEAPONS
 {
     PISTOL,
     SHOTGUN,
-    GRENADELAUNCHER
+    GRENADELAUNCHER,
+    SWORD
 }

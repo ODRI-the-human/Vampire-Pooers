@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 2618228907162695747}
   - component: {fileID: 2618228907162695744}
   - component: {fileID: 2618228907162695750}
-  - component: {fileID: 4611459603611210734}
   m_Layer: 12
   m_Name: explosionhitboxforplaywer
   m_TagString: Hostile
@@ -85,16 +84,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: 25
---- !u!114 &4611459603611210734
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2618228907162695756}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c7daa29ad7e6d14b921465ecc850617, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  explosionAudio: {fileID: 8673260267448196318, guid: 059719991d3063a4292fa5c9af55e6a7, type: 3}
