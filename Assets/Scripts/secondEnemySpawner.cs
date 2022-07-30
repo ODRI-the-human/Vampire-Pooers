@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class secondEnemySpawner : MonoBehaviour
@@ -25,6 +26,14 @@ public class secondEnemySpawner : MonoBehaviour
     public GameObject funniestEnemyEver;
     public GameObject funniestEnemyEverBUTFUNNIER;
     public GameObject funniestEnemyEverBUTFUNNIERANDEVENFUNNIER; // I should stop naming them like this
+
+    void Update()
+    {
+        if (Input.GetButton("Restart"))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+    }
 
     // Update is called once per frame
     void FixedUpdate()

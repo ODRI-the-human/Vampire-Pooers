@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2464607902253061229}
   - component: {fileID: 2464607902253061230}
   - component: {fileID: -8644378241285588961}
-  m_Layer: 7
+  m_Layer: 12
   m_Name: hp
   m_TagString: HP
   m_Icon: {fileID: 0}

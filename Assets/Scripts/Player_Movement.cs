@@ -30,6 +30,7 @@ public class Player_Movement : MonoBehaviour
     public TextMeshProUGUI DMGText;
     public TextMeshProUGUI LevelText;
     public TextMeshProUGUI itemScreenText;
+    public TextMeshProUGUI FirerateText;
     public SpriteRenderer sprite;
 
     public float initialFireTimerLength = 200f;
@@ -118,6 +119,7 @@ public class Player_Movement : MonoBehaviour
         HPText.text = "HP: " + HP.ToString() + "/" + maxHP.ToString();
         XPText.text = "XP: " + XP.ToString();
         DMGText.text = "DMG: " + ((damageStat)*(damageMult+converterDamageMult)*finalDamageMult).ToString();
+        FirerateText.text = "Fire delay: " + fireTimerLength.ToString();
         LevelText.text = "Level: " + level.ToString();
     }
 
@@ -135,14 +137,14 @@ public class Player_Movement : MonoBehaviour
 
     void UpdateStats()
     {
-        maxHP = maxHPInitial * (1 + 0.1f * level);
-        damageStat = 50 * (1 + 0.1f * level);
+        maxHP = maxHPInitial * (1 + 0.03f * level);
+        damageStat = 50 * (1 + 0.03f * level);
         damageMult = 1;
-        fireTimerLength = initialFireTimerLength / (1 + 0.1f * level);
+        fireTimerLength = initialFireTimerLength / (1 + 0.03f * level);
         noExtraShots = 0;
         noWapants = 0;
         wapantTimerLength = initialWapantLength;
-        moveSpeed = moveSpeedInitial * (1 + 0.1f * level);
+        moveSpeed = moveSpeedInitial * (1 + 0.03f * level);
         mantisInstances = 0;
         mantisCharges = mantisInstances;
         converterInstances = 0;
@@ -520,7 +522,8 @@ public class Player_Movement : MonoBehaviour
             XP += 10;
             Instantiate(PlayerXPAudio);
             // levelling up
-            if (XP >= 180* (level - 1) + levelConstantMul * Mathf.Pow(1.5f, 1.1f * (level-1))) 
+            //if (XP >= 180* (level - 1) + levelConstantMul * Mathf.Pow(1.5f, 1.1f * (level-1)))
+            if (XP >= 50 * (level + 1) + 2.5f * Mathf.Pow(1.8f, 1.1f * (level + 1)))
             {
                 level += 1;
             }
