@@ -91,6 +91,7 @@ public class Player_Movement : MonoBehaviour
 
     private Vector2 moveDirection;
     public List<int> itemsHeld = new List<int>();
+    int weaponHeld;
 
     void Awake() //start is proberly fine aswell, better safe than pooey (Issac)
     {
@@ -104,6 +105,8 @@ public class Player_Movement : MonoBehaviour
 
     void Start()
     {
+        weaponHeld = (int)WEAPONS.PISTOL;
+        //itemsHeld.Add((int)ITEMLIST.HOMING);
         UpdateStats();
         HP = maxHP;
         converterDamageMult = 0;

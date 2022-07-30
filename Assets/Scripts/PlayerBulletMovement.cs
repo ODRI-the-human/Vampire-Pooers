@@ -24,6 +24,8 @@ public class PlayerBulletMovement : MonoBehaviour
     int splits;
     float speed;
     Rigidbody2D bulletRB;
+    int homingCheckTimer;
+    GameObject closest;
 
     public Rigidbody2D rb;
 
@@ -59,26 +61,32 @@ public class PlayerBulletMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        GameObject[] gos;
-        gos = GameObject.FindGameObjectsWithTag("Hostile");
-        GameObject closest = null;
-        float distance = Mathf.Infinity;
-        Vector3 position = transform.position;
-        foreach (GameObject go in gos)
-        {
-            Vector3 diff = go.transform.position - position;
-            float curDistance = diff.sqrMagnitude;
-            if (curDistance < distance)
-            {
-                closest = go;
-                distance = curDistance;
-                currentNearest = go.transform.position;
-            }
-        }
-
         if (homingInstances >= 1)
         {
-            if (distance < 5*homingInstances)
+            homingCheckTimer--;
+            if (homingCheckTimer <= 0)
+            {
+                homingCheckTimer = 6;
+                GameObject[] gos;
+                gos = GameObject.FindGameObjectsWithTag("Hostile");
+                closest = null;
+                float distance = Mathf.Infinity;
+                Vector3 position = transform.position;
+                foreach (GameObject go in gos)
+                {
+                    Vector3 diff = go.transform.position - position;
+                    float curDistance = diff.sqrMagnitude;
+                    if (curDistance < distance)
+                    {
+                        closest = go;
+                        distance = curDistance;
+                    }
+                }
+            }
+
+            currentNearest = closest.transform.position;
+
+            if ((transform.position - currentNearest).magnitude < 5*homingInstances)
             {
                 closestEnemyPos.x = currentNearest.x;
                 closestEnemyPos.y = currentNearest.y;
