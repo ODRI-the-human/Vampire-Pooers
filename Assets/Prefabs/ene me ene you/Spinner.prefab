@@ -124,8 +124,16 @@ MonoBehaviour:
   deathAudio: {fileID: 1098745368026675434, guid: 26556f7af7586304588a534b37c199bc, type: 3}
   XP: {fileID: 6124614279667160435, guid: b448494b9362a2a429b8d6416d89f7e6, type: 3}
   HPDrop: {fileID: 2464607902253061138, guid: e984eceff48e0254289a377bc86a995c, type: 3}
-  canFireBullets: 0
   explosion: {fileID: 2618228907162695756, guid: 860e4c358ddeb35429ce12834ff4cb34, type: 3}
+  fireType: 0
+  enemyShootAudio: {fileID: 0}
+  enemyLazerAudio: {fileID: 0}
+  chargeLazerAudio: {fileID: 0}
+  ATGMissile: {fileID: 1481696186931666123, guid: 73804054511bf914ea4c54328ca8abe8, type: 3}
+  shotSpeed: 0
+  lazerWarning: {fileID: 0}
+  enemyRange: 0
+  sprite: {fileID: 0}
   moveSpeed: 2
   Bullet: {fileID: 110440509597865848, guid: 86b090c27b6523a4c99b4b66761df257, type: 3}
   rob: {fileID: 5685454981733204263}

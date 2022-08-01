@@ -92,9 +92,11 @@ MonoBehaviour:
   enemyShootAudio: {fileID: 1343821369956803891, guid: 04da9c57f71492c40818fe9dcb49315f, type: 3}
   enemyLazerAudio: {fileID: 0}
   chargeLazerAudio: {fileID: 0}
+  ATGMissile: {fileID: 1481696186931666123, guid: 73804054511bf914ea4c54328ca8abe8, type: 3}
   shotSpeed: 5
   lazerWarning: {fileID: 0}
   enemyRange: 6
+  sprite: {fileID: 0}
   moveSpeed: 1.5
   Bullet: {fileID: 110440509597865848, guid: 86b090c27b6523a4c99b4b66761df257, type: 3}
   rob: {fileID: 7595636950658824699}

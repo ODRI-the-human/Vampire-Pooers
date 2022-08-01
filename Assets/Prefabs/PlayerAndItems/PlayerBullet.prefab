@@ -141,6 +141,7 @@ MonoBehaviour:
   destroyDelay: 25
   explosion: {fileID: 2618228907162695756, guid: 860e4c358ddeb35429ce12834ff4cb34, type: 3}
   explosionplayerhit: {fileID: 2618228907162695756, guid: 62f5118e9b542ce4baa8a477917067c3, type: 3}
+  normieOrNot: 1
   rb: {fileID: 4255455733749829592}
 --- !u!114 &1446115092270715649
 MonoBehaviour:

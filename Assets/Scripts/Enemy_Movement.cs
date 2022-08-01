@@ -16,8 +16,10 @@ public class Enemy_Movement : MonoBehaviour
     int slowTimer = 0;
     int slowsPlayerHas = 0;
     int dodgeSplosionsPlayerHas = 0;
+    int ATGInstances = 0;
     int creepTimer = 0;
     Vector2 collisionVector;
+    Vector3 currentNearest;
     int knockBack = 0;
     float knockBackTimer = 0;
     float maxKnockBack = 0;
@@ -28,9 +30,11 @@ public class Enemy_Movement : MonoBehaviour
     public GameObject enemyShootAudio;
     public GameObject enemyLazerAudio;
     public GameObject chargeLazerAudio;
+    public GameObject ATGMissile;
     public float shotSpeed;
     Vector2 fireVector;
     int isShootingLazer = 0;
+    float ATGProc;
     float lazerTimer = 0;
     int lazerWarningActive = 0;
     public GameObject lazerWarning;
@@ -41,6 +45,7 @@ public class Enemy_Movement : MonoBehaviour
     GameObject Player;
     int orbital2PlayerHas;
     int splitsPlayerHas;
+    List<int> Sploinky = new List<int>();
 
     public float moveSpeed = 5f;
     public GameObject Bullet;
@@ -70,6 +75,19 @@ public class Enemy_Movement : MonoBehaviour
                 fireTimerLength /= 0.9f;
             }
         }
+
+        Sploinky = Player.GetComponent<Player_Movement>().itemsHeld;
+        foreach (int item in Sploinky)
+        {
+            //Debug.Log(item.ToString());
+            switch (item)
+            {
+                case (int)ITEMLIST.ATG:
+                    ATGInstances++;
+                    break;
+            }
+        }
+
     }
 
     void FixedUpdate()
@@ -216,6 +234,18 @@ public class Enemy_Movement : MonoBehaviour
         lazerWarningActive = 0;
     }
 
+    void ATG()
+    {
+        if (ATGInstances > 0)
+        {
+            ATGProc = Random.Range(0, 10);
+            if (ATGProc > (8 - 0.5 * ATGInstances))
+            {
+                Instantiate(ATGMissile, Player.transform.position, new Quaternion(1, 0, 0, 0));
+            }
+        }
+    }
+
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.tag == "PlayerBullet")
@@ -227,6 +257,7 @@ public class Enemy_Movement : MonoBehaviour
             maxKnockBack = knockBackTimer;
             sprite.color = Color.red;
             colorChangeTimer = 3;
+            ATG();
         }
 
         if (col.gameObject.tag == "playerBulletSplit")
@@ -238,6 +269,7 @@ public class Enemy_Movement : MonoBehaviour
             maxKnockBack = knockBackTimer;
             sprite.color = Color.red;
             colorChangeTimer = 3;
+            ATG();
         }
 
         if (col.gameObject.tag == "Orbital Bullet")
@@ -249,6 +281,7 @@ public class Enemy_Movement : MonoBehaviour
             maxKnockBack = knockBackTimer;
             sprite.color = Color.red;
             colorChangeTimer = 3;
+            ATG();
         }
 
         if (col.gameObject.tag == "ATGExplosion")

@@ -6,7 +6,6 @@ public class PlayerBulletMovement : MonoBehaviour
 {
     Vector2 vectorToEnemy;
     public GameObject Player;
-    public GameObject ATGMissile;
     Vector2 closestEnemyPos;
     Vector2 mousePos;
     Vector2 bulletPos;
@@ -15,7 +14,7 @@ public class PlayerBulletMovement : MonoBehaviour
     Vector2 ShotVector;
     float ATGProc;
     int homingInstances = 0;
-    int ATGInstances = 0;
+    //int ATGInstances = 0;
     List<int> Sploinky = new List<int>();
     public float destroyDelay = 25; //in seconds
     int bounces;
@@ -29,6 +28,7 @@ public class PlayerBulletMovement : MonoBehaviour
     GameObject closest;
     public GameObject explosion;
     public GameObject explosionplayerhit;
+    public int normieOrNot;
 
     public Rigidbody2D rb;
 
@@ -43,9 +43,6 @@ public class PlayerBulletMovement : MonoBehaviour
             {
                 case (int)ITEMLIST.HOMING:
                     homingInstances++;
-                    break;
-                case (int)ITEMLIST.ATG:
-                    ATGInstances++;
                     break;
             }
         }
@@ -65,55 +62,18 @@ public class PlayerBulletMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (homingInstances >= 1)
+        switch (normieOrNot)
         {
-            homingCheckTimer--;
-            if (homingCheckTimer <= 0)
+            case 1:
+            if (homingInstances >= 1)
             {
-                homingCheckTimer = 6;
-                GameObject[] gos;
-                gos = GameObject.FindGameObjectsWithTag("Hostile");
-                closest = null;
-                float distance = Mathf.Infinity;
-                Vector3 position = transform.position;
-                foreach (GameObject go in gos)
+                homingCheckTimer--;
+                if (homingCheckTimer <= 0)
                 {
-                    Vector3 diff = go.transform.position - position;
-                    float curDistance = diff.sqrMagnitude;
-                    if (curDistance < distance)
-                    {
-                        closest = go;
-                        distance = curDistance;
-                    }
-                }
-            }
-
-            currentNearest = closest.transform.position;
-
-            if ((transform.position - currentNearest).magnitude < 5*homingInstances)
-            {
-                closestEnemyPos.x = currentNearest.x;
-                closestEnemyPos.y = currentNearest.y;
-                bulletPos.x = gameObject.transform.position.x;
-                bulletPos.y = gameObject.transform.position.y;
-                vectorToEnemy = (closestEnemyPos - bulletPos).normalized;
-                rb.velocity = 10f * (rb.velocity + vectorToEnemy.normalized).normalized;
-            }
-        }
-    }
-
-    void OnTriggerEnter2D(Collider2D col)
-    {
-        if (col.gameObject.tag == "Hostile")
-        {
-            if (ATGInstances > 0)
-            {
-                ATGProc = Random.Range(0, 10);
-                if (ATGProc > (8 - 0.5 * ATGInstances))
-                {
+                    homingCheckTimer = 6;
                     GameObject[] gos;
-                    gos = GameObject.FindGameObjectsWithTag("Player");
-                    GameObject closest = null;
+                    gos = GameObject.FindGameObjectsWithTag("Hostile");
+                    closest = null;
                     float distance = Mathf.Infinity;
                     Vector3 position = transform.position;
                     foreach (GameObject go in gos)
@@ -124,13 +84,31 @@ public class PlayerBulletMovement : MonoBehaviour
                         {
                             closest = go;
                             distance = curDistance;
-                            currentNearest = go.transform.position;
                         }
                     }
-                    Instantiate(ATGMissile, currentNearest, new Quaternion(1, 0, 0, 0));
+                }
+
+                currentNearest = closest.transform.position;
+
+                if ((transform.position - currentNearest).magnitude < 5*homingInstances)
+                {
+                    closestEnemyPos.x = currentNearest.x;
+                    closestEnemyPos.y = currentNearest.y;
+                    bulletPos.x = gameObject.transform.position.x;
+                    bulletPos.y = gameObject.transform.position.y;
+                    vectorToEnemy = (closestEnemyPos - bulletPos).normalized;
+                    rb.velocity = 10f * (rb.velocity + vectorToEnemy.normalized).normalized;
                 }
             }
+            break;
+        }
+        
+    }
 
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.tag == "Hostile")
+        {
             if (explodes > 0)
             {
                 GameObject boombo = Instantiate(explosion, transform.position, transform.rotation);
@@ -169,25 +147,30 @@ public class PlayerBulletMovement : MonoBehaviour
             bounces = 0;
         }
 
-        if (bounces > 0)
+        switch (normieOrNot)
         {
-            bulletPos.x = gameObject.transform.position.x;
-            bulletPos.y = gameObject.transform.position.y;
-            enemyPos.x = col.transform.position.x;
-            enemyPos.y = col.transform.position.y;
-            rb.velocity = speed * (bulletPos - enemyPos).normalized;
-            bounces--;
-        }
-        else
-        {
-            if (pierces > 0)
-            {
-                pierces--;
-            }
-            else
-            {
-                Destroy(gameObject);
-            }
+            case 1:
+                if (bounces > 0)
+                {
+                    bulletPos.x = gameObject.transform.position.x;
+                    bulletPos.y = gameObject.transform.position.y;
+                    enemyPos.x = col.transform.position.x;
+                    enemyPos.y = col.transform.position.y;
+                    rb.velocity = speed * (bulletPos - enemyPos).normalized;
+                    bounces--;
+                }
+                else
+                {
+                    if (pierces > 0)
+                    {
+                        pierces--;
+                    }
+                    else
+                    {
+                        Destroy(gameObject);
+                    }
+                }
+                break;
         }
     }
 }

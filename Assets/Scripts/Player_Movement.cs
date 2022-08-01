@@ -462,7 +462,7 @@ public class Player_Movement : MonoBehaviour
                 currentAngle = fuckinshittyangles;
                 GameObject newObject2 = Instantiate(swordHitbox, transform.position, transform.rotation) as GameObject;
                 newObject2.transform.rotation = Quaternion.Euler(0, 0, currentAngle);
-                newObject2.transform.localScale *= 2.5f;
+                newObject2.transform.localScale *= 1.8f;
             }
         }
 
