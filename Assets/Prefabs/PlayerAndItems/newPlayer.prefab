@@ -11,11 +11,14 @@ GameObject:
   - component: {fileID: 503381878361641303}
   - component: {fileID: 503381878361641300}
   - component: {fileID: 7255376658375002501}
-  - component: {fileID: 503381878361641299}
   - component: {fileID: 503381878361641301}
   - component: {fileID: 6042566988791242225}
+  - component: {fileID: -8092890325184602512}
+  - component: {fileID: -4590834480761037546}
+  - component: {fileID: 1698531144881374718}
+  - component: {fileID: 3646255009062352282}
   m_Layer: 8
-  m_Name: Player
+  m_Name: newPlayer
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -73,63 +76,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.2, y: 0.2}
   m_Direction: 0
---- !u!114 &503381878361641299
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 503381878361641298}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61a2999de240c3d4b94a9101409206f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeedInitial: 5
-  shotSpeed: 5
-  animator: {fileID: 6042566988791242225}
-  rb: {fileID: 503381878361641300}
-  PlayerBullet: {fileID: 4255455733749829593, guid: 27160d46bf5b97a4898af82130ae1a42, type: 3}
-  Player: {fileID: 503381878361641298}
-  Barry63: {fileID: 6964255014020883914, guid: 526b17258aed02c4c9c574bcca2b87c3, type: 3}
-  PlayerShootAudio: {fileID: 2894936639441958211, guid: f4849f6de8b809d48a7220ff85910c8b, type: 3}
-  PlayerHurtAudio: {fileID: 5963825423898132415, guid: e7b6397eaf92c834aaecbf3499716cb0, type: 3}
-  PlayerDieAudio: {fileID: 7927511119378929990, guid: 5524052d8b9da4f43a8bffc27f9db6d9, type: 3}
-  PlayerXPAudio: {fileID: 8667424581410965265, guid: 49d370b240303f34381b4ae05a28b442, type: 3}
-  PlayerHPAudio: {fileID: 4987830794770548166, guid: 81d4b6a18bc37b445ac1234855012a5a, type: 3}
-  creep: {fileID: 158271131209982302, guid: a877495fbdb19004d800b5d8b28128cb, type: 3}
-  HPText: {fileID: 0}
-  XPText: {fileID: 0}
-  DMGText: {fileID: 0}
-  LevelText: {fileID: 0}
-  itemScreenText: {fileID: 0}
-  FirerateText: {fileID: 0}
-  sprite: {fileID: 0}
-  initialFireTimerLength: 200
-  HP: 0
-  damageStat: 0
-  damageMult: 1
-  levelConstantMul: 600
-  noWapants: 0
-  wapantTimerLength: 100
-  initialWapantLength: 300
-  wapantCircle: {fileID: 5382661700902760516, guid: 447893d0ea2030c49b4fe6333ad3e60f, type: 3}
-  stopwatchInstances: 0
-  bounceInstances: 0
-  trueDamageValue: 0
-  pierceInstances: 0
-  dodgeAudio: {fileID: 576013723491271631, guid: 8068abbc9251dc147a95e0c091540981, type: 3}
-  dodgeSplosionInstances: 0
-  dodgeSplosion: {fileID: 158271131209982302, guid: a6cddd7832ec6b944aca45590a236ca5, type: 3}
-  Orbital: {fileID: 158271131209982302, guid: e7fcea5ac75d2f14fae343a2069f30fc, type: 3}
-  Orbital2: {fileID: 158271131209982302, guid: 9840ed0acf6d7024b81a886fadfdc9f3, type: 3}
-  orbital2Instances: 0
-  splitInstances: 0
-  explodeInstances: 0
-  swordHitbox: {fileID: 2618228907162695756, guid: 1b20862ce1984e843a94d4cf71532e7d, type: 3}
-  Shield: {fileID: 158271131209982302, guid: c38418415a4048f4990addbb96205a0a, type: 3}
-  contactInstances: 0
-  itemsHeld: 
 --- !u!212 &503381878361641301
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -202,3 +148,63 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-8092890325184602512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 503381878361641298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7c0609e2de7d9147bdd13a8a1dbefb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dodgeAudio: {fileID: 576013723491271631, guid: 8068abbc9251dc147a95e0c091540981, type: 3}
+  rb: {fileID: 503381878361641300}
+--- !u!114 &-4590834480761037546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 503381878361641298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a80deaad377472c4f9bd9cbf71b651a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Barry63: {fileID: 6964255014020883914, guid: 526b17258aed02c4c9c574bcca2b87c3, type: 3}
+  PlayerDieAudio: {fileID: 7927511119378929990, guid: 5524052d8b9da4f43a8bffc27f9db6d9, type: 3}
+  PlayerHurtAudio: {fileID: 5963825423898132415, guid: e7b6397eaf92c834aaecbf3499716cb0, type: 3}
+  rb: {fileID: 503381878361641300}
+  sprite: {fileID: 503381878361641301}
+--- !u!114 &1698531144881374718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 503381878361641298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30830851ecf01fa4e8e1c859ed98de6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  finalDamageStat: 0
+--- !u!114 &3646255009062352282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 503381878361641298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79b14745a3e2fd4f8a0b5a259cfcb25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shotSpeed: 5
+  trueDamageValue: 0
+  Bullet: {fileID: 4255455733749829593, guid: 27160d46bf5b97a4898af82130ae1a42, type: 3}
+  PlayerShootAudio: {fileID: 2894936639441958211, guid: f4849f6de8b809d48a7220ff85910c8b, type: 3}
