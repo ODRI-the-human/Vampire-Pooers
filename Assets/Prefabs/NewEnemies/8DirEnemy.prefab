@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: -5622376081394152181}
   - component: {fileID: 373114558742256855}
   m_Layer: 6
-  m_Name: Shooty
+  m_Name: 8DirEnemy
   m_TagString: Hostile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -117,7 +117,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 0, b: 0.033906937, a: 1}
+  m_Color: {r: 1, g: 0.5877969, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -185,8 +185,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shotSpeed: 5
-  noExtraShots: 0
+  noExtraShots: 7
   trueDamageValue: 0
   Bullet: {fileID: 110440509597865848, guid: 86b090c27b6523a4c99b4b66761df257, type: 3}
-  fireTimerLength: 50
+  fireTimerLength: 100
   PlayerShootAudio: {fileID: 1343821369956803891, guid: 04da9c57f71492c40818fe9dcb49315f, type: 3}
+  specialFireType: 1

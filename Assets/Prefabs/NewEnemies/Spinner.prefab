@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 5685454981733204280}
   - component: {fileID: 5685454981733204263}
   - component: {fileID: 5685454981733204261}
-  - component: {fileID: 2160237514589942817}
   - component: {fileID: 2017102718378441583}
   - component: {fileID: 8742816807942295093}
+  - component: {fileID: -7020046441395994216}
+  - component: {fileID: 1654801595319326120}
   m_Layer: 6
   m_Name: Spinner
   m_TagString: Hostile
@@ -109,36 +110,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2160237514589942817
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5685454981733204260}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1bcb95ec92da764e88056c0075c3e61, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  deathAudio: {fileID: 1098745368026675434, guid: 26556f7af7586304588a534b37c199bc, type: 3}
-  XP: {fileID: 6124614279667160435, guid: b448494b9362a2a429b8d6416d89f7e6, type: 3}
-  HPDrop: {fileID: 2464607902253061138, guid: e984eceff48e0254289a377bc86a995c, type: 3}
-  explosion: {fileID: 2618228907162695756, guid: 860e4c358ddeb35429ce12834ff4cb34, type: 3}
-  fireType: 0
-  enemyShootAudio: {fileID: 0}
-  enemyLazerAudio: {fileID: 0}
-  chargeLazerAudio: {fileID: 0}
-  ATGMissile: {fileID: 1481696186931666123, guid: 73804054511bf914ea4c54328ca8abe8, type: 3}
-  shotSpeed: 0
-  lazerWarning: {fileID: 0}
-  enemyRange: 0
-  sprite: {fileID: 0}
-  moveSpeed: 2
-  Bullet: {fileID: 110440509597865848, guid: 86b090c27b6523a4c99b4b66761df257, type: 3}
-  rob: {fileID: 5685454981733204263}
-  fireTimerLength: 50
-  HP: 250
 --- !u!114 &2017102718378441583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,3 +140,31 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.08, y: 0.65}
   m_Direction: 0
+--- !u!114 &-7020046441395994216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5685454981733204260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30830851ecf01fa4e8e1c859ed98de6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  finalDamageStat: 0
+--- !u!114 &1654801595319326120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5685454981733204260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7c0609e2de7d9147bdd13a8a1dbefb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 2
+  dodgeAudio: {fileID: 0}
+  rb: {fileID: 5685454981733204263}

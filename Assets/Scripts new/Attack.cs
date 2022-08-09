@@ -9,15 +9,16 @@ public class Attack : MonoBehaviour
     Rigidbody2D bulletRB;
     float currentAngle;
     Vector2 vectorToTarget;
-    int noExtraShots = 0;
+    public int noExtraShots = 0;
     float shotAngleCoeff = 1;
     public float trueDamageValue;
     public GameObject Bullet;
-    float fireTimerLength = 25;
+    public float fireTimerLength = 25;
     float fireTimer = 0f;
     public GameObject PlayerShootAudio;
     GameObject Player;
     bool playerControlled;
+    public int specialFireType;
 
     void Awake()
     {
@@ -45,8 +46,8 @@ public class Attack : MonoBehaviour
                     if (Input.GetButton("Fire1"))
                     {
                         UseWeapon();
+                        fireTimer = fireTimerLength;
                     }
-                    fireTimer = fireTimerLength;
                     break;
                 case false:
                     vectorToTarget = (Player.transform.position - gameObject.transform.position).normalized;
@@ -61,14 +62,27 @@ public class Attack : MonoBehaviour
     {
         for (int i = -1; i < noExtraShots; i++)
         {
-            GameObject newObject = Instantiate(Bullet, transform.position, transform.rotation);
-            newObject.transform.localScale = new Vector3(trueDamageValue * 0.0015f + .45f, trueDamageValue * 0.0015f + .45f, trueDamageValue * 0.0015f + .45f);
-            bulletRB = newObject.GetComponent<Rigidbody2D>();
-            currentAngle = 0.3f * shotAngleCoeff * (0.5f * noExtraShots - i - 1);
-            newShotVector = new Vector2(vectorToTarget.x * Mathf.Cos(currentAngle) - vectorToTarget.y * Mathf.Sin(currentAngle), vectorToTarget.x * Mathf.Sin(currentAngle) + vectorToTarget.y * Mathf.Cos(currentAngle));
-            bulletRB.velocity = newShotVector * shotSpeed;
+            switch (specialFireType)
+            {
+                case 0:
+                    currentAngle = 0.3f * shotAngleCoeff * (0.5f * noExtraShots - i - 1);
+                    break;
+                case 1:
+                    currentAngle = (Mathf.PI / 4) * i;
+                    break;
+            }
+            SpawnAttack(currentAngle);
         }
         Instantiate(PlayerShootAudio);
+    }
+
+    void SpawnAttack(float currentAngle)
+    {
+        GameObject newObject = Instantiate(Bullet, transform.position, transform.rotation);
+        newObject.transform.localScale = new Vector3(trueDamageValue * 0.0015f + .45f, trueDamageValue * 0.0015f + .45f, trueDamageValue * 0.0015f + .45f);
+        bulletRB = newObject.GetComponent<Rigidbody2D>();
+        newShotVector = new Vector2(vectorToTarget.x * Mathf.Cos(currentAngle) - vectorToTarget.y * Mathf.Sin(currentAngle), vectorToTarget.x * Mathf.Sin(currentAngle) + vectorToTarget.y * Mathf.Cos(currentAngle));
+        bulletRB.velocity = newShotVector * shotSpeed;
     }
 
     void FixedUpdate()

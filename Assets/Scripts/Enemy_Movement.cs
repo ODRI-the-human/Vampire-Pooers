@@ -142,7 +142,7 @@ public class Enemy_Movement : MonoBehaviour
                         Instantiate(enemyShootAudio);
                         break;
                     case 2:
-                        for (int i = 0; i < 8; i++)
+                        for (int i = 0; i < 7; i++)
                         {
                             GameObject newObject2 = Instantiate(Bullet, transform.position, transform.rotation) as GameObject;
                             bulletRB = newObject2.GetComponent<Rigidbody2D>();
