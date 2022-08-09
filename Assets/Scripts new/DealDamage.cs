@@ -10,7 +10,7 @@ public class DealDamage : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        finalDamageStat = 50;
         procCoeff = 1;
+        finalDamageStat = 50;
     }
 }

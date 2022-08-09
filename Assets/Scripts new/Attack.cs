@@ -10,7 +10,7 @@ public class Attack : MonoBehaviour
     float currentAngle;
     Vector2 vectorToTarget;
     public int noExtraShots = 0;
-    float shotAngleCoeff = 1;
+    public float shotAngleCoeff = 1;
     public float trueDamageValue;
     public GameObject Bullet;
     public float fireTimerLength = 25;
@@ -80,6 +80,15 @@ public class Attack : MonoBehaviour
     {
         GameObject newObject = Instantiate(Bullet, transform.position, transform.rotation);
         newObject.transform.localScale = new Vector3(trueDamageValue * 0.0015f + .45f, trueDamageValue * 0.0015f + .45f, trueDamageValue * 0.0015f + .45f);
+        foreach(int item in gameObject.GetComponent<ItemHolder>().itemsHeld)
+        {
+            switch (item)
+            {
+                case 1:
+                    newObject.AddComponent<ITEMATG>();
+                    break;
+            }
+        }
         bulletRB = newObject.GetComponent<Rigidbody2D>();
         newShotVector = new Vector2(vectorToTarget.x * Mathf.Cos(currentAngle) - vectorToTarget.y * Mathf.Sin(currentAngle), vectorToTarget.x * Mathf.Sin(currentAngle) + vectorToTarget.y * Mathf.Cos(currentAngle));
         bulletRB.velocity = newShotVector * shotSpeed;

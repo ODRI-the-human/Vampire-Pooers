@@ -14,11 +14,14 @@ public class HPDamageDie : MonoBehaviour
     float iFrames = 0;
     public SpriteRenderer sprite;
     bool playerControlled;
+    int colorChangeTimer = 0;
+    Color originalColor;
     GameObject Player;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        originalColor = sprite.color;
         HP = 100;
         if (gameObject.tag == "Hostile")
         {
@@ -64,18 +67,39 @@ public class HPDamageDie : MonoBehaviour
             sprite.color = tmp;
         }
 
-        iFrames -= 1;
+        if (colorChangeTimer == 0)
+        {
+            sprite.color = originalColor;
+        }
+
+        iFrames--;
+        colorChangeTimer--;
     }
 
-    void OnTriggerEnter2D(Collider2D col)
+    void OnCollisionEnter2D(Collision2D col)
     {
-        if (iFrames < 0)
+        if (col.gameObject.tag != gameObject.tag)
         {
-            HP -= col.gameObject.GetComponent<DealDamage>().finalDamageStat;
-            Instantiate(PlayerHurtAudio);
-            if (playerControlled)
+            Debug.Log(playerControlled.ToString());
+            if (playerControlled == false)
             {
-                iFrames = iFramesTimer;
+                Debug.Log("Dogass");
+                sprite.color = Color.red;
+                colorChangeTimer = 3;
+            }
+            if (iFrames < 0)
+            {
+                HP -= col.gameObject.GetComponent<DealDamage>().finalDamageStat;
+                Instantiate(PlayerHurtAudio);
+                if (playerControlled == true)
+                {
+                    iFrames = iFramesTimer;
+                }
+                else
+                {
+                    //sprite.color = Color.red;
+                    //colorChangeTimer = 3;
+                }
             }
         }
     }

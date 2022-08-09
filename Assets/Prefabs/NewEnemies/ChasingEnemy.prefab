@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -585692803091798654}
   - component: {fileID: 6146499720883180670}
   - component: {fileID: -5622376081394152181}
+  - component: {fileID: -1694992076537565714}
   m_Layer: 6
   m_Name: ChasingEnemy
   m_TagString: Hostile
@@ -167,7 +168,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Barry63: {fileID: 0}
-  PlayerDieAudio: {fileID: 0}
-  PlayerHurtAudio: {fileID: 1098745368026675434, guid: 26556f7af7586304588a534b37c199bc, type: 3}
+  PlayerDieAudio: {fileID: 1098745368026675434, guid: 26556f7af7586304588a534b37c199bc, type: 3}
+  PlayerHurtAudio: {fileID: 0}
   rb: {fileID: 8034279136360660184}
   sprite: {fileID: 8034279136360660185}
+--- !u!114 &-1694992076537565714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8034279136360660190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a77b42edf27e0ec40bdef5d44226c8e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemsHeld: 

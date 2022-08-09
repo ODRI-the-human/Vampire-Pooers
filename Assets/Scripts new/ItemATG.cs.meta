@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: d0d8bc140fd021743a1302ff22a87cf8
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - Player: {fileID: 503381878361641298, guid: ba6f41e52d5717a46a24d1f2e5a4cf75, type: 3}
+  - ATGMissile: {fileID: 1481696186931666123, guid: 73804054511bf914ea4c54328ca8abe8, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

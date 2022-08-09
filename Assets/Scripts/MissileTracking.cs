@@ -9,24 +9,6 @@ public class MissileTracking : MonoBehaviour
     Vector2 bulletPos;
     public Rigidbody2D rb;
     public GameObject explosion;
-    List<int> Sploinky = new List<int>();
-    int ATGInstances;
-
-
-    void Start()
-    {
-        Sploinky = FindObjectOfType<Player_Movement>().itemsHeld;
-        foreach (int item in Sploinky)
-        {
-            //Debug.Log(item.ToString());
-            switch (item)
-            {
-                case (int)ITEMLIST.ATG:
-                    ATGInstances++;
-                    break;
-            }
-        }
-    }
 
     // Update is called once per frame
     void FixedUpdate()
@@ -55,10 +37,10 @@ public class MissileTracking : MonoBehaviour
         rb.velocity += (closestEnemyPos - bulletPos).normalized;
     }
 
-    void OnCollisionEnter2D()
+    void OnCollisionEnter2D(Collision2D col)
     {
         GameObject newObject = Instantiate(explosion, transform.position, new Quaternion(1,0,0,0)) as GameObject;
-        newObject.transform.localScale = new Vector3(ATGInstances, ATGInstances, 1);
+        newObject.transform.localScale = new Vector3(1, 1, 1);
         Destroy(gameObject);
     }
 }
