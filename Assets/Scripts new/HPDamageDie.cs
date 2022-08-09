@@ -13,11 +13,22 @@ public class HPDamageDie : MonoBehaviour
     float iFramesTimer = 50;
     float iFrames = 0;
     public SpriteRenderer sprite;
+    bool playerControlled;
+    GameObject Player;
 
     // Start is called before the first frame update
     void Start()
     {
         HP = 100;
+        if (gameObject.tag == "Hostile")
+        {
+            Player = GameObject.Find("newPlayer");
+            playerControlled = false;
+        }
+        else
+        {
+            playerControlled = true;
+        }
     }
 
     void Update()
@@ -61,9 +72,11 @@ public class HPDamageDie : MonoBehaviour
         if (iFrames < 0)
         {
             HP -= col.gameObject.GetComponent<DealDamage>().finalDamageStat;
-            Debug.Log("Collisisisinson");
             Instantiate(PlayerHurtAudio);
-            iFrames = iFramesTimer;
+            if (playerControlled)
+            {
+                iFrames = iFramesTimer;
+            }
         }
     }
 }
