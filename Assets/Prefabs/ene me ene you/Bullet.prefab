@@ -140,8 +140,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c701a039179b66f43ac84a0db3d08655, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyDelay: 25
-  rb: {fileID: 110440509597865849}
 --- !u!114 &872533961012419464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,6 +178,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   finalDamageStat: 50
+  procCoeff: 0
+  damageBase: 50
+  damageMult: 1
 --- !u!114 &-4542741102433382798
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -39,8 +39,8 @@ public class MissileTracking : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        GameObject newObject = Instantiate(explosion, transform.position, new Quaternion(1,0,0,0)) as GameObject;
-        newObject.transform.localScale = new Vector3(1, 1, 1);
+        GameObject newObject = Instantiate(explosion, transform.position, Quaternion.Euler(0,0,0)) as GameObject;
+        newObject.transform.localScale = new Vector3(2, 2, 2);
         Destroy(gameObject);
     }
 }

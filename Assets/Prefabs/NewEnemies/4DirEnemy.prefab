@@ -156,6 +156,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   finalDamageStat: 50
+  procCoeff: 0
+  damageBase: 50
+  damageMult: 1
 --- !u!114 &-5622376081394152181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,6 +171,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a80deaad377472c4f9bd9cbf71b651a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HP: 0
+  MaxHP: 0
   Barry63: {fileID: 0}
   PlayerDieAudio: {fileID: 1098745368026675434, guid: 26556f7af7586304588a534b37c199bc, type: 3}
   PlayerHurtAudio: {fileID: 0}
@@ -206,3 +211,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemsHeld: 
+  itemGained: 0

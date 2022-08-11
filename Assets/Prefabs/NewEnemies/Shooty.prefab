@@ -175,6 +175,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   finalDamageStat: 50
+  procCoeff: 0
+  damageBase: 50
+  damageMult: 1
 --- !u!114 &373114558742256855
 MonoBehaviour:
   m_ObjectHideFlags: 0

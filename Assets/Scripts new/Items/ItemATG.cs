@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ITEMATG : MonoBehaviour
+public class ItemATG : MonoBehaviour
 {
     public GameObject Player;
     public GameObject ATGMissile;
     public GameObject MasterObject;
+    float procMoment;
+    public int instances = 1;
+    float pringle;
 
     void Awake()
     {
@@ -15,8 +18,15 @@ public class ITEMATG : MonoBehaviour
         Player = GameObject.Find("newPlayer");
     }
 
-    void OnTriggerEnter2D(Collider2D col)
+    void OnCollisionEnter2D(Collision2D col)
     {
-        Instantiate(ATGMissile, Player.transform.position, Player.transform.rotation);
+        procMoment = 100f - instances * 10 * gameObject.GetComponent<DealDamage>().procCoeff;
+        pringle = Random.Range(0f, 100f);
+        Debug.Log("Poo: " + pringle.ToString());
+        Debug.Log("Ass: " + procMoment.ToString());
+        if (pringle > procMoment)
+        {
+            Instantiate(ATGMissile, Player.transform.position, Player.transform.rotation);
+        }
     }
 }

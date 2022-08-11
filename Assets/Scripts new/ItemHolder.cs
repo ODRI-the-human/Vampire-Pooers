@@ -30,17 +30,37 @@ public class ItemHolder : MonoBehaviour
             case (int)ITEMLIST.DMGADDPT5:
                 gameObject.AddComponent<ItemDMGADDPT5>();
                 break;
-            case 3:
+            case (int)ITEMLIST.DMGMLT2:
+                gameObject.AddComponent<ItemDMGMLT2>();
                 break;
-            case 4:
+            case (int)ITEMLIST.FIRERATE:
+                gameObject.AddComponent<ItemFIRERATE>();
                 break;
-            case 5:
+            case (int)ITEMLIST.SOY:
+                gameObject.AddComponent<ItemSOY>();
                 break;
-            case 6:
+            case (int)ITEMLIST.HOMING:
+                if (gameObject.GetComponent<ItemHOMING>() == null)
+                {
+                    gameObject.AddComponent<ItemHOMING>();
+                }
+                else
+                {
+                    gameObject.GetComponent<ItemHOMING>().instances++;
+                }
                 break;
-            case 7:
+            case (int)ITEMLIST.ATG:
+                if (gameObject.GetComponent<ItemATG>() == null)
+                {
+                    gameObject.AddComponent<ItemATG>();
+                }
+                else
+                {
+                    gameObject.GetComponent<ItemATG>().instances++;
+                }
                 break;
-            case 8:
+            case (int)ITEMLIST.MORESHOT:
+                gameObject.AddComponent<ItemMORESHOT>();
                 break;
             case 9:
                 break;

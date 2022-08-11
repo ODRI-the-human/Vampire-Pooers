@@ -4,14 +4,19 @@ using UnityEngine;
 
 public class DealDamage : MonoBehaviour
 {
-    public float finalDamageStat;
-    float procCoeff;
-    GameObject Player;
+    [HideInInspector] public float finalDamageStat;
+    public float procCoeff;
+    public float damageBase;
+    public float damageMult;
 
     // Start is called before the first frame update
     void Start()
     {
-        procCoeff = 1;
-        finalDamageStat = 50;
+        finalDamageStat = damageBase * damageMult;
+    }
+
+    void Update()
+    {
+        finalDamageStat = damageBase * damageMult;
     }
 }
