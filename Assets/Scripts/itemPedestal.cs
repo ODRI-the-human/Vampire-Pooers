@@ -11,7 +11,7 @@ public class itemPedestal : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        itemChosen = (int)Random.Range(-0.5f, 22.5f);
+        itemChosen = (int)Random.Range(-0.5f, 2.5f); // should be 22.5f for all current items okie
         spriteRenderer.sprite = spriteArray[itemChosen];
     }
 

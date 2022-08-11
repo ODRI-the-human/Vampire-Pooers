@@ -22,7 +22,6 @@ public class Attack : MonoBehaviour
 
     void Awake()
     {
-        trueDamageValue = gameObject.GetComponent<DealDamage>().finalDamageStat;
         if (gameObject.tag == "Hostile")
         {
             Player = GameObject.Find("newPlayer");
@@ -37,6 +36,7 @@ public class Attack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        trueDamageValue = gameObject.GetComponent<DealDamage>().finalDamageStat;
         if (fireTimer < 0)
         {
             switch (playerControlled)
@@ -80,18 +80,10 @@ public class Attack : MonoBehaviour
     {
         GameObject newObject = Instantiate(Bullet, transform.position, transform.rotation);
         newObject.transform.localScale = new Vector3(trueDamageValue * 0.0015f + .45f, trueDamageValue * 0.0015f + .45f, trueDamageValue * 0.0015f + .45f);
-        foreach(int item in gameObject.GetComponent<ItemHolder>().itemsHeld)
-        {
-            switch (item)
-            {
-                case 1:
-                    newObject.AddComponent<ITEMATG>();
-                    break;
-            }
-        }
         bulletRB = newObject.GetComponent<Rigidbody2D>();
         newShotVector = new Vector2(vectorToTarget.x * Mathf.Cos(currentAngle) - vectorToTarget.y * Mathf.Sin(currentAngle), vectorToTarget.x * Mathf.Sin(currentAngle) + vectorToTarget.y * Mathf.Cos(currentAngle));
         bulletRB.velocity = newShotVector * shotSpeed;
+        newObject.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
     }
 
     void FixedUpdate()

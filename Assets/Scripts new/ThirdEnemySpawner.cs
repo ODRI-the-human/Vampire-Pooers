@@ -24,7 +24,7 @@ public class ThirdEnemySpawner : MonoBehaviour
     public GameObject chaseEnemy;
     public GameObject shootEnemy;
     public GameObject fourDirEnemy;
-    public GameObject sixDirEnemy;
+    public GameObject eightDirEnemy;
     public GameObject spinEnemy;
     GameObject toSpawn;
 
@@ -104,7 +104,7 @@ public class ThirdEnemySpawner : MonoBehaviour
                 SpawnInGroup();
                 break;
             case 3:
-                toSpawn = sixDirEnemy;
+                toSpawn = eightDirEnemy;
                 SpawnInGroup();
                 break;
             case 4:

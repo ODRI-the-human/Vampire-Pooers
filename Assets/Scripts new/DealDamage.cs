@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class DealDamage : MonoBehaviour
 {
-    public int finalDamageStat;
+    public float finalDamageStat;
     float procCoeff;
+    GameObject Player;
 
     // Start is called before the first frame update
     void Start()

@@ -5,8 +5,8 @@ using UnityEngine;
 public class HPDamageDie : MonoBehaviour
 {
 
-    public int HP;
-    public int MaxHP;
+    public float HP;
+    public float MaxHP;
     public GameObject Barry63;
     public GameObject PlayerDieAudio;
     public GameObject PlayerHurtAudio;
@@ -87,7 +87,6 @@ public class HPDamageDie : MonoBehaviour
     {
         if (col.gameObject.tag != gameObject.tag)
         {
-            Debug.Log(playerControlled.ToString());
             if (playerControlled == false)
             {
                 Debug.Log("Dogass");
@@ -101,11 +100,6 @@ public class HPDamageDie : MonoBehaviour
                 if (playerControlled == true)
                 {
                     iFrames = iFramesTimer;
-                }
-                else
-                {
-                    //sprite.color = Color.red;
-                    //colorChangeTimer = 3;
                 }
             }
         }
