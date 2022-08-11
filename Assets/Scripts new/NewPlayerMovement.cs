@@ -12,6 +12,11 @@ public class NewPlayerMovement : MonoBehaviour
     public float moveSpeed = 5;
     bool playerControlled;
 
+    Vector2 collisionVector;
+    int knockBack = 0;
+    float knockBackTimer = 0;
+    float maxKnockBack = 0;
+
     public GameObject dodgeAudio;
     public Rigidbody2D rb;
     GameObject Player;
@@ -87,7 +92,37 @@ public class NewPlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb.velocity = (1 + (isDodging * 1.5f)) * new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
+
+        if (knockBackTimer < 1)
+        {
+            knockBack = 0;
+        }
+
+        if (knockBack == 1)
+        {
+            rb.velocity = maxKnockBack * (knockBackTimer / maxKnockBack) * new Vector2(collisionVector.x, collisionVector.y) + ((maxKnockBack - knockBackTimer) / maxKnockBack) * moveSpeed * new Vector2(moveDirection.x, moveDirection.y);
+        }
+        else
+        {
+            rb.velocity = (1 + (isDodging * 1.5f)) * new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
+        }
+
         dodgeTimer--;
+        knockBackTimer--;
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.tag != gameObject.tag)
+        {
+            Debug.Log(playerControlled.ToString());
+            if (playerControlled == false)
+            {
+                collisionVector = 0.5f * new Vector2(transform.position.x - col.transform.position.x, transform.position.y - col.transform.position.y).normalized;
+                knockBack = 1;
+                knockBackTimer = 7f;
+                maxKnockBack = knockBackTimer;
+            }
+        }
     }
 }
