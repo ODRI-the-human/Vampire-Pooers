@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -9020877377198879844}
   - component: {fileID: 8146544521814748070}
   - component: {fileID: 9014303847402346882}
+  - component: {fileID: 179530921809487071}
   m_Layer: 0
   m_Name: bigFuckingMasterObject
   m_TagString: Untagged
@@ -132,3 +133,15 @@ MonoBehaviour:
   fourDirEnemy: {fileID: 8034279136360660190, guid: b669ce22051425942b6cf3c942be175f, type: 3}
   sixDirEnemy: {fileID: 8034279136360660190, guid: 8b07116342f452a44bea674c30297c29, type: 3}
   spinEnemy: {fileID: 5685454981733204260, guid: 9cb06ff4930a2534d8c05ad2b7f3fae6, type: 3}
+--- !u!114 &179530921809487071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7002239379606652682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8742834a185e7934bbd2d8ae45b54cc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

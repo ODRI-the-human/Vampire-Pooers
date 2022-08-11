@@ -5,7 +5,8 @@ using UnityEngine;
 public class HPDamageDie : MonoBehaviour
 {
 
-    int HP;
+    public int HP;
+    public int MaxHP;
     public GameObject Barry63;
     public GameObject PlayerDieAudio;
     public GameObject PlayerHurtAudio;
@@ -22,7 +23,8 @@ public class HPDamageDie : MonoBehaviour
     void Awake()
     {
         originalColor = sprite.color;
-        HP = 100;
+        MaxHP = 100;
+        HP = MaxHP;
         if (gameObject.tag == "Hostile")
         {
             Player = GameObject.Find("newPlayer");
@@ -42,6 +44,11 @@ public class HPDamageDie : MonoBehaviour
             //Debug.Log("Owned Lu zer");
             Instantiate(Barry63, new Vector3(0, 0, -1), new Quaternion(1, Mathf.PI, 0, 0));
             Instantiate(PlayerDieAudio);
+        }
+
+        if (HP > MaxHP)
+        {
+            HP = MaxHP;
         }
     }
 
