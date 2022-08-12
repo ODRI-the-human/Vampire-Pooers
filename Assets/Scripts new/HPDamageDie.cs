@@ -54,25 +54,25 @@ public class HPDamageDie : MonoBehaviour
 
     void FixedUpdate()
     {
-        Color tmp = sprite.color;
-        if (iFrames > 0)
-        {
-            if (iFrames % 2 == 0)
-            {
-                tmp.a = 0f;
-                sprite.color = tmp;
-            }
-            else
-            {
-                tmp.a = 1f;
-                sprite.color = tmp;
-            }
-        }
-        else
-        {
-            tmp.a = originalColor.a;
-            sprite.color = tmp;
-        }
+        //Color tmp = sprite.color;
+        //if (iFrames > 0)
+        //{
+        //    if (iFrames % 2 == 0)
+        //    {
+        //        //tmp.a = 0f;
+        //        //sprite.color = tmp;
+        //    }
+        //    else
+        //    {
+        //        tmp.a = 1f;
+        //        sprite.color = tmp;
+        //    }
+        //}
+        //else
+        //{
+        //    tmp.a = originalColor.a;
+        //    sprite.color = tmp;
+        //}
 
         if (colorChangeTimer == 0)
         {

@@ -45,7 +45,7 @@ public class followPlayerLmao : MonoBehaviour
             Debug.Log(fuckAngle.ToString());
         }
 
-        Quaternion actualRotation = Quaternion.Euler(0, -fuckAngle + 180, 0);
+        Quaternion actualRotation = Quaternion.Euler(0, -fuckAngle + 220, 0);
 
         transform.rotation = actualRotation;
         transform.Rotate(-45, 0, 0, Space.World);

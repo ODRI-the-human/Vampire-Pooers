@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 6146499720883180670}
   - component: {fileID: -5622376081394152181}
   - component: {fileID: -1694992076537565714}
+  - component: {fileID: -994819593604433960}
   m_Layer: 6
   m_Name: ChasingEnemy
   m_TagString: Hostile
@@ -191,3 +192,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemsHeld: 
   itemGained: 0
+--- !u!114 &-994819593604433960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8034279136360660190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79b14745a3e2fd4f8a0b5a259cfcb25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shotSpeed: 5
+  noExtraShots: 0
+  shotAngleCoeff: 1
+  trueDamageValue: 0
+  fireTimerLengthMLT: 1
+  Bullet: {fileID: 0}
+  fireTimerLength: 25
+  PlayerShootAudio: {fileID: 0}
+  specialFireType: 2

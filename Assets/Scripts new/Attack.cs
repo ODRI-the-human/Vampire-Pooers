@@ -67,14 +67,18 @@ public class Attack : MonoBehaviour
             {
                 case 0:
                     currentAngle = 0.3f * shotAngleCoeff * (0.5f * noExtraShots - i - 1);
+                    SpawnAttack(currentAngle);
+                    Instantiate(PlayerShootAudio);
                     break;
                 case 1:
                     currentAngle = (Mathf.PI / 4) * i;
+                    SpawnAttack(currentAngle);
+                    Instantiate(PlayerShootAudio);
+                    break;
+                case 2:
                     break;
             }
-            SpawnAttack(currentAngle);
         }
-        Instantiate(PlayerShootAudio);
     }
 
     void SpawnAttack(float currentAngle)

@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 1654801595319326120}
   - component: {fileID: -6175816815738836715}
   - component: {fileID: -7779438343811626192}
+  - component: {fileID: 5006160631845979851}
   m_Layer: 6
   m_Name: Spinner
   m_TagString: Hostile
@@ -155,6 +156,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   finalDamageStat: 0
+  procCoeff: 0
+  damageBase: 0
+  damageMult: 0
 --- !u!114 &1654801595319326120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,6 +187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemsHeld: 
+  itemGained: 0
 --- !u!114 &-7779438343811626192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,8 +200,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a80deaad377472c4f9bd9cbf71b651a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HP: 0
+  MaxHP: 0
   Barry63: {fileID: 0}
   PlayerDieAudio: {fileID: 1098745368026675434, guid: 26556f7af7586304588a534b37c199bc, type: 3}
   PlayerHurtAudio: {fileID: 0}
   rb: {fileID: 5685454981733204263}
   sprite: {fileID: 5685454981733204261}
+--- !u!114 &5006160631845979851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5685454981733204260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79b14745a3e2fd4f8a0b5a259cfcb25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shotSpeed: 5
+  noExtraShots: 0
+  shotAngleCoeff: 1
+  trueDamageValue: 0
+  fireTimerLengthMLT: 1
+  Bullet: {fileID: 0}
+  fireTimerLength: 25
+  PlayerShootAudio: {fileID: 0}
+  specialFireType: 2

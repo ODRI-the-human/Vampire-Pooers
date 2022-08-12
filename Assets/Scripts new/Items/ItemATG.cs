@@ -20,13 +20,16 @@ public class ItemATG : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        procMoment = 100f - instances * 10 * gameObject.GetComponent<DealDamage>().procCoeff;
-        pringle = Random.Range(0f, 100f);
-        Debug.Log("Poo: " + pringle.ToString());
-        Debug.Log("Ass: " + procMoment.ToString());
-        if (pringle > procMoment)
+        if (col.gameObject.tag != "Wall")
         {
-            Instantiate(ATGMissile, Player.transform.position, Player.transform.rotation);
+            procMoment = 100f - instances * 10 * gameObject.GetComponent<DealDamage>().procCoeff;
+            pringle = Random.Range(0f, 100f);
+            Debug.Log("Poo: " + pringle.ToString());
+            Debug.Log("Ass: " + procMoment.ToString());
+            if (pringle > procMoment)
+            {
+                Instantiate(ATGMissile, Player.transform.position, Player.transform.rotation);
+            }
         }
     }
 }
