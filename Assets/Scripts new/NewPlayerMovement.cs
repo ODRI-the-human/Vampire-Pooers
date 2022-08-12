@@ -13,13 +13,16 @@ public class NewPlayerMovement : MonoBehaviour
     bool playerControlled;
 
     Vector2 collisionVector;
-    int knockBack = 0;
     float knockBackTimer = 0;
     float maxKnockBack = 0;
 
     public GameObject dodgeAudio;
     public Rigidbody2D rb;
     GameObject Player;
+
+    int isSlowed = 1;
+    int slowTimer = 0;
+    int slowTimerLength = 100;
 
     void Awake()
     {
@@ -92,13 +95,9 @@ public class NewPlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        moveDirection *= (1 - 0.5f * isSlowed);
 
-        if (knockBackTimer < 1)
-        {
-            knockBack = 0;
-        }
-
-        if (knockBack == 1)
+        if (knockBackTimer > 0)
         {
             rb.velocity = maxKnockBack * (knockBackTimer / maxKnockBack) * new Vector2(collisionVector.x, collisionVector.y) + ((maxKnockBack - knockBackTimer) / maxKnockBack) * moveSpeed * new Vector2(moveDirection.x, moveDirection.y);
         }
@@ -107,8 +106,15 @@ public class NewPlayerMovement : MonoBehaviour
             rb.velocity = (1 + (isDodging * 1.5f)) * new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
         }
 
+        if (slowTimer < 1)
+        {
+            isSlowed = 0;
+            gameObject.GetComponent<Attack>().fireTimerLengthMLT = 1;
+        }
+
         dodgeTimer--;
         knockBackTimer--;
+        slowTimer--;
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -119,9 +125,21 @@ public class NewPlayerMovement : MonoBehaviour
             if (playerControlled == false)
             {
                 collisionVector = 0.5f * new Vector2(transform.position.x - col.transform.position.x, transform.position.y - col.transform.position.y).normalized;
-                knockBack = 1;
                 knockBackTimer = 7f;
                 maxKnockBack = knockBackTimer;
+            }
+        }
+    }
+
+    void OnTriggerStay2D(Collider2D col)
+    {
+        if (col.GetComponent<wapantCircle>() != null)
+        {
+            if (col.gameObject.tag != gameObject.tag)
+            {
+                isSlowed = 1;
+                slowTimer = slowTimerLength;
+                gameObject.GetComponent<Attack>().fireTimerLengthMLT = 2;
             }
         }
     }

@@ -12,6 +12,7 @@ public class Attack : MonoBehaviour
     public int noExtraShots = 0;
     public float shotAngleCoeff = 1;
     public float trueDamageValue;
+    [HideInInspector] public float fireTimerLengthMLT = 1;
     public GameObject Bullet;
     public float fireTimerLength = 25;
     float fireTimer = 0f;
@@ -37,7 +38,7 @@ public class Attack : MonoBehaviour
     void Update()
     {
         trueDamageValue = gameObject.GetComponent<DealDamage>().finalDamageStat;
-        if (fireTimer < 0)
+        if (fireTimer + fireTimerLength * (fireTimerLengthMLT - 1) < 0)
         {
             switch (playerControlled)
             {

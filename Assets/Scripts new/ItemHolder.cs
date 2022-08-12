@@ -62,7 +62,16 @@ public class ItemHolder : MonoBehaviour
             case (int)ITEMLIST.MORESHOT:
                 gameObject.AddComponent<ItemMORESHOT>();
                 break;
-            case 9:
+            case (int)ITEMLIST.WAPANT:
+                if (gameObject.GetComponent<ItemWAPANT>() == null)
+                {
+                    gameObject.AddComponent<ItemWAPANT>();
+                }
+                else
+                {
+                    gameObject.GetComponent<ItemWAPANT>().wapantTimerLength /= 1.2f;
+                    gameObject.GetComponent<ItemWAPANT>().instances++;
+                }
                 break;
             case 10:
                 break;

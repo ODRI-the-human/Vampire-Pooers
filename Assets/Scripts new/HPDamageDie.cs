@@ -70,7 +70,7 @@ public class HPDamageDie : MonoBehaviour
         }
         else
         {
-            tmp.a = 1f;
+            tmp.a = originalColor.a;
             sprite.color = tmp;
         }
 

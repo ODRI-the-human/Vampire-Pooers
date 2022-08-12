@@ -6,6 +6,9 @@ public class DieOnWall : MonoBehaviour
 {
     void OnCollisionEnter2D(Collision2D col)
     {
-        Destroy(gameObject);
+        if (col.gameObject.tag == "Wall")
+        {
+            Destroy(gameObject);
+        }
     }
 }

@@ -11,7 +11,7 @@ public class ItemATG : MonoBehaviour
     public int instances = 1;
     float pringle;
 
-    void Awake()
+    void Start()
     {
         MasterObject = GameObject.Find("bigFuckingMasterObject");
         ATGMissile = MasterObject.GetComponent<EntityReferencerGuy>().ATGMissile;
