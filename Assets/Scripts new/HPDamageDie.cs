@@ -11,13 +11,14 @@ public class HPDamageDie : MonoBehaviour
     public GameObject PlayerDieAudio;
     public GameObject PlayerHurtAudio;
     public Rigidbody2D rb;
-    float iFramesTimer = 50;
+    public float iFramesTimer = 50;
     [HideInInspector] public float iFrames = 0;
     public SpriteRenderer sprite;
     bool playerControlled;
     int colorChangeTimer = 0;
     Color originalColor;
     GameObject Player;
+    public GameObject XP;
 
     // Start is called before the first frame update
     void Awake()
@@ -40,43 +41,29 @@ public class HPDamageDie : MonoBehaviour
     {
         if (HP <= 0)
         {
+
             Destroy(gameObject);
-            //Debug.Log("Owned Lu zer");
             Instantiate(Barry63, new Vector3(0, 0, -1), new Quaternion(1, Mathf.PI, 0, 0));
             Instantiate(PlayerDieAudio);
-        }
+            Instantiate(XP, transform.position, transform.rotation);
 
-        if (HP > MaxHP)
-        {
-            HP = MaxHP;
+            if (HP > MaxHP)
+            {
+                HP = MaxHP;
+            }
         }
     }
 
     void FixedUpdate()
     {
-        //Color tmp = sprite.color;
-        //if (iFrames > 0)
-        //{
-        //    if (iFrames % 2 == 0)
-        //    {
-        //        //tmp.a = 0f;
-        //        //sprite.color = tmp;
-        //    }
-        //    else
-        //    {
-        //        tmp.a = 1f;
-        //        sprite.color = tmp;
-        //    }
-        //}
-        //else
-        //{
-        //    tmp.a = originalColor.a;
-        //    sprite.color = tmp;
-        //}
-
         if (colorChangeTimer == 0)
         {
             sprite.color = originalColor;
+        }
+
+        if (HP > MaxHP)
+        {
+            HP = MaxHP;
         }
 
         iFrames--;

@@ -4,15 +4,25 @@ using UnityEngine;
 
 public class ChangeColourOnHitModel : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Material material;
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
+        Color tmp;
+        material.color = Color.white;
+
+        if (gameObject.GetComponent<HPDamageDie>().iFrames > 0)
+        {
+            if (gameObject.GetComponent<HPDamageDie>().iFrames % 2 == 0)
+            {
+                tmp = Color.black;
+                material.color = tmp;
+            }
+            else
+            {
+                tmp = Color.white;
+                material.color = tmp;
+            }
+        }
     }
 }

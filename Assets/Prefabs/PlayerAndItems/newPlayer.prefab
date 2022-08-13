@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 3646255009062352282}
   - component: {fileID: 5717554992336324117}
   - component: {fileID: 5905868436867884629}
+  - component: {fileID: -5270716345358475118}
   m_Layer: 8
   m_Name: newPlayer
   m_TagString: Player
@@ -110,6 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  knockBackCoeff: 3
   dodgeAudio: {fileID: 576013723491271631, guid: 8068abbc9251dc147a95e0c091540981, type: 3}
   rb: {fileID: 503381878361641300}
 --- !u!114 &-4590834480761037546
@@ -130,7 +132,10 @@ MonoBehaviour:
   PlayerDieAudio: {fileID: 7927511119378929990, guid: 5524052d8b9da4f43a8bffc27f9db6d9, type: 3}
   PlayerHurtAudio: {fileID: 5963825423898132415, guid: e7b6397eaf92c834aaecbf3499716cb0, type: 3}
   rb: {fileID: 503381878361641300}
+  iFramesTimer: 50
+  iFrames: 0
   sprite: {fileID: 5905868436867884629}
+  XP: {fileID: 0}
 --- !u!114 &1698531144881374718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,3 +239,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-5270716345358475118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 503381878361641298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22a60c87a4a2674478bfb47d57bf3d0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerXPAudio: {fileID: 8667424581410965265, guid: 49d370b240303f34381b4ae05a28b442, type: 3}

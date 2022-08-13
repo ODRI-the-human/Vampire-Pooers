@@ -19,6 +19,12 @@ public class ItemHolder : MonoBehaviour
 
     void ApplyItems()
     {
+        if (gameObject.GetComponent<ItemHOLYMANTIS>() != null)
+        {
+            gameObject.GetComponent<ItemHOLYMANTIS>().timesHit = gameObject.GetComponent<ItemHOLYMANTIS>().maxTimesHit;
+        }
+
+
         switch (itemGained)
         {
             case (int)ITEMLIST.HP25:
@@ -73,7 +79,18 @@ public class ItemHolder : MonoBehaviour
                     gameObject.GetComponent<ItemWAPANT>().instances++;
                 }
                 break;
-            case 10:
+            case (int)ITEMLIST.HOLYMANTIS:
+                if (gameObject.GetComponent<ItemHOLYMANTIS>() == null)
+                {
+                    gameObject.AddComponent<ItemHOLYMANTIS>();
+                }
+                else
+                {
+                    gameObject.GetComponent<ItemHOLYMANTIS>().instances++;
+                    gameObject.GetComponent<ItemHOLYMANTIS>().maxTimesHit++;
+                    gameObject.GetComponent<ItemHOLYMANTIS>().timesHit = gameObject.GetComponent<ItemHOLYMANTIS>().maxTimesHit;
+                }
+                break;
                 break;
             case 11:
                 break;

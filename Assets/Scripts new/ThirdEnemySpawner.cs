@@ -27,6 +27,12 @@ public class ThirdEnemySpawner : MonoBehaviour
     public GameObject eightDirEnemy;
     public GameObject spinEnemy;
     GameObject toSpawn;
+    GameObject Player;
+
+    void Start()
+    {
+        Player = GameObject.Find("newPlayer");
+    }
 
     void Update()
     {

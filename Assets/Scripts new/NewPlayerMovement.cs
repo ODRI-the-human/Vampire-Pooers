@@ -15,6 +15,7 @@ public class NewPlayerMovement : MonoBehaviour
     Vector2 collisionVector;
     float knockBackTimer = 0;
     float maxKnockBack = 0;
+    public int knockBackCoeff = 1;
 
     public GameObject dodgeAudio;
     public Rigidbody2D rb;
@@ -125,7 +126,7 @@ public class NewPlayerMovement : MonoBehaviour
             if (playerControlled == false)
             {
                 collisionVector = 0.5f * new Vector2(transform.position.x - col.transform.position.x, transform.position.y - col.transform.position.y).normalized;
-                knockBackTimer = 7f;
+                knockBackTimer = col.gameObject.GetComponent<NewPlayerMovement>().knockBackCoeff * 7f;
                 maxKnockBack = knockBackTimer;
             }
         }
