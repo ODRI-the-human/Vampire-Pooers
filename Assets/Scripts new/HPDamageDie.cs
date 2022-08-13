@@ -12,7 +12,7 @@ public class HPDamageDie : MonoBehaviour
     public GameObject PlayerHurtAudio;
     public Rigidbody2D rb;
     float iFramesTimer = 50;
-    float iFrames = 0;
+    [HideInInspector] public float iFrames = 0;
     public SpriteRenderer sprite;
     bool playerControlled;
     int colorChangeTimer = 0;

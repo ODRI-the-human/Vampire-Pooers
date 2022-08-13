@@ -3,7 +3,12 @@ guid: d507ede6df5214647a69f67c1379f580
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: funny face happy.001
+    second: {fileID: 2100000, guid: ceb0af58c0dbdcd49ab2cc585d80b06e, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
