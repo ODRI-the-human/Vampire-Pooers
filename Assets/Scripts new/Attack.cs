@@ -21,12 +21,17 @@ public class Attack : MonoBehaviour
     bool playerControlled;
     public int specialFireType;
 
-    void Awake()
+    void Start()
     {
         if (gameObject.tag == "Hostile")
         {
             Player = GameObject.Find("newPlayer");
             playerControlled = false;
+            if (Player.GetComponent<ItemSTOPWATCH>() != null)
+            {
+                fireTimerLength *= 1 + (0.25f) * Player.GetComponent<ItemSTOPWATCH>().instances;
+                fireTimerLength /= 1 + (0.25f) * Player.GetComponent<ItemSTOPWATCH>().instances;
+            }
         }
         else
         {

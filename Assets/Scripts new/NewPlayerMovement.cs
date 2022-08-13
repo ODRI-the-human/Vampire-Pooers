@@ -15,7 +15,6 @@ public class NewPlayerMovement : MonoBehaviour
     Vector2 collisionVector;
     float knockBackTimer = 0;
     float maxKnockBack = 0;
-    public int knockBackCoeff = 1;
 
     public GameObject dodgeAudio;
     public Rigidbody2D rb;
@@ -25,12 +24,16 @@ public class NewPlayerMovement : MonoBehaviour
     int slowTimer = 0;
     int slowTimerLength = 100;
 
-    void Awake()
+    void Start()
     {
         if (gameObject.tag == "Hostile")
         {
             Player = GameObject.Find("newPlayer");
             playerControlled = false;
+            if (Player.GetComponent<ItemSTOPWATCH>() != null)
+            {
+                moveSpeed /= 1 + (0.25f) * Player.GetComponent<ItemSTOPWATCH>().instances;
+            }
         }
         else
         {
@@ -54,7 +57,7 @@ public class NewPlayerMovement : MonoBehaviour
                 {
                     if (Input.GetButton("Dodge"))
                     {
-                        Debug.Log("Dodge the Roll");
+                        //Debug.Log("Dodge the Roll");
                         dodgeTimer = dodgeTimerLength * (0.7f);
                         //iFrames = dodgeTimerLength;
                         isDodging = 1;
@@ -122,11 +125,10 @@ public class NewPlayerMovement : MonoBehaviour
     {
         if (col.gameObject.tag != gameObject.tag)
         {
-            Debug.Log(playerControlled.ToString());
             if (playerControlled == false)
             {
                 collisionVector = 0.5f * new Vector2(transform.position.x - col.transform.position.x, transform.position.y - col.transform.position.y).normalized;
-                knockBackTimer = col.gameObject.GetComponent<NewPlayerMovement>().knockBackCoeff * 7f;
+                knockBackTimer = col.gameObject.GetComponent<DealDamage>().knockBackCoeff * 7f;
                 maxKnockBack = knockBackTimer;
             }
         }

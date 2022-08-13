@@ -12,6 +12,7 @@ public class ItemHOLYMANTIS : MonoBehaviour
     void Start()
     {
         instances = 1;
+        maxTimesHit = instances;
         timesHit = maxTimesHit;
     }
 

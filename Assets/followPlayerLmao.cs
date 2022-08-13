@@ -8,7 +8,6 @@ public class followPlayerLmao : MonoBehaviour
     Vector3 mouseVector;
     Vector3 vectorMan;
     float fuckAngle;
-    int funnyTime;
 
     void Start()
     {
@@ -37,12 +36,6 @@ public class followPlayerLmao : MonoBehaviour
         if (vectorMan.y < 0 && vectorMan.x > 0)
         {
             fuckAngle = 90 + (180 / Mathf.PI) * Mathf.Atan(vectorMan.y / vectorMan.x) + 270;
-        }
-
-        funnyTime++;
-        if (funnyTime % 20 == 0)
-        {
-            Debug.Log(fuckAngle.ToString());
         }
 
         Quaternion actualRotation = Quaternion.Euler(0, -fuckAngle + 220, 0);

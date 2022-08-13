@@ -74,19 +74,25 @@ public class HPDamageDie : MonoBehaviour
     {
         if (col.gameObject.tag != gameObject.tag)
         {
-            if (playerControlled == false)
+            if (gameObject.GetComponent<ItemEASIERTIMES>() != null && Mathf.RoundToInt(100 * (0.8f - 1f / (gameObject.GetComponent<ItemEASIERTIMES>().instances + 1f))) > Random.Range(0, 100))
             {
-                Debug.Log("Dogass");
-                sprite.color = Color.red;
-                colorChangeTimer = 3;
+                //arse
             }
-            if (iFrames < 0)
+            else
             {
-                HP -= col.gameObject.GetComponent<DealDamage>().finalDamageStat;
-                Instantiate(PlayerHurtAudio);
-                if (playerControlled == true)
+                if (playerControlled == false)
                 {
-                    iFrames = iFramesTimer;
+                    sprite.color = Color.red;
+                    colorChangeTimer = 3;
+                }
+                if (iFrames < 0)
+                {
+                    HP -= col.gameObject.GetComponent<DealDamage>().finalDamageStat;
+                    Instantiate(PlayerHurtAudio);
+                    if (playerControlled == true)
+                    {
+                        iFrames = iFramesTimer;
+                    }
                 }
             }
         }

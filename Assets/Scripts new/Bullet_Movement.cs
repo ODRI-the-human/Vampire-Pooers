@@ -16,16 +16,16 @@ public class Bullet_Movement : MonoBehaviour
     {
         //if (gameObject.GetComponent<ItemBOUNCY>() == null)
         //{
-            Destroy(gameObject);
+            //Destroy(gameObject);
         //}
         //else
         //{
             //if (gameObject.GetComponent<ItemBOUNCY>().bouncesLeft > 0)
             //{
-                //Vector2 enemyPos = new Vector2 (transform.position.x, transform.position.y);
-                //Vector2 bulletPos = new Vector2 (col.transform.position.x, col.transform.position.y);
-                //rb.velocity = speed * (bulletPos - enemyPos).normalized;
-                //gameObject.GetComponent<ItemBOUNCY>().bouncesLeft--;
+                Vector2 enemyPos = new Vector2 (transform.position.x, transform.position.y);
+                Vector2 bulletPos = new Vector2 (col.transform.position.x, col.transform.position.y);
+                rb.velocity = speed * (bulletPos - enemyPos).normalized;
+                gameObject.GetComponent<ItemBOUNCY>().bouncesLeft--;
             //}
             //else
             //{

@@ -8,6 +8,7 @@ public class DealDamage : MonoBehaviour
     public float procCoeff;
     public float damageBase;
     public float damageMult;
+    public int knockBackCoeff = 1;
 
     // Start is called before the first frame update
     void Start()

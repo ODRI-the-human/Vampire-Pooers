@@ -95,11 +95,35 @@ public class ItemHolder : MonoBehaviour
                     gameObject.GetComponent<ItemCONVERTER>().instances++;
                 }
                 break;
-            case 12:
+            case (int)ITEMLIST.EASIERTIMES:
+                if (gameObject.GetComponent<ItemEASIERTIMES>() == null)
+                {
+                    gameObject.AddComponent<ItemEASIERTIMES>();
+                }
+                else
+                {
+                    gameObject.GetComponent<ItemEASIERTIMES>().instances++;
+                }
                 break;
-            case 13:
+            case (int)ITEMLIST.STOPWATCH:
+                if (gameObject.GetComponent<ItemSTOPWATCH>() == null)
+                {
+                    gameObject.AddComponent<ItemSTOPWATCH>();
+                }
+                else
+                {
+                    gameObject.GetComponent<ItemSTOPWATCH>().instances++;
+                }
                 break;
-            case 14:
+            case (int)ITEMLIST.BOUNCY:
+                if (gameObject.GetComponent<ItemBOUNCY>() == null)
+                {
+                    gameObject.AddComponent<ItemBOUNCY>();
+                }
+                else
+                {
+                    gameObject.GetComponent<ItemBOUNCY>().instances++;
+                }
                 break;
             case 15:
                 break;
