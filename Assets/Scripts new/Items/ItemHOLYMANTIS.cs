@@ -26,7 +26,7 @@ public class ItemHOLYMANTIS : MonoBehaviour
         {
             if (iFrames < 0)
             {
-                gameObject.GetComponent<HPDamageDie>().HP += 50 + instances * col.gameObject.GetComponent<DealDamage>().finalDamageStat / (instances + 1);
+                gameObject.GetComponent<HPDamageDie>().HP += instances * col.gameObject.GetComponent<DealDamage>().finalDamageStat / (instances + 1);
                 iFrames = gameObject.GetComponent<HPDamageDie>().iFramesTimer;
                 timesHit--;
             }

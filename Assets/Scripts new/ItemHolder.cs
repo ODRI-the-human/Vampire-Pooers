@@ -91,8 +91,15 @@ public class ItemHolder : MonoBehaviour
                     gameObject.GetComponent<ItemHOLYMANTIS>().timesHit = gameObject.GetComponent<ItemHOLYMANTIS>().maxTimesHit;
                 }
                 break;
-                break;
-            case 11:
+            case (int)ITEMLIST.CONVERTER:
+                if (gameObject.GetComponent<ItemCONVERTER>() == null)
+                {
+                    gameObject.AddComponent<ItemCONVERTER>();
+                }
+                else
+                {
+                    gameObject.GetComponent<ItemCONVERTER>().instances++;
+                }
                 break;
             case 12:
                 break;

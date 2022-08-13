@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class LevelUp : MonoBehaviour
 {
-    public int level = 0;
+    public int level = 1;
     public int XP = 0;
     public GameObject PlayerXPAudio;
 
     void UpdateStats()
     {
-        gameObject.GetComponent<HPDamageDie>().MaxHP += 5;
-        gameObject.GetComponent<HPDamageDie>().HP += 5;
-        gameObject.GetComponent<DealDamage>().damageBase += 5;
-        gameObject.GetComponent<Attack>().fireTimerLength /= (1 + 0.03f * level);
-        gameObject.GetComponent<NewPlayerMovement>().moveSpeed += 0.5f;
+        gameObject.GetComponent<HPDamageDie>().MaxHP += 5f;
+        gameObject.GetComponent<HPDamageDie>().HP += 5f;
+        gameObject.GetComponent<DealDamage>().damageBase += 5f;
+        gameObject.GetComponent<Attack>().fireTimerLength /= (1 + 0.03f);
+        gameObject.GetComponent<NewPlayerMovement>().moveSpeed += 0.15f;
     }
 
     void OnTriggerEnter2D(Collider2D col)

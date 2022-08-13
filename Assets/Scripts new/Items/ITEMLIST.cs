@@ -13,7 +13,7 @@ public enum ITEMLIST
     MORESHOT, // Fire +1 extra shot in an arc.
     WAPANT, // Every few seconds, release a pool of liquid that slows any enemies that touch it.
     HOLYMANTIS, // First damage you take in a round is halved.
-    CONVERTER, // At the end of each round, 3% of the %HP you're missing becomes a damage multiplier. Stacks additively.
+    CONVERTER, // At the end of each round, 15% of the %HP you're missing becomes a damage multiplier. Stacks additively.
     EASIERTIMES, // 30% chance to avoid taking damage.
     STOPWATCH, // Enemy movespeed, shot speed and firerate reduced.
     BOUNCY, // Your bullets bounce +1 time.
