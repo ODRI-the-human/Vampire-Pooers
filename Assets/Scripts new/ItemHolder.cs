@@ -19,12 +19,6 @@ public class ItemHolder : MonoBehaviour
 
     void ApplyItems()
     {
-        if (gameObject.GetComponent<ItemHOLYMANTIS>() != null)
-        {
-            gameObject.GetComponent<ItemHOLYMANTIS>().timesHit = gameObject.GetComponent<ItemHOLYMANTIS>().maxTimesHit;
-        }
-
-
         switch (itemGained)
         {
             case (int)ITEMLIST.HP25:
