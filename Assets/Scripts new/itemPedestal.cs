@@ -8,8 +8,8 @@ public class itemPedestal : MonoBehaviour
     public Sprite[] spriteArray;
     public SpriteRenderer spriteRenderer;
     bool isFine = false;
-    float minRange = -0.5f;
-    float maxRange = 16.5f; // should be 22.5f for all current items okie
+    float minRange = 16.5f;
+    float maxRange = 17.5f; // should be 22.5f for all current items okie
     GameObject[] gos;
 
     // Start is called before the first frame update
@@ -37,8 +37,6 @@ public class itemPedestal : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
-            GameObject[] gos;
-            gos = GameObject.FindGameObjectsWithTag("item");
             foreach (GameObject go in gos)
             {
                 Destroy(go);

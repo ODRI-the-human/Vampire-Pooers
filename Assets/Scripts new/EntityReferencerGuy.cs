@@ -7,4 +7,5 @@ public class EntityReferencerGuy : MonoBehaviour
     public GameObject ATGMissile;
     public GameObject Player;
     public GameObject wapantCircle;
+    public GameObject Creep;
 }

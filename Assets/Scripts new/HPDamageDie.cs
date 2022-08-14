@@ -96,4 +96,12 @@ public class HPDamageDie : MonoBehaviour
             }
         }
     }
+
+    void OnTriggerStay2D(Collider2D col) // just creep lmao
+    {
+        if (col.gameObject.tag == "Bullet" || col.gameObject.tag == "PlayerBullet") // otherwise xp drops would probably deal damage
+        {
+            HP -= col.gameObject.GetComponent<DealDamage>().finalDamageStat;
+        }
+    }
 }
