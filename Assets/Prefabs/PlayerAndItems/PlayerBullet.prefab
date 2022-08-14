@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 4255455733749829592}
   - component: {fileID: 4255455733749829599}
   - component: {fileID: 9080384525931548618}
-  - component: {fileID: 4217119121439594663}
   - component: {fileID: -3635382963841210237}
   - component: {fileID: 1446115092270715649}
   - component: {fileID: -1365107204755030205}
@@ -142,24 +141,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemsHeld: 
   itemGained: 0
---- !u!114 &4217119121439594663
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4255455733749829593}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b53b14878a382cb4c9de4b94e562831b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Player: {fileID: 503381878361641298, guid: b6497a04b59007949bbf8c093c340484, type: 3}
-  destroyDelay: 25
-  explosion: {fileID: 2618228907162695756, guid: 860e4c358ddeb35429ce12834ff4cb34, type: 3}
-  explosionplayerhit: {fileID: 2618228907162695756, guid: 62f5118e9b542ce4baa8a477917067c3, type: 3}
-  normieOrNot: 1
-  rb: {fileID: 4255455733749829592}
 --- !u!114 &-3635382963841210237
 MonoBehaviour:
   m_ObjectHideFlags: 0

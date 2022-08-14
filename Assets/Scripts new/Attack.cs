@@ -15,14 +15,18 @@ public class Attack : MonoBehaviour
     [HideInInspector] public float fireTimerLengthMLT = 1;
     public GameObject Bullet;
     public float fireTimerLength = 25;
-    float fireTimer = 0f;
+    public float fireTimer = 0f;
     public GameObject PlayerShootAudio;
     GameObject Player;
     bool playerControlled;
     public int specialFireType;
 
+    public int timesFired;
+    public int newAttack; // alternates between 0 and 1 when the player fires. Used for certain items.
+
     void Start()
     {
+        newAttack = 0;
         if (gameObject.tag == "Hostile")
         {
             Player = GameObject.Find("newPlayer");
@@ -66,6 +70,18 @@ public class Attack : MonoBehaviour
 
     void UseWeapon()
     {
+        timesFired++;
+
+        switch (newAttack)
+        {
+            case 0:
+                newAttack = 1;
+                break;
+            case 1:
+                newAttack = 0;
+                break;
+        }
+
         for (int i = -1; i < noExtraShots; i++)
         {
             switch (specialFireType)
@@ -86,7 +102,7 @@ public class Attack : MonoBehaviour
         }
     }
 
-    void SpawnAttack(float currentAngle)
+    public void SpawnAttack(float currentAngle)
     {
         GameObject newObject = Instantiate(Bullet, transform.position, transform.rotation);
         newObject.transform.localScale = new Vector3(trueDamageValue * 0.0015f + .45f, trueDamageValue * 0.0015f + .45f, trueDamageValue * 0.0015f + .45f);

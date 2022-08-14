@@ -125,9 +125,25 @@ public class ItemHolder : MonoBehaviour
                     gameObject.GetComponent<ItemBOUNCY>().instances++;
                 }
                 break;
-            case 15:
+            case (int)ITEMLIST.FOURDIRMARTY:
+                if (gameObject.GetComponent<ItemFOURDIRMARTY>() == null)
+                {
+                    gameObject.AddComponent<ItemFOURDIRMARTY>();
+                }
+                else
+                {
+                    gameObject.GetComponent<ItemFOURDIRMARTY>().instances++;
+                }
                 break;
-            case 16:
+            case (int)ITEMLIST.PIERCING:
+                if (gameObject.GetComponent<ItemPIERCING>() == null)
+                {
+                    gameObject.AddComponent<ItemPIERCING>();
+                }
+                else
+                {
+                    gameObject.GetComponent<ItemPIERCING>().instances++;
+                }
                 break;
             case 17:
                 break;

@@ -24,7 +24,6 @@ public class HPDamageDie : MonoBehaviour
     void Awake()
     {
         originalColor = sprite.color;
-        MaxHP = 100;
         HP = MaxHP;
         if (gameObject.tag == "Hostile")
         {

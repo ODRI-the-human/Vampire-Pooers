@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 0
-  MaxHP: 0
+  MaxHP: 100
   Barry63: {fileID: 6964255014020883914, guid: 526b17258aed02c4c9c574bcca2b87c3, type: 3}
   PlayerDieAudio: {fileID: 7927511119378929990, guid: 5524052d8b9da4f43a8bffc27f9db6d9, type: 3}
   PlayerHurtAudio: {fileID: 5963825423898132415, guid: e7b6397eaf92c834aaecbf3499716cb0, type: 3}

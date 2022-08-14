@@ -141,7 +141,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3.5
-  knockBackCoeff: 1
   dodgeAudio: {fileID: 0}
   rb: {fileID: 8034279136360660184}
 --- !u!114 &6146499720883180670
@@ -160,6 +159,7 @@ MonoBehaviour:
   procCoeff: 1
   damageBase: 50
   damageMult: 1
+  knockBackCoeff: 1
 --- !u!114 &-5622376081394152181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,11 +173,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 0
-  MaxHP: 0
+  MaxHP: 100
   Barry63: {fileID: 2232971130497578917, guid: dc46db39e4e70b144915e7a0652cc396, type: 3}
   PlayerDieAudio: {fileID: 1098745368026675434, guid: 26556f7af7586304588a534b37c199bc, type: 3}
   PlayerHurtAudio: {fileID: 5472873928898165319, guid: 1edb877ad01c07344b1cad0d27b62330, type: 3}
   rb: {fileID: 8034279136360660184}
+  iFramesTimer: 50
   iFrames: 0
   sprite: {fileID: 8034279136360660185}
   XP: {fileID: 6124614279667160435, guid: b448494b9362a2a429b8d6416d89f7e6, type: 3}

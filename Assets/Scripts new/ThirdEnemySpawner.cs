@@ -12,7 +12,7 @@ public class ThirdEnemySpawner : MonoBehaviour
     int waveNumber = 0;
     public int minSpawnMultiplier = 2;
     public int maxSpawnMultiplier = 4;
-    float spawnScaleRate = 0.17f;
+    float spawnScaleRate = 0.12f;
     float SpawnPosX;
     float SpawnPosY;
     int SpawnType;
