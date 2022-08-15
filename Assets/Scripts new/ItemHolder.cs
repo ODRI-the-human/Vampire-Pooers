@@ -10,7 +10,6 @@ public class ItemHolder : MonoBehaviour
 
     void Start()
     {
-        //itemsHeld.Add((int)ITEMLIST.CREEP);
         foreach (int item in itemsHeld)
         {
             itemGained = item;
@@ -156,9 +155,18 @@ public class ItemHolder : MonoBehaviour
                     gameObject.GetComponent<ItemCREEP>().instances++;
                 }
                 break;
-            case 18:
+            case (int)ITEMLIST.DODGESPLOSION:
+                if (gameObject.GetComponent<ItemDODGESPLOSION>() == null)
+                {
+                    gameObject.AddComponent<ItemDODGESPLOSION>();
+                }
+                else
+                {
+                    gameObject.GetComponent<ItemDODGESPLOSION>().instances++;
+                }
                 break;
-            case 19:
+            case (int)ITEMLIST.BETTERDODGE:
+                gameObject.AddComponent<ItemBETTERDODGE>();
                 break;
 
         }

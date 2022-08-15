@@ -389,7 +389,7 @@ public class Player_Movement : MonoBehaviour
             if (Input.GetButton("Dodge"))
             {
                 Debug.Log("Dodge the Roll");
-                dodgeTimer = dodgeTimerLength * (0.7f+0.3f*betterDodgeInstances);
+                dodgeTimer = dodgeTimerLength * (0.7f+0.2f*betterDodgeInstances);
                 //iFrames = dodgeTimerLength;
                 isDodging = 1;
                 Instantiate(dodgeAudio);

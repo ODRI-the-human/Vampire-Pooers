@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 158271131209982274}
   - component: {fileID: 158271131209982301}
   - component: {fileID: 158271131209982300}
-  - component: {fileID: 2182820876471407833}
+  - component: {fileID: 7532106500356426380}
+  - component: {fileID: 3366299037568390934}
   m_Layer: 9
   m_Name: dodgeExplosion
   m_TagString: dodgeExplosion
@@ -65,13 +66,13 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.08
---- !u!114 &2182820876471407833
+--- !u!114 &7532106500356426380
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -80,7 +81,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 158271131209982302}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 404eaf837fcd6b94298369b855638c77, type: 3}
+  m_Script: {fileID: 11500000, guid: 30830851ecf01fa4e8e1c859ed98de6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 3
+  finalDamageStat: 0
+  procCoeff: 1
+  damageBase: 50
+  damageMult: 1
+  knockBackCoeff: 3
+--- !u!114 &3366299037568390934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 158271131209982302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a03a314de007c4a48bbc3c2583903c2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timer: 500

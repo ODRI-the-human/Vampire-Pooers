@@ -89,6 +89,7 @@ MonoBehaviour:
   Player: {fileID: 503381878361641298, guid: ba6f41e52d5717a46a24d1f2e5a4cf75, type: 3}
   wapantCircle: {fileID: 5382661700902760516, guid: 447893d0ea2030c49b4fe6333ad3e60f, type: 3}
   Creep: {fileID: 158271131209982302, guid: a877495fbdb19004d800b5d8b28128cb, type: 3}
+  dodgeSplosion: {fileID: 158271131209982302, guid: a6cddd7832ec6b944aca45590a236ca5, type: 3}
 --- !u!114 &9014303847402346882
 MonoBehaviour:
   m_ObjectHideFlags: 0

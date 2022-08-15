@@ -8,4 +8,5 @@ public class EntityReferencerGuy : MonoBehaviour
     public GameObject Player;
     public GameObject wapantCircle;
     public GameObject Creep;
+    public GameObject dodgeSplosion;
 }

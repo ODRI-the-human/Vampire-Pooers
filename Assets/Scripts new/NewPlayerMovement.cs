@@ -9,12 +9,14 @@ public class NewPlayerMovement : MonoBehaviour
     float dodgeTimer;
     float dodgeTimerLength = 15;
     int isDodging = 0;
+    int dodgeMarties;
     public float moveSpeed = 5;
     bool playerControlled;
 
     Vector2 collisionVector;
     float knockBackTimer = 0;
     float maxKnockBack = 0;
+    public int dodgeUp = 1;
 
     public GameObject dodgeAudio;
     public Rigidbody2D rb;
@@ -58,7 +60,7 @@ public class NewPlayerMovement : MonoBehaviour
                     if (Input.GetButton("Dodge"))
                     {
                         //Debug.Log("Dodge the Roll");
-                        dodgeTimer = dodgeTimerLength * (0.7f);
+                        dodgeTimer = dodgeTimerLength;
                         //iFrames = dodgeTimerLength;
                         isDodging = 1;
                         Instantiate(dodgeAudio);
@@ -93,6 +95,14 @@ public class NewPlayerMovement : MonoBehaviour
             {
                 isDodging = 0;
                 gameObject.GetComponent<Collider2D>().enabled = true;
+                if (gameObject.GetComponent<ItemDODGESPLOSION>() != null)
+                {
+                    gameObject.GetComponent<ItemDODGESPLOSION>().Splosm();
+                }
+                if (gameObject.GetComponent<HPDamageDie>().iFrames < 7 * dodgeUp)
+                {
+                    gameObject.GetComponent<HPDamageDie>().iFrames = 7 * dodgeUp;
+                }
             }
         }
     }
@@ -107,7 +117,7 @@ public class NewPlayerMovement : MonoBehaviour
         }
         else
         {
-            rb.velocity = (1 + (isDodging * 1.5f)) * new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
+            rb.velocity = (1 + ((1 + 0.3f * dodgeUp) * isDodging * 1.5f)) * new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
         }
 
         if (slowTimer < 1)
