@@ -90,6 +90,8 @@ MonoBehaviour:
   wapantCircle: {fileID: 5382661700902760516, guid: 447893d0ea2030c49b4fe6333ad3e60f, type: 3}
   Creep: {fileID: 158271131209982302, guid: a877495fbdb19004d800b5d8b28128cb, type: 3}
   dodgeSplosion: {fileID: 158271131209982302, guid: a6cddd7832ec6b944aca45590a236ca5, type: 3}
+  orbSkothos: {fileID: 158271131209982302, guid: e7fcea5ac75d2f14fae343a2069f30fc, type: 3}
+  orbSkothos2: {fileID: 158271131209982302, guid: 9840ed0acf6d7024b81a886fadfdc9f3, type: 3}
 --- !u!114 &9014303847402346882
 MonoBehaviour:
   m_ObjectHideFlags: 0

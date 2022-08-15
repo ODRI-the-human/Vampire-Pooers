@@ -102,6 +102,8 @@ public class HPDamageDie : MonoBehaviour
         if (col.gameObject.tag == "Bullet" || col.gameObject.tag == "PlayerBullet") // otherwise xp drops would probably deal damage
         {
             HP -= col.gameObject.GetComponent<DealDamage>().finalDamageStat;
+            sprite.color = Color.red;
+            colorChangeTimer = 3;
         }
     }
 }

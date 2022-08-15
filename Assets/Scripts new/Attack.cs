@@ -18,7 +18,7 @@ public class Attack : MonoBehaviour
     public float fireTimer = 0f;
     public GameObject PlayerShootAudio;
     GameObject Player;
-    bool playerControlled;
+    public bool playerControlled;
     public int specialFireType;
 
     public int timesFired;

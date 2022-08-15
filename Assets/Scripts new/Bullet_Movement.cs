@@ -41,4 +41,12 @@ public class Bullet_Movement : MonoBehaviour
             }
         }
     }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.tag == "PlayerBullet" && gameObject.tag == "enemyBullet")
+        {
+            Destroy(gameObject);
+        }
+    }
 }

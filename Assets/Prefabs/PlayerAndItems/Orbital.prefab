@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 158271131209982300}
   - component: {fileID: 158271131209982303}
   - component: {fileID: -3980453582452507957}
+  - component: {fileID: 2368842607186873885}
   m_Layer: 11
   m_Name: Orbital
-  m_TagString: OrbitalContact
+  m_TagString: PlayerBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 158271131209982302}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3, y: 3, z: 0}
-  m_LocalScale: {x: 8, y: 8, z: 8}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -136,3 +137,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a06d720698bf1be4bb1345f5abc73b1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2368842607186873885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 158271131209982302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30830851ecf01fa4e8e1c859ed98de6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  finalDamageStat: 0
+  procCoeff: 0
+  damageBase: 0
+  damageMult: 0
+  knockBackCoeff: 1

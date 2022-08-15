@@ -8,9 +8,9 @@ public class OrbitalMovement : MonoBehaviour
     float timerVariance;
     GameObject Player;
 
-    void Awake()
+    void Start()
     {
-        Player = GameObject.Find("Player");
+        Player = GameObject.Find("newPlayer");
         timerVariance = Random.Range(0.6f, 1.4f);
     }
 

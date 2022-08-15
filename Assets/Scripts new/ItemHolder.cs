@@ -168,6 +168,19 @@ public class ItemHolder : MonoBehaviour
             case (int)ITEMLIST.BETTERDODGE:
                 gameObject.AddComponent<ItemBETTERDODGE>();
                 break;
+            case (int)ITEMLIST.ORBITAL1:
+                gameObject.AddComponent<ItemORBITAL1>();
+                break;
+            case (int)ITEMLIST.ORBITAL2:
+                if (gameObject.GetComponent<ItemORBITAL2>() == null)
+                {
+                    gameObject.AddComponent<ItemORBITAL2>();
+                }
+                else
+                {
+                    gameObject.GetComponent<ItemORBITAL2>().instances++;
+                }
+                break;
 
         }
     }

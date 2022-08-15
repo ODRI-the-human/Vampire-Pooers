@@ -9,7 +9,7 @@ public class OrbitalMovement2 : MonoBehaviour
 
     void Awake()
     {
-        Player = GameObject.Find("Player");
+        Player = GameObject.Find("newPlayer");
     }
 
     void FixedUpdate()

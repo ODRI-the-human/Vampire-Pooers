@@ -13,9 +13,12 @@ GameObject:
   - component: {fileID: 158271131209982300}
   - component: {fileID: 158271131209982303}
   - component: {fileID: -5280010251924161033}
+  - component: {fileID: 7481803557711047057}
+  - component: {fileID: -6396675878852606996}
+  - component: {fileID: 7158769378574457366}
   m_Layer: 11
   m_Name: Orbital 2
-  m_TagString: OrbitalShoot
+  m_TagString: PlayerBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 158271131209982302}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3, y: 3, z: 0}
-  m_LocalScale: {x: 8, y: 8, z: 8}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -136,3 +139,59 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65e7aa51760cf6b43b78c3859acca07e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7481803557711047057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 158271131209982302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30830851ecf01fa4e8e1c859ed98de6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  finalDamageStat: 0
+  procCoeff: 0
+  damageBase: 0
+  damageMult: 0
+  knockBackCoeff: 0
+--- !u!114 &-6396675878852606996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 158271131209982302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79b14745a3e2fd4f8a0b5a259cfcb25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shotSpeed: 8
+  noExtraShots: 0
+  shotAngleCoeff: 1
+  trueDamageValue: 0
+  fireTimerLengthMLT: 1
+  Bullet: {fileID: 4255455733749829593, guid: 27160d46bf5b97a4898af82130ae1a42, type: 3}
+  fireTimerLength: 25
+  fireTimer: 0
+  PlayerShootAudio: {fileID: 2232971130497578917, guid: dc46db39e4e70b144915e7a0652cc396, type: 3}
+  playerControlled: 0
+  specialFireType: 0
+  timesFired: 0
+  newAttack: 0
+--- !u!114 &7158769378574457366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 158271131209982302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a77b42edf27e0ec40bdef5d44226c8e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemsHeld: 
+  itemGained: 0

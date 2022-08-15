@@ -9,7 +9,7 @@ public class itemPedestal : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     bool isFine = false;
     float minRange = -0.5f;
-    float maxRange = 19.5f; // should be 22.5f for all current items okie
+    float maxRange = 21.5f; // should be 22.5f for all current items okie
     GameObject[] gos;
 
     // Start is called before the first frame update

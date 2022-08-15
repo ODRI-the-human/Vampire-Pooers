@@ -9,4 +9,6 @@ public class EntityReferencerGuy : MonoBehaviour
     public GameObject wapantCircle;
     public GameObject Creep;
     public GameObject dodgeSplosion;
+    public GameObject orbSkothos;
+    public GameObject orbSkothos2;
 }
