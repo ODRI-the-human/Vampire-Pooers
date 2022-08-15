@@ -10,6 +10,7 @@ public class ItemHolder : MonoBehaviour
 
     void Start()
     {
+        //itemsHeld.Add((int)ITEMLIST.SPLIT);
         foreach (int item in itemsHeld)
         {
             itemGained = item;
@@ -181,7 +182,16 @@ public class ItemHolder : MonoBehaviour
                     gameObject.GetComponent<ItemORBITAL2>().instances++;
                 }
                 break;
-
+            case (int)ITEMLIST.SPLIT:
+                if (gameObject.GetComponent<ItemSPLIT>() == null)
+                {
+                    gameObject.AddComponent<ItemSPLIT>();
+                }
+                else
+                {
+                    gameObject.GetComponent<ItemSPLIT>().instances++;
+                }
+                break;
         }
     }
 
