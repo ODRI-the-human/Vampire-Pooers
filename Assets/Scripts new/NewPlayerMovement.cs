@@ -101,7 +101,7 @@ public class NewPlayerMovement : MonoBehaviour
                 }
                 if (gameObject.GetComponent<HPDamageDie>().iFrames < 7 * dodgeUp)
                 {
-                    gameObject.GetComponent<HPDamageDie>().iFrames = 7 * dodgeUp;
+                    gameObject.GetComponent<HPDamageDie>().iFrames = 7 * (dodgeUp - 1);
                 }
             }
         }
@@ -117,7 +117,7 @@ public class NewPlayerMovement : MonoBehaviour
         }
         else
         {
-            rb.velocity = (1 + ((1 + 0.3f * dodgeUp) * isDodging * 1.5f)) * new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
+            rb.velocity = (1 + ((0.7f + 0.3f * dodgeUp) * isDodging * 1.5f)) * new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
         }
 
         if (slowTimer < 1)
