@@ -6,7 +6,7 @@ public class ItemORBITAL2 : MonoBehaviour
 {
     GameObject orbSkothos2;
     GameObject myGuy;
-    public int instances;
+    public int instances = 1;
 
     void Start()
     {
@@ -15,8 +15,6 @@ public class ItemORBITAL2 : MonoBehaviour
             orbSkothos2 = GameObject.Find("bigFuckingMasterObject").GetComponent<EntityReferencerGuy>().orbSkothos2;
             SetStats();
         }
-
-        instances = 1;
     }
 
     void SetStats()

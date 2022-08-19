@@ -6,13 +6,12 @@ public class ItemDODGESPLOSION : MonoBehaviour
 {
 
     GameObject dodgeSplosion;
-    public int instances;
+    public int instances = 1;
 
     // Start is called before the first frame update
     void Start()
     {
         dodgeSplosion = GameObject.Find("bigFuckingMasterObject").GetComponent<EntityReferencerGuy>().dodgeSplosion;
-        instances = 1;
     }
 
     public void Splosm()

@@ -4,10 +4,5 @@ using UnityEngine;
 
 public class ItemSTOPWATCH : MonoBehaviour
 {
-    public int instances;
-
-    void Start()
-    {
-        instances = 1;
-    }
+    public int instances = 1;
 }

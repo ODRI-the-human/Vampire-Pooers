@@ -92,6 +92,8 @@ MonoBehaviour:
   dodgeSplosion: {fileID: 158271131209982302, guid: a6cddd7832ec6b944aca45590a236ca5, type: 3}
   orbSkothos: {fileID: 158271131209982302, guid: e7fcea5ac75d2f14fae343a2069f30fc, type: 3}
   orbSkothos2: {fileID: 158271131209982302, guid: 9840ed0acf6d7024b81a886fadfdc9f3, type: 3}
+  playerBullet: {fileID: 4255455733749829593, guid: 27160d46bf5b97a4898af82130ae1a42, type: 3}
+  enemyBullet: {fileID: 110440509597865848, guid: 86b090c27b6523a4c99b4b66761df257, type: 3}
 --- !u!114 &9014303847402346882
 MonoBehaviour:
   m_ObjectHideFlags: 0

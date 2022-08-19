@@ -5,12 +5,11 @@ using UnityEngine;
 public class ItemBOUNCY : MonoBehaviour
 {
 
-    public int instances;
+    public int instances = 1;
     public int bouncesLeft;
 
     void Start()
     {
-        instances = 1;
         bouncesLeft = instances;
     }
 }

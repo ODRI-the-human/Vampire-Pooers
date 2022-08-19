@@ -5,13 +5,12 @@ using UnityEngine;
 public class ItemCREEP : MonoBehaviour
 {
     int timerMarty = 0;
-    public int instances;
+    public int instances = 1;
     public GameObject Creep;
     bool isPerson = false;
 
     void Start()
     {
-        instances = 1;
         Creep = GameObject.Find("bigFuckingMasterObject").GetComponent<EntityReferencerGuy>().Creep;
         if (gameObject.tag == "Hostile" || gameObject.tag == "Player")
         {

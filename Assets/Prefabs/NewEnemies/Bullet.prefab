@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: -3033583009772547652}
   - component: {fileID: -4542741102433382798}
   - component: {fileID: 8031604352272101920}
+  - component: {fileID: -5903357068065279301}
   m_Layer: 7
   m_Name: Bullet
   m_TagString: enemyBullet
@@ -140,6 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 110440509597865849}
+  speed: 0
 --- !u!114 &872533961012419464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,6 +171,7 @@ MonoBehaviour:
   procCoeff: 0
   damageBase: 50
   damageMult: 1
+  finalDamageMult: 1
   knockBackCoeff: 1
 --- !u!114 &-4542741102433382798
 MonoBehaviour:
@@ -196,3 +199,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemsHeld: 
   itemGained: 0
+--- !u!114 &-5903357068065279301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110440509597865848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fa510d5f65fe4b429d86a4e95a6e22d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

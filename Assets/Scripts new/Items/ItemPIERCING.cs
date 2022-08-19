@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class ItemPIERCING : MonoBehaviour
 {
-    public int instances;
+    public int instances = 1;
     public int piercesLeft;
 
     void Start()
     {
-        instances = 1;
         piercesLeft = instances;
     }
 }

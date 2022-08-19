@@ -6,12 +6,11 @@ public class ItemHOLYMANTIS : MonoBehaviour
 {
     public float maxTimesHit = 1;
     public float timesHit;
-    public int instances;
+    public int instances = 1;
     float iFrames = 0;
 
     void Start()
     {
-        instances = 1;
         maxTimesHit = instances;
         timesHit = maxTimesHit;
     }

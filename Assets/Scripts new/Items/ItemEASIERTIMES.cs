@@ -4,10 +4,5 @@ using UnityEngine;
 
 public class ItemEASIERTIMES : MonoBehaviour
 {
-    public float instances;
-
-    void Start()
-    {
-        instances = 1;
-    }
+    public float instances = 1;
 }

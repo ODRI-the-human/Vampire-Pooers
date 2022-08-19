@@ -5,12 +5,7 @@ using UnityEngine;
 public class ItemCONVERTER : MonoBehaviour
 {
 
-    public int instances;
-
-    void Start()
-    {
-        instances = 1;
-    }
+    public int instances = 1;
 
     void OnTriggerEnter2D(Collider2D col)
     {
