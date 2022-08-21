@@ -7,15 +7,14 @@ public class itemPedestal : MonoBehaviour
     public int itemChosen;
     public Sprite[] spriteArray;
     public SpriteRenderer spriteRenderer;
-    bool isFine = false;
-    float minRange = -0.5f;
-    float maxRange = 22.5f; // should be 22.5f for all current items okie
+    int minRange = 0;
+    int maxRange = 23; // should be 22.5f for all current items okie
     GameObject[] gos;
 
     // Start is called before the first frame update
     void Start()
     {
-        itemChosen = Mathf.RoundToInt(Random.Range(minRange, maxRange));
+        itemChosen = Random.Range(minRange, maxRange);
         spriteRenderer.sprite = spriteArray[itemChosen];
         gos = GameObject.FindGameObjectsWithTag("item");
     }

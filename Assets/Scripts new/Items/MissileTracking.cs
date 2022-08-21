@@ -14,7 +14,14 @@ public class MissileTracking : MonoBehaviour
     void FixedUpdate()
     {
         GameObject[] gos;
-        gos = GameObject.FindGameObjectsWithTag("Hostile");
+        if (gameObject.tag == "PlayerBullet")
+        {
+            gos = GameObject.FindGameObjectsWithTag("Hostile");
+        }
+        else
+        {
+            gos = GameObject.FindGameObjectsWithTag("Player");
+        }
         GameObject closest = null;
         float distance = Mathf.Infinity;
         Vector3 position = transform.position;
@@ -39,7 +46,8 @@ public class MissileTracking : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        GameObject newObject = Instantiate(explosion, transform.position, Quaternion.Euler(0,0,0)) as GameObject;
+        
+        GameObject newObject = Instantiate(explosion, transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
         newObject.transform.localScale = new Vector3(2, 2, 2);
         Destroy(gameObject);
     }

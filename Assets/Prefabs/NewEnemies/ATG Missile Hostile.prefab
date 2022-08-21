@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 3955620130362307411}
   - component: {fileID: -6406402213126234559}
   - component: {fileID: 6102364106404283474}
-  m_Layer: 9
-  m_Name: ATG Missile
+  m_Layer: 7
+  m_Name: ATG Missile Hostile
   m_TagString: ATGMissile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -138,8 +138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 7464771201675599824}
-  explosion: {fileID: 2618228907162695756, guid: 860e4c358ddeb35429ce12834ff4cb34, type: 3}
-  explosionHostile: {fileID: 2618228907162695756, guid: 81f800913d8455544aa6c303d3b84074, type: 3}
+  explosion: {fileID: 2618228907162695756, guid: 81f800913d8455544aa6c303d3b84074, type: 3}
 --- !u!114 &6102364106404283474
 MonoBehaviour:
   m_ObjectHideFlags: 0

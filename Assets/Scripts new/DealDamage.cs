@@ -10,10 +10,15 @@ public class DealDamage : MonoBehaviour
     public float damageMult;
     public float finalDamageMult = 1;
     public float knockBackCoeff = 1;
+    public GameObject owner;
 
     // Start is called before the first frame update
     void Start()
     {
+        if (gameObject.tag == "Hostile" || gameObject.tag == "Player")
+        {
+            owner = gameObject;
+        }
         finalDamageStat = damageBase * damageMult * finalDamageMult;
     }
 

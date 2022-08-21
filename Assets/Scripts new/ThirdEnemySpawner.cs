@@ -93,28 +93,33 @@ public class ThirdEnemySpawner : MonoBehaviour
 
     void SpawnEnemies()
     {
-        numberEnemiesSpawned = Mathf.RoundToInt(Random.Range(minSpawnMultiplier * ((spawnNumber + waveNumber * 2) * spawnScaleRate), maxSpawnMultiplier * ((spawnNumber + waveNumber * 2) * spawnScaleRate)));
-        SpawnType = Mathf.RoundToInt(Random.Range(-0.5f, 4.5f));
+        numberEnemiesSpawned = Mathf.RoundToInt(Random.Range(minSpawnMultiplier * ((spawnNumber + waveNumber * 2) * spawnScaleRate), maxSpawnMultiplier * ((spawnNumber + waveNumber * 2) * spawnScaleRate))) + 1;
+        SpawnType = Random.Range(0, 5);
         switch (SpawnType)
         {
             case 0:
                 toSpawn = chaseEnemy;
+                Debug.Log("Chasey");
                 SpawnRandomly();
                 break;
             case 1:
                 toSpawn = shootEnemy;
+                Debug.Log("normie shoot");
                 SpawnInGroup();
                 break;
             case 2:
                 toSpawn = fourDirEnemy;
+                Debug.Log("4dir shoot");
                 SpawnInGroup();
                 break;
             case 3:
                 toSpawn = eightDirEnemy;
+                Debug.Log("8dir shoot");
                 SpawnInGroup();
                 break;
             case 4:
                 toSpawn = spinEnemy;
+                Debug.Log("spiney");
 
                 SpawnPosX = 0;
                 SpawnPosY = 0;

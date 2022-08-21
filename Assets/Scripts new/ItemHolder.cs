@@ -10,6 +10,7 @@ public class ItemHolder : MonoBehaviour
 
     void Start()
     {
+        itemsHeld.Add((int)ITEMLIST.ATG);
         foreach (int item in itemsHeld)
         {
             itemGained = item;

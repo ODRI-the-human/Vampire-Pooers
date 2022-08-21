@@ -111,6 +111,7 @@ public class Attack : MonoBehaviour
         bulletRB.velocity = newShotVector * shotSpeed;
         newObject.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
         newObject.GetComponent<weaponType>().weaponHeld = newObject.GetComponent<weaponType>().weaponHeld;
+        newObject.GetComponent<DealDamage>().owner = gameObject;
     }
 
     void FixedUpdate()

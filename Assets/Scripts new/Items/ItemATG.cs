@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class ItemATG : MonoBehaviour
 {
-    public GameObject Player;
     public GameObject ATGMissile;
     public GameObject MasterObject;
+    GameObject owner;
+    bool hostile;
     float procMoment;
     public int instances = 1;
     float pringle;
@@ -14,8 +15,19 @@ public class ItemATG : MonoBehaviour
     void Start()
     {
         MasterObject = GameObject.Find("bigFuckingMasterObject");
-        ATGMissile = MasterObject.GetComponent<EntityReferencerGuy>().ATGMissile;
-        Player = GameObject.Find("newPlayer");
+
+        if (gameObject.tag == "PlayerBullet" || gameObject.tag == "Player")
+        {
+            hostile = false;
+            ATGMissile = MasterObject.GetComponent<EntityReferencerGuy>().ATGMissile;
+        }
+        else
+        {
+            hostile = true;
+            ATGMissile = MasterObject.GetComponent<EntityReferencerGuy>().ATGMissileHostile;
+        }
+
+        owner = gameObject.GetComponent<DealDamage>().owner;
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -28,7 +40,20 @@ public class ItemATG : MonoBehaviour
             Debug.Log("Ass: " + procMoment.ToString());
             if (pringle > procMoment)
             {
-                Instantiate(ATGMissile, Player.transform.position, Player.transform.rotation);
+
+                if (gameObject.tag == "PlayerBullet" || gameObject.tag == "enemyBullet")
+                {
+                    GameObject ARSEMAN = Instantiate(ATGMissile, owner.transform.position, owner.transform.rotation);
+
+                    if (hostile)
+                    {
+                        ARSEMAN.tag = "enemyBullet";
+                    }
+                    else
+                    {
+                        ARSEMAN.tag = "PlayerBullet";
+                    }
+                }
             }
         }
     }

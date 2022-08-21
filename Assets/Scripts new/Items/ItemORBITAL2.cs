@@ -24,7 +24,7 @@ public class ItemORBITAL2 : MonoBehaviour
         myGuy.GetComponent<DealDamage>().damageBase = gameObject.GetComponent<DealDamage>().damageBase;
         myGuy.GetComponent<DealDamage>().damageMult = gameObject.GetComponent<DealDamage>().damageMult;
         myGuy.GetComponent<Attack>().fireTimerLength = gameObject.GetComponent<Attack>().fireTimerLength;
-        myGuy.GetComponent<DealDamage>().damageMult *= 0.25f * instances;
+        myGuy.GetComponent<DealDamage>().finalDamageMult *= 0.25f * instances;
     }
 
     void OnTriggerEnter2D(Collider2D col)
