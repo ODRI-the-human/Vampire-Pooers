@@ -18,7 +18,7 @@ public class Attack : MonoBehaviour
     public float fireTimer = 0f;
     public GameObject PlayerShootAudio;
     GameObject Player;
-    public bool playerControlled;
+    public bool playerControlled = false;
     public int specialFireType;
 
     public int timesFired;
@@ -27,19 +27,14 @@ public class Attack : MonoBehaviour
     void Start()
     {
         newAttack = 0;
-        if (gameObject.tag == "Hostile")
+        if (gameObject.tag == "Hostile" || gameObject.tag == "enemyBullet")
         {
             Player = GameObject.Find("newPlayer");
-            playerControlled = false;
             if (Player.GetComponent<ItemSTOPWATCH>() != null)
             {
                 fireTimerLength *= 1 + (0.25f) * Player.GetComponent<ItemSTOPWATCH>().instances;
                 fireTimerLength /= 1 + (0.25f) * Player.GetComponent<ItemSTOPWATCH>().instances;
             }
-        }
-        else
-        {
-            playerControlled = true;
         }
     }
 

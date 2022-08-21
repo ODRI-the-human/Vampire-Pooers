@@ -16,6 +16,15 @@ public class ItemORBITAL1 : MonoBehaviour
             newObject.GetComponent<DealDamage>().damageBase = 2.5f;
             newObject.GetComponent<DealDamage>().damageMult = 1f;
             newObject.GetComponent<DealDamage>().knockBackCoeff = 0;
+            newObject.GetComponent<DealDamage>().owner = gameObject;
+            if (gameObject.tag == "Player")
+            {
+                newObject.tag = "PlayerBullet";
+            }
+            else
+            {
+                newObject.tag = "enemyBullet";
+            }
         }
     }
 }

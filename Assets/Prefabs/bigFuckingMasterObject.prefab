@@ -89,7 +89,9 @@ MonoBehaviour:
   ATGMissileHostile: {fileID: 1481696186931666123, guid: 3f76b10641768bc4690655501d966e0f, type: 3}
   Player: {fileID: 503381878361641298, guid: ba6f41e52d5717a46a24d1f2e5a4cf75, type: 3}
   wapantCircle: {fileID: 5382661700902760516, guid: 447893d0ea2030c49b4fe6333ad3e60f, type: 3}
+  wapantCircleHostile: {fileID: 5382661700902760516, guid: e55f90260db08904580dece528139d8b, type: 3}
   Creep: {fileID: 158271131209982302, guid: a877495fbdb19004d800b5d8b28128cb, type: 3}
+  CreepHostile: {fileID: 158271131209982302, guid: f154a92e7abb5ae468d80183490223c4, type: 3}
   dodgeSplosion: {fileID: 158271131209982302, guid: a6cddd7832ec6b944aca45590a236ca5, type: 3}
   orbSkothos: {fileID: 158271131209982302, guid: e7fcea5ac75d2f14fae343a2069f30fc, type: 3}
   orbSkothos2: {fileID: 158271131209982302, guid: 9840ed0acf6d7024b81a886fadfdc9f3, type: 3}

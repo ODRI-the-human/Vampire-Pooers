@@ -20,11 +20,27 @@ public class ItemORBITAL2 : MonoBehaviour
     void SetStats()
     {
         myGuy = Instantiate(orbSkothos2);
+        myGuy.GetComponent<DealDamage>().owner = gameObject;
         myGuy.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
         myGuy.GetComponent<DealDamage>().damageBase = gameObject.GetComponent<DealDamage>().damageBase;
         myGuy.GetComponent<DealDamage>().damageMult = gameObject.GetComponent<DealDamage>().damageMult;
         myGuy.GetComponent<Attack>().fireTimerLength = gameObject.GetComponent<Attack>().fireTimerLength;
+        myGuy.GetComponent<Attack>().Bullet = gameObject.GetComponent<Attack>().Bullet;
+        myGuy.GetComponent<Attack>().specialFireType = gameObject.GetComponent<Attack>().specialFireType;
+        myGuy.GetComponent<Attack>().noExtraShots = gameObject.GetComponent<Attack>().noExtraShots;
+        myGuy.GetComponent<Attack>().shotAngleCoeff = gameObject.GetComponent<Attack>().shotAngleCoeff;
+        myGuy.GetComponent<Attack>().shotSpeed = gameObject.GetComponent<Attack>().shotSpeed;
         myGuy.GetComponent<DealDamage>().finalDamageMult *= 0.25f * instances;
+        if (gameObject.tag == "Player")
+        {
+            myGuy.tag = "PlayerBullet";
+            myGuy.GetComponent<Attack>().playerControlled = true;
+        }
+        else
+        {
+            myGuy.tag = "enemyBullet";
+            myGuy.GetComponent<Attack>().playerControlled = false;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D col)

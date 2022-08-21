@@ -49,5 +49,10 @@ public class Bullet_Movement : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        if (col.gameObject.tag == "enemyBullet" && gameObject.tag == "PlayerBullet")
+        {
+            Destroy(gameObject);
+        }
     }
 }

@@ -12,9 +12,19 @@ public class ItemCREEP : MonoBehaviour
     void Start()
     {
         Creep = GameObject.Find("bigFuckingMasterObject").GetComponent<EntityReferencerGuy>().Creep;
-        if (gameObject.tag == "Hostile" || gameObject.tag == "Player")
+
+        if (gameObject.tag == "Hostile")
         {
             isPerson = true;
+            Creep = GameObject.Find("bigFuckingMasterObject").GetComponent<EntityReferencerGuy>().CreepHostile;
+        }
+        else
+        {
+            if (gameObject.tag == "Player")
+            {
+                //isPerson = true;
+                Creep = GameObject.Find("bigFuckingMasterObject").GetComponent<EntityReferencerGuy>().Creep;
+            }
         }
     }
 

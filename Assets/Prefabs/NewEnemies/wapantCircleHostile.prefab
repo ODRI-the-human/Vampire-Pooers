@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 5382661700902760518}
   - component: {fileID: 5382661700902760519}
   - component: {fileID: 5382661700902760520}
-  m_Layer: 9
-  m_Name: wapantCircle
+  m_Layer: 7
+  m_Name: wapantCircleHostile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

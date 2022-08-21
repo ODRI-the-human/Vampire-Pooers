@@ -16,9 +16,19 @@ public class ItemWAPANT : MonoBehaviour
         MasterObject = GameObject.Find("bigFuckingMasterObject");
         wapantCircle = MasterObject.GetComponent<EntityReferencerGuy>().wapantCircle;
 
-        if (gameObject.tag == "Player" || gameObject.tag == "Hostile")
+        if (gameObject.tag == "Player")
         {
+            wapantCircle = MasterObject.GetComponent<EntityReferencerGuy>().wapantCircle;
             isActive = true;
+        }
+
+        else
+        {
+            if (gameObject.tag == "Hostile")
+            {
+                wapantCircle = MasterObject.GetComponent<EntityReferencerGuy>().wapantCircleHostile;
+                isActive = true;
+            }
         }
     }
 

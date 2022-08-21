@@ -8,7 +8,9 @@ public class EntityReferencerGuy : MonoBehaviour
     public GameObject ATGMissileHostile;
     public GameObject Player;
     public GameObject wapantCircle;
+    public GameObject wapantCircleHostile;
     public GameObject Creep;
+    public GameObject CreepHostile;
     public GameObject dodgeSplosion;
     public GameObject orbSkothos;
     public GameObject orbSkothos2;

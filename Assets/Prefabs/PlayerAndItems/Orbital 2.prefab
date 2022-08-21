@@ -33,7 +33,7 @@ Transform:
   m_GameObject: {fileID: 158271131209982302}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3, y: 3, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -158,6 +158,7 @@ MonoBehaviour:
   damageMult: 0
   finalDamageMult: 1
   knockBackCoeff: 0
+  owner: {fileID: 0}
 --- !u!114 &-6396675878852606996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,7 +180,7 @@ MonoBehaviour:
   fireTimerLength: 25
   fireTimer: 0
   PlayerShootAudio: {fileID: 2232971130497578917, guid: dc46db39e4e70b144915e7a0652cc396, type: 3}
-  playerControlled: 0
+  playerControlled: 1
   specialFireType: 0
   timesFired: 0
   newAttack: 0

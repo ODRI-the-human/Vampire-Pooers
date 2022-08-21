@@ -14,6 +14,7 @@ public class HPDamageDie : MonoBehaviour
     public float iFramesTimer = 50;
     [HideInInspector] public float iFrames = 0;
     public SpriteRenderer sprite;
+    public Material material;
     bool playerControlled;
     int colorChangeTimer = 0;
     Color originalColor;
@@ -97,13 +98,24 @@ public class HPDamageDie : MonoBehaviour
         }
     }
 
-    void OnTriggerStay2D(Collider2D col) // just creep lmao
+    void OnTriggerStay2D(Collider2D col) // just creep/orbitals lmao
     {
-        if (col.gameObject.tag == "Bullet" || col.gameObject.tag == "PlayerBullet") // otherwise xp drops would probably deal damage
+        if ((col.gameObject.tag == "enemyBullet" && gameObject.tag == "Player") || (col.gameObject.tag == "PlayerBullet" && gameObject.tag == "Hostile")) // otherwise xp drops would probably deal damage
         {
-            HP -= col.gameObject.GetComponent<DealDamage>().finalDamageStat;
-            sprite.color = Color.red;
-            colorChangeTimer = 3;
+            if (iFrames < 0)
+            {
+                HP -= col.gameObject.GetComponent<DealDamage>().finalDamageStat * 4;
+                Instantiate(PlayerHurtAudio);
+                if (playerControlled == true)
+                {
+                    iFrames = 4;
+                }
+                if (playerControlled == false)
+                {
+                    sprite.color = Color.red;
+                    colorChangeTimer = 1;
+                }
+            }
         }
     }
 }

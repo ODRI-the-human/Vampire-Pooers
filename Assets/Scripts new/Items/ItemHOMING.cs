@@ -13,11 +13,12 @@ public class ItemHOMING : MonoBehaviour
     GameObject closest;
     bool isBullet = false;
     public int instances = 1;
+    GameObject[] gos;
 
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
-        if (gameObject.tag == "PlayerBullet" || gameObject.tag == "Bullet")
+        if (gameObject.tag == "PlayerBullet" || gameObject.tag == "enemyBullet")
         {
             isBullet = true;
         }
@@ -29,8 +30,14 @@ public class ItemHOMING : MonoBehaviour
         if (homingCheckTimer <= 0 && isBullet)
         {
             homingCheckTimer = 6;
-            GameObject[] gos;
-            gos = GameObject.FindGameObjectsWithTag("Hostile");
+            if (gameObject.tag == "PlayerBullet")
+            {
+                gos = GameObject.FindGameObjectsWithTag("Hostile");
+            }
+            if (gameObject.tag == "enemyBullet")
+            {
+                gos = GameObject.FindGameObjectsWithTag("Player");
+            }
             closest = null;
             float distance = Mathf.Infinity;
             Vector3 position = transform.position;

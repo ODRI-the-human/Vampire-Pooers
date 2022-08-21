@@ -10,12 +10,17 @@ public class OrbitalMovement : MonoBehaviour
 
     void Start()
     {
-        Player = GameObject.Find("newPlayer");
+        Player = gameObject.GetComponent<DealDamage>().owner;
         timerVariance = Random.Range(0.6f, 1.4f);
     }
 
     void FixedUpdate()
     {
+        if (Player == null)
+        {
+            Destroy(gameObject);
+        }
+
         transform.position = new Vector3(Player.transform.position.x + 2.3f * Mathf.Sin(0.035f * timer * timerVariance), Player.transform.position.y + 2.3f * Mathf.Cos(0.035f * timer * timerVariance), Player.transform.position.z);
         timer++;
     }

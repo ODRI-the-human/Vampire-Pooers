@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 0
-  MaxHP: 10000
+  MaxHP: 100
   Barry63: {fileID: 6964255014020883914, guid: 526b17258aed02c4c9c574bcca2b87c3, type: 3}
   PlayerDieAudio: {fileID: 7927511119378929990, guid: 5524052d8b9da4f43a8bffc27f9db6d9, type: 3}
   PlayerHurtAudio: {fileID: 5963825423898132415, guid: e7b6397eaf92c834aaecbf3499716cb0, type: 3}
@@ -137,6 +137,7 @@ MonoBehaviour:
   iFramesTimer: 50
   iFrames: 0
   sprite: {fileID: 5905868436867884629}
+  material: {fileID: 0}
   XP: {fileID: 0}
 --- !u!114 &1698531144881374718
 MonoBehaviour:
@@ -156,6 +157,7 @@ MonoBehaviour:
   damageMult: 1
   finalDamageMult: 1
   knockBackCoeff: 3
+  owner: {fileID: 0}
 --- !u!114 &3646255009062352282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,7 +179,7 @@ MonoBehaviour:
   fireTimerLength: 25
   fireTimer: 0
   PlayerShootAudio: {fileID: 2894936639441958211, guid: f4849f6de8b809d48a7220ff85910c8b, type: 3}
-  playerControlled: 0
+  playerControlled: 1
   specialFireType: 0
   timesFired: 0
   newAttack: 0
