@@ -7,6 +7,11 @@ public class dieOnContactWithBullet : MonoBehaviour
     public GameObject master;
     public int instances;
 
+    void Start()
+    {
+        transform.localScale = master.transform.localScale;
+    }
+
     void FixedUpdate()
     {
         if (master == null)
