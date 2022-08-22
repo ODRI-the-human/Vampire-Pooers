@@ -8,7 +8,7 @@ public class itemPedestal : MonoBehaviour
     public Sprite[] spriteArray;
     public SpriteRenderer spriteRenderer;
     int minRange = 0;
-    int maxRange = 23; // should be 22.5f for all current items okie
+    int maxRange = 24;
     GameObject[] gos;
 
     // Start is called before the first frame update

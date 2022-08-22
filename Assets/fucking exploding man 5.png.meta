@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: da3df8996f18b9a47b587c3a407cce2c
+guid: baebeab4f8d6728419b67010f32aa531
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 2
     mipBias: 0
     wrapU: 1
@@ -140,7 +140,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: fucking exploding man 4_0
+      name: fucking exploding man 5_0
       rect:
         serializedVersion: 2
         x: 0
@@ -154,14 +154,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 56e7ec6fcd731ba468760896b6e74609
-      internalID: 1362156088
+      spriteID: 3fc4128fffe7a68449e26aa27d00ef68
+      internalID: 1881728827
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fucking exploding man 4_1
+      name: fucking exploding man 5_1
       rect:
         serializedVersion: 2
         x: 32
@@ -175,14 +175,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3024df7c395030440bdd3507e92087d6
-      internalID: -1146213478
+      spriteID: 10a1ee4be08e58346b3384044e8d2999
+      internalID: -389358279
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fucking exploding man 4_2
+      name: fucking exploding man 5_2
       rect:
         serializedVersion: 2
         x: 64
@@ -196,14 +196,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 66fc1b1cd9d851841933a7fb53869ba1
-      internalID: -151557253
+      spriteID: 22e5d984a9de6c24ab117bc085dc1e25
+      internalID: 1065868298
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fucking exploding man 4_3
+      name: fucking exploding man 5_3
       rect:
         serializedVersion: 2
         x: 96
@@ -217,14 +217,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b70177acc556ccb4e929b7992c8c76f9
-      internalID: -1855918457
+      spriteID: 131bfdfedceaca5418df7d57acbb1cba
+      internalID: 952241527
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fucking exploding man 4_4
+      name: fucking exploding man 5_4
       rect:
         serializedVersion: 2
         x: 128
@@ -238,14 +238,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c6b1a1f7ca644d54e8c6e53f7905870e
-      internalID: -1471441903
+      spriteID: 323381d7dab7fe4498891d167c8740e4
+      internalID: 250211624
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fucking exploding man 4_5
+      name: fucking exploding man 5_5
       rect:
         serializedVersion: 2
         x: 160
@@ -259,14 +259,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b546f1593f8ef2e4cba4c701c6beae99
-      internalID: 2095431724
+      spriteID: ade3bc298da52544a9b84f305d175370
+      internalID: 628037421
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fucking exploding man 4_6
+      name: fucking exploding man 5_6
       rect:
         serializedVersion: 2
         x: 192
@@ -280,14 +280,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8ff12850992d9a440a6b925eb75a2c87
-      internalID: 1351088306
+      spriteID: 01e7c02c025603b448e893adc38fc8e5
+      internalID: 661530648
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fucking exploding man 4_7
+      name: fucking exploding man 5_7
       rect:
         serializedVersion: 2
         x: 224
@@ -301,14 +301,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6fafccaad471c3f47b2103bd90bdb8a2
-      internalID: 1467544105
+      spriteID: 41dcccc957fd25f4198b09b2720332c9
+      internalID: -947293029
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fucking exploding man 4_8
+      name: fucking exploding man 5_8
       rect:
         serializedVersion: 2
         x: 256
@@ -322,14 +322,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c8a012896e5f7e7478fb1d3f19ef630f
-      internalID: -1314652512
+      spriteID: 0ca5c2e14a9800b439e7df99e810baac
+      internalID: 548925909
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fucking exploding man 4_9
+      name: fucking exploding man 5_9
       rect:
         serializedVersion: 2
         x: 288
@@ -343,14 +343,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 73c4d32f47e27e34fb9084488bd40ad8
-      internalID: 1997645348
+      spriteID: ccc063bf9610f6e48b08b207f1406eb9
+      internalID: 94813034
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fucking exploding man 4_10
+      name: fucking exploding man 5_10
       rect:
         serializedVersion: 2
         x: 320
@@ -364,14 +364,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d92d8e85254364b47bc5ab9620597dac
-      internalID: 348299578
+      spriteID: 22e45374f30ccbf4a92e6dabbaf71dfb
+      internalID: -251526604
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fucking exploding man 4_11
+      name: fucking exploding man 5_11
       rect:
         serializedVersion: 2
         x: 352
@@ -385,14 +385,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 304029a1f0200db4aa034848d4eb2cf4
-      internalID: -505676553
+      spriteID: e2cb7bc848ba1ea4c9cbf58584e12edd
+      internalID: 1038638838
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fucking exploding man 4_12
+      name: fucking exploding man 5_12
       rect:
         serializedVersion: 2
         x: 384
@@ -406,14 +406,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a28b035645e7f2e498aa2903b47b0310
-      internalID: -1658363712
+      spriteID: 50c775f0b485fd540b23f82e3bbd9384
+      internalID: 179938489
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fucking exploding man 4_13
+      name: fucking exploding man 5_13
       rect:
         serializedVersion: 2
         x: 416
@@ -427,14 +427,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 294252553741f3c4e9eb8f3bc790b2cc
-      internalID: -450962845
+      spriteID: 795ca97169703e84db6abec970b2385b
+      internalID: 753988179
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fucking exploding man 4_14
+      name: fucking exploding man 5_14
       rect:
         serializedVersion: 2
         x: 448
@@ -448,14 +448,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0c09f9a9a7e7852459010cd71b86f8a4
-      internalID: 806403466
+      spriteID: 3a84f1d2d63c0ce488241452639deadc
+      internalID: -1669720044
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fucking exploding man 4_15
+      name: fucking exploding man 5_15
       rect:
         serializedVersion: 2
         x: 480
@@ -469,14 +469,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 664592db486885244a3657833d7903a9
-      internalID: 86816413
+      spriteID: 5aee773b116e1514187aa17893512318
+      internalID: -627500220
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fucking exploding man 4_16
+      name: fucking exploding man 5_16
       rect:
         serializedVersion: 2
         x: 0
@@ -490,14 +490,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0fce52a194c5a064c927f0765b783719
-      internalID: -257941808
+      spriteID: 3427011345f082940889c43033936fb8
+      internalID: 1729680280
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fucking exploding man 4_17
+      name: fucking exploding man 5_17
       rect:
         serializedVersion: 2
         x: 32
@@ -511,14 +511,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 52c29997e7da9e740a357b6ca4e6f867
-      internalID: 1878571741
+      spriteID: 28f9b007919056d489ec2580ddc788aa
+      internalID: -250794258
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fucking exploding man 4_18
+      name: fucking exploding man 5_18
       rect:
         serializedVersion: 2
         x: 64
@@ -532,14 +532,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 87d5fdba2d85c9e40bfca24b87d6b417
-      internalID: 262414130
+      spriteID: a2b351e6bd2348940bde8d34262d62fb
+      internalID: 1011533427
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fucking exploding man 4_19
+      name: fucking exploding man 5_19
       rect:
         serializedVersion: 2
         x: 96
@@ -553,14 +553,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0047fb5f201ebf24380dab1d46f68a66
-      internalID: -13001183
+      spriteID: 3d27d269f940dbc46882cc1ba22a14c8
+      internalID: 1869450396
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fucking exploding man 4_20
+      name: fucking exploding man 5_20
       rect:
         serializedVersion: 2
         x: 128
@@ -574,14 +574,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 118513aa8e6e6c94baa17168f32f2b03
-      internalID: -885906323
+      spriteID: 1b04ae73c37e90949b200ba7d5ad7507
+      internalID: -1204321095
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fucking exploding man 4_21
+      name: fucking exploding man 5_21
       rect:
         serializedVersion: 2
         x: 160
@@ -595,14 +595,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 130dc87a09d0b0949873116c56c1389c
-      internalID: 388934373
+      spriteID: 2b4f1519692088847b60285755b2629e
+      internalID: 1601422666
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fucking exploding man 4_22
+      name: fucking exploding man 5_22
       rect:
         serializedVersion: 2
         x: 192
@@ -616,8 +616,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 184e8151a8299a346ade5c68643b734b
-      internalID: -649815777
+      spriteID: ac31a88c2b37e544eacf6385440bfe55
+      internalID: -957628350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: fucking exploding man 5_23
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 445de6dc8b64c454f90cad0ab032e4f1
+      internalID: 1953723756
       vertices: []
       indices: 
       edges: []
@@ -625,7 +646,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 295ef8bd9023ddb42a457ba2f39f6fa2
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -633,29 +654,30 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      fucking exploding man 4_2: -151557253
-      fucking exploding man 4_4: -1471441903
-      fucking exploding man 4_8: -1314652512
-      fucking exploding man 4_3: -1855918457
-      fucking exploding man 4_6: 1351088306
-      fucking exploding man 4_13: -450962845
-      fucking exploding man 4_0: 1362156088
-      fucking exploding man 4_10: 348299578
-      fucking exploding man 4_7: 1467544105
-      fucking exploding man 4_1: -1146213478
-      fucking exploding man 4_21: 388934373
-      fucking exploding man 4_14: 806403466
-      fucking exploding man 4_11: -505676553
-      fucking exploding man 4_9: 1997645348
-      fucking exploding man 4_18: 262414130
-      fucking exploding man 4_19: -13001183
-      fucking exploding man 4_22: -649815777
-      fucking exploding man 4_16: -257941808
-      fucking exploding man 4_5: 2095431724
-      fucking exploding man 4_15: 86816413
-      fucking exploding man 4_12: -1658363712
-      fucking exploding man 4_20: -885906323
-      fucking exploding man 4_17: 1878571741
+      fucking exploding man 5_8: 548925909
+      fucking exploding man 5_16: 1729680280
+      fucking exploding man 5_22: -957628350
+      fucking exploding man 5_6: 661530648
+      fucking exploding man 5_11: 1038638838
+      fucking exploding man 5_14: -1669720044
+      fucking exploding man 5_1: -389358279
+      fucking exploding man 5_10: -251526604
+      fucking exploding man 5_19: 1869450396
+      fucking exploding man 5_12: 179938489
+      fucking exploding man 5_4: 250211624
+      fucking exploding man 5_7: -947293029
+      fucking exploding man 5_18: 1011533427
+      fucking exploding man 5_2: 1065868298
+      fucking exploding man 5_5: 628037421
+      fucking exploding man 5_23: 1953723756
+      fucking exploding man 5_13: 753988179
+      fucking exploding man 5_17: -250794258
+      fucking exploding man 5_20: -1204321095
+      fucking exploding man 5_9: 94813034
+      fucking exploding man 5_21: 1601422666
+      fucking exploding man 5_15: -627500220
+      fucking exploding man 5_0: 1881728827
+      fucking exploding man 5_3: 952241527
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

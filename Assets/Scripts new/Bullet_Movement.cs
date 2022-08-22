@@ -48,11 +48,27 @@ public class Bullet_Movement : MonoBehaviour
         if (col.gameObject.tag == "PlayerBullet" && gameObject.tag == "enemyBullet")
         {
             Destroy(gameObject);
+            if (col.gameObject.GetComponent<dieOnContactWithBullet>() != null)
+            {
+                col.gameObject.GetComponent<dieOnContactWithBullet>().instances -= 1;
+                if (col.gameObject.GetComponent<dieOnContactWithBullet>().instances == 0)
+                {
+                    col.gameObject.GetComponent<dieOnContactWithBullet>().CommitDie();
+                }
+            }
         }
 
         if (col.gameObject.tag == "enemyBullet" && gameObject.tag == "PlayerBullet")
         {
             Destroy(gameObject);
+            if (col.gameObject.GetComponent<dieOnContactWithBullet>() != null)
+            {
+                col.gameObject.GetComponent<dieOnContactWithBullet>().instances -= 1;
+                if (col.gameObject.GetComponent<dieOnContactWithBullet>().instances == 0)
+                {
+                    col.gameObject.GetComponent<dieOnContactWithBullet>().CommitDie();
+                }
+            }
         }
     }
 }

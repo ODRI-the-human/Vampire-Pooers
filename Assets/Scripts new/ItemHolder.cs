@@ -191,6 +191,16 @@ public class ItemHolder : MonoBehaviour
                     gameObject.GetComponent<ItemSPLIT>().instances++;
                 }
                 break;
+            case (int)ITEMLIST.CONTACT:
+                if (gameObject.GetComponent<ItemCONTACT>() == null)
+                {
+                    gameObject.AddComponent<ItemCONTACT>();
+                }
+                else
+                {
+                    gameObject.GetComponent<ItemCONTACT>().instances++;
+                }
+                break;
         }
     }
 

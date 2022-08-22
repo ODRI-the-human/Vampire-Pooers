@@ -16,4 +16,5 @@ public class EntityReferencerGuy : MonoBehaviour
     public GameObject orbSkothos2;
     public GameObject playerBullet;
     public GameObject enemyBullet;
+    public GameObject contactMan;
 }
