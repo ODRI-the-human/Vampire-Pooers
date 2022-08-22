@@ -38,7 +38,7 @@ public class Attack : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
+    // Update is called once per frame, as you know
     void Update()
     {
         trueDamageValue = gameObject.GetComponent<DealDamage>().finalDamageStat;
