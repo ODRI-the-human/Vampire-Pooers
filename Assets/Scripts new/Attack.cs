@@ -20,9 +20,14 @@ public class Attack : MonoBehaviour
     GameObject Player;
     public bool playerControlled = false;
     public int specialFireType;
+    public GameObject darkArtSword;
 
     public int timesFired;
     public int newAttack; // alternates between 0 and 1 when the player fires. Used for certain items.
+
+    Vector3 mouseVector;
+    Vector3 vectorMan;
+    float fuckAngle;
 
     void Start()
     {
@@ -92,6 +97,11 @@ public class Attack : MonoBehaviour
                     Instantiate(PlayerShootAudio);
                     break;
                 case 2:
+                    break; // For enemies that don't shoot.
+                case 3:
+                    currentAngle = (Mathf.PI / 4) * (i+1);
+                    SpawnDarkart();
+                    Instantiate(PlayerShootAudio);
                     break;
             }
         }
@@ -107,6 +117,37 @@ public class Attack : MonoBehaviour
         newObject.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
         newObject.GetComponent<weaponType>().weaponHeld = newObject.GetComponent<weaponType>().weaponHeld;
         newObject.GetComponent<DealDamage>().owner = gameObject;
+    }
+
+    void SpawnDarkart()
+    {
+        mouseVector = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
+        vectorMan = Camera.main.ScreenToWorldPoint(mouseVector) - transform.position;
+
+        if (vectorMan.y > 0 && vectorMan.x > 0)
+        {
+            fuckAngle = (180 / Mathf.PI) * Mathf.Atan(vectorMan.y / vectorMan.x);
+        }
+        if (vectorMan.y > 0 && vectorMan.x < 0)
+        {
+            fuckAngle = 180 + (180 / Mathf.PI) * Mathf.Atan(vectorMan.y / vectorMan.x);
+        }
+        if (vectorMan.y < 0 && vectorMan.x < 0)
+        {
+            fuckAngle = (180 / Mathf.PI) * Mathf.Atan(vectorMan.y / vectorMan.x) + 180;
+        }
+        if (vectorMan.y < 0 && vectorMan.x > 0)
+        {
+            fuckAngle = 90 + (180 / Mathf.PI) * Mathf.Atan(vectorMan.y / vectorMan.x) + 270;
+        }
+
+        fuckAngle += currentAngle * 180/Mathf.PI;
+
+        GameObject Swordo = Instantiate(darkArtSword, transform.position, Quaternion.Euler(0,0,fuckAngle));
+        Swordo.GetComponent<darkArtMovement>().initAngle = fuckAngle;
+        Swordo.GetComponent<darkArtMovement>().LorR = newAttack;
+        Swordo.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
+        Swordo.GetComponent<DealDamage>().owner = gameObject;
     }
 
     void FixedUpdate()

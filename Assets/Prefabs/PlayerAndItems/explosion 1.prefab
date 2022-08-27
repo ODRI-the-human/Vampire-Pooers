@@ -189,3 +189,6 @@ MonoBehaviour:
   procCoeff: 0
   damageBase: 100
   damageMult: 1
+  finalDamageMult: 1
+  knockBackCoeff: 1
+  owner: {fileID: 0}

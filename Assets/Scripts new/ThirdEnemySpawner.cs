@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using TMPro;
 
 public class ThirdEnemySpawner : MonoBehaviour
@@ -32,14 +31,6 @@ public class ThirdEnemySpawner : MonoBehaviour
     void Start()
     {
         Player = GameObject.Find("newPlayer");
-    }
-
-    void Update()
-    {
-        if (Input.GetButton("Restart"))
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
     }
 
     // Update is called once per frame

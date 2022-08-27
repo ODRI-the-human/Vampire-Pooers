@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EntityReferencerGuy : MonoBehaviour
 {
@@ -17,4 +18,12 @@ public class EntityReferencerGuy : MonoBehaviour
     public GameObject playerBullet;
     public GameObject enemyBullet;
     public GameObject contactMan;
+
+    void Update()
+    {
+        if (Input.GetButton("Restart"))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+    }
 }
