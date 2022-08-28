@@ -13,7 +13,7 @@ public class ItemORBITAL1 : MonoBehaviour
             orbSkothos = GameObject.Find("bigFuckingMasterObject").GetComponent<EntityReferencerGuy>().orbSkothos;
             GameObject newObject = Instantiate(orbSkothos);
             newObject.GetComponent<DealDamage>().procCoeff = 0;
-            newObject.GetComponent<DealDamage>().damageBase = 2.5f;
+            newObject.GetComponent<DealDamage>().damageBase = 10;
             newObject.GetComponent<DealDamage>().damageMult = 1f;
             newObject.GetComponent<DealDamage>().knockBackCoeff = 0;
             newObject.GetComponent<DealDamage>().owner = gameObject;

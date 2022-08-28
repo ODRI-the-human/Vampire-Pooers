@@ -9,7 +9,10 @@ public class weaponType : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        weaponHeld = (int)WEAPONS.PISTOL;
+        if (gameObject.tag == "Player")
+        {
+            weaponHeld = (int)WEAPONS.SHOTGUN;
+        }
 
         switch (weaponHeld)
         {
@@ -22,7 +25,9 @@ public class weaponType : MonoBehaviour
                 gameObject.GetComponent<DealDamage>().finalDamageMult *= 0.5f;
                 gameObject.GetComponent<Attack>().shotAngleCoeff = 0.7f;
                 break;
-
+            case (int)WEAPONS.DARKARTS:
+                gameObject.GetComponent<Attack>().specialFireType = 3;
+                break;
         }
     }
 }

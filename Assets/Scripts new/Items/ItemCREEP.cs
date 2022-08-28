@@ -22,7 +22,7 @@ public class ItemCREEP : MonoBehaviour
         {
             if (gameObject.tag == "Player")
             {
-                //isPerson = true;
+                isPerson = true;
                 Creep = GameObject.Find("bigFuckingMasterObject").GetComponent<EntityReferencerGuy>().Creep;
             }
         }
@@ -35,7 +35,7 @@ public class ItemCREEP : MonoBehaviour
             GameObject newObject = Instantiate(Creep, transform.position + new Vector3(0, 0, 0.5f), transform.rotation);
             newObject.transform.localScale *= 0.7f + 0.3f * instances;
             newObject.GetComponent<DealDamage>().procCoeff = 0.2f;
-            newObject.GetComponent<DealDamage>().damageBase = 0.005f * gameObject.GetComponent<DealDamage>().damageBase;
+            newObject.GetComponent<DealDamage>().damageBase = 0.1f * gameObject.GetComponent<DealDamage>().damageBase;
             newObject.GetComponent<DealDamage>().damageMult = gameObject.GetComponent<DealDamage>().damageMult;
             newObject.GetComponent<DealDamage>().knockBackCoeff = 0;
             timerMarty = 5;

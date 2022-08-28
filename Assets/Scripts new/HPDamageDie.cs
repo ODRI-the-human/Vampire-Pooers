@@ -104,11 +104,11 @@ public class HPDamageDie : MonoBehaviour
         {
             if (iFrames < 0)
             {
-                HP -= col.gameObject.GetComponent<DealDamage>().finalDamageStat * 4;
-                Instantiate(PlayerHurtAudio);
+                HP -= col.gameObject.GetComponent<DealDamage>().finalDamageStat;
+                iFrames = 4;
                 if (playerControlled == true)
                 {
-                    iFrames = 4;
+                    Instantiate(PlayerHurtAudio);
                 }
                 if (playerControlled == false)
                 {

@@ -5,5 +5,5 @@ public enum WEAPONS
     PISTOL,
     SHOTGUN,
     GRENADELAUNCHER,
-    SWORD
+    DARKARTS,
 }

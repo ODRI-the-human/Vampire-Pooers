@@ -148,6 +148,16 @@ public class Attack : MonoBehaviour
         Swordo.GetComponent<darkArtMovement>().LorR = newAttack;
         Swordo.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
         Swordo.GetComponent<DealDamage>().owner = gameObject;
+        
+        if (gameObject.tag == "Player" || gameObject.tag == "PlayerBullet")
+        {
+            Swordo.tag = "PlayerBullet";
+        }
+        else if (gameObject.tag == "Hostile" || gameObject.tag == "enemyBullet")
+        {
+            Swordo.tag = "enemyBullet";
+        }
+
     }
 
     void FixedUpdate()

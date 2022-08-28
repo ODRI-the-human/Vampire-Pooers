@@ -10,6 +10,7 @@ public class ItemHolder : MonoBehaviour
 
     void Start()
     {
+        //itemsHeld.Add((int)ITEMLIST.ORBITAL2);
         foreach (int item in itemsHeld)
         {
             itemGained = item;

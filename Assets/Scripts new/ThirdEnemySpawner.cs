@@ -125,7 +125,7 @@ public class ThirdEnemySpawner : MonoBehaviour
                 SpawnScaleVariation.x *= 1 + numberEnemiesSpawned / 16;
                 GameObject spawned = Instantiate(toSpawn, new Vector3(SpawnPosX, SpawnPosY, 0), Quaternion.identity);
                 spawned.transform.localScale = SpawnScaleVariation;
-                spawned.GetComponent<Enemy_Movement>().HP *= 0.8f + 0.2f * numberEnemiesSpawned;
+                spawned.GetComponent<HPDamageDie>().HP *= 0.8f + 0.2f * numberEnemiesSpawned;
                 break;
         }
     }
@@ -145,7 +145,6 @@ public class ThirdEnemySpawner : MonoBehaviour
             float SpawnPosXVariation = Random.Range(-1f, 1f);
             float SpawnPosYVariation = Random.Range(-1f, 1f);
             GameObject spawned = Instantiate(toSpawn, new Vector3(SpawnPosX + SpawnPosXVariation, SpawnPosY + SpawnPosYVariation, 0), transform.rotation);
-            //spawned.GetComponent<Enemy_Movement>().HP *= 0.8f + 0.2f * waveNumber;
         }
     }
 
@@ -161,7 +160,6 @@ public class ThirdEnemySpawner : MonoBehaviour
                 SpawnPosY = Random.Range(-8, 8);
             }
             GameObject spawned = Instantiate(toSpawn, new Vector3(SpawnPosX, SpawnPosY, 0), transform.rotation);
-            //spawned.GetComponent<Enemy_Movement>().HP *= 0.8f + 0.2f * waveNumber;
         }
     }
 

@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class darkArtMovement : MonoBehaviour
 {
-    int timer = 0;
+    public int timer = 0;
     public int LorR;
-    float accAmount = 0.001f;
-    float rotAngle = 0;
+    public float accAmount = 0.001f;
+    public float rotAngle = 0;
     public float initAngle = 0;
     public GameObject owner;
     bool gaming;
@@ -29,7 +29,10 @@ public class darkArtMovement : MonoBehaviour
             gaming = true;
         }
 
-        gameObject.GetComponent<SpriteRenderer>().flipX = gaming;
+        if (gameObject.GetComponent<SpriteRenderer>() != null)
+        {
+            gameObject.GetComponent<SpriteRenderer>().flipX = gaming;
+        }
 
         timer++;
 

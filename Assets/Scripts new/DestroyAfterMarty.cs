@@ -10,6 +10,8 @@ public class DestroyAfterMarty : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        timer--;
+
         if (timer <= 0)
         {
             Destroy(gameObject);

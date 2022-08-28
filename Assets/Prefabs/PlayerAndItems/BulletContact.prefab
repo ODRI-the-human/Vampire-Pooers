@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4255455733749829592}
   - component: {fileID: 4255455733749829599}
   - component: {fileID: 2436240498180915324}
+  - component: {fileID: 397655235517528057}
   m_Layer: 11
   m_Name: BulletContact
   m_TagString: PlayerBullet
@@ -85,3 +86,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   master: {fileID: 0}
   instances: 0
+--- !u!70 &397655235517528057
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4255455733749829593}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -1.2}
+  m_Size: {x: 2, y: 3.2}
+  m_Direction: 0

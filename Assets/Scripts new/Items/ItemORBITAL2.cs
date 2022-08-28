@@ -21,6 +21,12 @@ public class ItemORBITAL2 : MonoBehaviour
     {
         myGuy = Instantiate(orbSkothos2);
         myGuy.GetComponent<DealDamage>().owner = gameObject;
+
+        if (gameObject.GetComponent<weaponType>() != null && gameObject.GetComponent<weaponType>().weaponHeld == (int)WEAPONS.DARKARTS)
+        {
+            myGuy.GetComponent<weaponType>().weaponHeld = gameObject.GetComponent<weaponType>().weaponHeld;
+        }
+
         myGuy.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
         myGuy.GetComponent<DealDamage>().damageBase = gameObject.GetComponent<DealDamage>().damageBase;
         myGuy.GetComponent<DealDamage>().damageMult = gameObject.GetComponent<DealDamage>().damageMult;
@@ -30,7 +36,9 @@ public class ItemORBITAL2 : MonoBehaviour
         myGuy.GetComponent<Attack>().noExtraShots = gameObject.GetComponent<Attack>().noExtraShots;
         myGuy.GetComponent<Attack>().shotAngleCoeff = gameObject.GetComponent<Attack>().shotAngleCoeff;
         myGuy.GetComponent<Attack>().shotSpeed = gameObject.GetComponent<Attack>().shotSpeed;
+
         myGuy.GetComponent<DealDamage>().finalDamageMult *= 0.25f * instances;
+
         if (gameObject.tag == "Player")
         {
             myGuy.tag = "PlayerBullet";

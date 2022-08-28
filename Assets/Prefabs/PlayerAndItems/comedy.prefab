@@ -50,7 +50,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 616a85a87640f184fb0ae9cf63d0b7a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timer: 0
   LorR: 0
+  accAmount: 0.001
+  rotAngle: 0
   initAngle: 0
   owner: {fileID: 0}
 --- !u!212 &7954129254447996148
@@ -140,7 +143,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -1.2}
-  m_Size: {x: 1.8, y: 3.2000003}
+  m_Size: {x: 2, y: 3.2000003}
   m_Direction: 0
 --- !u!114 &-6609505961956846071
 MonoBehaviour:

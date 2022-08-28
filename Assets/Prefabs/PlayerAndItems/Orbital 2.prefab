@@ -182,6 +182,7 @@ MonoBehaviour:
   PlayerShootAudio: {fileID: 2232971130497578917, guid: dc46db39e4e70b144915e7a0652cc396, type: 3}
   playerControlled: 1
   specialFireType: 0
+  darkArtSword: {fileID: 7955111713391121560, guid: 35c958ea85b00c144830eefba828d8c3, type: 3}
   timesFired: 0
   newAttack: 0
 --- !u!114 &7158769378574457366
