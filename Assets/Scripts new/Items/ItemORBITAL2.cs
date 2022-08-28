@@ -25,6 +25,7 @@ public class ItemORBITAL2 : MonoBehaviour
         if (gameObject.GetComponent<weaponType>() != null && gameObject.GetComponent<weaponType>().weaponHeld == (int)WEAPONS.DARKARTS)
         {
             myGuy.GetComponent<weaponType>().weaponHeld = gameObject.GetComponent<weaponType>().weaponHeld;
+            myGuy.GetComponent<Attack>().newAttack = gameObject.GetComponent<Attack>().newAttack;
         }
 
         myGuy.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;

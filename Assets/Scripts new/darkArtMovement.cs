@@ -12,7 +12,7 @@ public class darkArtMovement : MonoBehaviour
     public GameObject owner;
     bool gaming;
 
-    void Start() // just for now, since normally owner will be assigned via DealDamage
+    void Start()
     {
         owner = gameObject.GetComponent<DealDamage>().owner;
     }

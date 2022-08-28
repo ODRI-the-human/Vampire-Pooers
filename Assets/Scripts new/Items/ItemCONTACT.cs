@@ -9,7 +9,8 @@ public class ItemCONTACT : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (gameObject.tag == "PlayerBullet" || gameObject.tag == "enemyBullet")
+        int LayerProjectileBlocking = LayerMask.NameToLayer("ProjectileBlocking");
+        if ((gameObject.tag == "PlayerBullet" || gameObject.tag == "enemyBullet") && gameObject.layer != LayerProjectileBlocking)
         {
             GameObject Bingus = Instantiate(GameObject.Find("bigFuckingMasterObject").GetComponent<EntityReferencerGuy>().contactMan);
             Bingus.GetComponent<dieOnContactWithBullet>().instances = instances;
