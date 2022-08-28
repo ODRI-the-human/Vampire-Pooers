@@ -31,7 +31,7 @@ public class ItemSPLIT : MonoBehaviour
         Vector2 enemyPos = new Vector2(transform.position.x, transform.position.y);
         Vector2 bulletPos = new Vector2(col.transform.position.x, col.transform.position.y);
 
-        if (canSplit)
+        if (canSplit && col.gameObject.tag != "Wall")
         {
             if (gameObject.tag == "PlayerBullet" || gameObject.tag == "enemyBullet")
             {
