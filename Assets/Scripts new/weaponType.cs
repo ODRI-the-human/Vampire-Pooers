@@ -11,7 +11,7 @@ public class weaponType : MonoBehaviour
     {
         if (gameObject.tag == "Player")
         {
-            weaponHeld = (int)WEAPONS.SHOTGUN;
+            weaponHeld = (int)WEAPONS.DARKARTS;
         }
 
         switch (weaponHeld)
