@@ -15,7 +15,7 @@ public class ChangeColourOnHitModel : MonoBehaviour
         {
             if (gameObject.GetComponent<HPDamageDie>().iFrames % 2 == 0)
             {
-                tmp = Color.red;
+                tmp = Color.black;
                 material.color = tmp;
             }
             else

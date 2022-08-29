@@ -36,7 +36,7 @@ public class ThirdEnemySpawner : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        waveText.text = spawnNumber.ToString() + "   " + waveNumber.ToString();
+        waveText.text = "Wave: " + (spawnNumber - 1).ToString() + " / Round: " + (waveNumber + 1).ToString();
         spawnTimer -= 1;
         if (spawnTimer < 0)
         {
@@ -176,7 +176,6 @@ public class ThirdEnemySpawner : MonoBehaviour
     void StartWave()
     {
         waveNumber++;
-        waveText.text = spawnNumber.ToString() + "   " + waveNumber.ToString();
         spawnNumber = 0;
     }
 }

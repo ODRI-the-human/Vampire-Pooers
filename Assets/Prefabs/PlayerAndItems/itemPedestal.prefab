@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7674381605585770213}
   - component: {fileID: 7674381605585770212}
   - component: {fileID: 7674381605585770216}
+  - component: {fileID: 8191072633798459801}
   m_Layer: 12
   m_Name: itemPedestal
   m_TagString: item
@@ -163,3 +164,18 @@ MonoBehaviour:
   - {fileID: -957628350, guid: baebeab4f8d6728419b67010f32aa531, type: 3}
   - {fileID: 1953723756, guid: baebeab4f8d6728419b67010f32aa531, type: 3}
   spriteRenderer: {fileID: 7674381605585770212}
+  description: 
+--- !u!114 &8191072633798459801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7674381605585770215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 898bb6c7b1e863142a7762589706224b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemChosen: 0
+  itemDescription: 

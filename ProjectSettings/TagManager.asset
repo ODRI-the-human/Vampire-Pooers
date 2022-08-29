@@ -33,7 +33,7 @@ TagManager:
   - Player
   - PlayerBullets
   - Wall
-  - Projectile Blocking
+  - ProjectileBlocking
   - Pickup for Player
   - Item Pedestal
   - HitBothPlayerAndEnemy

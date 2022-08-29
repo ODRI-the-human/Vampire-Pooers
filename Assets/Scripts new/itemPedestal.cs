@@ -11,12 +11,16 @@ public class itemPedestal : MonoBehaviour
     int maxRange = 24;
     GameObject[] gos;
 
+    public string description;
+
     // Start is called before the first frame update
     void Start()
     {
         itemChosen = Random.Range(minRange, maxRange);
         spriteRenderer.sprite = spriteArray[itemChosen];
         gos = GameObject.FindGameObjectsWithTag("item");
+        GameObject.Find("newPlayer").GetComponent<getItemDescription>().itemsExist = true;
+        Invoke(nameof(SetDescription), 0.1f);
     }
 
     void Update()
@@ -32,6 +36,13 @@ public class itemPedestal : MonoBehaviour
         }
     }
 
+    void SetDescription()
+    {
+        gameObject.GetComponent<ItemDescriptions>().itemChosen = itemChosen;
+        gameObject.GetComponent<ItemDescriptions>().getItemDescription();
+        description = gameObject.GetComponent<ItemDescriptions>().itemDescription;
+    }
+
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.tag == "Player")
@@ -39,6 +50,7 @@ public class itemPedestal : MonoBehaviour
             foreach (GameObject go in gos)
             {
                 Destroy(go);
+                GameObject.Find("newPlayer").GetComponent<getItemDescription>().itemsExist = false;
             }
         }
     }

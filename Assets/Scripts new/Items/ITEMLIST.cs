@@ -25,5 +25,5 @@ public enum ITEMLIST
     ORBITAL1, // Long-range orbital that deals damage to enemies and blocks their shots.
     ORBITAL2, // Short-range orbital that shoots bullets that deal 1/4 of your bullets and inheret all effects.
     SPLIT, // Your shots split on hit.
-    CONTACT // your shots block enemy shots.
+    CONTACT, // your shots block enemy shots. Melee attacks block 4 shots per stack.
 }

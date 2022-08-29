@@ -27,5 +27,6 @@ public class StatsText : MonoBehaviour
         DMGText.text = "DMG: " + Player.GetComponent<DealDamage>().finalDamageStat.ToString();
         FirerateText.text = "Fire delay: " + Player.GetComponent<Attack>().fireTimerLength.ToString();
         LevelText.text = "Level: " + Player.GetComponent<LevelUp>().level.ToString();
+        itemScreenText.text = Player.GetComponent<getItemDescription>().itemDescription;
     }
 }
