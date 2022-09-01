@@ -6,6 +6,7 @@ public class hilarious_script : MonoBehaviour
 {
     int timer = 0;
     float timerMario = 400;
+    public GameObject FAT;
 
     // Update is called once per frame BUT FIXEDUPDATE ISN'T???? WHAT????????????????????????? DIFFERENT THINGS DO DIFFERENT THINGS????????????????????? THE FUCK?
     void FixedUpdate()
@@ -24,5 +25,7 @@ public class hilarious_script : MonoBehaviour
             Time.timeScale = .5f;
             timerMario = 40000000f;
         }
+
+        FAT.GetComponent<SpriteRenderer>().color = new Color(0.5f + 0.5f * Mathf.Sin(timer * timerMario), 0.5f + 0.5f * Mathf.Sin(timer * 2), 0.5f + 0.5f * Mathf.Sin(timer), 1);
     }
 }
