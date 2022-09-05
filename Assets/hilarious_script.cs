@@ -12,20 +12,20 @@ public class hilarious_script : MonoBehaviour
     void FixedUpdate()
     {
         timer++;
-        Time.timeScale = 2.5f + 2 * Mathf.Sin(timer*timerMario);
+        //Time.timeScale = 2.5f + 2 * Mathf.Sin(timer*timerMario);
 
-        if (Random.Range(0, 50) > 45)
-        {
-            Time.timeScale = 99;
-            timerMario = 1f;
-        }
+        //if (Random.Range(0, 50) > 45)
+        //{
+        //    Time.timeScale = 99;
+        //    timerMario = 1f;
+        //}
 
-        if (Random.Range(0, 50) < 5)
-        {
-            Time.timeScale = .5f;
-            timerMario = 40000000f;
-        }
+        //if (Random.Range(0, 50) < 5)
+        //{
+        //    Time.timeScale = .5f;
+        //    timerMario = 40000000f;
+        //}
 
-        FAT.GetComponent<SpriteRenderer>().color = new Color(0.5f + 0.5f * Mathf.Sin(timer * timerMario), 0.5f + 0.5f * Mathf.Sin(timer * 2), 0.5f + 0.5f * Mathf.Sin(timer), 1);
+        gameObject.GetComponent<SpriteRenderer>().color = new Color(0.5f + 0.5f * Mathf.Sin(timer * timerMario), 0.5f + 0.5f * Mathf.Sin(timer * 2), 0.5f + 0.5f * Mathf.Sin(timer), 1);
     }
 }

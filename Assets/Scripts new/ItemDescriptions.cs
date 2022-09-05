@@ -24,7 +24,7 @@ public class ItemDescriptions : MonoBehaviour
                 itemDescription = "Doubles damage. Multiplier increases by +1x per stack.";
                 break;
             case (int)ITEMLIST.FIRERATE:
-                itemDescription = "Increases fire rate by 15% per stack.";
+                itemDescription = "Decreases fire delay by 4.";
                 break;
             case (int)ITEMLIST.SOY:
                 itemDescription = "Per stack, increases firerate by 5x, but quarters damage and bullet knockback.";
@@ -82,6 +82,9 @@ public class ItemDescriptions : MonoBehaviour
                 break;
             case (int)ITEMLIST.CONTACT:
                 itemDescription = "Your shots destroy enemy shots. Your bullets get destroyed after 1 (+1 per stack) collision, or 4 (+4 per stack) if using melee.";
+                break;
+            case (int)ITEMLIST.BLEED:
+                itemDescription = "Your attacks have a 15% (+15% per stack) chance to inflict bleed for 2 seconds. New procs refill the timer and add a new stack.";
                 break;
         }
     }

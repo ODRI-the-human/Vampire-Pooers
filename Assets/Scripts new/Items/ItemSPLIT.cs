@@ -42,6 +42,7 @@ public class ItemSPLIT : MonoBehaviour
                 Splitman1.GetComponent<DealDamage>().knockBackCoeff = 0.5f * gameObject.GetComponent<DealDamage>().knockBackCoeff;
                 Splitman1.AddComponent<ItemSPLIT>();
                 Splitman1.GetComponent<ItemSPLIT>().canSplit = false;
+                Splitman1.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
                 bulletRB = Splitman1.GetComponent<Rigidbody2D>();
                 bulletRB.velocity = new Vector3(ShotVector.x * Mathf.Cos(-Mathf.PI / 2) - ShotVector.y * Mathf.Sin(-Mathf.PI / 2), ShotVector.x * Mathf.Sin(-Mathf.PI / 2) + ShotVector.y * Mathf.Cos(-Mathf.PI / 2), 0);
                 GameObject Splitman2 = Instantiate(Buuleter, transform.position, transform.rotation);
@@ -50,6 +51,7 @@ public class ItemSPLIT : MonoBehaviour
                 Splitman2.GetComponent<DealDamage>().knockBackCoeff = 0.5f * gameObject.GetComponent<DealDamage>().knockBackCoeff;
                 Splitman2.AddComponent<ItemSPLIT>();
                 Splitman2.GetComponent<ItemSPLIT>().canSplit = false;
+                Splitman2.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
                 bulletRB = Splitman2.GetComponent<Rigidbody2D>();
                 bulletRB.velocity = new Vector3(ShotVector.x * Mathf.Cos(Mathf.PI / 2) - ShotVector.y * Mathf.Sin(Mathf.PI / 2), ShotVector.x * Mathf.Sin(Mathf.PI / 2) + ShotVector.y * Mathf.Cos(Mathf.PI / 2), 0);
             }

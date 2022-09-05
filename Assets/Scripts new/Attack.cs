@@ -21,6 +21,7 @@ public class Attack : MonoBehaviour
     public bool playerControlled = false;
     public int specialFireType;
     public GameObject darkArtSword;
+    public float fireTimerDIV = 1;
 
     public int timesFired;
     public int newAttack; // alternates between 0 and 1 when the player fires. Used for certain items.
@@ -47,7 +48,13 @@ public class Attack : MonoBehaviour
     void Update()
     {
         trueDamageValue = gameObject.GetComponent<DealDamage>().finalDamageStat;
-        if (fireTimer + fireTimerLength * (fireTimerLengthMLT - 1) < 0)
+
+        if (gameObject.tag == "Player")
+        {
+            Debug.Log((fireTimerLength * (1 - fireTimerDIV) / fireTimerDIV).ToString());
+        }
+
+        if (fireTimer + fireTimerLength*(1-fireTimerDIV)/fireTimerDIV + fireTimerLength * (fireTimerLengthMLT - 1) < 0)
         {
             switch (playerControlled)
             {
@@ -57,12 +64,14 @@ public class Attack : MonoBehaviour
                     {
                         UseWeapon();
                         fireTimer = fireTimerLength;
+                        Instantiate(PlayerShootAudio);
                     }
                     break;
                 case false:
                     vectorToTarget = (Player.transform.position - gameObject.transform.position).normalized;
                     UseWeapon();
                     fireTimer = fireTimerLength;
+                    Instantiate(PlayerShootAudio);
                     break;
             }
         }
@@ -89,19 +98,16 @@ public class Attack : MonoBehaviour
                 case 0:
                     currentAngle = 0.3f * shotAngleCoeff * (0.5f * noExtraShots - i - 1);
                     SpawnAttack(currentAngle);
-                    Instantiate(PlayerShootAudio);
                     break;
                 case 1:
                     currentAngle = (Mathf.PI / 4) * i;
                     SpawnAttack(currentAngle);
-                    Instantiate(PlayerShootAudio);
                     break;
                 case 2:
                     break; // For enemies that don't shoot.
                 case 3:
                     currentAngle = (Mathf.PI / 4) * (i+1);
                     SpawnDarkart();
-                    Instantiate(PlayerShootAudio);
                     break;
             }
         }
@@ -128,15 +134,15 @@ public class Attack : MonoBehaviour
         {
             fuckAngle = (180 / Mathf.PI) * Mathf.Atan(vectorMan.y / vectorMan.x);
         }
-        if (vectorMan.y > 0 && vectorMan.x < 0)
+        else if (vectorMan.y > 0 && vectorMan.x < 0)
         {
             fuckAngle = 180 + (180 / Mathf.PI) * Mathf.Atan(vectorMan.y / vectorMan.x);
         }
-        if (vectorMan.y < 0 && vectorMan.x < 0)
+        else if (vectorMan.y < 0 && vectorMan.x < 0)
         {
             fuckAngle = (180 / Mathf.PI) * Mathf.Atan(vectorMan.y / vectorMan.x) + 180;
         }
-        if (vectorMan.y < 0 && vectorMan.x > 0)
+        else if (vectorMan.y < 0 && vectorMan.x > 0)
         {
             fuckAngle = 90 + (180 / Mathf.PI) * Mathf.Atan(vectorMan.y / vectorMan.x) + 270;
         }

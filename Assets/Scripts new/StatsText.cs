@@ -25,7 +25,7 @@ public class StatsText : MonoBehaviour
         HPText.text = "HP: " + Player.GetComponent<HPDamageDie>().HP.ToString() + "/" + Player.GetComponent<HPDamageDie>().MaxHP.ToString();
         XPText.text = "XP: " + Player.GetComponent<LevelUp>().XP.ToString();
         DMGText.text = "DMG: " + Player.GetComponent<DealDamage>().finalDamageStat.ToString();
-        FirerateText.text = "Fire delay: " + Player.GetComponent<Attack>().fireTimerLength.ToString();
+        FirerateText.text = "Fire delay: " + (Player.GetComponent<Attack>().fireTimerLength + Player.GetComponent<Attack>().fireTimerLength * (1 - Player.GetComponent<Attack>().fireTimerDIV) / Player.GetComponent<Attack>().fireTimerDIV + Player.GetComponent<Attack>().fireTimerLength * (Player.GetComponent<Attack>().fireTimerLengthMLT - 1)).ToString();
         LevelText.text = "Level: " + Player.GetComponent<LevelUp>().level.ToString();
         itemScreenText.text = Player.GetComponent<getItemDescription>().itemDescription;
     }

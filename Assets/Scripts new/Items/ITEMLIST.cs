@@ -26,4 +26,5 @@ public enum ITEMLIST
     ORBITAL2, // Short-range orbital that shoots bullets that deal 1/4 of your bullets and inheret all effects.
     SPLIT, // Your shots split on hit.
     CONTACT, // your shots block enemy shots. Melee attacks block 4 shots per stack.
+    BLEED, // Your attacks have a 15% (+15% per stack) chance to inflict bleed for 3 seconds. New procs refill the timer and add a new stack.
 }

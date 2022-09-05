@@ -10,6 +10,7 @@ public class DealDamage : MonoBehaviour
     public float damageMult;
     public float finalDamageMult = 1;
     public float knockBackCoeff = 1;
+    public float finalDamageDIV = 1;
     public GameObject owner;
 
     // Start is called before the first frame update
@@ -19,11 +20,11 @@ public class DealDamage : MonoBehaviour
         {
             owner = gameObject;
         }
-        finalDamageStat = damageBase * damageMult * finalDamageMult;
+        finalDamageStat = damageBase * damageMult * finalDamageMult / finalDamageDIV;
     }
 
     void Update()
     {
-        finalDamageStat = damageBase * damageMult * finalDamageMult;
+        finalDamageStat = damageBase * damageMult * finalDamageMult / finalDamageDIV;
     }
 }

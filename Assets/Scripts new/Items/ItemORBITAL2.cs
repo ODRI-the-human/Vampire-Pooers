@@ -45,8 +45,10 @@ public class ItemORBITAL2 : MonoBehaviour
     {
         myGuy.GetComponent<DealDamage>().damageBase = gameObject.GetComponent<DealDamage>().damageBase;
         myGuy.GetComponent<DealDamage>().damageMult = gameObject.GetComponent<DealDamage>().damageMult;
+        myGuy.GetComponent<DealDamage>().finalDamageDIV = gameObject.GetComponent<DealDamage>().finalDamageDIV;
         myGuy.GetComponent<Attack>().Bullet = gameObject.GetComponent<Attack>().Bullet;
         myGuy.GetComponent<Attack>().specialFireType = gameObject.GetComponent<Attack>().specialFireType;
+        myGuy.GetComponent<Attack>().fireTimerDIV = gameObject.GetComponent<Attack>().fireTimerDIV;
         myGuy.GetComponent<Attack>().noExtraShots = gameObject.GetComponent<Attack>().noExtraShots;
         myGuy.GetComponent<Attack>().shotAngleCoeff = gameObject.GetComponent<Attack>().shotAngleCoeff;
         myGuy.GetComponent<Attack>().shotSpeed = gameObject.GetComponent<Attack>().shotSpeed;

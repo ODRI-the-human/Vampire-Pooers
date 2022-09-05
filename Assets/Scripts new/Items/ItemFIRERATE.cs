@@ -6,6 +6,6 @@ public class ItemFIRERATE : MonoBehaviour
 {
     void Start()
     {
-        gameObject.GetComponent<Attack>().fireTimerLength /= 1.15f;
+        gameObject.GetComponent<Attack>().fireTimerLength -= 4;
     }
 }

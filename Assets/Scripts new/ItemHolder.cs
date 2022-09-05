@@ -10,7 +10,7 @@ public class ItemHolder : MonoBehaviour
 
     void Start()
     {
-        //itemsHeld.Add((int)ITEMLIST.ORBITAL2);
+        //itemsHeld.Add((int)ITEMLIST.BLEED);
         foreach (int item in itemsHeld)
         {
             itemGained = item;
@@ -200,6 +200,16 @@ public class ItemHolder : MonoBehaviour
                 else
                 {
                     gameObject.GetComponent<ItemCONTACT>().instances++;
+                }
+                break;
+            case (int)ITEMLIST.BLEED:
+                if (gameObject.GetComponent<ItemBLEED>() == null)
+                {
+                    gameObject.AddComponent<ItemBLEED>();
+                }
+                else
+                {
+                    gameObject.GetComponent<ItemBLEED>().instances++;
                 }
                 break;
         }

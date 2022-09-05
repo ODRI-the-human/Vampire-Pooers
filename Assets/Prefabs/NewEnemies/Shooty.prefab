@@ -141,6 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 1.5
+  dodgeUp: 1
   dodgeAudio: {fileID: 0}
   rb: {fileID: 8034279136360660184}
 --- !u!114 &-5622376081394152181
@@ -156,7 +157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 0
-  MaxHP: 100
+  MaxHP: 150
   Barry63: {fileID: 2232971130497578917, guid: dc46db39e4e70b144915e7a0652cc396, type: 3}
   PlayerDieAudio: {fileID: 1098745368026675434, guid: 26556f7af7586304588a534b37c199bc, type: 3}
   PlayerHurtAudio: {fileID: 5472873928898165319, guid: 1edb877ad01c07344b1cad0d27b62330, type: 3}
@@ -164,6 +165,7 @@ MonoBehaviour:
   iFramesTimer: 50
   iFrames: 0
   sprite: {fileID: 8034279136360660185}
+  material: {fileID: 0}
   XP: {fileID: 6124614279667160435, guid: b448494b9362a2a429b8d6416d89f7e6, type: 3}
 --- !u!114 &6146499720883180670
 MonoBehaviour:
@@ -181,7 +183,10 @@ MonoBehaviour:
   procCoeff: 0
   damageBase: 50
   damageMult: 1
+  finalDamageMult: 1
   knockBackCoeff: 1
+  finalDamageDIV: 1
+  owner: {fileID: 0}
 --- !u!114 &373114558742256855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,8 +206,14 @@ MonoBehaviour:
   fireTimerLengthMLT: 1
   Bullet: {fileID: 110440509597865848, guid: 86b090c27b6523a4c99b4b66761df257, type: 3}
   fireTimerLength: 50
+  fireTimer: 0
   PlayerShootAudio: {fileID: 1343821369956803891, guid: 04da9c57f71492c40818fe9dcb49315f, type: 3}
+  playerControlled: 0
   specialFireType: 0
+  darkArtSword: {fileID: 0}
+  fireTimerDIV: 1
+  timesFired: 0
+  newAttack: 0
 --- !u!114 &8437550650503696219
 MonoBehaviour:
   m_ObjectHideFlags: 0

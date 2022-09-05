@@ -6,8 +6,8 @@ public class ItemSOY : MonoBehaviour
 {
     void Start()
     {
-        gameObject.GetComponent<DealDamage>().finalDamageMult /= 4;
+        gameObject.GetComponent<DealDamage>().finalDamageDIV += 4;
         gameObject.GetComponent<DealDamage>().knockBackCoeff /= 4;
-        gameObject.GetComponent<Attack>().fireTimerLength /= 5;
+        gameObject.GetComponent<Attack>().fireTimerDIV += 4;
     }
 }

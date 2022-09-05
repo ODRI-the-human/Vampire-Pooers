@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 158271131209982303}
   - component: {fileID: 158271131209982275}
   - component: {fileID: -5174054869890055258}
+  - component: {fileID: -5388908824613595565}
   m_Layer: 7
   m_Name: HostileCreep
   m_TagString: enemyBullet
@@ -157,3 +158,17 @@ MonoBehaviour:
   finalDamageMult: 1
   knockBackCoeff: 1
   owner: {fileID: 0}
+--- !u!114 &-5388908824613595565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 158271131209982302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a77b42edf27e0ec40bdef5d44226c8e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemsHeld: 
+  itemGained: 0

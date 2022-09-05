@@ -168,11 +168,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   finalDamageStat: 50
-  procCoeff: 0
+  procCoeff: 1
   damageBase: 50
   damageMult: 1
   finalDamageMult: 1
   knockBackCoeff: 1
+  owner: {fileID: 0}
 --- !u!114 &-4542741102433382798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,3 +212,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fa510d5f65fe4b429d86a4e95a6e22d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponHeld: 0

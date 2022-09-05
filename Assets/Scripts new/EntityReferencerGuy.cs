@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class EntityReferencerGuy : MonoBehaviour
 {
@@ -18,6 +19,9 @@ public class EntityReferencerGuy : MonoBehaviour
     public GameObject playerBullet;
     public GameObject enemyBullet;
     public GameObject contactMan;
+    public GameObject bleedIcon;
+    public TextMeshProUGUI StatusText;
+    public GameObject canvas;
 
     void Update()
     {

@@ -38,6 +38,7 @@ public class ItemCREEP : MonoBehaviour
             newObject.GetComponent<DealDamage>().damageBase = 0.1f * gameObject.GetComponent<DealDamage>().damageBase;
             newObject.GetComponent<DealDamage>().damageMult = gameObject.GetComponent<DealDamage>().damageMult;
             newObject.GetComponent<DealDamage>().knockBackCoeff = 0;
+            newObject.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
             timerMarty = 5;
         }
 
