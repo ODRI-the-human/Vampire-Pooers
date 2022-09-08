@@ -10,7 +10,15 @@ public class ItemHolder : MonoBehaviour
 
     void Start()
     {
-        //itemsHeld.Add((int)ITEMLIST.BLEED);
+        foreach (int item in itemsHeld)
+        {
+            itemGained = item;
+            ApplyItems();
+        }
+    }
+
+    public void GiveItems() // gives bullet effect items to familiars.
+    {
         foreach (int item in itemsHeld)
         {
             itemGained = item;
@@ -210,6 +218,16 @@ public class ItemHolder : MonoBehaviour
                 else
                 {
                     gameObject.GetComponent<ItemBLEED>().instances++;
+                }
+                break;
+            case (int)ITEMLIST.POISONSPLOSM:
+                if (gameObject.GetComponent<ItemPOISONSPLOSM>() == null)
+                {
+                    gameObject.AddComponent<ItemPOISONSPLOSM>();
+                }
+                else
+                {
+                    gameObject.GetComponent<ItemPOISONSPLOSM>().instances++;
                 }
                 break;
         }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: -2361379163163850684}
   - component: {fileID: 4039021151969064482}
   m_Layer: 0
-  m_Name: bleedIcon
+  m_Name: poisonIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1dc3efb39acfc0a45831a6dba0bb0738, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2558980f1dd8b1b4a9b319c6b2cd9744, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

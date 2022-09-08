@@ -21,6 +21,8 @@ public class HPDamageDie : MonoBehaviour
     GameObject Player;
     public GameObject XP;
 
+    GameObject poisonSplosm;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -41,16 +43,17 @@ public class HPDamageDie : MonoBehaviour
     {
         if (HP <= 0)
         {
-
-            Destroy(gameObject);
-            Instantiate(Barry63, new Vector3(0, 0, -1), new Quaternion(1, Mathf.PI, 0, 0));
-            Instantiate(PlayerDieAudio);
             Instantiate(XP, transform.position, transform.rotation);
+            Instantiate(PlayerDieAudio);
+            Destroy(gameObject);
+            EventManager.DeathEffects(transform.position);
+            //poisonSplosm = GameObject.Find("bigFuckingMasterObject").GetComponent<EntityReferencerGuy>().poisonSplosm;
+            //Instantiate(poisonSplosm, transform.position, transform.rotation);
+        }
 
-            if (HP > MaxHP)
-            {
-                HP = MaxHP;
-            }
+        if (HP > MaxHP)
+        {
+            HP = MaxHP;
         }
     }
 

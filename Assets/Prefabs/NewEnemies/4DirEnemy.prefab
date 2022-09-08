@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: -5622376081394152181}
   - component: {fileID: 373114558742256855}
   - component: {fileID: 3594553613020165186}
+  - component: {fileID: -454462238794277859}
   m_Layer: 6
   m_Name: 4DirEnemy
   m_TagString: Hostile
@@ -233,3 +234,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemsHeld: 
   itemGained: 0
+--- !u!114 &-454462238794277859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8034279136360660190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 370f01fd484cd784f9ca5eaa41a674d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timer: 0
+  poisonStacks: 0
+  bleedStacks: 0
+  bleedTimer: 0
+  poisonTimers: 
+  iconOrder: 

@@ -187,6 +187,8 @@ MonoBehaviour:
   damageMult: 1
   finalDamageMult: 1
   knockBackCoeff: 1
+  finalDamageDIV: 1
+  owner: {fileID: 0}
 --- !u!114 &5116095037221346998
 MonoBehaviour:
   m_ObjectHideFlags: 0

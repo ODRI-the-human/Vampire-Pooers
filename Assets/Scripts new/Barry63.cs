@@ -9,7 +9,10 @@ public class Barry63 : MonoBehaviour
     float time2;
     Vector3 scaleChange;
 
-    
+    void Start()
+    {
+        transform.position = new Vector3(0, 0, -10);
+    }
 
 
     void Update()

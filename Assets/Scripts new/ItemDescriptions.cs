@@ -86,6 +86,9 @@ public class ItemDescriptions : MonoBehaviour
             case (int)ITEMLIST.BLEED:
                 itemDescription = "Your attacks have a 15% (+15% per stack) chance to inflict bleed for 2 seconds. New procs refill the timer and add a new stack.";
                 break;
+            case (int)ITEMLIST.POISONSPLOSM:
+                itemDescription = "Enemies explode on death, poisoning nearby enemies for 4 seconds. Size of explosion increases with stacks.";
+                break;
         }
     }
 }

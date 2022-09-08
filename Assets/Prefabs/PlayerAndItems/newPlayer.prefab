@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 8433440340063038589}
   - component: {fileID: -8736019012613081854}
   - component: {fileID: -2782634131885235124}
+  - component: {fileID: -1628153870151973313}
   m_Layer: 8
   m_Name: newPlayer
   m_TagString: Player
@@ -139,7 +140,7 @@ MonoBehaviour:
   iFrames: 0
   sprite: {fileID: 5905868436867884629}
   material: {fileID: 0}
-  XP: {fileID: 0}
+  XP: {fileID: 6964255014020883914, guid: 526b17258aed02c4c9c574bcca2b87c3, type: 3}
 --- !u!114 &1698531144881374718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,7 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   finalDamageStat: 0
-  procCoeff: 0
+  procCoeff: 1
   damageBase: 50
   damageMult: 1
   finalDamageMult: 1
@@ -307,3 +308,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemsExist: 0
   itemDescription: 
+--- !u!114 &-1628153870151973313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 503381878361641298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 370f01fd484cd784f9ca5eaa41a674d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timer: 0
+  poisonStacks: 0
+  bleedStacks: 0
+  bleedTimer: 0
+  poisonTimers: 
+  iconOrder: 

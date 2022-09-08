@@ -30,14 +30,11 @@ public class ItemBLEED : MonoBehaviour
 
             if (pringle > procMoment)
             {
-                if (guyToBleed.GetComponent<Bleed>() == null)
+                guyToBleed.GetComponent<Statuses>().bleedStacks += 1;
+                guyToBleed.GetComponent<Statuses>().bleedTimer = 0;
+                if (!guyToBleed.GetComponent<Statuses>().iconOrder.Contains(0))
                 {
-                    guyToBleed.AddComponent<Bleed>();
-                }
-                else
-                {
-                    guyToBleed.GetComponent<Bleed>().stacks += 1;
-                    guyToBleed.GetComponent<Bleed>().timer = 0;
+                    guyToBleed.GetComponent<Statuses>().iconOrder.Add(0);
                 }
             }
         }

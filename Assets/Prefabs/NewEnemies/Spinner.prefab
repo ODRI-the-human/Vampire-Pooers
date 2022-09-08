@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: -6175816815738836715}
   - component: {fileID: -7779438343811626192}
   - component: {fileID: 5006160631845979851}
+  - component: {fileID: 999997813651883019}
   m_Layer: 6
   m_Name: Spinner
   m_TagString: Hostile
@@ -218,13 +219,31 @@ MonoBehaviour:
   shotAngleCoeff: 1
   trueDamageValue: 0
   fireTimerLengthMLT: 1
-  Bullet: {fileID: 0}
+  Bullet: {fileID: 2232971130497578917, guid: dc46db39e4e70b144915e7a0652cc396, type: 3}
   fireTimerLength: 25
   fireTimer: 0
-  PlayerShootAudio: {fileID: 0}
+  PlayerShootAudio: {fileID: 2232971130497578917, guid: dc46db39e4e70b144915e7a0652cc396, type: 3}
   playerControlled: 0
   specialFireType: 2
   darkArtSword: {fileID: 0}
   fireTimerDIV: 1
   timesFired: 0
   newAttack: 0
+--- !u!114 &999997813651883019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5685454981733204260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 370f01fd484cd784f9ca5eaa41a674d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timer: 0
+  poisonStacks: 0
+  bleedStacks: 0
+  bleedTimer: 0
+  poisonTimers: 
+  iconOrder: 

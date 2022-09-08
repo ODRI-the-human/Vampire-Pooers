@@ -20,14 +20,16 @@ public class EntityReferencerGuy : MonoBehaviour
     public GameObject enemyBullet;
     public GameObject contactMan;
     public GameObject bleedIcon;
-    public TextMeshProUGUI StatusText;
+    public GameObject poisonIcon;
     public GameObject canvas;
+    public GameObject poisonSplosm;
 
     void Update()
     {
         if (Input.GetButton("Restart"))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            EventManager.DeathEffects = null;
         }
     }
 }
