@@ -87,7 +87,10 @@ public class ItemDescriptions : MonoBehaviour
                 itemDescription = "Your attacks have a 15% (+15% per stack) chance to inflict bleed for 2 seconds. New procs refill the timer and add a new stack.";
                 break;
             case (int)ITEMLIST.POISONSPLOSM:
-                itemDescription = "Enemies explode on death, poisoning nearby enemies for 4 seconds. Size of explosion increases with stacks.";
+                itemDescription = "Enemies explode on death, poisoning nearby enemies for 2 seconds. Size of explosion increases with stacks.";
+                break;
+            case (int)ITEMLIST.ELECTRIC:
+                itemDescription = "Your bullets inflict electricity. Enemies inflicted with electricity take 20 damage when your bullets hit ANY enemy.";
                 break;
         }
     }

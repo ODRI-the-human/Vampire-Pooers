@@ -230,6 +230,16 @@ public class ItemHolder : MonoBehaviour
                     gameObject.GetComponent<ItemPOISONSPLOSM>().instances++;
                 }
                 break;
+            case (int)ITEMLIST.ELECTRIC:
+                if (gameObject.GetComponent<ItemELECTRIC>() == null)
+                {
+                    gameObject.AddComponent<ItemELECTRIC>();
+                }
+                else
+                {
+                    gameObject.GetComponent<ItemELECTRIC>().instances++;
+                }
+                break;
         }
     }
 

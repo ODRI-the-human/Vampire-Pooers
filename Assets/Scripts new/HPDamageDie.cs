@@ -16,7 +16,7 @@ public class HPDamageDie : MonoBehaviour
     public SpriteRenderer sprite;
     public Material material;
     bool playerControlled;
-    int colorChangeTimer = 0;
+    public int colorChangeTimer = 0;
     Color originalColor;
     GameObject Player;
     public GameObject XP;

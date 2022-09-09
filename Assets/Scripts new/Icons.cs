@@ -82,6 +82,23 @@ public class Icons : MonoBehaviour
                     statusPosition = index;
                 }
                 break;
+            case 2:
+                if (owner.GetComponent<Statuses>().hasElectric == 0)
+                {
+                    transform.localScale = new Vector3(0, 0, 0);
+                    texty.transform.localScale = new Vector3(0, 0, 0);
+                    SetPosition();
+                }
+                else
+                {
+                    transform.localScale = new Vector3(1, 1, 1);
+                    texty.transform.localScale = new Vector3(1, 1, 1);
+                    texty.text = "";
+                    iconOrder = owner.GetComponent<Statuses>().iconOrder;
+                    index = iconOrder.IndexOf(2);
+                    statusPosition = index;
+                }
+                break;
         }
 
         statusPosition -= 0.5f * statusTransConst * owner.GetComponent<Statuses>().iconOrder.Count;

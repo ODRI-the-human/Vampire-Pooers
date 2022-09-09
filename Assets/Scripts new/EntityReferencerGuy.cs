@@ -23,6 +23,7 @@ public class EntityReferencerGuy : MonoBehaviour
     public GameObject poisonIcon;
     public GameObject canvas;
     public GameObject poisonSplosm;
+    public GameObject electricIcon;
 
     void Update()
     {

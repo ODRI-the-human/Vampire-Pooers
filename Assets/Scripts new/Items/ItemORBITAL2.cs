@@ -19,6 +19,7 @@ public class ItemORBITAL2 : MonoBehaviour
 
     void SetStats()
     {
+        myGuy.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
         Invoke(nameof(CheckStats), 0.1f); // otherwise stuff wouldn't get calculated properly for some reason
         myGuy = Instantiate(orbSkothos2);
         myGuy.GetComponent<DealDamage>().owner = gameObject;
@@ -43,7 +44,6 @@ public class ItemORBITAL2 : MonoBehaviour
 
     void CheckStats()
     {
-        myGuy.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
         myGuy.GetComponent<ItemHolder>().GiveItems();
         myGuy.GetComponent<DealDamage>().damageBase = gameObject.GetComponent<DealDamage>().damageBase;
         myGuy.GetComponent<DealDamage>().damageMult = gameObject.GetComponent<DealDamage>().damageMult;

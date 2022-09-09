@@ -7,10 +7,13 @@ public class Statuses : MonoBehaviour
     public int timer = 0;
     GameObject poisonIcon;
     GameObject bleedIcon;
+    GameObject electricIcon;
     GameObject spawnedPoisonIcon;
     GameObject spawnedBleedIcon;
+    GameObject spawnedElectricIcon;
     public int poisonStacks;
     public int bleedStacks = 0;
+    public int hasElectric = 0;
     public int bleedTimer = 0;
     public List<int> poisonTimers = new List<int>();
     public List<int> iconOrder = new List<int>();
@@ -19,12 +22,16 @@ public class Statuses : MonoBehaviour
     {
         poisonIcon = GameObject.Find("bigFuckingMasterObject").GetComponent<EntityReferencerGuy>().poisonIcon;
         bleedIcon = GameObject.Find("bigFuckingMasterObject").GetComponent<EntityReferencerGuy>().bleedIcon;
+        electricIcon = GameObject.Find("bigFuckingMasterObject").GetComponent<EntityReferencerGuy>().electricIcon;
         spawnedPoisonIcon = Instantiate(poisonIcon);
         spawnedPoisonIcon.GetComponent<Icons>().owner = gameObject;
         spawnedPoisonIcon.GetComponent<Icons>().statusType = 1;
         spawnedBleedIcon = Instantiate(bleedIcon);
         spawnedBleedIcon.GetComponent<Icons>().owner = gameObject;
         spawnedBleedIcon.GetComponent<Icons>().statusType = 0;
+        spawnedElectricIcon = Instantiate(electricIcon);
+        spawnedElectricIcon.GetComponent<Icons>().owner = gameObject;
+        spawnedElectricIcon.GetComponent<Icons>().statusType = 2;
     }
 
     void FixedUpdate()
@@ -38,7 +45,7 @@ public class Statuses : MonoBehaviour
                 gameObject.GetComponent<HPDamageDie>().HP -= 5;
             }
 
-            if (poisonTimers[i] == 200)
+            if (poisonTimers[i] == 100)
             {
                 poisonTimers.RemoveAt(i);
                 poisonStacks--;
