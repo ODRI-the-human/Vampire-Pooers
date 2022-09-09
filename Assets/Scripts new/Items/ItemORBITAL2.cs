@@ -19,9 +19,9 @@ public class ItemORBITAL2 : MonoBehaviour
 
     void SetStats()
     {
-        myGuy.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
         Invoke(nameof(CheckStats), 0.1f); // otherwise stuff wouldn't get calculated properly for some reason
         myGuy = Instantiate(orbSkothos2);
+        myGuy.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
         myGuy.GetComponent<DealDamage>().owner = gameObject;
 
         if (gameObject.GetComponent<weaponType>() != null) // && gameObject.GetComponent<weaponType>().weaponHeld == (int)WEAPONS.DARKARTS

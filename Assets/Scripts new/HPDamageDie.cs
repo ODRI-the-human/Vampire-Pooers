@@ -20,6 +20,7 @@ public class HPDamageDie : MonoBehaviour
     Color originalColor;
     GameObject Player;
     public GameObject XP;
+    public float creepTimer = 0;
 
     GameObject poisonSplosm;
 
@@ -71,6 +72,7 @@ public class HPDamageDie : MonoBehaviour
 
         iFrames--;
         colorChangeTimer--;
+        creepTimer--;
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -107,16 +109,18 @@ public class HPDamageDie : MonoBehaviour
         {
             if (iFrames < 0)
             {
-                HP -= col.gameObject.GetComponent<DealDamage>().finalDamageStat;
-                iFrames = 4;
                 if (playerControlled == true)
                 {
+                    HP -= col.gameObject.GetComponent<DealDamage>().finalDamageStat;
                     Instantiate(PlayerHurtAudio);
+                    iFrames = 4;
                 }
-                if (playerControlled == false)
+                if (playerControlled == false && creepTimer < 0)
                 {
                     sprite.color = Color.red;
                     colorChangeTimer = 1;
+                    creepTimer = 4;
+                    HP -= col.gameObject.GetComponent<DealDamage>().finalDamageStat;
                 }
             }
         }
