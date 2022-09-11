@@ -104,6 +104,7 @@ MonoBehaviour:
   canvas: {fileID: 0}
   poisonSplosm: {fileID: 158271131209982302, guid: 5f4283f47709081418d74e8afda1b2be, type: 3}
   electricIcon: {fileID: 8308961761143311193, guid: e51f3a062e1fdd74ba4e9eee32b2c966, type: 3}
+  slowIcon: {fileID: 8308961761143311193, guid: 9056674da775b2746b4f310bf3196c88, type: 3}
 --- !u!114 &9014303847402346882
 MonoBehaviour:
   m_ObjectHideFlags: 0

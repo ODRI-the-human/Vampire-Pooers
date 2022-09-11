@@ -33,7 +33,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5685454981733204260}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.4666903, y: -2.417244, z: 0.04}
+  m_LocalPosition: {x: -3.4666903, y: -2.417244, z: 0}
   m_LocalScale: {x: 8, y: 10, z: 8}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -101,7 +101,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e5cea38d26b4311429d412c6a33a4ac2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -165,6 +165,7 @@ MonoBehaviour:
   dodgeUp: 1
   dodgeAudio: {fileID: 0}
   rb: {fileID: 5685454981733204263}
+  isSlowed: 1
 --- !u!114 &-6175816815738836715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,7 +202,9 @@ MonoBehaviour:
   iFrames: 0
   sprite: {fileID: 5685454981733204261}
   material: {fileID: 0}
+  colorChangeTimer: 0
   XP: {fileID: 6124614279667160435, guid: b448494b9362a2a429b8d6416d89f7e6, type: 3}
+  creepTimer: 0
 --- !u!114 &5006160631845979851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,6 +247,7 @@ MonoBehaviour:
   timer: 0
   poisonStacks: 0
   bleedStacks: 0
+  hasElectric: 0
   bleedTimer: 0
   poisonTimers: 
   iconOrder: 

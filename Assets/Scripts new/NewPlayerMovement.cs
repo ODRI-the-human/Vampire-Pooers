@@ -22,7 +22,7 @@ public class NewPlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
     GameObject Player;
 
-    int isSlowed = 1;
+    public int isSlowed = 1;
     int slowTimer = 0;
     int slowTimerLength = 100;
 
@@ -153,6 +153,10 @@ public class NewPlayerMovement : MonoBehaviour
                 isSlowed = 1;
                 slowTimer = slowTimerLength;
                 gameObject.GetComponent<Attack>().fireTimerLengthMLT = 2;
+                if (!gameObject.GetComponent<Statuses>().iconOrder.Contains(3))
+                {
+                    gameObject.GetComponent<Statuses>().iconOrder.Add(3);
+                }
             }
         }
     }
