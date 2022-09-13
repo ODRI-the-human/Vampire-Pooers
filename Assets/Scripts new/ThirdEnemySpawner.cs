@@ -85,7 +85,7 @@ public class ThirdEnemySpawner : MonoBehaviour
     void SpawnEnemies()
     {
         numberEnemiesSpawned = Mathf.RoundToInt(Random.Range(minSpawnMultiplier * ((spawnNumber + waveNumber * 2) * spawnScaleRate), maxSpawnMultiplier * ((spawnNumber + waveNumber * 2) * spawnScaleRate))) + 1;
-        SpawnType = Random.Range(4, 5);
+        SpawnType = Random.Range(0, 5);
         switch (SpawnType)
         {
             case 0:

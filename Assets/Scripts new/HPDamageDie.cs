@@ -22,6 +22,8 @@ public class HPDamageDie : MonoBehaviour
     public GameObject XP;
     public float creepTimer = 0;
 
+    GameObject master;
+
     GameObject poisonSplosm;
 
     // Start is called before the first frame update
@@ -38,6 +40,11 @@ public class HPDamageDie : MonoBehaviour
         {
             playerControlled = true;
         }
+    }
+
+    void Start()
+    {
+        master = GameObject.Find("bigFuckingMasterObject");
     }
 
     void Update()
@@ -98,6 +105,7 @@ public class HPDamageDie : MonoBehaviour
                     {
                         iFrames = iFramesTimer;
                     }
+                    master.GetComponent<showDamageNumbers>().showDamage(transform.position, col.gameObject.GetComponent<DealDamage>().finalDamageStat, (int)DAMAGETYPES.NORMAL);
                 }
             }
         }
@@ -114,6 +122,7 @@ public class HPDamageDie : MonoBehaviour
                     HP -= col.gameObject.GetComponent<DealDamage>().finalDamageStat;
                     Instantiate(PlayerHurtAudio);
                     iFrames = 4;
+                    master.GetComponent<showDamageNumbers>().showDamage(transform.position, col.gameObject.GetComponent<DealDamage>().finalDamageStat, (int)DAMAGETYPES.NORMAL);
                 }
                 if (playerControlled == false && creepTimer < 0)
                 {
@@ -121,6 +130,7 @@ public class HPDamageDie : MonoBehaviour
                     colorChangeTimer = 1;
                     creepTimer = 4;
                     HP -= col.gameObject.GetComponent<DealDamage>().finalDamageStat;
+                    master.GetComponent<showDamageNumbers>().showDamage(transform.position, col.gameObject.GetComponent<DealDamage>().finalDamageStat, (int)DAMAGETYPES.NORMAL);
                 }
             }
         }

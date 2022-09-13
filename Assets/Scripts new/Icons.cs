@@ -25,25 +25,8 @@ public class Icons : MonoBehaviour
 
     public void SetPosition()
     {
-        switch (statusType)
-        {
-            case 0:
-                index = owner.GetComponent<Statuses>().iconOrder.IndexOf(0);
-                owner.GetComponent<Statuses>().iconOrder.RemoveAt(index);
-                break;
-            case 1:
-                index = owner.GetComponent<Statuses>().iconOrder.IndexOf(1);
-                owner.GetComponent<Statuses>().iconOrder.RemoveAt(index);
-                break;
-            case 2:
-                index = owner.GetComponent<Statuses>().iconOrder.IndexOf(2);
-                owner.GetComponent<Statuses>().iconOrder.RemoveAt(index);
-                break;
-            case 3:
-                index = owner.GetComponent<Statuses>().iconOrder.IndexOf(3);
-                owner.GetComponent<Statuses>().iconOrder.RemoveAt(index);
-                break;
-        }
+        index = owner.GetComponent<Statuses>().iconOrder.IndexOf(statusType);
+        owner.GetComponent<Statuses>().iconOrder.RemoveAt(index);
     }
 
     void Update()
@@ -126,10 +109,7 @@ public class Icons : MonoBehaviour
                 break;
         }
 
-        if (iconOrder.Count > 1)
-        {
-            statusPosition -= 0.5f * (owner.GetComponent<Statuses>().iconOrder.Count - 1);
-        }
+        statusPosition -= 0.5f * (owner.GetComponent<Statuses>().iconOrder.Count - 1);
 
         transform.position = new Vector3(owner.transform.position.x + statusTransConst * statusPosition, owner.transform.position.y + 0.9f, -0.5f);
 

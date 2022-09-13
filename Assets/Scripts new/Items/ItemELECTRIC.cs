@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ItemELECTRIC : MonoBehaviour
 {
+    GameObject masterObject;
     public List<GameObject> enemiesEffected = new List<GameObject>();
     public GameObject owner;
     public int instances = 1;
@@ -18,6 +19,8 @@ public class ItemELECTRIC : MonoBehaviour
         {
             owner = gameObject.GetComponent<DealDamage>().owner;
         }
+
+        masterObject = GameObject.Find("bigFuckingMasterObject");
     }
 
     void OnCollisionEnter2D(Collision2D col) // featuring 15 million if statements
@@ -33,6 +36,7 @@ public class ItemELECTRIC : MonoBehaviour
                         Gareth.GetComponent<HPDamageDie>().HP -= 20;
                         Gareth.GetComponent<HPDamageDie>().sprite.color = Color.red;
                         Gareth.GetComponent<HPDamageDie>().colorChangeTimer = 1;
+                        masterObject.GetComponent<showDamageNumbers>().showDamage(Gareth.transform.position, 20, (int)DAMAGETYPES.ELECTRIC);
                     }
                 }
                 Debug.Log("your mum");
