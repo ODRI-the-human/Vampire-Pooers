@@ -156,8 +156,9 @@ MonoBehaviour:
   procCoeff: 0
   damageBase: 0
   damageMult: 0
-  finalDamageMult: 1
+  finalDamageMult: 0
   knockBackCoeff: 0
+  finalDamageDIV: 1
   owner: {fileID: 0}
 --- !u!114 &-6396675878852606996
 MonoBehaviour:
@@ -183,6 +184,7 @@ MonoBehaviour:
   playerControlled: 1
   specialFireType: 0
   darkArtSword: {fileID: 7955111713391121560, guid: 35c958ea85b00c144830eefba828d8c3, type: 3}
+  fireTimerDIV: 1
   timesFired: 0
   newAttack: 0
 --- !u!114 &7158769378574457366

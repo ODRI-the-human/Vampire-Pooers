@@ -15,6 +15,7 @@ public class ItemORBITAL2 : MonoBehaviour
             orbSkothos2 = GameObject.Find("bigFuckingMasterObject").GetComponent<EntityReferencerGuy>().orbSkothos2;
             SetStats();
         }
+        myGuy.GetComponent<DealDamage>().finalDamageMult = 0;
     }
 
     void SetStats()
@@ -22,7 +23,12 @@ public class ItemORBITAL2 : MonoBehaviour
         Invoke(nameof(CheckStats), 0.1f); // otherwise stuff wouldn't get calculated properly for some reason
         myGuy = Instantiate(orbSkothos2);
         myGuy.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
+        for (int i = 0; i < instances; i++)
+        {
+            myGuy.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.ORB2DMGDIV);
+        }
         myGuy.GetComponent<DealDamage>().owner = gameObject;
+        myGuy.GetComponent<ItemHolder>().GiveItems();
 
         if (gameObject.GetComponent<weaponType>() != null) // && gameObject.GetComponent<weaponType>().weaponHeld == (int)WEAPONS.DARKARTS
         {
@@ -44,7 +50,6 @@ public class ItemORBITAL2 : MonoBehaviour
 
     void CheckStats()
     {
-        myGuy.GetComponent<ItemHolder>().GiveItems();
         myGuy.GetComponent<DealDamage>().damageBase = gameObject.GetComponent<DealDamage>().damageBase;
         myGuy.GetComponent<DealDamage>().damageMult = gameObject.GetComponent<DealDamage>().damageMult;
         myGuy.GetComponent<DealDamage>().finalDamageDIV = gameObject.GetComponent<DealDamage>().finalDamageDIV;
@@ -55,7 +60,7 @@ public class ItemORBITAL2 : MonoBehaviour
         myGuy.GetComponent<Attack>().shotAngleCoeff = gameObject.GetComponent<Attack>().shotAngleCoeff;
         myGuy.GetComponent<Attack>().shotSpeed = gameObject.GetComponent<Attack>().shotSpeed;
         myGuy.GetComponent<Attack>().fireTimerLength = gameObject.GetComponent<Attack>().fireTimerLength;
-        myGuy.GetComponent<DealDamage>().finalDamageMult *= 0.25f * instances;
+        //myGuy.GetComponent<DealDamage>().finalDamageMult *= 0.25f * instances;
     }
 
     void OnTriggerEnter2D(Collider2D col)

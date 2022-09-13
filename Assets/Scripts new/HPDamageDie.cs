@@ -122,7 +122,10 @@ public class HPDamageDie : MonoBehaviour
                     HP -= col.gameObject.GetComponent<DealDamage>().finalDamageStat;
                     Instantiate(PlayerHurtAudio);
                     iFrames = 4;
-                    master.GetComponent<showDamageNumbers>().showDamage(transform.position, col.gameObject.GetComponent<DealDamage>().finalDamageStat, (int)DAMAGETYPES.NORMAL);
+                    if (gameObject.GetComponent<ItemHOLYMANTIS>() != null && gameObject.GetComponent<ItemHOLYMANTIS>().timesHit > 0)
+                    {
+                        master.GetComponent<showDamageNumbers>().showDamage(transform.position, col.gameObject.GetComponent<DealDamage>().finalDamageStat - gameObject.GetComponent<ItemHOLYMANTIS>().instances * col.gameObject.GetComponent<DealDamage>().finalDamageStat / (gameObject.GetComponent<ItemHOLYMANTIS>().instances + 1), (int)DAMAGETYPES.NORMAL);
+                    }
                 }
                 if (playerControlled == false && creepTimer < 0)
                 {

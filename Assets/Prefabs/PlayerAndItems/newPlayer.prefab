@@ -118,6 +118,7 @@ MonoBehaviour:
   dodgeUp: 1
   dodgeAudio: {fileID: 576013723491271631, guid: 8068abbc9251dc147a95e0c091540981, type: 3}
   rb: {fileID: 503381878361641300}
+  isSlowed: 1
 --- !u!114 &-4590834480761037546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,7 +132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 0
-  MaxHP: 100
+  MaxHP: 9999
   Barry63: {fileID: 6964255014020883914, guid: 526b17258aed02c4c9c574bcca2b87c3, type: 3}
   PlayerDieAudio: {fileID: 7927511119378929990, guid: 5524052d8b9da4f43a8bffc27f9db6d9, type: 3}
   PlayerHurtAudio: {fileID: 5963825423898132415, guid: e7b6397eaf92c834aaecbf3499716cb0, type: 3}
@@ -140,7 +141,9 @@ MonoBehaviour:
   iFrames: 0
   sprite: {fileID: 5905868436867884629}
   material: {fileID: 0}
+  colorChangeTimer: 0
   XP: {fileID: 6964255014020883914, guid: 526b17258aed02c4c9c574bcca2b87c3, type: 3}
+  creepTimer: 0
 --- !u!114 &1698531144881374718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -323,6 +326,7 @@ MonoBehaviour:
   timer: 0
   poisonStacks: 0
   bleedStacks: 0
+  hasElectric: 0
   bleedTimer: 0
   poisonTimers: 
   iconOrder: 

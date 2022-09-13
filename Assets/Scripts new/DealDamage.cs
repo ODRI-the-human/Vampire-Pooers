@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DealDamage : MonoBehaviour
 {
-    [HideInInspector] public float finalDamageStat;
+    public float finalDamageStat;
     public float procCoeff;
     public float damageBase;
     public float damageMult;

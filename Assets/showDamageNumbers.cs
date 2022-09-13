@@ -8,6 +8,7 @@ public class showDamageNumbers : MonoBehaviour
     public TextMeshProUGUI DamageNumber;
     public TextMeshProUGUI texty;
     public GameObject canvas;
+    public Rigidbody2D rb;
 
     void Start()
     {
@@ -18,7 +19,7 @@ public class showDamageNumbers : MonoBehaviour
     {
         texty = Instantiate(DamageNumber);
         texty.transform.SetParent(GameObject.Find("Canvas").transform);
-        texty.transform.localPosition = 108 * (pos + new Vector3(1.9f + Random.Range(-0.25f, 0.25f), Random.Range(-0.25f, 0.25f), 0));
+        texty.transform.localPosition = 108 * (pos + new Vector3(1.9f, 0, 0));
         texty.text = damage.ToString();
 
         switch (damageType)

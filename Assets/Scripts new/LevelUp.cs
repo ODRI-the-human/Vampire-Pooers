@@ -12,7 +12,6 @@ public class LevelUp : MonoBehaviour
     {
         gameObject.GetComponent<HPDamageDie>().MaxHP += 5f;
         gameObject.GetComponent<HPDamageDie>().HP += 5f;
-        gameObject.GetComponent<DealDamage>().damageBase += 5f;
         gameObject.GetComponent<Attack>().fireTimerLength -= 0.3f;
         gameObject.GetComponent<NewPlayerMovement>().moveSpeed += 0.15f;
     }

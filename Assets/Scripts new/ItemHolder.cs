@@ -30,6 +30,17 @@ public class ItemHolder : MonoBehaviour
     {
         switch (itemGained)
         {
+            case (int)ITEMLIST.ORB2DMGDIV:
+                if (gameObject.GetComponent<Orb2DivDamage>() == null)
+                {
+                    gameObject.AddComponent<Orb2DivDamage>();
+                }
+                else
+                {
+                    gameObject.GetComponent<Orb2DivDamage>().instances++;
+                }
+                break;
+                break;
             case (int)ITEMLIST.HP25:
                 gameObject.AddComponent<ItemHP25>();
                 break;
