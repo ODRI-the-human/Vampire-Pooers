@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Orb2DivDamage : MonoBehaviour
 {
-    public int instances;
+    public int instances = 1;
 
     // Start is called before the first frame update
     void Start()

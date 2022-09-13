@@ -17,15 +17,6 @@ public class ItemHolder : MonoBehaviour
         }
     }
 
-    public void GiveItems() // gives bullet effect items to familiars.
-    {
-        foreach (int item in itemsHeld)
-        {
-            itemGained = item;
-            ApplyItems();
-        }
-    }
-
     void ApplyItems()
     {
         switch (itemGained)

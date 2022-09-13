@@ -105,7 +105,15 @@ public class HPDamageDie : MonoBehaviour
                     {
                         iFrames = iFramesTimer;
                     }
-                    master.GetComponent<showDamageNumbers>().showDamage(transform.position, col.gameObject.GetComponent<DealDamage>().finalDamageStat, (int)DAMAGETYPES.NORMAL);
+
+                    if (gameObject.GetComponent<ItemHOLYMANTIS>() != null && gameObject.GetComponent<ItemHOLYMANTIS>().timesHit > 0)
+                    {
+                        master.GetComponent<showDamageNumbers>().showDamage(transform.position, col.gameObject.GetComponent<DealDamage>().finalDamageStat - gameObject.GetComponent<ItemHOLYMANTIS>().instances * col.gameObject.GetComponent<DealDamage>().finalDamageStat / (gameObject.GetComponent<ItemHOLYMANTIS>().instances + 1), (int)DAMAGETYPES.NORMAL);
+                    }
+                    else
+                    {
+                        master.GetComponent<showDamageNumbers>().showDamage(transform.position, col.gameObject.GetComponent<DealDamage>().finalDamageStat, (int)DAMAGETYPES.NORMAL);
+                    }
                 }
             }
         }
@@ -117,15 +125,14 @@ public class HPDamageDie : MonoBehaviour
         {
             if (iFrames < 0)
             {
+                master.GetComponent<showDamageNumbers>().showDamage(transform.position, col.gameObject.GetComponent<DealDamage>().finalDamageStat, (int)DAMAGETYPES.NORMAL);
+
                 if (playerControlled == true)
                 {
                     HP -= col.gameObject.GetComponent<DealDamage>().finalDamageStat;
                     Instantiate(PlayerHurtAudio);
                     iFrames = 4;
-                    if (gameObject.GetComponent<ItemHOLYMANTIS>() != null && gameObject.GetComponent<ItemHOLYMANTIS>().timesHit > 0)
-                    {
-                        master.GetComponent<showDamageNumbers>().showDamage(transform.position, col.gameObject.GetComponent<DealDamage>().finalDamageStat - gameObject.GetComponent<ItemHOLYMANTIS>().instances * col.gameObject.GetComponent<DealDamage>().finalDamageStat / (gameObject.GetComponent<ItemHOLYMANTIS>().instances + 1), (int)DAMAGETYPES.NORMAL);
-                    }
+                    
                 }
                 if (playerControlled == false && creepTimer < 0)
                 {
@@ -133,7 +140,6 @@ public class HPDamageDie : MonoBehaviour
                     colorChangeTimer = 1;
                     creepTimer = 4;
                     HP -= col.gameObject.GetComponent<DealDamage>().finalDamageStat;
-                    master.GetComponent<showDamageNumbers>().showDamage(transform.position, col.gameObject.GetComponent<DealDamage>().finalDamageStat, (int)DAMAGETYPES.NORMAL);
                 }
             }
         }

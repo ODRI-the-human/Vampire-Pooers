@@ -15,20 +15,19 @@ public class ItemORBITAL2 : MonoBehaviour
             orbSkothos2 = GameObject.Find("bigFuckingMasterObject").GetComponent<EntityReferencerGuy>().orbSkothos2;
             SetStats();
         }
-        myGuy.GetComponent<DealDamage>().finalDamageMult = 0;
     }
 
     void SetStats()
     {
         Invoke(nameof(CheckStats), 0.1f); // otherwise stuff wouldn't get calculated properly for some reason
         myGuy = Instantiate(orbSkothos2);
+        myGuy.GetComponent<DealDamage>().finalDamageMult = 0;
         myGuy.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
         for (int i = 0; i < instances; i++)
         {
             myGuy.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.ORB2DMGDIV);
         }
         myGuy.GetComponent<DealDamage>().owner = gameObject;
-        myGuy.GetComponent<ItemHolder>().GiveItems();
 
         if (gameObject.GetComponent<weaponType>() != null) // && gameObject.GetComponent<weaponType>().weaponHeld == (int)WEAPONS.DARKARTS
         {
