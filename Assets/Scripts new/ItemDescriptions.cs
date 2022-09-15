@@ -90,7 +90,7 @@ public class ItemDescriptions : MonoBehaviour
                 itemDescription = "Enemies explode on death, poisoning nearby enemies for 2 seconds. Size of explosion increases with stacks.";
                 break;
             case (int)ITEMLIST.ELECTRIC:
-                itemDescription = "Your bullets inflict electricity. Enemies inflicted with electricity take 20 damage when your bullets hit ANY enemy.";
+                itemDescription = "Your bullets inflict electricity. Enemies inflicted with electricity take 10 damage (+10 per stack) when your bullets hit any other enemy.";
                 break;
         }
     }

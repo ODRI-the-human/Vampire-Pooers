@@ -118,6 +118,7 @@ public class Attack : MonoBehaviour
         newObject.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
         newObject.GetComponent<weaponType>().weaponHeld = newObject.GetComponent<weaponType>().weaponHeld;
         newObject.GetComponent<DealDamage>().owner = gameObject;
+        newObject.GetComponent<DealDamage>().finalDamageMult *= gameObject.GetComponent<DealDamage>().finalDamageMult;
     }
 
     void SpawnDarkart()

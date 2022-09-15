@@ -31,12 +31,12 @@ public class ItemELECTRIC : MonoBehaviour
             {
                 foreach (GameObject Gareth in owner.GetComponent<ItemELECTRIC>().enemiesEffected)
                 {
-                    if (Gareth != null)
+                    if (Gareth != null && Gareth != col.gameObject)
                     {
-                        Gareth.GetComponent<HPDamageDie>().HP -= 20;
+                        Gareth.GetComponent<HPDamageDie>().HP -= 10 * instances;
                         Gareth.GetComponent<HPDamageDie>().sprite.color = Color.red;
                         Gareth.GetComponent<HPDamageDie>().colorChangeTimer = 1;
-                        masterObject.GetComponent<showDamageNumbers>().showDamage(Gareth.transform.position, 20, (int)DAMAGETYPES.ELECTRIC);
+                        masterObject.GetComponent<showDamageNumbers>().showDamage(Gareth.transform.position, 10 * instances, (int)DAMAGETYPES.ELECTRIC);
                     }
                 }
                 Debug.Log("your mum");

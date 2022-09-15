@@ -23,10 +23,6 @@ public class ItemORBITAL2 : MonoBehaviour
         myGuy = Instantiate(orbSkothos2);
         myGuy.GetComponent<DealDamage>().finalDamageMult = 0;
         myGuy.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
-        for (int i = 0; i < instances; i++)
-        {
-            myGuy.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.ORB2DMGDIV);
-        }
         myGuy.GetComponent<DealDamage>().owner = gameObject;
 
         if (gameObject.GetComponent<weaponType>() != null) // && gameObject.GetComponent<weaponType>().weaponHeld == (int)WEAPONS.DARKARTS
@@ -59,7 +55,11 @@ public class ItemORBITAL2 : MonoBehaviour
         myGuy.GetComponent<Attack>().shotAngleCoeff = gameObject.GetComponent<Attack>().shotAngleCoeff;
         myGuy.GetComponent<Attack>().shotSpeed = gameObject.GetComponent<Attack>().shotSpeed;
         myGuy.GetComponent<Attack>().fireTimerLength = gameObject.GetComponent<Attack>().fireTimerLength;
-        //myGuy.GetComponent<DealDamage>().finalDamageMult *= 0.25f * instances;
+        //for (int i = 0; i < instances; i++)
+        //{
+        //    myGuy.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.ORB2DMGDIV);
+        //}
+        myGuy.GetComponent<DealDamage>().finalDamageMult = 0.25f * instances;
     }
 
     void OnTriggerEnter2D(Collider2D col)
