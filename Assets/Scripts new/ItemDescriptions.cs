@@ -63,7 +63,7 @@ public class ItemDescriptions : MonoBehaviour
                 itemDescription = "Your bullets pierce +1 enemies per stack.";
                 break;
             case (int)ITEMLIST.CREEP:
-                itemDescription = "Leave damaging on the ground as you move. Size of creep increases with stacks, and damage scales with your damage.";
+                itemDescription = "Leave creep on the ground that deals 5% of your damage per tick. Size of creep increases with stacks.";
                 break;
             case (int)ITEMLIST.DODGESPLOSION:
                 itemDescription = "At the end of your dodge, deal 50 damage and knock back enemies in a certain radius (radius increases with stacks).";

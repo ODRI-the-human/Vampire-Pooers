@@ -13,6 +13,8 @@ public class DealDamage : MonoBehaviour
     public float finalDamageDIV = 1;
     public GameObject owner;
 
+    public bool overwriteDamageCalc;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,11 +22,17 @@ public class DealDamage : MonoBehaviour
         {
             owner = gameObject;
         }
-        finalDamageStat = damageBase * damageMult * finalDamageMult / finalDamageDIV;
+        if (!overwriteDamageCalc)
+        {
+            finalDamageStat = damageBase * damageMult * finalDamageMult / finalDamageDIV;
+        }
     }
 
     void Update()
     {
-        finalDamageStat = damageBase * damageMult * finalDamageMult / finalDamageDIV;
+        if (!overwriteDamageCalc)
+        {
+            finalDamageStat = damageBase * damageMult * finalDamageMult / finalDamageDIV;
+        }
     }
 }

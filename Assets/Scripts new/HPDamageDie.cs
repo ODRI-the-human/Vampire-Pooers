@@ -123,7 +123,7 @@ public class HPDamageDie : MonoBehaviour
     {
         if ((col.gameObject.tag == "enemyBullet" && gameObject.tag == "Player") || (col.gameObject.tag == "PlayerBullet" && gameObject.tag == "Hostile")) // otherwise xp drops would probably deal damage
         {
-            if (iFrames < 0)
+            if (iFrames < 0 && creepTimer < 0)
             {
                 master.GetComponent<showDamageNumbers>().showDamage(transform.position, col.gameObject.GetComponent<DealDamage>().finalDamageStat, (int)DAMAGETYPES.NORMAL);
 
@@ -134,7 +134,7 @@ public class HPDamageDie : MonoBehaviour
                     iFrames = 4;
                     
                 }
-                if (playerControlled == false && creepTimer < 0)
+                if (playerControlled == false)
                 {
                     sprite.color = Color.red;
                     colorChangeTimer = 1;
