@@ -6,6 +6,7 @@ public class ItemSPLIT : MonoBehaviour
 {
     Vector2 ShotVector;
     Rigidbody2D bulletRB;
+    GameObject owner;
     float speed;
     public bool canSplit = true;
     public int instances = 1;
@@ -40,7 +41,9 @@ public class ItemSPLIT : MonoBehaviour
                 Splitman1.transform.localScale = 0.5f * gameObject.transform.localScale;
                 Splitman1.GetComponent<DealDamage>().finalDamageMult *= 0.3f * gameObject.GetComponent<DealDamage>().finalDamageMult * instances;
                 Splitman1.GetComponent<DealDamage>().knockBackCoeff = 0.5f * gameObject.GetComponent<DealDamage>().knockBackCoeff;
-                Splitman1.GetComponent<DealDamage>().owner = gameObject.GetComponent<DealDamage>().owner;
+                owner = gameObject.GetComponent<DealDamage>().owner;
+                Splitman1.GetComponent<DealDamage>().owner = owner;
+                Splitman1.GetComponent<DealDamage>().damageBase += owner.GetComponent<Attack>().Crongus;
                 Splitman1.AddComponent<ItemSPLIT>();
                 Splitman1.GetComponent<ItemSPLIT>().canSplit = false;
                 Splitman1.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
@@ -50,7 +53,9 @@ public class ItemSPLIT : MonoBehaviour
                 Splitman2.transform.localScale = 0.5f * gameObject.transform.localScale;
                 Splitman2.GetComponent<DealDamage>().finalDamageMult *= 0.3f * gameObject.GetComponent<DealDamage>().finalDamageMult * instances;
                 Splitman2.GetComponent<DealDamage>().knockBackCoeff = 0.5f * gameObject.GetComponent<DealDamage>().knockBackCoeff;
-                Splitman2.GetComponent<DealDamage>().owner = gameObject.GetComponent<DealDamage>().owner;
+                owner = gameObject.GetComponent<DealDamage>().owner;
+                Splitman2.GetComponent<DealDamage>().owner = owner;
+                Splitman2.GetComponent<DealDamage>().damageBase += owner.GetComponent<Attack>().Crongus;
                 Splitman2.AddComponent<ItemSPLIT>();
                 Splitman2.GetComponent<ItemSPLIT>().canSplit = false;
                 Splitman2.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;

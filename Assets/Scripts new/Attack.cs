@@ -26,6 +26,8 @@ public class Attack : MonoBehaviour
     public int timesFired;
     public int newAttack; // alternates between 0 and 1 when the player fires. Used for certain items.
 
+    public float Crongus = 0; // records total converter damage bonus.
+
     Vector3 mouseVector;
     Vector3 vectorMan;
     float fuckAngle;
@@ -119,6 +121,7 @@ public class Attack : MonoBehaviour
         newObject.GetComponent<weaponType>().weaponHeld = newObject.GetComponent<weaponType>().weaponHeld;
         newObject.GetComponent<DealDamage>().owner = gameObject;
         newObject.GetComponent<DealDamage>().finalDamageMult *= gameObject.GetComponent<DealDamage>().finalDamageMult;
+        newObject.GetComponent<DealDamage>().damageBase += Crongus; // applies converter damage bonus to bullets
     }
 
     void SpawnDarkart()

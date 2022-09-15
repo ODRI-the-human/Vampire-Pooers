@@ -11,6 +11,7 @@ public class ItemCONVERTER : MonoBehaviour
     {
         if (col.tag == "item")
         {
+            gameObject.GetComponent<Attack>().Crongus += 10 * instances * ((gameObject.GetComponent<HPDamageDie>().MaxHP - gameObject.GetComponent<HPDamageDie>().HP)/ gameObject.GetComponent<HPDamageDie>().MaxHP);
             gameObject.GetComponent<DealDamage>().damageBase += 10 * instances * ((gameObject.GetComponent<HPDamageDie>().MaxHP - gameObject.GetComponent<HPDamageDie>().HP)/ gameObject.GetComponent<HPDamageDie>().MaxHP);
         }
     }

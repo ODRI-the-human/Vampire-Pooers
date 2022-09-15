@@ -10,6 +10,7 @@ public class OrbitalMovement2 : MonoBehaviour
     void Start()
     {
         Player = gameObject.GetComponent<DealDamage>().owner;
+        gameObject.GetComponent<Attack>().Crongus = Player.GetComponent<Attack>().Crongus;
     }
 
     void FixedUpdate()
