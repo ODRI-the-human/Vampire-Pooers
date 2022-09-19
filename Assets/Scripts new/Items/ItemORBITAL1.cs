@@ -5,26 +5,53 @@ using UnityEngine;
 public class ItemORBITAL1 : MonoBehaviour
 {
     GameObject orbSkothos;
+    public int instances = 1;
 
     void Start()
     {
+        SpawnGaries();
+    }
+
+    void SpawnGaries()
+    {
         if (gameObject.tag == "Player" || gameObject.tag == "Hostile")
         {
-            orbSkothos = GameObject.Find("bigFuckingMasterObject").GetComponent<EntityReferencerGuy>().orbSkothos;
-            GameObject newObject = Instantiate(orbSkothos);
-            newObject.GetComponent<DealDamage>().procCoeff = 0;
-            newObject.GetComponent<DealDamage>().damageBase = 10;
-            newObject.GetComponent<DealDamage>().damageMult = 1f;
-            newObject.GetComponent<DealDamage>().knockBackCoeff = 0;
-            newObject.GetComponent<DealDamage>().owner = gameObject;
-            if (gameObject.tag == "Player")
+            for (int i = 0; i < instances; i++)
             {
-                newObject.tag = "PlayerBullet";
+                orbSkothos = GameObject.Find("bigFuckingMasterObject").GetComponent<EntityReferencerGuy>().orbSkothos;
+                GameObject newObject = Instantiate(orbSkothos);
+                newObject.GetComponent<DealDamage>().procCoeff = 0;
+                newObject.GetComponent<DealDamage>().damageBase = 10;
+                newObject.GetComponent<DealDamage>().damageMult = 1f;
+                newObject.GetComponent<DealDamage>().knockBackCoeff = 0;
+                newObject.GetComponent<DealDamage>().owner = gameObject;
+                newObject.GetComponent<OrbitalMovement>().timerDelay = i * (2 * Mathf.PI / 0.0175f) / instances;
+                if (gameObject.tag == "Player")
+                {
+                    newObject.tag = "PlayerBullet";
+                }
+                else
+                {
+                    newObject.tag = "enemyBullet";
+                }
             }
-            else
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.tag == "item")
+        {
+            GameObject[] orboes = GameObject.FindGameObjectsWithTag("PlayerBullet");
+            foreach (GameObject friend in orboes)
             {
-                newObject.tag = "enemyBullet";
+                if (friend.GetComponent<OrbitalMovement>() != null)
+                {
+                    Destroy(friend);
+                }
             }
+
+            SpawnGaries();
         }
     }
 }

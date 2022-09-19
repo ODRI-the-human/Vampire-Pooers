@@ -17,6 +17,8 @@ public class moleShit : MonoBehaviour
     public bool taken;
     public GameObject hitbox;
 
+    //public GameObject martin;
+
     Vector3 vectorMan;
     float fuckAngle;
 
@@ -131,7 +133,7 @@ public class moleShit : MonoBehaviour
             {
                 transform.position = new Vector3(Random.Range(-8.5f, 8.5f), Random.Range(-4.5f, 4.5f), -2);
             }
-            transform.localScale = new Vector3(3,3,1);
+            transform.localScale = new Vector3(3, 3, 1);
             pos = transform.position;
             nearestFriend = null;
         }
@@ -149,7 +151,7 @@ public class moleShit : MonoBehaviour
             transform.localScale = new Vector3(0, 0, 0);
             transform.position = new Vector3(9999, 9999, 9999);
             mates.Clear();
-            line.SetPosition(0, new Vector3(0,0,0));
+            line.SetPosition(0, new Vector3(0, 0, 0));
             line.SetPosition(1, new Vector3(0, 0, 0));
             taken = false;
             hasGone = false;
@@ -188,42 +190,17 @@ public class moleShit : MonoBehaviour
             }
         }
 
-        gameObject.GetComponent<Rigidbody2D>().velocity = new Vector3(0,0,0);
+        gameObject.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
         timer++;
+
+        if (gameObject.GetComponent<HPDamageDie>().HP <= 0)
+        {
+            Destroy(hitbox);
+        }
     }
 
     public void DestroyHitbox()
     {
         Destroy(hitbox);
-    }
-
-    void OnCollisionEnter2D(Collision2D col)
-    {
-        if (goesFirst)
-        {
-            GameObject Martin = mates[0];
-            Martin.GetComponent<moleShit>().goesFirst = true;
-            goesFirst = false;
-        }
-
-        if (gameObject.GetComponent<HPDamageDie>().HP <= 0)
-        {
-            Destroy(hitbox);
-        }
-    }
-
-    void OnTriggerStay2D(Collider2D col)
-    {
-        if (goesFirst)
-        {
-            GameObject Martin = mates[0];
-            Martin.GetComponent<moleShit>().goesFirst = true;
-            goesFirst = false;
-        }
-
-        if (gameObject.GetComponent<HPDamageDie>().HP <= 0)
-        {
-            Destroy(hitbox);
-        }
     }
 }

@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1536
     height: 772.8
   m_ShowMode: 4
-  m_Title: Project
+  m_Title: Scene
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 350}
   m_MaxSize: {x: 10000, y: 10000}
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 9432
+  controlID: 35482
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -171,7 +171,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 9433
+  controlID: 35483
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -212,7 +212,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ProjectBrowser
+  m_Name: ConsoleWindow
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -221,14 +221,14 @@ MonoBehaviour:
     y: 406.4
     width: 930.4
     height: 316.4
-  m_MinSize: {x: 232, y: 271}
-  m_MaxSize: {x: 10002, y: 10021}
-  m_ActualView: {fileID: 17}
+  m_MinSize: {x: 101, y: 121}
+  m_MaxSize: {x: 4001, y: 4021}
+  m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 17}
   - {fileID: 18}
-  m_Selected: 0
-  m_LastSelected: 1
+  m_Selected: 1
+  m_LastSelected: 0
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -378,9 +378,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 1a5c0000
-      m_LastClickedID: 23578
-      m_ExpandedIDs: 7cb0ffff76b4ffff8cb9ffff50bcffff30beffff42c0ffff58c2ffffe6c3ffff32c8ffff2ccaffff98d0ffff8cd7ffff1eefffff38fbffff
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: 060af7ffbc0af7ff120df7ff4c8ffbff5606fcff067efcff5681fcff8287fcff4cd2fcff84edfcffc223fdff2e29fdffb665fdffecbdfdff2ecbfdffe6f8feff60b8ffff50bbfffffebfffffecdfffff5cefffff92f2ffff38fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -437,8 +437,8 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 1
-      snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: -100, y: -25.600006}
+      snapOffset: {x: -101, y: -26}
+      snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 3
       id: Tool Settings
       index: 0
@@ -629,9 +629,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 0.8254495, y: -1.1989174, z: 1.0546811}
+    m_Target: {x: -0.6050903, y: 0.62699604, z: -0.7730691}
     speed: 2
-    m_Value: {x: 0.8254495, y: -1.1989174, z: 1.0546811}
+    m_Value: {x: -0.6050903, y: 0.62699604, z: -0.7730691}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -682,9 +682,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 4.540515
+    m_Target: 3.8296301
     speed: 2
-    m_Value: 4.540515
+    m_Value: 3.8296301
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -739,7 +739,7 @@ MonoBehaviour:
     m_SaveData: []
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 40896
+  m_LastSelectedObjectID: -1226
 --- !u!114 &15
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1783,22 +1783,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs/PlayerAndItems
+    - Assets/Prefabs/NewEnemies/Special/moleMan
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Prefabs/PlayerAndItems
+  - Assets/Prefabs/NewEnemies/Special/moleMan
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\orang\Vampire-Pooers
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 48.600006}
-    m_SelectedIDs: 6c620000
-    m_LastClickedID: 25196
-    m_ExpandedIDs: 00000000506200005262000054620000566200005862000000ca9a3b
+    m_SelectedIDs: 06630000
+    m_LastClickedID: 25350
+    m_ExpandedIDs: 00000000306200003262000034620000366200003862000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1826,7 +1826,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000506200005262000054620000566200005862000000ca9a3b
+    m_ExpandedIDs: 00000000306200003262000034620000366200003862000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

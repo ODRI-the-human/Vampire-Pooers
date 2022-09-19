@@ -5,13 +5,12 @@ using UnityEngine;
 public class OrbitalMovement : MonoBehaviour
 {
     int timer = 0;
-    float timerVariance;
+    public float timerDelay;
     GameObject Player;
 
     void Start()
     {
         Player = gameObject.GetComponent<DealDamage>().owner;
-        timerVariance = Random.Range(0.6f, 1.4f);
     }
 
     void FixedUpdate()
@@ -21,7 +20,7 @@ public class OrbitalMovement : MonoBehaviour
             Destroy(gameObject);
         }
 
-        transform.position = new Vector3(Player.transform.position.x + 2.3f * Mathf.Sin(0.035f * timer * timerVariance), Player.transform.position.y + 2.3f * Mathf.Cos(0.035f * timer * timerVariance), Player.transform.position.z);
+        transform.position = new Vector3(Player.transform.position.x + 2.3f * Mathf.Sin(0.0175f * (timer + timerDelay)), Player.transform.position.y + 2.3f * Mathf.Cos(0.0175f * (timer + timerDelay)), Player.transform.position.z);
         timer++;
     }
 }

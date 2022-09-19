@@ -51,6 +51,14 @@ public class HPDamageDie : MonoBehaviour
     {
         if (HP <= 0)
         {
+            if (gameObject.GetComponent<moleShit>() != null)
+            {
+                if (gameObject.GetComponent<moleShit>().goesFirst && gameObject.GetComponent<moleShit>().mates.Count != 0)
+                {
+                    GameObject Martin = gameObject.GetComponent<moleShit>().mates[0];
+                    Martin.GetComponent<moleShit>().goesFirst = true;
+                }
+            }
             Instantiate(XP, transform.position, transform.rotation);
             Instantiate(PlayerDieAudio);
             Destroy(gameObject);
