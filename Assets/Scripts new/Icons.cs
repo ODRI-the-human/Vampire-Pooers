@@ -14,7 +14,7 @@ public class Icons : MonoBehaviour
     public float statusPosition;
     float statusTransConst = 0.7f;
     List<int> iconOrder = new List<int>();
-    int index;
+    int index = -1;
 
     void Start()
     {

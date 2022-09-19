@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: -3140555855678869810}
   - component: {fileID: 377186745490795382}
   - component: {fileID: -1289743136397402161}
+  - component: {fileID: -3511613664879309784}
   m_Layer: 6
   m_Name: mole guy
   m_TagString: Hostile
@@ -142,7 +143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 0
-  MaxHP: 150
+  MaxHP: 100
   Barry63: {fileID: 2232971130497578917, guid: dc46db39e4e70b144915e7a0652cc396, type: 3}
   PlayerDieAudio: {fileID: 1098745368026675434, guid: 26556f7af7586304588a534b37c199bc, type: 3}
   PlayerHurtAudio: {fileID: 5472873928898165319, guid: 1edb877ad01c07344b1cad0d27b62330, type: 3}
@@ -232,8 +233,12 @@ MonoBehaviour:
   timer: 0
   mates: []
   nearestFriend: {fileID: 0}
+  moleProj: {fileID: 4255455733749829593, guid: cf19c059f79a3d849a13a427f9df4dcf, type: 3}
   line: {fileID: -1289743136397402161}
+  goesFirst: 0
+  hasGone: 0
   taken: 0
+  hitbox: {fileID: 0}
 --- !u!120 &-1289743136397402161
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -333,3 +338,22 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!114 &-3511613664879309784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8034279136360660190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 370f01fd484cd784f9ca5eaa41a674d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timer: 0
+  poisonStacks: 0
+  bleedStacks: 0
+  hasElectric: 0
+  bleedTimer: 0
+  poisonTimers: 
+  iconOrder: 

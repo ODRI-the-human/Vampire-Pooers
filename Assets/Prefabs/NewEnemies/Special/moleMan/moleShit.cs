@@ -9,13 +9,19 @@ public class moleShit : MonoBehaviour
     GameObject player;
     public List<GameObject> mates = new List<GameObject>();
     public GameObject nearestFriend;
+    public GameObject moleProj;
     public LineRenderer line;
 
     public bool goesFirst = false;
     public bool hasGone = false;
     public bool taken;
+    public GameObject hitbox;
+
+    Vector3 vectorMan;
+    float fuckAngle;
 
     Vector3 pos; //to prevent knockback from moving the enemies around.
+    Vector3 hitboxPos;
 
     void Start()
     {
@@ -80,6 +86,31 @@ public class moleShit : MonoBehaviour
         {
             line.SetPosition(0, transform.position);
             line.SetPosition(1, nearestFriend.transform.position);
+            hitbox = Instantiate(moleProj, transform.position + 0.5f * (nearestFriend.transform.position - transform.position), transform.rotation);
+            hitbox.GetComponent<CapsuleCollider2D>().size = new Vector2(0.2f, (nearestFriend.transform.position - transform.position).magnitude);
+
+            vectorMan = nearestFriend.transform.position - transform.position;
+
+            if (vectorMan.y > 0 && vectorMan.x > 0)
+            {
+                fuckAngle = (180 / Mathf.PI) * Mathf.Atan(vectorMan.y / vectorMan.x);
+            }
+            if (vectorMan.y > 0 && vectorMan.x < 0)
+            {
+                fuckAngle = 180 + (180 / Mathf.PI) * Mathf.Atan(vectorMan.y / vectorMan.x);
+            }
+            if (vectorMan.y < 0 && vectorMan.x < 0)
+            {
+                fuckAngle = (180 / Mathf.PI) * Mathf.Atan(vectorMan.y / vectorMan.x) + 180;
+            }
+            if (vectorMan.y < 0 && vectorMan.x > 0)
+            {
+                fuckAngle = 90 + (180 / Mathf.PI) * Mathf.Atan(vectorMan.y / vectorMan.x) + 270;
+            }
+            hitbox.transform.Rotate(0, 0, fuckAngle + 90, Space.World);
+            hitboxPos = hitbox.transform.position;
+            hitbox.GetComponent<DealDamage>().owner = gameObject;
+            //(nearestFriend.transform.position - transform.position)
         }
     }
 
@@ -87,6 +118,11 @@ public class moleShit : MonoBehaviour
     void FixedUpdate()
     {
         transform.position = pos;
+
+        if (hitbox != null)
+        {
+            hitbox.transform.position = hitboxPos;
+        }
 
         if (timer % 200 == 0)
         {
@@ -119,6 +155,7 @@ public class moleShit : MonoBehaviour
             hasGone = false;
             nearestFriend = null;
             pos = transform.position;
+            Destroy(hitbox);
         }
 
         if (nearestFriend == null && hasGone)
@@ -131,6 +168,7 @@ public class moleShit : MonoBehaviour
             {
                 if (friend.GetComponent<moleShit>() != null)
                 {
+                    friend.GetComponent<moleShit>().DestroyHitbox();
                     friend.GetComponent<moleShit>().line.SetPosition(0, new Vector3(0, 0, 0));
                     friend.GetComponent<moleShit>().line.SetPosition(1, new Vector3(0, 0, 0));
                     friend.GetComponent<moleShit>().hasGone = false;
@@ -154,6 +192,11 @@ public class moleShit : MonoBehaviour
         timer++;
     }
 
+    public void DestroyHitbox()
+    {
+        Destroy(hitbox);
+    }
+
     void OnCollisionEnter2D(Collision2D col)
     {
         if (goesFirst)
@@ -161,6 +204,11 @@ public class moleShit : MonoBehaviour
             GameObject Martin = mates[0];
             Martin.GetComponent<moleShit>().goesFirst = true;
             goesFirst = false;
+        }
+
+        if (gameObject.GetComponent<HPDamageDie>().HP <= 0)
+        {
+            Destroy(hitbox);
         }
     }
 
@@ -171,6 +219,11 @@ public class moleShit : MonoBehaviour
             GameObject Martin = mates[0];
             Martin.GetComponent<moleShit>().goesFirst = true;
             goesFirst = false;
+        }
+
+        if (gameObject.GetComponent<HPDamageDie>().HP <= 0)
+        {
+            Destroy(hitbox);
         }
     }
 }

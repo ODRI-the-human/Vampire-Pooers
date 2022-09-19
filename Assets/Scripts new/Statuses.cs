@@ -28,9 +28,12 @@ public class Statuses : MonoBehaviour
         bleedIcon = master.GetComponent<EntityReferencerGuy>().bleedIcon;
         electricIcon = master.GetComponent<EntityReferencerGuy>().electricIcon;
         slowIcon = master.GetComponent<EntityReferencerGuy>().slowIcon;
-        spawnedSlowIcon = Instantiate(slowIcon);
-        spawnedSlowIcon.GetComponent<Icons>().owner = gameObject;
-        spawnedSlowIcon.GetComponent<Icons>().statusType = 3;
+        if (gameObject.GetComponent<NewPlayerMovement>() != null)
+        {
+            spawnedSlowIcon = Instantiate(slowIcon);
+            spawnedSlowIcon.GetComponent<Icons>().owner = gameObject;
+            spawnedSlowIcon.GetComponent<Icons>().statusType = 3;
+        }
         spawnedPoisonIcon = Instantiate(poisonIcon);
         spawnedPoisonIcon.GetComponent<Icons>().owner = gameObject;
         spawnedPoisonIcon.GetComponent<Icons>().statusType = 1;

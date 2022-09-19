@@ -200,7 +200,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7002239379606652683, guid: 2c1e033fc431a694499cc08ddf9a90b1, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7002239379606652683, guid: 2c1e033fc431a694499cc08ddf9a90b1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -260,7 +260,7 @@ PrefabInstance:
       objectReference: {fileID: 582166535}
     - target: {fileID: 9014303847402346882, guid: 2c1e033fc431a694499cc08ddf9a90b1, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9014303847402346882, guid: 2c1e033fc431a694499cc08ddf9a90b1, type: 3}
       propertyPath: spawnTimerLength
@@ -268,63 +268,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c1e033fc431a694499cc08ddf9a90b1, type: 3}
---- !u!1001 &204496741
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -6.380174
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.04590881
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660190, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_Name
-      value: mole guy (6)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
 --- !u!1 &338230802
 GameObject:
   m_ObjectHideFlags: 0
@@ -425,70 +368,13 @@ RectTransform:
   - {fileID: 582166534}
   - {fileID: 417710272}
   m_Father: {fileID: 0}
-  m_RootOrder: 23
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1001 &370273901
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 4.4176073
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -3.3683267
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660190, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_Name
-      value: mole guy (2)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
 --- !u!1 &417710271
 GameObject:
   m_ObjectHideFlags: 0
@@ -815,7 +701,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &582166533
 GameObject:
@@ -952,125 +838,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 582166533}
   m_CullTransparentMesh: 1
---- !u!1001 &626291271
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.28764176
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -3.313759
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660190, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_Name
-      value: mole guy (9)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
 --- !u!1 &658927873 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 503381878361641298, guid: ba6f41e52d5717a46a24d1f2e5a4cf75, type: 3}
   m_PrefabInstance: {fileID: 806495608}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &681514613
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -4.9017186
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -3.038439
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660190, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_Name
-      value: mole guy (1)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
 --- !u!1001 &700381516
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1080,7 +852,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: d507ede6df5214647a69f67c1379f580, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d507ede6df5214647a69f67c1379f580, type: 3}
       propertyPath: m_LocalScale.x
@@ -1213,122 +985,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 27
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &730974975
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -2.6193516
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -2.411162
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660190, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_Name
-      value: mole guy (10)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
---- !u!1001 &798166242
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -5.039171
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.404707
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660190, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_Name
-      value: mole guy
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
 --- !u!1001 &806495608
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1350,7 +1008,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 503381878361641303, guid: ba6f41e52d5717a46a24d1f2e5a4cf75, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 503381878361641303, guid: ba6f41e52d5717a46a24d1f2e5a4cf75, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1549,63 +1207,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 918859757}
   m_CullTransparentMesh: 1
---- !u!1001 &1072039907
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -7.3078437
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -2.4863782
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660190, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_Name
-      value: mole guy (8)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
 --- !u!1 &1272579164
 GameObject:
   m_ObjectHideFlags: 0
@@ -1741,120 +1342,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1272579164}
   m_CullTransparentMesh: 1
---- !u!1001 &1273442492
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1.4674087
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.8539894
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660190, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_Name
-      value: mole guy (4)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
---- !u!1001 &1308011569
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -2.644424
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -3.1633263
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660190, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_Name
-      value: mole guy (7)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
 --- !u!1 &1377162256
 GameObject:
   m_ObjectHideFlags: 0
@@ -2125,63 +1612,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1400426600}
   m_CullTransparentMesh: 1
---- !u!1001 &1400798360
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 3.6486855
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.88176066
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660190, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_Name
-      value: mole guy (11)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
 --- !u!1 &1415378734
 GameObject:
   m_ObjectHideFlags: 0
@@ -2248,65 +1678,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 24
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1516775299
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.9144455
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.5280514
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660190, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_Name
-      value: mole guy (13)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
 --- !u!1 &1539693648
 GameObject:
   m_ObjectHideFlags: 0
@@ -2404,122 +1777,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1546170379
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 2.3198617
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -2.0350795
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660190, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_Name
-      value: mole guy (12)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
---- !u!1001 &1559812626
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -3.3213718
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.8009591
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660190, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_Name
-      value: mole guy (5)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
 --- !u!1 &1566734864
 GameObject:
   m_ObjectHideFlags: 0
@@ -2576,7 +1835,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 25
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1687258581
 GameObject:
@@ -2675,7 +1934,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1687258586
 MonoBehaviour:
@@ -2848,7 +2107,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1758614477
 GameObject:
@@ -2908,128 +2167,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &2111933021
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 377186745490795382, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: isTurn
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 377186745490795382, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: goesFirst
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 4.857457
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.047329
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660190, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_Name
-      value: mole guy (3)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
---- !u!1001 &2131482627
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 3.0218818
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.5531237
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660187, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8034279136360660190, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
-      propertyPath: m_Name
-      value: mole guy (14)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
 --- !u!1 &2138677391
 GameObject:
   m_ObjectHideFlags: 0
@@ -3123,7 +2260,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 26
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 45, y: -45, z: 90}
 --- !u!114 &2138677394
 MonoBehaviour:

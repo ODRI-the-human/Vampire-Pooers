@@ -20,11 +20,14 @@ public class ThirdEnemySpawner : MonoBehaviour
     int noSpawnsBeforeNewWave = 4; // actually should be one more than the desired number, for some reason.
     int numberEnemiesSpawned;
 
+    public GameObject firstMole;
+
     public GameObject chaseEnemy;
     public GameObject shootEnemy;
     public GameObject fourDirEnemy;
     public GameObject eightDirEnemy;
     public GameObject spinEnemy;
+    public GameObject mole;
     GameObject toSpawn;
     GameObject Player;
 
@@ -85,7 +88,7 @@ public class ThirdEnemySpawner : MonoBehaviour
     void SpawnEnemies()
     {
         numberEnemiesSpawned = Mathf.RoundToInt(Random.Range(minSpawnMultiplier * ((spawnNumber + waveNumber * 2) * spawnScaleRate), maxSpawnMultiplier * ((spawnNumber + waveNumber * 2) * spawnScaleRate))) + 1;
-        SpawnType = Random.Range(0, 5);
+        SpawnType = Random.Range(0, 6);
         switch (SpawnType)
         {
             case 0:
@@ -127,6 +130,11 @@ public class ThirdEnemySpawner : MonoBehaviour
                 spawned.transform.localScale = SpawnScaleVariation;
                 spawned.GetComponent<HPDamageDie>().HP *= 0.8f + 0.2f * numberEnemiesSpawned;
                 break;
+            case 5:
+                toSpawn = mole;
+                numberEnemiesSpawned++;
+                SpawnInGroup();
+                break;
         }
     }
 
@@ -140,11 +148,38 @@ public class ThirdEnemySpawner : MonoBehaviour
             SpawnPosY = Random.Range(-8, 8);
         }
 
+        bool existsMole = false;
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Hostile");
+        foreach (GameObject friend in enemies)
+        {
+            if (friend.GetComponent<moleShit>() != null)
+            {
+                existsMole = true;
+            }
+        }
+
+        if (enemies.Length == 0)
+        {
+            existsMole = false;
+            firstMole = null;
+        }
+
         for (int i = 0; i < numberEnemiesSpawned; i++)
         {
             float SpawnPosXVariation = Random.Range(-1f, 1f);
             float SpawnPosYVariation = Random.Range(-1f, 1f);
             GameObject spawned = Instantiate(toSpawn, new Vector3(SpawnPosX + SpawnPosXVariation, SpawnPosY + SpawnPosYVariation, 0), transform.rotation);
+
+            if (i == 0 && !existsMole && toSpawn == mole)
+            {
+                spawned.GetComponent<moleShit>().goesFirst = true;
+                firstMole = spawned;
+            }
+
+            if (existsMole && toSpawn == mole)
+            {
+                spawned.GetComponent<moleShit>().timer = firstMole.GetComponent<moleShit>().timer;
+            }
         }
     }
 
