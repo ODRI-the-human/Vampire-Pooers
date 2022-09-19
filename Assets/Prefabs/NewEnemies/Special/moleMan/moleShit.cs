@@ -24,6 +24,7 @@ public class moleShit : MonoBehaviour
 
     public void Bingus()
     {
+        mates.Clear();
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Hostile");
         foreach (GameObject friend in enemies)
         {
@@ -74,6 +75,12 @@ public class moleShit : MonoBehaviour
         {
             nearestFriend.GetComponent<moleShit>().Bingus();
         }
+
+        if (nearestFriend != null)
+        {
+            line.SetPosition(0, transform.position);
+            line.SetPosition(1, nearestFriend.transform.position);
+        }
     }
 
     // Update is called once per frame
@@ -98,15 +105,6 @@ public class moleShit : MonoBehaviour
             if (goesFirst)
             {
                 Bingus();
-            }
-        }
-
-        if ((timer + 129) % 200 == 0)
-        {
-            if (nearestFriend != null)
-            {
-                line.SetPosition(0, transform.position);
-                line.SetPosition(1, nearestFriend.transform.position);
             }
         }
 
@@ -135,6 +133,19 @@ public class moleShit : MonoBehaviour
                 {
                     friend.GetComponent<moleShit>().line.SetPosition(0, new Vector3(0, 0, 0));
                     friend.GetComponent<moleShit>().line.SetPosition(1, new Vector3(0, 0, 0));
+                    friend.GetComponent<moleShit>().hasGone = false;
+                    friend.GetComponent<moleShit>().taken = false;
+                }
+            }
+
+            foreach (GameObject friend in enemies)
+            {
+                if (friend.GetComponent<moleShit>() != null)
+                {
+                    if (friend.GetComponent<moleShit>().goesFirst)
+                    {
+                        friend.GetComponent<moleShit>().Bingus();
+                    }
                 }
             }
         }
