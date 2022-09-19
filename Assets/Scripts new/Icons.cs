@@ -25,8 +25,11 @@ public class Icons : MonoBehaviour
 
     public void SetPosition()
     {
-        index = owner.GetComponent<Statuses>().iconOrder.IndexOf(statusType);
-        owner.GetComponent<Statuses>().iconOrder.RemoveAt(index);
+        if (index != -1)
+        {
+            index = owner.GetComponent<Statuses>().iconOrder.IndexOf(statusType);
+            owner.GetComponent<Statuses>().iconOrder.RemoveAt(index);
+        }
     }
 
     void Update()

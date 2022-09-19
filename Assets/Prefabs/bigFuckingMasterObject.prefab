@@ -128,6 +128,7 @@ MonoBehaviour:
   fourDirEnemy: {fileID: 8034279136360660190, guid: b669ce22051425942b6cf3c942be175f, type: 3}
   eightDirEnemy: {fileID: 8034279136360660190, guid: 8b07116342f452a44bea674c30297c29, type: 3}
   spinEnemy: {fileID: 5685454981733204260, guid: 9cb06ff4930a2534d8c05ad2b7f3fae6, type: 3}
+  mole: {fileID: 8034279136360660190, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
 --- !u!114 &179530921809487071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,3 +174,4 @@ MonoBehaviour:
   DamageNumber: {fileID: 5150512112274879829, guid: 1a0d078c5029bfa4cabe46cbc37f9596, type: 3}
   texty: {fileID: 0}
   canvas: {fileID: 0}
+  rb: {fileID: 0}

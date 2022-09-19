@@ -187,8 +187,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   finalDamageStat: 0
   procCoeff: 0
-  damageBase: 100
+  damageBase: 150
   damageMult: 1
   finalDamageMult: 1
   knockBackCoeff: 1
+  finalDamageDIV: 1
   owner: {fileID: 0}
+  overwriteDamageCalc: 0
