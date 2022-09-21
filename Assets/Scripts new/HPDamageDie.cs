@@ -55,8 +55,8 @@ public class HPDamageDie : MonoBehaviour
             {
                 if (gameObject.GetComponent<moleShit>().goesFirst && gameObject.GetComponent<moleShit>().mates.Count != 0)
                 {
-                    GameObject Martin = gameObject.GetComponent<moleShit>().mates[0];
-                    Martin.GetComponent<moleShit>().goesFirst = true;
+                    GameObject bazza = gameObject.GetComponent<moleShit>().mates[0];
+                    bazza.GetComponent<moleShit>().goesFirst = true;
                 }
             }
             Instantiate(XP, transform.position, transform.rotation);

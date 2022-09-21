@@ -15,6 +15,7 @@ public class moleShit : MonoBehaviour
     public bool goesFirst = false;
     public bool hasGone = false;
     public bool taken;
+    bool hasPositioned = false;
     public GameObject hitbox;
 
     //public GameObject martin;
@@ -128,6 +129,11 @@ public class moleShit : MonoBehaviour
 
         if (timer % 200 == 0)
         {
+            hasPositioned = false;
+        }
+
+        if (!hasPositioned)
+        {
             transform.position = new Vector3(Random.Range(-8.5f, 8.5f), Random.Range(-4.5f, 4.5f), -2);
             while ((transform.position - player.transform.position).magnitude < 3)
             {
@@ -136,6 +142,21 @@ public class moleShit : MonoBehaviour
             transform.localScale = new Vector3(3, 3, 1);
             pos = transform.position;
             nearestFriend = null;
+
+            mates.Clear();
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Hostile");
+            foreach (GameObject friend in enemies)
+            {
+                if (friend.GetComponent<moleShit>() != null && friend != gameObject)
+                {
+                    if (!friend.GetComponent<moleShit>().taken && !friend.GetComponent<moleShit>().hasGone)
+                    {
+                        mates.Add(friend);
+                    }
+                }
+            }
+
+            hasPositioned = true;
         }
 
         if ((timer + 130) % 200 == 0)
@@ -158,6 +179,18 @@ public class moleShit : MonoBehaviour
             nearestFriend = null;
             pos = transform.position;
             Destroy(hitbox);
+
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Hostile");
+            foreach (GameObject friend in enemies)
+            {
+                if (friend.GetComponent<moleShit>() != null && friend != gameObject)
+                {
+                    if (!friend.GetComponent<moleShit>().taken && !friend.GetComponent<moleShit>().hasGone)
+                    {
+                        mates.Add(friend);
+                    }
+                }
+            }
         }
 
         if (nearestFriend == null && hasGone)

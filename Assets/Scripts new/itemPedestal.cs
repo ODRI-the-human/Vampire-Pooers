@@ -7,8 +7,8 @@ public class itemPedestal : MonoBehaviour
     public int itemChosen;
     public Sprite[] spriteArray;
     public SpriteRenderer spriteRenderer;
-    int minRange = 20;
-    int maxRange = 21; //27
+    int minRange = 0;
+    int maxRange = 27;
     GameObject[] gos;
 
     public string description;

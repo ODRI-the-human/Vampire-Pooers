@@ -132,7 +132,7 @@ public class ThirdEnemySpawner : MonoBehaviour
                 break;
             case 5:
                 toSpawn = mole;
-                numberEnemiesSpawned++;
+                numberEnemiesSpawned += 2;
                 SpawnInGroup();
                 break;
         }
@@ -155,6 +155,8 @@ public class ThirdEnemySpawner : MonoBehaviour
             if (friend.GetComponent<moleShit>() != null)
             {
                 existsMole = true;
+                firstMole = friend;
+                break;
             }
         }
 
