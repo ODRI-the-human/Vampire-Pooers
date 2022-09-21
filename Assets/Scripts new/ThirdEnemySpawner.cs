@@ -30,10 +30,12 @@ public class ThirdEnemySpawner : MonoBehaviour
     public GameObject mole;
     GameObject toSpawn;
     GameObject Player;
+    GameObject Camera;
 
     void Start()
     {
         Player = GameObject.Find("newPlayer");
+        Camera = GameObject.Find("Main Camera");
     }
 
     // Update is called once per frame
@@ -126,7 +128,7 @@ public class ThirdEnemySpawner : MonoBehaviour
                 Vector2 SpawnScaleVariation = new Vector2(8, 10);
                 SpawnScaleVariation.y *= 1 + numberEnemiesSpawned / 8;
                 SpawnScaleVariation.x *= 1 + numberEnemiesSpawned / 16;
-                GameObject spawned = Instantiate(toSpawn, new Vector3(SpawnPosX, SpawnPosY, 0), Quaternion.identity);
+                GameObject spawned = Instantiate(toSpawn, new Vector3(SpawnPosX, SpawnPosY, 10.6f) + Camera.transform.position, Quaternion.identity);
                 spawned.transform.localScale = SpawnScaleVariation;
                 spawned.GetComponent<HPDamageDie>().HP *= 0.8f + 0.2f * numberEnemiesSpawned;
                 break;
@@ -170,7 +172,7 @@ public class ThirdEnemySpawner : MonoBehaviour
         {
             float SpawnPosXVariation = Random.Range(-1f, 1f);
             float SpawnPosYVariation = Random.Range(-1f, 1f);
-            GameObject spawned = Instantiate(toSpawn, new Vector3(SpawnPosX + SpawnPosXVariation, SpawnPosY + SpawnPosYVariation, 0), transform.rotation);
+            GameObject spawned = Instantiate(toSpawn, new Vector3(SpawnPosX + SpawnPosXVariation, SpawnPosY + SpawnPosYVariation, 10.6f) + Camera.transform.position, transform.rotation);
 
             if (i == 0 && !existsMole && toSpawn == mole)
             {
@@ -196,7 +198,7 @@ public class ThirdEnemySpawner : MonoBehaviour
                 SpawnPosX = Random.Range(-12, 12);
                 SpawnPosY = Random.Range(-8, 8);
             }
-            GameObject spawned = Instantiate(toSpawn, new Vector3(SpawnPosX, SpawnPosY, 0), transform.rotation);
+            GameObject spawned = Instantiate(toSpawn, new Vector3(SpawnPosX, SpawnPosY, 10.6f) + Camera.transform.position, transform.rotation);
         }
     }
 
@@ -204,7 +206,7 @@ public class ThirdEnemySpawner : MonoBehaviour
     {
         for (int i = 0; i < 3; i++)
         {
-            GameObject newObject = Instantiate(itemPedestal, new Vector3(5 * i - 5, 3, 0), transform.rotation) as GameObject;
+            GameObject newObject = Instantiate(itemPedestal, new Vector3(5 * i - 5, 3, 10.6f) + Camera.transform.position, transform.rotation) as GameObject;
             newObject.transform.localScale = new Vector3(5, 5, 5);
         }
         StartWave();

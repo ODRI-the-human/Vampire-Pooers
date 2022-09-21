@@ -23,12 +23,15 @@ public class moleShit : MonoBehaviour
     Vector3 vectorMan;
     float fuckAngle;
 
+    GameObject camera;
+
     Vector3 pos; //to prevent knockback from moving the enemies around.
     Vector3 hitboxPos;
 
     void Start()
     {
         player = GameObject.Find("newPlayer");
+        camera = GameObject.Find("Main Camera");
     }
 
     public void Bingus()
@@ -134,10 +137,10 @@ public class moleShit : MonoBehaviour
 
         if (!hasPositioned)
         {
-            transform.position = new Vector3(Random.Range(-8.5f, 8.5f), Random.Range(-4.5f, 4.5f), -2);
+            transform.position = new Vector3(Random.Range(-8.5f, 8.5f), Random.Range(-4.5f, 4.5f), 8.6f) + camera.transform.position;
             while ((transform.position - player.transform.position).magnitude < 3)
             {
-                transform.position = new Vector3(Random.Range(-8.5f, 8.5f), Random.Range(-4.5f, 4.5f), -2);
+                transform.position = new Vector3(Random.Range(-8.5f, 8.5f), Random.Range(-4.5f, 4.5f), 8.6f) + camera.transform.position;
             }
             transform.localScale = new Vector3(3, 3, 1);
             pos = transform.position;
