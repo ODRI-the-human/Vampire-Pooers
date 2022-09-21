@@ -138,7 +138,7 @@ public class moleShit : MonoBehaviour
         if (!hasPositioned)
         {
             transform.position = new Vector3(Random.Range(-8.5f, 8.5f), Random.Range(-4.5f, 4.5f), 8.6f) + camera.transform.position;
-            while ((transform.position - player.transform.position).magnitude < 3)
+            while ((transform.position - player.transform.position).magnitude < 5)
             {
                 transform.position = new Vector3(Random.Range(-8.5f, 8.5f), Random.Range(-4.5f, 4.5f), 8.6f) + camera.transform.position;
             }
@@ -160,6 +160,11 @@ public class moleShit : MonoBehaviour
             }
 
             hasPositioned = true;
+        }
+
+        if ((timer + 165) % 200 == 0)
+        {
+            taken = false;
         }
 
         if ((timer + 130) % 200 == 0)
