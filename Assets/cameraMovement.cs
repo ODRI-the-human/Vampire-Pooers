@@ -5,7 +5,7 @@ using UnityEngine;
 public class cameraMovement : MonoBehaviour
 {
     GameObject Player;
-    public float amountToChangeWithMouse = 0.1f;
+    public float amountToChangeWithMouse = 0.05f;
     public float moveSpeed = 0.04f;
 
     float xBound = 18.5f;

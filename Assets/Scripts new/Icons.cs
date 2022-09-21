@@ -10,6 +10,7 @@ public class Icons : MonoBehaviour
     public TextMeshProUGUI statusText;
     public TextMeshProUGUI texty;
     public GameObject canvas;
+    GameObject camera;
     public int statusType;
     public float statusPosition;
     float statusTransConst = 0.7f;
@@ -21,6 +22,7 @@ public class Icons : MonoBehaviour
         texty = Instantiate(statusText);
         texty.transform.SetParent(GameObject.Find("Canvas").transform);
         canvas = GameObject.Find("bigFuckingMasterObject").GetComponent<EntityReferencerGuy>().canvas;
+        camera = GameObject.Find("Main Camera");
     }
 
     public void SetPosition()
@@ -116,6 +118,7 @@ public class Icons : MonoBehaviour
 
         transform.position = new Vector3(owner.transform.position.x + statusTransConst * statusPosition, owner.transform.position.y + 0.9f, -0.5f);
 
-        texty.transform.localPosition = 108 * (owner.transform.position + new Vector3(1.9f + statusTransConst * statusPosition, 0.5f,3));
+        texty.transform.localPosition = 108 * (owner.transform.position - camera.transform.position + new Vector3(1.9f + statusTransConst * statusPosition, 0.5f,3));
+        texty.transform.localPosition = new Vector3(texty.transform.localPosition.x, texty.transform.localPosition.y, 324); // done on a separate line, to keep it simple (stupid)
     }
 }

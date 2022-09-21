@@ -8,10 +8,12 @@ public class Barry63 : MonoBehaviour
     int time = 0;
     float time2;
     Vector3 scaleChange;
+    GameObject camera;
 
     void Start()
     {
-        transform.position = new Vector3(0, 0, -10);
+        camera = GameObject.Find("Main Camera");
+        transform.position = camera.transform.position + new Vector3(0, 0, 8.6f);
     }
 
 

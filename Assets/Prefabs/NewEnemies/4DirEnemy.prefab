@@ -150,6 +150,7 @@ MonoBehaviour:
   dodgeUp: 1
   dodgeAudio: {fileID: 0}
   rb: {fileID: 8034279136360660184}
+  isSlowed: 1
 --- !u!114 &6146499720883180670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,6 +171,7 @@ MonoBehaviour:
   knockBackCoeff: 1
   finalDamageDIV: 1
   owner: {fileID: 0}
+  overwriteDamageCalc: 0
 --- !u!114 &-5622376081394152181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,7 +194,9 @@ MonoBehaviour:
   iFrames: 0
   sprite: {fileID: 8034279136360660185}
   material: {fileID: 0}
+  colorChangeTimer: 0
   XP: {fileID: 6124614279667160435, guid: b448494b9362a2a429b8d6416d89f7e6, type: 3}
+  creepTimer: 0
 --- !u!114 &373114558742256855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,7 +209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a79b14745a3e2fd4f8a0b5a259cfcb25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shotSpeed: 5
+  shotSpeed: 4
   noExtraShots: 3
   shotAngleCoeff: 1.5
   trueDamageValue: 0
@@ -220,6 +224,7 @@ MonoBehaviour:
   fireTimerDIV: 1
   timesFired: 0
   newAttack: 0
+  Crongus: 0
 --- !u!114 &3594553613020165186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -249,6 +254,7 @@ MonoBehaviour:
   timer: 0
   poisonStacks: 0
   bleedStacks: 0
+  hasElectric: 0
   bleedTimer: 0
   poisonTimers: 
   iconOrder: 
