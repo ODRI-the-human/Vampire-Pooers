@@ -12,10 +12,10 @@ public class Attack : MonoBehaviour
     public int noExtraShots = 0;
     public float shotAngleCoeff = 1;
     public float trueDamageValue;
-    [HideInInspector] public float fireTimerLengthMLT = 1;
+    public float fireTimerLengthMLT = 1;
     public GameObject Bullet;
     public float fireTimerLength = 25;
-    public float fireTimer = 0f;
+    public float fireTimer = 25;
     public GameObject PlayerShootAudio;
     GameObject Player;
     public bool playerControlled = false;
@@ -32,6 +32,8 @@ public class Attack : MonoBehaviour
     Vector3 vectorMan;
     float fuckAngle;
 
+    GameObject cameron;
+
     void Start()
     {
         newAttack = 0;
@@ -41,9 +43,9 @@ public class Attack : MonoBehaviour
             if (Player.GetComponent<ItemSTOPWATCH>() != null)
             {
                 fireTimerLength *= 1 + (0.25f) * Player.GetComponent<ItemSTOPWATCH>().instances;
-                fireTimerLength /= 1 + (0.25f) * Player.GetComponent<ItemSTOPWATCH>().instances;
             }
         }
+        cameron = GameObject.Find("Main Camera");
     }
 
     // Update is called once per frame, as you know
@@ -51,7 +53,9 @@ public class Attack : MonoBehaviour
     {
         trueDamageValue = gameObject.GetComponent<DealDamage>().finalDamageStat;
 
-        if (fireTimer + fireTimerLength*(1-fireTimerDIV)/fireTimerDIV + fireTimerLength * (fireTimerLengthMLT - 1) < 0)
+        Debug.Log(fireTimer.ToString());
+
+        if (fireTimer > fireTimerLength * fireTimerLengthMLT / fireTimerDIV)
         {
             switch (playerControlled)
             {
@@ -60,14 +64,14 @@ public class Attack : MonoBehaviour
                     if (Input.GetButton("Fire1"))
                     {
                         UseWeapon();
-                        fireTimer = fireTimerLength;
+                        fireTimer = 0;
                         Instantiate(PlayerShootAudio);
                     }
                     break;
                 case false:
                     vectorToTarget = (Player.transform.position - gameObject.transform.position).normalized;
                     UseWeapon();
-                    fireTimer = fireTimerLength;
+                    fireTimer = 0;
                     Instantiate(PlayerShootAudio);
                     break;
             }
@@ -128,6 +132,7 @@ public class Attack : MonoBehaviour
     {
         mouseVector = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
         vectorMan = Camera.main.ScreenToWorldPoint(mouseVector) - transform.position;
+        cameron.GetComponent<cameraMovement>().CameraShake();
 
         if (vectorMan.y > 0 && vectorMan.x > 0)
         {
@@ -167,6 +172,6 @@ public class Attack : MonoBehaviour
 
     void FixedUpdate()
     {
-        fireTimer -= 1;
+        fireTimer++;
     }
 }

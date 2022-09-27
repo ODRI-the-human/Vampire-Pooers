@@ -81,7 +81,7 @@ public class ItemDescriptions : MonoBehaviour
                 itemDescription = "Your shots split on hit. Split shots deal 30% (+30% per stack) of your damage.";
                 break;
             case (int)ITEMLIST.CONTACT:
-                itemDescription = "Your shots destroy enemy shots. Your bullets get destroyed after 1 (+1 per stack) collision, or 4 (+4 per stack) if using melee.";
+                itemDescription = "Your shots destroy enemy shots. Your bullets get destroyed after 1 (+1 per stack) collision";
                 break;
             case (int)ITEMLIST.BLEED:
                 itemDescription = "Your attacks have a 15% (+15% per stack) chance to inflict bleed for 2 seconds. New procs refill the timer and add a new stack.";
@@ -91,6 +91,9 @@ public class ItemDescriptions : MonoBehaviour
                 break;
             case (int)ITEMLIST.ELECTRIC:
                 itemDescription = "Your bullets inflict electricity. Enemies inflicted with electricity take 10 damage (+10 per stack) when your bullets hit any other enemy.";
+                break;
+            case (int)ITEMLIST.BERSERK:
+                itemDescription = "Upon levelling up, your weapon is swapped with a melee knife that blocks all enemy shots for 3 (+3 per stack) seconds. Hits restore 5HP and kills restore 1 second of the timer.";
                 break;
         }
     }

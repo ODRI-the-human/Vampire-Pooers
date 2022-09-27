@@ -127,7 +127,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.4
 --- !u!114 &110440509597865853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,7 +173,9 @@ MonoBehaviour:
   damageMult: 1
   finalDamageMult: 1
   knockBackCoeff: 1
+  finalDamageDIV: 1
   owner: {fileID: 0}
+  overwriteDamageCalc: 0
 --- !u!114 &-4542741102433382798
 MonoBehaviour:
   m_ObjectHideFlags: 0

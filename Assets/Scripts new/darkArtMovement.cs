@@ -15,6 +15,7 @@ public class darkArtMovement : MonoBehaviour
     void Start()
     {
         owner = gameObject.GetComponent<DealDamage>().owner;
+        gameObject.AddComponent<ItemCONTACT>();
     }
 
     // Update is called once per frame
@@ -69,5 +70,11 @@ public class darkArtMovement : MonoBehaviour
         }
 
         transform.position = owner.transform.position;
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        GameObject owner = gameObject.GetComponent<DealDamage>().owner;
+        owner.GetComponent<HPDamageDie>().HP += 5;
     }
 }

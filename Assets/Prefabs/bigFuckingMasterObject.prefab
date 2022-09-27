@@ -106,6 +106,8 @@ MonoBehaviour:
   poisonSplosm: {fileID: 158271131209982302, guid: 5f4283f47709081418d74e8afda1b2be, type: 3}
   electricIcon: {fileID: 8308961761143311193, guid: e51f3a062e1fdd74ba4e9eee32b2c966, type: 3}
   slowIcon: {fileID: 8308961761143311193, guid: 9056674da775b2746b4f310bf3196c88, type: 3}
+  berserkMusic: {fileID: 989204346807140580, guid: 2d0360a6201468449a81a1244d658e07, type: 3}
+  berserkPlane: {fileID: 4759339331114859231, guid: 2f9288612e676474c8a41b1035f33871, type: 3}
 --- !u!114 &9014303847402346882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,6 +125,7 @@ MonoBehaviour:
   maxSpawnMultiplier: 4
   waveText: {fileID: 0}
   itemPedestal: {fileID: 7674381605585770215, guid: ccd2011bfb2e96e4dbabac692441a45c, type: 3}
+  firstMole: {fileID: 0}
   chaseEnemy: {fileID: 8034279136360660190, guid: a8c7cbd396c89da40a8668c886edd2c8, type: 3}
   shootEnemy: {fileID: 8034279136360660190, guid: caa3a51a8cac6ec488da882b6b93a4ed, type: 3}
   fourDirEnemy: {fileID: 8034279136360660190, guid: b669ce22051425942b6cf3c942be175f, type: 3}

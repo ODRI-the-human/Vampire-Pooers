@@ -14,10 +14,15 @@ public class weaponType : MonoBehaviour
             weaponHeld = (int)WEAPONS.PISTOL;
         }
 
+        SetWeapon();
+    }
+
+    public void SetWeapon()
+    {
         switch (weaponHeld)
         {
             case (int)WEAPONS.PISTOL:
-                //bongus
+                gameObject.GetComponent<Attack>().specialFireType = 0;
                 break;
             case (int)WEAPONS.SHOTGUN:
                 gameObject.GetComponent<Attack>().fireTimerLength *= 2;

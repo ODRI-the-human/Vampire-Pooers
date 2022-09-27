@@ -254,6 +254,14 @@ PrefabInstance:
       propertyPath: StatusText
       value: 
       objectReference: {fileID: 3819573064106586910, guid: 78e3c1ce5ec60c04fbaced9b7eaedc00, type: 3}
+    - target: {fileID: 8146544521814748070, guid: 2c1e033fc431a694499cc08ddf9a90b1, type: 3}
+      propertyPath: berserkMusic
+      value: 
+      objectReference: {fileID: 989204346807140580, guid: 2d0360a6201468449a81a1244d658e07, type: 3}
+    - target: {fileID: 8146544521814748070, guid: 2c1e033fc431a694499cc08ddf9a90b1, type: 3}
+      propertyPath: berserkPlane
+      value: 
+      objectReference: {fileID: 4759339331114859231, guid: 2f9288612e676474c8a41b1035f33871, type: 3}
     - target: {fileID: 9014303847402346882, guid: 2c1e033fc431a694499cc08ddf9a90b1, type: 3}
       propertyPath: waveText
       value: 
@@ -1233,14 +1241,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8736019012613081854, guid: ba6f41e52d5717a46a24d1f2e5a4cf75, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8092890325184602512, guid: ba6f41e52d5717a46a24d1f2e5a4cf75, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -4590834480761037546, guid: ba6f41e52d5717a46a24d1f2e5a4cf75, type: 3}
       propertyPath: Barry63
       value: 
       objectReference: {fileID: 6964255014020883914, guid: 526b17258aed02c4c9c574bcca2b87c3, type: 3}
     - target: {fileID: -4590834480761037546, guid: ba6f41e52d5717a46a24d1f2e5a4cf75, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -4590834480761037546, guid: ba6f41e52d5717a46a24d1f2e5a4cf75, type: 3}
       propertyPath: PlayerDieAudio
       value: 
       objectReference: {fileID: 7927511119378929990, guid: 5524052d8b9da4f43a8bffc27f9db6d9, type: 3}
+    - target: {fileID: -2782634131885235124, guid: ba6f41e52d5717a46a24d1f2e5a4cf75, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -1628153870151973313, guid: ba6f41e52d5717a46a24d1f2e5a4cf75, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 503381878361641298, guid: ba6f41e52d5717a46a24d1f2e5a4cf75, type: 3}
       propertyPath: m_Name
       value: newPlayer
@@ -1289,8 +1317,28 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1698531144881374718, guid: ba6f41e52d5717a46a24d1f2e5a4cf75, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3646255009062352282, guid: ba6f41e52d5717a46a24d1f2e5a4cf75, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5717554992336324117, guid: ba6f41e52d5717a46a24d1f2e5a4cf75, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5905868436867884629, guid: ba6f41e52d5717a46a24d1f2e5a4cf75, type: 3}
       propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5905868436867884629, guid: ba6f41e52d5717a46a24d1f2e5a4cf75, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6042566988791242225, guid: ba6f41e52d5717a46a24d1f2e5a4cf75, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7255376658375002501, guid: ba6f41e52d5717a46a24d1f2e5a4cf75, type: 3}
@@ -1308,6 +1356,10 @@ PrefabInstance:
     - target: {fileID: 7255376658375002501, guid: ba6f41e52d5717a46a24d1f2e5a4cf75, type: 3}
       propertyPath: m_IsTrigger
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8433440340063038589, guid: ba6f41e52d5717a46a24d1f2e5a4cf75, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba6f41e52d5717a46a24d1f2e5a4cf75, type: 3}
@@ -2498,8 +2550,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48709a989fdb4264299d0d7695e911c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amountToChangeWithMouse: 0.8
-  moveSpeed: 0.02
+  amountToChangeWithMouse: 0.4
+  moveSpeed: 0.04
+  camShakeAmount: 1.2
 --- !u!1 &1716610626
 GameObject:
   m_ObjectHideFlags: 0

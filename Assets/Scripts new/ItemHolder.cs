@@ -238,6 +238,16 @@ public class ItemHolder : MonoBehaviour
                     gameObject.GetComponent<ItemELECTRIC>().instances++;
                 }
                 break;
+            case (int)ITEMLIST.BERSERK:
+                if (gameObject.GetComponent<ItemBERSERK>() == null)
+                {
+                    gameObject.AddComponent<ItemBERSERK>();
+                }
+                else
+                {
+                    gameObject.GetComponent<ItemBERSERK>().instances++;
+                }
+                break;
         }
     }
 

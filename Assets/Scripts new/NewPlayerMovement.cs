@@ -22,8 +22,8 @@ public class NewPlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
     GameObject Player;
 
-    public int isSlowed = 1;
-    int slowTimer = 0;
+    public int isSlowed = 0;
+    int slowTimer = -5;
     int slowTimerLength = 100;
 
     void Start()
@@ -41,6 +41,9 @@ public class NewPlayerMovement : MonoBehaviour
         {
             playerControlled = true;
         }
+
+        isSlowed = 0;
+        gameObject.GetComponent<Attack>().fireTimerLengthMLT = 1;
     }
 
     void Update()
@@ -120,10 +123,10 @@ public class NewPlayerMovement : MonoBehaviour
             rb.velocity = (1 + ((0.7f + 0.3f * dodgeUp) * isDodging * 1.5f)) * new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
         }
 
-        if (slowTimer < 1)
+        if (slowTimer == 0)
         {
             isSlowed = 0;
-            gameObject.GetComponent<Attack>().fireTimerLengthMLT = 1;
+            gameObject.GetComponent<Attack>().fireTimerLengthMLT /= 2;
         }
 
         dodgeTimer--;
@@ -148,11 +151,11 @@ public class NewPlayerMovement : MonoBehaviour
     {
         if (col.GetComponent<wapantCircle>() != null)
         {
-            if (col.gameObject.tag != gameObject.tag)
+            if (col.gameObject.tag != gameObject.tag && isSlowed != 1)
             {
                 isSlowed = 1;
                 slowTimer = slowTimerLength;
-                gameObject.GetComponent<Attack>().fireTimerLengthMLT = 2;
+                gameObject.GetComponent<Attack>().fireTimerLengthMLT *= 2;
                 if (!gameObject.GetComponent<Statuses>().iconOrder.Contains(3))
                 {
                     gameObject.GetComponent<Statuses>().iconOrder.Add(3);

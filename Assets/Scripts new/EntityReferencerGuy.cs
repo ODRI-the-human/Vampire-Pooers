@@ -25,6 +25,8 @@ public class EntityReferencerGuy : MonoBehaviour
     public GameObject poisonSplosm;
     public GameObject electricIcon;
     public GameObject slowIcon;
+    public GameObject berserkMusic;
+    public GameObject berserkPlane;
 
     void Update()
     {

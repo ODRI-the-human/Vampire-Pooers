@@ -29,4 +29,5 @@ public enum ITEMLIST
     BLEED, // Your attacks have a 15% (+15% per stack) chance to inflict bleed for 3 seconds. New procs refill the timer and add a new stack.
     POISONSPLOSM,
     ELECTRIC,
+    BERSERK,
 }

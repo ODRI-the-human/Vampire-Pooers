@@ -23,7 +23,7 @@ public class ItemCONTACT : MonoBehaviour
                 Bingus.GetComponent<darkArtMovement>().initAngle = gameObject.GetComponent<darkArtMovement>().initAngle;
                 Bingus.GetComponent<darkArtMovement>().owner = gameObject.GetComponent<darkArtMovement>().owner;
                 Bingus.GetComponent<darkArtMovement>().timer = 0;
-                Bingus.GetComponent<dieOnContactWithBullet>().instances *= 4;
+                Bingus.GetComponent<dieOnContactWithBullet>().instances *= 50000000;
             }
             Bingus.tag = gameObject.tag;
             Bingus.GetComponent<dieOnContactWithBullet>().master = gameObject;

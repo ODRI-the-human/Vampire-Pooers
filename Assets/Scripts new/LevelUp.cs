@@ -8,6 +8,9 @@ public class LevelUp : MonoBehaviour
     public int XP = 0;
     public GameObject PlayerXPAudio;
 
+    public delegate void LevelBonus();
+    public static LevelBonus levelEffects;
+
     void UpdateStats()
     {
         gameObject.GetComponent<HPDamageDie>().MaxHP += 5f;
@@ -28,6 +31,7 @@ public class LevelUp : MonoBehaviour
             {
                 level += 1;
                 UpdateStats();
+                LevelUp.levelEffects();
             }
         }
     }
