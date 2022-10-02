@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class TriggerPoison : MonoBehaviour
 {
-    // does quite literally nothing
+    public GameObject owner;
 }

@@ -21,5 +21,6 @@ public class ItemPOISONSPLOSM : MonoBehaviour
     {
         GameObject Marty = Instantiate(poisonSplosm, pos, transform.rotation);
         Marty.transform.localScale *= (0.5f + instances * 0.5f);
+        Marty.GetComponent<TriggerPoison>().owner = gameObject;
     }
 }

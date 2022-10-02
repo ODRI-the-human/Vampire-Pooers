@@ -19,6 +19,7 @@ public class Statuses : MonoBehaviour
     public int hasElectric = 0;
     public int bleedTimer = 0;
     public List<int> poisonTimers = new List<int>();
+    public List<float> poisonDamages = new List<float>();
     public List<int> iconOrder = new List<int>();
 
     void Start()
@@ -53,13 +54,14 @@ public class Statuses : MonoBehaviour
 
             if (poisonTimers[i] % 25 == 0)
             {
-                gameObject.GetComponent<HPDamageDie>().HP -= 5;
-                master.GetComponent<showDamageNumbers>().showDamage(transform.position, 5, (int)DAMAGETYPES.POISON);
+                gameObject.GetComponent<HPDamageDie>().HP -= poisonDamages[i];
+                master.GetComponent<showDamageNumbers>().showDamage(transform.position, poisonDamages[i], (int)DAMAGETYPES.POISON);
             }
 
             if (poisonTimers[i] == 100)
             {
                 poisonTimers.RemoveAt(i);
+                poisonDamages.RemoveAt(i);
                 poisonStacks--;
             }
         }
@@ -83,6 +85,8 @@ public class Statuses : MonoBehaviour
         if (col.gameObject.GetComponent<TriggerPoison>() != null)
         {
             poisonTimers.Add(0);
+            GameObject arse = col.gameObject.GetComponent<TriggerPoison>().owner;
+            poisonDamages.Add(arse.GetComponent<DealDamage>().finalDamageStat * 0.1f);
             if (!iconOrder.Contains(1))
             {
                 iconOrder.Add(1);
