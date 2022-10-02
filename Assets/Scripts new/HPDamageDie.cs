@@ -129,6 +129,27 @@ public class HPDamageDie : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D col) // just creep/orbitals lmao
     {
+        if (col.gameObject.tag == "ATGExplosion")
+        {
+            master.GetComponent<showDamageNumbers>().showDamage(transform.position, col.gameObject.GetComponent<DealDamage>().finalDamageStat, (int)DAMAGETYPES.NORMAL);
+
+            if (playerControlled == true)
+            {
+                HP -= col.gameObject.GetComponent<DealDamage>().finalDamageStat;
+                Instantiate(PlayerHurtAudio);
+                iFrames = iFramesTimer;
+
+            }
+            if (playerControlled == false)
+            {
+                sprite.color = Color.red;
+                colorChangeTimer = 1;
+                HP -= col.gameObject.GetComponent<DealDamage>().finalDamageStat;
+            }
+
+            Physics2D.IgnoreCollision(col, gameObject.GetComponent<Collider2D>(), true);
+        }
+
         if ((col.gameObject.tag == "enemyBullet" && gameObject.tag == "Player") || (col.gameObject.tag == "PlayerBullet" && gameObject.tag == "Hostile")) // otherwise xp drops would probably deal damage
         {
             if (iFrames < 0 && creepTimer < 0)

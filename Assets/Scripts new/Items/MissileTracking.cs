@@ -9,6 +9,7 @@ public class MissileTracking : MonoBehaviour
     Vector2 bulletPos;
     public Rigidbody2D rb;
     public GameObject explosion;
+    public GameObject owner;
 
     // Update is called once per frame
     void FixedUpdate()
@@ -49,6 +50,9 @@ public class MissileTracking : MonoBehaviour
         
         GameObject newObject = Instantiate(explosion, transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
         newObject.transform.localScale = new Vector3(2, 2, 2);
+        newObject.GetComponent<DealDamage>().owner = owner;
+        newObject.GetComponent<DealDamage>().finalDamageStat = 3 * owner.GetComponent<DealDamage>().finalDamageStat;
+        newObject.GetComponent<DealDamage>().knockBackCoeff = 2 * owner.GetComponent<DealDamage>().knockBackCoeff;
         Destroy(gameObject);
     }
 }

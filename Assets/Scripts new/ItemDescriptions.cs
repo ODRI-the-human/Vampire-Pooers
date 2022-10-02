@@ -33,7 +33,7 @@ public class ItemDescriptions : MonoBehaviour
                 itemDescription = "Homing shots. Stacks increase range from which bullets home.";
                 break;
             case (int)ITEMLIST.ATG:
-                itemDescription = "10% (+10% per stack) chance on hitting an enemy to fire a homing missile, dealing 100 damage.";
+                itemDescription = "10% (+10% per stack) chance on hitting an enemy to fire a homing missile, dealing 3x your damage.";
                 break;
             case (int)ITEMLIST.MORESHOT:
                 itemDescription = "Per stack, fire +1 projectile in an arc.";

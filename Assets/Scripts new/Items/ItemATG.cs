@@ -44,6 +44,7 @@ public class ItemATG : MonoBehaviour
                 if (gameObject.tag == "PlayerBullet" || gameObject.tag == "enemyBullet")
                 {
                     GameObject ARSEMAN = Instantiate(ATGMissile, owner.transform.position, owner.transform.rotation);
+                    ARSEMAN.GetComponent<MissileTracking>().owner = owner;
 
                     if (hostile)
                     {

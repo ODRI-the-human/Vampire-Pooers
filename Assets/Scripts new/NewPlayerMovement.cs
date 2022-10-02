@@ -149,6 +149,17 @@ public class NewPlayerMovement : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D col)
     {
+        if (col.gameObject.tag != gameObject.tag && col.gameObject.tag == "ATGExplosion")
+        {
+            if (playerControlled == false)
+            {
+                collisionVector = 0.5f * new Vector2(transform.position.x - col.transform.position.x, transform.position.y - col.transform.position.y).normalized;
+                knockBackTimer = col.gameObject.GetComponent<DealDamage>().knockBackCoeff * 7f;
+                maxKnockBack = knockBackTimer;
+            }
+        }
+
+
         if (col.GetComponent<wapantCircle>() != null)
         {
             if (col.gameObject.tag != gameObject.tag && isSlowed != 1)

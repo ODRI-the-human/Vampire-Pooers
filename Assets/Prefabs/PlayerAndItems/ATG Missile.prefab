@@ -139,7 +139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 7464771201675599824}
   explosion: {fileID: 2618228907162695756, guid: 860e4c358ddeb35429ce12834ff4cb34, type: 3}
-  explosionHostile: {fileID: 2618228907162695756, guid: 81f800913d8455544aa6c303d3b84074, type: 3}
+  owner: {fileID: 0}
 --- !u!114 &6102364106404283474
 MonoBehaviour:
   m_ObjectHideFlags: 0
