@@ -75,6 +75,6 @@ public class darkArtMovement : MonoBehaviour
     void OnCollisionEnter2D(Collision2D col)
     {
         GameObject owner = gameObject.GetComponent<DealDamage>().owner;
-        owner.GetComponent<HPDamageDie>().HP += 5;
+        owner.GetComponent<Healing>().Healo(5);
     }
 }

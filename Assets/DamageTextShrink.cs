@@ -19,7 +19,7 @@ public class DamageTextShrink : MonoBehaviour
 
     void Update()
     {
-        transform.position += timer/5 * new Vector3(randX, randY, 0);
+        transform.position += timer/10 * new Vector3(randX, randY, 0);
     }
 
     void FixedUpdate()

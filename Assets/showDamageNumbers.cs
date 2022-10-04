@@ -9,6 +9,7 @@ public class showDamageNumbers : MonoBehaviour
     public TextMeshProUGUI texty;
     public GameObject canvas;
     public Rigidbody2D rb;
+    string plusOrMinus;
     GameObject camera;
 
     void Start()
@@ -19,11 +20,20 @@ public class showDamageNumbers : MonoBehaviour
 
     public void showDamage(Vector3 pos, float damage, int damageType)
     {
+        if (damageType == (int)DAMAGETYPES.HEAL)
+        {
+            plusOrMinus = "+";
+        }
+        else
+        {
+            plusOrMinus = "-";
+        }
+
         texty = Instantiate(DamageNumber);
         texty.transform.SetParent(GameObject.Find("Canvas").transform);
         texty.transform.localPosition = 108 * (pos - camera.transform.position + new Vector3(1.9f, 0, 0));
         texty.transform.localPosition = new Vector3(texty.transform.localPosition.x, texty.transform.localPosition.y, 324); // done on a separate line, to keep it simple (stupid)
-        texty.text = (Mathf.RoundToInt(damage)).ToString();
+        texty.text = (plusOrMinus + Mathf.RoundToInt(damage)).ToString();
 
         switch (damageType)
         {
@@ -33,10 +43,13 @@ public class showDamageNumbers : MonoBehaviour
                 texty.GetComponent<TextMeshProUGUI>().color = Color.red;
                 break;
             case (int)DAMAGETYPES.POISON:
-                texty.GetComponent<TextMeshProUGUI>().color = Color.green;
+                texty.GetComponent<TextMeshProUGUI>().color = new Color(0.1f, 0.8f, 0.1f, 1);
                 break;
             case (int)DAMAGETYPES.ELECTRIC:
                 texty.GetComponent<TextMeshProUGUI>().color = Color.blue;
+                break;
+            case (int)DAMAGETYPES.HEAL:
+                texty.GetComponent<TextMeshProUGUI>().color = Color.green;
                 break;
         }
     }

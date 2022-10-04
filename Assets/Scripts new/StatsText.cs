@@ -23,7 +23,7 @@ public class StatsText : MonoBehaviour
     void Update()
     {
         HPText.text = "HP: " + Player.GetComponent<HPDamageDie>().HP.ToString() + "/" + Player.GetComponent<HPDamageDie>().MaxHP.ToString();
-        XPText.text = "XP: " + Player.GetComponent<LevelUp>().XP.ToString() + "/" + (Mathf.RoundToInt(50 * (Player.GetComponent<LevelUp>().level + 1) + 2.5f * Mathf.Pow(1.8f, 1.1f * (Player.GetComponent<LevelUp>().level + 1)))).ToString();
+        XPText.text = "XP: " + Player.GetComponent<LevelUp>().XP.ToString() + "/" + (Mathf.RoundToInt(20 * Player.GetComponent<LevelUp>().level)).ToString();
         DMGText.text = "DMG: " + Player.GetComponent<DealDamage>().finalDamageStat.ToString();
         FirerateText.text = "Fire delay: " + (Player.GetComponent<Attack>().fireTimerLength + Player.GetComponent<Attack>().fireTimerLength * (1 - Player.GetComponent<Attack>().fireTimerDIV) / Player.GetComponent<Attack>().fireTimerDIV + Player.GetComponent<Attack>().fireTimerLength * (Player.GetComponent<Attack>().fireTimerLengthMLT - 1)).ToString();
         LevelText.text = "Level: " + Player.GetComponent<LevelUp>().level.ToString();

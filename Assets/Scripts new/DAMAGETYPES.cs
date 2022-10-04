@@ -6,4 +6,6 @@ public enum DAMAGETYPES
     BLEED,
     POISON,
     ELECTRIC,
+
+    HEAL,
 }

@@ -25,9 +25,7 @@ public class LevelUp : MonoBehaviour
         {
             XP += 10;
             Instantiate(PlayerXPAudio);
-            // levelling up
-            //if (XP >= 180* (level - 1) + levelConstantMul * Mathf.Pow(1.5f, 1.1f * (level-1)))
-            if (XP >= 50 * (level + 1) + 2.5f * Mathf.Pow(1.8f, 1.1f * (level + 1)))
+            if (XP >= 20 * level)
             {
                 level += 1;
                 UpdateStats();

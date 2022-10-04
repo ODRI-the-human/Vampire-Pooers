@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: -8736019012613081854}
   - component: {fileID: -2782634131885235124}
   - component: {fileID: -1628153870151973313}
+  - component: {fileID: 6529777727849037366}
   m_Layer: 8
   m_Name: newPlayer
   m_TagString: Player
@@ -164,6 +165,7 @@ MonoBehaviour:
   knockBackCoeff: 3
   finalDamageDIV: 1
   owner: {fileID: 0}
+  overwriteDamageCalc: 0
 --- !u!114 &3646255009062352282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,6 +193,7 @@ MonoBehaviour:
   fireTimerDIV: 1
   timesFired: 0
   newAttack: 0
+  Crongus: 0
 --- !u!114 &5717554992336324117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -329,4 +332,17 @@ MonoBehaviour:
   hasElectric: 0
   bleedTimer: 0
   poisonTimers: 
+  poisonDamages: []
   iconOrder: 
+--- !u!114 &6529777727849037366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 503381878361641298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 367a428bc6689ea4cb035b653287ac5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
