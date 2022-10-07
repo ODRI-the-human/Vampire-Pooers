@@ -8,14 +8,17 @@ public class itemPedestal : MonoBehaviour
     public Sprite[] spriteArray;
     public SpriteRenderer spriteRenderer;
     int minRange = 0;
-    int maxRange = 28;
+    int maxRange;
     GameObject[] gos;
+    GameObject master;
 
     public string description;
 
     // Start is called before the first frame update
     void Start()
     {
+        master = GameObject.Find("bigFuckingMasterObject");
+        maxRange = master.GetComponent<EntityReferencerGuy>().numItemsExist;
         itemChosen = Random.Range(minRange, maxRange);
         spriteRenderer.sprite = spriteArray[itemChosen];
         gos = GameObject.FindGameObjectsWithTag("item");

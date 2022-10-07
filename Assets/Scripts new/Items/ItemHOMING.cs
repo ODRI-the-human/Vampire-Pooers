@@ -65,4 +65,9 @@ public class ItemHOMING : MonoBehaviour
             rb.velocity = 10f * (rb.velocity + vectorToEnemy.normalized).normalized;
         }
     }
+
+    public void Undo()
+    {
+        //nothin
+    }
 }

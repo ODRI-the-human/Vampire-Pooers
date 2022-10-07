@@ -53,8 +53,6 @@ public class Attack : MonoBehaviour
     {
         trueDamageValue = gameObject.GetComponent<DealDamage>().finalDamageStat;
 
-        Debug.Log(fireTimer.ToString());
-
         if (fireTimer > fireTimerLength * fireTimerLengthMLT / fireTimerDIV)
         {
             switch (playerControlled)

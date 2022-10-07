@@ -10,4 +10,13 @@ public class ItemSOY : MonoBehaviour
         gameObject.GetComponent<DealDamage>().knockBackCoeff /= 4;
         gameObject.GetComponent<Attack>().fireTimerDIV += 4;
     }
+
+    public void Undo()
+    {
+        gameObject.GetComponent<DealDamage>().finalDamageDIV -= 4;
+        gameObject.GetComponent<DealDamage>().knockBackCoeff *= 4;
+        gameObject.GetComponent<Attack>().fireTimerDIV -= 4;
+
+        Debug.Log("Foodland Sale on NOW!!!!!!!!");
+    }
 }

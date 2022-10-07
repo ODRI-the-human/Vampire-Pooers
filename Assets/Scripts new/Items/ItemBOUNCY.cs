@@ -12,4 +12,9 @@ public class ItemBOUNCY : MonoBehaviour
     {
         bouncesLeft = instances;
     }
+
+    public void Undo()
+    {
+        //nothin
+    }
 }

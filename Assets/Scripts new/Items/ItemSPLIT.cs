@@ -64,4 +64,9 @@ public class ItemSPLIT : MonoBehaviour
             }
         }
     }
+
+    public void Undo()
+    {
+        //nothin
+    }
 }

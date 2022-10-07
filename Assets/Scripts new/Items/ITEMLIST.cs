@@ -30,4 +30,8 @@ public enum ITEMLIST
     POISONSPLOSM,
     ELECTRIC,
     BERSERK,
+    REROLL,
+    PERFECTHEAL,
+    HEALMLT,
+    BRICK,
 }

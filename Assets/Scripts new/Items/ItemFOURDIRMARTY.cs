@@ -31,4 +31,9 @@ public class ItemFOURDIRMARTY : MonoBehaviour
         }
 
     }
+
+    public void Undo()
+    {
+        //nothin
+    }
 }

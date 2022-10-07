@@ -9,4 +9,10 @@ public class ItemDMGMLT2 : MonoBehaviour
     {
         gameObject.GetComponent<DealDamage>().damageMult += 1f;
     }
+
+    public void Undo()
+    {
+        gameObject.GetComponent<DealDamage>().damageMult -= 1f;
+        Debug.Log("DogShit Valley");
+    }
 }

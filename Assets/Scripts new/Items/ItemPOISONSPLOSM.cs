@@ -12,6 +12,7 @@ public class ItemPOISONSPLOSM : MonoBehaviour
         if (gameObject.tag == "Player")
         {
             EventManager.DeathEffects += SpawnPoison;
+            
             Debug.Log("Added poison wahoo");
         }
         poisonSplosm = GameObject.Find("bigFuckingMasterObject").GetComponent<EntityReferencerGuy>().poisonSplosm;
@@ -22,5 +23,10 @@ public class ItemPOISONSPLOSM : MonoBehaviour
         GameObject Marty = Instantiate(poisonSplosm, pos, transform.rotation);
         Marty.transform.localScale *= (0.5f + instances * 0.5f);
         Marty.GetComponent<TriggerPoison>().owner = gameObject;
+    }
+
+    public void Undo()
+    {
+        EventManager.DeathEffects -= SpawnPoison;
     }
 }

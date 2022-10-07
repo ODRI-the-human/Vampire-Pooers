@@ -42,4 +42,9 @@ public class ItemCREEP : MonoBehaviour
 
         timerMarty--;
     }
+
+    public void Undo()
+    {
+        //nothin
+    }
 }

@@ -19,4 +19,9 @@ public class ItemDODGESPLOSION : MonoBehaviour
         GameObject explodyDodge = Instantiate(dodgeSplosion, transform.position, transform.rotation);
         explodyDodge.transform.localScale *= 1.5f + 1.2f * instances;
     }
+
+    public void Undo()
+    {
+        //nothin
+    }
 }

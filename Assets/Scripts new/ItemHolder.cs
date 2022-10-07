@@ -10,6 +10,11 @@ public class ItemHolder : MonoBehaviour
 
     void Start()
     {
+        ApplyAll();
+    }
+
+    public void ApplyAll()
+    {
         foreach (int item in itemsHeld)
         {
             itemGained = item;
@@ -17,7 +22,7 @@ public class ItemHolder : MonoBehaviour
         }
     }
 
-    void ApplyItems()
+    public void ApplyItems()
     {
         switch (itemGained)
         {
@@ -246,6 +251,32 @@ public class ItemHolder : MonoBehaviour
                 else
                 {
                     gameObject.GetComponent<ItemBERSERK>().instances++;
+                }
+                break;
+            case (int)ITEMLIST.HEALMLT:
+                gameObject.AddComponent<ItemHEALMLT>();
+                break;
+            case (int)ITEMLIST.PERFECTHEAL:
+                if (gameObject.GetComponent<ItemPERFECTHEAL>() == null)
+                {
+                    gameObject.AddComponent<ItemPERFECTHEAL>();
+                }
+                else
+                {
+                    gameObject.GetComponent<ItemPERFECTHEAL>().instances++;
+                }
+                break;
+            case (int)ITEMLIST.REROLL:
+                gameObject.AddComponent<ItemREROLL>();
+                break;
+            case (int)ITEMLIST.BRICK:
+                if (gameObject.GetComponent<ItemBRICK>() == null)
+                {
+                    gameObject.AddComponent<ItemBRICK>();
+                }
+                else
+                {
+                    gameObject.GetComponent<ItemBRICK>().instances++;
                 }
                 break;
         }

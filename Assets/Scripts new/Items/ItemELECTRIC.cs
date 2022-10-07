@@ -62,4 +62,9 @@ public class ItemELECTRIC : MonoBehaviour
             enemiesEffected.Clear();
         }
     }
+
+    public void Undo()
+    {
+        //nothin
+    }
 }

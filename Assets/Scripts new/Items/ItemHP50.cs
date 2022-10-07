@@ -8,6 +8,12 @@ public class ItemHP50 : MonoBehaviour
     void Awake()
     {
         gameObject.GetComponent<HPDamageDie>().MaxHP += 50;
+        
         gameObject.GetComponent<HPDamageDie>().HP += 50;
+    }
+
+    public void Undo()
+    {
+        gameObject.GetComponent<HPDamageDie>().MaxHP -= 50;
     }
 }

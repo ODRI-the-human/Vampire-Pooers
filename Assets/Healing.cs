@@ -5,6 +5,7 @@ using UnityEngine;
 public class Healing : MonoBehaviour
 {
     public float healMult = 1;
+    public float healDiv = 1;
     GameObject master;
 
     void Start()
@@ -14,8 +15,7 @@ public class Healing : MonoBehaviour
 
     public void Healo(float amount)
     {
-        Debug.Log("Sprongly");
-        gameObject.GetComponent<HPDamageDie>().HP += amount * healMult;
-        master.GetComponent<showDamageNumbers>().showDamage(transform.position, amount * healMult, (int)DAMAGETYPES.HEAL);
+        gameObject.GetComponent<HPDamageDie>().HP += amount * healMult / healDiv;
+        master.GetComponent<showDamageNumbers>().showDamage(transform.position, amount * healMult / healDiv, (int)DAMAGETYPES.HEAL);
     }
 }

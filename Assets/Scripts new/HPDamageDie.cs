@@ -22,6 +22,8 @@ public class HPDamageDie : MonoBehaviour
     public GameObject XP;
     public float creepTimer = 0;
 
+    public int perfectWaves = 0;
+
     GameObject master;
 
     GameObject poisonSplosm;
@@ -127,8 +129,17 @@ public class HPDamageDie : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.tag == "item")
+        {
+            perfectWaves++;
+        }
+    }
+
     void OnTriggerStay2D(Collider2D col) // just creep/orbitals lmao
     {
+
         if (col.gameObject.tag == "ATGExplosion")
         {
             master.GetComponent<showDamageNumbers>().showDamage(transform.position, col.gameObject.GetComponent<DealDamage>().finalDamageStat, (int)DAMAGETYPES.NORMAL);
@@ -138,6 +149,7 @@ public class HPDamageDie : MonoBehaviour
                 HP -= col.gameObject.GetComponent<DealDamage>().finalDamageStat;
                 Instantiate(PlayerHurtAudio);
                 iFrames = iFramesTimer;
+                perfectWaves = -1;
 
             }
             if (playerControlled == false)
@@ -161,7 +173,8 @@ public class HPDamageDie : MonoBehaviour
                     HP -= col.gameObject.GetComponent<DealDamage>().finalDamageStat;
                     Instantiate(PlayerHurtAudio);
                     iFrames = 4;
-                    
+                    perfectWaves = -1;
+
                 }
                 if (playerControlled == false)
                 {

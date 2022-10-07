@@ -29,4 +29,9 @@ public class ItemCONTACT : MonoBehaviour
             Bingus.GetComponent<dieOnContactWithBullet>().master = gameObject;
         }
     }
+
+    public void Undo()
+    {
+        //nothin
+    }
 }

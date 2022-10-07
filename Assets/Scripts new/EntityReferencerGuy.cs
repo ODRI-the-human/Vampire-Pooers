@@ -28,6 +28,8 @@ public class EntityReferencerGuy : MonoBehaviour
     public GameObject berserkMusic;
     public GameObject berserkPlane;
 
+    public int numItemsExist = 33;
+
     void Update()
     {
         if (Input.GetButton("Restart"))

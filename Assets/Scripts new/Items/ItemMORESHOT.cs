@@ -8,15 +8,19 @@ public class ItemMORESHOT : MonoBehaviour
     void Start()
     {
         gameObject.GetComponent<Attack>().noExtraShots++;
+        
         if (gameObject.tag == "Hostile")
         {
             gameObject.GetComponent<Attack>().shotAngleCoeff += 1.3f;
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Undo()
     {
-        
+        gameObject.GetComponent<Attack>().noExtraShots--;
+        if (gameObject.tag == "Hostile")
+        {
+            gameObject.GetComponent<Attack>().shotAngleCoeff -= 1.3f;
+        }
     }
 }

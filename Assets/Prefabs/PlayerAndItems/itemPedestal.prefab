@@ -167,6 +167,10 @@ MonoBehaviour:
   - {fileID: -1771846221, guid: 9a13a51389366ea46ad59446feabeb19, type: 3}
   - {fileID: 1407604496, guid: d8c61c5ed54fd72488fbb28469d322bc, type: 3}
   - {fileID: 1221429111, guid: c545f1db1e8b28841bc1e86dbb8b8fd8, type: 3}
+  - {fileID: 813978655, guid: 5bdf736f0a8f2e4479a442a91fb1e016, type: 3}
+  - {fileID: 928379626, guid: 5bdf736f0a8f2e4479a442a91fb1e016, type: 3}
+  - {fileID: -1919503265, guid: 5bdf736f0a8f2e4479a442a91fb1e016, type: 3}
+  - {fileID: 1358896242, guid: 214c0f4c7abc5314282749dcf9c5c3ad, type: 3}
   spriteRenderer: {fileID: 7674381605585770212}
   description: 
 --- !u!114 &8191072633798459801

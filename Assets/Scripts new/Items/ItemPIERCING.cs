@@ -11,4 +11,9 @@ public class ItemPIERCING : MonoBehaviour
     {
         piercesLeft = instances;
     }
+
+    public void Undo()
+    {
+        //nothin
+    }
 }

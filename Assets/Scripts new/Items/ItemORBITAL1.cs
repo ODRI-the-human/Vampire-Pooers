@@ -54,4 +54,16 @@ public class ItemORBITAL1 : MonoBehaviour
             SpawnGaries();
         }
     }
+
+    public void Undo()
+    {
+        GameObject[] orboes = GameObject.FindGameObjectsWithTag("PlayerBullet");
+        foreach (GameObject friend in orboes)
+        {
+            if (friend.GetComponent<OrbitalMovement>() != null)
+            {
+                Destroy(friend);
+            }
+        }
+    }
 }

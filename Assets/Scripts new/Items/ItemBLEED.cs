@@ -39,4 +39,9 @@ public class ItemBLEED : MonoBehaviour
             }
         }
     }
+
+    public void Undo()
+    {
+        //nothin
+    }
 }

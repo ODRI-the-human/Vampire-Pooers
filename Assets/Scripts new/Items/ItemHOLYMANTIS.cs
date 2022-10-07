@@ -40,4 +40,9 @@ public class ItemHOLYMANTIS : MonoBehaviour
             timesHit = maxTimesHit;
         }
     }
+
+    public void Undo()
+    {
+        //nothin
+    }
 }

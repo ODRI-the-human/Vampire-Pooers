@@ -7,7 +7,7 @@ public class NewPlayerMovement : MonoBehaviour
 {
     private Vector2 moveDirection;
     float dodgeTimer;
-    float dodgeTimerLength = 15;
+    public float dodgeTimerLength = 15;
     int isDodging = 0;
     int dodgeMarties;
     public float moveSpeed = 5;

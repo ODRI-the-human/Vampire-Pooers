@@ -95,6 +95,18 @@ public class ItemDescriptions : MonoBehaviour
             case (int)ITEMLIST.BERSERK:
                 itemDescription = "Upon levelling up, your weapon is swapped with a melee knife that blocks all enemy shots for 3 (+3 per stack) seconds. Hits restore 5HP and kills restore 1 second of the timer.";
                 break;
+            case (int)ITEMLIST.REROLL:
+                itemDescription = "Reroll all your items.";
+                break;
+            case (int)ITEMLIST.PERFECTHEAL:
+                itemDescription = "After completing 2 waves without taking damage, heal to full HP and increase max HP by 10 (+10 per stack).";
+                break;
+            case (int)ITEMLIST.HEALMLT:
+                itemDescription = "All healing sources are double as effective. Bonus increases linearly with stacks.";
+                break;
+            case (int)ITEMLIST.BRICK:
+                itemDescription = "10% chance (+10% per stack) of shooting a bullet that deals 4x damage and infinitely pierces enemies.";
+                break;
         }
     }
 }

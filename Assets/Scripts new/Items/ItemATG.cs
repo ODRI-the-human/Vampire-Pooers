@@ -58,4 +58,9 @@ public class ItemATG : MonoBehaviour
             }
         }
     }
+
+    public void Undo()
+    {
+        //thing here
+    }
 }

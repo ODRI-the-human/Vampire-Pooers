@@ -68,4 +68,10 @@ public class ItemBERSERK : MonoBehaviour
             Destroy(spawnedRedPlane);
         }
     }
+
+    public void Undo()
+    {
+        LevelUp.levelEffects -= goBerserk;
+        EventManager.DeathEffects -= refreshBerserk;
+    }
 }

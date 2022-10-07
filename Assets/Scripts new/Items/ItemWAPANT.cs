@@ -43,4 +43,9 @@ public class ItemWAPANT : MonoBehaviour
             Fatty.transform.localScale *= 0.7f + 0.3f*instances;
         }
     }
+
+    public void Undo()
+    {
+        //nothin
+    }
 }

@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemDMGADDPT5 : MonoBehaviour
+public class ItemHEALMLT : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
     {
-        gameObject.GetComponent<DealDamage>().damageBase += 25f;
+        gameObject.GetComponent<Healing>().healMult += 1;
     }
 
     public void Undo()
     {
-        gameObject.GetComponent<DealDamage>().damageBase -= 25f;
+        gameObject.GetComponent<Healing>().healMult -= 1;
     }
 }

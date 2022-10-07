@@ -8,4 +8,9 @@ public class ItemBETTERDODGE : MonoBehaviour
     {
         gameObject.GetComponent<NewPlayerMovement>().dodgeUp++;
     }
+
+    public void Undo()
+    {
+        gameObject.GetComponent<NewPlayerMovement>().dodgeUp--;
+    }
 }

@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: -2782634131885235124}
   - component: {fileID: -1628153870151973313}
   - component: {fileID: 6529777727849037366}
+  - component: {fileID: 4664313912424211572}
   m_Layer: 8
   m_Name: newPlayer
   m_TagString: Player
@@ -145,6 +146,7 @@ MonoBehaviour:
   colorChangeTimer: 0
   XP: {fileID: 6964255014020883914, guid: 526b17258aed02c4c9c574bcca2b87c3, type: 3}
   creepTimer: 0
+  perfectWaves: 0
 --- !u!114 &1698531144881374718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -344,5 +346,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 367a428bc6689ea4cb035b653287ac5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healMult: 1
+  healDiv: 1
+--- !u!114 &4664313912424211572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 503381878361641298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2fbc6a30d6769c4bb440728c49f0ade, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
