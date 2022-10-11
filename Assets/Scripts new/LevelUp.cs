@@ -5,6 +5,7 @@ using UnityEngine;
 public class LevelUp : MonoBehaviour
 {
     public int level = 1;
+    public int effectMult = 1;
     public int XP = 0;
     public GameObject PlayerXPAudio;
 
@@ -13,10 +14,18 @@ public class LevelUp : MonoBehaviour
 
     void UpdateStats()
     {
-        gameObject.GetComponent<HPDamageDie>().MaxHP += 5f;
-        gameObject.GetComponent<HPDamageDie>().HP += 5f;
-        gameObject.GetComponent<Attack>().fireTimerLength -= 0.3f;
-        gameObject.GetComponent<NewPlayerMovement>().moveSpeed += 0.15f;
+        gameObject.GetComponent<HPDamageDie>().MaxHP += effectMult * 5f;
+        gameObject.GetComponent<HPDamageDie>().HP += effectMult * 5f;
+        gameObject.GetComponent<Attack>().fireTimerLength -= effectMult * 0.3f;
+        gameObject.GetComponent<NewPlayerMovement>().moveSpeed += effectMult * 0.15f;
+
+        if(gameObject.GetComponent<ItemMORELEVELSTATS>() != null)
+        {
+            gameObject.GetComponent<Attack>().levelDamageBonus += gameObject.GetComponent<ItemMORELEVELSTATS>().instances * effectMult * 5f;
+            gameObject.GetComponent<DealDamage>().damageBase += gameObject.GetComponent<ItemMORELEVELSTATS>().instances * effectMult * 5f;
+            gameObject.GetComponent<HPDamageDie>().iFramesTimer += gameObject.GetComponent<ItemMORELEVELSTATS>().instances * effectMult * 2.5f;
+            gameObject.GetComponent<Attack>().scaleAddMult += gameObject.GetComponent<ItemMORELEVELSTATS>().instances * effectMult * 0.2f;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D col)

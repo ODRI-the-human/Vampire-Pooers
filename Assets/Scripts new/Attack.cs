@@ -28,6 +28,9 @@ public class Attack : MonoBehaviour
 
     public float Crongus = 0; // records total converter damage bonus.
 
+    public float levelDamageBonus = 0;
+    public float scaleAddMult = 1;
+
     Vector3 mouseVector;
     Vector3 vectorMan;
     float fuckAngle;
@@ -115,7 +118,7 @@ public class Attack : MonoBehaviour
     public void SpawnAttack(float currentAngle)
     {
         GameObject newObject = Instantiate(Bullet, transform.position, transform.rotation);
-        newObject.transform.localScale = new Vector3(trueDamageValue * 0.0015f + .45f, trueDamageValue * 0.0015f + .45f, trueDamageValue * 0.0015f + .45f);
+        newObject.transform.localScale = new Vector3(trueDamageValue * 0.0015f + .45f * scaleAddMult, trueDamageValue * 0.0015f + .45f * scaleAddMult, trueDamageValue * 0.0015f + .45f * scaleAddMult);
         bulletRB = newObject.GetComponent<Rigidbody2D>();
         newShotVector = new Vector2(vectorToTarget.x * Mathf.Cos(currentAngle) - vectorToTarget.y * Mathf.Sin(currentAngle), vectorToTarget.x * Mathf.Sin(currentAngle) + vectorToTarget.y * Mathf.Cos(currentAngle));
         bulletRB.velocity = newShotVector * shotSpeed;
@@ -123,7 +126,7 @@ public class Attack : MonoBehaviour
         newObject.GetComponent<weaponType>().weaponHeld = newObject.GetComponent<weaponType>().weaponHeld;
         newObject.GetComponent<DealDamage>().owner = gameObject;
         newObject.GetComponent<DealDamage>().finalDamageMult *= gameObject.GetComponent<DealDamage>().finalDamageMult;
-        newObject.GetComponent<DealDamage>().damageBase += Crongus; // applies converter damage bonus to bullets
+        newObject.GetComponent<DealDamage>().damageBase += Crongus + levelDamageBonus; // applies converter damage bonus to bullets
     }
 
     void SpawnDarkart()

@@ -6,6 +6,7 @@ public class ItemHolder : MonoBehaviour
 {
     public List<int> itemsHeld = new List<int>();
     public int itemGained;
+    public int noToGive = 1;
     int timermf;
 
     void Start()
@@ -279,6 +280,29 @@ public class ItemHolder : MonoBehaviour
                     gameObject.GetComponent<ItemBRICK>().instances++;
                 }
                 break;
+            case (int)ITEMLIST.BETTERLEVEL:
+                gameObject.AddComponent<ItemBETTERLEVEL>();
+                break;
+            case (int)ITEMLIST.EXTRAITEMLEVEL:
+                if (gameObject.GetComponent<ItemEXTRAITEMLEVEL>() == null)
+                {
+                    gameObject.AddComponent<ItemEXTRAITEMLEVEL>();
+                }
+                else
+                {
+                    gameObject.GetComponent<ItemEXTRAITEMLEVEL>().instances++;
+                }
+                break;
+            case (int)ITEMLIST.MORELEVELSTATS:
+                if (gameObject.GetComponent<ItemMORELEVELSTATS>() == null)
+                {
+                    gameObject.AddComponent<ItemMORELEVELSTATS>();
+                }
+                else
+                {
+                    gameObject.GetComponent<ItemMORELEVELSTATS>().instances++;
+                }
+                break;
         }
     }
 
@@ -288,8 +312,11 @@ public class ItemHolder : MonoBehaviour
         {
             Debug.Log("POOP! HAHA!");
             itemGained = col.gameObject.GetComponent<itemPedestal>().itemChosen;
-            itemsHeld.Add(itemGained);
-            ApplyItems();
+            for (int i = 0; i < noToGive; i++)
+            {
+                itemsHeld.Add(itemGained);
+                ApplyItems();
+            }
         }
     }
 }

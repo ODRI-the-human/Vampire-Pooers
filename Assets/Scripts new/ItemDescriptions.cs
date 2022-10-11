@@ -107,6 +107,15 @@ public class ItemDescriptions : MonoBehaviour
             case (int)ITEMLIST.BRICK:
                 itemDescription = "10% chance (+10% per stack) of shooting a bullet that deals 4x damage and infinitely pierces enemies.";
                 break;
+            case (int)ITEMLIST.BETTERLEVEL:
+                itemDescription = "Recieve 3x (+2x per stack) the stat bonuses upon levelling up.";
+                break;
+            case (int)ITEMLIST.EXTRAITEMLEVEL:
+                itemDescription = "Each time you level up, your next item gets applied an extra time. Items get applied an extra time per level, per stack.";
+                break;
+            case (int)ITEMLIST.MORELEVELSTATS:
+                itemDescription = "Level ups also increase your damage, iframe length after getting hit, and bullet size. Bonus increases with stacks.";
+                break;
         }
     }
 }

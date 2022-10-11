@@ -27,6 +27,8 @@ public class OrbitalMovement2 : MonoBehaviour
         GameObject owner = gameObject.GetComponent<DealDamage>().owner;
         int ownerWeapon = owner.GetComponent<weaponType>().weaponHeld;
         gameObject.GetComponent<Attack>().fireTimerLengthMLT = owner.GetComponent<Attack>().fireTimerLengthMLT;
+        gameObject.GetComponent<Attack>().Crongus = owner.GetComponent<Attack>().Crongus;
+        gameObject.GetComponent<Attack>().levelDamageBonus = owner.GetComponent<Attack>().levelDamageBonus;
         if (currentWeapon != ownerWeapon)
         {
             gameObject.GetComponent<weaponType>().weaponHeld = ownerWeapon;
