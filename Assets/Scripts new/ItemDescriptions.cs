@@ -116,6 +116,9 @@ public class ItemDescriptions : MonoBehaviour
             case (int)ITEMLIST.MORELEVELSTATS:
                 itemDescription = "Level ups also increase your damage, iframe length after getting hit, and bullet size. Bonus increases with stacks.";
                 break;
+            case (int)ITEMLIST.HEALTHXP:
+                itemDescription = "XP drops give you extra XP depending on how much missing health you have (+1 XP per 5% missing HP).";
+                break;
         }
     }
 }

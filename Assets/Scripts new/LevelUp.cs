@@ -7,10 +7,22 @@ public class LevelUp : MonoBehaviour
     public int level = 1;
     public int effectMult = 1;
     public int XP = 0;
+    public float nextXP;
     public GameObject PlayerXPAudio;
 
     public delegate void LevelBonus();
     public static LevelBonus levelEffects;
+
+    void Update()
+    {
+        nextXP = level * 40 + 10 * Mathf.Pow(level, 2);
+        if (XP >= nextXP)
+        {
+            level += 1;
+            UpdateStats();
+            LevelUp.levelEffects();
+        }
+    }
 
     void UpdateStats()
     {
@@ -34,12 +46,6 @@ public class LevelUp : MonoBehaviour
         {
             XP += 10;
             Instantiate(PlayerXPAudio);
-            if (XP >= 20 * level)
-            {
-                level += 1;
-                UpdateStats();
-                LevelUp.levelEffects();
-            }
         }
     }
 }

@@ -303,6 +303,16 @@ public class ItemHolder : MonoBehaviour
                     gameObject.GetComponent<ItemMORELEVELSTATS>().instances++;
                 }
                 break;
+            case (int)ITEMLIST.HEALTHXP:
+                if (gameObject.GetComponent<ItemHEALTHXP>() == null)
+                {
+                    gameObject.AddComponent<ItemHEALTHXP>();
+                }
+                else
+                {
+                    gameObject.GetComponent<ItemHEALTHXP>().instances++;
+                }
+                break;
         }
     }
 
