@@ -119,6 +119,12 @@ public class ItemDescriptions : MonoBehaviour
             case (int)ITEMLIST.HEALTHXP:
                 itemDescription = "XP drops give you extra XP depending on how much missing health you have (+1 XP per 5% missing HP).";
                 break;
+            case (int)ITEMLIST.LEVELHEAL:
+                itemDescription = "Levelling up heals 50 HP (+50 HP per stack)";
+                break;
+            case (int)ITEMLIST.DAGGERTHROW:
+                itemDescription = "Every 3rd shot, fire 3 daggers in an arc that deal 10 damage (+10 per stack) and inflict bleed.";
+                break;
         }
     }
 }

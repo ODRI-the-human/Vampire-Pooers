@@ -7,6 +7,7 @@ public class LevelUp : MonoBehaviour
     public int level = 1;
     public int effectMult = 1;
     public int XP = 0;
+    public float healMult = 0;
     public float nextXP;
     public GameObject PlayerXPAudio;
 
@@ -37,6 +38,11 @@ public class LevelUp : MonoBehaviour
             gameObject.GetComponent<DealDamage>().damageBase += gameObject.GetComponent<ItemMORELEVELSTATS>().instances * effectMult * 5f;
             gameObject.GetComponent<HPDamageDie>().iFramesTimer += gameObject.GetComponent<ItemMORELEVELSTATS>().instances * effectMult * 2.5f;
             gameObject.GetComponent<Attack>().scaleAddMult += gameObject.GetComponent<ItemMORELEVELSTATS>().instances * effectMult * 0.2f;
+        }
+
+        if (healMult > 0)
+        {
+            gameObject.GetComponent<Healing>().Healo(25 * healMult);
         }
     }
 

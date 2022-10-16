@@ -116,6 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7c0609e2de7d9147bdd13a8a1dbefb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dodgeTimerLength: 15
   moveSpeed: 5
   dodgeUp: 1
   dodgeAudio: {fileID: 576013723491271631, guid: 8068abbc9251dc147a95e0c091540981, type: 3}
@@ -181,6 +182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shotSpeed: 8
+  currentAngle: 0
   noExtraShots: 0
   shotAngleCoeff: 1
   trueDamageValue: 0
@@ -196,6 +198,8 @@ MonoBehaviour:
   timesFired: 0
   newAttack: 0
   Crongus: 0
+  levelDamageBonus: 0
+  scaleAddMult: 1
 --- !u!114 &5717554992336324117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,6 +214,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemsHeld: 
   itemGained: 0
+  noToGive: 1
 --- !u!212 &5905868436867884629
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -275,7 +280,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 1
+  effectMult: 1
   XP: 0
+  healMult: 0
+  nextXP: 0
   PlayerXPAudio: {fileID: 8667424581410965265, guid: 49d370b240303f34381b4ae05a28b442, type: 3}
 --- !u!114 &8433440340063038589
 MonoBehaviour:
@@ -362,3 +370,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2fbc6a30d6769c4bb440728c49f0ade, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scripts: []

@@ -313,6 +313,19 @@ public class ItemHolder : MonoBehaviour
                     gameObject.GetComponent<ItemHEALTHXP>().instances++;
                 }
                 break;
+            case (int)ITEMLIST.LEVELHEAL:
+                gameObject.AddComponent<ItemLEVELHEAL>();
+                break;
+            case (int)ITEMLIST.DAGGERTHROW:
+                if (gameObject.GetComponent<ItemDAGGERTHROW>() == null)
+                {
+                    gameObject.AddComponent<ItemDAGGERTHROW>();
+                }
+                else
+                {
+                    gameObject.GetComponent<ItemDAGGERTHROW>().instances++;
+                }
+                break;
         }
     }
 

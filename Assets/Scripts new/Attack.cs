@@ -7,7 +7,7 @@ public class Attack : MonoBehaviour
     public float shotSpeed = 5f;
     Vector2 newShotVector;
     Rigidbody2D bulletRB;
-    float currentAngle;
+    public float currentAngle;
     Vector2 vectorToTarget;
     public int noExtraShots = 0;
     public float shotAngleCoeff = 1;
