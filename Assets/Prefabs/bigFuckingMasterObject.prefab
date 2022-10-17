@@ -17,6 +17,8 @@ GameObject:
   - component: {fileID: 4374958713579622480}
   - component: {fileID: 25942212581661553}
   - component: {fileID: 5978693283028907381}
+  - component: {fileID: -1108829160977246395}
+  - component: {fileID: -2547675152280945318}
   m_Layer: 0
   m_Name: bigFuckingMasterObject
   m_TagString: Untagged
@@ -128,6 +130,7 @@ MonoBehaviour:
   waveText: {fileID: 0}
   itemPedestal: {fileID: 7674381605585770215, guid: ccd2011bfb2e96e4dbabac692441a45c, type: 3}
   firstMole: {fileID: 0}
+  bypassWaves: 0
   chaseEnemy: {fileID: 8034279136360660190, guid: a8c7cbd396c89da40a8668c886edd2c8, type: 3}
   shootEnemy: {fileID: 8034279136360660190, guid: caa3a51a8cac6ec488da882b6b93a4ed, type: 3}
   fourDirEnemy: {fileID: 8034279136360660190, guid: b669ce22051425942b6cf3c942be175f, type: 3}
@@ -193,5 +196,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemsHeld: 
+  master: {fileID: 0}
   itemGained: 0
   noToGive: 1
+--- !u!114 &-1108829160977246395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7002239379606652682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 898bb6c7b1e863142a7762589706224b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemChosen: 0
+  enemiesCanUse: 0
+  applyToBullets: 0
+  itemDescription: 
+--- !u!114 &-2547675152280945318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7002239379606652682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 775a94b5917e0054fbb4afa3350cf638, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -5,12 +5,15 @@ using UnityEngine;
 public class ItemHolder : MonoBehaviour
 {
     public List<int> itemsHeld = new List<int>();
+    public GameObject master;
+    bool doApply = true;
     public int itemGained;
     public int noToGive = 1;
     int timermf;
 
     void Start()
     {
+        master = GameObject.Find("bigFuckingMasterObject");
         ApplyAll();
     }
 
@@ -19,7 +22,14 @@ public class ItemHolder : MonoBehaviour
         foreach (int item in itemsHeld)
         {
             itemGained = item;
-            ApplyItems();
+            master.GetComponent<ItemDescriptions>().itemChosen = itemGained;
+            master.GetComponent<ItemDescriptions>().getItemDescription();
+            doApply = master.GetComponent<ItemDescriptions>().applyToBullets;
+            if (doApply)
+            {
+                ApplyItems();
+            }
+            doApply = true;
         }
     }
 

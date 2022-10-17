@@ -37,7 +37,7 @@ public class LevelUp : MonoBehaviour
             gameObject.GetComponent<Attack>().levelDamageBonus += gameObject.GetComponent<ItemMORELEVELSTATS>().instances * effectMult * 5f;
             gameObject.GetComponent<DealDamage>().damageBase += gameObject.GetComponent<ItemMORELEVELSTATS>().instances * effectMult * 5f;
             gameObject.GetComponent<HPDamageDie>().iFramesTimer += gameObject.GetComponent<ItemMORELEVELSTATS>().instances * effectMult * 2.5f;
-            gameObject.GetComponent<Attack>().scaleAddMult += gameObject.GetComponent<ItemMORELEVELSTATS>().instances * effectMult * 0.2f;
+            gameObject.GetComponent<Attack>().scaleAddMult += gameObject.GetComponent<ItemMORELEVELSTATS>().instances * effectMult * 0.05f;
         }
 
         if (healMult > 0)

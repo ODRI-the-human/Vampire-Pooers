@@ -47,7 +47,7 @@ public class itemPedestal : MonoBehaviour
         gameObject.GetComponent<ItemDescriptions>().getItemDescription();
         description = gameObject.GetComponent<ItemDescriptions>().itemDescription;
         enemiesCanUse = gameObject.GetComponent<ItemDescriptions>().enemiesCanUse;
-        int sproinkle = Random.Range(1, 21);
+        int sproinkle = Random.Range(1, 11);
         if (sproinkle == 1 && enemiesCanUse)
         {
             cursed = true;
@@ -61,11 +61,14 @@ public class itemPedestal : MonoBehaviour
         {
             if (cursed)
             {
-                col.gameObject.GetComponent<ItemHolder>().itemGained = itemChosen;
-                col.gameObject.GetComponent<ItemHolder>().itemsHeld.Add(itemChosen);
-                col.gameObject.GetComponent<ItemHolder>().ApplyItems();
-                master.GetComponent<ItemHolder>().itemGained = itemChosen;
-                master.GetComponent<ItemHolder>().itemsHeld.Add(itemChosen);
+                for (int i = 0; i < 2; i++)
+                {
+                    col.gameObject.GetComponent<ItemHolder>().itemGained = itemChosen;
+                    col.gameObject.GetComponent<ItemHolder>().itemsHeld.Add(itemChosen);
+                    col.gameObject.GetComponent<ItemHolder>().ApplyItems();
+                    master.GetComponent<ItemHolder>().itemGained = itemChosen;
+                    master.GetComponent<ItemHolder>().itemsHeld.Add(itemChosen);
+                }
             }
 
             foreach (GameObject go in gos)
