@@ -114,6 +114,7 @@ public class HPDamageDie : MonoBehaviour
                     if (playerControlled == true)
                     {
                         iFrames = iFramesTimer;
+                        perfectWaves = -1;
                     }
 
                     if (gameObject.GetComponent<ItemHOLYMANTIS>() != null && gameObject.GetComponent<ItemHOLYMANTIS>().timesHit > 0)

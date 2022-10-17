@@ -17,7 +17,7 @@ public class Attack : MonoBehaviour
     public float fireTimerLength = 25;
     public float fireTimer = 25;
     public GameObject PlayerShootAudio;
-    GameObject Player;
+    public GameObject Player;
     public bool playerControlled = false;
     public int specialFireType;
     public GameObject darkArtSword;

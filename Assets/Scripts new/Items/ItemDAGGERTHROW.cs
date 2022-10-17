@@ -19,6 +19,12 @@ public class ItemDAGGERTHROW : MonoBehaviour
     {
         Bullet = gameObject.GetComponent<Attack>().Bullet;
 
+        Player = gameObject.GetComponent<Attack>().Player;
+
+        if (gameObject.tag == "Hostile" || gameObject.tag == "enemyBullet")
+        {
+            shotSpeed = 8;
+        }
     }
 
     // Start is called before the first frame update

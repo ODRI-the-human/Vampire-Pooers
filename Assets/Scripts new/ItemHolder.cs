@@ -26,7 +26,7 @@ public class ItemHolder : MonoBehaviour
             master.GetComponent<ItemDescriptions>().getItemDescription();
             doApply = master.GetComponent<ItemDescriptions>().applyToBullets;
 
-            if (gameObject.tag == "Hostile")
+            if (gameObject.tag == "Hostile" || gameObject.tag == "Player")
             {
                 doApply = true;
             }
