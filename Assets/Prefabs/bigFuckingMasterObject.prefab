@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 179530921809487071}
   - component: {fileID: 4374958713579622480}
   - component: {fileID: 25942212581661553}
+  - component: {fileID: 5978693283028907381}
   m_Layer: 0
   m_Name: bigFuckingMasterObject
   m_TagString: Untagged
@@ -108,6 +109,7 @@ MonoBehaviour:
   slowIcon: {fileID: 8308961761143311193, guid: 9056674da775b2746b4f310bf3196c88, type: 3}
   berserkMusic: {fileID: 989204346807140580, guid: 2d0360a6201468449a81a1244d658e07, type: 3}
   berserkPlane: {fileID: 4759339331114859231, guid: 2f9288612e676474c8a41b1035f33871, type: 3}
+  numItemsExist: 28
 --- !u!114 &9014303847402346882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,3 +180,18 @@ MonoBehaviour:
   texty: {fileID: 0}
   canvas: {fileID: 0}
   rb: {fileID: 0}
+--- !u!114 &5978693283028907381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7002239379606652682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a77b42edf27e0ec40bdef5d44226c8e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemsHeld: 
+  itemGained: 0
+  noToGive: 1

@@ -11,6 +11,7 @@ public class itemPedestal : MonoBehaviour
     int maxRange;
     GameObject[] gos;
     GameObject master;
+    bool cursed = false;
 
     public string description;
 
@@ -24,6 +25,12 @@ public class itemPedestal : MonoBehaviour
         gos = GameObject.FindGameObjectsWithTag("item");
         GameObject.Find("newPlayer").GetComponent<getItemDescription>().itemsExist = true;
         Invoke(nameof(SetDescription), 0.1f);
+        int sproinkle = Random.Range(0, 21);
+        if (sproinkle < 1)
+        {
+            cursed = true;
+            transform.localScale *= 1.3f;
+        }
     }
 
     void Update()
@@ -50,6 +57,15 @@ public class itemPedestal : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
+            if (cursed)
+            {
+                col.gameObject.GetComponent<ItemHolder>().itemGained = itemChosen;
+                col.gameObject.GetComponent<ItemHolder>().itemsHeld.Add(itemChosen);
+                col.gameObject.GetComponent<ItemHolder>().ApplyItems();
+                master.GetComponent<ItemHolder>().itemGained = itemChosen;
+                master.GetComponent<ItemHolder>().itemsHeld.Add(itemChosen);
+            }
+
             foreach (GameObject go in gos)
             {
                 Destroy(go);

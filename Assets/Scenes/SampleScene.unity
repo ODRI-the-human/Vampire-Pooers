@@ -268,7 +268,7 @@ PrefabInstance:
       objectReference: {fileID: 4759339331114859231, guid: 2f9288612e676474c8a41b1035f33871, type: 3}
     - target: {fileID: 8146544521814748070, guid: 2c1e033fc431a694499cc08ddf9a90b1, type: 3}
       propertyPath: numItemsExist
-      value: 36
+      value: 38
       objectReference: {fileID: 0}
     - target: {fileID: 9014303847402346882, guid: 2c1e033fc431a694499cc08ddf9a90b1, type: 3}
       propertyPath: waveText

@@ -126,7 +126,7 @@ public class NewPlayerMovement : MonoBehaviour
         if (slowTimer == 0)
         {
             isSlowed = 0;
-            gameObject.GetComponent<Attack>().fireTimerLengthMLT /= 2;
+            gameObject.GetComponent<Attack>().fireTimerLengthMLT = 1;
         }
 
         dodgeTimer--;
@@ -166,7 +166,7 @@ public class NewPlayerMovement : MonoBehaviour
             {
                 isSlowed = 1;
                 slowTimer = slowTimerLength;
-                gameObject.GetComponent<Attack>().fireTimerLengthMLT *= 2;
+                gameObject.GetComponent<Attack>().fireTimerLengthMLT = 2;
                 if (!gameObject.GetComponent<Statuses>().iconOrder.Contains(3))
                 {
                     gameObject.GetComponent<Statuses>().iconOrder.Add(3);

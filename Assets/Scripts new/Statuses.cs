@@ -18,6 +18,9 @@ public class Statuses : MonoBehaviour
     public int bleedStacks = 0;
     public int hasElectric = 0;
     public int bleedTimer = 0;
+    public bool isFrozen = false;
+    public int freezeTimer = 0;
+    public int freezeTimerLength = 100;
     public List<int> poisonTimers = new List<int>();
     public List<float> poisonDamages = new List<float>();
     public List<int> iconOrder = new List<int>();
@@ -48,6 +51,16 @@ public class Statuses : MonoBehaviour
 
     void FixedUpdate()
     {
+        //if (freezeTimer >= 0)
+        //{
+        //    gameObject.GetComponent<NewPlayerMovement>().isSlowed = 2;
+        //    gameObject.GetComponent<NewPlayerMovement>().slowTimer = freezeTimer;
+        //}
+        //else
+        //{
+
+        //}
+
         for (int i = 0; i < poisonTimers.Count; i++)
         {
             poisonTimers[i]++;

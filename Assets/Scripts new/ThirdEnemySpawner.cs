@@ -168,6 +168,7 @@ public class ThirdEnemySpawner : MonoBehaviour
             float SpawnPosXVariation = Random.Range(-1f, 1f);
             float SpawnPosYVariation = Random.Range(-1f, 1f);
             GameObject spawned = Instantiate(toSpawn, new Vector3(SpawnPosX + SpawnPosXVariation, SpawnPosY + SpawnPosYVariation, 10.6f) + Camera.transform.position, transform.rotation);
+            spawned.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
 
             if (i == 0 && !existsMole && toSpawn == mole)
             {
@@ -195,6 +196,7 @@ public class ThirdEnemySpawner : MonoBehaviour
                 SpawnPosY = Random.Range(-8, 8);
             }
             GameObject spawned = Instantiate(toSpawn, new Vector3(SpawnPosX, SpawnPosY, 10.6f) + Camera.transform.position, transform.rotation);
+            spawned.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
         }
     }
 
