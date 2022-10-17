@@ -14,6 +14,7 @@ public class itemPedestal : MonoBehaviour
     bool cursed = false;
 
     public string description;
+    public bool enemiesCanUse;
 
     // Start is called before the first frame update
     void Start()
@@ -25,12 +26,6 @@ public class itemPedestal : MonoBehaviour
         gos = GameObject.FindGameObjectsWithTag("item");
         GameObject.Find("newPlayer").GetComponent<getItemDescription>().itemsExist = true;
         Invoke(nameof(SetDescription), 0.1f);
-        int sproinkle = Random.Range(0, 21);
-        if (sproinkle < 1)
-        {
-            cursed = true;
-            transform.localScale *= 1.3f;
-        }
     }
 
     void Update()
@@ -51,6 +46,13 @@ public class itemPedestal : MonoBehaviour
         gameObject.GetComponent<ItemDescriptions>().itemChosen = itemChosen;
         gameObject.GetComponent<ItemDescriptions>().getItemDescription();
         description = gameObject.GetComponent<ItemDescriptions>().itemDescription;
+        enemiesCanUse = gameObject.GetComponent<ItemDescriptions>().enemiesCanUse;
+        int sproinkle = Random.Range(1, 21);
+        if (sproinkle == 1 && enemiesCanUse)
+        {
+            cursed = true;
+            transform.localScale *= 2;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D col)

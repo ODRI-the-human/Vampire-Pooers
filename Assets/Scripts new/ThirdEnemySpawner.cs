@@ -21,6 +21,7 @@ public class ThirdEnemySpawner : MonoBehaviour
     int numberEnemiesSpawned;
 
     public GameObject firstMole;
+    public bool bypassWaves;
 
     public GameObject chaseEnemy;
     public GameObject shootEnemy;
@@ -77,7 +78,7 @@ public class ThirdEnemySpawner : MonoBehaviour
 
     void PickAction()
     {
-        if (spawnNumber - waveNumber != noSpawnsBeforeNewWave)
+        if (spawnNumber - waveNumber != noSpawnsBeforeNewWave && !bypassWaves)
         {
             SpawnEnemies();
         }

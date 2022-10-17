@@ -279,6 +279,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9014303847402346882, guid: 2c1e033fc431a694499cc08ddf9a90b1, type: 3}
+      propertyPath: bypassWaves
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9014303847402346882, guid: 2c1e033fc431a694499cc08ddf9a90b1, type: 3}
       propertyPath: spawnTimerLength
       value: 200
       objectReference: {fileID: 0}
