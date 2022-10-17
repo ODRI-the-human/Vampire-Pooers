@@ -6,6 +6,6 @@ public class giveenemiesitems : MonoBehaviour
 {
     void Start()
     {
-        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.HEALMLT);
+        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.CREEP);
     }
 }
