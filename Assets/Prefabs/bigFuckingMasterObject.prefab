@@ -111,6 +111,7 @@ MonoBehaviour:
   slowIcon: {fileID: 8308961761143311193, guid: 9056674da775b2746b4f310bf3196c88, type: 3}
   berserkMusic: {fileID: 989204346807140580, guid: 2d0360a6201468449a81a1244d658e07, type: 3}
   berserkPlane: {fileID: 4759339331114859231, guid: 2f9288612e676474c8a41b1035f33871, type: 3}
+  normieFamiliar: {fileID: 6465258072512375926, guid: bbd1bdd2eaa4f3f4988a12e287a2921e, type: 3}
   numItemsExist: 28
 --- !u!114 &9014303847402346882
 MonoBehaviour:

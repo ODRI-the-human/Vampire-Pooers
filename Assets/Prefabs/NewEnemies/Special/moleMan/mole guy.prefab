@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 377186745490795382}
   - component: {fileID: -1289743136397402161}
   - component: {fileID: -3511613664879309784}
+  - component: {fileID: 7228930673846689646}
   m_Layer: 6
   m_Name: mole guy
   m_TagString: Hostile
@@ -155,6 +156,7 @@ MonoBehaviour:
   colorChangeTimer: 0
   XP: {fileID: 6124614279667160435, guid: b448494b9362a2a429b8d6416d89f7e6, type: 3}
   creepTimer: 0
+  perfectWaves: 0
 --- !u!114 &6146499720883180670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,7 +191,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemsHeld: 
+  master: {fileID: 0}
   itemGained: 0
+  noToGive: 1
 --- !u!114 &-3140555855678869810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,6 +207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shotSpeed: 5
+  currentAngle: 0
   noExtraShots: 0
   shotAngleCoeff: 1
   trueDamageValue: 0
@@ -211,13 +216,20 @@ MonoBehaviour:
   fireTimerLength: 25
   fireTimer: 0
   PlayerShootAudio: {fileID: 2232971130497578917, guid: dc46db39e4e70b144915e7a0652cc396, type: 3}
+  Player: {fileID: 0}
   playerControlled: 0
   specialFireType: 2
   darkArtSword: {fileID: 2232971130497578917, guid: dc46db39e4e70b144915e7a0652cc396, type: 3}
   fireTimerDIV: 1
+  attachItems: 1
+  reTargetTimerLength: 100
+  reTargetTimer: 0
+  currentTarget: {fileID: 0}
   timesFired: 0
   newAttack: 0
   Crongus: 0
+  levelDamageBonus: 0
+  scaleAddMult: 1
 --- !u!114 &377186745490795382
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -355,5 +367,26 @@ MonoBehaviour:
   bleedStacks: 0
   hasElectric: 0
   bleedTimer: 0
+  isFrozen: 0
+  freezeTimer: 0
+  freezeTimerLength: 100
   poisonTimers: 
+  poisonDamages: []
   iconOrder: 
+--- !u!114 &7228930673846689646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8034279136360660190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2fbc6a30d6769c4bb440728c49f0ade, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scripts: []
+  familiars: []
+  familiarBonusDMG: 0
+  familiarBonusFIRERATE: 0
+  familiarBonusHOMING: 0

@@ -22,16 +22,16 @@ public class weaponType : MonoBehaviour
         switch (weaponHeld)
         {
             case (int)WEAPONS.PISTOL:
-                gameObject.GetComponent<Attack>().specialFireType = 0;
-                break;
-            case (int)WEAPONS.SHOTGUN:
-                gameObject.GetComponent<Attack>().fireTimerLength *= 2;
-                gameObject.GetComponent<Attack>().noExtraShots += 4;
-                gameObject.GetComponent<DealDamage>().finalDamageMult *= 0.5f;
-                gameObject.GetComponent<Attack>().shotAngleCoeff = 0.7f;
+                if (gameObject.GetComponent<Attack>() != null)
+                {
+                    gameObject.GetComponent<Attack>().specialFireType = 0;
+                }
                 break;
             case (int)WEAPONS.DARKARTS:
-                gameObject.GetComponent<Attack>().specialFireType = 3;
+                if (gameObject.GetComponent<Attack>() != null)
+                {
+                    gameObject.GetComponent<Attack>().specialFireType = 3;
+                }
                 break;
         }
     }

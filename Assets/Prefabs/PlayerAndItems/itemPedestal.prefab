@@ -138,6 +138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemChosen: 0
+  minRange: 0
   spriteArray:
   - {fileID: 1046195323, guid: 2577e3cd26680cc499504306f54c325a, type: 3}
   - {fileID: 1421336850, guid: 2577e3cd26680cc499504306f54c325a, type: 3}
@@ -177,8 +178,13 @@ MonoBehaviour:
   - {fileID: -1192967247, guid: 2577e3cd26680cc499504306f54c325a, type: 3}
   - {fileID: -1601981074, guid: 2577e3cd26680cc499504306f54c325a, type: 3}
   - {fileID: 1772200912, guid: 2577e3cd26680cc499504306f54c325a, type: 3}
+  - {fileID: 2032808715, guid: 2577e3cd26680cc499504306f54c325a, type: 3}
+  - {fileID: -174223749, guid: 2577e3cd26680cc499504306f54c325a, type: 3}
+  - {fileID: -1005685031, guid: 2577e3cd26680cc499504306f54c325a, type: 3}
+  - {fileID: -330611366, guid: 2577e3cd26680cc499504306f54c325a, type: 3}
   spriteRenderer: {fileID: 7674381605585770212}
   description: 
+  enemiesCanUse: 0
 --- !u!114 &8191072633798459801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,4 +198,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemChosen: 0
+  enemiesCanUse: 0
+  applyToBullets: 0
   itemDescription: 

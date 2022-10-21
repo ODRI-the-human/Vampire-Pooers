@@ -21,6 +21,8 @@ TagManager:
   - Orbital Bullet
   - playerBulletSplit
   - Shield
+  - Familiar
+  - enemyFamiliar
   layers:
   - Default
   - TransparentFX

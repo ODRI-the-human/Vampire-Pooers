@@ -2,11 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class usetogiveonlyplayeritem : MonoBehaviour
+public class familiarBonuses : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
     {
-        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.AUTOFAMILIAR);
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
     }
 }

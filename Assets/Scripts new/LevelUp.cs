@@ -6,6 +6,7 @@ public class LevelUp : MonoBehaviour
 {
     public int level = 1;
     public int effectMult = 1;
+    public float xpMult = 1;
     public int XP = 0;
     public float healMult = 0;
     public float nextXP;
@@ -50,7 +51,7 @@ public class LevelUp : MonoBehaviour
     {
         if (col.gameObject.tag == "XP")
         {
-            XP += 10;
+            XP += Mathf.RoundToInt(10 * xpMult);
             Instantiate(PlayerXPAudio);
         }
     }

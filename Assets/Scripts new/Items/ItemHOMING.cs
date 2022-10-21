@@ -26,43 +26,46 @@ public class ItemHOMING : MonoBehaviour
 
     void FixedUpdate()
     {
-        homingCheckTimer--;
-        if (homingCheckTimer <= 0 && isBullet)
+        if (isBullet)
         {
-            homingCheckTimer = 6;
-            if (gameObject.tag == "PlayerBullet")
+            homingCheckTimer--;
+            if (homingCheckTimer <= 0)
             {
-                gos = GameObject.FindGameObjectsWithTag("Hostile");
-            }
-            if (gameObject.tag == "enemyBullet")
-            {
-                gos = GameObject.FindGameObjectsWithTag("Player");
-            }
-            closest = null;
-            float distance = Mathf.Infinity;
-            Vector3 position = transform.position;
-            foreach (GameObject go in gos)
-            {
-                Vector3 diff = go.transform.position - position;
-                float curDistance = diff.sqrMagnitude;
-                if (curDistance < distance)
+                homingCheckTimer = 6;
+                if (gameObject.tag == "PlayerBullet")
                 {
-                    closest = go;
-                    distance = curDistance;
+                    gos = GameObject.FindGameObjectsWithTag("Hostile");
+                }
+                if (gameObject.tag == "enemyBullet")
+                {
+                    gos = GameObject.FindGameObjectsWithTag("Player");
+                }
+                closest = null;
+                float distance = Mathf.Infinity;
+                Vector3 position = transform.position;
+                foreach (GameObject go in gos)
+                {
+                    Vector3 diff = go.transform.position - position;
+                    float curDistance = diff.sqrMagnitude;
+                    if (curDistance < distance)
+                    {
+                        closest = go;
+                        distance = curDistance;
+                    }
                 }
             }
-        }
 
-        currentNearest = closest.transform.position;
+            currentNearest = closest.transform.position;
 
-        if ((transform.position - currentNearest).magnitude < 5 * instances)
-        {
-            closestEnemyPos.x = currentNearest.x;
-            closestEnemyPos.y = currentNearest.y;
-            bulletPos.x = gameObject.transform.position.x;
-            bulletPos.y = gameObject.transform.position.y;
-            vectorToEnemy = (closestEnemyPos - bulletPos).normalized;
-            rb.velocity = 10f * (rb.velocity + vectorToEnemy.normalized).normalized;
+            if ((transform.position - currentNearest).magnitude < 5 * instances)
+            {
+                closestEnemyPos.x = currentNearest.x;
+                closestEnemyPos.y = currentNearest.y;
+                bulletPos.x = gameObject.transform.position.x;
+                bulletPos.y = gameObject.transform.position.y;
+                vectorToEnemy = (closestEnemyPos - bulletPos).normalized;
+                rb.velocity = 10f * (rb.velocity + vectorToEnemy.normalized).normalized;
+            }
         }
     }
 

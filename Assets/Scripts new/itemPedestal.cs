@@ -5,9 +5,9 @@ using UnityEngine;
 public class itemPedestal : MonoBehaviour
 {
     public int itemChosen;
+    public int minRange = 0;
     public Sprite[] spriteArray;
     public SpriteRenderer spriteRenderer;
-    int minRange = 0;
     int maxRange;
     GameObject[] gos;
     GameObject master;

@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 373114558742256855}
   - component: {fileID: -3904661249290744188}
   - component: {fileID: 5189757116334547358}
+  - component: {fileID: -9057235273044812872}
   m_Layer: 6
   m_Name: 8DirEnemy
   m_TagString: Hostile
@@ -141,6 +142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7c0609e2de7d9147bdd13a8a1dbefb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dodgeTimerLength: 15
   moveSpeed: 1.5
   dodgeUp: 1
   dodgeAudio: {fileID: 0}
@@ -192,6 +194,7 @@ MonoBehaviour:
   colorChangeTimer: 0
   XP: {fileID: 6124614279667160435, guid: b448494b9362a2a429b8d6416d89f7e6, type: 3}
   creepTimer: 0
+  perfectWaves: 0
 --- !u!114 &373114558742256855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,6 +208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shotSpeed: 4
+  currentAngle: 0
   noExtraShots: 7
   shotAngleCoeff: 1
   trueDamageValue: 0
@@ -213,13 +217,20 @@ MonoBehaviour:
   fireTimerLength: 100
   fireTimer: 0
   PlayerShootAudio: {fileID: 1343821369956803891, guid: 04da9c57f71492c40818fe9dcb49315f, type: 3}
+  Player: {fileID: 0}
   playerControlled: 0
   specialFireType: 1
   darkArtSword: {fileID: 0}
   fireTimerDIV: 1
+  attachItems: 1
+  reTargetTimerLength: 100
+  reTargetTimer: 0
+  currentTarget: {fileID: 0}
   timesFired: 0
   newAttack: 0
   Crongus: 0
+  levelDamageBonus: 0
+  scaleAddMult: 1
 --- !u!114 &-3904661249290744188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,7 +244,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemsHeld: 
+  master: {fileID: 0}
   itemGained: 0
+  noToGive: 1
 --- !u!114 &5189757116334547358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251,5 +264,26 @@ MonoBehaviour:
   bleedStacks: 0
   hasElectric: 0
   bleedTimer: 0
+  isFrozen: 0
+  freezeTimer: 0
+  freezeTimerLength: 100
   poisonTimers: 
+  poisonDamages: []
   iconOrder: 
+--- !u!114 &-9057235273044812872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8034279136360660190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2fbc6a30d6769c4bb440728c49f0ade, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scripts: []
+  familiars: []
+  familiarBonusDMG: 0
+  familiarBonusFIRERATE: 0
+  familiarBonusHOMING: 0

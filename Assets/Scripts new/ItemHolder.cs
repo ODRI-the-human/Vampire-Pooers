@@ -342,6 +342,18 @@ public class ItemHolder : MonoBehaviour
                     gameObject.GetComponent<ItemDAGGERTHROW>().instances++;
                 }
                 break;
+            case (int)ITEMLIST.MOREXP:
+                gameObject.AddComponent<ItemMOREXP>();
+                break;
+            case (int)ITEMLIST.FAMILIAR:
+                gameObject.AddComponent<ItemFAMILIAR>();
+                break;
+            case (int)ITEMLIST.HOMINGFAMILIAR:
+                gameObject.AddComponent<ItemHOMINGFAMILIAR>();
+                break;
+            case (int)ITEMLIST.AUTOFAMILIAR:
+                gameObject.AddComponent<ItemAUTOFAMILIAR>();
+                break;
         }
     }
 

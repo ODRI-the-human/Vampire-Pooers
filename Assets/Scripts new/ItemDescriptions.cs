@@ -144,7 +144,7 @@ public class ItemDescriptions : MonoBehaviour
                 applyToBullets = true;
                 break;
             case (int)ITEMLIST.BETTERLEVEL:
-                itemDescription = "Recieve 3x (+2x per stack) the stat bonuses upon levelling up.";
+                itemDescription = "Recieve +2x the stat bonuses upon levelling up per stack.";
                 break;
             case (int)ITEMLIST.EXTRAITEMLEVEL:
                 itemDescription = "Each time you level up, your next item gets applied an extra time. Items get applied an extra time per level, per stack.";
@@ -156,10 +156,25 @@ public class ItemDescriptions : MonoBehaviour
                 itemDescription = "XP drops give you extra XP depending on how much missing health you have (+1 XP per 5% missing HP).";
                 break;
             case (int)ITEMLIST.LEVELHEAL:
-                itemDescription = "Levelling up heals 25 HP (+25 HP per stack)";
+                itemDescription = "Levelling up heals 25 HP (+25 HP per stack).";
                 break;
             case (int)ITEMLIST.DAGGERTHROW:
                 itemDescription = "Every 3rd shot, fire 3 daggers in an arc that deal 10 damage (+10 per stack) and inflict bleed.";
+                enemiesCanUse = true;
+                break;
+            case (int)ITEMLIST.MOREXP:
+                itemDescription = "Gain 30% extra XP from XP drops.";
+                break;
+            case (int)ITEMLIST.FAMILIAR:
+                itemDescription = "Gain a followers that shoots 20 damage bullets. All followers deal 1.5x damage (+0.5x per stack).";
+                enemiesCanUse = true;
+                break;
+            case (int)ITEMLIST.HOMINGFAMILIAR:
+                itemDescription = "Gain a followers that shoots 20 damage bullets. All followers get one instance of homing (+1 instance per stack).";
+                enemiesCanUse = true;
+                break;
+            case (int)ITEMLIST.AUTOFAMILIAR:
+                itemDescription = "Gain a followers that automatically shoots 15 damage bullets. All familiars shoot 1.5x faster (+0.5x per stack)";
                 enemiesCanUse = true;
                 break;
         }

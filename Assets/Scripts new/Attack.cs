@@ -22,6 +22,13 @@ public class Attack : MonoBehaviour
     public int specialFireType;
     public GameObject darkArtSword;
     public float fireTimerDIV = 1;
+    public bool attachItems = true;
+
+    public int visionRange = 8;
+
+    public int reTargetTimerLength = 100;
+    public int reTargetTimer = 0;
+    public GameObject currentTarget;
 
     public int timesFired;
     public int newAttack; // alternates between 0 and 1 when the player fires. Used for certain items.
@@ -40,7 +47,7 @@ public class Attack : MonoBehaviour
     void Start()
     {
         newAttack = 0;
-        if (gameObject.tag == "Hostile" || gameObject.tag == "enemyBullet")
+        if (gameObject.tag == "Hostile" || gameObject.tag == "enemyBullet" || gameObject.tag == "enemyFamiliar")
         {
             Player = GameObject.Find("newPlayer");
             if (Player.GetComponent<ItemSTOPWATCH>() != null)
@@ -56,6 +63,12 @@ public class Attack : MonoBehaviour
     {
         trueDamageValue = gameObject.GetComponent<DealDamage>().finalDamageStat;
 
+        if (reTargetTimer <= 0)
+        {
+            ReTarget();
+            reTargetTimer = reTargetTimerLength;
+        }
+
         if (fireTimer > fireTimerLength * fireTimerLengthMLT / fireTimerDIV)
         {
             switch (playerControlled)
@@ -70,10 +83,17 @@ public class Attack : MonoBehaviour
                     }
                     break;
                 case false:
-                    vectorToTarget = (Player.transform.position - gameObject.transform.position).normalized;
-                    UseWeapon();
-                    fireTimer = 0;
-                    Instantiate(PlayerShootAudio);
+                    if (currentTarget == null)
+                    {
+                        ReTarget();
+                    }
+                    if ((currentTarget.transform.position - gameObject.transform.position).magnitude < visionRange)
+                    {
+                        vectorToTarget = (currentTarget.transform.position - gameObject.transform.position).normalized;
+                        UseWeapon();
+                        fireTimer = 0;
+                        Instantiate(PlayerShootAudio);
+                    }
                     break;
             }
         }
@@ -122,11 +142,54 @@ public class Attack : MonoBehaviour
         bulletRB = newObject.GetComponent<Rigidbody2D>();
         newShotVector = new Vector2(vectorToTarget.x * Mathf.Cos(currentAngle) - vectorToTarget.y * Mathf.Sin(currentAngle), vectorToTarget.x * Mathf.Sin(currentAngle) + vectorToTarget.y * Mathf.Cos(currentAngle));
         bulletRB.velocity = newShotVector * shotSpeed;
-        newObject.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
-        newObject.GetComponent<weaponType>().weaponHeld = newObject.GetComponent<weaponType>().weaponHeld;
-        newObject.GetComponent<DealDamage>().owner = gameObject;
-        newObject.GetComponent<DealDamage>().finalDamageMult *= gameObject.GetComponent<DealDamage>().finalDamageMult;
-        newObject.GetComponent<DealDamage>().damageBase += Crongus + levelDamageBonus; // applies converter damage bonus to bullets
+        if (attachItems)
+        {
+            newObject.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
+            newObject.GetComponent<weaponType>().weaponHeld = newObject.GetComponent<weaponType>().weaponHeld;
+            newObject.GetComponent<DealDamage>().owner = gameObject;
+            newObject.GetComponent<DealDamage>().finalDamageMult *= gameObject.GetComponent<DealDamage>().finalDamageMult;
+            newObject.GetComponent<DealDamage>().damageBase += Crongus + levelDamageBonus; // applies converter damage bonus to bullets
+        }
+        else
+        {
+            newObject.GetComponent<DealDamage>().finalDamageMult = gameObject.GetComponent<DealDamage>().finalDamageMult;
+            newObject.GetComponent<DealDamage>().procCoeff = gameObject.GetComponent<DealDamage>().procCoeff;
+            newObject.GetComponent<DealDamage>().damageBase = gameObject.GetComponent<DealDamage>().damageBase;
+            newObject.GetComponent<DealDamage>().damageMult = gameObject.GetComponent<DealDamage>().damageMult;
+            newObject.GetComponent<DealDamage>().finalDamageMult = gameObject.GetComponent<DealDamage>().finalDamageMult;
+            newObject.GetComponent<DealDamage>().knockBackCoeff = gameObject.GetComponent<DealDamage>().knockBackCoeff;
+            newObject.GetComponent<DealDamage>().finalDamageDIV = gameObject.GetComponent<DealDamage>().finalDamageDIV;
+            newObject.GetComponent<weaponType>().weaponHeld = newObject.GetComponent<weaponType>().weaponHeld;
+            newObject.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
+        }
+    }
+
+    void ReTarget()
+    {
+        GameObject[] gos;
+        if (gameObject.tag == "Player" || gameObject.tag == "Familiar")
+        {
+            gos = GameObject.FindGameObjectsWithTag("Hostile");
+        }
+        else
+        {
+            gos = GameObject.FindGameObjectsWithTag("Player");
+        }
+        GameObject closest = null;
+        float distance = Mathf.Infinity;
+        Vector3 position = transform.position;
+        foreach (GameObject go in gos)
+        {
+            Vector3 diff = go.transform.position - position;
+            float curDistance = diff.sqrMagnitude;
+            if (curDistance < distance)
+            {
+                closest = go;
+                distance = curDistance;
+            }
+        }
+
+        currentTarget = closest;
     }
 
     void SpawnDarkart()
@@ -174,5 +237,6 @@ public class Attack : MonoBehaviour
     void FixedUpdate()
     {
         fireTimer++;
+        reTargetTimer--;
     }
 }

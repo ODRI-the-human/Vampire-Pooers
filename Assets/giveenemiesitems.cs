@@ -6,6 +6,6 @@ public class giveenemiesitems : MonoBehaviour
 {
     void Start()
     {
-        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.DAGGERTHROW);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.FAMILIAR);
     }
 }

@@ -27,8 +27,14 @@ public class EntityReferencerGuy : MonoBehaviour
     public GameObject slowIcon;
     public GameObject berserkMusic;
     public GameObject berserkPlane;
-
+    public GameObject normieFamiliar;
     public int numItemsExist = 33;
+
+    void Start()
+    {
+        GameObject pedestal = gameObject.GetComponent<ThirdEnemySpawner>().itemPedestal;
+        numItemsExist = pedestal.GetComponent<itemPedestal>().spriteArray.GetLength(0);
+    }
 
     void Update()
     {
