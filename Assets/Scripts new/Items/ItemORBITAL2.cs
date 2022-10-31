@@ -19,55 +19,60 @@ public class ItemORBITAL2 : MonoBehaviour
 
     void SetStats()
     {
-        Invoke(nameof(CheckStats), 0.1f); // otherwise stuff wouldn't get calculated properly for some reason
-        myGuy = Instantiate(orbSkothos2);
-        myGuy.GetComponent<DealDamage>().finalDamageMult = 0;
-        myGuy.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
-        myGuy.GetComponent<DealDamage>().owner = gameObject;
-
-        if (gameObject.GetComponent<weaponType>() != null) // && gameObject.GetComponent<weaponType>().weaponHeld == (int)WEAPONS.DARKARTS
+        for (int i = 0; i < instances; i++)
         {
-            myGuy.GetComponent<weaponType>().weaponHeld = gameObject.GetComponent<weaponType>().weaponHeld;
-            myGuy.GetComponent<Attack>().newAttack = gameObject.GetComponent<Attack>().newAttack;
-        }
+            myGuy = Instantiate(orbSkothos2);
+            myGuy.GetComponent<DealDamage>().finalDamageMult = 0;
+            myGuy.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
+            myGuy.GetComponent<DealDamage>().owner = gameObject;
+            myGuy.GetComponent<OrbitalMovement2>().timerDelay = i * (2 * Mathf.PI / 0.03f) / instances;
+            myGuy.GetComponent<OrbitalMovement2>().distanceFromPlayer = 1 + 0.08f * instances;
 
-        if (gameObject.tag == "Player")
-        {
-            myGuy.tag = "PlayerBullet";
-            myGuy.GetComponent<Attack>().playerControlled = true;
-        }
-        else
-        {
-            myGuy.tag = "enemyBullet";
-            myGuy.GetComponent<Attack>().playerControlled = false;
-        }
-    }
+            if (gameObject.GetComponent<weaponType>() != null) // && gameObject.GetComponent<weaponType>().weaponHeld == (int)WEAPONS.DARKARTS
+            {
+                myGuy.GetComponent<weaponType>().weaponHeld = gameObject.GetComponent<weaponType>().weaponHeld;
+                myGuy.GetComponent<Attack>().newAttack = gameObject.GetComponent<Attack>().newAttack;
+            }
 
-    void CheckStats()
-    {
-        myGuy.GetComponent<DealDamage>().damageBase = gameObject.GetComponent<DealDamage>().damageBase;
-        myGuy.GetComponent<DealDamage>().damageMult = gameObject.GetComponent<DealDamage>().damageMult;
-        myGuy.GetComponent<DealDamage>().finalDamageDIV = gameObject.GetComponent<DealDamage>().finalDamageDIV;
-        myGuy.GetComponent<Attack>().Bullet = gameObject.GetComponent<Attack>().Bullet;
-        myGuy.GetComponent<Attack>().specialFireType = gameObject.GetComponent<Attack>().specialFireType;
-        myGuy.GetComponent<Attack>().fireTimerDIV = gameObject.GetComponent<Attack>().fireTimerDIV;
-        myGuy.GetComponent<Attack>().noExtraShots = gameObject.GetComponent<Attack>().noExtraShots;
-        myGuy.GetComponent<Attack>().shotAngleCoeff = gameObject.GetComponent<Attack>().shotAngleCoeff;
-        myGuy.GetComponent<Attack>().shotSpeed = gameObject.GetComponent<Attack>().shotSpeed;
-        myGuy.GetComponent<Attack>().fireTimerLength = gameObject.GetComponent<Attack>().fireTimerLength;
-        //for (int i = 0; i < instances; i++)
-        //{
-        //    myGuy.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.ORB2DMGDIV);
-        //}
-        myGuy.GetComponent<DealDamage>().finalDamageMult = 0.25f * instances;
+            if (gameObject.tag == "Player")
+            {
+                myGuy.tag = "PlayerBullet";
+                myGuy.GetComponent<Attack>().playerControlled = true;
+            }
+            else
+            {
+                myGuy.tag = "enemyBullet";
+                myGuy.GetComponent<Attack>().playerControlled = false;
+            }
+
+            myGuy.GetComponent<DealDamage>().damageBase = gameObject.GetComponent<DealDamage>().damageBase;
+            myGuy.GetComponent<DealDamage>().damageMult = gameObject.GetComponent<DealDamage>().damageMult;
+            myGuy.GetComponent<DealDamage>().finalDamageDIV = gameObject.GetComponent<DealDamage>().finalDamageDIV;
+            myGuy.GetComponent<Attack>().Bullet = gameObject.GetComponent<Attack>().Bullet;
+            myGuy.GetComponent<Attack>().specialFireType = gameObject.GetComponent<Attack>().specialFireType;
+            myGuy.GetComponent<Attack>().fireTimerDIV = gameObject.GetComponent<Attack>().fireTimerDIV;
+            myGuy.GetComponent<Attack>().noExtraShots = gameObject.GetComponent<Attack>().noExtraShots;
+            myGuy.GetComponent<Attack>().shotAngleCoeff = gameObject.GetComponent<Attack>().shotAngleCoeff;
+            myGuy.GetComponent<Attack>().shotSpeed = gameObject.GetComponent<Attack>().shotSpeed;
+            myGuy.GetComponent<Attack>().fireTimerLength = gameObject.GetComponent<Attack>().fireTimerLength;
+            myGuy.GetComponent<DealDamage>().finalDamageMult = 0.25f;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.tag == "item")
         {
-            Destroy(myGuy);
-            SetStats();
+            GameObject[] orboes = GameObject.FindGameObjectsWithTag("PlayerBullet");
+            foreach (GameObject friend in orboes)
+            {
+                if (friend.GetComponent<OrbitalMovement2>() != null)
+                {
+                    Destroy(friend);
+                }
+            }
+
+            Invoke(nameof(SetStats),0.1f);
         }
     }
 

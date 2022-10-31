@@ -6,6 +6,8 @@ public class OrbitalMovement2 : MonoBehaviour
 {
     int timer = 0;
     GameObject Player;
+    public float timerDelay;
+    public float distanceFromPlayer = 2;
 
     void Start()
     {
@@ -20,7 +22,7 @@ public class OrbitalMovement2 : MonoBehaviour
             Destroy(gameObject);
         }
 
-        transform.position = new Vector3(Player.transform.position.x + 0.8f * Mathf.Sin(0.08f * timer), Player.transform.position.y + 0.8f * Mathf.Cos(0.08f * timer), Player.transform.position.z);
+        transform.position = new Vector3(Player.transform.position.x + distanceFromPlayer * Mathf.Sin(0.03f * (timer + timerDelay)), Player.transform.position.y + distanceFromPlayer * Mathf.Cos(0.03f * (timer + timerDelay)), Player.transform.position.z);
         timer++;
 
         int currentWeapon = gameObject.GetComponent<weaponType>().weaponHeld;

@@ -120,7 +120,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 1418
+  controlID: 18
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -171,7 +171,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 1432
+  controlID: 19
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -378,7 +378,7 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
+      m_SelectedIDs: ea5d0000
       m_LastClickedID: 0
       m_ExpandedIDs: 38fbffff
       m_RenameOverlay:
@@ -629,9 +629,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -3.1083224, y: 1.701796, z: 1.0212613}
+    m_Target: {x: 145.41203, y: 532.6696, z: -0.26978442}
     speed: 2
-    m_Value: {x: -3.1083224, y: 1.701796, z: 1.0212613}
+    m_Value: {x: 145.41203, y: 532.6696, z: -0.26978442}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -682,9 +682,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 6.0621123
+    m_Target: 218.66826
     speed: 2
-    m_Value: 6.0621123
+    m_Value: 218.66826
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -739,7 +739,7 @@ MonoBehaviour:
     m_SaveData: []
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 40632
+  m_LastSelectedObjectID: -701870
 --- !u!114 &15
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1783,22 +1783,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs
+    - Assets/Prefabs/NewEnemies
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Prefabs
+  - Assets/Prefabs/NewEnemies
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\orang\Vampire-Pooers
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 5c630000
-    m_LastClickedID: 25436
-    m_ExpandedIDs: 0000000056630000586300005a6300005c6300005e6300006063000000ca9a3b
+    m_SelectedIDs: b8630000
+    m_LastClickedID: 25528
+    m_ExpandedIDs: 0000000090630000926300009463000096630000986300009a63000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1826,7 +1826,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000056630000586300005a6300005c6300005e6300006063000000ca9a3b
+    m_ExpandedIDs: 0000000090630000926300009463000096630000986300009a630000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

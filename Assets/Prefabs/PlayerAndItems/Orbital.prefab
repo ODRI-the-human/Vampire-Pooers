@@ -137,6 +137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a06d720698bf1be4bb1345f5abc73b1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timerDelay: 0
 --- !u!114 &2368842607186873885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,4 +154,10 @@ MonoBehaviour:
   procCoeff: 0
   damageBase: 0
   damageMult: 0
+  finalDamageMult: 1
   knockBackCoeff: 1
+  finalDamageDIV: 1
+  critChance: 1
+  critMult: 2
+  owner: {fileID: 0}
+  overwriteDamageCalc: 0

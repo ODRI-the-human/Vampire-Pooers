@@ -24,6 +24,8 @@ public class Attack : MonoBehaviour
     public float fireTimerDIV = 1;
     public bool attachItems = true;
 
+    public float fireTimerActualLength;
+
     public int visionRange = 8;
 
     public int reTargetTimerLength = 100;
@@ -62,6 +64,7 @@ public class Attack : MonoBehaviour
     void Update()
     {
         trueDamageValue = gameObject.GetComponent<DealDamage>().finalDamageStat;
+        fireTimerActualLength = fireTimerLength * fireTimerLengthMLT / fireTimerDIV;
 
         if (reTargetTimer <= 0)
         {

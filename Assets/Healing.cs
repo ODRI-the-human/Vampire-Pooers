@@ -16,6 +16,6 @@ public class Healing : MonoBehaviour
     public void Healo(float amount)
     {
         gameObject.GetComponent<HPDamageDie>().HP += amount * healMult / healDiv;
-        master.GetComponent<showDamageNumbers>().showDamage(transform.position, amount * healMult / healDiv, (int)DAMAGETYPES.HEAL);
+        master.GetComponent<showDamageNumbers>().showDamage(transform.position, amount * healMult / healDiv, (int)DAMAGETYPES.HEAL, false);
     }
 }

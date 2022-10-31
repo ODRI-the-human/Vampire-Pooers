@@ -36,7 +36,7 @@ public class ItemELECTRIC : MonoBehaviour
                         Gareth.GetComponent<HPDamageDie>().HP -= 10 * instances;
                         Gareth.GetComponent<HPDamageDie>().sprite.color = Color.red;
                         Gareth.GetComponent<HPDamageDie>().colorChangeTimer = 1;
-                        masterObject.GetComponent<showDamageNumbers>().showDamage(Gareth.transform.position, 10 * instances, (int)DAMAGETYPES.ELECTRIC);
+                        masterObject.GetComponent<showDamageNumbers>().showDamage(Gareth.transform.position, 10 * instances, (int)DAMAGETYPES.ELECTRIC, false);
                     }
                 }
                 Debug.Log("your mum");

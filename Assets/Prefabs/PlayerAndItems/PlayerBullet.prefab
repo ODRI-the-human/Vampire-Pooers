@@ -19,7 +19,6 @@ GameObject:
   - component: {fileID: -1365107204755030205}
   - component: {fileID: 5116095037221346998}
   - component: {fileID: 5700807271172768676}
-  - component: {fileID: 4695782197316486959}
   m_Layer: 9
   m_Name: PlayerBullet
   m_TagString: PlayerBullet
@@ -142,7 +141,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemsHeld: 
+  master: {fileID: 0}
   itemGained: 0
+  noToGive: 1
 --- !u!114 &-3635382963841210237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,6 +158,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 4255455733749829592}
   speed: 0
+  master: {fileID: 0}
 --- !u!114 &1446115092270715649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,15 +218,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponHeld: 0
---- !u!114 &4695782197316486959
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4255455733749829593}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7bf4da92c1f948345823db1fa2b65bb0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

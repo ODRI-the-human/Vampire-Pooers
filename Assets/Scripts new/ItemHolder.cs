@@ -354,6 +354,9 @@ public class ItemHolder : MonoBehaviour
             case (int)ITEMLIST.AUTOFAMILIAR:
                 gameObject.AddComponent<ItemAUTOFAMILIAR>();
                 break;
+            case (int)ITEMLIST.RANDOMSHOT:
+                gameObject.AddComponent<ItemRANDOMSHOT>();
+                break;
         }
     }
 

@@ -139,6 +139,7 @@ MonoBehaviour:
   Barry63: {fileID: 6964255014020883914, guid: 526b17258aed02c4c9c574bcca2b87c3, type: 3}
   PlayerDieAudio: {fileID: 7927511119378929990, guid: 5524052d8b9da4f43a8bffc27f9db6d9, type: 3}
   PlayerHurtAudio: {fileID: 5963825423898132415, guid: e7b6397eaf92c834aaecbf3499716cb0, type: 3}
+  CritAudio: {fileID: 4189199820661322247, guid: cfea01d8a8cd2594fa1446da0a6dd1b2, type: 3}
   rb: {fileID: 503381878361641300}
   iFramesTimer: 50
   iFrames: 0
@@ -167,6 +168,8 @@ MonoBehaviour:
   finalDamageMult: 1
   knockBackCoeff: 3
   finalDamageDIV: 1
+  critProb: 0.5
+  critMult: 2
   owner: {fileID: 0}
   overwriteDamageCalc: 0
 --- !u!114 &3646255009062352282
@@ -191,10 +194,16 @@ MonoBehaviour:
   fireTimerLength: 25
   fireTimer: 0
   PlayerShootAudio: {fileID: 2894936639441958211, guid: f4849f6de8b809d48a7220ff85910c8b, type: 3}
+  Player: {fileID: 0}
   playerControlled: 1
   specialFireType: 0
   darkArtSword: {fileID: 7955111713391121560, guid: 35c958ea85b00c144830eefba828d8c3, type: 3}
   fireTimerDIV: 1
+  attachItems: 1
+  visionRange: 8
+  reTargetTimerLength: 100
+  reTargetTimer: 0
+  currentTarget: {fileID: 0}
   timesFired: 0
   newAttack: 0
   Crongus: 0
@@ -213,6 +222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemsHeld: 
+  master: {fileID: 0}
   itemGained: 0
   noToGive: 1
 --- !u!212 &5905868436867884629
@@ -281,6 +291,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 1
   effectMult: 1
+  xpMult: 1
   XP: 0
   healMult: 0
   nextXP: 0
@@ -341,6 +352,9 @@ MonoBehaviour:
   bleedStacks: 0
   hasElectric: 0
   bleedTimer: 0
+  isFrozen: 0
+  freezeTimer: 0
+  freezeTimerLength: 100
   poisonTimers: 
   poisonDamages: []
   iconOrder: 
@@ -371,3 +385,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scripts: []
+  familiars: []
+  familiarBonusDMG: 0
+  familiarBonusFIRERATE: 0
+  familiarBonusHOMING: 0

@@ -165,6 +165,7 @@ MonoBehaviour:
   Barry63: {fileID: 2232971130497578917, guid: dc46db39e4e70b144915e7a0652cc396, type: 3}
   PlayerDieAudio: {fileID: 1098745368026675434, guid: 26556f7af7586304588a534b37c199bc, type: 3}
   PlayerHurtAudio: {fileID: 5472873928898165319, guid: 1edb877ad01c07344b1cad0d27b62330, type: 3}
+  CritAudio: {fileID: 4189199820661322247, guid: cfea01d8a8cd2594fa1446da0a6dd1b2, type: 3}
   rb: {fileID: 8034279136360660184}
   iFramesTimer: 50
   iFrames: 0
@@ -193,6 +194,8 @@ MonoBehaviour:
   finalDamageMult: 1
   knockBackCoeff: 1
   finalDamageDIV: 1
+  critProb: 0.5
+  critMult: 2
   owner: {fileID: 0}
   overwriteDamageCalc: 0
 --- !u!114 &373114558742256855
@@ -223,6 +226,7 @@ MonoBehaviour:
   darkArtSword: {fileID: 0}
   fireTimerDIV: 1
   attachItems: 1
+  visionRange: 8
   reTargetTimerLength: 100
   reTargetTimer: 0
   currentTarget: {fileID: 0}

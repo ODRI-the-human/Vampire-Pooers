@@ -11,9 +11,16 @@ public class DealDamage : MonoBehaviour
     public float finalDamageMult = 1;
     public float knockBackCoeff = 1;
     public float finalDamageDIV = 1;
+    public float critProb = 0.05f;
+    public float critMult = 2;
     public GameObject owner;
 
     public bool overwriteDamageCalc;
+
+    void Awake()
+    {
+        critProb = 0.05f;
+    }
 
     // Start is called before the first frame update
     void Start()

@@ -101,7 +101,7 @@ public class ItemDescriptions : MonoBehaviour
                 enemiesCanUse = true;
                 break;
             case (int)ITEMLIST.ORBITAL2:
-                itemDescription = "Gain a close-range orbital that blocks enemy shots, damages enemies, and shoots, copying all your bullet effects. Deals 25% (+25%) of your damage per stack.";
+                itemDescription = "Gain a close-range orbital that blocks enemy shots, damages enemies, and shoots, copying all your bullet effects and dealing 25% of your damage. Stacks add extra orbitals.";
                 enemiesCanUse = true;
                 break;
             case (int)ITEMLIST.SPLIT:
@@ -166,16 +166,21 @@ public class ItemDescriptions : MonoBehaviour
                 itemDescription = "Gain 30% extra XP from XP drops.";
                 break;
             case (int)ITEMLIST.FAMILIAR:
-                itemDescription = "Gain a followers that shoots 20 damage bullets. All followers deal 1.5x damage (+0.5x per stack).";
+                itemDescription = "Gain a follower that shoots 20 damage bullets. All followers deal 1.5x damage (+0.5x per stack).";
                 enemiesCanUse = true;
                 break;
             case (int)ITEMLIST.HOMINGFAMILIAR:
-                itemDescription = "Gain a followers that shoots 20 damage bullets. All followers get one instance of homing (+1 instance per stack).";
+                itemDescription = "Gain a follower that shoots 20 damage bullets. All followers get one instance of homing (+1 instance per stack).";
                 enemiesCanUse = true;
                 break;
             case (int)ITEMLIST.AUTOFAMILIAR:
-                itemDescription = "Gain a followers that automatically shoots 15 damage bullets. All familiars shoot 1.5x faster (+0.5x per stack)";
+                itemDescription = "Gain a follower that automatically shoots 15 damage bullets. All familiars shoot 1.5x faster (+0.5x per stack)";
                 enemiesCanUse = true;
+                break;
+            case (int)ITEMLIST.RANDOMSHOT:
+                itemDescription = "Your bullets get +1 random effect per stack";
+                enemiesCanUse = true;
+                applyToBullets = true;
                 break;
         }
     }

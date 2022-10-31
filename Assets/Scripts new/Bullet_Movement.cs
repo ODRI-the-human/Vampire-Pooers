@@ -7,10 +7,12 @@ public class Bullet_Movement : MonoBehaviour
     public Rigidbody2D rb;
     public float speed;
     Vector2 OriginalSpeed;
+    public GameObject master;
 
     void Start()
     {
         speed = rb.velocity.magnitude;
+        master = GameObject.Find("bigFuckingMasterObject");
     }
 
     void FixedUpdate()

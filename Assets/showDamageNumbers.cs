@@ -18,7 +18,7 @@ public class showDamageNumbers : MonoBehaviour
         camera = GameObject.Find("Main Camera");
     }
 
-    public void showDamage(Vector3 pos, float damage, int damageType)
+    public void showDamage(Vector3 pos, float damage, int damageType, bool isCrit)
     {
         if (damageType == (int)DAMAGETYPES.HEAL)
         {
@@ -51,6 +51,11 @@ public class showDamageNumbers : MonoBehaviour
             case (int)DAMAGETYPES.HEAL:
                 texty.GetComponent<TextMeshProUGUI>().color = Color.green;
                 break;
+        }
+
+        if (isCrit)
+        {
+            texty.GetComponent<TextMeshProUGUI>().color = new Color(1, 0.647f, 0, 1);
         }
     }
 }
