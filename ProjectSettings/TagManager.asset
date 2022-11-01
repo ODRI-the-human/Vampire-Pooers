@@ -23,6 +23,7 @@ TagManager:
   - Shield
   - Familiar
   - enemyFamiliar
+  - itemIcons
   layers:
   - Default
   - TransparentFX

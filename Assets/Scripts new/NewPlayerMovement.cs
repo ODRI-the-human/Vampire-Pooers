@@ -22,6 +22,8 @@ public class NewPlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
     GameObject Player;
 
+    int dodgeMode = 1;
+
     public int isSlowed = 0;
     int slowTimer = -5;
     int slowTimerLength = 100;
@@ -48,6 +50,19 @@ public class NewPlayerMovement : MonoBehaviour
 
     void Update()
     {
+
+        if (Input.GetButton("ChangeDodgeMode"))
+        {
+            if (dodgeMode == 1)
+            {
+                dodgeMode = 0;
+            }
+            else
+            {
+                dodgeMode = 1;
+            }
+        }
+
         switch (playerControlled)
         {
             case true:
@@ -67,6 +82,10 @@ public class NewPlayerMovement : MonoBehaviour
                         //iFrames = dodgeTimerLength;
                         isDodging = 1;
                         Instantiate(dodgeAudio);
+                        if (dodgeMode == 0)
+                        {
+                            moveDirection = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x - gameObject.transform.position.x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y - gameObject.transform.position.y).normalized;
+                        }
                     }
                 }
 

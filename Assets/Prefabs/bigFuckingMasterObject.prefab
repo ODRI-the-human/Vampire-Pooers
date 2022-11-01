@@ -152,11 +152,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HPText: {fileID: 0}
+  HPChangeText: {fileID: 0}
   XPText: {fileID: 0}
+  XPChangeText: {fileID: 0}
   DMGText: {fileID: 0}
+  DMGChangeText: {fileID: 0}
   LevelText: {fileID: 0}
+  LevelChangeText: {fileID: 0}
   itemScreenText: {fileID: 0}
   FirerateText: {fileID: 0}
+  FirerateChangeText: {fileID: 0}
+  HPChangeTimer: 0
+  XPChangeTimer: 0
+  DMGChangeTimer: 0
+  FirerateChangeTimer: 0
+  LevelChangeTimer: 0
 --- !u!114 &4374958713579622480
 MonoBehaviour:
   m_ObjectHideFlags: 0
