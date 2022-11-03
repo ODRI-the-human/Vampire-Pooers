@@ -64,7 +64,8 @@ public class Attack : MonoBehaviour
     void Update()
     {
         trueDamageValue = gameObject.GetComponent<DealDamage>().finalDamageStat;
-        fireTimerActualLength = fireTimerLength * fireTimerLengthMLT / fireTimerDIV;
+        fireTimerLength = Mathf.Clamp(fireTimerLength, 0, 50);
+        fireTimerActualLength = Mathf.Clamp(50 / (fireTimerLength * fireTimerLengthMLT / fireTimerDIV),0,50);
 
         if (reTargetTimer <= 0)
         {

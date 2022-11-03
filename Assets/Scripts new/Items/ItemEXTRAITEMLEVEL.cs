@@ -15,8 +15,11 @@ public class ItemEXTRAITEMLEVEL : MonoBehaviour
 
     public void giveExtraItems()
     {
-        Debug.Log("No sus jokes, thanks.");
-        gameObject.GetComponent<ItemHolder>().noToGive += 1 * instances;
+        if (gameObject.GetComponent<LevelUp>().level % 2 == 0)
+        {
+            Debug.Log("No sus jokes, thanks.");
+            gameObject.GetComponent<ItemHolder>().noToGive += 1 * instances;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D col)

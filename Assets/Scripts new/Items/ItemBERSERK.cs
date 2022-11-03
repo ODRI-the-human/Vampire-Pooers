@@ -37,7 +37,7 @@ public class ItemBERSERK : MonoBehaviour
 
     public void goBerserk()
     {
-        if (gameObject.GetComponent<weaponType>().weaponHeld != (int)WEAPONS.DARKARTS)
+        if (gameObject.GetComponent<weaponType>().weaponHeld != (int)WEAPONS.DARKARTS && gameObject.GetComponent<LevelUp>().level % 2 == 0)
         {
             pastWeapon = gameObject.GetComponent<weaponType>().weaponHeld;
             gameObject.GetComponent<weaponType>().weaponHeld = (int)WEAPONS.DARKARTS;
@@ -58,7 +58,7 @@ public class ItemBERSERK : MonoBehaviour
             timer = 0;
         }
 
-        if (timer == 150 * instances)
+        if (timer == 150 * instances && gameObject.GetComponent<weaponType>().weaponHeld == (int)WEAPONS.DARKARTS)
         {
             gameObject.GetComponent<weaponType>().weaponHeld = pastWeapon;
             Debug.Log("Bringus");

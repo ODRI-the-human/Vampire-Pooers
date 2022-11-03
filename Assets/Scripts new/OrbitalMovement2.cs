@@ -19,7 +19,7 @@ public class OrbitalMovement2 : MonoBehaviour
     {
         if (Player == null)
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
 
         transform.position = new Vector3(Player.transform.position.x + distanceFromPlayer * Mathf.Sin(0.03f * (timer + timerDelay)), Player.transform.position.y + distanceFromPlayer * Mathf.Cos(0.03f * (timer + timerDelay)), Player.transform.position.z);

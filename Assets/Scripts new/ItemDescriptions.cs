@@ -126,7 +126,7 @@ public class ItemDescriptions : MonoBehaviour
                 applyToBullets = true;
                 break;
             case (int)ITEMLIST.BERSERK:
-                itemDescription = "Upon levelling up, your weapon is swapped with a melee knife that blocks all enemy shots for 3 (+3 per stack) seconds. Hits restore 5HP and kills restore 1 second of the timer.";
+                itemDescription = "Upon levelling up to an even level, your weapon is swapped with a melee knife that blocks all enemy shots for 3 (+3 per stack) seconds. Hits restore 5HP and kills restore 1 second on the timer.";
                 break;
             case (int)ITEMLIST.REROLL:
                 itemDescription = "Reroll all your items.";
@@ -147,7 +147,7 @@ public class ItemDescriptions : MonoBehaviour
                 itemDescription = "Recieve +2x the stat bonuses upon levelling up per stack.";
                 break;
             case (int)ITEMLIST.EXTRAITEMLEVEL:
-                itemDescription = "Each time you level up, your next item gets applied an extra time. Items get applied an extra time per level, per stack.";
+                itemDescription = "When levelling up to an even level, your next item gets applied an extra time. Items get applied an extra time per level, per stack.";
                 break;
             case (int)ITEMLIST.MORELEVELSTATS:
                 itemDescription = "Level ups also increase your damage, iframe length after getting hit, and bullet size. Bonus increases with stacks.";

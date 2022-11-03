@@ -49,7 +49,7 @@ public class StatsText : MonoBehaviour
         lastXP = 0;
         lastDMG = 50;
         lastLevel = 1;
-        lastFirerate = 25;
+        lastFirerate = 2;
 
         Color tmp = HPChangeText.color;
         tmp.a = 0;
@@ -119,19 +119,19 @@ public class StatsText : MonoBehaviour
             if (lastFirerate < Player.GetComponent<Attack>().fireTimerActualLength)
             {
                 FirerateChangeText.text = "+" + (Mathf.Round((Player.GetComponent<Attack>().fireTimerActualLength - lastLongFirerate) * 100) / 100).ToString();
-                FirerateChangeText.color = Color.red;
+                FirerateChangeText.color = Color.green;
             }
             else
             {
                 FirerateChangeText.text = (Mathf.Round((Player.GetComponent<Attack>().fireTimerActualLength - lastLongFirerate) * 100) / 100).ToString();
-                FirerateChangeText.color = Color.green;
+                FirerateChangeText.color = Color.red;
             }
         }
 
         HPText.text = "HP: " + Player.GetComponent<HPDamageDie>().HP.ToString() + "/" + Player.GetComponent<HPDamageDie>().MaxHP.ToString();
         XPText.text = "XP: " + Player.GetComponent<LevelUp>().XP.ToString() + "/" + (Mathf.RoundToInt(Player.GetComponent<LevelUp>().nextXP)).ToString();
         DMGText.text = "DMG: " + (Mathf.Round(Player.GetComponent<DealDamage>().finalDamageStat * 100) / 100).ToString();
-        FirerateText.text = "Fire delay: " + (Mathf.Round(Player.GetComponent<Attack>().fireTimerActualLength * 100) / 100).ToString();
+        FirerateText.text = "Fire rate: " + (Mathf.Round(Player.GetComponent<Attack>().fireTimerActualLength * 100) / 100).ToString();
         LevelText.text = "Level: " + Player.GetComponent<LevelUp>().level.ToString();
         itemScreenText.text = Player.GetComponent<getItemDescription>().itemDescription;
 
