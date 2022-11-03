@@ -9,12 +9,14 @@ public class ItemORBITAL2 : MonoBehaviour
     public int instances = 1;
     public List<GameObject> Orbs = new List<GameObject>();
 
+    int timey = 0;
+
     void Start()
     {
         if (gameObject.tag == "Player" || gameObject.tag == "Hostile")
         {
             orbSkothos2 = GameObject.Find("bigFuckingMasterObject").GetComponent<EntityReferencerGuy>().orbSkothos2;
-            //Invoke(nameof(SetStats),0.1f);
+            Invoke(nameof(SetStats),0.1f);
         }
     }
 
@@ -69,9 +71,14 @@ public class ItemORBITAL2 : MonoBehaviour
         }
     }
 
+    void FixedUpdate()
+    {
+        timey++;
+    }
+
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.tag == "item")
+        if (col.tag == "item" && timey > 5)
         {
             Orbs.Clear();
             GameObject[] orboes = GameObject.FindGameObjectsWithTag("PlayerBullet");

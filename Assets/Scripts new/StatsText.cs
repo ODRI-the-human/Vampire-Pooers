@@ -18,11 +18,12 @@ public class StatsText : MonoBehaviour
     public TextMeshProUGUI FirerateText;
     public TextMeshProUGUI FirerateChangeText;
 
-    public int HPChangeTimer;
-    public int XPChangeTimer;
-    public int DMGChangeTimer;
-    public int FirerateChangeTimer;
-    public int LevelChangeTimer;
+    public int HPChangeTimer = 100;
+    public int XPChangeTimer = 100;
+    public int DMGChangeTimer = 100;
+    public int FirerateChangeTimer = 100;
+    public int LevelChangeTimer = 100;
+    int totalTime = 0;
 
     float lastMaxHP;
     float lastXP;
@@ -63,68 +64,71 @@ public class StatsText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (lastMaxHP != Player.GetComponent<HPDamageDie>().MaxHP)
+        if (totalTime > 5)
         {
-            HPChangeTimer = 0;
-            if (lastMaxHP < Player.GetComponent<HPDamageDie>().MaxHP)
+            if (lastMaxHP != Player.GetComponent<HPDamageDie>().MaxHP)
             {
-                HPChangeText.text = "+" + (Player.GetComponent<HPDamageDie>().MaxHP - lastLongMaxHP).ToString();
-                HPChangeText.color = Color.green;
+                HPChangeTimer = 0;
+                if (lastMaxHP < Player.GetComponent<HPDamageDie>().MaxHP)
+                {
+                    HPChangeText.text = "+" + (Player.GetComponent<HPDamageDie>().MaxHP - lastLongMaxHP).ToString();
+                    HPChangeText.color = Color.green;
+                }
+                else
+                {
+                    HPChangeText.text = (Player.GetComponent<HPDamageDie>().MaxHP - lastLongMaxHP).ToString();
+                    HPChangeText.color = Color.red;
+                }
             }
-            else
-            {
-                HPChangeText.text = (Player.GetComponent<HPDamageDie>().MaxHP - lastLongMaxHP).ToString();
-                HPChangeText.color = Color.red;
-            }
-        }
 
-        if (lastXP != Player.GetComponent<LevelUp>().XP)
-        {
-            XPChangeTimer = 0;
-            if (lastXP < Player.GetComponent<LevelUp>().XP)
+            if (lastXP != Player.GetComponent<LevelUp>().XP)
             {
-                XPChangeText.text = "+" + (Player.GetComponent<LevelUp>().XP - lastLongXP).ToString();
-                XPChangeText.color = Color.green;
+                XPChangeTimer = 0;
+                if (lastXP < Player.GetComponent<LevelUp>().XP)
+                {
+                    XPChangeText.text = "+" + (Player.GetComponent<LevelUp>().XP - lastLongXP).ToString();
+                    XPChangeText.color = Color.green;
+                }
             }
-        }
 
-        if (lastDMG != Player.GetComponent<DealDamage>().finalDamageStat)
-        {
-            DMGChangeTimer = 0;
-            if (lastDMG < Player.GetComponent<DealDamage>().finalDamageStat)
+            if (lastDMG != Player.GetComponent<DealDamage>().finalDamageStat)
             {
-                DMGChangeText.text = "+" + (Mathf.Round((Player.GetComponent<DealDamage>().finalDamageStat - lastLongDMG) * 100) / 100).ToString();
-                DMGChangeText.color = Color.green;
+                DMGChangeTimer = 0;
+                if (lastDMG < Player.GetComponent<DealDamage>().finalDamageStat)
+                {
+                    DMGChangeText.text = "+" + (Mathf.Round((Player.GetComponent<DealDamage>().finalDamageStat - lastLongDMG) * 100) / 100).ToString();
+                    DMGChangeText.color = Color.green;
+                }
+                else
+                {
+                    DMGChangeText.text = (Mathf.Round((Player.GetComponent<DealDamage>().finalDamageStat - lastLongDMG) * 100) / 100).ToString();
+                    DMGChangeText.color = Color.red;
+                }
             }
-            else
-            {
-                DMGChangeText.text = (Mathf.Round((Player.GetComponent<DealDamage>().finalDamageStat - lastLongDMG) * 100) / 100).ToString();
-                DMGChangeText.color = Color.red;
-            }
-        }
 
-        if (lastLevel != Player.GetComponent<LevelUp>().level)
-        {
-            LevelChangeTimer = 0;
-            if (lastLevel < Player.GetComponent<LevelUp>().level)
+            if (lastLevel != Player.GetComponent<LevelUp>().level)
             {
-                LevelChangeText.text = "+" + (Player.GetComponent<LevelUp>().level - lastLongLevel).ToString();
-                LevelChangeText.color = Color.green;
+                LevelChangeTimer = 0;
+                if (lastLevel < Player.GetComponent<LevelUp>().level)
+                {
+                    LevelChangeText.text = "+" + (Player.GetComponent<LevelUp>().level - lastLongLevel).ToString();
+                    LevelChangeText.color = Color.green;
+                }
             }
-        }
 
-        if (lastFirerate != Player.GetComponent<Attack>().fireTimerActualLength)
-        {
-            FirerateChangeTimer = 0;
-            if (lastFirerate < Player.GetComponent<Attack>().fireTimerActualLength)
+            if (lastFirerate != Player.GetComponent<Attack>().fireTimerActualLength)
             {
-                FirerateChangeText.text = "+" + (Mathf.Round((Player.GetComponent<Attack>().fireTimerActualLength - lastLongFirerate) * 100) / 100).ToString();
-                FirerateChangeText.color = Color.green;
-            }
-            else
-            {
-                FirerateChangeText.text = (Mathf.Round((Player.GetComponent<Attack>().fireTimerActualLength - lastLongFirerate) * 100) / 100).ToString();
-                FirerateChangeText.color = Color.red;
+                FirerateChangeTimer = 0;
+                if (lastFirerate < Player.GetComponent<Attack>().fireTimerActualLength)
+                {
+                    FirerateChangeText.text = "+" + (Mathf.Round((Player.GetComponent<Attack>().fireTimerActualLength - lastLongFirerate) * 100) / 100).ToString();
+                    FirerateChangeText.color = Color.green;
+                }
+                else
+                {
+                    FirerateChangeText.text = (Mathf.Round((Player.GetComponent<Attack>().fireTimerActualLength - lastLongFirerate) * 100) / 100).ToString();
+                    FirerateChangeText.color = Color.red;
+                }
             }
         }
 
@@ -135,56 +139,60 @@ public class StatsText : MonoBehaviour
         LevelText.text = "Level: " + Player.GetComponent<LevelUp>().level.ToString();
         itemScreenText.text = Player.GetComponent<getItemDescription>().itemDescription;
 
-        HPChangeTimer++;
-        XPChangeTimer++;
-        DMGChangeTimer++;
-        LevelChangeTimer++;
-        FirerateChangeTimer++;
-
         lastMaxHP = Player.GetComponent<HPDamageDie>().MaxHP;
         lastXP = Player.GetComponent<LevelUp>().XP;
         lastDMG = Player.GetComponent<DealDamage>().finalDamageStat;
         lastLevel = Player.GetComponent<LevelUp>().level;
         lastFirerate = Player.GetComponent<Attack>().fireTimerActualLength;
 
-        if (HPChangeTimer > 1000)
+        if (HPChangeTimer > 100)
         {
             lastLongMaxHP = lastMaxHP;
             Color tmp = HPChangeText.color;
-            tmp.a -= 0.05f;
+            tmp.a -= 0.02f;
             HPChangeText.color = tmp;
         }
 
-        if (XPChangeTimer > 1000)
+        if (XPChangeTimer > 100)
         {
             lastLongXP = lastXP;
             Color tmp = XPChangeText.color;
-            tmp.a -= 0.05f;
+            tmp.a -= 0.02f;
             XPChangeText.color = tmp;
         }
 
-        if (DMGChangeTimer > 1000)
+        if (DMGChangeTimer > 100)
         {
             lastLongDMG = lastDMG;
             Color tmp = DMGChangeText.color;
-            tmp.a -= 0.05f;
+            tmp.a -= 0.02f;
             DMGChangeText.color = tmp;
         }
 
-        if (LevelChangeTimer > 1000)
+        if (LevelChangeTimer > 100)
         {
             lastLongLevel = lastLevel;
             Color tmp = LevelChangeText.color;
-            tmp.a -= 0.05f;
+            tmp.a -= 0.02f;
             LevelChangeText.color = tmp;
         }
 
-        if (FirerateChangeTimer > 1000)
+        if (FirerateChangeTimer > 100)
         {
             lastLongFirerate = lastFirerate;
             Color tmp = FirerateChangeText.color;
-            tmp.a -= 0.05f;
+            tmp.a -= 0.02f;
             FirerateChangeText.color = tmp;
         }
+    }
+
+    void FixedUpdate()
+    {
+        totalTime++;
+        HPChangeTimer++;
+        XPChangeTimer++;
+        DMGChangeTimer++;
+        LevelChangeTimer++;
+        FirerateChangeTimer++;
     }
 }
