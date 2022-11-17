@@ -24,6 +24,7 @@ public class Attack : MonoBehaviour
     public float fireTimerDIV = 1;
     public bool attachItems = true;
 
+    public bool doAim = true; // this is for things like the 8-direction shooty enemy (should be false for them), just makes it so the enemy does or doesn't change its shot angle depending on where the target is.
     public float fireTimerActualLength;
 
     public int visionRange = 8;
@@ -64,7 +65,7 @@ public class Attack : MonoBehaviour
     void Update()
     {
         trueDamageValue = gameObject.GetComponent<DealDamage>().finalDamageStat;
-        fireTimerLength = Mathf.Clamp(fireTimerLength, 0, 50);
+        fireTimerLength = Mathf.Clamp(fireTimerLength, 0, 99999);
         fireTimerActualLength = Mathf.Clamp(50 / (fireTimerLength * fireTimerLengthMLT / fireTimerDIV),0,50);
 
         if (reTargetTimer <= 0)
@@ -144,6 +145,10 @@ public class Attack : MonoBehaviour
         GameObject newObject = Instantiate(Bullet, transform.position, transform.rotation);
         newObject.transform.localScale = new Vector3(trueDamageValue * 0.0015f + .45f * scaleAddMult, trueDamageValue * 0.0015f + .45f * scaleAddMult, trueDamageValue * 0.0015f + .45f * scaleAddMult);
         bulletRB = newObject.GetComponent<Rigidbody2D>();
+        if (!doAim)
+        {
+            vectorToTarget = new Vector2(1,0);
+        }
         newShotVector = new Vector2(vectorToTarget.x * Mathf.Cos(currentAngle) - vectorToTarget.y * Mathf.Sin(currentAngle), vectorToTarget.x * Mathf.Sin(currentAngle) + vectorToTarget.y * Mathf.Cos(currentAngle));
         bulletRB.velocity = newShotVector * shotSpeed;
         if (attachItems)

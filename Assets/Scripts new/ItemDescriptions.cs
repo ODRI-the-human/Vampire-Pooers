@@ -147,7 +147,7 @@ public class ItemDescriptions : MonoBehaviour
                 itemDescription = "Recieve +2x the stat bonuses upon levelling up per stack.";
                 break;
             case (int)ITEMLIST.EXTRAITEMLEVEL:
-                itemDescription = "When levelling up to an even level, your next item gets applied an extra time. Items get applied an extra time per level, per stack.";
+                itemDescription = "When levelling to a level divisible by 4, your next item gets applied an extra time. Items get applied an extra time per level, per stack.";
                 break;
             case (int)ITEMLIST.MORELEVELSTATS:
                 itemDescription = "Level ups also increase your damage, iframe length after getting hit, and bullet size. Bonus increases with stacks.";

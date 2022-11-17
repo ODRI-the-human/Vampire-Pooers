@@ -15,7 +15,7 @@ public class ItemEXTRAITEMLEVEL : MonoBehaviour
 
     public void giveExtraItems()
     {
-        if (gameObject.GetComponent<LevelUp>().level % 2 == 0)
+        if (gameObject.GetComponent<LevelUp>().level % 4 == 0)
         {
             Debug.Log("No sus jokes, thanks.");
             gameObject.GetComponent<ItemHolder>().noToGive += 1 * instances;

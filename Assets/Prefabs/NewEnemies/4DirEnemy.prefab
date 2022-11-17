@@ -231,6 +231,8 @@ MonoBehaviour:
   darkArtSword: {fileID: 0}
   fireTimerDIV: 1
   attachItems: 1
+  doAim: 1
+  fireTimerActualLength: 0
   visionRange: 8
   reTargetTimerLength: 100
   reTargetTimer: 0
