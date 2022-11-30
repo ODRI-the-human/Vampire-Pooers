@@ -9,6 +9,8 @@ public class ItemELECTRIC : MonoBehaviour
     public GameObject owner;
     public int instances = 1;
 
+    GameObject GUY;
+
     void Start()
     {
         if (gameObject.tag == "Player")
@@ -29,16 +31,8 @@ public class ItemELECTRIC : MonoBehaviour
         {
             if (gameObject.tag == "PlayerBullet" || gameObject.tag == "enemyBullet")
             {
-                foreach (GameObject Gareth in owner.GetComponent<ItemELECTRIC>().enemiesEffected)
-                {
-                    if (Gareth != null && Gareth != col.gameObject)
-                    {
-                        Gareth.GetComponent<HPDamageDie>().HP -= 10 * instances;
-                        Gareth.GetComponent<HPDamageDie>().sprite.color = Color.red;
-                        Gareth.GetComponent<HPDamageDie>().colorChangeTimer = 1;
-                        masterObject.GetComponent<showDamageNumbers>().showDamage(Gareth.transform.position, 10 * instances, (int)DAMAGETYPES.ELECTRIC, false);
-                    }
-                }
+                RollOnHit();
+                GUY = col.gameObject;
                 Debug.Log("your mum");
 
                 if (!owner.GetComponent<ItemELECTRIC>().enemiesEffected.Contains(col.gameObject))
@@ -51,6 +45,20 @@ public class ItemELECTRIC : MonoBehaviour
                 {
                     col.gameObject.GetComponent<Statuses>().iconOrder.Add(2);
                 }
+            }
+        }
+    }
+
+    public void RollOnHit()
+    {
+        foreach (GameObject Gareth in owner.GetComponent<ItemELECTRIC>().enemiesEffected)
+        {
+            if (Gareth != null && Gareth != GUY)
+            {
+                Gareth.GetComponent<HPDamageDie>().HP -= 10 * instances;
+                Gareth.GetComponent<HPDamageDie>().sprite.color = Color.red;
+                Gareth.GetComponent<HPDamageDie>().colorChangeTimer = 1;
+                masterObject.GetComponent<showDamageNumbers>().showDamage(Gareth.transform.position, 10 * instances, (int)DAMAGETYPES.ELECTRIC, false);
             }
         }
     }

@@ -34,26 +34,32 @@ public class ItemATG : MonoBehaviour
     {
         if (col.gameObject.tag != "Wall")
         {
-            procMoment = 100f - instances * 10 * gameObject.GetComponent<DealDamage>().procCoeff;
-            pringle = Random.Range(0f, 100f);
-            Debug.Log("Poo: " + pringle.ToString());
-            Debug.Log("Ass: " + procMoment.ToString());
-            if (pringle > procMoment)
+            RollOnHit();
+        }
+    }
+
+    public void RollOnHit()
+    {
+        procMoment = 100f - 10 * gameObject.GetComponent<DealDamage>().procCoeff;
+        pringle = Random.Range(0f, 100f);
+        Debug.Log("Poo: " + pringle.ToString());
+        Debug.Log("Ass: " + procMoment.ToString());
+        if (pringle > procMoment)
+        {
+
+            if (gameObject.tag == "PlayerBullet" || gameObject.tag == "enemyBullet")
             {
+                GameObject ARSEMAN = Instantiate(ATGMissile, owner.transform.position, owner.transform.rotation);
+                ARSEMAN.GetComponent<MissileTracking>().owner = owner;
+                ARSEMAN.GetComponent<MissileTracking>().instances = instances;
 
-                if (gameObject.tag == "PlayerBullet" || gameObject.tag == "enemyBullet")
+                if (hostile)
                 {
-                    GameObject ARSEMAN = Instantiate(ATGMissile, owner.transform.position, owner.transform.rotation);
-                    ARSEMAN.GetComponent<MissileTracking>().owner = owner;
-
-                    if (hostile)
-                    {
-                        ARSEMAN.tag = "enemyBullet";
-                    }
-                    else
-                    {
-                        ARSEMAN.tag = "PlayerBullet";
-                    }
+                    ARSEMAN.tag = "enemyBullet";
+                }
+                else
+                {
+                    ARSEMAN.tag = "PlayerBullet";
                 }
             }
         }

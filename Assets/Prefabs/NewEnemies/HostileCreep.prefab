@@ -157,7 +157,14 @@ MonoBehaviour:
   damageMult: 0
   finalDamageMult: 1
   knockBackCoeff: 1
+  finalDamageDIV: 1
+  critProb: 0.05
+  critMult: 2
   owner: {fileID: 0}
+  overwriteDamageCalc: 0
+  tickInterval: 10
+  timer: 0
+  damageAmt: 0
 --- !u!114 &-5388908824613595565
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,4 +178,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemsHeld: 
+  master: {fileID: 0}
   itemGained: 0
+  noToGive: 1

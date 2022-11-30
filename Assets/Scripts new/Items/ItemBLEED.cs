@@ -12,16 +12,16 @@ public class ItemBLEED : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col)
     {
         guyToBleed = col.gameObject;
-        DoABleed();
+        RollOnHit();
     }
 
     void OnCollisionEnter2D(Collision2D col)
     {
         guyToBleed = col.gameObject;
-        DoABleed();
+        RollOnHit();
     }
 
-    void DoABleed()
+    void RollOnHit()
     {
         if (guyToBleed.GetComponent<HPDamageDie>().iFrames <= 0)
         {

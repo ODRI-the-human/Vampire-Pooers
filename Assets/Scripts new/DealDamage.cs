@@ -16,6 +16,11 @@ public class DealDamage : MonoBehaviour
     public GameObject owner;
 
     public bool overwriteDamageCalc;
+    public bool onlyDamageOnce = true;
+
+    public int tickInterval = 1;
+    public int timer = 0;
+    public float damageAmt;
 
     void Awake()
     {
@@ -31,7 +36,7 @@ public class DealDamage : MonoBehaviour
         }
         if (!overwriteDamageCalc)
         {
-            finalDamageStat = damageBase * damageMult * finalDamageMult / finalDamageDIV;
+            damageAmt = damageBase * damageMult * finalDamageMult / finalDamageDIV;
         }
     }
 
@@ -39,7 +44,20 @@ public class DealDamage : MonoBehaviour
     {
         if (!overwriteDamageCalc)
         {
-            finalDamageStat = damageBase * damageMult * finalDamageMult / finalDamageDIV;
+            damageAmt = damageBase * damageMult * finalDamageMult / finalDamageDIV;
+        }
+    }
+
+    void FixedUpdate()
+    {
+        timer++;
+        if (timer % tickInterval == 0)
+        {
+            finalDamageStat = damageAmt;
+        }
+        else
+        {
+            finalDamageStat = 0;
         }
     }
 }

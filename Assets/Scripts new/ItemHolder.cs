@@ -357,6 +357,16 @@ public class ItemHolder : MonoBehaviour
             case (int)ITEMLIST.RANDOMSHOT:
                 gameObject.AddComponent<ItemRANDOMSHOT>();
                 break;
+            case (int)ITEMLIST.SAWSHOT:
+                if (gameObject.GetComponent<ItemSAWSHOT>() == null)
+                {
+                    gameObject.AddComponent<ItemSAWSHOT>();
+                }
+                else
+                {
+                    gameObject.GetComponent<ItemSAWSHOT>().instances++;
+                }
+                break;
         }
     }
 

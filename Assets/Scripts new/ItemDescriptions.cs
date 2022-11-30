@@ -46,7 +46,7 @@ public class ItemDescriptions : MonoBehaviour
                 applyToBullets = true;
                 break;
             case (int)ITEMLIST.ATG:
-                itemDescription = "10% (+10% per stack) chance on hitting an enemy to fire a homing missile, dealing 3x your damage.";
+                itemDescription = "10% chance on hitting an enemy to fire a homing missile, dealing 3x (+3x per stack) of the damage that procced it.";
                 enemiesCanUse = true;
                 applyToBullets = true;
                 break;
@@ -177,6 +177,19 @@ public class ItemDescriptions : MonoBehaviour
                 itemDescription = "Gain a follower that automatically shoots 15 damage bullets. All familiars shoot 1.5x faster (+0.5x per stack)";
                 enemiesCanUse = true;
                 break;
+            case (int)ITEMLIST.SAWSHOT:
+                itemDescription = "10% chance for bullets to stick to enemies, dealing 20% of your bullet damage 10 (+10 per stack) times over 2 (+2 per stack) seconds. Can proc on-hit effects.";
+                enemiesCanUse = true;
+                applyToBullets = true;
+                break;
+
+
+
+
+
+
+
+
             case (int)ITEMLIST.RANDOMSHOT:
                 itemDescription = "Your bullets get +1 random effect per stack";
                 enemiesCanUse = true;

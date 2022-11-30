@@ -35,7 +35,7 @@ Transform:
   m_GameObject: {fileID: 110440509597865848}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.03999996, z: 1.2}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -142,6 +142,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 110440509597865849}
   speed: 0
+  master: {fileID: 0}
 --- !u!114 &872533961012419464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,6 +175,8 @@ MonoBehaviour:
   finalDamageMult: 1
   knockBackCoeff: 1
   finalDamageDIV: 1
+  critProb: 0.5
+  critMult: 2
   owner: {fileID: 0}
   overwriteDamageCalc: 0
 --- !u!114 &-4542741102433382798
@@ -201,7 +204,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemsHeld: 
+  master: {fileID: 0}
   itemGained: 0
+  noToGive: 1
 --- !u!114 &-5903357068065279301
 MonoBehaviour:
   m_ObjectHideFlags: 0

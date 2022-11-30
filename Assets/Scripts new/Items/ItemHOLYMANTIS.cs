@@ -33,8 +33,18 @@ public class ItemHOLYMANTIS : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D col)
+    void OnTriggerStay2D(Collider2D col)
     {
+        if (col.gameObject.tag != gameObject.tag && timesHit > 0 && col.gameObject.GetComponent<DealDamage>().finalDamageStat != 0)
+        {
+            if (iFrames < 0)
+            {
+                gameObject.GetComponent<HPDamageDie>().HP += instances * col.gameObject.GetComponent<DealDamage>().finalDamageStat / (instances + 1);
+                iFrames = gameObject.GetComponent<HPDamageDie>().iFramesTimer;
+                timesHit--;
+            }
+        }
+
         if (col.tag == "item")
         {
             timesHit = maxTimesHit;

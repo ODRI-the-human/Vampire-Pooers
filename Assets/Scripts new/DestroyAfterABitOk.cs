@@ -11,7 +11,7 @@ public class DestroyAfterABitOk : MonoBehaviour
     void FixedUpdate()
     {
         timer -= 1;
-        if (timer <= 20)
+        if (timer < 20)
         {
             Destroy(GetComponent<Collider2D>());
         }

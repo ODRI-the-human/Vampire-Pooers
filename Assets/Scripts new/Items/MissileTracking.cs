@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MissileTracking : MonoBehaviour
 {
+    public int instances;
+
     Vector2 currentNearest;
     Vector2 closestEnemyPos;
     Vector2 bulletPos;
@@ -51,7 +53,7 @@ public class MissileTracking : MonoBehaviour
         GameObject newObject = Instantiate(explosion, transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
         newObject.transform.localScale = new Vector3(2, 2, 2);
         newObject.GetComponent<DealDamage>().owner = owner;
-        newObject.GetComponent<DealDamage>().finalDamageStat = 3 * owner.GetComponent<DealDamage>().finalDamageStat;
+        newObject.GetComponent<DealDamage>().damageAmt = 3 * instances * owner.GetComponent<DealDamage>().finalDamageStat;
         newObject.GetComponent<DealDamage>().knockBackCoeff = 2 * owner.GetComponent<DealDamage>().knockBackCoeff;
         Destroy(gameObject);
     }

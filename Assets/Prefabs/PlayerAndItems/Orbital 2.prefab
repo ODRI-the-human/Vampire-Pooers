@@ -140,6 +140,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65e7aa51760cf6b43b78c3859acca07e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timerDelay: 0
+  distanceFromPlayer: 2
 --- !u!114 &7481803557711047057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,7 +161,14 @@ MonoBehaviour:
   finalDamageMult: 0
   knockBackCoeff: 0
   finalDamageDIV: 1
+  critProb: 0.05
+  critMult: 2
   owner: {fileID: 0}
+  overwriteDamageCalc: 0
+  onlyDamageOnce: 0
+  tickInterval: 4
+  timer: 0
+  damageAmt: 0
 --- !u!114 &-6396675878852606996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,6 +182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shotSpeed: 8
+  currentAngle: 0
   noExtraShots: 0
   shotAngleCoeff: 1
   trueDamageValue: 0
@@ -181,12 +191,23 @@ MonoBehaviour:
   fireTimerLength: 25
   fireTimer: 0
   PlayerShootAudio: {fileID: 2232971130497578917, guid: dc46db39e4e70b144915e7a0652cc396, type: 3}
+  Player: {fileID: 0}
   playerControlled: 1
   specialFireType: 0
   darkArtSword: {fileID: 7955111713391121560, guid: 35c958ea85b00c144830eefba828d8c3, type: 3}
   fireTimerDIV: 1
+  attachItems: 1
+  doAim: 1
+  fireTimerActualLength: 0
+  visionRange: 8
+  reTargetTimerLength: 100
+  reTargetTimer: 0
+  currentTarget: {fileID: 0}
   timesFired: 0
   newAttack: 0
+  Crongus: 0
+  levelDamageBonus: 0
+  scaleAddMult: 1
 --- !u!114 &7158769378574457366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,7 +221,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemsHeld: 
+  master: {fileID: 0}
   itemGained: 0
+  noToGive: 1
 --- !u!114 &-8236665987620775442
 MonoBehaviour:
   m_ObjectHideFlags: 0

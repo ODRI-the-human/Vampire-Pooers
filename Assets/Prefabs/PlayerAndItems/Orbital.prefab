@@ -157,7 +157,11 @@ MonoBehaviour:
   finalDamageMult: 1
   knockBackCoeff: 1
   finalDamageDIV: 1
-  critChance: 1
+  critProb: 0.05
   critMult: 2
   owner: {fileID: 0}
   overwriteDamageCalc: 0
+  onlyDamageOnce: 0
+  tickInterval: 4
+  timer: 0
+  damageAmt: 0
