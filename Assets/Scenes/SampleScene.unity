@@ -162,10 +162,6 @@ PrefabInstance:
       propertyPath: funniestEnemyEverBUTFUNNIER
       value: 
       objectReference: {fileID: 7595636950658824701, guid: b4c7c42ade9b891489dcf0b857265e12, type: 3}
-    - target: {fileID: 0}
-      propertyPath: itemSprite
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 179530921809487071, guid: 2c1e033fc431a694499cc08ddf9a90b1, type: 3}
       propertyPath: HPText
       value: 

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -5745307138018157235}
   - component: {fileID: -4769903323955082163}
   - component: {fileID: 2111734714005208072}
+  - component: {fileID: 2504761413558164239}
   m_Layer: 7
   m_Name: moleProj
   m_TagString: enemyBullet
@@ -71,7 +72,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemsHeld: 
+  master: {fileID: 0}
   itemGained: 0
+  noToGive: 1
 --- !u!114 &-1365107204755030205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91,8 +94,14 @@ MonoBehaviour:
   finalDamageMult: 1
   knockBackCoeff: 1
   finalDamageDIV: 1
+  critProb: 0.05
+  critMult: 2
   owner: {fileID: 0}
   overwriteDamageCalc: 0
+  onlyDamageOnce: 0
+  tickInterval: 1
+  timer: 0
+  damageAmt: 0
 --- !u!212 &-5745307138018157235
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -171,5 +180,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 66b5621dcadff3c41a9d0f4e33d37b60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2504761413558164239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4255455733749829593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dc3f1486de18af42b40fb6e4147ea9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

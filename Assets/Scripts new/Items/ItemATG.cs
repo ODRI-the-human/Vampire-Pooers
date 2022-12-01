@@ -30,15 +30,7 @@ public class ItemATG : MonoBehaviour
         owner = gameObject.GetComponent<DealDamage>().owner;
     }
 
-    void OnCollisionEnter2D(Collision2D col)
-    {
-        if (col.gameObject.tag != "Wall")
-        {
-            RollOnHit();
-        }
-    }
-
-    public void RollOnHit()
+    public void RollOnHit(GameObject POOhead)
     {
         procMoment = 100f - 10 * gameObject.GetComponent<DealDamage>().procCoeff;
         pringle = Random.Range(0f, 100f);

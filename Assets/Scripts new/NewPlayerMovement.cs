@@ -6,7 +6,7 @@ using TMPro;
 public class NewPlayerMovement : MonoBehaviour
 {
     private Vector2 moveDirection;
-    float dodgeTimer;
+    float dodgeTimer = -9999;
     public float dodgeTimerLength = 15;
     int isDodging = 0;
     int dodgeMarties;
@@ -27,6 +27,10 @@ public class NewPlayerMovement : MonoBehaviour
     public int isSlowed = 0;
     int slowTimer = -5;
     int slowTimerLength = 100;
+
+    public int dodgeTimerOnline = 30; // the time for the dodge to come back online.
+
+    public GameObject dodgeOnlineAudio;
 
     void Start()
     {
@@ -50,8 +54,13 @@ public class NewPlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (dodgeTimer == -dodgeTimerOnline)
+        {
+            Instantiate(dodgeOnlineAudio);
+        }
 
-        if (Input.GetButton("ChangeDodgeMode"))
+
+            if (Input.GetButton("ChangeDodgeMode"))
         {
             if (dodgeMode == 1)
             {
@@ -73,7 +82,7 @@ public class NewPlayerMovement : MonoBehaviour
                     moveDirection = new Vector2(moveX, moveY).normalized;
                 }
 
-                if (dodgeTimer < -30)
+                if (dodgeTimer < -dodgeTimerOnline)
                 {
                     if (Input.GetButton("Dodge"))
                     {

@@ -177,7 +177,6 @@ public class HPDamageDie : MonoBehaviour
                 isCrit = true;
             }
             float damageAmount = col.gameObject.GetComponent<DealDamage>().finalDamageStat * critMult;
-            col.gameObject.SendMessage("RollOnHit");
             if (col.gameObject.GetComponent<DealDamage>().onlyDamageOnce)
             {
                 Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>(), true);

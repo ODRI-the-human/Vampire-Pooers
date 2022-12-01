@@ -31,8 +31,8 @@ public class ItemELECTRIC : MonoBehaviour
         {
             if (gameObject.tag == "PlayerBullet" || gameObject.tag == "enemyBullet")
             {
-                RollOnHit();
-                GUY = col.gameObject;
+                //RollOnHit();
+                //GUY = col.gameObject;
                 Debug.Log("your mum");
 
                 if (!owner.GetComponent<ItemELECTRIC>().enemiesEffected.Contains(col.gameObject))
@@ -49,11 +49,11 @@ public class ItemELECTRIC : MonoBehaviour
         }
     }
 
-    public void RollOnHit()
+    public void RollOnHit(GameObject loser)
     {
         foreach (GameObject Gareth in owner.GetComponent<ItemELECTRIC>().enemiesEffected)
         {
-            if (Gareth != null && Gareth != GUY)
+            if (Gareth != null && Gareth != loser)
             {
                 Gareth.GetComponent<HPDamageDie>().HP -= 10 * instances;
                 Gareth.GetComponent<HPDamageDie>().sprite.color = Color.red;

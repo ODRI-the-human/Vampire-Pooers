@@ -60,4 +60,21 @@ public class DealDamage : MonoBehaviour
             finalDamageStat = 0;
         }
     }
+
+    // For applying any on-hit effects - sends the RollOnHit message, which is picked up by any on-hit effects THIS object has, which then apply the effect or whatever to col.gameobject.
+    public void OnCollisionEnter2D(Collision2D col)
+    {
+        if (gameObject.tag != col.gameObject.tag)
+        {
+            gameObject.SendMessage("RollOnHit", col.gameObject);
+        }
+    }
+
+    public void OnTriggerStay2D(Collider2D col)
+    {
+        if (damageAmt != 0 && gameObject.tag != col.gameObject.tag)
+        {
+            gameObject.SendMessage("RollOnHit", col.gameObject);
+        }
+    }
 }

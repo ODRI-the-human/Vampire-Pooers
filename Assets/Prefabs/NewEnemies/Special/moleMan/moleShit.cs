@@ -94,6 +94,10 @@ public class moleShit : MonoBehaviour
             line.SetPosition(1, nearestFriend.transform.position);
             hitbox = Instantiate(moleProj, transform.position + 0.5f * (nearestFriend.transform.position - transform.position), transform.rotation);
             hitbox.GetComponent<CapsuleCollider2D>().size = new Vector2(0.2f, (nearestFriend.transform.position - transform.position).magnitude);
+            hitbox.GetComponent<CapsuleCollider2D>().enabled = false;
+            hitbox.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
+            hitbox.GetComponent<DealDamage>().owner = gameObject;
+            hitbox.GetComponent<DealDamage>().finalDamageMult *= gameObject.GetComponent<DealDamage>().finalDamageMult;
 
             vectorMan = nearestFriend.transform.position - transform.position;
 
@@ -116,13 +120,14 @@ public class moleShit : MonoBehaviour
             hitbox.transform.Rotate(0, 0, fuckAngle + 90, Space.World);
             hitboxPos = hitbox.transform.position;
             hitbox.GetComponent<DealDamage>().owner = gameObject;
-            //(nearestFriend.transform.position - transform.position)
         }
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 5);
+
         transform.position = pos;
 
         if (hitbox != null)

@@ -153,6 +153,10 @@ MonoBehaviour:
   critMult: 2
   owner: {fileID: 0}
   overwriteDamageCalc: 0
+  onlyDamageOnce: 0
+  tickInterval: 1
+  timer: 0
+  damageAmt: 0
 --- !u!114 &1654801595319326120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,6 +175,8 @@ MonoBehaviour:
   dodgeAudio: {fileID: 0}
   rb: {fileID: 5685454981733204263}
   isSlowed: 1
+  dodgeTimerOnline: 30
+  dodgeOnlineAudio: {fileID: 0}
 --- !u!114 &-6175816815738836715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,7 +218,6 @@ MonoBehaviour:
   material: {fileID: 0}
   colorChangeTimer: 0
   XP: {fileID: 6124614279667160435, guid: b448494b9362a2a429b8d6416d89f7e6, type: 3}
-  creepTimer: 0
   perfectWaves: 0
 --- !u!114 &5006160631845979851
 MonoBehaviour:
@@ -242,6 +247,8 @@ MonoBehaviour:
   darkArtSword: {fileID: 0}
   fireTimerDIV: 1
   attachItems: 1
+  doAim: 1
+  fireTimerActualLength: 0
   visionRange: 8
   reTargetTimerLength: 100
   reTargetTimer: 0
