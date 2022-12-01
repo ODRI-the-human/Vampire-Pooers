@@ -133,7 +133,7 @@ public class HPDamageDie : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.tag != gameObject.tag)
+        if (col.gameObject.tag != gameObject.tag && col.gameObject.GetComponent<DealDamage>().finalDamageStat != 0)
         {
             float procMoment = 100f - 100f * col.gameObject.GetComponent<DealDamage>().critProb * col.gameObject.GetComponent<DealDamage>().procCoeff;
             float pringle = Random.Range(0f, 100f);
@@ -164,7 +164,7 @@ public class HPDamageDie : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D col) // just creep/orbitals/sawshot/etc. lmao
     {
-        if (col.gameObject.tag != gameObject.tag)
+        if (col.gameObject.tag != gameObject.tag && col.gameObject.GetComponent<DealDamage>().finalDamageStat != 0)
         {
             float procMoment = 100f - 100f * col.gameObject.GetComponent<DealDamage>().critProb * col.gameObject.GetComponent<DealDamage>().procCoeff;
             float pringle = Random.Range(0f, 100f);

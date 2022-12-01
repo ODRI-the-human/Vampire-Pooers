@@ -7,7 +7,7 @@ public class ItemSAWSHOT : MonoBehaviour
     public int instances = 1;
     int timer = 0;
     public Vector3 bulletOffset = new Vector3(0, 0, 0);
-    GameObject guyLatchedTo;
+    public GameObject guyLatchedTo;
     public bool dogma = false;
     public bool canDoTheThing = false;
     public bool isAProc = false;
@@ -18,7 +18,7 @@ public class ItemSAWSHOT : MonoBehaviour
         if (gameObject.GetComponent<Bullet_Movement>() != null)
         {
             canDoTheThing = true;
-            float procMoment = 100f - 10 * gameObject.GetComponent<DealDamage>().procCoeff;
+            float procMoment = 100f - 100 * gameObject.GetComponent<DealDamage>().procCoeff;
             float pringle = Random.Range(0f, 100f);
             bool isCrit = false;
             if (pringle > procMoment)
@@ -70,6 +70,7 @@ public class ItemSAWSHOT : MonoBehaviour
             gameObject.GetComponent<Collider2D>().offset = -2 * bulletOffset;
             gameObject.GetComponent<DealDamage>().finalDamageMult /= 5;
             gameObject.GetComponent<DealDamage>().tickInterval = 10;
+            gameObject.AddComponent<SawShotCreep>();
         }
     }
 }

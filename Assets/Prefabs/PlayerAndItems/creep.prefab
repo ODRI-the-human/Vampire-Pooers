@@ -162,6 +162,7 @@ MonoBehaviour:
   critMult: 2
   owner: {fileID: 0}
   overwriteDamageCalc: 0
+  onlyDamageOnce: 0
   tickInterval: 10
   timer: 0
   damageAmt: 0
