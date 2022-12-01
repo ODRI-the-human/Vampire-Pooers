@@ -201,7 +201,7 @@ public class moleShit : MonoBehaviour
             }
         }
 
-        if (nearestFriend == null && hasGone)
+        if (nearestFriend == null && hasGone) // if a mole gets killed.
         {
             line.SetPosition(0, new Vector3(0, 0, 0));
             line.SetPosition(1, new Vector3(0, 0, 0));
@@ -219,16 +219,16 @@ public class moleShit : MonoBehaviour
                 }
             }
 
-            foreach (GameObject friend in enemies)
-            {
-                if (friend.GetComponent<moleShit>() != null)
-                {
-                    if (friend.GetComponent<moleShit>().goesFirst)
-                    {
-                        friend.GetComponent<moleShit>().Bingus();
-                    }
-                }
-            }
+            //foreach (GameObject friend in enemies) // makes the moles retarget.
+            //{
+            //    if (friend.GetComponent<moleShit>() != null)
+            //    {
+            //        if (friend.GetComponent<moleShit>().goesFirst)
+            //        {
+            //            friend.GetComponent<moleShit>().Bingus();
+            //        }
+            //    }
+            //}
         }
 
         gameObject.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);

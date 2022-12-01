@@ -18,7 +18,7 @@ public class ItemSAWSHOT : MonoBehaviour
         if (gameObject.GetComponent<Bullet_Movement>() != null)
         {
             canDoTheThing = true;
-            float procMoment = 100f - instances * 10 * gameObject.GetComponent<DealDamage>().procCoeff;
+            float procMoment = 100f - 10 * gameObject.GetComponent<DealDamage>().procCoeff;
             float pringle = Random.Range(0f, 100f);
             bool isCrit = false;
             if (pringle > procMoment)
