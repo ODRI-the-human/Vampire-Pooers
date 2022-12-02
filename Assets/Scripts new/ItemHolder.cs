@@ -6,15 +6,46 @@ public class ItemHolder : MonoBehaviour
 {
     public List<int> itemsHeld = new List<int>();
     public GameObject master;
-    bool doApply = true;
     public int itemGained;
     public int noToGive = 1;
     int timermf;
 
+    bool isBullet = false;
+    bool isGuy = true;
+
+    public bool doTheShit = true;
+
+    public GameObject playerBullet;
+    public GameObject enemyBullet;
+
+    GameObject playerBulletPrefab;
+    GameObject enemyBulletPrefab;
+
     void Start()
     {
         master = GameObject.Find("bigFuckingMasterObject");
-        ApplyAll();
+        playerBullet = master.GetComponent<EntityReferencerGuy>().playerBullet;
+        enemyBullet = master.GetComponent<EntityReferencerGuy>().enemyBullet;
+        if (gameObject.tag == "PlayerBullet" || gameObject.tag == "enemyBullet")
+        {
+            isGuy = false;
+            isBullet = true;
+        }
+
+        if (doTheShit)
+        {
+            ApplyAll();
+        }
+        if (gameObject.tag == "Player")
+        {
+            MakeEpicBullets();
+        }
+
+        if (gameObject.tag == "PlayerBullet" || gameObject.tag == "enemyBullet")
+        {
+            isGuy = false;
+            isBullet = true;
+        }
     }
 
     public void ApplyAll()
@@ -22,20 +53,7 @@ public class ItemHolder : MonoBehaviour
         foreach (int item in itemsHeld)
         {
             itemGained = item;
-            master.GetComponent<ItemDescriptions>().itemChosen = itemGained;
-            master.GetComponent<ItemDescriptions>().getItemDescription();
-            doApply = master.GetComponent<ItemDescriptions>().applyToBullets;
-
-            if (gameObject.tag == "Hostile" || gameObject.tag == "Player")
-            {
-                doApply = true;
-            }
-
-            if (doApply)
-            {
-                ApplyItems();
-            }
-            doApply = true;
+            ApplyItems();
         }
     }
 
@@ -44,10 +62,16 @@ public class ItemHolder : MonoBehaviour
         switch (itemGained)
         {
             case (int)ITEMLIST.HP25:
-                gameObject.AddComponent<ItemHP25>();
+                if (isGuy)
+                {
+                    gameObject.AddComponent<ItemHP25>();
+                }
                 break;
             case (int)ITEMLIST.HP50:
-                gameObject.AddComponent<ItemHP50>();
+                if (isGuy)
+                {
+                    gameObject.AddComponent<ItemHP50>();
+                }
                 break;
             case (int)ITEMLIST.DMGADDPT5:
                 gameObject.AddComponent<ItemDMGADDPT5>();
@@ -56,178 +80,235 @@ public class ItemHolder : MonoBehaviour
                 gameObject.AddComponent<ItemDMGMLT2>();
                 break;
             case (int)ITEMLIST.FIRERATE:
-                gameObject.AddComponent<ItemFIRERATE>();
+                if (isGuy)
+                {
+                    gameObject.AddComponent<ItemFIRERATE>();
+                }
                 break;
             case (int)ITEMLIST.SOY:
                 gameObject.AddComponent<ItemSOY>();
                 break;
             case (int)ITEMLIST.HOMING:
-                if (gameObject.GetComponent<ItemHOMING>() == null)
+                if (isBullet)
                 {
-                    gameObject.AddComponent<ItemHOMING>();
-                }
-                else
-                {
-                    gameObject.GetComponent<ItemHOMING>().instances++;
+                    if (gameObject.GetComponent<ItemHOMING>() == null)
+                    {
+                        gameObject.AddComponent<ItemHOMING>();
+                    }
+                    else
+                    {
+                        gameObject.GetComponent<ItemHOMING>().instances++;
+                    }
                 }
                 break;
             case (int)ITEMLIST.ATG:
-                if (gameObject.GetComponent<ItemATG>() == null)
+                if (isBullet)
                 {
-                    gameObject.AddComponent<ItemATG>();
-                }
-                else
-                {
-                    gameObject.GetComponent<ItemATG>().instances++;
+                    if (gameObject.GetComponent<ItemATG>() == null)
+                    {
+                        gameObject.AddComponent<ItemATG>();
+                    }
+                    else
+                    {
+                        gameObject.GetComponent<ItemATG>().instances++;
+                    }
                 }
                 break;
             case (int)ITEMLIST.MORESHOT:
-                gameObject.AddComponent<ItemMORESHOT>();
+                if (isGuy)
+                {
+                    gameObject.AddComponent<ItemMORESHOT>();
+                }
                 break;
             case (int)ITEMLIST.WAPANT:
-                if (gameObject.GetComponent<ItemWAPANT>() == null)
+                if (isGuy)
                 {
-                    gameObject.AddComponent<ItemWAPANT>();
-                }
-                else
-                {
-                    gameObject.GetComponent<ItemWAPANT>().wapantTimerLength /= 1.2f;
-                    gameObject.GetComponent<ItemWAPANT>().instances++;
+                    if (gameObject.GetComponent<ItemWAPANT>() == null)
+                    {
+                        gameObject.AddComponent<ItemWAPANT>();
+                    }
+                    else
+                    {
+                        gameObject.GetComponent<ItemWAPANT>().wapantTimerLength /= 1.2f;
+                        gameObject.GetComponent<ItemWAPANT>().instances++;
+                    }
                 }
                 break;
             case (int)ITEMLIST.HOLYMANTIS:
-                if (gameObject.GetComponent<ItemHOLYMANTIS>() == null)
+                if (isGuy)
                 {
-                    gameObject.AddComponent<ItemHOLYMANTIS>();
-                }
-                else
-                {
-                    gameObject.GetComponent<ItemHOLYMANTIS>().instances++;
-                    gameObject.GetComponent<ItemHOLYMANTIS>().maxTimesHit++;
-                    gameObject.GetComponent<ItemHOLYMANTIS>().timesHit = gameObject.GetComponent<ItemHOLYMANTIS>().maxTimesHit;
+                    if (gameObject.GetComponent<ItemHOLYMANTIS>() == null)
+                    {
+                        gameObject.AddComponent<ItemHOLYMANTIS>();
+                    }
+                    else
+                    {
+                        gameObject.GetComponent<ItemHOLYMANTIS>().instances++;
+                        gameObject.GetComponent<ItemHOLYMANTIS>().maxTimesHit++;
+                        gameObject.GetComponent<ItemHOLYMANTIS>().timesHit = gameObject.GetComponent<ItemHOLYMANTIS>().maxTimesHit;
+                    }
                 }
                 break;
             case (int)ITEMLIST.CONVERTER:
-                if (gameObject.GetComponent<ItemCONVERTER>() == null)
+                if (isGuy)
                 {
-                    gameObject.AddComponent<ItemCONVERTER>();
-                }
-                else
-                {
-                    gameObject.GetComponent<ItemCONVERTER>().instances++;
+                    if (gameObject.GetComponent<ItemCONVERTER>() == null)
+                    {
+                        gameObject.AddComponent<ItemCONVERTER>();
+                    }
+                    else
+                    {
+                        gameObject.GetComponent<ItemCONVERTER>().instances++;
+                    }
                 }
                 break;
             case (int)ITEMLIST.EASIERTIMES:
-                if (gameObject.GetComponent<ItemEASIERTIMES>() == null)
+                if (isGuy)
                 {
-                    gameObject.AddComponent<ItemEASIERTIMES>();
-                }
-                else
-                {
-                    gameObject.GetComponent<ItemEASIERTIMES>().instances++;
+                    if (gameObject.GetComponent<ItemEASIERTIMES>() == null)
+                    {
+                        gameObject.AddComponent<ItemEASIERTIMES>();
+                    }
+                    else
+                    {
+                        gameObject.GetComponent<ItemEASIERTIMES>().instances++;
+                    }
                 }
                 break;
             case (int)ITEMLIST.STOPWATCH:
-                if (gameObject.GetComponent<ItemSTOPWATCH>() == null)
+                if (isGuy)
                 {
-                    gameObject.AddComponent<ItemSTOPWATCH>();
-                }
-                else
-                {
-                    gameObject.GetComponent<ItemSTOPWATCH>().instances++;
+                    if (gameObject.GetComponent<ItemSTOPWATCH>() == null)
+                    {
+                        gameObject.AddComponent<ItemSTOPWATCH>();
+                    }
+                    else
+                    {
+                        gameObject.GetComponent<ItemSTOPWATCH>().instances++;
+                    }
                 }
                 break;
             case (int)ITEMLIST.BOUNCY:
-                if (gameObject.GetComponent<ItemBOUNCY>() == null)
+                if (isBullet)
                 {
-                    gameObject.AddComponent<ItemBOUNCY>();
-                }
-                else
-                {
-                    gameObject.GetComponent<ItemBOUNCY>().instances++;
+                    if (gameObject.GetComponent<ItemBOUNCY>() == null)
+                    {
+                        gameObject.AddComponent<ItemBOUNCY>();
+                    }
+                    else
+                    {
+                        gameObject.GetComponent<ItemBOUNCY>().instances++;
+                    }
                 }
                 break;
             case (int)ITEMLIST.FOURDIRMARTY:
-                if (gameObject.GetComponent<ItemFOURDIRMARTY>() == null)
+                if (isGuy)
                 {
-                    gameObject.AddComponent<ItemFOURDIRMARTY>();
-                }
-                else
-                {
-                    gameObject.GetComponent<ItemFOURDIRMARTY>().instances++;
+                    if (gameObject.GetComponent<ItemFOURDIRMARTY>() == null)
+                    {
+                        gameObject.AddComponent<ItemFOURDIRMARTY>();
+                    }
+                    else
+                    {
+                        gameObject.GetComponent<ItemFOURDIRMARTY>().instances++;
+                    }
                 }
                 break;
             case (int)ITEMLIST.PIERCING:
-                if (gameObject.GetComponent<ItemPIERCING>() == null)
+                if (isBullet)
                 {
-                    gameObject.AddComponent<ItemPIERCING>();
-                }
-                else
-                {
-                    gameObject.GetComponent<ItemPIERCING>().instances++;
+                    if (gameObject.GetComponent<ItemPIERCING>() == null)
+                    {
+                        gameObject.AddComponent<ItemPIERCING>();
+                    }
+                    else
+                    {
+                        gameObject.GetComponent<ItemPIERCING>().instances++;
+                    }
                 }
                 break;
             case (int)ITEMLIST.CREEP:
-                if (gameObject.GetComponent<ItemCREEP>() == null)
+                if (isGuy)
                 {
-                    gameObject.AddComponent<ItemCREEP>();
-                }
-                else
-                {
-                    gameObject.GetComponent<ItemCREEP>().instances++;
+                    if (gameObject.GetComponent<ItemCREEP>() == null)
+                    {
+                        gameObject.AddComponent<ItemCREEP>();
+                    }
+                    else
+                    {
+                        gameObject.GetComponent<ItemCREEP>().instances++;
+                    }
                 }
                 break;
             case (int)ITEMLIST.DODGESPLOSION:
-                if (gameObject.GetComponent<ItemDODGESPLOSION>() == null)
+                if (isGuy)
                 {
-                    gameObject.AddComponent<ItemDODGESPLOSION>();
-                }
-                else
-                {
-                    gameObject.GetComponent<ItemDODGESPLOSION>().instances++;
+                    if (gameObject.GetComponent<ItemDODGESPLOSION>() == null)
+                    {
+                        gameObject.AddComponent<ItemDODGESPLOSION>();
+                    }
+                    else
+                    {
+                        gameObject.GetComponent<ItemDODGESPLOSION>().instances++;
+                    }
                 }
                 break;
             case (int)ITEMLIST.BETTERDODGE:
-                gameObject.AddComponent<ItemBETTERDODGE>();
+                if (isGuy)
+                {
+                    gameObject.AddComponent<ItemBETTERDODGE>();
+                }
                 break;
             case (int)ITEMLIST.ORBITAL1:
-                if (gameObject.GetComponent<ItemORBITAL1>() == null)
+                if (isGuy)
                 {
-                    gameObject.AddComponent<ItemORBITAL1>();
-                }
-                else
-                {
-                    gameObject.GetComponent<ItemORBITAL1>().instances++;
+                    if (gameObject.GetComponent<ItemORBITAL1>() == null)
+                    {
+                        gameObject.AddComponent<ItemORBITAL1>();
+                    }
+                    else
+                    {
+                        gameObject.GetComponent<ItemORBITAL1>().instances++;
+                    }
                 }
                 break;
             case (int)ITEMLIST.ORBITAL2:
-                if (gameObject.GetComponent<ItemORBITAL2>() == null)
+                if (isGuy)
                 {
-                    gameObject.AddComponent<ItemORBITAL2>();
-                }
-                else
-                {
-                    gameObject.GetComponent<ItemORBITAL2>().instances++;
+                    if (gameObject.GetComponent<ItemORBITAL2>() == null)
+                    {
+                        gameObject.AddComponent<ItemORBITAL2>();
+                    }
+                    else
+                    {
+                        gameObject.GetComponent<ItemORBITAL2>().instances++;
+                    }
                 }
                 break;
             case (int)ITEMLIST.SPLIT:
-                if (gameObject.GetComponent<ItemSPLIT>() == null)
+                if (isBullet)
                 {
-                    gameObject.AddComponent<ItemSPLIT>();
-                }
-                else
-                {
-                    gameObject.GetComponent<ItemSPLIT>().instances++;
+                    if (gameObject.GetComponent<ItemSPLIT>() == null)
+                    {
+                        gameObject.AddComponent<ItemSPLIT>();
+                    }
+                    else
+                    {
+                        gameObject.GetComponent<ItemSPLIT>().instances++;
+                    }
                 }
                 break;
             case (int)ITEMLIST.CONTACT:
-                if (gameObject.GetComponent<ItemCONTACT>() == null)
+                if (isBullet)
                 {
-                    gameObject.AddComponent<ItemCONTACT>();
-                }
-                else
-                {
-                    gameObject.GetComponent<ItemCONTACT>().instances++;
+                    if (gameObject.GetComponent<ItemCONTACT>() == null)
+                    {
+                        gameObject.AddComponent<ItemCONTACT>();
+                    }
+                    else
+                    {
+                        gameObject.GetComponent<ItemCONTACT>().instances++;
+                    }
                 }
                 break;
             case (int)ITEMLIST.BLEED:
@@ -241,13 +322,16 @@ public class ItemHolder : MonoBehaviour
                 }
                 break;
             case (int)ITEMLIST.POISONSPLOSM:
-                if (gameObject.GetComponent<ItemPOISONSPLOSM>() == null)
+                if (isGuy)
                 {
-                    gameObject.AddComponent<ItemPOISONSPLOSM>();
-                }
-                else
-                {
-                    gameObject.GetComponent<ItemPOISONSPLOSM>().instances++;
+                    if (gameObject.GetComponent<ItemPOISONSPLOSM>() == null)
+                    {
+                        gameObject.AddComponent<ItemPOISONSPLOSM>();
+                    }
+                    else
+                    {
+                        gameObject.GetComponent<ItemPOISONSPLOSM>().instances++;
+                    }
                 }
                 break;
             case (int)ITEMLIST.ELECTRIC:
@@ -261,110 +345,162 @@ public class ItemHolder : MonoBehaviour
                 }
                 break;
             case (int)ITEMLIST.BERSERK:
-                if (gameObject.GetComponent<ItemBERSERK>() == null)
+                if (isGuy)
                 {
-                    gameObject.AddComponent<ItemBERSERK>();
-                }
-                else
-                {
-                    gameObject.GetComponent<ItemBERSERK>().instances++;
+                    if (gameObject.GetComponent<ItemBERSERK>() == null)
+                    {
+                        gameObject.AddComponent<ItemBERSERK>();
+                    }
+                    else
+                    {
+                        gameObject.GetComponent<ItemBERSERK>().instances++;
+                    }
                 }
                 break;
             case (int)ITEMLIST.HEALMLT:
-                gameObject.AddComponent<ItemHEALMLT>();
+                if (isGuy)
+                {
+                    gameObject.AddComponent<ItemHEALMLT>();
+                }
                 break;
             case (int)ITEMLIST.PERFECTHEAL:
-                if (gameObject.GetComponent<ItemPERFECTHEAL>() == null)
+                if (isGuy)
                 {
-                    gameObject.AddComponent<ItemPERFECTHEAL>();
-                }
-                else
-                {
-                    gameObject.GetComponent<ItemPERFECTHEAL>().instances++;
+                    if (gameObject.GetComponent<ItemPERFECTHEAL>() == null)
+                    {
+                        gameObject.AddComponent<ItemPERFECTHEAL>();
+                    }
+                    else
+                    {
+                        gameObject.GetComponent<ItemPERFECTHEAL>().instances++;
+                    }
                 }
                 break;
             case (int)ITEMLIST.REROLL:
-                gameObject.AddComponent<ItemREROLL>();
+                if (isGuy)
+                {
+                    gameObject.AddComponent<ItemREROLL>();
+                }
                 break;
             case (int)ITEMLIST.BRICK:
-                if (gameObject.GetComponent<ItemBRICK>() == null)
+                if (isBullet)
                 {
-                    gameObject.AddComponent<ItemBRICK>();
-                }
-                else
-                {
-                    gameObject.GetComponent<ItemBRICK>().instances++;
+                    if (gameObject.GetComponent<ItemBRICK>() == null)
+                    {
+                        gameObject.AddComponent<ItemBRICK>();
+                    }
+                    else
+                    {
+                        gameObject.GetComponent<ItemBRICK>().instances++;
+                    }
                 }
                 break;
             case (int)ITEMLIST.BETTERLEVEL:
-                gameObject.AddComponent<ItemBETTERLEVEL>();
+                if (isGuy)
+                {
+                    gameObject.AddComponent<ItemBETTERLEVEL>();
+                }
                 break;
             case (int)ITEMLIST.EXTRAITEMLEVEL:
-                if (gameObject.GetComponent<ItemEXTRAITEMLEVEL>() == null)
+                if (isGuy)
                 {
-                    gameObject.AddComponent<ItemEXTRAITEMLEVEL>();
-                }
-                else
-                {
-                    gameObject.GetComponent<ItemEXTRAITEMLEVEL>().instances++;
+                    if (gameObject.GetComponent<ItemEXTRAITEMLEVEL>() == null)
+                    {
+                        gameObject.AddComponent<ItemEXTRAITEMLEVEL>();
+                    }
+                    else
+                    {
+                        gameObject.GetComponent<ItemEXTRAITEMLEVEL>().instances++;
+                    }
                 }
                 break;
             case (int)ITEMLIST.MORELEVELSTATS:
-                if (gameObject.GetComponent<ItemMORELEVELSTATS>() == null)
+                if (isGuy)
                 {
-                    gameObject.AddComponent<ItemMORELEVELSTATS>();
-                }
-                else
-                {
-                    gameObject.GetComponent<ItemMORELEVELSTATS>().instances++;
+                    if (gameObject.GetComponent<ItemMORELEVELSTATS>() == null)
+                    {
+                        gameObject.AddComponent<ItemMORELEVELSTATS>();
+                    }
+                    else
+                    {
+                        gameObject.GetComponent<ItemMORELEVELSTATS>().instances++;
+                    }
                 }
                 break;
             case (int)ITEMLIST.HEALTHXP:
-                if (gameObject.GetComponent<ItemHEALTHXP>() == null)
+                if (isGuy)
                 {
-                    gameObject.AddComponent<ItemHEALTHXP>();
-                }
-                else
-                {
-                    gameObject.GetComponent<ItemHEALTHXP>().instances++;
+                    if (gameObject.GetComponent<ItemHEALTHXP>() == null)
+                    {
+                        gameObject.AddComponent<ItemHEALTHXP>();
+                    }
+                    else
+                    {
+                        gameObject.GetComponent<ItemHEALTHXP>().instances++;
+                    }
                 }
                 break;
             case (int)ITEMLIST.LEVELHEAL:
-                gameObject.AddComponent<ItemLEVELHEAL>();
+                if (isGuy)
+                {
+
+                    gameObject.AddComponent<ItemLEVELHEAL>();
+                }
                 break;
             case (int)ITEMLIST.DAGGERTHROW:
-                if (gameObject.GetComponent<ItemDAGGERTHROW>() == null)
+                if (isGuy)
                 {
-                    gameObject.AddComponent<ItemDAGGERTHROW>();
-                }
-                else
-                {
-                    gameObject.GetComponent<ItemDAGGERTHROW>().instances++;
+
+                    if (gameObject.GetComponent<ItemDAGGERTHROW>() == null)
+                    {
+                        gameObject.AddComponent<ItemDAGGERTHROW>();
+                    }
+                    else
+                    {
+                        gameObject.GetComponent<ItemDAGGERTHROW>().instances++;
+                    }
                 }
                 break;
             case (int)ITEMLIST.MOREXP:
-                gameObject.AddComponent<ItemMOREXP>();
+                if (isGuy)
+                {
+
+                    gameObject.AddComponent<ItemMOREXP>();
+                }
                 break;
             case (int)ITEMLIST.FAMILIAR:
-                gameObject.AddComponent<ItemFAMILIAR>();
+                if (isGuy)
+                {
+
+                    gameObject.AddComponent<ItemFAMILIAR>();
+                }
                 break;
             case (int)ITEMLIST.HOMINGFAMILIAR:
-                gameObject.AddComponent<ItemHOMINGFAMILIAR>();
+                if (isGuy)
+                {
+
+                    gameObject.AddComponent<ItemHOMINGFAMILIAR>();
+                }
                 break;
             case (int)ITEMLIST.AUTOFAMILIAR:
-                gameObject.AddComponent<ItemAUTOFAMILIAR>();
-                break;
-            case (int)ITEMLIST.RANDOMSHOT:
-                gameObject.AddComponent<ItemRANDOMSHOT>();
+                if (isGuy)
+                {
+
+                    gameObject.AddComponent<ItemAUTOFAMILIAR>();
+                }
                 break;
             case (int)ITEMLIST.SAWSHOT:
-                if (gameObject.GetComponent<ItemSAWSHOT>() == null)
+                if (isBullet)
                 {
-                    gameObject.AddComponent<ItemSAWSHOT>();
-                }
-                else
-                {
-                    gameObject.GetComponent<ItemSAWSHOT>().instances++;
+
+                    if (gameObject.GetComponent<ItemSAWSHOT>() == null)
+                    {
+                        gameObject.AddComponent<ItemSAWSHOT>();
+                    }
+                    else
+                    {
+                        gameObject.GetComponent<ItemSAWSHOT>().instances++;
+                    }
                 }
                 break;
         }
@@ -381,6 +517,30 @@ public class ItemHolder : MonoBehaviour
                 itemsHeld.Add(itemGained);
                 ApplyItems();
             }
+            MakeEpicBullets();
         }
+    }
+
+    void MakeEpicBullets()
+    {
+        Destroy(playerBulletPrefab);
+        Destroy(enemyBulletPrefab);
+
+        playerBulletPrefab = Instantiate(playerBullet, new Vector3(999999, 999999, 999999), transform.rotation);
+        playerBulletPrefab.GetComponent<ItemHolder>().itemsHeld = itemsHeld;
+        Rigidbody2D playerBRB = playerBulletPrefab.GetComponent<Rigidbody2D>();
+        playerBRB.simulated = false;
+        gameObject.GetComponent<Attack>().Bullet = playerBulletPrefab;
+        enemyBulletPrefab = Instantiate(enemyBullet, new Vector3(9999999, 9999999, 9999999), transform.rotation);
+        enemyBulletPrefab.GetComponent<ItemHolder>().itemsHeld = master.GetComponent<ItemHolder>().itemsHeld;
+        Rigidbody2D enemyBRB = enemyBulletPrefab.GetComponent<Rigidbody2D>();
+        master.GetComponent<ThirdEnemySpawner>().enemyBullet = enemyBulletPrefab;
+        enemyBRB.simulated = false;
+    }
+
+    void Update()
+    {
+        playerBulletPrefab.transform.position = new Vector3(999999, 999999, 999999);
+        enemyBulletPrefab.transform.position = new Vector3(9999999, 9999999, 9999999);
     }
 }

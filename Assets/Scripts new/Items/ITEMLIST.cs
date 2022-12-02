@@ -45,9 +45,4 @@ public enum ITEMLIST
     HOMINGFAMILIAR,
     AUTOFAMILIAR,
     SAWSHOT,
-
-
-
-
-    RANDOMSHOT,
 }

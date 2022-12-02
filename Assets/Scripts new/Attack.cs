@@ -33,7 +33,7 @@ public class Attack : MonoBehaviour
     public int reTargetTimer = 0;
     public GameObject currentTarget;
 
-    public int timesFired;
+    public int timesFired = -1;
     public int newAttack; // alternates between 0 and 1 when the player fires. Used for certain items.
 
     public float Crongus = 0; // records total converter damage bonus.
@@ -66,7 +66,7 @@ public class Attack : MonoBehaviour
     {
         trueDamageValue = gameObject.GetComponent<DealDamage>().finalDamageStat;
         fireTimerLength = Mathf.Clamp(fireTimerLength, 0, 99999);
-        fireTimerActualLength = Mathf.Clamp(50 / (fireTimerLength * fireTimerLengthMLT / fireTimerDIV),0,50);
+        fireTimerActualLength = Mathf.Clamp(50 / (fireTimerLength * fireTimerLengthMLT / fireTimerDIV),0,25);
 
         if (reTargetTimer <= 0)
         {
@@ -74,7 +74,7 @@ public class Attack : MonoBehaviour
             reTargetTimer = reTargetTimerLength;
         }
 
-        if (fireTimer > fireTimerLength * fireTimerLengthMLT / fireTimerDIV)
+        if (fireTimer > Mathf.Clamp(fireTimerLength * fireTimerLengthMLT / fireTimerDIV, 2, 9999999999))
         {
             switch (playerControlled)
             {
@@ -153,7 +153,10 @@ public class Attack : MonoBehaviour
         bulletRB.velocity = newShotVector * shotSpeed;
         if (attachItems)
         {
-            newObject.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
+            //newObject.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
+            newObject.GetComponent<ItemHolder>().doTheShit = false;
+            newObject.GetComponent<Rigidbody2D>().simulated = true;
+            //newObject.AddComponent<KillBullets>();
             newObject.GetComponent<weaponType>().weaponHeld = newObject.GetComponent<weaponType>().weaponHeld;
             newObject.GetComponent<DealDamage>().owner = gameObject;
             newObject.GetComponent<DealDamage>().finalDamageMult *= gameObject.GetComponent<DealDamage>().finalDamageMult;

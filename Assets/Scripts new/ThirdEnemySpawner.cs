@@ -20,6 +20,8 @@ public class ThirdEnemySpawner : MonoBehaviour
     int noSpawnsBeforeNewWave = 4; // actually should be one more than the desired number, for some reason.
     int numberEnemiesSpawned;
 
+    public GameObject enemyBullet;
+
     public GameObject firstMole;
     public bool bypassWaves;
 
@@ -170,6 +172,7 @@ public class ThirdEnemySpawner : MonoBehaviour
             float SpawnPosYVariation = Random.Range(-1f, 1f);
             GameObject spawned = Instantiate(toSpawn, new Vector3(SpawnPosX + SpawnPosXVariation, SpawnPosY + SpawnPosYVariation, 10.6f) + Camera.transform.position, transform.rotation);
             spawned.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
+            spawned.GetComponent<Attack>().Bullet = enemyBullet;
 
             if (i == 0 && !existsMole && toSpawn == mole)
             {
@@ -198,6 +201,7 @@ public class ThirdEnemySpawner : MonoBehaviour
             }
             GameObject spawned = Instantiate(toSpawn, new Vector3(SpawnPosX, SpawnPosY, 10.6f) + Camera.transform.position, transform.rotation);
             spawned.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
+            spawned.GetComponent<Attack>().Bullet = enemyBullet;
         }
     }
 
