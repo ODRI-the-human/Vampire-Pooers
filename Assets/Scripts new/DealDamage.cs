@@ -22,6 +22,8 @@ public class DealDamage : MonoBehaviour
     public int timer = 0;
     public float damageAmt;
 
+    public bool isBulletClone = false;
+
     void Awake()
     {
         critProb = 0.05f;
@@ -64,7 +66,7 @@ public class DealDamage : MonoBehaviour
     // For applying any on-hit effects - sends the RollOnHit message, which is picked up by any on-hit effects THIS object has, which then apply the effect or whatever to col.gameobject.
     public void OnCollisionEnter2D(Collision2D col)
     {
-        if (gameObject.tag != col.gameObject.tag)
+        if (gameObject.tag != col.gameObject.tag && col.gameObject.tag != "Wall")
         {
             gameObject.SendMessage("RollOnHit", col.gameObject);
         }
@@ -72,7 +74,7 @@ public class DealDamage : MonoBehaviour
 
     public void OnTriggerStay2D(Collider2D col)
     {
-        if (damageAmt != 0 && gameObject.tag != col.gameObject.tag)
+        if (damageAmt != 0 && gameObject.tag != col.gameObject.tag && col.gameObject.tag != "Wall")
         {
             gameObject.SendMessage("RollOnHit", col.gameObject);
         }

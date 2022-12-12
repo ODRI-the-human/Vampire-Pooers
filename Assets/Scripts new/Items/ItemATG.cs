@@ -12,22 +12,27 @@ public class ItemATG : MonoBehaviour
     public int instances = 1;
     float pringle;
 
+    public bool runStart = true;
+
     void Start()
     {
-        MasterObject = GameObject.Find("bigFuckingMasterObject");
-
-        if (gameObject.tag == "PlayerBullet" || gameObject.tag == "Player")
+        if (!gameObject.GetComponent<DealDamage>().isBulletClone)
         {
-            hostile = false;
-            ATGMissile = MasterObject.GetComponent<EntityReferencerGuy>().ATGMissile;
-        }
-        else
-        {
-            hostile = true;
-            ATGMissile = MasterObject.GetComponent<EntityReferencerGuy>().ATGMissileHostile;
-        }
+            MasterObject = GameObject.Find("bigFuckingMasterObject");
 
-        owner = gameObject.GetComponent<DealDamage>().owner;
+            if (gameObject.tag == "PlayerBullet" || gameObject.tag == "Player")
+            {
+                hostile = false;
+                ATGMissile = MasterObject.GetComponent<EntityReferencerGuy>().ATGMissile;
+            }
+            else
+            {
+                hostile = true;
+                ATGMissile = MasterObject.GetComponent<EntityReferencerGuy>().ATGMissileHostile;
+            }
+
+            owner = gameObject.GetComponent<DealDamage>().owner;
+        }
     }
 
     public void RollOnHit(GameObject POOhead)

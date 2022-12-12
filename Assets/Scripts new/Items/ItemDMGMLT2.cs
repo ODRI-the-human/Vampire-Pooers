@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class ItemDMGMLT2 : MonoBehaviour
 {
+    public bool runStart = true;
+
     // Start is called before the first frame update
     void Start()
     {
-        gameObject.GetComponent<DealDamage>().damageMult += 1f;
+        if (!gameObject.GetComponent<DealDamage>().isBulletClone)
+        {
+            gameObject.GetComponent<DealDamage>().damageMult += 1f;
+        }
     }
 
     public void Undo()

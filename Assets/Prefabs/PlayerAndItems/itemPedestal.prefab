@@ -185,6 +185,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 7674381605585770212}
   description: 
   enemiesCanUse: 0
+  specialItemWeightsSum: 0
 --- !u!114 &8191072633798459801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,5 +200,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemChosen: 0
   enemiesCanUse: 0
-  applyToBullets: 0
   itemDescription: 

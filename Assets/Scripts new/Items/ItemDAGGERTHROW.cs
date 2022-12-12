@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ItemDAGGERTHROW : MonoBehaviour
 {
-    bool hasShot = false;
+    public bool hasShot = false;
     int shotSpeed = 12;
     GameObject Bullet;
     Rigidbody2D bulletRB;
@@ -13,11 +13,15 @@ public class ItemDAGGERTHROW : MonoBehaviour
     GameObject Player;
     float currentAngle;
 
+    GameObject master;
+
     public int instances = 1;
 
     void Start()
     {
-        Bullet = gameObject.GetComponent<Attack>().Bullet;
+        master = gameObject.GetComponent<ItemHolder>().master;
+        
+        Bullet = master.GetComponent<EntityReferencerGuy>().playerBullet;
 
         Player = gameObject.GetComponent<Attack>().Player;
 
@@ -46,17 +50,18 @@ public class ItemDAGGERTHROW : MonoBehaviour
 
             hasShot = true;
 
-            for (int i = 0; i < 3; i++)
+            for (int i = -instances; i < instances + 1; i++)
             {
-                currentAngle = (Mathf.PI / 10) * (i + 1) - 2 * (Mathf.PI / 10);
+                currentAngle = (Mathf.PI / 10) * i;
                 GameObject newObject = Instantiate(Bullet, transform.position, transform.rotation);
                 newObject.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
-                newObject.GetComponent<DealDamage>().damageBase = 10 * instances;
+                newObject.GetComponent<DealDamage>().damageBase = 10;
                 newObject.AddComponent<ItemBLEED>();
                 newObject.GetComponent<ItemBLEED>().instances = 20;
                 bulletRB = newObject.GetComponent<Rigidbody2D>();
                 newShotVector = new Vector2(vectorToTarget.x * Mathf.Cos(currentAngle) - vectorToTarget.y * Mathf.Sin(currentAngle), vectorToTarget.x * Mathf.Sin(currentAngle) + vectorToTarget.y * Mathf.Cos(currentAngle));
                 bulletRB.velocity = newShotVector * shotSpeed;
+                bulletRB.simulated = true;
             }
         }
         

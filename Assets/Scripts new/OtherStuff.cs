@@ -14,6 +14,9 @@ public class OtherStuff : MonoBehaviour
     public int familiarBonusFIRERATE = 0;
     public int familiarBonusHOMING = 0;
 
+    public bool canStillHeal = true;
+    public List<int> itemsToGiveRoundly = new List<int>();
+
     void Start()
     {
         master = GameObject.Find("bigFuckingMasterObject");
@@ -76,7 +79,7 @@ public class OtherStuff : MonoBehaviour
             case (int)ITEMLIST.HOMINGFAMILIAR:
                 familiarBonusHOMING += 1;
                 break;
-            case (int)ITEMLIST. AUTOFAMILIAR:
+            case (int)ITEMLIST.AUTOFAMILIAR:
                 familiarBonusFIRERATE += 1;
                 break;
         }
@@ -95,6 +98,49 @@ public class OtherStuff : MonoBehaviour
             }
             familiar.GetComponent<DealDamage>().finalDamageMult = 1 + 0.5f * familiarBonusDMG;
             familiar.GetComponent<Attack>().fireTimerDIV = 1 + 0.5f * familiarBonusFIRERATE;
+        }
+    }
+
+    public void ApplyItemCurse(int curseType, int item)
+    {
+        switch (curseType)
+        {
+            case 1: //get one of this item whenever you pick up an item, but lose 2 random items upon taking damage.
+                break;
+            case 2:
+                if (item != -5)
+                {
+                    itemsToGiveRoundly.Add(item);
+                }
+                break;
+            case 3:
+                break;
+            case 4:
+                canStillHeal = false;
+                break;
+            case 5:
+                break;
+        }
+    }
+
+    void Update()
+    {
+        if (!canStillHeal)
+        {
+            gameObject.GetComponent<Healing>().healMult = 0;
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.tag == "item")
+        {
+            foreach(var item in itemsToGiveRoundly)
+            {
+                gameObject.GetComponent<ItemHolder>().itemGained = item;
+                gameObject.GetComponent<ItemHolder>().itemsHeld.Add(item);
+                gameObject.GetComponent<ItemHolder>().ApplyItems();
+            }
         }
     }
 }

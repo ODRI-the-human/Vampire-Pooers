@@ -33,7 +33,7 @@ public class Attack : MonoBehaviour
     public int reTargetTimer = 0;
     public GameObject currentTarget;
 
-    public int timesFired = -1;
+    public int timesFired = 0;
     public int newAttack; // alternates between 0 and 1 when the player fires. Used for certain items.
 
     public float Crongus = 0; // records total converter damage bonus.
@@ -49,6 +49,7 @@ public class Attack : MonoBehaviour
 
     void Start()
     {
+        timesFired = -1;
         newAttack = 0;
         if (gameObject.tag == "Hostile" || gameObject.tag == "enemyBullet" || gameObject.tag == "enemyFamiliar")
         {
@@ -159,6 +160,7 @@ public class Attack : MonoBehaviour
             //newObject.AddComponent<KillBullets>();
             newObject.GetComponent<weaponType>().weaponHeld = newObject.GetComponent<weaponType>().weaponHeld;
             newObject.GetComponent<DealDamage>().owner = gameObject;
+            newObject.GetComponent<DealDamage>().isBulletClone = true;
             newObject.GetComponent<DealDamage>().finalDamageMult *= gameObject.GetComponent<DealDamage>().finalDamageMult;
             newObject.GetComponent<DealDamage>().damageBase += Crongus + levelDamageBonus; // applies converter damage bonus to bullets
         }
@@ -250,5 +252,13 @@ public class Attack : MonoBehaviour
     {
         fireTimer++;
         reTargetTimer--;
+    }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.tag == "item")
+        {
+            timesFired = -1;
+        }
     }
 }

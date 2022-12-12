@@ -158,7 +158,7 @@ public class ItemDescriptions : MonoBehaviour
                 itemDescription = "Levelling up heals 25 HP (+25 HP per stack).";
                 break;
             case (int)ITEMLIST.DAGGERTHROW:
-                itemDescription = "Every 3rd shot, fire 3 daggers in an arc that deal 10 damage (+10 per stack) and inflict bleed.";
+                itemDescription = "Every 3rd shot, fire 3 (+2 per stack) daggers in an arc that deal 10 damage and inflict bleed.";
                 enemiesCanUse = true;
                 break;
             case (int)ITEMLIST.MOREXP:

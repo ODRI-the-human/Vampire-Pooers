@@ -7,42 +7,7 @@ public class usetogiveonlyplayeritem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.SOY);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.FIRERATE);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.FIRERATE);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.FIRERATE);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.FIRERATE);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.FIRERATE);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.FIRERATE);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.FIRERATE);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.FIRERATE);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.FIRERATE);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.FIRERATE);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.FIRERATE);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.FIRERATE);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.FIRERATE);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.FIRERATE);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.MORESHOT);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.MORESHOT);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.MORESHOT);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.MORESHOT);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.MORESHOT);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.MORESHOT);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.MORESHOT);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.MORESHOT);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.MORESHOT);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.MORESHOT);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.MORESHOT);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.MORESHOT);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.MORESHOT);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.MORESHOT);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.MORESHOT);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.MORESHOT);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.MORESHOT);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.MORESHOT);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.MORESHOT);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.MORESHOT);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.MORESHOT);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.MORESHOT);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.DAGGERTHROW);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.DAGGERTHROW);
     }
 }

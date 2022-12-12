@@ -13,16 +13,19 @@ public class ItemELECTRIC : MonoBehaviour
 
     void Start()
     {
-        if (gameObject.tag == "Player")
+        if (!gameObject.GetComponent<DealDamage>().isBulletClone)
         {
-            owner = gameObject;
-        }
-        else
-        {
-            owner = gameObject.GetComponent<DealDamage>().owner;
-        }
+            if (gameObject.tag == "Player")
+            {
+                owner = gameObject;
+            }
+            else
+            {
+                owner = gameObject.GetComponent<DealDamage>().owner;
+            }
 
-        masterObject = GameObject.Find("bigFuckingMasterObject");
+            masterObject = GameObject.Find("bigFuckingMasterObject");
+        }
     }
 
     void OnCollisionEnter2D(Collision2D col) // featuring 15 million if statements
