@@ -115,7 +115,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: 8699695563630141886, guid: 4460dff5671ba4a4595513d08fc0146a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -192,5 +192,13 @@ MonoBehaviour:
   finalDamageMult: 1
   knockBackCoeff: 5
   finalDamageDIV: 1
+  critProb: 0.05
+  critMult: 2
   owner: {fileID: 0}
+  master: {fileID: 0}
   overwriteDamageCalc: 1
+  onlyDamageOnce: 1
+  tickInterval: 1
+  timer: 0
+  damageAmt: 0
+  isBulletClone: 0

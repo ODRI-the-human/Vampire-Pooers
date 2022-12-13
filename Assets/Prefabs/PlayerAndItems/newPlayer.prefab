@@ -172,11 +172,13 @@ MonoBehaviour:
   critProb: 0.5
   critMult: 2
   owner: {fileID: 0}
+  master: {fileID: 0}
   overwriteDamageCalc: 0
   onlyDamageOnce: 0
   tickInterval: 1
   timer: 0
   damageAmt: 0
+  isBulletClone: 0
 --- !u!114 &3646255009062352282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -399,3 +401,5 @@ MonoBehaviour:
   familiarBonusDMG: 0
   familiarBonusFIRERATE: 0
   familiarBonusHOMING: 0
+  canStillHeal: 1
+  itemsToGiveRoundly: 

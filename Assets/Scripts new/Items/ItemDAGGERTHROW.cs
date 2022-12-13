@@ -55,6 +55,7 @@ public class ItemDAGGERTHROW : MonoBehaviour
                 currentAngle = (Mathf.PI / 10) * i;
                 GameObject newObject = Instantiate(Bullet, transform.position, transform.rotation);
                 newObject.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+                newObject.GetComponent<MeshFilter>().mesh = master.GetComponent<EntityReferencerGuy>().dagger;
                 newObject.GetComponent<DealDamage>().damageBase = 10;
                 newObject.AddComponent<ItemBLEED>();
                 newObject.GetComponent<ItemBLEED>().instances = 20;

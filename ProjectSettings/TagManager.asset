@@ -40,7 +40,7 @@ TagManager:
   - Pickup for Player
   - Item Pedestal
   - HitBothPlayerAndEnemy
-  - 
+  - OnlyHitWalls
   - 
   - 
   - 

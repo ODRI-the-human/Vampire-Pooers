@@ -86,7 +86,7 @@ public class ItemDescriptions : MonoBehaviour
                 
                 break;
             case (int)ITEMLIST.CREEP:
-                itemDescription = "Leave creep on the ground that deals 5% of your damage per tick. Size of creep increases with stacks.";
+                itemDescription = "Leave creep on the ground that deals 20% of your damage per tick. Size of creep increases with stacks.";
                 enemiesCanUse = true;
                 break;
             case (int)ITEMLIST.DODGESPLOSION:

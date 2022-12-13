@@ -28,9 +28,12 @@ public class EntityReferencerGuy : MonoBehaviour
     public GameObject berserkMusic;
     public GameObject berserkPlane;
     public GameObject normieFamiliar;
+    public GameObject sawVisual;
 
     public Material playerBulletMaterial;
     public Material enemyBulletMaterial;
+
+    public Mesh dagger;
 
     public int numItemsExist = 33;
 

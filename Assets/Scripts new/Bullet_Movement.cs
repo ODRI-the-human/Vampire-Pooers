@@ -20,6 +20,11 @@ public class Bullet_Movement : MonoBehaviour
         speed = rb.velocity.magnitude;
     }
 
+    void Update()
+    {
+        transform.rotation = Quaternion.LookRotation(rb.velocity) * Quaternion.Euler(0, 90, 0);
+    }
+
     void OnCollisionEnter2D(Collision2D col)
     {
         Vector2 enemyPos = new Vector2(transform.position.x, transform.position.y);
@@ -37,6 +42,7 @@ public class Bullet_Movement : MonoBehaviour
             {
                 rb.velocity = speed * (enemyPos - bulletPos).normalized;
                 gameObject.GetComponent<ItemBOUNCY>().bouncesLeft--;
+                transform.rotation = Quaternion.LookRotation(rb.velocity) * Quaternion.Euler(0, 90, 0);
             }
             else
             {
@@ -68,6 +74,7 @@ public class Bullet_Movement : MonoBehaviour
             Vector2 enemyPos = new Vector2(transform.position.x, transform.position.y);
             Vector2 bulletPos = new Vector2(col.transform.position.x, col.transform.position.y);
             rb.velocity = speed * (enemyPos - bulletPos).normalized;
+            transform.rotation = Quaternion.LookRotation(rb.velocity) * Quaternion.Euler(0, 90, 0);
 
             if (col.gameObject.GetComponent<dieOnContactWithBullet>() != null)
             {

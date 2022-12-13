@@ -32,8 +32,14 @@ public class NewPlayerMovement : MonoBehaviour
 
     public GameObject dodgeOnlineAudio;
 
+    int LayerPlayer;
+    int LayerNone;
+
     void Start()
     {
+        LayerPlayer = LayerMask.NameToLayer("Player");
+        LayerNone = LayerMask.NameToLayer("OnlyHitWalls");
+
         if (gameObject.tag == "Hostile")
         {
             Player = GameObject.Find("newPlayer");
@@ -120,12 +126,14 @@ public class NewPlayerMovement : MonoBehaviour
         {
             if (dodgeTimer > 0)
             {
-                gameObject.GetComponent<Collider2D>().enabled = false;
+                //gameObject.GetComponent<Collider2D>().enabled = false;
+                gameObject.layer = LayerNone;
             }
             else
             {
                 isDodging = 0;
-                gameObject.GetComponent<Collider2D>().enabled = true;
+                gameObject.layer = LayerPlayer;
+                //gameObject.GetComponent<Collider2D>().enabled = true;
                 if (gameObject.GetComponent<ItemDODGESPLOSION>() != null)
                 {
                     gameObject.GetComponent<ItemDODGESPLOSION>().Splosm();

@@ -12,9 +12,16 @@ public class ItemSAWSHOT : MonoBehaviour
     public bool canDoTheThing = false;
     public bool isAProc = false;
 
+    GameObject Poop;
+
+    public GameObject SawShotVisual;
+
+    GameObject master;
+
     // Start is called before the first frame update
     void Start()
     {
+        master = gameObject.GetComponent<DealDamage>().master;
         if (gameObject.GetComponent<Bullet_Movement>() != null)
         {
             canDoTheThing = true;
@@ -30,6 +37,10 @@ public class ItemSAWSHOT : MonoBehaviour
                 gameObject.AddComponent<ItemPIERCING>();
                 gameObject.GetComponent<DealDamage>().onlyDamageOnce = false;
                 isAProc = true;
+                gameObject.GetComponent<MeshFilter>().mesh = null;//master.GetComponent<EntityReferencerGuy>().saw;
+                Poop = Instantiate(master.GetComponent<EntityReferencerGuy>().sawVisual, transform.position, transform.rotation);
+                Poop.transform.SetParent(gameObject.transform);
+                Poop.transform.localScale = transform.localScale;
             }
         }
     }
@@ -49,10 +60,12 @@ public class ItemSAWSHOT : MonoBehaviour
         {
             if (guyLatchedTo == null || timer == 100 * instances)
             {
+                Destroy(Poop);
                 Destroy(gameObject);
             }
 
-            transform.position = guyLatchedTo.transform.position + bulletOffset;
+            Poop.transform.position = guyLatchedTo.transform.position + bulletOffset;
+            transform.position = guyLatchedTo.transform.position;
             Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), guyLatchedTo.GetComponent<Collider2D>(), false);
         }
     }
@@ -63,14 +76,20 @@ public class ItemSAWSHOT : MonoBehaviour
         {
             dogma = true;
             guyLatchedTo = col.gameObject;
+            transform.rotation = Quaternion.Euler(0, 0, 0);
             bulletOffset = transform.position - guyLatchedTo.transform.position;
+            Poop.transform.parent = null;
             gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
             gameObject.GetComponent<Collider2D>().isTrigger = true;
             gameObject.GetComponent<CircleCollider2D>().radius = 0.1f;
-            gameObject.GetComponent<Collider2D>().offset = -2 * bulletOffset;
             gameObject.GetComponent<DealDamage>().finalDamageMult /= 5;
             gameObject.GetComponent<DealDamage>().tickInterval = 10;
             gameObject.AddComponent<SawShotCreep>();
+
+            if (col.gameObject.tag == "Wall")
+            {
+                Destroy(Poop);
+            }
         }
     }
 }
