@@ -14,6 +14,7 @@ public class DealDamage : MonoBehaviour
     public float critProb = 0.05f;
     public float critMult = 2;
     public GameObject owner;
+    public GameObject master;
 
     public bool overwriteDamageCalc;
     public bool onlyDamageOnce = true;
@@ -35,6 +36,11 @@ public class DealDamage : MonoBehaviour
         if (gameObject.tag == "Hostile" || gameObject.tag == "Player")
         {
             owner = gameObject;
+            master = GameObject.Find("bigFuckingMasterObject");
+        }
+        else
+        {
+            master = owner.GetComponent<DealDamage>().master;
         }
         if (!overwriteDamageCalc)
         {

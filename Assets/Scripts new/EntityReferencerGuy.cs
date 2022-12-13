@@ -28,6 +28,10 @@ public class EntityReferencerGuy : MonoBehaviour
     public GameObject berserkMusic;
     public GameObject berserkPlane;
     public GameObject normieFamiliar;
+
+    public Material playerBulletMaterial;
+    public Material enemyBulletMaterial;
+
     public int numItemsExist = 33;
 
     void Start()

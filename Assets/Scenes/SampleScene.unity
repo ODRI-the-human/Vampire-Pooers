@@ -294,6 +294,14 @@ PrefabInstance:
       propertyPath: normieFamiliar
       value: 
       objectReference: {fileID: 6465258072512375926, guid: bbd1bdd2eaa4f3f4988a12e287a2921e, type: 3}
+    - target: {fileID: 8146544521814748070, guid: 2c1e033fc431a694499cc08ddf9a90b1, type: 3}
+      propertyPath: enemyBulletMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 3bdc199c65efb784299c0d1d6afbf800, type: 2}
+    - target: {fileID: 8146544521814748070, guid: 2c1e033fc431a694499cc08ddf9a90b1, type: 3}
+      propertyPath: playerBulletMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 161673f30987dd64e96682430ebe21d9, type: 2}
     - target: {fileID: 9014303847402346882, guid: 2c1e033fc431a694499cc08ddf9a90b1, type: 3}
       propertyPath: waveText
       value: 
@@ -3971,7 +3979,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 1, y: 1, z: 1, w: 1}
+  m_BoundingSphereOverride: {x: 8e-45, y: 4.326e-42, z: 1.02e-43, w: 3.4522705}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0

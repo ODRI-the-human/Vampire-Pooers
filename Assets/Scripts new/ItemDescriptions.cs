@@ -109,7 +109,7 @@ public class ItemDescriptions : MonoBehaviour
                 
                 break;
             case (int)ITEMLIST.CONTACT:
-                itemDescription = "Your shots destroy enemy shots. Your bullets get destroyed after 1 (+1 per stack) collision";
+                itemDescription = "Enemy bullets bounce off your bullets and now damage enemies rather than you. Your bullets are destroyed after 2 (+2 per stack) collisions.";
                 
                 break;
             case (int)ITEMLIST.BLEED:

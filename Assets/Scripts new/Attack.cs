@@ -152,6 +152,7 @@ public class Attack : MonoBehaviour
         }
         newShotVector = new Vector2(vectorToTarget.x * Mathf.Cos(currentAngle) - vectorToTarget.y * Mathf.Sin(currentAngle), vectorToTarget.x * Mathf.Sin(currentAngle) + vectorToTarget.y * Mathf.Cos(currentAngle));
         bulletRB.velocity = newShotVector * shotSpeed;
+        newObject.GetComponent<DealDamage>().master = gameObject.GetComponent<DealDamage>().master;
         if (attachItems)
         {
             //newObject.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;

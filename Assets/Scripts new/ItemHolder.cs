@@ -540,7 +540,10 @@ public class ItemHolder : MonoBehaviour
 
     void Update()
     {
-        playerBulletPrefab.transform.position = new Vector3(999999, 999999, 999999);
-        enemyBulletPrefab.transform.position = new Vector3(9999999, 9999999, 9999999);
+        if (gameObject.tag == "Player")
+        {
+            playerBulletPrefab.transform.position = new Vector3(999999, 999999, 999999);
+            enemyBulletPrefab.transform.position = new Vector3(9999999, 9999999, 9999999);
+        }
     }
 }
