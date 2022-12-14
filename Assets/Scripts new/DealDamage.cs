@@ -25,11 +25,6 @@ public class DealDamage : MonoBehaviour
 
     public bool isBulletClone = false;
 
-    void Awake()
-    {
-        critProb = 0.05f;
-    }
-
     // Start is called before the first frame update
     void Start()
     {

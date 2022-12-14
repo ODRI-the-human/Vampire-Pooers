@@ -503,6 +503,15 @@ public class ItemHolder : MonoBehaviour
                     }
                 }
                 break;
+            case (int)ITEMLIST.LUCKIER:
+                gameObject.AddComponent<ItemLUCKIER>();
+                break;
+            case (int)ITEMLIST.MORECRITS:
+                gameObject.AddComponent<ItemMORECRITS>();
+                break;
+            case (int)ITEMLIST.BETTERCRITS:
+                gameObject.AddComponent<ItemBETTERCRITS>();
+                break;
         }
     }
 
@@ -530,6 +539,8 @@ public class ItemHolder : MonoBehaviour
         playerBulletPrefab.GetComponent<ItemHolder>().itemsHeld = itemsHeld;
         Rigidbody2D playerBRB = playerBulletPrefab.GetComponent<Rigidbody2D>();
         playerBRB.simulated = false;
+        playerBRB.GetComponent<DealDamage>().master = gameObject.GetComponent<DealDamage>().master;
+        playerBRB.GetComponent<DealDamage>().owner = gameObject;
         gameObject.GetComponent<Attack>().Bullet = playerBulletPrefab;
         enemyBulletPrefab = Instantiate(enemyBullet, new Vector3(9999999, 9999999, 9999999), transform.rotation);
         enemyBulletPrefab.GetComponent<ItemHolder>().itemsHeld = master.GetComponent<ItemHolder>().itemsHeld;

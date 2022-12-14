@@ -182,6 +182,9 @@ MonoBehaviour:
   - {fileID: -1005685031, guid: 2577e3cd26680cc499504306f54c325a, type: 3}
   - {fileID: -330611366, guid: 2577e3cd26680cc499504306f54c325a, type: 3}
   - {fileID: 2117372589, guid: 2577e3cd26680cc499504306f54c325a, type: 3}
+  - {fileID: -297970370, guid: 2577e3cd26680cc499504306f54c325a, type: 3}
+  - {fileID: -428589139, guid: 2577e3cd26680cc499504306f54c325a, type: 3}
+  - {fileID: -24210679, guid: 2577e3cd26680cc499504306f54c325a, type: 3}
   spriteRenderer: {fileID: 7674381605585770212}
   description: 
   enemiesCanUse: 0

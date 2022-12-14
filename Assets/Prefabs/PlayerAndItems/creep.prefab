@@ -158,7 +158,7 @@ MonoBehaviour:
   finalDamageMult: 1
   knockBackCoeff: 1
   finalDamageDIV: 1
-  critProb: 0.05
+  critProb: 0
   critMult: 2
   owner: {fileID: 0}
   master: {fileID: 0}

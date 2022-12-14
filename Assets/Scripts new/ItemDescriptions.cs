@@ -177,9 +177,20 @@ public class ItemDescriptions : MonoBehaviour
                 enemiesCanUse = true;
                 break;
             case (int)ITEMLIST.SAWSHOT:
-                itemDescription = "10% chance for bullets to stick to enemies, dealing 20% of your bullet damage 10 (+10 per stack) times over 2 (+2 per stack) seconds and creating a small creep puddle. Can proc on-hit effects.";
+                itemDescription = "20% chance for bullets to stick to enemies, dealing 20% of your bullet damage 10 (+10 per stack) times over 2 (+2 per stack) seconds and creating a small creep puddle. Can proc on-hit effects.";
                 enemiesCanUse = true;
-                
+                break;
+            case (int)ITEMLIST.LUCKIER:
+                itemDescription = "Proc coefficient increased by 1 (proc effects are more likely to occur)";
+                enemiesCanUse = true;
+                break;
+            case (int)ITEMLIST.MORECRITS:
+                itemDescription = "Crit chance increased by 20%";
+                enemiesCanUse = true;
+                break;
+            case (int)ITEMLIST.BETTERCRITS:
+                itemDescription = "Crit multiplier increased by 100%";
+                enemiesCanUse = true;
                 break;
         }
     }

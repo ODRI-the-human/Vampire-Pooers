@@ -56,32 +56,39 @@ public class Bullet_Movement : MonoBehaviour
     {
         if ((col.gameObject.tag == "PlayerBullet" && gameObject.tag == "enemyBullet") || (col.gameObject.tag == "enemyBullet" && gameObject.tag == "PlayerBullet"))
         {
-            int LayerPlayerBullet = LayerMask.NameToLayer("PlayerBullets");
-            int LayerEnemyBullet = LayerMask.NameToLayer("EnemyBullets");
-            if (gameObject.tag == "enemyBullet")
+            if (gameObject.GetComponent<darkArtMovement>() != null)
             {
-                gameObject.GetComponent<MeshRenderer>().material = master.GetComponent<EntityReferencerGuy>().playerBulletMaterial;
-                gameObject.layer = LayerPlayerBullet;
+                Destroy(gameObject);
             }
             else
             {
-                gameObject.GetComponent<MeshRenderer>().material = master.GetComponent<EntityReferencerGuy>().enemyBulletMaterial;
-                gameObject.layer = LayerEnemyBullet;
-            }
-
-            Vector2 spomble = col.gameObject.GetComponent<Rigidbody2D>().velocity;
-            float colObjSpeed = spomble.magnitude;
-            Vector2 enemyPos = new Vector2(transform.position.x, transform.position.y);
-            Vector2 bulletPos = new Vector2(col.transform.position.x, col.transform.position.y);
-            rb.velocity = speed * (enemyPos - bulletPos).normalized;
-            transform.rotation = Quaternion.LookRotation(rb.velocity) * Quaternion.Euler(0, 90, 0);
-
-            if (col.gameObject.GetComponent<dieOnContactWithBullet>() != null)
-            {
-                col.gameObject.GetComponent<dieOnContactWithBullet>().instances -= 1;
-                if (col.gameObject.GetComponent<dieOnContactWithBullet>().instances == 0)
+                int LayerPlayerBullet = LayerMask.NameToLayer("PlayerBullets");
+                int LayerEnemyBullet = LayerMask.NameToLayer("EnemyBullets");
+                if (gameObject.tag == "enemyBullet")
                 {
-                    col.gameObject.GetComponent<dieOnContactWithBullet>().CommitDie();
+                    gameObject.GetComponent<MeshRenderer>().material = master.GetComponent<EntityReferencerGuy>().playerBulletMaterial;
+                    gameObject.layer = LayerPlayerBullet;
+                }
+                else
+                {
+                    gameObject.GetComponent<MeshRenderer>().material = master.GetComponent<EntityReferencerGuy>().enemyBulletMaterial;
+                    gameObject.layer = LayerEnemyBullet;
+                }
+
+                Vector2 spomble = col.gameObject.GetComponent<Rigidbody2D>().velocity;
+                float colObjSpeed = spomble.magnitude;
+                Vector2 enemyPos = new Vector2(transform.position.x, transform.position.y);
+                Vector2 bulletPos = new Vector2(col.transform.position.x, col.transform.position.y);
+                rb.velocity = speed * (enemyPos - bulletPos).normalized;
+                transform.rotation = Quaternion.LookRotation(rb.velocity) * Quaternion.Euler(0, 90, 0);
+
+                if (col.gameObject.GetComponent<dieOnContactWithBullet>() != null)
+                {
+                    col.gameObject.GetComponent<dieOnContactWithBullet>().instances -= 1;
+                    if (col.gameObject.GetComponent<dieOnContactWithBullet>().instances == 0)
+                    {
+                        col.gameObject.GetComponent<dieOnContactWithBullet>().CommitDie();
+                    }
                 }
             }
         }

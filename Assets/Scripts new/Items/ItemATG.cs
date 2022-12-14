@@ -6,13 +6,11 @@ public class ItemATG : MonoBehaviour
 {
     public GameObject ATGMissile;
     public GameObject MasterObject;
-    GameObject owner;
+    public GameObject owner;
     bool hostile;
     float procMoment;
     public int instances = 1;
     float pringle;
-
-    public bool runStart = true;
 
     void Start()
     {

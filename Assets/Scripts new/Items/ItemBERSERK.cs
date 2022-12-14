@@ -58,15 +58,15 @@ public class ItemBERSERK : MonoBehaviour
             timer = 0;
         }
 
-        if (timer == 150 * instances && gameObject.GetComponent<weaponType>().weaponHeld == (int)WEAPONS.DARKARTS)
-        {
-            gameObject.GetComponent<weaponType>().weaponHeld = pastWeapon;
-            Debug.Log("Bringus");
-            gameObject.GetComponent<weaponType>().SetWeapon();
-            gameObject.GetComponent<Attack>().fireTimerLengthMLT *= 2;
-            Destroy(spawnedMusic);
-            Destroy(spawnedRedPlane);
-        }
+        //if (timer == 150 * instances && gameObject.GetComponent<weaponType>().weaponHeld == (int)WEAPONS.DARKARTS)
+        //{
+        //    gameObject.GetComponent<weaponType>().weaponHeld = pastWeapon;
+        //    Debug.Log("Bringus");
+        //    gameObject.GetComponent<weaponType>().SetWeapon();
+        //    gameObject.GetComponent<Attack>().fireTimerLengthMLT *= 2;
+        //    Destroy(spawnedMusic);
+        //    Destroy(spawnedRedPlane);
+        //}
     }
 
     public void Undo()

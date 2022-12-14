@@ -24,6 +24,11 @@ public class LevelUp : MonoBehaviour
             UpdateStats();
             LevelUp.levelEffects();
         }
+
+        if (Input.GetButton("Restart"))
+        {
+            LevelUp.levelEffects = null;
+        }
     }
 
     void UpdateStats()

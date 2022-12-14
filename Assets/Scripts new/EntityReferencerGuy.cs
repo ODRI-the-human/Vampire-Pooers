@@ -30,10 +30,14 @@ public class EntityReferencerGuy : MonoBehaviour
     public GameObject normieFamiliar;
     public GameObject sawVisual;
 
+    GameObject playerInstance;
+
     public Material playerBulletMaterial;
     public Material enemyBulletMaterial;
 
     public Mesh dagger;
+
+    public bool isPaused = false;
 
     public int numItemsExist = 33;
 
@@ -41,6 +45,7 @@ public class EntityReferencerGuy : MonoBehaviour
     {
         GameObject pedestal = gameObject.GetComponent<ThirdEnemySpawner>().itemPedestal;
         numItemsExist = pedestal.GetComponent<itemPedestal>().spriteArray.GetLength(0);
+        playerInstance = GameObject.Find("newPlayer");
     }
 
     void Update()
@@ -49,6 +54,21 @@ public class EntityReferencerGuy : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             EventManager.DeathEffects = null;
+            //playerInstance.GetComponent<LevelUp>().levelEffects = null;
+        }
+
+        if (Input.GetButtonDown("Pause"))
+        {
+            if (isPaused)
+            {
+                Time.timeScale = 1;
+                isPaused = false;
+            }
+            else
+            {
+                Time.timeScale = 0;
+                isPaused = true;
+            }
         }
     }
 }

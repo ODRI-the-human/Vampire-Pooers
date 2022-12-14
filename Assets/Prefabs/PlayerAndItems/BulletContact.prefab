@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4255455733749829597}
   - component: {fileID: 4255455733749829592}
   - component: {fileID: 4255455733749829599}
+  - component: {fileID: 4758620761254883023}
   - component: {fileID: 2436240498180915324}
   m_Layer: 11
   m_Name: BulletContact
@@ -71,6 +72,22 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!70 &4758620761254883023
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4255455733749829593}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -1.2}
+  m_Size: {x: 2, y: 3.2000003}
+  m_Direction: 0
 --- !u!114 &2436240498180915324
 MonoBehaviour:
   m_ObjectHideFlags: 0
