@@ -46,6 +46,7 @@ public class EntityReferencerGuy : MonoBehaviour
         GameObject pedestal = gameObject.GetComponent<ThirdEnemySpawner>().itemPedestal;
         numItemsExist = pedestal.GetComponent<itemPedestal>().spriteArray.GetLength(0);
         playerInstance = GameObject.Find("newPlayer");
+        Application.targetFrameRate = 60;
     }
 
     void Update()

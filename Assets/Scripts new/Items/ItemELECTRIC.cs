@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ItemELECTRIC : MonoBehaviour
 {
-    GameObject masterObject;
+    public GameObject masterObject;
     public List<GameObject> enemiesEffected = new List<GameObject>();
     public GameObject owner;
     public int instances = 1;
@@ -23,8 +23,6 @@ public class ItemELECTRIC : MonoBehaviour
             {
                 owner = gameObject.GetComponent<DealDamage>().owner;
             }
-
-            masterObject = GameObject.Find("bigFuckingMasterObject");
         }
     }
 
@@ -54,6 +52,8 @@ public class ItemELECTRIC : MonoBehaviour
 
     public void RollOnHit(GameObject loser)
     {
+        masterObject = gameObject.GetComponent<DealDamage>().master;
+
         foreach (GameObject Gareth in owner.GetComponent<ItemELECTRIC>().enemiesEffected)
         {
             if (Gareth != null && Gareth != loser)
