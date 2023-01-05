@@ -209,7 +209,7 @@ public class ThirdEnemySpawner : MonoBehaviour
     {
         for (int i = 0; i < 3; i++)
         {
-            GameObject newObject = Instantiate(itemPedestal, new Vector3(5 * i - 5, 3, 10.6f) + Camera.transform.position, transform.rotation) as GameObject;
+            GameObject newObject = Instantiate(itemPedestal, new Vector3(5 * i - 5, 3, 8) + Camera.transform.position, transform.rotation) as GameObject;
             newObject.transform.localScale = new Vector3(5, 5, 5);
         }
         StartWave();

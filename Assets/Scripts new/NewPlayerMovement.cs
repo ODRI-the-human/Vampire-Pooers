@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using TMPro;
 
 public class NewPlayerMovement : MonoBehaviour
@@ -28,12 +29,15 @@ public class NewPlayerMovement : MonoBehaviour
     int slowTimer = -5;
     int slowTimerLength = 100;
 
+    int timer = 0;
+
     public int dodgeTimerOnline = 30; // the time for the dodge to come back online.
 
     public GameObject dodgeOnlineAudio;
 
     int LayerPlayer;
     int LayerNone;
+    public NavMeshAgent agent;
 
     void Start()
     {
@@ -44,6 +48,11 @@ public class NewPlayerMovement : MonoBehaviour
         {
             Player = GameObject.Find("newPlayer");
             playerControlled = false;
+            agent.speed = 1.5f * moveSpeed;
+            agent.acceleration = 1000;
+            agent.angularSpeed = 1000;
+            agent.stoppingDistance = 0;
+            agent.autoBraking = false;
             if (Player.GetComponent<ItemSTOPWATCH>() != null)
             {
                 moveSpeed /= 1 + (0.25f) * Player.GetComponent<ItemSTOPWATCH>().instances;
@@ -66,7 +75,7 @@ public class NewPlayerMovement : MonoBehaviour
         }
 
 
-            if (Input.GetButton("ChangeDodgeMode"))
+        if (Input.GetButton("ChangeDodgeMode"))
         {
             if (dodgeMode == 1)
             {
@@ -118,7 +127,7 @@ public class NewPlayerMovement : MonoBehaviour
 
                 break;
             case false:
-                moveDirection = (Player.transform.position - gameObject.transform.position).normalized;
+                moveDirection = Player.transform.position - transform.position;
                 break;
         }
 
@@ -144,19 +153,45 @@ public class NewPlayerMovement : MonoBehaviour
                 }
             }
         }
-    }
 
-    void FixedUpdate()
-    {
         moveDirection *= (1 - 0.5f * isSlowed);
+
+        Vector2 velocity;
 
         if (knockBackTimer > 0)
         {
-            rb.velocity = maxKnockBack * (knockBackTimer / maxKnockBack) * new Vector2(collisionVector.x, collisionVector.y) + ((maxKnockBack - knockBackTimer) / maxKnockBack) * moveSpeed * new Vector2(moveDirection.x, moveDirection.y);
+            velocity = maxKnockBack * (knockBackTimer / maxKnockBack) * new Vector2(collisionVector.x, collisionVector.y) + ((maxKnockBack - knockBackTimer) / maxKnockBack) * moveSpeed * new Vector2(moveDirection.x, moveDirection.y);
         }
         else
         {
-            rb.velocity = (1 + ((0.7f + 0.3f * dodgeUp) * isDodging * 1.5f)) * new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
+            velocity = (1 + ((0.7f + 0.3f * dodgeUp) * isDodging * 1.5f)) * new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
+        }
+
+        switch (playerControlled)
+        {
+            case true:
+                rb.velocity = velocity;
+                break;
+            case false:
+                if (gameObject.GetComponent<spinnerSpin>() == null)
+                {
+                    transform.rotation = Quaternion.Euler(0, 0, 0);
+                }
+                else
+                {
+                    transform.rotation = Quaternion.Euler(0, 0, timer);
+                }
+
+                rb.velocity = new Vector3(0, 0, 0);
+                Ray ray = new Ray(transform.position, new Vector3(velocity.x, velocity.y, 5));
+                Debug.Log("Wanted: " + agent.desiredVelocity.ToString() + " / Actual: " + agent.velocity.ToString());
+                RaycastHit hit;
+
+                if (Physics.Raycast(ray, out hit))
+                {
+                    agent.SetDestination(hit.point);
+                }
+                break;
         }
 
         if (slowTimer == 0)
@@ -164,7 +199,11 @@ public class NewPlayerMovement : MonoBehaviour
             isSlowed = 0;
             gameObject.GetComponent<Attack>().fireTimerLengthMLT = 1;
         }
+    }
 
+    void FixedUpdate()
+    {
+        timer++;
         dodgeTimer--;
         knockBackTimer--;
         slowTimer--;
@@ -178,8 +217,13 @@ public class NewPlayerMovement : MonoBehaviour
             {
                 collisionVector = 0.5f * new Vector2(transform.position.x - col.transform.position.x, transform.position.y - col.transform.position.y).normalized;
                 knockBackTimer = col.gameObject.GetComponent<DealDamage>().knockBackCoeff * 7f;
-                maxKnockBack = knockBackTimer;
             }
+            else
+            {
+                collisionVector = 0.2f * new Vector2(transform.position.x - col.transform.position.x, transform.position.y - col.transform.position.y).normalized;
+                knockBackTimer = col.gameObject.GetComponent<DealDamage>().knockBackCoeff * 30f;
+            }
+            maxKnockBack = knockBackTimer;
         }
     }
 

@@ -377,10 +377,10 @@ public class ItemHolder : MonoBehaviour
                 }
                 break;
             case (int)ITEMLIST.REROLL:
-                if (isGuy)
-                {
-                    gameObject.AddComponent<ItemREROLL>();
-                }
+                //if (isGuy)
+                //{
+                //    gameObject.AddComponent<ItemREROLL>();
+                //}
                 break;
             case (int)ITEMLIST.BRICK:
                 if (isBullet)
@@ -519,15 +519,20 @@ public class ItemHolder : MonoBehaviour
     {
         if (col.tag == "item")
         {
-            Debug.Log("POOP! HAHA!");
-            itemGained = col.gameObject.GetComponent<itemPedestal>().itemChosen;
-            for (int i = 0; i < noToGive; i++)
-            {
-                itemsHeld.Add(itemGained);
-                ApplyItems();
-            }
-            MakeEpicBullets();
+            GiveFunny(col.gameObject);
         }
+    }
+
+    public void GiveFunny(GameObject bumbino)
+    {
+        Debug.Log("POOP! HAHA!");
+        itemGained = bumbino.GetComponent<itemPedestal>().itemChosen;
+        for (int i = 0; i < noToGive; i++)
+        {
+            itemsHeld.Add(itemGained);
+            ApplyItems();
+        }
+        MakeEpicBullets();
     }
 
     void MakeEpicBullets()

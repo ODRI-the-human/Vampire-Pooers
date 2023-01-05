@@ -124,6 +124,7 @@ MonoBehaviour:
   isSlowed: 1
   dodgeTimerOnline: 40
   dodgeOnlineAudio: {fileID: 5421414380371828586, guid: 090f0d82356e1134a9266a60cb419682, type: 3}
+  agent: {fileID: 0}
 --- !u!114 &-4590834480761037546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -403,3 +404,4 @@ MonoBehaviour:
   familiarBonusHOMING: 0
   canStillHeal: 1
   itemsToGiveRoundly: 
+  itemSelector: {fileID: 8977739677560480769, guid: b31ae58b4254d4247a286fb2be6bfd60, type: 3}

@@ -74,21 +74,23 @@ public class ItemSAWSHOT : MonoBehaviour
     {
         if (isAProc)
         {
-            dogma = true;
-            guyLatchedTo = col.gameObject;
-            transform.rotation = Quaternion.Euler(0, 0, 0);
-            bulletOffset = transform.position - guyLatchedTo.transform.position;
-            Poop.transform.parent = null;
-            gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-            gameObject.GetComponent<Collider2D>().isTrigger = true;
-            gameObject.GetComponent<CircleCollider2D>().radius = 0.1f;
-            gameObject.GetComponent<DealDamage>().finalDamageMult /= 5;
-            gameObject.GetComponent<DealDamage>().tickInterval = 10;
-            gameObject.AddComponent<SawShotCreep>();
-
             if (col.gameObject.tag == "Wall")
             {
                 Destroy(Poop);
+            }
+            else
+            {
+                dogma = true;
+                guyLatchedTo = col.gameObject;
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+                bulletOffset = transform.position - guyLatchedTo.transform.position;
+                Poop.transform.parent = null;
+                gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+                gameObject.GetComponent<Collider2D>().isTrigger = true;
+                gameObject.GetComponent<CircleCollider2D>().radius = 0.1f;
+                gameObject.GetComponent<DealDamage>().finalDamageMult /= 5;
+                gameObject.GetComponent<DealDamage>().tickInterval = 10;
+                gameObject.AddComponent<SawShotCreep>();
             }
         }
     }

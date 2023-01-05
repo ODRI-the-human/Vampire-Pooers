@@ -19,6 +19,8 @@ GameObject:
   - component: {fileID: 5006160631845979851}
   - component: {fileID: 999997813651883019}
   - component: {fileID: 4209297374554288392}
+  - component: {fileID: 1486546438124630526}
+  - component: {fileID: 8639566394253814800}
   m_Layer: 6
   m_Name: Spinner
   m_TagString: Hostile
@@ -34,8 +36,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5685454981733204260}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.4666903, y: -2.417244, z: 0}
-  m_LocalScale: {x: 8, y: 10, z: 8}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -61,7 +63,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!212 &5685454981733204261
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -179,6 +181,7 @@ MonoBehaviour:
   isSlowed: 1
   dodgeTimerOnline: 30
   dodgeOnlineAudio: {fileID: 0}
+  agent: {fileID: 1486546438124630526}
 --- !u!114 &-6175816815738836715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -305,3 +308,37 @@ MonoBehaviour:
   familiarBonusHOMING: 0
   canStillHeal: 1
   itemsToGiveRoundly: 
+--- !u!195 &1486546438124630526
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5685454981733204260}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.1
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 0.6666667
+  m_BaseOffset: 0.33333334
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &8639566394253814800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5685454981733204260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e08bcee8b5c1b7048a4970c875cf5c0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

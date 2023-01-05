@@ -126,7 +126,7 @@ public class moleShit : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 5);
+        gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
 
         transform.position = pos;
 
@@ -147,7 +147,8 @@ public class moleShit : MonoBehaviour
             {
                 transform.position = new Vector3(Random.Range(-8.5f, 8.5f), Random.Range(-4.5f, 4.5f), 8.6f) + camera.transform.position;
             }
-            transform.localScale = new Vector3(3, 3, 1);
+            transform.localScale = new Vector3(1, 1, 1);
+            transform.position = new Vector3(transform.position.x, transform.position.y, 0);
             pos = transform.position;
             nearestFriend = null;
 

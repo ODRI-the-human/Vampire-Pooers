@@ -5,7 +5,7 @@ using UnityEngine;
 public class itemPedestal : MonoBehaviour
 {
     public int itemChosen;
-    int minRange = 3;
+    int minRange = 0;
     public Sprite[] spriteArray;
     public SpriteRenderer spriteRenderer;
     int maxRange;
@@ -110,61 +110,66 @@ public class itemPedestal : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
-            int dunkey = -5;
-            switch (curseType)
-            {
-                case 0:
-                    for (int i = 0; i < 2; i++)
-                    {
-                        col.gameObject.GetComponent<ItemHolder>().itemGained = itemChosen;
-                        col.gameObject.GetComponent<ItemHolder>().itemsHeld.Add(itemChosen);
-                        col.gameObject.GetComponent<ItemHolder>().ApplyItems();
-                    }
-                    master.GetComponent<ItemHolder>().itemGained = itemChosen;
-                    master.GetComponent<ItemHolder>().itemsHeld.Add(itemChosen);
-                    break;
-                case 1:
-                    //dunkey = itemChosen;
-                    break;
-                case 2:
-                    break;
-                case 3:
-                    break;
-                case 4:
-                    for (int i = 0; i < 3; i++)
-                    {
-                        col.gameObject.GetComponent<ItemHolder>().itemGained = itemChosen;
-                        col.gameObject.GetComponent<ItemHolder>().itemsHeld.Add(itemChosen);
-                        col.gameObject.GetComponent<ItemHolder>().ApplyItems();
-                    }
-                    break;
-                case 5:
-                    break;
-                case 6: // gives 3 of the item.
-                    for (int i = 0; i < 3; i++)
-                    {
-                        col.gameObject.GetComponent<ItemHolder>().itemGained = itemChosen;
-                        col.gameObject.GetComponent<ItemHolder>().itemsHeld.Add(itemChosen);
-                        col.gameObject.GetComponent<ItemHolder>().ApplyItems();
-                    }
-                    break;
-                case 7: // gives 10 of the item.
-                    for (int i = 0; i < 10; i++)
-                    {
-                        col.gameObject.GetComponent<ItemHolder>().itemGained = itemChosen;
-                        col.gameObject.GetComponent<ItemHolder>().itemsHeld.Add(itemChosen);
-                        col.gameObject.GetComponent<ItemHolder>().ApplyItems();
-                    }
-                    break;
-            }
+            GiveDaItem(col.gameObject);
+        }
+    }
 
-            col.gameObject.GetComponent<OtherStuff>().ApplyItemCurse(curseType, dunkey);
+    public void GiveDaItem(GameObject barry)
+    {
+        int dunkey = -5;
+        switch (curseType)
+        {
+            case 0:
+                for (int i = 0; i < 2; i++)
+                {
+                    barry.GetComponent<ItemHolder>().itemGained = itemChosen;
+                    barry.GetComponent<ItemHolder>().itemsHeld.Add(itemChosen);
+                    barry.GetComponent<ItemHolder>().ApplyItems();
+                }
+                master.GetComponent<ItemHolder>().itemGained = itemChosen;
+                master.GetComponent<ItemHolder>().itemsHeld.Add(itemChosen);
+                break;
+            case 1:
+                //dunkey = itemChosen;
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                for (int i = 0; i < 3; i++)
+                {
+                    barry.GetComponent<ItemHolder>().itemGained = itemChosen;
+                    barry.GetComponent<ItemHolder>().itemsHeld.Add(itemChosen);
+                    barry.GetComponent<ItemHolder>().ApplyItems();
+                }
+                break;
+            case 5:
+                break;
+            case 6: // gives 3 of the item.
+                for (int i = 0; i < 3; i++)
+                {
+                    barry.GetComponent<ItemHolder>().itemGained = itemChosen;
+                    barry.GetComponent<ItemHolder>().itemsHeld.Add(itemChosen);
+                    barry.GetComponent<ItemHolder>().ApplyItems();
+                }
+                break;
+            case 7: // gives 10 of the item.
+                for (int i = 0; i < 10; i++)
+                {
+                    barry.GetComponent<ItemHolder>().itemGained = itemChosen;
+                    barry.GetComponent<ItemHolder>().itemsHeld.Add(itemChosen);
+                    barry.GetComponent<ItemHolder>().ApplyItems();
+                }
+                break;
+        }
 
-            foreach (GameObject go in gos)
-            {
-                Destroy(go);
-                GameObject.Find("newPlayer").GetComponent<getItemDescription>().itemsExist = false;
-            }
+        barry.GetComponent<OtherStuff>().ApplyItemCurse(curseType, dunkey);
+
+        foreach (GameObject go in gos)
+        {
+            Destroy(go);
+            GameObject.Find("newPlayer").GetComponent<getItemDescription>().itemsExist = false;
         }
     }
 }

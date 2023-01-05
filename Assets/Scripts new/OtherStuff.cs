@@ -16,6 +16,7 @@ public class OtherStuff : MonoBehaviour
 
     public bool canStillHeal = true;
     public List<int> itemsToGiveRoundly = new List<int>();
+    public GameObject itemSelector;
 
     void Start()
     {
@@ -128,6 +129,14 @@ public class OtherStuff : MonoBehaviour
         if (!canStillHeal)
         {
             gameObject.GetComponent<Healing>().healMult = 0;
+        }
+
+        // For making it possible to click on items to pick them up.
+        if (Input.GetButtonDown("Fire1"))
+        {
+            Vector2 spawnPos = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
+            GameObject BumboSoccer = Instantiate(itemSelector, spawnPos, transform.rotation);
+            BumboSoccer.GetComponent<mouseItemSelection>().master = gameObject;
         }
     }
 
