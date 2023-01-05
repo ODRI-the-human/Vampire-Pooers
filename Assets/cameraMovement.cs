@@ -10,12 +10,19 @@ public class cameraMovement : MonoBehaviour
     public float camShakeAmount = 1.5f;
     int shakeTimer;
 
-    float xBound = 18.5f;
-    float yBound = 10.7f;
+    public GameObject LeftBorder;
+    public GameObject RightBorder;
+    public GameObject TopBorder;
+    public GameObject BottomBorder;
+
+    float xBound;
+    float yBound;
 
     void Start()
     {
         Player = GameObject.Find("newPlayer");
+        xBound = RightBorder.transform.position.x - 7;
+        yBound = TopBorder.transform.position.y - 7;
     }
 
     // Update is called once per frame

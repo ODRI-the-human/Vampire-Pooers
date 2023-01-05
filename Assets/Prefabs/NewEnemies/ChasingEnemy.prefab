@@ -255,6 +255,7 @@ MonoBehaviour:
   familiarBonusHOMING: 0
   canStillHeal: 1
   itemsToGiveRoundly: 
+  itemSelector: {fileID: 0}
 --- !u!195 &1737368608290375509
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -264,7 +265,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 8034279136360660190}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.1
+  m_Radius: 0.4
   m_Speed: 3.5
   m_Acceleration: 1000
   avoidancePriority: 50
@@ -273,8 +274,8 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
   m_AutoRepath: 1
-  m_Height: 0.2
-  m_BaseOffset: 0.1
+  m_Height: 0.8
+  m_BaseOffset: 0.4
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!212 &9086974735260390487

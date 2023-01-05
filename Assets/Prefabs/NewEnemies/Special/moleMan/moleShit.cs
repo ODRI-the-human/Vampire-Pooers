@@ -147,7 +147,6 @@ public class moleShit : MonoBehaviour
             {
                 transform.position = new Vector3(Random.Range(-8.5f, 8.5f), Random.Range(-4.5f, 4.5f), 8.6f) + camera.transform.position;
             }
-            transform.localScale = new Vector3(1, 1, 1);
             transform.position = new Vector3(transform.position.x, transform.position.y, 0);
             pos = transform.position;
             nearestFriend = null;
@@ -183,7 +182,6 @@ public class moleShit : MonoBehaviour
 
         if ((timer + 35) % 200 == 0)
         {
-            transform.localScale = new Vector3(0, 0, 0);
             transform.position = new Vector3(9999, 9999, 9999);
             mates.Clear();
             line.SetPosition(0, new Vector3(0, 0, 0));
