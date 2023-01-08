@@ -42,7 +42,7 @@ TagManager:
   - Item Pedestal
   - HitBothPlayerAndEnemy
   - OnlyHitWalls
-  - 
+  - OuterWalls
   - 
   - 
   - 

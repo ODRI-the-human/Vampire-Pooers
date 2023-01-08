@@ -18,6 +18,8 @@ public class moleShit : MonoBehaviour
     bool hasPositioned = false;
     public GameObject hitbox;
 
+    Vector3 bumHead;
+
     //public GameObject martin;
 
     Vector3 vectorMan;
@@ -25,13 +27,19 @@ public class moleShit : MonoBehaviour
 
     GameObject camera;
 
-    Vector3 pos; //to prevent knockback from moving the enemies around.
+    Vector3 pos = new Vector3(9999,9999,9999); //to prevent knockback from moving the enemies around.
     Vector3 hitboxPos;
 
-    void Start()
+    Color normie;
+    Color repos;
+
+    void Awake()
     {
         player = GameObject.Find("newPlayer");
         camera = GameObject.Find("Main Camera");
+        normie = gameObject.GetComponent<SpriteRenderer>().color;
+        repos = gameObject.GetComponent<SpriteRenderer>().color;
+        repos.a = 0;
     }
 
     public void Bingus()
@@ -138,17 +146,12 @@ public class moleShit : MonoBehaviour
         if (timer % 200 == 0)
         {
             hasPositioned = false;
+            gameObject.GetComponent<SpriteRenderer>().color = repos;
         }
 
         if (!hasPositioned)
         {
-            transform.position = new Vector3(Random.Range(-8.5f, 8.5f), Random.Range(-4.5f, 4.5f), 8.6f) + camera.transform.position;
-            while ((transform.position - player.transform.position).magnitude < 5)
-            {
-                transform.position = new Vector3(Random.Range(-8.5f, 8.5f), Random.Range(-4.5f, 4.5f), 8.6f) + camera.transform.position;
-            }
-            transform.position = new Vector3(transform.position.x, transform.position.y, 0);
-            pos = transform.position;
+            randomisePos();
             nearestFriend = null;
 
             mates.Clear();
@@ -165,6 +168,11 @@ public class moleShit : MonoBehaviour
             }
 
             hasPositioned = true;
+        }
+
+        if ((timer + 190) % 200 == 0)
+        {
+            gameObject.GetComponent<SpriteRenderer>().color = normie;
         }
 
         if ((timer + 165) % 200 == 0)
@@ -241,6 +249,33 @@ public class moleShit : MonoBehaviour
         if (gameObject.GetComponent<HPDamageDie>().HP <= 0)
         {
             Destroy(hitbox);
+        }
+    }
+
+    void randomisePos()
+    {
+        bumHead = new Vector3(Random.Range(-8, 8), Random.Range(-4, 4), 8) + camera.transform.position;
+        bumHead.x = Mathf.Clamp(bumHead.x, -camera.GetComponent<cameraMovement>().xBound, camera.GetComponent<cameraMovement>().xBound);
+        bumHead.y = Mathf.Clamp(bumHead.y, -camera.GetComponent<cameraMovement>().yBound, camera.GetComponent<cameraMovement>().yBound);
+        bumHead.x = Mathf.Round(bumHead.x / 2) * 2;
+        bumHead.y = Mathf.Round(bumHead.y / 2) * 2;
+        while ((bumHead - player.transform.position).magnitude < 5)
+        {
+            bumHead = new Vector3(Random.Range(-8, 8), Random.Range(-4, 4), 8) + camera.transform.position;
+            bumHead.x = Mathf.Clamp(bumHead.x, -camera.GetComponent<cameraMovement>().xBound, camera.GetComponent<cameraMovement>().xBound);
+            bumHead.y = Mathf.Clamp(bumHead.y, -camera.GetComponent<cameraMovement>().yBound, camera.GetComponent<cameraMovement>().yBound);
+            bumHead.x = Mathf.Round(bumHead.x / 2) * 2;
+            bumHead.y = Mathf.Round(bumHead.y / 2) * 2;
+        }
+        bumHead = new Vector3(bumHead.x, bumHead.y, 0);
+        pos = bumHead;
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if ((col.gameObject.tag == "Wall" || col.gameObject.tag == "Hostile") && timer > 0)
+        {
+            randomisePos();
         }
     }
 

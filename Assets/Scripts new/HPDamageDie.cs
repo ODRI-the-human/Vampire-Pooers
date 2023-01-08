@@ -31,7 +31,7 @@ public class HPDamageDie : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        //originalColor = sprite.color;
+        originalColor = sprite.color;
         HP = MaxHP;
         if (gameObject.tag == "Hostile")
         {
@@ -75,10 +75,10 @@ public class HPDamageDie : MonoBehaviour
 
     void FixedUpdate()
     {
-        //if (colorChangeTimer == 0)
-        //{
-        //    sprite.color = originalColor;
-        //}
+        if (colorChangeTimer == 0)
+        {
+            sprite.color = originalColor;
+        }
 
         iFrames--;
         colorChangeTimer--;
@@ -94,7 +94,7 @@ public class HPDamageDie : MonoBehaviour
         {
             if (playerControlled == false)
             {
-                //sprite.color = Color.red;
+                sprite.color = Color.red;
                 colorChangeTimer = 3;
             }
             else

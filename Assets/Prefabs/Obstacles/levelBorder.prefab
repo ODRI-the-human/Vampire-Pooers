@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8824675190011793369}
   - component: {fileID: 7905540234928558931}
   - component: {fileID: 7905540234928558930}
-  m_Layer: 10
+  m_Layer: 16
   m_Name: levelBorder
   m_TagString: Wall
   m_Icon: {fileID: 0}

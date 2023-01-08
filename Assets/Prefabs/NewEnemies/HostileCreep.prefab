@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: -5388908824613595565}
   m_Layer: 7
   m_Name: HostileCreep
-  m_TagString: enemyBullet
+  m_TagString: Creep
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

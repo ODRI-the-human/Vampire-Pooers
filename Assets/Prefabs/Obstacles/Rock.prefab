@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 7905540234928558929}
   - component: {fileID: 7905540234928558943}
   - component: {fileID: 7905540234928558928}
+  - component: {fileID: -6414721154087378927}
   m_Layer: 10
   m_Name: Rock
   m_TagString: Wall
@@ -145,7 +146,7 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.0085, y: 0.0085, z: 2.5}
+  m_Extents: {x: 0.01, y: 0.01, z: 2.5}
   m_MoveThreshold: 5
   m_Carve: 1
   m_CarveOnlyStationary: 0
@@ -179,3 +180,17 @@ MonoBehaviour:
   m_Area: 1
   m_IgnoreFromBuild: 1
   m_AffectedAgents: 00000000
+--- !u!114 &-6414721154087378927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7023213143370542604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f51b4da77b518ef4ea90a8704dda45b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HP: 150
+  bulletResist: 50

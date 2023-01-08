@@ -15,14 +15,14 @@ public class cameraMovement : MonoBehaviour
     public GameObject TopBorder;
     public GameObject BottomBorder;
 
-    float xBound;
-    float yBound;
+    public float xBound;
+    public float yBound;
 
     void Start()
     {
         Player = GameObject.Find("newPlayer");
-        xBound = RightBorder.transform.position.x - 7;
-        yBound = TopBorder.transform.position.y - 7;
+        xBound = RightBorder.transform.position.x - 6;
+        yBound = TopBorder.transform.position.y - 6;
     }
 
     // Update is called once per frame

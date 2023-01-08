@@ -410,7 +410,7 @@ PrefabInstance:
       objectReference: {fileID: 582166535}
     - target: {fileID: 9014303847402346882, guid: 2c1e033fc431a694499cc08ddf9a90b1, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9014303847402346882, guid: 2c1e033fc431a694499cc08ddf9a90b1, type: 3}
       propertyPath: bypassWaves
@@ -1363,7 +1363,7 @@ GameObject:
   m_Component:
   - component: {fileID: 157220234}
   - component: {fileID: 157220235}
-  m_Layer: 10
+  m_Layer: 16
   m_Name: walls lmao (1)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -4725,11 +4725,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 503381878361641303, guid: ba6f41e52d5717a46a24d1f2e5a4cf75, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 503381878361641303, guid: ba6f41e52d5717a46a24d1f2e5a4cf75, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 503381878361641303, guid: ba6f41e52d5717a46a24d1f2e5a4cf75, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9706,7 +9706,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1687258581}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12, y: 10, z: -10.6}
+  m_LocalPosition: {x: 0, y: 0, z: -10.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -9766,6 +9766,8 @@ MonoBehaviour:
   RightBorder: {fileID: 1235434274}
   TopBorder: {fileID: 1685479255}
   BottomBorder: {fileID: 809161700}
+  xBound: 0
+  yBound: 0
 --- !u!1001 &1697467112
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10526,7 +10528,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1844487151}
   - component: {fileID: 1844487152}
-  m_Layer: 10
+  m_Layer: 16
   m_Name: walls lmao (2)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -10719,7 +10721,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1908429129}
   - component: {fileID: 1908429130}
-  m_Layer: 10
+  m_Layer: 16
   m_Name: walls lmao (4)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -11255,7 +11257,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2092236822}
   - component: {fileID: 2092236823}
-  m_Layer: 10
+  m_Layer: 16
   m_Name: walls lmao (5)
   m_TagString: Wall
   m_Icon: {fileID: 0}
