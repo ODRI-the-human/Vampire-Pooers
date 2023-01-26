@@ -24,6 +24,7 @@ public class NewPlayerMovement : MonoBehaviour
     public int dodgeTimerLength = 20;
     public float dodgeSpeedUp = 2;
     int dodgeMode = 1;
+    public int mouseAltMode = 1;
 
     int LayerPlayer;
     int LayerNone;
@@ -48,19 +49,38 @@ public class NewPlayerMovement : MonoBehaviour
 
         if (gameObject.tag == "Player")
         {
-            if (Input.GetButtonDown("Dodge") && dodgeTimer < -30)
+            if (Input.GetButtonDown("Dodge") && dodgeTimer < -50)
             {
-                if (dodgeMode == 0)
+                switch (mouseAltMode)
                 {
-                    Vector2 mouseVector = Camera.main.ScreenToWorldPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y));
-                    moveDirection = new Vector3(mouseVector.x - transform.position.x, mouseVector.y - transform.position.y, 0).normalized;
-                }
+                    case 0:
+                        if (dodgeMode == 0)
+                        {
+                            Vector2 mouseVector = Camera.main.ScreenToWorldPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y));
+                            moveDirection = new Vector3(mouseVector.x - transform.position.x, mouseVector.y - transform.position.y, 0).normalized;
+                        }
 
-                Instantiate(dodgeAudio);
-                dodgeTimer = dodgeTimerLength;
-                gameObject.layer = LayerNone;
-                speedMult = dodgeSpeedUp;
-                isDodging = 1;
+                        Instantiate(dodgeAudio);
+                        dodgeTimer = dodgeTimerLength;
+                        gameObject.layer = LayerNone;
+                        speedMult = dodgeSpeedUp;
+                        isDodging = 1;
+                        break;
+                    case 1:
+                        if (dodgeMode == 0)
+                        {
+                            Vector2 mouseVector = Camera.main.ScreenToWorldPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y));
+                            moveDirection = new Vector3(mouseVector.x - transform.position.x, mouseVector.y - transform.position.y, 0).normalized;
+                        }
+
+                        Instantiate(dodgeAudio);
+                        dodgeTimer = dodgeTimerLength / 2;
+                        gameObject.GetComponent<HPDamageDie>().damageReduction += 500;
+                        gameObject.GetComponent<DealDamage>().massCoeff += 3;
+                        speedMult = 1.5f * dodgeSpeedUp;
+                        isDodging = 1;
+                        break;
+                }
             }
 
             if (isDodging == 0)
@@ -102,17 +122,29 @@ public class NewPlayerMovement : MonoBehaviour
         dodgeTimer--;
 
         // Resetting slow and dodge, and causing all dodge end effects..
-        if (dodgeTimer == -30)
+        if (dodgeTimer == -50)
         {
             Instantiate(dodgeOnlineAudio);
         }
 
         if (dodgeTimer == 0)
         {
-            gameObject.layer = LayerPlayer;
-            isDodging = 0;
-            speedMult = 1;
-            SendMessage("dodgeEndEffects");
+            switch (mouseAltMode)
+            {
+                case 0:
+                    gameObject.layer = LayerPlayer;
+                    isDodging = 0;
+                    speedMult = 1;
+                    SendMessage("dodgeEndEffects");
+                    break;
+                case 1:
+                    isDodging = 0;
+                    speedMult = 1;
+                    gameObject.GetComponent<HPDamageDie>().damageReduction -= 500;
+                    gameObject.GetComponent<DealDamage>().massCoeff -= 3;
+                    SendMessage("dodgeEndEffects");
+                    break;
+            }    
         }
 
         if (slowTimer < 0)
@@ -121,7 +153,7 @@ public class NewPlayerMovement : MonoBehaviour
             speedDiv = 1;
         }
 
-        knockBackVector /= 1.3f;
+        knockBackVector /= 1.15f;
         if (knockBackVector.magnitude < 0.1f)
         {
             knockBackVector *= 0;
@@ -132,7 +164,12 @@ public class NewPlayerMovement : MonoBehaviour
     {
         if ((col.gameObject.tag == "Hostile" || col.gameObject.tag == "enemyBullet" || col.gameObject.tag == "Player" || col.gameObject.tag == "PlayerBullet") && col.gameObject.tag != gameObject.tag)
         {
-            knockBackVector = 10 * new Vector2(transform.position.x - col.gameObject.transform.position.x, transform.position.y - col.gameObject.transform.position.y).normalized;
+            knockBackVector = 10 * col.gameObject.GetComponent<DealDamage>().massCoeff * new Vector2(transform.position.x - col.gameObject.transform.position.x, transform.position.y - col.gameObject.transform.position.y).normalized;
+
+            if (isDodging == 1 && mouseAltMode == 1)
+            {
+                col.gameObject.AddComponent<hitIfKBVecHigh>();
+            }
         }
     }
 

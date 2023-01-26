@@ -22,6 +22,8 @@ public class HPDamageDie : MonoBehaviour
     GameObject Player;
     public GameObject XP;
 
+    public float damageReduction = 0;
+
     public int perfectWaves = 0;
 
     GameObject master;
@@ -140,7 +142,7 @@ public class HPDamageDie : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.tag != gameObject.tag && col.gameObject.GetComponent<DealDamage>().finalDamageStat != 0)
+        if (col.gameObject.tag != gameObject.tag && col.gameObject.GetComponent<DealDamage>().finalDamageStat - damageReduction >= 0)
         {
             float procMoment = 100f - 100f * col.gameObject.GetComponent<DealDamage>().critProb * col.gameObject.GetComponent<DealDamage>().procCoeff;
             float pringle = Random.Range(0f, 100f);

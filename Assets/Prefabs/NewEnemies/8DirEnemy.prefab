@@ -98,6 +98,9 @@ MonoBehaviour:
   currentMoveSpeed: 0
   isSlowed: 1
   dodgeUp: 1
+  dodgeTimerLength: 20
+  dodgeSpeedUp: 2
+  mouseAltMode: 0
   dodgeOnlineAudio: {fileID: 0}
   dodgeAudio: {fileID: 0}
 --- !u!114 &6146499720883180670
@@ -123,6 +126,7 @@ MonoBehaviour:
   critMult: 2
   owner: {fileID: 0}
   master: {fileID: 0}
+  massCoeff: 2
   overwriteDamageCalc: 0
   onlyDamageOnce: 0
   tickInterval: 1
@@ -154,6 +158,7 @@ MonoBehaviour:
   material: {fileID: 0}
   colorChangeTimer: 0
   XP: {fileID: 6124614279667160435, guid: b448494b9362a2a429b8d6416d89f7e6, type: 3}
+  damageReduction: 0
   perfectWaves: 0
 --- !u!114 &373114558742256855
 MonoBehaviour:

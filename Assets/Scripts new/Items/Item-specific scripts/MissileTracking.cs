@@ -54,7 +54,7 @@ public class MissileTracking : MonoBehaviour
         newObject.transform.localScale = new Vector3(2, 2, 2);
         newObject.GetComponent<DealDamage>().owner = owner;
         newObject.GetComponent<DealDamage>().damageAmt = 3 * instances * owner.GetComponent<DealDamage>().finalDamageStat;
-        newObject.GetComponent<DealDamage>().knockBackCoeff = 2 * owner.GetComponent<DealDamage>().knockBackCoeff;
+        newObject.GetComponent<DealDamage>().massCoeff = 2 * owner.GetComponent<DealDamage>().massCoeff;
         Destroy(gameObject);
     }
 }

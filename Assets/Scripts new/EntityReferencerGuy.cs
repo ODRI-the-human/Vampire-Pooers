@@ -29,6 +29,7 @@ public class EntityReferencerGuy : MonoBehaviour
     public GameObject berserkPlane;
     public GameObject normieFamiliar;
     public GameObject sawVisual;
+    public GameObject soyShotAudio;
 
     GameObject playerInstance;
 

@@ -23,7 +23,7 @@ public class ItemORBITAL1 : MonoBehaviour
                 newObject.GetComponent<DealDamage>().procCoeff = 0;
                 newObject.GetComponent<DealDamage>().damageBase = 10;
                 newObject.GetComponent<DealDamage>().damageMult = 1f;
-                newObject.GetComponent<DealDamage>().knockBackCoeff = 0;
+                newObject.GetComponent<DealDamage>().massCoeff = 0;
                 newObject.GetComponent<DealDamage>().owner = gameObject;
                 newObject.GetComponent<OrbitalMovement>().timerDelay = i * (2 * Mathf.PI / 0.0175f) / instances;
                 if (gameObject.tag == "Player")

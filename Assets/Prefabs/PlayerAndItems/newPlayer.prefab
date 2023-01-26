@@ -122,9 +122,11 @@ MonoBehaviour:
   currentMoveSpeed: 0
   isSlowed: 0
   dodgeUp: 1
+  dodgeTimerLength: 20
+  dodgeSpeedUp: 2
+  mouseAltMode: 1
   dodgeOnlineAudio: {fileID: 5421414380371828586, guid: 090f0d82356e1134a9266a60cb419682, type: 3}
   dodgeAudio: {fileID: 576013723491271631, guid: 8068abbc9251dc147a95e0c091540981, type: 3}
-  rb: {fileID: 503381878361641300}
 --- !u!114 &-4590834480761037546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,6 +152,7 @@ MonoBehaviour:
   material: {fileID: 0}
   colorChangeTimer: 0
   XP: {fileID: 6964255014020883914, guid: 526b17258aed02c4c9c574bcca2b87c3, type: 3}
+  damageReduction: 0
   perfectWaves: 0
 --- !u!114 &1698531144881374718
 MonoBehaviour:
@@ -174,6 +177,7 @@ MonoBehaviour:
   critMult: 2
   owner: {fileID: 0}
   master: {fileID: 0}
+  massCoeff: 2
   overwriteDamageCalc: 0
   onlyDamageOnce: 0
   tickInterval: 1

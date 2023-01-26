@@ -37,7 +37,7 @@ public class ItemSPLIT : MonoBehaviour
                     GameObject Splitman1 = Instantiate(Buuleter, transform.position, transform.rotation);
                     Splitman1.transform.localScale = 0.3f * instances * gameObject.transform.localScale;
                     Splitman1.GetComponent<DealDamage>().finalDamageMult *= 0.3f * gameObject.GetComponent<DealDamage>().finalDamageMult * instances;
-                    Splitman1.GetComponent<DealDamage>().knockBackCoeff = 0.5f * gameObject.GetComponent<DealDamage>().knockBackCoeff;
+                    Splitman1.GetComponent<DealDamage>().massCoeff = 0.5f * gameObject.GetComponent<DealDamage>().massCoeff;
                     Splitman1.GetComponent<DealDamage>().owner = owner;
                     Splitman1.GetComponent<DealDamage>().damageBase += owner.GetComponent<Attack>().Crongus;
                     Splitman1.GetComponent<Rigidbody2D>().simulated = true;

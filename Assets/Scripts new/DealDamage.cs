@@ -9,12 +9,13 @@ public class DealDamage : MonoBehaviour
     public float damageBase;
     public float damageMult;
     public float finalDamageMult = 1;
-    public float knockBackCoeff = 1;
     public float finalDamageDIV = 1;
     public float critProb = 0.05f;
     public float critMult = 2;
     public GameObject owner;
     public GameObject master;
+
+    public float massCoeff = 2;
 
     public bool overwriteDamageCalc;
     public bool onlyDamageOnce = true;

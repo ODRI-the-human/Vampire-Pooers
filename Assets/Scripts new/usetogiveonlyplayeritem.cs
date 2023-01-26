@@ -7,6 +7,6 @@ public class usetogiveonlyplayeritem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.BETTERDODGE);
+        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.SOY);
     }
 }

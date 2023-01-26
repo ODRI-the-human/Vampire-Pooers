@@ -36,7 +36,7 @@ public class ItemCREEP : MonoBehaviour
             newObject.transform.localScale *= 0.7f + 0.3f * instances;
             newObject.GetComponent<DealDamage>().overwriteDamageCalc = true;
             newObject.GetComponent<DealDamage>().damageAmt = 0.1f * gameObject.GetComponent<DealDamage>().finalDamageStat;
-            newObject.GetComponent<DealDamage>().knockBackCoeff = 0;
+            newObject.GetComponent<DealDamage>().massCoeff = 0;
             timerMarty = 20;
         }
 
