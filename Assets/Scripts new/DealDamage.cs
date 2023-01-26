@@ -75,7 +75,7 @@ public class DealDamage : MonoBehaviour
 
     public void OnTriggerStay2D(Collider2D col)
     {
-        if (damageAmt != 0 && gameObject.tag != col.gameObject.tag && col.gameObject.tag != "Wall" && col.gameObject.tag != "PlayerBullet" && col.gameObject.tag != "enemyBullet")
+        if (finalDamageStat != 0 && gameObject.tag != col.gameObject.tag && col.gameObject.tag != "Wall" && col.gameObject.tag != "PlayerBullet" && col.gameObject.tag != "enemyBullet")
         {
             gameObject.SendMessage("RollOnHit", col.gameObject);
         }

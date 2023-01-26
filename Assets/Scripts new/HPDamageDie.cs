@@ -31,6 +31,7 @@ public class HPDamageDie : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        sprite = gameObject.GetComponent<SpriteRenderer>();
         originalColor = sprite.color;
         HP = MaxHP;
         if (gameObject.tag == "Hostile")
@@ -97,19 +98,27 @@ public class HPDamageDie : MonoBehaviour
                 sprite.color = Color.red;
                 colorChangeTimer = 3;
             }
-            else
-            {
-                if (MaxHP >= 100 && Mathf.RoundToInt(damageAmount) >= MaxHP)
-                {
-                    damageAmount = MaxHP - 1;
-                }
-            }
+
             if (iFrames < 0 && damageAmount != 0)
             {
                 if (playSound)
                 {
-                    Instantiate(PlayerHurtAudio, new Vector3(0,0,-5), transform.rotation);
+                    GameObject hurteo = Instantiate(PlayerHurtAudio, new Vector3(0,0,-5), transform.rotation);
+                    if (damageAmount < gameObject.GetComponent<DealDamage>().damageAmt)
+                    {
+                        hurteo.GetComponent<AudioSource>().volume /= 3;
+                    }
                 }
+
+                if (isCrit)
+                {
+                    GameObject hurtzeo = Instantiate(CritAudio, new Vector3(0, 0, -5), transform.rotation);
+                    if (damageAmount < gameObject.GetComponent<DealDamage>().damageAmt)
+                    {
+                        hurtzeo.GetComponent<AudioSource>().volume /= 3;
+                    }
+                }
+
                 HP -= damageAmount;
                 if (playerControlled == true)
                 {
@@ -171,7 +180,6 @@ public class HPDamageDie : MonoBehaviour
             if (pringle > procMoment)
             {
                 critMult = col.gameObject.GetComponent<DealDamage>().critMult;
-                Instantiate(CritAudio);
                 isCrit = true;
             }
             float damageAmount = col.gameObject.GetComponent<DealDamage>().finalDamageStat * critMult;

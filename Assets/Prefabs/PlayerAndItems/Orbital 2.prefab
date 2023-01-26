@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: -6396675878852606996}
   - component: {fileID: 7158769378574457366}
   - component: {fileID: -8236665987620775442}
-  m_Layer: 11
+  m_Layer: 17
   m_Name: Orbital 2
   m_TagString: PlayerBullet
   m_Icon: {fileID: 0}
@@ -140,6 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65e7aa51760cf6b43b78c3859acca07e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timer: 0
   timerDelay: 0
   distanceFromPlayer: 2
 --- !u!114 &7481803557711047057

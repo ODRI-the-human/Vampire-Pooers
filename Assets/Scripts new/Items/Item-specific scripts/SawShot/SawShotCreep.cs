@@ -29,7 +29,7 @@ public class SawShotCreep : MonoBehaviour
     {
         if (gameObject.GetComponent<DealDamage>().timer % 10 == 0)
         {
-            GameObject Bongo = Instantiate(creepy, gameObject.GetComponent<ItemSAWSHOT>().guyLatchedTo.transform.position - new Vector3(0,0,0.2f), Quaternion.Euler(0,0,0));
+            GameObject Bongo = Instantiate(creepy, gameObject.GetComponent<ItemSAWSHOT>().guyLatchedTo.transform.position - new Vector3(0,0,0), Quaternion.Euler(0,0,0));
             Bongo.transform.localScale *= 0.7f;
             Bongo.GetComponent<SpriteRenderer>().color = Color.red;
             Bongo.GetComponent<DealDamage>().overwriteDamageCalc = true;

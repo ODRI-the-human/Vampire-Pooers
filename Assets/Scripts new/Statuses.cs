@@ -106,5 +106,13 @@ public class Statuses : MonoBehaviour
             }
             poisonStacks++;
         }
+
+        if (col.gameObject.GetComponent<wapantCircle>() != null)
+        {
+            if (!iconOrder.Contains(3))
+            {
+                iconOrder.Add(3);
+            }
+        }
     }
 }

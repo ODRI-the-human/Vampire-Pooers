@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class spinnerSpin : MonoBehaviour
 {
-    int timer = 0;
+    float timer = 0;
 
-    // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
+        float distance = (gameObject.GetComponent<Attack>().currentTarget.transform.position - transform.position).magnitude;
+        distance = Mathf.Pow(distance, 2.8f);
+
+        timer += distance * Time.deltaTime;
         transform.rotation = Quaternion.Euler(0, 0, timer);
-        timer++;
     }
 }

@@ -43,8 +43,8 @@ TagManager:
   - HitBothPlayerAndEnemy
   - OnlyHitWalls
   - OuterWalls
-  - 
-  - 
+  - HitEnemBulletsAndEnemies
+  - HitPlayerBulletsAndPlayer
   - 
   - 
   - 

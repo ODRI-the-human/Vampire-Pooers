@@ -21,15 +21,16 @@ public class obstHP : MonoBehaviour
     {
         if (thingy.tag == "PlayerBullet" || thingy.tag == "enemyBullet")
         {
-            HP -= thingy.GetComponent<DealDamage>().damageAmt / bulletResist;
+            HP -= thingy.GetComponent<DealDamage>().finalDamageStat / bulletResist;
         }
         else if (thingy.tag == "ATGExplosion")
         {
-            HP -= thingy.GetComponent<DealDamage>().damageAmt;
+            HP -= thingy.GetComponent<DealDamage>().finalDamageStat;
         }
 
         if (HP <= 0)
         {
+            SendMessage("doOnDestroy");
             Destroy(gameObject);
         }
     }

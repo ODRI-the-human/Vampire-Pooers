@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class OrbitalMovement2 : MonoBehaviour
 {
-    int timer = 0;
+    public float timer = 0;
     GameObject Player;
     public float timerDelay;
     public float distanceFromPlayer = 2;
@@ -13,9 +13,14 @@ public class OrbitalMovement2 : MonoBehaviour
     {
         Player = gameObject.GetComponent<DealDamage>().owner;
         gameObject.GetComponent<Attack>().Crongus = Player.GetComponent<Attack>().Crongus;
+        if (gameObject.tag == "enemyBullet")
+        {
+            int LayerEnemy = LayerMask.NameToLayer("HitEnemBulletsAndEnemies");
+            gameObject.layer = LayerEnemy;
+        }
     }
 
-    void FixedUpdate()
+    void Update()
     {
         if (Player == null)
         {
@@ -23,7 +28,7 @@ public class OrbitalMovement2 : MonoBehaviour
         }
 
         transform.position = new Vector3(Player.transform.position.x + distanceFromPlayer * Mathf.Sin(0.03f * (timer + timerDelay)), Player.transform.position.y + distanceFromPlayer * Mathf.Cos(0.03f * (timer + timerDelay)), Player.transform.position.z);
-        timer++;
+        timer += Time.deltaTime * 60;
 
         int currentWeapon = gameObject.GetComponent<weaponType>().weaponHeld;
         GameObject owner = gameObject.GetComponent<DealDamage>().owner;

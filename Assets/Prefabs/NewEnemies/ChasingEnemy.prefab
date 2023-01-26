@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 6413931875231739918}
   - component: {fileID: 1737368608290375509}
   - component: {fileID: 9086974735260390487}
+  - component: {fileID: -6904433618972097483}
   m_Layer: 6
   m_Name: ChasingEnemy
   m_TagString: Hostile
@@ -59,7 +60,7 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
@@ -91,15 +92,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7c0609e2de7d9147bdd13a8a1dbefb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dodgeTimerLength: 15
-  moveSpeed: 3.5
-  dodgeUp: 1
-  dodgeAudio: {fileID: 0}
-  rb: {fileID: 8034279136360660184}
+  knockBackVector: {x: 0, y: 0}
+  desiredVector: {x: 0, y: 0, z: 0}
+  baseMoveSpeed: 4.3
+  currentMoveSpeed: 0
   isSlowed: 0
-  dodgeTimerOnline: 30
+  dodgeUp: 1
   dodgeOnlineAudio: {fileID: 0}
-  agent: {fileID: 1737368608290375509}
+  dodgeAudio: {fileID: 0}
 --- !u!114 &6146499720883180670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -265,7 +265,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 8034279136360660190}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.08
+  m_Radius: 0.1
   m_Speed: 3.5
   m_Acceleration: 1000
   avoidancePriority: 50
@@ -274,10 +274,10 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
   m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 1
+  m_Height: 0.2
+  m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 2
 --- !u!212 &9086974735260390487
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -318,7 +318,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 0.9260169, b: 0, a: 1}
   m_FlipX: 0
@@ -330,3 +330,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-6904433618972097483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8034279136360660190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d31779e6680956c4e9839e1f7ad59fa2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 1737368608290375509}

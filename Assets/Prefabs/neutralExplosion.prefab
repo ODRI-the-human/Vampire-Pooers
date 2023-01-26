@@ -16,8 +16,8 @@ GameObject:
   - component: {fileID: 2618228907162695750}
   - component: {fileID: 4611459603611210734}
   - component: {fileID: 3260033246036771192}
-  m_Layer: 7
-  m_Name: explosion hostile
+  m_Layer: 14
+  m_Name: neutralExplosion
   m_TagString: ATGExplosion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,8 +32,8 @@ Transform:
   m_GameObject: {fileID: 2618228907162695756}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3, y: 0, z: -2}
-  m_LocalScale: {x: 2, y: 2, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 4, y: 4, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -48,12 +48,12 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.6
+  m_Radius: 0.75
 --- !u!50 &2618228907162695744
 Rigidbody2D:
   serializedVersion: 4
@@ -200,5 +200,5 @@ MonoBehaviour:
   onlyDamageOnce: 1
   tickInterval: 1
   timer: 0
-  damageAmt: 0
+  damageAmt: 150
   isBulletClone: 0

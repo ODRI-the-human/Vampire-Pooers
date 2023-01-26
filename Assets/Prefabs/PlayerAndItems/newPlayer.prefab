@@ -116,15 +116,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7c0609e2de7d9147bdd13a8a1dbefb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dodgeTimerLength: 15
-  moveSpeed: 5
+  knockBackVector: {x: 0, y: 0}
+  desiredVector: {x: 0, y: 0, z: 0}
+  baseMoveSpeed: 5
+  currentMoveSpeed: 0
+  isSlowed: 0
   dodgeUp: 1
+  dodgeOnlineAudio: {fileID: 5421414380371828586, guid: 090f0d82356e1134a9266a60cb419682, type: 3}
   dodgeAudio: {fileID: 576013723491271631, guid: 8068abbc9251dc147a95e0c091540981, type: 3}
   rb: {fileID: 503381878361641300}
-  isSlowed: 1
-  dodgeTimerOnline: 40
-  dodgeOnlineAudio: {fileID: 5421414380371828586, guid: 090f0d82356e1134a9266a60cb419682, type: 3}
-  agent: {fileID: 0}
 --- !u!114 &-4590834480761037546
 MonoBehaviour:
   m_ObjectHideFlags: 0

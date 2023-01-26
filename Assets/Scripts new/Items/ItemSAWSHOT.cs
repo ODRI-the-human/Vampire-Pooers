@@ -65,7 +65,7 @@ public class ItemSAWSHOT : MonoBehaviour
             }
 
             Poop.transform.position = guyLatchedTo.transform.position + bulletOffset;
-            transform.position = guyLatchedTo.transform.position;
+            transform.position = guyLatchedTo.transform.position + new Vector3(0, 0, 5000);
             Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), guyLatchedTo.GetComponent<Collider2D>(), false);
         }
     }
