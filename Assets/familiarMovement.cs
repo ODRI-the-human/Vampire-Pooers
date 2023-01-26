@@ -9,18 +9,13 @@ public class familiarMovement : MonoBehaviour
     public Rigidbody2D rb;
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         if (toFollow == null)
         {
             Destroy(gameObject);
         }
 
-        rb.velocity = 2 * new Vector2(toFollow.transform.position.x - gameObject.transform.position.x, toFollow.transform.position.y - gameObject.transform.position.y);
-
-        if ((toFollow.transform.position - gameObject.transform.position).magnitude > 10)
-        {
-            gameObject.transform.position = toFollow.transform.position;
-        }
+        transform.position += 2 * Time.deltaTime * (toFollow.transform.position - gameObject.transform.position);
     }
 }

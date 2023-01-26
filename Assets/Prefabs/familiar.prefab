@@ -147,8 +147,16 @@ MonoBehaviour:
   finalDamageMult: 1
   knockBackCoeff: 1
   finalDamageDIV: 1
+  critProb: 0.05
+  critMult: 2
   owner: {fileID: 0}
+  master: {fileID: 0}
   overwriteDamageCalc: 0
+  onlyDamageOnce: 1
+  tickInterval: 1
+  timer: 0
+  damageAmt: 0
+  isBulletClone: 0
 --- !u!114 &8984978239919591108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,13 +178,15 @@ MonoBehaviour:
   Bullet: {fileID: 4255455733749829593, guid: 27160d46bf5b97a4898af82130ae1a42, type: 3}
   fireTimerLength: 30
   fireTimer: 0
-  PlayerShootAudio: {fileID: 2232971130497578917, guid: dc46db39e4e70b144915e7a0652cc396, type: 3}
+  PlayerShootAudio: {fileID: 2894936639441958211, guid: f4849f6de8b809d48a7220ff85910c8b, type: 3}
   Player: {fileID: 0}
   playerControlled: 1
   specialFireType: 0
   darkArtSword: {fileID: 7955111713391121560, guid: 35c958ea85b00c144830eefba828d8c3, type: 3}
   fireTimerDIV: 1
   attachItems: 0
+  doAim: 1
+  fireTimerActualLength: 0
   visionRange: 6
   reTargetTimerLength: 100
   reTargetTimer: 0
@@ -202,6 +212,9 @@ MonoBehaviour:
   master: {fileID: 0}
   itemGained: 0
   noToGive: 1
+  doTheShit: 1
+  playerBullet: {fileID: 0}
+  enemyBullet: {fileID: 0}
 --- !u!114 &6596505954230717738
 MonoBehaviour:
   m_ObjectHideFlags: 0
