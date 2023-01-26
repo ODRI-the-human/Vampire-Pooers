@@ -86,14 +86,14 @@ public class ItemDescriptions : MonoBehaviour
                 
                 break;
             case (int)ITEMLIST.CREEP:
-                itemDescription = "Leave creep on the ground that deals 20% of your damage per tick. Size of creep increases with stacks.";
+                itemDescription = "Leave creep on the ground that deals 10% of your damage per tick. Size of creep increases with stacks.";
                 enemiesCanUse = true;
                 break;
             case (int)ITEMLIST.DODGESPLOSION:
-                itemDescription = "At the end of your dodge, deal 50 damage and knock back enemies in a certain radius (radius increases with stacks).";
+                itemDescription = "At the end of your dodge, deal 50 damage to enemies and deflect bullets within a radius. Radius increases with stacks.";
                 break;
             case (int)ITEMLIST.BETTERDODGE:
-                itemDescription = "Dodge further, faster, and get some iframes at the end of the dodge. Bonus increases with stacks.";
+                itemDescription = "Dodge further and faster.";
                 break;
             case (int)ITEMLIST.ORBITAL1:
                 itemDescription = "Gain a long-range orbital that blocks enemy shots and deals damage. Stacks add extra orbitals.";

@@ -6,18 +6,23 @@ public class ItemDODGESPLOSION : MonoBehaviour
 {
 
     GameObject dodgeSplosion;
+    GameObject contacter;
     public int instances = 1;
 
     // Start is called before the first frame update
     void Start()
     {
         dodgeSplosion = GameObject.Find("bigFuckingMasterObject").GetComponent<EntityReferencerGuy>().dodgeSplosion;
+        contacter = GameObject.Find("bigFuckingMasterObject").GetComponent<EntityReferencerGuy>().contactMan;
     }
 
-    public void Splosm()
+    public void dodgeEndEffects()
     {
         GameObject explodyDodge = Instantiate(dodgeSplosion, transform.position, transform.rotation);
-        explodyDodge.transform.localScale *= 1.5f + 1.2f * instances;
+        explodyDodge.transform.localScale *= 2.5f + 1.2f * instances;
+        GameObject explodySodge = Instantiate(contacter, transform.position, transform.rotation);
+        explodySodge.transform.localScale = explodyDodge.transform.localScale;
+        explodyDodge.GetComponent<dieOnContactWithBullet>().master = explodyDodge;
     }
 
     public void Undo()

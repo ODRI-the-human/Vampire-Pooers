@@ -21,7 +21,8 @@ public class NewPlayerMovement : MonoBehaviour
     [HideInInspector] public int dodgeUp = 1;
     int isDodging = 0;
     int dodgeTimer = -30;
-    int dodgeTimerLength = 20;
+    public int dodgeTimerLength = 20;
+    public float dodgeSpeedUp = 2;
     int dodgeMode = 1;
 
     int LayerPlayer;
@@ -49,10 +50,16 @@ public class NewPlayerMovement : MonoBehaviour
         {
             if (Input.GetButtonDown("Dodge") && dodgeTimer < -30)
             {
+                if (dodgeMode == 0)
+                {
+                    Vector2 mouseVector = Camera.main.ScreenToWorldPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y));
+                    moveDirection = new Vector3(mouseVector.x - transform.position.x, mouseVector.y - transform.position.y, 0).normalized;
+                }
+
                 Instantiate(dodgeAudio);
                 dodgeTimer = dodgeTimerLength;
                 gameObject.layer = LayerNone;
-                speedMult = 2;
+                speedMult = dodgeSpeedUp;
                 isDodging = 1;
             }
 
@@ -76,15 +83,6 @@ public class NewPlayerMovement : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
 
-
-
-        if (dodgeTimer == 0)
-        {
-            gameObject.layer = LayerPlayer;
-            isDodging = 0;
-            speedMult = 1;
-        }
-
         if (Input.GetButtonDown("ChangeDodgeMode"))
         {
             if (dodgeMode == 1)
@@ -103,10 +101,18 @@ public class NewPlayerMovement : MonoBehaviour
         slowTimer--;
         dodgeTimer--;
 
-        // Resetting slow and dodge.
+        // Resetting slow and dodge, and causing all dodge end effects..
         if (dodgeTimer == -30)
         {
             Instantiate(dodgeOnlineAudio);
+        }
+
+        if (dodgeTimer == 0)
+        {
+            gameObject.layer = LayerPlayer;
+            isDodging = 0;
+            speedMult = 1;
+            SendMessage("dodgeEndEffects");
         }
 
         if (slowTimer < 0)
