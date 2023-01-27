@@ -7,6 +7,8 @@ public class explodeOnHit : MonoBehaviour
     public GameObject explosion;
     GameObject owner;
     float damageAmt;
+
+    int timer = 0;
     
     void Start()
     {
@@ -14,10 +16,28 @@ public class explodeOnHit : MonoBehaviour
         explosion = master.GetComponent<EntityReferencerGuy>().neutralExplosion;
     }
 
-    void OnCollisionEnter2D(Collision2D col)
+    void FixedUpdate()
+    {
+        if (timer == 15 && gameObject.GetComponent<Rigidbody2D>().simulated)
+        {
+            exploSoin();
+        }
+
+        timer++;
+
+        gameObject.GetComponent<Rigidbody2D>().velocity /= 1.15f;
+    }
+
+    void exploSoin()
     {
         GameObject splodo = Instantiate(explosion, transform.position, Quaternion.Euler(0, 0, 0));
         splodo.transform.localScale = new Vector3(2, 2, 2);
-        splodo.GetComponent<DealDamage>().damageAmt = 2 * gameObject.GetComponent<DealDamage>().damageAmt;
+        splodo.GetComponent<DealDamage>().damageAmt = 3 * gameObject.GetComponent<DealDamage>().damageAmt;
+        Destroy(gameObject);
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        exploSoin();
     }
 }

@@ -164,10 +164,6 @@ public class Attack : MonoBehaviour
             newObject.GetComponent<DealDamage>().isBulletClone = true;
             newObject.GetComponent<DealDamage>().finalDamageMult *= gameObject.GetComponent<DealDamage>().finalDamageMult;
             newObject.GetComponent<DealDamage>().damageBase += Crongus + levelDamageBonus; // applies converter damage bonus to bullets
-            if (gameObject.GetComponent<weaponType>().weaponHeld == (int)ITEMLIST.GRENADELAUNCHER)
-            {
-                newObject.AddComponent<explodeOnHit>();
-            }
         }
         else
         {

@@ -515,10 +515,16 @@ public class ItemHolder : MonoBehaviour
 
 
             case (int)ITEMLIST.DODGEROLL:
-                gameObject.GetComponent<NewPlayerMovement>().mouseAltMode = 0;
+                if (gameObject.tag == "Player")
+                {
+                    gameObject.GetComponent<NewPlayerMovement>().mouseAltMode = 0;
+                }
                 break;
             case (int)ITEMLIST.SHOULDERBASH:
-                gameObject.GetComponent<NewPlayerMovement>().mouseAltMode = 1;
+                if (gameObject.tag == "Player")
+                {
+                    gameObject.GetComponent<NewPlayerMovement>().mouseAltMode = 1;
+                }
                 break;
 
 
@@ -565,6 +571,10 @@ public class ItemHolder : MonoBehaviour
         playerBRB.simulated = false;
         playerBRB.GetComponent<DealDamage>().master = gameObject.GetComponent<DealDamage>().master;
         playerBRB.GetComponent<DealDamage>().owner = gameObject;
+        if (gameObject.GetComponent<weaponType>().weaponHeld == (int)ITEMLIST.GRENADELAUNCHER)
+        {
+            playerBulletPrefab.AddComponent<explodeOnHit>();
+        }
         gameObject.GetComponent<Attack>().Bullet = playerBulletPrefab;
         enemyBulletPrefab = Instantiate(enemyBullet, new Vector3(9999999, 9999999, 9999999), transform.rotation);
         enemyBulletPrefab.GetComponent<ItemHolder>().itemsHeld = master.GetComponent<ItemHolder>().itemsHeld;
