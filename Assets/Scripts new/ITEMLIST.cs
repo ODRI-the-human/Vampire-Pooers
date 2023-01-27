@@ -48,4 +48,13 @@ public enum ITEMLIST
     LUCKIER,
     MORECRITS,
     BETTERCRITS,
+
+
+
+    DODGEROLL,
+    SHOULDERBASH,
+
+    PISTOL,
+    GRENADELAUNCHER,
+    DARKARTS,
 }

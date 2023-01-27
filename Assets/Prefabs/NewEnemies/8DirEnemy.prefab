@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: -8253801377550911414}
   - component: {fileID: 840094520363631445}
   - component: {fileID: -2425308964044366205}
+  - component: {fileID: 2387047808146419728}
   m_Layer: 6
   m_Name: 8DirEnemy
   m_TagString: Hostile
@@ -120,7 +121,6 @@ MonoBehaviour:
   damageBase: 50
   damageMult: 1
   finalDamageMult: 1
-  knockBackCoeff: 1
   finalDamageDIV: 1
   critProb: 0.05
   critMult: 2
@@ -348,3 +348,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: -8253801377550911414}
+--- !u!114 &2387047808146419728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8034279136360660190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fa510d5f65fe4b429d86a4e95a6e22d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponHeld: 0

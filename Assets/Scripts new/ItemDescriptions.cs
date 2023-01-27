@@ -192,6 +192,23 @@ public class ItemDescriptions : MonoBehaviour
                 itemDescription = "Crit multiplier increased by 100%";
                 enemiesCanUse = true;
                 break;
+
+
+
+            case (int)ITEMLIST.DODGEROLL:
+                itemDescription = "Swap your dodge ability back to dodge roll.";
+                break;
+            case (int)ITEMLIST.SHOULDERBASH:
+                itemDescription = "Swap your dodge ability to shoulderbash - dodge a shorter distance, but faster, and knock enemies back greatly. Enemies take damage upon hitting a wall or another enemy.";
+                break;
+
+
+            case (int)ITEMLIST.PISTOL:
+                itemDescription = "Swap your weapon back to the pistol.";
+                break;
+            case (int)ITEMLIST.GRENADELAUNCHER:
+                itemDescription = "Swap your weapon to the grenade launcher - half the rate of fire, but shots explode on hit for 2x your bullet damage (can hit you!)";
+                break;
         }
     }
 }

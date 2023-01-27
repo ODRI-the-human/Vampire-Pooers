@@ -143,12 +143,12 @@ MonoBehaviour:
   damageBase: 50
   damageMult: 1
   finalDamageMult: 1
-  knockBackCoeff: 1
   finalDamageDIV: 1
   critProb: 0
   critMult: 2
   owner: {fileID: 0}
   master: {fileID: 0}
+  massCoeff: 1
   overwriteDamageCalc: 0
   onlyDamageOnce: 1
   tickInterval: 1

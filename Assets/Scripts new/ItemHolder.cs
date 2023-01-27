@@ -512,6 +512,25 @@ public class ItemHolder : MonoBehaviour
             case (int)ITEMLIST.BETTERCRITS:
                 gameObject.AddComponent<ItemBETTERCRITS>();
                 break;
+
+
+            case (int)ITEMLIST.DODGEROLL:
+                gameObject.GetComponent<NewPlayerMovement>().mouseAltMode = 0;
+                break;
+            case (int)ITEMLIST.SHOULDERBASH:
+                gameObject.GetComponent<NewPlayerMovement>().mouseAltMode = 1;
+                break;
+
+
+            case (int)ITEMLIST.PISTOL:
+                gameObject.GetComponent<weaponType>().weaponHeld = (int)ITEMLIST.PISTOL;
+                gameObject.GetComponent<weaponType>().SetWeapon();
+                break;
+            case (int)ITEMLIST.GRENADELAUNCHER:
+                gameObject.GetComponent<weaponType>().weaponHeld = (int)ITEMLIST.GRENADELAUNCHER;
+                gameObject.GetComponent<weaponType>().SetWeapon();
+                break;
+
         }
     }
 

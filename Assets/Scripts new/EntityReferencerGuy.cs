@@ -30,6 +30,7 @@ public class EntityReferencerGuy : MonoBehaviour
     public GameObject normieFamiliar;
     public GameObject sawVisual;
     public GameObject soyShotAudio;
+    public GameObject neutralExplosion;
 
     GameObject playerInstance;
 
@@ -68,7 +69,7 @@ public class EntityReferencerGuy : MonoBehaviour
             }
             else
             {
-                Time.timeScale = 0;
+                Time.timeScale = 0.05f;
                 isPaused = true;
             }
         }

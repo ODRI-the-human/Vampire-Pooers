@@ -29,7 +29,7 @@ public class ItemBERSERK : MonoBehaviour
 
     public void refreshBerserk(Vector3 pos)
     {
-        if (gameObject.GetComponent<weaponType>().weaponHeld == (int)WEAPONS.DARKARTS)
+        if (gameObject.GetComponent<weaponType>().weaponHeld == (int)ITEMLIST.DARKARTS)
         {
             timer -= 50;
         }
@@ -37,10 +37,10 @@ public class ItemBERSERK : MonoBehaviour
 
     public void goBerserk()
     {
-        if (gameObject.GetComponent<weaponType>().weaponHeld != (int)WEAPONS.DARKARTS && gameObject.GetComponent<LevelUp>().level % 2 == 0)
+        if (gameObject.GetComponent<weaponType>().weaponHeld != (int)ITEMLIST.DARKARTS && gameObject.GetComponent<LevelUp>().level % 2 == 0)
         {
             pastWeapon = gameObject.GetComponent<weaponType>().weaponHeld;
-            gameObject.GetComponent<weaponType>().weaponHeld = (int)WEAPONS.DARKARTS;
+            gameObject.GetComponent<weaponType>().weaponHeld = (int)ITEMLIST.DARKARTS;
             gameObject.GetComponent<Attack>().fireTimerLengthMLT /= 2;
             Debug.Log("Dingus");
             gameObject.GetComponent<weaponType>().SetWeapon();

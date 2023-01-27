@@ -124,7 +124,7 @@ MonoBehaviour:
   dodgeUp: 1
   dodgeTimerLength: 20
   dodgeSpeedUp: 2
-  mouseAltMode: 1
+  mouseAltMode: 0
   dodgeOnlineAudio: {fileID: 5421414380371828586, guid: 090f0d82356e1134a9266a60cb419682, type: 3}
   dodgeAudio: {fileID: 576013723491271631, guid: 8068abbc9251dc147a95e0c091540981, type: 3}
 --- !u!114 &-4590834480761037546
@@ -171,7 +171,6 @@ MonoBehaviour:
   damageBase: 50
   damageMult: 1
   finalDamageMult: 1
-  knockBackCoeff: 3
   finalDamageDIV: 1
   critProb: 0.05
   critMult: 2
