@@ -21,6 +21,7 @@ public class explodeOnHit : MonoBehaviour
         if (timer == 15 && gameObject.GetComponent<Rigidbody2D>().simulated)
         {
             exploSoin();
+            Destroy(gameObject);
         }
 
         timer++;
@@ -33,7 +34,6 @@ public class explodeOnHit : MonoBehaviour
         GameObject splodo = Instantiate(explosion, transform.position, Quaternion.Euler(0, 0, 0));
         splodo.transform.localScale = new Vector3(2, 2, 2);
         splodo.GetComponent<DealDamage>().damageAmt = 3 * gameObject.GetComponent<DealDamage>().damageAmt;
-        Destroy(gameObject);
     }
 
     void OnCollisionEnter2D(Collision2D col)
