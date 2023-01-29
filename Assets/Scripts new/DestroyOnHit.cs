@@ -7,6 +7,9 @@ public class DestroyOnHit : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        Destroy(gameObject);
+        if (col.gameObject.tag == "Player")
+        {
+            Destroy(gameObject);
+        }
     }
 }

@@ -11,7 +11,7 @@ public class weaponType : MonoBehaviour
     {
         if (gameObject.tag == "Player")
         {
-            weaponHeld = (int)ITEMLIST.PISTOL;
+            weaponHeld = (int)ITEMLIST.GRENADELAUNCHER;
         }
 
         SetWeapon();
@@ -32,6 +32,7 @@ public class weaponType : MonoBehaviour
             case (int)ITEMLIST.GRENADELAUNCHER:
                 if (gameObject.GetComponent<Attack>() != null)
                 {
+                    gameObject.GetComponent<Attack>().specialFireType = 0;
                     gameObject.GetComponent<Attack>().fireTimerLengthMLT = 1.5f;
                     gameObject.GetComponent<Attack>().shotSpeed = 45;
                 }

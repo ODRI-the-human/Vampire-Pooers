@@ -148,7 +148,7 @@ MonoBehaviour:
   critMult: 2
   owner: {fileID: 0}
   master: {fileID: 0}
-  massCoeff: 1
+  massCoeff: 0.5
   overwriteDamageCalc: 0
   onlyDamageOnce: 1
   tickInterval: 1
