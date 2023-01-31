@@ -45,7 +45,7 @@ TagManager:
   - OuterWalls
   - HitEnemBulletsAndEnemies
   - HitPlayerBulletsAndPlayer
-  - 
+  - OnlyHitWallsAndEnemies
   - 
   - 
   - 

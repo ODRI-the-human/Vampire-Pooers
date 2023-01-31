@@ -77,6 +77,8 @@ public class darkArtMovement : MonoBehaviour
         if (col.gameObject.GetComponent<HPDamageDie>() != null) // only heals player if object has an HPDamageDie (so only enemies)
         {
             GameObject owner = gameObject.GetComponent<DealDamage>().owner;
+            GameObject master = gameObject.GetComponent<DealDamage>().master;
+            master.GetComponent<visualPoopoo>().bigHitFreeze(0.05f);
             owner.GetComponent<Healing>().Healo(5);
         }
     }

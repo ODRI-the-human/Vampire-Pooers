@@ -39,8 +39,6 @@ public class EntityReferencerGuy : MonoBehaviour
 
     public Mesh dagger;
 
-    public bool isPaused = false;
-
     public int numItemsExist = 33;
 
     void Start()
@@ -49,29 +47,5 @@ public class EntityReferencerGuy : MonoBehaviour
         numItemsExist = pedestal.GetComponent<itemPedestal>().spriteArray.GetLength(0);
         playerInstance = GameObject.Find("newPlayer");
         //Application.targetFrameRate = 60;
-    }
-
-    void Update()
-    {
-        if (Input.GetButton("Restart"))
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            EventManager.DeathEffects = null;
-            //playerInstance.GetComponent<LevelUp>().levelEffects = null;
-        }
-
-        if (Input.GetButtonDown("Pause"))
-        {
-            if (isPaused)
-            {
-                Time.timeScale = 1;
-                isPaused = false;
-            }
-            else
-            {
-                Time.timeScale = 0.05f;
-                isPaused = true;
-            }
-        }
     }
 }

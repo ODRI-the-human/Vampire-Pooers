@@ -28,6 +28,7 @@ public class NewPlayerMovement : MonoBehaviour
 
     int LayerPlayer;
     int LayerNone;
+    int LayerSB;
 
     public GameObject dodgeOnlineAudio;
     public GameObject dodgeAudio;
@@ -38,6 +39,7 @@ public class NewPlayerMovement : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody2D>();
         LayerPlayer = LayerMask.NameToLayer("Player");
         LayerNone = LayerMask.NameToLayer("OnlyHitWalls");
+        LayerSB = LayerMask.NameToLayer("OnlyHitWallsAndEnemies");
     }
 
     void Update()
@@ -78,6 +80,7 @@ public class NewPlayerMovement : MonoBehaviour
                         gameObject.GetComponent<HPDamageDie>().damageReduction += 500;
                         gameObject.GetComponent<DealDamage>().massCoeff += 3;
                         speedMult = 1.5f * dodgeSpeedUp;
+                        gameObject.layer = LayerSB;
                         isDodging = 1;
                         break;
                 }
@@ -138,6 +141,7 @@ public class NewPlayerMovement : MonoBehaviour
                     SendMessage("dodgeEndEffects");
                     break;
                 case 1:
+                    gameObject.layer = LayerPlayer;
                     isDodging = 0;
                     speedMult = 1;
                     gameObject.GetComponent<HPDamageDie>().damageReduction -= 500;
@@ -169,6 +173,8 @@ public class NewPlayerMovement : MonoBehaviour
             if (isDodging == 1 && mouseAltMode == 1)
             {
                 col.gameObject.AddComponent<hitIfKBVecHigh>();
+                GameObject master = gameObject.GetComponent<DealDamage>().master;
+                master.GetComponent<visualPoopoo>().bigHitFreeze(0.1f);
             }
         }
     }

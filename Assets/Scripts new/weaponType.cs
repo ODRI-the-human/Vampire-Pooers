@@ -11,7 +11,7 @@ public class weaponType : MonoBehaviour
     {
         if (gameObject.tag == "Player")
         {
-            weaponHeld = (int)ITEMLIST.GRENADELAUNCHER;
+            weaponHeld = (int)ITEMLIST.PISTOL;
         }
 
         SetWeapon();
