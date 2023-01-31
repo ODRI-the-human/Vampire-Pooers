@@ -129,6 +129,7 @@ public class ThirdEnemySpawner : MonoBehaviour
                 GameObject spawned = Instantiate(toSpawn, new Vector3(SpawnPosX, SpawnPosY, 10.6f) + Camera.transform.position, Quaternion.identity);
                 spawned.transform.localScale = SpawnScaleVariation;
                 spawned.GetComponent<HPDamageDie>().HP *= 0.8f + 0.2f * numberEnemiesSpawned;
+                spawned.GetComponent<Attack>().currentTarget = Player;
                 break;
             case 5:
                 toSpawn = mole;
@@ -173,6 +174,7 @@ public class ThirdEnemySpawner : MonoBehaviour
             GameObject spawned = Instantiate(toSpawn, new Vector3(SpawnPosX + SpawnPosXVariation, SpawnPosY + SpawnPosYVariation, 10.6f) + Camera.transform.position, transform.rotation);
             spawned.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
             spawned.GetComponent<Attack>().Bullet = enemyBullet;
+            spawned.GetComponent<Attack>().currentTarget = Player;
 
             if (i == 0 && !existsMole && toSpawn == mole)
             {
@@ -202,6 +204,7 @@ public class ThirdEnemySpawner : MonoBehaviour
             GameObject spawned = Instantiate(toSpawn, new Vector3(SpawnPosX, SpawnPosY, 10.6f) + Camera.transform.position, transform.rotation);
             spawned.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
             spawned.GetComponent<Attack>().Bullet = enemyBullet;
+            spawned.GetComponent<Attack>().currentTarget = Player;
         }
     }
 

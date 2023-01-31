@@ -55,6 +55,8 @@ public class ItemORBITAL2 : MonoBehaviour
             {
                 orb.tag = "enemyBullet";
                 orb.GetComponent<Attack>().playerControlled = false;
+                int LayerEnemy = LayerMask.NameToLayer("HitPlayerBulletsAndPlayer");
+                orb.layer = LayerEnemy;
             }
 
             orb.GetComponent<DealDamage>().damageBase = gameObject.GetComponent<DealDamage>().damageBase;

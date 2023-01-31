@@ -51,12 +51,14 @@ public class Attack : MonoBehaviour
     {
         timesFired = -1;
         newAttack = 0;
-        if (gameObject.tag == "Hostile" || gameObject.tag == "enemyBullet" || gameObject.tag == "enemyFamiliar")
+        if (gameObject.tag == "Hostile" || gameObject.tag == "enemyFamiliar")
         {
             Player = GameObject.Find("newPlayer");
             if (Player.GetComponent<ItemSTOPWATCH>() != null)
             {
-                fireTimerLength *= 1 + (0.25f) * Player.GetComponent<ItemSTOPWATCH>().instances;
+                fireTimerLength /= -1 / (0.5f * Player.GetComponent<ItemSTOPWATCH>().instances + 1) + 1;
+                shotSpeed *= -1 / (0.5f * Player.GetComponent<ItemSTOPWATCH>().instances + 1) + 1;
+                gameObject.GetComponent<NewPlayerMovement>().baseMoveSpeed *= -1 / (0.5f * Player.GetComponent<ItemSTOPWATCH>().instances + 1) + 1;
             }
         }
         cameron = GameObject.Find("Main Camera");

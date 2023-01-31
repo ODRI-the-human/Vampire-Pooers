@@ -13,11 +13,6 @@ public class OrbitalMovement2 : MonoBehaviour
     {
         Player = gameObject.GetComponent<DealDamage>().owner;
         gameObject.GetComponent<Attack>().Crongus = Player.GetComponent<Attack>().Crongus;
-        if (gameObject.tag == "enemyBullet")
-        {
-            int LayerEnemy = LayerMask.NameToLayer("HitEnemBulletsAndEnemies");
-            gameObject.layer = LayerEnemy;
-        }
     }
 
     void Update()

@@ -33,6 +33,8 @@ public class ItemORBITAL1 : MonoBehaviour
                 else
                 {
                     newObject.tag = "enemyBullet";
+                    int LayerEnemy = LayerMask.NameToLayer("HitPlayerBulletsAndPlayer");
+                    newObject.layer = LayerEnemy;
                 }
             }
         }

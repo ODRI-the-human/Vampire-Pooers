@@ -13,7 +13,7 @@ public class OrbitalMovement : MonoBehaviour
         Player = gameObject.GetComponent<DealDamage>().owner;
         if (gameObject.tag == "enemyBullet")
         {
-            int LayerEnemy = LayerMask.NameToLayer("HitEnemBulletsAndEnemies");
+            int LayerEnemy = LayerMask.NameToLayer("HitPlayerBulletsAndPlayer");
             gameObject.layer = LayerEnemy;
         }
     }
