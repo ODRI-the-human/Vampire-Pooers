@@ -136,7 +136,7 @@ public class moleShit : MonoBehaviour
     {
         gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
 
-        transform.position = pos;
+        transform.position = pos - new Vector3(0, 0, 1);
 
         if (hitbox != null)
         {

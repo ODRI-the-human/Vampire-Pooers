@@ -49,7 +49,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.08
+  m_Radius: 0.15
 --- !u!212 &5382661700902760519
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -67,7 +67,7 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 2147483648
+  m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
@@ -90,8 +90,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 864453023, guid: 6303e40c9af093841ade6a6fd81fca86, type: 3}
   m_Color: {r: 0.18892843, g: 0.5774201, b: 0.8207547, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -115,3 +115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyDelay: 4
+  sprites:
+  - {fileID: 864453023, guid: 6303e40c9af093841ade6a6fd81fca86, type: 3}
+  - {fileID: -1477216451, guid: 6303e40c9af093841ade6a6fd81fca86, type: 3}
+  - {fileID: 1480273924, guid: 6303e40c9af093841ade6a6fd81fca86, type: 3}

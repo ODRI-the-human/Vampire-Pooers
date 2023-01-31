@@ -9,8 +9,13 @@ public class wapantCircle : MonoBehaviour
     float timer = 100;
     GameObject Player;
 
+    public Sprite[] sprites;
+
     void Start()
     {
+        gameObject.GetComponent<SpriteRenderer>().sprite = sprites[Random.Range(0, 3)];
+        transform.rotation = Quaternion.Euler(0, 0, 90 * Random.Range(0, 4));
+
         GameObject[] gos;
         gos = GameObject.FindGameObjectsWithTag("Player");
         Player = gos[0];

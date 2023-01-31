@@ -73,7 +73,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.08
+  m_Radius: 0.15
 --- !u!212 &158271131209982303
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -114,9 +114,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0.6958723, g: 0, b: 1, a: 1}
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 1108455815, guid: babe59e3c8e8edf47bfb6dfaf61a7d10, type: 3}
+  m_Color: {r: 0.56611305, g: 0.1381274, b: 0.754717, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -139,6 +139,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyDelay: 5
+  sprites:
+  - {fileID: 1108455815, guid: babe59e3c8e8edf47bfb6dfaf61a7d10, type: 3}
+  - {fileID: -1404902917, guid: babe59e3c8e8edf47bfb6dfaf61a7d10, type: 3}
+  - {fileID: -274423132, guid: babe59e3c8e8edf47bfb6dfaf61a7d10, type: 3}
 --- !u!114 &-5174054869890055258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,12 +160,12 @@ MonoBehaviour:
   damageBase: 0
   damageMult: 0
   finalDamageMult: 1
-  knockBackCoeff: 1
   finalDamageDIV: 1
   critProb: 0
   critMult: 2
   owner: {fileID: 0}
   master: {fileID: 0}
+  massCoeff: 2
   overwriteDamageCalc: 0
   onlyDamageOnce: 0
   tickInterval: 10
