@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class telefragEnemyBehaviour : MonoBehaviour
 {
@@ -26,7 +27,7 @@ public class telefragEnemyBehaviour : MonoBehaviour
     {
         timer++;
 
-        if (timer == Mathf.Round(rateMult * 175 / gameObject.GetComponent<Attack>().stopwatchDebuffAmount))
+        if (timer == Mathf.Round(rateMult * 185 / gameObject.GetComponent<Attack>().stopwatchDebuffAmount))
         {
             prevSpeed = gameObject.GetComponent<NewPlayerMovement>().baseMoveSpeed;
             gameObject.GetComponent<NewPlayerMovement>().baseMoveSpeed = 0;
@@ -38,13 +39,11 @@ public class telefragEnemyBehaviour : MonoBehaviour
 
         if (timer == Mathf.Round(rateMult * 225 / gameObject.GetComponent<Attack>().stopwatchDebuffAmount))
         {
+            gameObject.GetComponent<NavMeshAgent>().enabled = false;
             transform.position = posToTP;
+            gameObject.GetComponent<NavMeshAgent>().enabled = true;
             Instantiate(doAudio);
             Destroy(spawnedWarn);
-        }
-        
-        if (timer == Mathf.Round(rateMult * 250 / gameObject.GetComponent<Attack>().stopwatchDebuffAmount))
-        {
             timer = 0;
             gameObject.GetComponent<NewPlayerMovement>().baseMoveSpeed = prevSpeed;
         }

@@ -39,7 +39,7 @@ public class homingMineMovement : MonoBehaviour
     public void ApplyOwnOnDeaths()
     {
         GameObject splod = Instantiate(splosoin, transform.position, Quaternion.Euler(0, 0, 0));
-        splod.transform.localScale /= 1.5f;
+        splod.transform.localScale /= 2;
         Destroy(gameObject);
     }
 

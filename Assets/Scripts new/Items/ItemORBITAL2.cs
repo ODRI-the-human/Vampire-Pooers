@@ -80,17 +80,20 @@ public class ItemORBITAL2 : MonoBehaviour
 
     void itemsAdded()
     {
-        Orbs.Clear();
-        GameObject[] orboes = GameObject.FindGameObjectsWithTag("PlayerBullet");
-        foreach (GameObject friend in orboes)
+        if (timey > 5)
         {
-            if (friend.GetComponent<OrbitalMovement2>() != null)
+            Orbs.Clear();
+            GameObject[] orboes = GameObject.FindGameObjectsWithTag("PlayerBullet");
+            foreach (GameObject friend in orboes)
             {
-                Destroy(friend);
+                if (friend.GetComponent<OrbitalMovement2>() != null)
+                {
+                    Destroy(friend);
+                }
             }
-        }
 
-        Invoke(nameof(SetStats), 0.1f);
+            Invoke(nameof(SetStats), 0.1f);
+        }
     }
 
     public void Undo()

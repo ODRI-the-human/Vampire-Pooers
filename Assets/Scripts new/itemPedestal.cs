@@ -5,7 +5,7 @@ using UnityEngine;
 public class itemPedestal : MonoBehaviour
 {
     public int itemChosen;
-    int minRange = 0;
+    int minRange = 21;
     public Sprite[] spriteArray;
     public SpriteRenderer spriteRenderer;
     int maxRange;
@@ -25,7 +25,7 @@ public class itemPedestal : MonoBehaviour
     {
         master = GameObject.Find("bigFuckingMasterObject");
         maxRange = master.GetComponent<EntityReferencerGuy>().numItemsExist;
-        //maxRange = 2;
+        maxRange = 22;
         itemChosen = Random.Range(minRange, maxRange);
         spriteRenderer.sprite = spriteArray[itemChosen];
         gos = GameObject.FindGameObjectsWithTag("item");
