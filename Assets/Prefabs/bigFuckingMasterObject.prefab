@@ -81,7 +81,6 @@ MonoBehaviour:
   playerBulletMaterial: {fileID: 0}
   enemyBulletMaterial: {fileID: 0}
   dagger: {fileID: 0}
-  isPaused: 0
   numItemsExist: 28
 --- !u!114 &9014303847402346882
 MonoBehaviour:
@@ -109,6 +108,8 @@ MonoBehaviour:
   eightDirEnemy: {fileID: 8034279136360660190, guid: 8b07116342f452a44bea674c30297c29, type: 3}
   spinEnemy: {fileID: 5685454981733204260, guid: 9cb06ff4930a2534d8c05ad2b7f3fae6, type: 3}
   mole: {fileID: 8034279136360660190, guid: c24ff4d7a3546b24f9c7eea348effb65, type: 3}
+  homingMineGuy: {fileID: 8034279136360660190, guid: f7c2cd73a1c03594d86514dee3fd1443, type: 3}
+  telefragGuy: {fileID: 8034279136360660190, guid: 3d35b398e9ce4194badbccf95fac8b63, type: 3}
 --- !u!114 &179530921809487071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -319,3 +320,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0e9bab907b2a2c4984e1079931737cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPaused: 0

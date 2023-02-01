@@ -403,7 +403,7 @@ PrefabInstance:
     - target: {fileID: 8146544521814748070, guid: 2c1e033fc431a694499cc08ddf9a90b1, type: 3}
       propertyPath: neutralExplosion
       value: 
-      objectReference: {fileID: 2618228907162695756, guid: 6d2e1740f30759f40a1b80a9ee8569a6, type: 3}
+      objectReference: {fileID: 2618228907162695756, guid: 7f79e2f82bb11774d8a215a10dc5e6c5, type: 3}
     - target: {fileID: 8146544521814748070, guid: 2c1e033fc431a694499cc08ddf9a90b1, type: 3}
       propertyPath: enemyBulletMaterial
       value: 

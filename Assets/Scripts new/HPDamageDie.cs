@@ -11,7 +11,6 @@ public class HPDamageDie : MonoBehaviour
     public GameObject PlayerDieAudio;
     public GameObject PlayerHurtAudio;
     public GameObject CritAudio;
-    public Rigidbody2D rb;
     public float iFramesTimer = 50;
     [HideInInspector] public float iFrames = 0;
     public SpriteRenderer sprite;
@@ -33,12 +32,16 @@ public class HPDamageDie : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        sprite = gameObject.GetComponent<SpriteRenderer>();
-        originalColor = sprite.color;
         HP = MaxHP;
         if (gameObject.tag == "Hostile")
         {
             Player = GameObject.Find("newPlayer");
+            playerControlled = false;
+            sprite = gameObject.GetComponent<SpriteRenderer>();
+            originalColor = sprite.color;
+        }
+        else if (gameObject.tag == "enemyBullet")
+        {
             playerControlled = false;
         }
         else
@@ -54,7 +57,7 @@ public class HPDamageDie : MonoBehaviour
 
     void Update()
     {
-        if (HP <= 0.49f)
+        if (HP < 0.5f)
         {
             if (gameObject.GetComponent<moleShit>() != null)
             {
@@ -67,6 +70,7 @@ public class HPDamageDie : MonoBehaviour
             Instantiate(XP, transform.position, Quaternion.Euler(0, 0, 0));
             Instantiate(PlayerDieAudio);
             Destroy(gameObject);
+            SendMessage("ApplyOwnOnDeaths");
             EventManager.DeathEffects(transform.position);
         }
 
@@ -78,7 +82,7 @@ public class HPDamageDie : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (colorChangeTimer == 0)
+        if (colorChangeTimer == 0 && gameObject.GetComponent<SpriteRenderer>() != null)
         {
             sprite.color = originalColor;
         }
@@ -95,7 +99,7 @@ public class HPDamageDie : MonoBehaviour
         }
         else
         {
-            if (playerControlled == false)
+            if (playerControlled == false && gameObject.GetComponent<SpriteRenderer>() != null)
             {
                 sprite.color = Color.red;
                 colorChangeTimer = 3;
@@ -108,7 +112,7 @@ public class HPDamageDie : MonoBehaviour
                     GameObject hurteo = Instantiate(PlayerHurtAudio, new Vector3(0,0,-5), transform.rotation);
                     if (damageAmount < gameObject.GetComponent<DealDamage>().damageAmt)
                     {
-                        hurteo.GetComponent<AudioSource>().volume /= 3;
+                        hurteo.GetComponent<AudioSource>().volume /= 1.5f;
                     }
                 }
 
@@ -117,7 +121,7 @@ public class HPDamageDie : MonoBehaviour
                     GameObject hurtzeo = Instantiate(CritAudio, new Vector3(0, 0, -5), transform.rotation);
                     if (damageAmount < gameObject.GetComponent<DealDamage>().damageAmt)
                     {
-                        hurtzeo.GetComponent<AudioSource>().volume /= 3;
+                        hurtzeo.GetComponent<AudioSource>().volume /= 1.5f;
                     }
                 }
 

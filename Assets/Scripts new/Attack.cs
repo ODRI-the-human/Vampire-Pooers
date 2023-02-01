@@ -47,18 +47,22 @@ public class Attack : MonoBehaviour
 
     GameObject cameron;
 
+    public float stopwatchDebuffAmount;
+
     void Start()
     {
         timesFired = -1;
         newAttack = 0;
+        stopwatchDebuffAmount = 1;
         if (gameObject.tag == "Hostile" || gameObject.tag == "enemyFamiliar")
         {
             Player = GameObject.Find("newPlayer");
             if (Player.GetComponent<ItemSTOPWATCH>() != null)
             {
-                fireTimerLength /= -1 / (0.5f * Player.GetComponent<ItemSTOPWATCH>().instances + 1) + 1;
-                shotSpeed *= -1 / (0.5f * Player.GetComponent<ItemSTOPWATCH>().instances + 1) + 1;
-                gameObject.GetComponent<NewPlayerMovement>().baseMoveSpeed *= -1 / (0.5f * Player.GetComponent<ItemSTOPWATCH>().instances + 1) + 1;
+                stopwatchDebuffAmount = -1 / (0.5f * Player.GetComponent<ItemSTOPWATCH>().instances + 1) + 1;
+                fireTimerLength /= stopwatchDebuffAmount;
+                shotSpeed *= stopwatchDebuffAmount;
+                gameObject.GetComponent<NewPlayerMovement>().baseMoveSpeed *= stopwatchDebuffAmount;
             }
         }
         cameron = GameObject.Find("Main Camera");
@@ -95,7 +99,7 @@ public class Attack : MonoBehaviour
                     {
                         ReTarget();
                     }
-                    if ((currentTarget.transform.position - gameObject.transform.position).magnitude < visionRange)
+                    if ((currentTarget.transform.position - gameObject.transform.position).magnitude < visionRange && specialFireType != 2)
                     {
                         vectorToTarget = (currentTarget.transform.position - gameObject.transform.position).normalized;
                         UseWeapon();

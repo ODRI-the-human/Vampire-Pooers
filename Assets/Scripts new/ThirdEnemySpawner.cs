@@ -31,6 +31,11 @@ public class ThirdEnemySpawner : MonoBehaviour
     public GameObject eightDirEnemy;
     public GameObject spinEnemy;
     public GameObject mole;
+    public GameObject homingMineGuy;
+    public GameObject telefragGuy;
+
+    bool assignProperBullet;
+
     GameObject toSpawn;
     GameObject Player;
     GameObject Camera;
@@ -93,28 +98,32 @@ public class ThirdEnemySpawner : MonoBehaviour
     void SpawnEnemies()
     {
         numberEnemiesSpawned = Mathf.RoundToInt(Random.Range(minSpawnMultiplier * ((spawnNumber + waveNumber * 2) * spawnScaleRate), maxSpawnMultiplier * ((spawnNumber + waveNumber * 2) * spawnScaleRate))) + 1;
-        SpawnType = Random.Range(0, 6);
+        SpawnType = Random.Range(0, 8);
         switch (SpawnType)
         {
             case 0:
                 toSpawn = chaseEnemy;
+                assignProperBullet = false;
                 SpawnRandomly();
                 break;
             case 1:
                 toSpawn = shootEnemy;
+                assignProperBullet = true;
                 SpawnInGroup();
                 break;
             case 2:
                 toSpawn = fourDirEnemy;
+                assignProperBullet = true;
                 SpawnInGroup();
                 break;
             case 3:
                 toSpawn = eightDirEnemy;
+                assignProperBullet = true;
                 SpawnInGroup();
                 break;
             case 4:
                 toSpawn = spinEnemy;
-
+                assignProperBullet = false;
                 SpawnPosX = 0;
                 SpawnPosY = 0;
                 while (Mathf.Abs(SpawnPosX) < 10 && Mathf.Abs(SpawnPosY) < 6)
@@ -134,7 +143,18 @@ public class ThirdEnemySpawner : MonoBehaviour
             case 5:
                 toSpawn = mole;
                 numberEnemiesSpawned += 2;
+                assignProperBullet = false;
                 SpawnInGroup();
+                break;
+            case 6:
+                toSpawn = homingMineGuy;
+                assignProperBullet = false;
+                SpawnRandomly();
+                break;
+            case 7:
+                toSpawn = telefragGuy;
+                assignProperBullet = false;
+                SpawnRandomly();
                 break;
         }
     }
@@ -173,7 +193,10 @@ public class ThirdEnemySpawner : MonoBehaviour
             float SpawnPosYVariation = Random.Range(-1f, 1f);
             GameObject spawned = Instantiate(toSpawn, new Vector3(SpawnPosX + SpawnPosXVariation, SpawnPosY + SpawnPosYVariation, 10.6f) + Camera.transform.position, transform.rotation);
             spawned.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
-            spawned.GetComponent<Attack>().Bullet = enemyBullet;
+            if (assignProperBullet)
+            {
+                spawned.GetComponent<Attack>().Bullet = enemyBullet;
+            }
             spawned.GetComponent<Attack>().currentTarget = Player;
 
             if (i == 0 && !existsMole && toSpawn == mole)
@@ -203,7 +226,10 @@ public class ThirdEnemySpawner : MonoBehaviour
             }
             GameObject spawned = Instantiate(toSpawn, new Vector3(SpawnPosX, SpawnPosY, 10.6f) + Camera.transform.position, transform.rotation);
             spawned.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
-            spawned.GetComponent<Attack>().Bullet = enemyBullet;
+            if (assignProperBullet)
+            {
+                spawned.GetComponent<Attack>().Bullet = enemyBullet;
+            }
             spawned.GetComponent<Attack>().currentTarget = Player;
         }
     }

@@ -222,7 +222,6 @@ MonoBehaviour:
   PlayerDieAudio: {fileID: 1098745368026675434, guid: 26556f7af7586304588a534b37c199bc, type: 3}
   PlayerHurtAudio: {fileID: 5472873928898165319, guid: 1edb877ad01c07344b1cad0d27b62330, type: 3}
   CritAudio: {fileID: 4189199820661322247, guid: cfea01d8a8cd2594fa1446da0a6dd1b2, type: 3}
-  rb: {fileID: 5685454981733204263}
   iFramesTimer: 50
   iFrames: 0
   sprite: {fileID: 5685454981733204261}
@@ -270,6 +269,7 @@ MonoBehaviour:
   Crongus: 0
   levelDamageBonus: 0
   scaleAddMult: 1
+  stopwatchDebuffAmount: 0
 --- !u!114 &999997813651883019
 MonoBehaviour:
   m_ObjectHideFlags: 0
