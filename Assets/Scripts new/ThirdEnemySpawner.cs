@@ -246,6 +246,7 @@ public class ThirdEnemySpawner : MonoBehaviour
 
     void StartWave()
     {
+        Player.SendMessage("newWaveEffects");
         waveNumber++;
         spawnNumber = 0;
     }

@@ -62,7 +62,7 @@ public class ItemDescriptions : MonoBehaviour
                 enemiesCanUse = true;
                 break;
             case (int)ITEMLIST.CONVERTER:
-                itemDescription = "At the start of each round, 10% (+10% per stack) of your missing %HP is added to your base damage.";
+                itemDescription = "At the end of each round, 10% (+10% per stack) of your missing %HP is added to your base damage.";
                 break;
             case (int)ITEMLIST.EASIERTIMES:
                 itemDescription = "20% chance to block damage. Chance increases with stacks.";
