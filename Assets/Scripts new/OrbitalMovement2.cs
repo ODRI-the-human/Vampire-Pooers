@@ -36,5 +36,11 @@ public class OrbitalMovement2 : MonoBehaviour
             gameObject.GetComponent<weaponType>().weaponHeld = ownerWeapon;
             gameObject.GetComponent<weaponType>().SetWeapon();
         }
+
+        if (gameObject.GetComponent<Attack>().Bullet == null)
+        {
+            gameObject.GetComponent<Attack>().Bullet = Player.GetComponent<Attack>().Bullet;
+            gameObject.GetComponent<DealDamage>().finalDamageMult = 0.25f;
+        }
     }
 }

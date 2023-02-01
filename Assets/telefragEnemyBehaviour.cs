@@ -26,7 +26,7 @@ public class telefragEnemyBehaviour : MonoBehaviour
     {
         timer++;
 
-        if (timer == Mathf.Round(rateMult * 200 / gameObject.GetComponent<Attack>().stopwatchDebuffAmount))
+        if (timer == Mathf.Round(rateMult * 175 / gameObject.GetComponent<Attack>().stopwatchDebuffAmount))
         {
             prevSpeed = gameObject.GetComponent<NewPlayerMovement>().baseMoveSpeed;
             gameObject.GetComponent<NewPlayerMovement>().baseMoveSpeed = 0;

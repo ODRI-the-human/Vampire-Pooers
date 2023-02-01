@@ -78,22 +78,19 @@ public class ItemORBITAL2 : MonoBehaviour
         timey++;
     }
 
-    void OnTriggerEnter2D(Collider2D col)
+    void itemsAdded()
     {
-        if (col.tag == "item" && timey > 5)
+        Orbs.Clear();
+        GameObject[] orboes = GameObject.FindGameObjectsWithTag("PlayerBullet");
+        foreach (GameObject friend in orboes)
         {
-            Orbs.Clear();
-            GameObject[] orboes = GameObject.FindGameObjectsWithTag("PlayerBullet");
-            foreach (GameObject friend in orboes)
+            if (friend.GetComponent<OrbitalMovement2>() != null)
             {
-                if (friend.GetComponent<OrbitalMovement2>() != null)
-                {
-                    Destroy(friend);
-                }
+                Destroy(friend);
             }
-
-            Invoke(nameof(SetStats), 0.1f);
         }
+
+        Invoke(nameof(SetStats), 0.1f);
     }
 
     public void Undo()

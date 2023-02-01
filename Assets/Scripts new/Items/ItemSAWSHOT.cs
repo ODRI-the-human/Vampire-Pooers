@@ -22,7 +22,7 @@ public class ItemSAWSHOT : MonoBehaviour
     void Start()
     {
         master = gameObject.GetComponent<DealDamage>().master;
-        if (gameObject.GetComponent<Bullet_Movement>() != null)
+        if (gameObject.GetComponent<Bullet_Movement>() != null && gameObject.GetComponent<DealDamage>().isBulletClone)
         {
             canDoTheThing = true;
             float procMoment = 100f - 20 * gameObject.GetComponent<DealDamage>().procCoeff;

@@ -558,6 +558,7 @@ public class ItemHolder : MonoBehaviour
             ApplyItems();
         }
         MakeEpicBullets();
+        SendMessage("itemsAdded");
     }
 
     void MakeEpicBullets()

@@ -40,21 +40,18 @@ public class ItemORBITAL1 : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D col)
+    void itemsAdded()
     {
-        if (col.tag == "item")
+        GameObject[] orboes = GameObject.FindGameObjectsWithTag("PlayerBullet");
+        foreach (GameObject friend in orboes)
         {
-            GameObject[] orboes = GameObject.FindGameObjectsWithTag("PlayerBullet");
-            foreach (GameObject friend in orboes)
+            if (friend.GetComponent<OrbitalMovement>() != null)
             {
-                if (friend.GetComponent<OrbitalMovement>() != null)
-                {
-                    Destroy(friend);
-                }
+                Destroy(friend);
             }
-
-            SpawnGaries();
         }
+
+        SpawnGaries();
     }
 
     public void Undo()
