@@ -9,7 +9,7 @@ public class ItemBRICK : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (gameObject.tag == "PlayerBullet" || gameObject.tag == "enemyBullet")
+        if ((gameObject.tag == "PlayerBullet" || gameObject.tag == "enemyBullet") && gameObject.GetComponent<DealDamage>().isBulletClone)
         {
             float procMoment = 100f - instances * 10 * gameObject.GetComponent<DealDamage>().procCoeff;
             float pringle = Random.Range(0f, 100f);
