@@ -100,7 +100,7 @@ public class moleShit : MonoBehaviour
         {
             line.SetPosition(0, transform.position);
             line.SetPosition(1, nearestFriend.transform.position);
-            hitbox = Instantiate(moleProj, transform.position + 0.5f * (nearestFriend.transform.position - transform.position), transform.rotation);
+            hitbox = Instantiate(moleProj, transform.position + new Vector3(9999, 9999, 9999) + 0.5f * (nearestFriend.transform.position - transform.position), transform.rotation);
             hitbox.GetComponent<CapsuleCollider2D>().size = new Vector2(0.2f, (nearestFriend.transform.position - transform.position).magnitude);
             hitbox.GetComponent<CapsuleCollider2D>().enabled = false;
             hitbox.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
@@ -126,8 +126,9 @@ public class moleShit : MonoBehaviour
                 fuckAngle = 90 + (180 / Mathf.PI) * Mathf.Atan(vectorMan.y / vectorMan.x) + 270;
             }
             hitbox.transform.Rotate(0, 0, fuckAngle + 90, Space.World);
-            hitboxPos = hitbox.transform.position;
             hitbox.GetComponent<DealDamage>().owner = gameObject;
+            hitbox.transform.position -= new Vector3(9999, 9999, 9999);
+            hitboxPos = hitbox.transform.position;
         }
     }
 

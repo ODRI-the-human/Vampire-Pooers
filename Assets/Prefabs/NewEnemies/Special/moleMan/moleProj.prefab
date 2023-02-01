@@ -92,15 +92,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   finalDamageStat: 50
   procCoeff: 1
-  damageBase: 50
+  damageBase: 25
   damageMult: 1
   finalDamageMult: 1
-  knockBackCoeff: 1
   finalDamageDIV: 1
   critProb: 0.05
   critMult: 2
   owner: {fileID: 0}
   master: {fileID: 0}
+  massCoeff: 2
   overwriteDamageCalc: 0
   onlyDamageOnce: 0
   tickInterval: 1
