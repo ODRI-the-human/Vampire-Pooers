@@ -91,7 +91,7 @@ public class HPDamageDie : MonoBehaviour
         colorChangeTimer--;
     }
 
-    public void Hurty(float damageAmount, bool isCrit, bool playSound)
+    public void Hurty(float damageAmount, bool isCrit, bool playSound, float iFrameFac)
     {
         if (gameObject.GetComponent<ItemEASIERTIMES>() != null && Mathf.RoundToInt(100 * (0.8f - 1f / (gameObject.GetComponent<ItemEASIERTIMES>().instances + 1f))) > Random.Range(0, 100))
         {
@@ -110,10 +110,6 @@ public class HPDamageDie : MonoBehaviour
                 if (playSound)
                 {
                     GameObject hurteo = Instantiate(PlayerHurtAudio, new Vector3(0,0,-5), transform.rotation);
-                    if (damageAmount < gameObject.GetComponent<DealDamage>().damageAmt)
-                    {
-                        hurteo.GetComponent<AudioSource>().volume /= 1.5f;
-                    }
                 }
 
                 if (isCrit)
@@ -128,7 +124,7 @@ public class HPDamageDie : MonoBehaviour
                 HP -= damageAmount;
                 if (playerControlled == true)
                 {
-                    iFrames = iFramesTimer;
+                    iFrames = iFramesTimer * iFrameFac;
                     perfectWaves = -1;
                 }
 
@@ -163,7 +159,7 @@ public class HPDamageDie : MonoBehaviour
             {
                 Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>(), true);
             }
-            Hurty(damageAmount, isCrit, true);
+            Hurty(damageAmount, isCrit, true, 1);
         }
     }
 
@@ -193,7 +189,7 @@ public class HPDamageDie : MonoBehaviour
             {
                 Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>(), true);
             }
-            Hurty(damageAmount, isCrit, true);
+            Hurty(damageAmount, isCrit, true, col.GetComponent<DealDamage>().iFrameFac);
         }
     }
 }

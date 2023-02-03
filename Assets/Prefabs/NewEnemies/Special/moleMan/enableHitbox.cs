@@ -10,7 +10,7 @@ public class enableHitbox : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (timer == 1)
+        if (timer == 5)
         {
             gameObject.GetComponent<CapsuleCollider2D>().enabled = true;
         }

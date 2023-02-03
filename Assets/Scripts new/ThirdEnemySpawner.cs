@@ -33,6 +33,7 @@ public class ThirdEnemySpawner : MonoBehaviour
     public GameObject mole;
     public GameObject homingMineGuy;
     public GameObject telefragGuy;
+    public GameObject notMonstro;
 
     bool assignProperBullet;
 
@@ -98,7 +99,7 @@ public class ThirdEnemySpawner : MonoBehaviour
     void SpawnEnemies()
     {
         numberEnemiesSpawned = Mathf.RoundToInt(Random.Range(minSpawnMultiplier * ((spawnNumber + waveNumber * 2) * spawnScaleRate), maxSpawnMultiplier * ((spawnNumber + waveNumber * 2) * spawnScaleRate))) + 1;
-        SpawnType = Random.Range(0, 8);
+        SpawnType = Random.Range(0, 9);
         switch (SpawnType)
         {
             case 0:
@@ -154,6 +155,12 @@ public class ThirdEnemySpawner : MonoBehaviour
             case 7:
                 toSpawn = telefragGuy;
                 assignProperBullet = false;
+                SpawnRandomly();
+                break;
+            case 8:
+                toSpawn = notMonstro;
+                assignProperBullet = true;
+                numberEnemiesSpawned = 2;
                 SpawnRandomly();
                 break;
         }

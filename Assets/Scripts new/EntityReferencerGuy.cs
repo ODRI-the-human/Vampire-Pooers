@@ -31,6 +31,7 @@ public class EntityReferencerGuy : MonoBehaviour
     public GameObject sawVisual;
     public GameObject soyShotAudio;
     public GameObject neutralExplosion;
+    public GameObject camera;
 
     GameObject playerInstance;
 

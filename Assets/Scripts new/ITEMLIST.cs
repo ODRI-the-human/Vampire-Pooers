@@ -57,4 +57,11 @@ public enum ITEMLIST
     PISTOL,
     GRENADELAUNCHER,
     DARKARTS,
+
+
+
+
+
+    //This is for items that only enemies use.
+    CREEPSHOT,
 }

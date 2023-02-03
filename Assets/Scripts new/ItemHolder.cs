@@ -32,6 +32,12 @@ public class ItemHolder : MonoBehaviour
             isBullet = true;
         }
 
+        if (gameObject.tag == "Untagged")
+        {
+            isGuy = false;
+            isBullet = false;
+        }
+
         if (doTheShit)
         {
             ApplyAll();
@@ -537,6 +543,15 @@ public class ItemHolder : MonoBehaviour
                 gameObject.GetComponent<weaponType>().SetWeapon();
                 break;
 
+
+
+
+            case (int)ITEMLIST.CREEPSHOT:
+                if (isBullet)
+                {
+                    gameObject.AddComponent<ItemCREEPSHOT>();
+                }
+                break;
         }
     }
 

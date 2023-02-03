@@ -143,6 +143,16 @@ public class Attack : MonoBehaviour
                     currentAngle = (Mathf.PI / 4) * (i+1);
                     SpawnDarkart();
                     break;
+                case 4: // For Monstro enemy.
+                    for (int j = 0; j < 15; j++)
+                    {
+                        currentAngle = Random.Range(-0.5f, 0.5f) + 0.3f * shotAngleCoeff * (0.5f * noExtraShots - i - 1);
+                        float normieShotSpeed = shotSpeed;
+                        shotSpeed *= Random.Range(0.8f, 1.8f);
+                        SpawnAttack(currentAngle);
+                        shotSpeed = normieShotSpeed;
+                    }
+                    break;
             }
         }
     }
@@ -182,6 +192,13 @@ public class Attack : MonoBehaviour
             newObject.GetComponent<DealDamage>().finalDamageDIV = gameObject.GetComponent<DealDamage>().finalDamageDIV;
             newObject.GetComponent<weaponType>().weaponHeld = newObject.GetComponent<weaponType>().weaponHeld;
             newObject.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
+        }
+
+        switch (specialFireType)
+        {
+            case 4:
+                newObject.AddComponent<ItemCREEPSHOT>();
+                break;
         }
     }
 

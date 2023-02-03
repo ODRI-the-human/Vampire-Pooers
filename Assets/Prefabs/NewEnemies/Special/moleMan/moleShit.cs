@@ -102,7 +102,6 @@ public class moleShit : MonoBehaviour
             line.SetPosition(1, nearestFriend.transform.position);
             hitbox = Instantiate(moleProj, transform.position + new Vector3(9999, 9999, 9999) + 0.5f * (nearestFriend.transform.position - transform.position), transform.rotation);
             hitbox.GetComponent<CapsuleCollider2D>().size = new Vector2(0.2f, (nearestFriend.transform.position - transform.position).magnitude);
-            hitbox.GetComponent<CapsuleCollider2D>().enabled = false;
             hitbox.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
             hitbox.GetComponent<DealDamage>().owner = gameObject;
             hitbox.GetComponent<DealDamage>().finalDamageMult *= gameObject.GetComponent<DealDamage>().finalDamageMult;

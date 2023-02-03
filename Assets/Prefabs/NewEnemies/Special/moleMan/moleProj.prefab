@@ -31,7 +31,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4255455733749829593}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.03999996, z: 1.2}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -100,12 +100,13 @@ MonoBehaviour:
   critMult: 2
   owner: {fileID: 0}
   master: {fileID: 0}
-  massCoeff: 2
+  massCoeff: 0
   overwriteDamageCalc: 0
   onlyDamageOnce: 0
   tickInterval: 1
   timer: 0
   damageAmt: 0
+  iFrameFac: 1
   isBulletClone: 0
 --- !u!212 &-5745307138018157235
 SpriteRenderer:
@@ -166,7 +167,7 @@ CapsuleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4255455733749829593}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0

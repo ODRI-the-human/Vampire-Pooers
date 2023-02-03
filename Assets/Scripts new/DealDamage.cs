@@ -24,6 +24,8 @@ public class DealDamage : MonoBehaviour
     public int timer = 0;
     public float damageAmt;
 
+    public float iFrameFac = 1;
+
     public bool isBulletClone = false;
 
     // Start is called before the first frame update
@@ -65,7 +67,7 @@ public class DealDamage : MonoBehaviour
         }
     }
 
-    // For applying any on-hit effects - sends the RollOnHit message, which is picked up by any on-hit effects THIS object has, which then apply the effect or whatever to col.gameobject.
+    //For applying any on-hit effects - sends the RollOnHit message, which is picked up by any on-hit effects THIS object has, which then apply the effect or whatever to col.gameobject.
     public void OnCollisionEnter2D(Collision2D col)
     {
         if (gameObject.tag != col.gameObject.tag && col.gameObject.tag != "Wall" && col.gameObject.tag != "PlayerBullet" && col.gameObject.tag != "enemyBullet")

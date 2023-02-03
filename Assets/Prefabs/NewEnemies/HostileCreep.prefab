@@ -171,6 +171,7 @@ MonoBehaviour:
   tickInterval: 10
   timer: 0
   damageAmt: 0
+  iFrameFac: 0.2
   isBulletClone: 0
 --- !u!114 &-5388908824613595565
 MonoBehaviour:
