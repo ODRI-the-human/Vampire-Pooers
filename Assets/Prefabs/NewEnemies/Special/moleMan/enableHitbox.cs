@@ -4,16 +4,8 @@ using UnityEngine;
 
 public class enableHitbox : MonoBehaviour
 {
-    int timer = 0;
-
-
-    // Update is called once per frame
-    void FixedUpdate()
+    public void enableHitboxer()
     {
-        if (timer == 5)
-        {
-            gameObject.GetComponent<CapsuleCollider2D>().enabled = true;
-        }
-        timer++;
+        gameObject.GetComponent<CapsuleCollider2D>().enabled = true;
     }
 }

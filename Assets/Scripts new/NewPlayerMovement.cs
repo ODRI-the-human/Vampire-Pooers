@@ -95,7 +95,6 @@ public class NewPlayerMovement : MonoBehaviour
 
             desiredVector = moveDirection;
             Vector3 moveDir = currentMoveSpeed * desiredVector * Time.deltaTime;
-            Debug.Log(desiredVector.ToString());
             transform.position += moveDir;
 
 

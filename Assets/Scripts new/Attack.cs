@@ -59,7 +59,7 @@ public class Attack : MonoBehaviour
             Player = GameObject.Find("newPlayer");
             if (Player.GetComponent<ItemSTOPWATCH>() != null)
             {
-                stopwatchDebuffAmount = -1 / (0.5f * Player.GetComponent<ItemSTOPWATCH>().instances + 1) + 1;
+                stopwatchDebuffAmount = 1 / (0.4f * Player.GetComponent<ItemSTOPWATCH>().instances + 1);
                 fireTimerLength /= stopwatchDebuffAmount;
                 shotSpeed *= stopwatchDebuffAmount;
                 gameObject.GetComponent<NewPlayerMovement>().baseMoveSpeed *= stopwatchDebuffAmount;

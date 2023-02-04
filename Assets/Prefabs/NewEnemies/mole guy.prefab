@@ -214,7 +214,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: a66365599d0d4264e9fd35d01ff3d088, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -236,6 +236,7 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 5
   m_Positions:
+  - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
   m_Parameters:
@@ -410,9 +411,14 @@ MonoBehaviour:
   goesFirst: 0
   hasFired: 0
   taken: 0
+  giveFunnyVisual: 0
   hitbox: {fileID: 0}
+  zapAudio: {fileID: 5421414380371828586, guid: 0b2855f0b92e0e9468ae4c072134ca98, type: 3}
   distanceFromPlayer: 0
   distanceFromNearest: 0
   bumHead: {x: 0, y: 0, z: 0}
   camera: {fileID: 0}
   master: {fileID: 0}
+  warn: {fileID: 2100000, guid: fba9229bb5d773248b7d70e956c6b896, type: 2}
+  shoot: {fileID: 2100000, guid: 6a7214e8be07cb14587ff3180ea0b46f, type: 2}
+  invis: {fileID: 2100000, guid: a66365599d0d4264e9fd35d01ff3d088, type: 2}

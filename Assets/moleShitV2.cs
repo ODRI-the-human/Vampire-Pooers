@@ -15,8 +15,12 @@ public class moleShitV2 : MonoBehaviour
     public bool goesFirst = false;
     public bool hasFired = false;
     public bool taken;
+    public bool giveFunnyVisual = false;
     bool hasPositioned = false;
     public GameObject hitbox;
+
+    public GameObject zapAudio;
+    GameObject spawnedZap;
 
     public float distanceFromPlayer;
     public float distanceFromNearest;
@@ -30,6 +34,17 @@ public class moleShitV2 : MonoBehaviour
 
     public GameObject camera;
     public GameObject master;
+
+    public Material warn;
+    public Material shoot;
+    public Material invis;
+
+    float electricRandAmt = 0.1f;
+    int timer = 0;
+
+    bool goesFirstExists = true;
+
+    public float speedDebuffAmt;
 
     // Start is called before the first frame update
     void Start()
@@ -47,10 +62,16 @@ public class moleShitV2 : MonoBehaviour
             gameObject.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
         }
 
-        if (nearestFriend == null && hasFired && !goesFirst) // if a mole gets killed.
+        if (nearestFriend == null && hasFired) // if a mole gets killed.
         {
             line.SetPosition(0, new Vector3(0, 0, 0));
             line.SetPosition(1, new Vector3(0, 0, 0));
+            line.SetPosition(2, new Vector3(0, 0, 0));
+            giveFunnyVisual = false;
+            if (goesFirst)
+            {
+                Destroy(spawnedZap);
+            }
 
             GameObject[] enemies = GameObject.FindGameObjectsWithTag("Hostile");
             foreach (GameObject friend in enemies)
@@ -60,16 +81,39 @@ public class moleShitV2 : MonoBehaviour
                     friend.GetComponent<moleShitV2>().DestroyHitbox();
                     friend.GetComponent<moleShitV2>().line.SetPosition(0, new Vector3(0, 0, 0));
                     friend.GetComponent<moleShitV2>().line.SetPosition(1, new Vector3(0, 0, 0));
+                    friend.GetComponent<moleShitV2>().line.SetPosition(2, new Vector3(0, 0, 0));
                     friend.GetComponent<moleShitV2>().hasFired = false;
                     friend.GetComponent<moleShitV2>().hasPositioned = false;
+                    friend.GetComponent<moleShitV2>().giveFunnyVisual = false;
+                    if (friend.GetComponent<moleShitV2>().giveFunnyVisual == goesFirst)
+                    {
+                        Destroy(friend.GetComponent<moleShitV2>().spawnedZap);
+                    }
                 }
             }
         }
 
-        if (gameObject.GetComponent<HPDamageDie>().HP < 50 && goesFirst)
+        gameObject.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
+    }
+
+    void FixedUpdate()
+    {
+        timer++;
+
+        if (giveFunnyVisual && timer % 2 == 0)
         {
-            nearestFriend.GetComponent<moleShitV2>().goesFirst = true;
-            goesFirst = false;
+            line.SetPosition(1, Vector3.Lerp(nearestFriend.transform.position, pos, 0.5f) + new Vector3(Random.Range(-electricRandAmt, electricRandAmt), Random.Range(-electricRandAmt, electricRandAmt), 0));
+        }
+
+        // if there's 3 seconds of downtime, for whatever reason (this sometimes happens when a mole *is* tagged to go first, but doesn't for some reason)
+        if (timer >= Mathf.Round(150 / speedDebuffAmt))
+        {
+            StartCycle();
+        }
+
+        if (timer == 5)
+        {
+            speedDebuffAmt = gameObject.GetComponent<Attack>().stopwatchDebuffAmount;
         }
     }
 
@@ -91,6 +135,8 @@ public class moleShitV2 : MonoBehaviour
 
     public void PickPosition()
     {
+        timer = 0;
+
         bumHead = player.transform.position;
         positionIsOkay = false;
         while (!positionIsOkay)
@@ -107,7 +153,6 @@ public class moleShitV2 : MonoBehaviour
         transform.position = pos;
         badPositions.Add(transform.position);
         distanceFromPlayer = (transform.position - player.transform.position).magnitude;
-        Debug.Log("benenr");
         hasPositioned = true;
         PickRandomGuy();
         if (nearestFriend != null)
@@ -122,17 +167,23 @@ public class moleShitV2 : MonoBehaviour
 
         if (goesFirst)
         {
-            Invoke(nameof(spawnLazer), 1);
+            Invoke(nameof(spawnLazer), (0.5f / speedDebuffAmt));
         }
     }
 
     void spawnLazer()
     {
-        Invoke(nameof(Reset), 2);
+        timer = 0;
+
+        Invoke(nameof(Reset), (2.5f / speedDebuffAmt));
+        Invoke(nameof(enableHitbox), (0.5f / speedDebuffAmt));
         FindNearest(transform.position);
 
-        line.SetPosition(0, transform.position + new Vector3(0, 0, -5));
-        line.SetPosition(1, nearestFriend.transform.position + new Vector3(0, 0, -5));
+        line.SetPosition(0, transform.position);
+        line.SetPosition(1, Vector3.Lerp(nearestFriend.transform.position, pos, 0.5f));
+        line.SetPosition(2, nearestFriend.transform.position);
+        pos = new Vector3(pos.x, pos.y, 0);
+        line.material = warn;
         hitbox = Instantiate(moleProj, transform.position + new Vector3(9999, 9999, 9999) + 0.5f * (nearestFriend.transform.position - transform.position), transform.rotation);
         hitbox.GetComponent<CapsuleCollider2D>().size = new Vector2(0.2f, (nearestFriend.transform.position - transform.position).magnitude);
         hitbox.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
@@ -157,28 +208,63 @@ public class moleShitV2 : MonoBehaviour
         {
             fuckAngle = 90 + (180 / Mathf.PI) * Mathf.Atan(vectorMan.y / vectorMan.x) + 270;
         }
+
+        if (vectorMan.x == 0 && vectorMan.y != 0)
+        {
+            fuckAngle = 90;
+        }
+
+        if (vectorMan.x != 0 && vectorMan.y == 0)
+        {
+            fuckAngle = 0;
+        }
+
         hitbox.transform.Rotate(0, 0, fuckAngle + 90, Space.World);
         hitbox.GetComponent<DealDamage>().owner = gameObject;
         hitbox.transform.position -= new Vector3(9999, 9999, 9999);
         hitboxPos = hitbox.transform.position;
         hasFired = true;
-        nearestFriend.GetComponent<moleShitV2>().spawnLazer();
+        if (!nearestFriend.GetComponent<moleShitV2>().goesFirst)
+        {
+            nearestFriend.GetComponent<moleShitV2>().spawnLazer();
+        }
+    }
+
+    void enableHitbox()
+    {
+        timer = 0;
+
+        hitbox.GetComponent<enableHitbox>().enableHitboxer();
+        giveFunnyVisual = true;
+        line.material = shoot;
+
+        if (goesFirst)
+        {
+            spawnedZap = Instantiate(zapAudio);
+            spawnedZap.GetComponent<ownerDestroy>().owner = gameObject;
+        }
     }
 
     public void Reset()
     {
+        timer = 0;
+
         transform.position = new Vector3(9999, 9999, 9999);
         mates.Clear();
         badPositions.Clear();
         line.SetPosition(0, new Vector3(0, 0, 0));
         line.SetPosition(1, new Vector3(0, 0, 0));
+        line.SetPosition(2, new Vector3(0, 0, 0));
         hasFired = false;
         hasPositioned = false;
         nearestFriend = null;
+        giveFunnyVisual = false;
         pos = transform.position;
         Destroy(hitbox);
+        line.material = invis;
+        Destroy(spawnedZap);
 
-        Invoke(nameof(StartCycle), 0.5f);
+        Invoke(nameof(StartCycle), (0.5f / speedDebuffAmt));
     }
 
     void CheckPositionAvailability(Vector3 posToUse)
@@ -242,7 +328,7 @@ public class moleShitV2 : MonoBehaviour
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Hostile");
         foreach (GameObject friend in enemies)
         {
-            if (friend.GetComponent<moleShitV2>() != null && friend != gameObject && !friend.GetComponent<moleShitV2>().hasFired)
+            if (friend.GetComponent<moleShitV2>() != null && friend != gameObject && !friend.GetComponent<moleShitV2>().hasFired && (transform.position - friend.transform.position).magnitude < 50)
             {
                 mates.Add(friend);
             }
@@ -252,7 +338,7 @@ public class moleShitV2 : MonoBehaviour
         {
             foreach (GameObject friend in enemies)
             {
-                if (friend.GetComponent<moleShitV2>() != null && friend != gameObject && friend.GetComponent<moleShitV2>().goesFirst)
+                if (friend.GetComponent<moleShitV2>() != null && friend != gameObject && friend.GetComponent<moleShitV2>().goesFirst && (transform.position - friend.transform.position).magnitude < 30)
                 {
                     mates.Add(friend);
                 }
@@ -283,5 +369,23 @@ public class moleShitV2 : MonoBehaviour
     public void DestroyHitbox()
     {
         Destroy(hitbox);
+    }
+
+    public void ApplyOwnOnDeaths()
+    {
+        if (goesFirst)
+        {
+            if (nearestFriend == null)
+            {
+                PickRandomGuy();
+            }
+
+            nearestFriend.GetComponent<moleShitV2>().goesFirst = true;
+            goesFirst = false;
+        }
+        if (nearestFriend == null)
+        {
+            PickRandomGuy();
+        }
     }
 }

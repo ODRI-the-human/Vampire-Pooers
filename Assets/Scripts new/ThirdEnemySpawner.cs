@@ -41,6 +41,8 @@ public class ThirdEnemySpawner : MonoBehaviour
     GameObject Player;
     GameObject Camera;
 
+    bool skipSpawn = false;
+
     void Start()
     {
         Player = GameObject.Find("newPlayer");
@@ -98,8 +100,10 @@ public class ThirdEnemySpawner : MonoBehaviour
 
     void SpawnEnemies()
     {
+        Debug.Log("Spawning a... LIBERAL!");
+        skipSpawn = false;
         numberEnemiesSpawned = Mathf.RoundToInt(Random.Range(minSpawnMultiplier * ((spawnNumber + waveNumber * 2) * spawnScaleRate), maxSpawnMultiplier * ((spawnNumber + waveNumber * 2) * spawnScaleRate))) + 1;
-        SpawnType = Random.Range(0, 9);
+        SpawnType = Random.Range(5, 6);
         switch (SpawnType)
         {
             case 0:
@@ -176,46 +180,70 @@ public class ThirdEnemySpawner : MonoBehaviour
             SpawnPosY = Random.Range(-8, 8);
         }
 
-        bool existsMole = false;
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Hostile");
-        foreach (GameObject friend in enemies)
+        if (toSpawn = mole)
         {
-            if (friend.GetComponent<moleShit>() != null)
+            int numMoles = 0;
+
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Hostile");
+            foreach (GameObject friend in enemies)
             {
-                existsMole = true;
-                firstMole = friend;
-                break;
+                if (friend.GetComponent<moleShitV2>() != null)
+                {
+                    numMoles++;
+                }
+            }
+
+            if (numMoles >= 20)
+            {
+                skipSpawn = true;
+                SpawnEnemies();
             }
         }
 
-        if (enemies.Length == 0)
+        if (!skipSpawn)
         {
-            existsMole = false;
-            firstMole = null;
-        }
-
-        for (int i = 0; i < numberEnemiesSpawned; i++)
-        {
-            float SpawnPosXVariation = Random.Range(-1f, 1f);
-            float SpawnPosYVariation = Random.Range(-1f, 1f);
-            GameObject spawned = Instantiate(toSpawn, new Vector3(SpawnPosX + SpawnPosXVariation, SpawnPosY + SpawnPosYVariation, 10.6f) + Camera.transform.position, transform.rotation);
-            spawned.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
-            if (assignProperBullet)
+            bool existsMole = false;
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Hostile");
+            foreach (GameObject friend in enemies)
             {
-                spawned.GetComponent<Attack>().Bullet = enemyBullet;
-            }
-            spawned.GetComponent<Attack>().currentTarget = Player;
-
-            if (i == 0 && !existsMole && toSpawn == mole)
-            {
-                spawned.GetComponent<moleShit>().goesFirst = true;
-                firstMole = spawned;
+                if (friend.GetComponent<moleShitV2>() != null)
+                {
+                    existsMole = true;
+                    firstMole = friend;
+                    break;
+                }
             }
 
-            if (existsMole && toSpawn == mole)
+            if (enemies.Length == 0)
             {
-                spawned.GetComponent<moleShit>().timer = firstMole.GetComponent<moleShit>().timer;
-                spawned.GetComponent<moleShit>().taken = true;
+                existsMole = false;
+                firstMole = null;
+            }
+
+            for (int i = 0; i < numberEnemiesSpawned; i++)
+            {
+                float SpawnPosXVariation = Random.Range(-1f, 1f);
+                float SpawnPosYVariation = Random.Range(-1f, 1f);
+                GameObject spawned = Instantiate(toSpawn, new Vector3(SpawnPosX + SpawnPosXVariation, SpawnPosY + SpawnPosYVariation, 10.6f) + Camera.transform.position, transform.rotation);
+                spawned.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
+                if (assignProperBullet)
+                {
+                    spawned.GetComponent<Attack>().Bullet = enemyBullet;
+                }
+                spawned.GetComponent<Attack>().currentTarget = Player;
+
+                if (i == 0 && !existsMole && toSpawn == mole)
+                {
+                    spawned.GetComponent<moleShitV2>().goesFirst = true;
+                    firstMole = spawned;
+                    spawned.transform.position += new Vector3(999, 999, 999);
+                }
+
+                if (existsMole && toSpawn == mole)
+                {
+                    spawned.GetComponent<moleShitV2>().taken = true;
+                    spawned.transform.position += new Vector3(999, 999, 999);
+                }
             }
         }
     }
