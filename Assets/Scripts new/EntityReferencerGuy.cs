@@ -42,11 +42,31 @@ public class EntityReferencerGuy : MonoBehaviour
 
     public int numItemsExist = 33;
 
+
+    public float timeLeft = 240;
+    bool timerActive = true;
+
+
     void Start()
     {
         GameObject pedestal = gameObject.GetComponent<ThirdEnemySpawner>().itemPedestal;
         numItemsExist = pedestal.GetComponent<itemPedestal>().spriteArray.GetLength(0);
         playerInstance = GameObject.Find("newPlayer");
         //Application.targetFrameRate = 60;
+    }
+
+    void Update()
+    {
+        if (timeLeft < 0 && timerActive)
+        {
+            GameObject oopsers = Instantiate(neutralExplosion);
+            oopsers.transform.localScale *= 100;
+            Destroy(gameObject.GetComponent<StatsText>().timeText);
+            timerActive = false;
+        }
+        else
+        {
+            timeLeft -= Time.deltaTime;
+        }
     }
 }

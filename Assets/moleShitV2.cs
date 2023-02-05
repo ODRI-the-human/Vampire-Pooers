@@ -79,9 +79,9 @@ public class moleShitV2 : MonoBehaviour
                 if (friend.GetComponent<moleShitV2>() != null)
                 {
                     friend.GetComponent<moleShitV2>().DestroyHitbox();
-                    friend.GetComponent<moleShitV2>().line.SetPosition(0, new Vector3(0, 0, 0));
-                    friend.GetComponent<moleShitV2>().line.SetPosition(1, new Vector3(0, 0, 0));
-                    friend.GetComponent<moleShitV2>().line.SetPosition(2, new Vector3(0, 0, 0));
+                    friend.GetComponent<moleShitV2>().line.SetPosition(0, new Vector3(0, 0, -0.05f));
+                    friend.GetComponent<moleShitV2>().line.SetPosition(1, new Vector3(0, 0, -0.05f));
+                    friend.GetComponent<moleShitV2>().line.SetPosition(2, new Vector3(0, 0, -0.05f));
                     friend.GetComponent<moleShitV2>().hasFired = false;
                     friend.GetComponent<moleShitV2>().hasPositioned = false;
                     friend.GetComponent<moleShitV2>().giveFunnyVisual = false;
@@ -102,7 +102,7 @@ public class moleShitV2 : MonoBehaviour
 
         if (giveFunnyVisual && timer % 2 == 0)
         {
-            line.SetPosition(1, Vector3.Lerp(nearestFriend.transform.position, pos, 0.5f) + new Vector3(Random.Range(-electricRandAmt, electricRandAmt), Random.Range(-electricRandAmt, electricRandAmt), 0));
+            line.SetPosition(1, new Vector3(Vector3.Lerp(nearestFriend.transform.position, pos, 0.5f).x, Vector3.Lerp(nearestFriend.transform.position, pos, 0.5f).y, 0) + new Vector3(Random.Range(-electricRandAmt, electricRandAmt), Random.Range(-electricRandAmt, electricRandAmt), -0.05f));
         }
 
         // if there's 3 seconds of downtime, for whatever reason (this sometimes happens when a mole *is* tagged to go first, but doesn't for some reason)
@@ -149,7 +149,7 @@ public class moleShitV2 : MonoBehaviour
             bumHead.z = 0;
             CheckPositionAvailability(bumHead);
         }
-        pos = new Vector3(bumHead.x, bumHead.y, 0);
+        pos = new Vector3(bumHead.x, bumHead.y, -0.1f);
         transform.position = pos;
         badPositions.Add(transform.position);
         distanceFromPlayer = (transform.position - player.transform.position).magnitude;
@@ -180,9 +180,9 @@ public class moleShitV2 : MonoBehaviour
         FindNearest(transform.position);
 
         line.SetPosition(0, transform.position);
-        line.SetPosition(1, Vector3.Lerp(nearestFriend.transform.position, pos, 0.5f));
+        line.SetPosition(1, Vector3.Lerp(nearestFriend.transform.position, pos, -0.05f));
         line.SetPosition(2, nearestFriend.transform.position);
-        pos = new Vector3(pos.x, pos.y, 0);
+        pos = new Vector3(pos.x, pos.y, -0.1f);
         line.material = warn;
         hitbox = Instantiate(moleProj, transform.position + new Vector3(9999, 9999, 9999) + 0.5f * (nearestFriend.transform.position - transform.position), transform.rotation);
         hitbox.GetComponent<CapsuleCollider2D>().size = new Vector2(0.2f, (nearestFriend.transform.position - transform.position).magnitude);

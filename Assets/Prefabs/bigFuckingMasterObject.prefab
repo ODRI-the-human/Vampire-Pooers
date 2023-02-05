@@ -78,10 +78,12 @@ MonoBehaviour:
   sawVisual: {fileID: 0}
   soyShotAudio: {fileID: 0}
   neutralExplosion: {fileID: 0}
+  camera: {fileID: 0}
   playerBulletMaterial: {fileID: 0}
   enemyBulletMaterial: {fileID: 0}
   dagger: {fileID: 0}
   numItemsExist: 28
+  timeLeft: 240
 --- !u!114 &9014303847402346882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,6 +136,7 @@ MonoBehaviour:
   itemScreenText: {fileID: 0}
   FirerateText: {fileID: 0}
   FirerateChangeText: {fileID: 0}
+  timeText: {fileID: 0}
   HPChangeTimer: 0
   XPChangeTimer: 0
   DMGChangeTimer: 0

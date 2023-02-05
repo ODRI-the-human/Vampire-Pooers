@@ -146,6 +146,7 @@ public class NewPlayerMovement : MonoBehaviour
                     gameObject.GetComponent<HPDamageDie>().damageReduction -= 500;
                     gameObject.GetComponent<DealDamage>().massCoeff -= 3;
                     SendMessage("dodgeEndEffects");
+                    gameObject.GetComponent<HPDamageDie>().iFrames = 10;
                     break;
             }    
         }

@@ -18,6 +18,8 @@ public class StatsText : MonoBehaviour
     public TextMeshProUGUI FirerateText;
     public TextMeshProUGUI FirerateChangeText;
 
+    public TextMeshProUGUI timeText;
+
     public int HPChangeTimer = 100;
     public int XPChangeTimer = 100;
     public int DMGChangeTimer = 100;
@@ -64,6 +66,13 @@ public class StatsText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float timeLeft = gameObject.GetComponent<EntityReferencerGuy>().timeLeft;
+        int seconds = Mathf.FloorToInt(timeLeft % 60);
+        int minutes = Mathf.FloorToInt(timeLeft / 60);
+        timeText.text = "PORTAL CLOSES IN:" + "\n" + string.Format("{0:00} : {1:00}", minutes, seconds);
+
+
+
         if (totalTime > 5)
         {
             if (lastMaxHP != Player.GetComponent<HPDamageDie>().MaxHP)
