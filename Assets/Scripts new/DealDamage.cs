@@ -28,6 +28,8 @@ public class DealDamage : MonoBehaviour
 
     public bool isBulletClone = false;
 
+    public float damageToPresent;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -52,6 +54,8 @@ public class DealDamage : MonoBehaviour
         {
             damageAmt = damageBase * damageMult * finalDamageMult / finalDamageDIV;
         }
+
+        damageToPresent = (50 + damageBase) * damageMult * finalDamageMult / finalDamageDIV;
     }
 
     void FixedUpdate()

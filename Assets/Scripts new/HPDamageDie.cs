@@ -110,6 +110,7 @@ public class HPDamageDie : MonoBehaviour
                 if (playSound)
                 {
                     GameObject hurteo = Instantiate(PlayerHurtAudio, new Vector3(0,0,-5), transform.rotation);
+                    hurteo.GetComponent<AudioSource>().volume /= 1.5f;
                 }
 
                 if (isCrit)

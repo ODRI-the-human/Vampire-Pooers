@@ -34,6 +34,8 @@ public class ThirdEnemySpawner : MonoBehaviour
     public GameObject homingMineGuy;
     public GameObject telefragGuy;
     public GameObject notMonstro;
+    public GameObject grabEnemy;
+    public GameObject chargeEnemy;
 
     bool assignProperBullet;
 
@@ -103,7 +105,7 @@ public class ThirdEnemySpawner : MonoBehaviour
         Debug.Log("Spawning a... LIBERAL!");
         skipSpawn = false;
         numberEnemiesSpawned = Mathf.RoundToInt(Random.Range(minSpawnMultiplier * ((spawnNumber + waveNumber * 2) * spawnScaleRate), maxSpawnMultiplier * ((spawnNumber + waveNumber * 2) * spawnScaleRate))) + 1;
-        SpawnType = Random.Range(0, 9);
+        SpawnType = Random.Range(0, 11);
         switch (SpawnType)
         {
             case 0:
@@ -147,7 +149,7 @@ public class ThirdEnemySpawner : MonoBehaviour
                 break;
             case 5:
                 toSpawn = mole;
-                numberEnemiesSpawned += 2;
+                numberEnemiesSpawned += 3;
                 assignProperBullet = false;
                 SpawnInGroup();
                 break;
@@ -165,6 +167,17 @@ public class ThirdEnemySpawner : MonoBehaviour
                 toSpawn = notMonstro;
                 assignProperBullet = true;
                 numberEnemiesSpawned = 2;
+                SpawnRandomly();
+                break;
+            case 9:
+                toSpawn = grabEnemy;
+                assignProperBullet = false;
+                numberEnemiesSpawned = 2;
+                SpawnRandomly();
+                break;
+            case 10:
+                toSpawn = chargeEnemy;
+                assignProperBullet = false;
                 SpawnRandomly();
                 break;
         }

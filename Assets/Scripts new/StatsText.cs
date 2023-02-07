@@ -100,17 +100,17 @@ public class StatsText : MonoBehaviour
                 }
             }
 
-            if (lastDMG != Player.GetComponent<DealDamage>().finalDamageStat)
+            if (lastDMG != Player.GetComponent<DealDamage>().damageToPresent)
             {
                 DMGChangeTimer = 0;
-                if (lastDMG < Player.GetComponent<DealDamage>().finalDamageStat)
+                if (lastDMG < Player.GetComponent<DealDamage>().damageToPresent)
                 {
-                    DMGChangeText.text = "+" + (Mathf.Round((Player.GetComponent<DealDamage>().finalDamageStat - lastLongDMG) * 100) / 100).ToString();
+                    DMGChangeText.text = "+" + (Mathf.Round((Player.GetComponent<DealDamage>().damageToPresent - lastLongDMG) * 100) / 100).ToString();
                     DMGChangeText.color = Color.green;
                 }
                 else
                 {
-                    DMGChangeText.text = (Mathf.Round((Player.GetComponent<DealDamage>().finalDamageStat - lastLongDMG) * 100) / 100).ToString();
+                    DMGChangeText.text = (Mathf.Round((Player.GetComponent<DealDamage>().damageToPresent - lastLongDMG) * 100) / 100).ToString();
                     DMGChangeText.color = Color.red;
                 }
             }
@@ -143,14 +143,14 @@ public class StatsText : MonoBehaviour
 
         HPText.text = "HP: " + (Mathf.Round(Player.GetComponent<HPDamageDie>().HP)).ToString() + "/" + (Mathf.Round(Player.GetComponent<HPDamageDie>().MaxHP)).ToString();
         XPText.text = "XP: " + (Mathf.Round(Player.GetComponent<LevelUp>().XP)).ToString() + "/" + (Mathf.RoundToInt(Player.GetComponent<LevelUp>().nextXP)).ToString();
-        DMGText.text = "DMG: " + (Mathf.Round(Player.GetComponent<DealDamage>().finalDamageStat * 100) / 100).ToString();
+        DMGText.text = "DMG: " + (Mathf.Round(Player.GetComponent<DealDamage>().damageToPresent * 100) / 100).ToString();
         FirerateText.text = "Fire rate: " + (Mathf.Round(Player.GetComponent<Attack>().fireTimerActualLength * 100) / 100).ToString();
         LevelText.text = "Level: " + Player.GetComponent<LevelUp>().level.ToString();
         itemScreenText.text = Player.GetComponent<getItemDescription>().itemDescription;
 
         lastMaxHP = Player.GetComponent<HPDamageDie>().MaxHP;
         lastXP = Player.GetComponent<LevelUp>().XP;
-        lastDMG = Player.GetComponent<DealDamage>().finalDamageStat;
+        lastDMG = Player.GetComponent<DealDamage>().damageToPresent;
         lastLevel = Player.GetComponent<LevelUp>().level;
         lastFirerate = Player.GetComponent<Attack>().fireTimerActualLength;
 

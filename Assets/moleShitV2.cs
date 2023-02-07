@@ -381,7 +381,6 @@ public class moleShitV2 : MonoBehaviour
             }
 
             nearestFriend.GetComponent<moleShitV2>().goesFirst = true;
-            goesFirst = false;
         }
         if (nearestFriend == null)
         {

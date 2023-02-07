@@ -113,6 +113,8 @@ MonoBehaviour:
   homingMineGuy: {fileID: 8034279136360660190, guid: f7c2cd73a1c03594d86514dee3fd1443, type: 3}
   telefragGuy: {fileID: 8034279136360660190, guid: 3d35b398e9ce4194badbccf95fac8b63, type: 3}
   notMonstro: {fileID: 8034279136360660190, guid: 971bc536625dac64599422fc25b79027, type: 3}
+  grabEnemy: {fileID: 8034279136360660190, guid: 2fc5e49fae693b742aba6fc2d07bb6d0, type: 3}
+  chargeEnemy: {fileID: 8034279136360660190, guid: b20203d79f85be1469650bebe9075901, type: 3}
 --- !u!114 &179530921809487071
 MonoBehaviour:
   m_ObjectHideFlags: 0

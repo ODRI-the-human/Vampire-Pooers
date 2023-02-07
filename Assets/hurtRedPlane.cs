@@ -15,6 +15,6 @@ public class hurtRedPlane : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        gameObject.GetComponent<SpriteRenderer>().color = gameObject.GetComponent<SpriteRenderer>().color - bumHead;
+        gameObject.GetComponent<SpriteRenderer>().color -= bumHead * 50 * Time.deltaTime;
     }
 }
