@@ -174,23 +174,26 @@ public class HPDamageDie : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D col) // just creep/orbitals/sawshot/etc. lmao
     {
-        if (col.gameObject.tag != gameObject.tag && col.gameObject.GetComponent<DealDamage>().finalDamageStat != 0)
+        if (col.gameObject.GetComponent<DealDamage>() != null)
         {
-            float procMoment = 100f - 100f * col.gameObject.GetComponent<DealDamage>().critProb * col.gameObject.GetComponent<DealDamage>().procCoeff;
-            float pringle = Random.Range(0f, 100f);
-            float critMult = 1;
-            bool isCrit = false;
-            if (pringle > procMoment)
+            if (col.gameObject.tag != gameObject.tag && col.gameObject.GetComponent<DealDamage>().finalDamageStat != 0)
             {
-                critMult = col.gameObject.GetComponent<DealDamage>().critMult;
-                isCrit = true;
+                float procMoment = 100f - 100f * col.gameObject.GetComponent<DealDamage>().critProb * col.gameObject.GetComponent<DealDamage>().procCoeff;
+                float pringle = Random.Range(0f, 100f);
+                float critMult = 1;
+                bool isCrit = false;
+                if (pringle > procMoment)
+                {
+                    critMult = col.gameObject.GetComponent<DealDamage>().critMult;
+                    isCrit = true;
+                }
+                float damageAmount = col.gameObject.GetComponent<DealDamage>().finalDamageStat * critMult;
+                if (col.gameObject.GetComponent<DealDamage>().onlyDamageOnce)
+                {
+                    Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>(), true);
+                }
+                Hurty(damageAmount, isCrit, true, col.GetComponent<DealDamage>().iFrameFac);
             }
-            float damageAmount = col.gameObject.GetComponent<DealDamage>().finalDamageStat * critMult;
-            if (col.gameObject.GetComponent<DealDamage>().onlyDamageOnce)
-            {
-                Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>(), true);
-            }
-            Hurty(damageAmount, isCrit, true, col.GetComponent<DealDamage>().iFrameFac);
         }
     }
 }

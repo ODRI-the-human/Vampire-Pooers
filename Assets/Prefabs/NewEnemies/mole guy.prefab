@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: -3511613664879309784}
   - component: {fileID: 7228930673846689646}
   - component: {fileID: -561727211356911684}
-  - component: {fileID: -1790659917823186419}
+  - component: {fileID: -4367213739392749908}
   m_Layer: 6
   m_Name: mole guy
   m_TagString: Hostile
@@ -135,6 +135,7 @@ MonoBehaviour:
   damageAmt: 0
   iFrameFac: 1
   isBulletClone: 0
+  damageToPresent: 0
 --- !u!114 &8437550650503696219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -389,7 +390,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-1790659917823186419
+--- !u!114 &-4367213739392749908
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -398,28 +399,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 8034279136360660190}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c0670456fcc65e4496ba51263efff8d, type: 3}
+  m_Script: {fileID: 11500000, guid: edbf964a01cab8e48b77297646b145e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  mates: []
-  badPositions: []
-  rockPositions: []
+  posertion: {x: 999, y: 999, z: 999}
+  line: {fileID: -1289743136397402161}
+  hitboxPos: {x: 0, y: 0, z: 0}
+  fuckAngle: 0
+  hitbox: {fileID: 0}
   nearestFriend: {fileID: 0}
   moleProj: {fileID: 4255455733749829593, guid: cf19c059f79a3d849a13a427f9df4dcf, type: 3}
-  line: {fileID: -1289743136397402161}
-  goesFirst: 0
-  hasFired: 0
-  taken: 0
-  giveFunnyVisual: 0
-  hitbox: {fileID: 0}
-  zapAudio: {fileID: 5421414380371828586, guid: 0b2855f0b92e0e9468ae4c072134ca98, type: 3}
-  distanceFromPlayer: 0
+  ignored: 0
   distanceFromNearest: 0
-  bumHead: {x: 0, y: 0, z: 0}
-  camera: {fileID: 0}
-  master: {fileID: 0}
+  mates: []
+  hasFired: 0
   warn: {fileID: 2100000, guid: fba9229bb5d773248b7d70e956c6b896, type: 2}
   shoot: {fileID: 2100000, guid: 6a7214e8be07cb14587ff3180ea0b46f, type: 2}
   invis: {fileID: 2100000, guid: a66365599d0d4264e9fd35d01ff3d088, type: 2}
-  speedDebuffAmt: 0
+  firstAndy: 0

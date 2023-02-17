@@ -33,7 +33,7 @@ public class EntityReferencerGuy : MonoBehaviour
     public GameObject neutralExplosion;
     public GameObject camera;
 
-    GameObject playerInstance;
+    public GameObject playerInstance;
 
     public Material playerBulletMaterial;
     public Material enemyBulletMaterial;

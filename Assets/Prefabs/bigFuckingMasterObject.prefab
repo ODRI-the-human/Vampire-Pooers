@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: -2547675152280945318}
   - component: {fileID: 5168991052472996590}
   - component: {fileID: -2434447446673772548}
+  - component: {fileID: -4320272428008137812}
   m_Layer: 0
   m_Name: bigFuckingMasterObject
   m_TagString: Untagged
@@ -79,6 +80,7 @@ MonoBehaviour:
   soyShotAudio: {fileID: 0}
   neutralExplosion: {fileID: 0}
   camera: {fileID: 0}
+  playerInstance: {fileID: 0}
   playerBulletMaterial: {fileID: 0}
   enemyBulletMaterial: {fileID: 0}
   dagger: {fileID: 0}
@@ -327,3 +329,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPaused: 0
+--- !u!114 &-4320272428008137812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7002239379606652682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2a2c3e9aac28954c9f4985951f4278c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moles: []
+  rockPositions: []
+  badPositions: []
+  camera: {fileID: 0}
+  warn: {fileID: 2100000, guid: fba9229bb5d773248b7d70e956c6b896, type: 2}
+  shoot: {fileID: 2100000, guid: 6a7214e8be07cb14587ff3180ea0b46f, type: 2}
+  invis: {fileID: 2100000, guid: a66365599d0d4264e9fd35d01ff3d088, type: 2}

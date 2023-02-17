@@ -200,7 +200,7 @@ public class ThirdEnemySpawner : MonoBehaviour
             GameObject[] enemies = GameObject.FindGameObjectsWithTag("Hostile");
             foreach (GameObject friend in enemies)
             {
-                if (friend.GetComponent<moleShitV2>() != null)
+                if (friend.GetComponent<moleStatus>() != null)
                 {
                     numMoles++;
                 }
@@ -217,21 +217,6 @@ public class ThirdEnemySpawner : MonoBehaviour
         {
             bool existsMole = false;
             GameObject[] enemies = GameObject.FindGameObjectsWithTag("Hostile");
-            foreach (GameObject friend in enemies)
-            {
-                if (friend.GetComponent<moleShitV2>() != null)
-                {
-                    existsMole = true;
-                    firstMole = friend;
-                    break;
-                }
-            }
-
-            if (enemies.Length == 0)
-            {
-                existsMole = false;
-                firstMole = null;
-            }
 
             for (int i = 0; i < numberEnemiesSpawned; i++)
             {
@@ -245,17 +230,14 @@ public class ThirdEnemySpawner : MonoBehaviour
                 }
                 spawned.GetComponent<Attack>().currentTarget = Player;
 
-                if (i == 0 && !existsMole && toSpawn == mole)
+                if (toSpawn == mole)
                 {
-                    spawned.GetComponent<moleShitV2>().goesFirst = true;
-                    firstMole = spawned;
-                    spawned.transform.position += new Vector3(999, 999, 999);
-                }
-
-                if (existsMole && toSpawn == mole)
-                {
-                    spawned.GetComponent<moleShitV2>().taken = true;
-                    spawned.transform.position += new Vector3(999, 999, 999);
+                    gameObject.GetComponent<moleGamingV3>().CheckForStopWatch();
+                    if (!gameObject.GetComponent<moleGamingV3>().doCycle)
+                    {
+                        gameObject.GetComponent<moleGamingV3>().doCycle = true;
+                        gameObject.GetComponent<moleGamingV3>().StartCycle();
+                    }
                 }
             }
         }

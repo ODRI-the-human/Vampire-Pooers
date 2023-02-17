@@ -74,7 +74,7 @@ public class DealDamage : MonoBehaviour
     //For applying any on-hit effects - sends the RollOnHit message, which is picked up by any on-hit effects THIS object has, which then apply the effect or whatever to col.gameobject.
     public void OnCollisionEnter2D(Collision2D col)
     {
-        if (gameObject.tag != col.gameObject.tag && col.gameObject.tag != "Wall" && col.gameObject.tag != "PlayerBullet" && col.gameObject.tag != "enemyBullet")
+        if (gameObject.tag != col.gameObject.tag && col.gameObject.tag != "Wall" && col.gameObject.tag != "PlayerBullet" && col.gameObject.tag != "enemyBullet" && col.gameObject.GetComponent<DealDamage>() != null)
         {
             gameObject.SendMessage("RollOnHit", col.gameObject);
         }
@@ -82,7 +82,7 @@ public class DealDamage : MonoBehaviour
 
     public void OnTriggerStay2D(Collider2D col)
     {
-        if (finalDamageStat != 0 && gameObject.tag != col.gameObject.tag && col.gameObject.tag != "Wall" && col.gameObject.tag != "PlayerBullet" && col.gameObject.tag != "enemyBullet")
+        if (finalDamageStat != 0 && gameObject.tag != col.gameObject.tag && col.gameObject.tag != "Wall" && col.gameObject.tag != "PlayerBullet" && col.gameObject.tag != "enemyBullet" && col.gameObject.GetComponent<DealDamage>() != null)
         {
             gameObject.SendMessage("RollOnHit", col.gameObject);
         }
