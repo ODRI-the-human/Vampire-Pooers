@@ -81,16 +81,20 @@ public class chargeAtCardDirections : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
+        if (col.gameObject.tag == "Player" || col.gameObject.tag == "Hostile")
+        {
+            if (col.gameObject.tag == "Hostile")
+            {
+                col.gameObject.GetComponent<NewPlayerMovement>().knockBackVector = 10 * gameObject.GetComponent<DealDamage>().massCoeff * new Vector2(-transform.position.x + col.gameObject.transform.position.x, -transform.position.y + col.gameObject.transform.position.y).normalized;
+            }
+            col.gameObject.AddComponent<hitIfKBVecHigh>();
+            col.gameObject.GetComponent<hitIfKBVecHigh>().responsible = gameObject;
+        }
+
         gameObject.GetComponent<NewPlayerMovement>().moveTowardsPlayer = true;
         isCharging = false;
         gameObject.GetComponent<NewPlayerMovement>().speedMult = 1;
         gameObject.GetComponent<NavMeshAgent>().enabled = true;
         gameObject.GetComponent<DealDamage>().massCoeff = 2;
-
-        if (col.gameObject.tag == "Player")
-        {
-            col.gameObject.AddComponent<hitIfKBVecHigh>();
-            col.gameObject.GetComponent<hitIfKBVecHigh>().responsible = gameObject;
-        }
     }
 }

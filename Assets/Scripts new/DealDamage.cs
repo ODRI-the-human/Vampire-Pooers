@@ -55,7 +55,7 @@ public class DealDamage : MonoBehaviour
             damageAmt = damageBase * damageMult * finalDamageMult / finalDamageDIV;
         }
 
-        damageToPresent = (50 + damageBase) * damageMult * finalDamageMult / finalDamageDIV;
+        damageToPresent = damageBase * damageMult * finalDamageMult / finalDamageDIV;
     }
 
     void FixedUpdate()

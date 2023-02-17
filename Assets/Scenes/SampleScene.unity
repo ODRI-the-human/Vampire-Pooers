@@ -442,7 +442,7 @@ PrefabInstance:
       objectReference: {fileID: 582166535}
     - target: {fileID: 9014303847402346882, guid: 2c1e033fc431a694499cc08ddf9a90b1, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9014303847402346882, guid: 2c1e033fc431a694499cc08ddf9a90b1, type: 3}
       propertyPath: bypassWaves
@@ -4819,7 +4819,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 503381878361641303, guid: ba6f41e52d5717a46a24d1f2e5a4cf75, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 503381878361641303, guid: ba6f41e52d5717a46a24d1f2e5a4cf75, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6573,7 +6573,7 @@ PrefabInstance:
       objectReference: {fileID: 658927873}
     - target: {fileID: 181192788023296773, guid: b5a9d08efb5533a43b709dc5c65e4ebe, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 181192788023296773, guid: b5a9d08efb5533a43b709dc5c65e4ebe, type: 3}
       propertyPath: m_LocalPosition.x

@@ -21,6 +21,7 @@ public class hitIfKBVecHigh : MonoBehaviour
             float damageAmt = gameObject.GetComponent<NewPlayerMovement>().knockBackVector.magnitude;
             col.gameObject.GetComponent<NewPlayerMovement>().knockBackVector = (col.gameObject.transform.position - transform.position).normalized * gameObject.GetComponent<NewPlayerMovement>().knockBackVector.magnitude;
             col.gameObject.AddComponent<hitIfKBVecHigh>();
+            col.gameObject.GetComponent<hitIfKBVecHigh>().responsible = gameObject;
             //col.gameObject.GetComponent<HPDamageDie>().Hurty(damageAmt, false, true);
             gameObject.GetComponent<HPDamageDie>().Hurty(damageAmt, false, true, 1);
             gameObject.GetComponent<NewPlayerMovement>().knockBackVector = new Vector2(0, 0);

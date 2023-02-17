@@ -47,6 +47,8 @@ public class ThirdEnemySpawner : MonoBehaviour
     int spawnTypeMin = 0;
     int spawnTypeMax = 11;
 
+    Vector3 placeToSpawn;
+
     void Start()
     {
         Player = GameObject.Find("newPlayer");
@@ -211,15 +213,25 @@ public class ThirdEnemySpawner : MonoBehaviour
         }
     }
 
+    void GetAFunnyPosition()
+    {
+        Vector2 camPos = new Vector2(Camera.transform.position.x, Camera.transform.position.y);
+        SpawnPosX = camPos.x;
+        SpawnPosY = camPos.y;
+
+        float xBound = Camera.GetComponent<cameraMovement>().xBound;
+        float yBound = Camera.GetComponent<cameraMovement>().yBound;
+
+        while ((new Vector3(SpawnPosX, SpawnPosY, Player.transform.position.z) - Player.transform.position).magnitude < 10 || Mathf.Abs(SpawnPosY) > Mathf.Abs(yBound) || Mathf.Abs(SpawnPosX) > Mathf.Abs(xBound))
+        {
+            SpawnPosX = camPos.x + Random.Range(-12.1f, 12.1f);
+            SpawnPosY = camPos.y + Random.Range(-8.1f, 8.1f);
+        }
+    }
+
     void SpawnInGroup()
     {
-        SpawnPosX = 0;
-        SpawnPosY = 0;
-        while (Mathf.Abs(SpawnPosX) < 10 && Mathf.Abs(SpawnPosY) < 6)
-        {
-            SpawnPosX = Random.Range(-12, 12);
-            SpawnPosY = Random.Range(-8, 8);
-        }
+        GetAFunnyPosition();
 
         bool existsMole = false;
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Hostile");
@@ -228,7 +240,7 @@ public class ThirdEnemySpawner : MonoBehaviour
         {
             float SpawnPosXVariation = Random.Range(-1f, 1f);
             float SpawnPosYVariation = Random.Range(-1f, 1f);
-            GameObject spawned = Instantiate(toSpawn, new Vector3(SpawnPosX + SpawnPosXVariation, SpawnPosY + SpawnPosYVariation, 10.6f) + Camera.transform.position, transform.rotation);
+            GameObject spawned = Instantiate(toSpawn, new Vector3(SpawnPosX + SpawnPosXVariation, SpawnPosY + SpawnPosYVariation, 0), transform.rotation);
             spawned.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
             if (assignProperBullet)
             {
@@ -252,14 +264,9 @@ public class ThirdEnemySpawner : MonoBehaviour
     {
         for (int i = 0; i < numberEnemiesSpawned; i++)
         {
-            SpawnPosX = 0;
-            SpawnPosY = 0;
-            while (Mathf.Abs(SpawnPosX) < 10 && Mathf.Abs(SpawnPosY) < 6)
-            {
-                SpawnPosX = Random.Range(-12, 12);
-                SpawnPosY = Random.Range(-8, 8);
-            }
-            GameObject spawned = Instantiate(toSpawn, new Vector3(SpawnPosX, SpawnPosY, 10.6f) + Camera.transform.position, transform.rotation);
+            GetAFunnyPosition();
+
+            GameObject spawned = Instantiate(toSpawn, new Vector3(SpawnPosX, SpawnPosY, 0), transform.rotation);
             spawned.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
             if (assignProperBullet)
             {

@@ -118,11 +118,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   knockBackVector: {x: 0, y: 0}
   desiredVector: {x: 0, y: 0, z: 0}
+  moveDirection: {x: 0, y: 0, z: 0}
   baseMoveSpeed: 5
   currentMoveSpeed: 0
   speedDiv: 1
+  speedMult: 1
   slowTimer: 0
   isSlowed: 0
+  moveTowardsPlayer: 1
+  recievesKnockback: 1
   dodgeUp: 1
   dodgeTimerLength: 20
   dodgeSpeedUp: 2
@@ -169,7 +173,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   finalDamageStat: 0
   procCoeff: 1
-  damageBase: 0
+  damageBase: 50
   damageMult: 1
   finalDamageMult: 1
   finalDamageDIV: 1
@@ -177,14 +181,15 @@ MonoBehaviour:
   critMult: 2
   owner: {fileID: 0}
   master: {fileID: 0}
-  massCoeff: 0
-  overwriteDamageCalc: 0
+  massCoeff: 2
+  overwriteDamageCalc: 1
   onlyDamageOnce: 0
   tickInterval: 1
   timer: 0
   damageAmt: 0
   iFrameFac: 1
   isBulletClone: 0
+  damageToPresent: 0
 --- !u!114 &3646255009062352282
 MonoBehaviour:
   m_ObjectHideFlags: 0
