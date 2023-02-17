@@ -18,11 +18,10 @@ public class ThirdEnemySpawner : MonoBehaviour
     public TextMeshProUGUI waveText;
     public GameObject itemPedestal;
     int noSpawnsBeforeNewWave = 4; // actually should be one more than the desired number, for some reason.
-    int numberEnemiesSpawned;
+    public int numberEnemiesSpawned;
 
     public GameObject enemyBullet;
 
-    public GameObject firstMole;
     public bool bypassWaves;
 
     public GameObject chaseEnemy;
@@ -39,11 +38,14 @@ public class ThirdEnemySpawner : MonoBehaviour
 
     bool assignProperBullet;
 
-    GameObject toSpawn;
+    public GameObject toSpawn;
     GameObject Player;
     GameObject Camera;
 
-    bool skipSpawn = false;
+    int typeToAvoidSpawning = -5;
+
+    int spawnTypeMin = 0;
+    int spawnTypeMax = 11;
 
     void Start()
     {
@@ -103,9 +105,16 @@ public class ThirdEnemySpawner : MonoBehaviour
     void SpawnEnemies()
     {
         Debug.Log("Spawning a... LIBERAL!");
-        skipSpawn = false;
         numberEnemiesSpawned = Mathf.RoundToInt(Random.Range(minSpawnMultiplier * ((spawnNumber + waveNumber * 2) * spawnScaleRate), maxSpawnMultiplier * ((spawnNumber + waveNumber * 2) * spawnScaleRate))) + 1;
-        SpawnType = Random.Range(0, 11);
+        SpawnType = Random.Range(spawnTypeMin, spawnTypeMax);
+
+        while (typeToAvoidSpawning == SpawnType)
+        {
+            SpawnType = Random.Range(spawnTypeMin, spawnTypeMax);
+        }
+
+        typeToAvoidSpawning = -5;
+
         switch (SpawnType)
         {
             case 0:
@@ -148,10 +157,29 @@ public class ThirdEnemySpawner : MonoBehaviour
                 spawned.GetComponent<Attack>().currentTarget = Player;
                 break;
             case 5:
-                toSpawn = mole;
-                numberEnemiesSpawned += 3;
-                assignProperBullet = false;
-                SpawnInGroup();
+                int numMoles = 0;
+
+                GameObject[] enemies = GameObject.FindGameObjectsWithTag("Hostile");
+                foreach (GameObject friend in enemies)
+                {
+                    if (friend.GetComponent<moleStatus>() != null)
+                    {
+                        numMoles++;
+                    }
+                }
+
+                if (numMoles >= 10)
+                {
+                    typeToAvoidSpawning = 5;
+                    SpawnEnemies();
+                }
+                else
+                {
+                    numberEnemiesSpawned = 5;
+                    assignProperBullet = false;
+                    toSpawn = mole;
+                    SpawnInGroup();
+                }
                 break;
             case 6:
                 toSpawn = homingMineGuy;
@@ -193,51 +221,28 @@ public class ThirdEnemySpawner : MonoBehaviour
             SpawnPosY = Random.Range(-8, 8);
         }
 
-        if (toSpawn = mole)
+        bool existsMole = false;
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Hostile");
+
+        for (int i = 0; i < numberEnemiesSpawned; i++)
         {
-            int numMoles = 0;
-
-            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Hostile");
-            foreach (GameObject friend in enemies)
+            float SpawnPosXVariation = Random.Range(-1f, 1f);
+            float SpawnPosYVariation = Random.Range(-1f, 1f);
+            GameObject spawned = Instantiate(toSpawn, new Vector3(SpawnPosX + SpawnPosXVariation, SpawnPosY + SpawnPosYVariation, 10.6f) + Camera.transform.position, transform.rotation);
+            spawned.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
+            if (assignProperBullet)
             {
-                if (friend.GetComponent<moleStatus>() != null)
-                {
-                    numMoles++;
-                }
+                spawned.GetComponent<Attack>().Bullet = enemyBullet;
             }
+            spawned.GetComponent<Attack>().currentTarget = Player;
 
-            if (numMoles >= 20)
+            if (toSpawn == mole)
             {
-                skipSpawn = true;
-                SpawnEnemies();
-            }
-        }
-
-        if (!skipSpawn)
-        {
-            bool existsMole = false;
-            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Hostile");
-
-            for (int i = 0; i < numberEnemiesSpawned; i++)
-            {
-                float SpawnPosXVariation = Random.Range(-1f, 1f);
-                float SpawnPosYVariation = Random.Range(-1f, 1f);
-                GameObject spawned = Instantiate(toSpawn, new Vector3(SpawnPosX + SpawnPosXVariation, SpawnPosY + SpawnPosYVariation, 10.6f) + Camera.transform.position, transform.rotation);
-                spawned.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
-                if (assignProperBullet)
+                gameObject.GetComponent<moleGamingV3>().CheckForStopWatch();
+                if (!gameObject.GetComponent<moleGamingV3>().doCycle)
                 {
-                    spawned.GetComponent<Attack>().Bullet = enemyBullet;
-                }
-                spawned.GetComponent<Attack>().currentTarget = Player;
-
-                if (toSpawn == mole)
-                {
-                    gameObject.GetComponent<moleGamingV3>().CheckForStopWatch();
-                    if (!gameObject.GetComponent<moleGamingV3>().doCycle)
-                    {
-                        gameObject.GetComponent<moleGamingV3>().doCycle = true;
-                        gameObject.GetComponent<moleGamingV3>().StartCycle();
-                    }
+                    gameObject.GetComponent<moleGamingV3>().doCycle = true;
+                    gameObject.GetComponent<moleGamingV3>().StartCycle();
                 }
             }
         }

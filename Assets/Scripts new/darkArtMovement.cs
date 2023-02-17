@@ -78,7 +78,6 @@ public class darkArtMovement : MonoBehaviour
         {
             GameObject owner = gameObject.GetComponent<DealDamage>().owner;
             GameObject master = gameObject.GetComponent<DealDamage>().master;
-            master.GetComponent<visualPoopoo>().bigHitFreeze(0.05f);
             owner.GetComponent<Healing>().Healo(5);
         }
     }

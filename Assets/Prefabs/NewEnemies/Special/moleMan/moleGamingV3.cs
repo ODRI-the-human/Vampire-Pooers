@@ -19,8 +19,7 @@ public class moleGamingV3 : MonoBehaviour
     public GameObject zapAudio;
     public GameObject spawnedZap;
 
-    public bool doCycle = true;
-    public bool isOkay = true;
+    public bool doCycle = false;
 
     float stopwatchDebuffAmount = 1;
 
@@ -43,15 +42,6 @@ public class moleGamingV3 : MonoBehaviour
     public void StartCycle()
     {
         Invoke(nameof(SetPositions), 0.5f / stopwatchDebuffAmount);
-    }
-
-    void Update()
-    {
-        if (moles.Count == 0)
-        {
-            doCycle = true;
-            Reset();
-        }
     }
 
     void SetPositions()
