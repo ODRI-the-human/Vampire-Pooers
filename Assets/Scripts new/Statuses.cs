@@ -99,7 +99,7 @@ public class Statuses : MonoBehaviour
         {
             poisonTimers.Add(0);
             GameObject arse = col.gameObject.GetComponent<TriggerPoison>().owner;
-            poisonDamages.Add(arse.GetComponent<DealDamage>().finalDamageStat * 0.1f);
+            poisonDamages.Add(arse.GetComponent<DealDamage>().damageToPresent * 0.1f);
             if (!iconOrder.Contains(1))
             {
                 iconOrder.Add(1);
