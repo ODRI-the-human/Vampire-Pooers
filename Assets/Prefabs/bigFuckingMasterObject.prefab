@@ -103,8 +103,8 @@ MonoBehaviour:
   maxSpawnMultiplier: 4
   waveText: {fileID: 0}
   itemPedestal: {fileID: 7674381605585770215, guid: ccd2011bfb2e96e4dbabac692441a45c, type: 3}
+  numberEnemiesSpawned: 0
   enemyBullet: {fileID: 0}
-  firstMole: {fileID: 0}
   bypassWaves: 0
   chaseEnemy: {fileID: 8034279136360660190, guid: a8c7cbd396c89da40a8668c886edd2c8, type: 3}
   shootEnemy: {fileID: 8034279136360660190, guid: caa3a51a8cac6ec488da882b6b93a4ed, type: 3}
@@ -117,6 +117,8 @@ MonoBehaviour:
   notMonstro: {fileID: 8034279136360660190, guid: 971bc536625dac64599422fc25b79027, type: 3}
   grabEnemy: {fileID: 8034279136360660190, guid: 2fc5e49fae693b742aba6fc2d07bb6d0, type: 3}
   chargeEnemy: {fileID: 8034279136360660190, guid: b20203d79f85be1469650bebe9075901, type: 3}
+  lazerEnemy: {fileID: 8034279136360660190, guid: 225f5897ded904a439bb2f378df512d3, type: 3}
+  toSpawn: {fileID: 0}
 --- !u!114 &179530921809487071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -342,9 +344,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moles: []
+  unignoredMoles: []
   rockPositions: []
   badPositions: []
   camera: {fileID: 0}
-  warn: {fileID: 2100000, guid: fba9229bb5d773248b7d70e956c6b896, type: 2}
-  shoot: {fileID: 2100000, guid: 6a7214e8be07cb14587ff3180ea0b46f, type: 2}
-  invis: {fileID: 2100000, guid: a66365599d0d4264e9fd35d01ff3d088, type: 2}
+  zapAudio: {fileID: 0}
+  spawnedZap: {fileID: 0}
+  doCycle: 0
+  currentStep: 0

@@ -24,6 +24,8 @@ public class homingMineMovement : MonoBehaviour
         yRotFac = Random.Range(-1.1f, 1.1f);
         zRotFac = Random.Range(-1.1f, 1.1f);
 
+        transform.position += new Vector3(Random.Range(-0.01f, 0.01f), Random.Range(-0.01f, 0.01f), 0);
+
         speed = gameObject.GetComponent<Rigidbody2D>().velocity.magnitude;
     }
 

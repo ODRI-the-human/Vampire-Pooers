@@ -23,12 +23,10 @@ public class ItemDescriptions : MonoBehaviour
             case (int)ITEMLIST.DMGADDPT5:
                 itemDescription = "Increases base damage by 25 per stack.";
                 enemiesCanUse = true;
-                
                 break;
             case (int)ITEMLIST.DMGMLT2:
                 itemDescription = "Doubles damage. Multiplier increases by +1x per stack.";
                 enemiesCanUse = true;
-                
                 break;
             case (int)ITEMLIST.FIRERATE:
                 itemDescription = "Decreases fire delay by 4.";
@@ -37,17 +35,14 @@ public class ItemDescriptions : MonoBehaviour
             case (int)ITEMLIST.SOY:
                 itemDescription = "Per stack, increases firerate by 5x, but quarters damage and bullet knockback.";
                 enemiesCanUse = true;
-                
                 break;
             case (int)ITEMLIST.HOMING:
                 itemDescription = "Homing shots. Stacks increase range from which bullets home.";
                 enemiesCanUse = true;
-                
                 break;
             case (int)ITEMLIST.ATG:
                 itemDescription = "10% chance on hitting an enemy to fire a homing missile, dealing 3x (+3x per stack) of the damage that procced it.";
                 enemiesCanUse = true;
-                
                 break;
             case (int)ITEMLIST.MORESHOT:
                 itemDescription = "Per stack, fire +1 projectile in an arc.";
@@ -74,7 +69,6 @@ public class ItemDescriptions : MonoBehaviour
             case (int)ITEMLIST.BOUNCY:
                 itemDescription = "Your bullets bounce +1 time per stack.";
                 enemiesCanUse = true;
-                
                 break;
             case (int)ITEMLIST.FOURDIRMARTY:
                 itemDescription = "Every 5 (-1 per stack) shots, fire 3 extra bullets around you that copy all your item effects.";
@@ -83,7 +77,6 @@ public class ItemDescriptions : MonoBehaviour
             case (int)ITEMLIST.PIERCING:
                 itemDescription = "Your bullets pierce +1 enemies per stack.";
                 enemiesCanUse = true;
-                
                 break;
             case (int)ITEMLIST.CREEP:
                 itemDescription = "Leave creep on the ground that deals 10% of your damage per tick. Size of creep increases with stacks.";
@@ -106,23 +99,19 @@ public class ItemDescriptions : MonoBehaviour
             case (int)ITEMLIST.SPLIT:
                 itemDescription = "Your shots split on hit. Split shots deal 30% (+30% per stack) of your damage.";
                 enemiesCanUse = true;
-                
                 break;
             case (int)ITEMLIST.CONTACT:
                 itemDescription = "Enemy bullets bounce off your bullets and now damage enemies rather than you. Your bullets are destroyed after 2 (+2 per stack) collisions.";
-                
                 break;
             case (int)ITEMLIST.BLEED:
                 itemDescription = "Your attacks have a 15% (+15% per stack) chance to inflict bleed for 2 seconds. New procs refill the timer and add a new stack.";
                 enemiesCanUse = true;
-                
                 break;
             case (int)ITEMLIST.POISONSPLOSM:
                 itemDescription = "Enemies explode on death, poisoning nearby enemies for 2 seconds for 10% of your damage. Size of explosion increases with stacks.";
                 break;
             case (int)ITEMLIST.ELECTRIC:
                 itemDescription = "Your bullets inflict electricity. Enemies inflicted with electricity take 10 damage (+10 per stack) when your bullets hit any other enemy.";
-                
                 break;
             case (int)ITEMLIST.BERSERK:
                 itemDescription = "Upon levelling up to an even level, your weapon is swapped with a melee knife that blocks all enemy shots for 3 (+3 per stack) seconds. Hits restore 5HP and kills restore 1 second on the timer.";
@@ -140,7 +129,6 @@ public class ItemDescriptions : MonoBehaviour
             case (int)ITEMLIST.BRICK:
                 itemDescription = "10% chance (+10% per stack) of shooting a bullet that deals 4x damage and infinitely pierces enemies.";
                 enemiesCanUse = true;
-                
                 break;
             case (int)ITEMLIST.BETTERLEVEL:
                 itemDescription = "Recieve +2x the stat bonuses upon levelling up per stack.";

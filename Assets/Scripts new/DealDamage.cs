@@ -40,7 +40,10 @@ public class DealDamage : MonoBehaviour
         }
         else
         {
-            master = owner.GetComponent<DealDamage>().master;
+            if (owner != null)
+            {
+                master = owner.GetComponent<DealDamage>().master;
+            }
         }
         if (!overwriteDamageCalc)
         {

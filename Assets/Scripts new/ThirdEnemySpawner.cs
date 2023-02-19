@@ -35,6 +35,7 @@ public class ThirdEnemySpawner : MonoBehaviour
     public GameObject notMonstro;
     public GameObject grabEnemy;
     public GameObject chargeEnemy;
+    public GameObject lazerEnemy;
 
     bool assignProperBullet;
 
@@ -207,6 +208,11 @@ public class ThirdEnemySpawner : MonoBehaviour
                 break;
             case 10:
                 toSpawn = chargeEnemy;
+                assignProperBullet = false;
+                SpawnRandomly();
+                break;
+            case 11:
+                toSpawn = lazerEnemy;
                 assignProperBullet = false;
                 SpawnRandomly();
                 break;

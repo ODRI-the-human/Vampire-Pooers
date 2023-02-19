@@ -6,6 +6,11 @@ public class enableHitbox : MonoBehaviour
 {
     public void enableHitboxer()
     {
-        gameObject.GetComponent<CapsuleCollider2D>().enabled = true;
+        gameObject.GetComponent<Collider2D>().enabled = true;
+    }
+
+    public void FUCKINGDIE()
+    {
+        Destroy(gameObject);
     }
 }

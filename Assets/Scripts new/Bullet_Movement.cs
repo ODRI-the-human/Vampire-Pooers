@@ -9,6 +9,10 @@ public class Bullet_Movement : MonoBehaviour
     Vector2 OriginalSpeed;
     public GameObject master;
 
+    int timer = 0;
+    int lastColTime = 0;
+    bool canCollide = true;
+
     void Start()
     {
         master = gameObject.GetComponent<DealDamage>().master;
@@ -18,11 +22,21 @@ public class Bullet_Movement : MonoBehaviour
     {
         OriginalSpeed = rb.velocity;
         speed = rb.velocity.magnitude;
+
+        if (timer != lastColTime)
+        {
+            canCollide = true;
+        }
+
+        lastColTime++;
     }
 
     void Update()
     {
-        transform.rotation = Quaternion.LookRotation(rb.velocity) * Quaternion.Euler(0, 90, 0);
+        if (rb.velocity != Vector2.zero)
+        {
+            transform.rotation = Quaternion.LookRotation(rb.velocity) * Quaternion.Euler(0, 90, 0);
+        }
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -30,23 +44,50 @@ public class Bullet_Movement : MonoBehaviour
         Vector2 enemyPos = new Vector2(transform.position.x, transform.position.y);
         Vector2 bulletPos = new Vector2(col.transform.position.x, col.transform.position.y);
 
-        if (gameObject.GetComponent<ItemPIERCING>() != null && gameObject.GetComponent<ItemPIERCING>().piercesLeft > 0)
+        float xSpeed = rb.velocity.normalized.x;
+        float ySpeed = rb.velocity.normalized.y;
+
+        if (canCollide)
         {
-            Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>(), true);
-            rb.velocity = OriginalSpeed;
-            gameObject.GetComponent<ItemPIERCING>().piercesLeft--;
-        }
-        else
-        {
-            if (gameObject.GetComponent<ItemBOUNCY>() != null && gameObject.GetComponent<ItemBOUNCY>().bouncesLeft > 0)
+            if (gameObject.GetComponent<ItemPIERCING>() != null && gameObject.GetComponent<ItemPIERCING>().piercesLeft > 0)
             {
-                rb.velocity = speed * (enemyPos - bulletPos).normalized;
-                gameObject.GetComponent<ItemBOUNCY>().bouncesLeft--;
-                transform.rotation = Quaternion.LookRotation(rb.velocity) * Quaternion.Euler(0, 90, 0);
+                Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>(), true);
+                rb.velocity = OriginalSpeed;
+                gameObject.GetComponent<ItemPIERCING>().piercesLeft--;
             }
             else
             {
-                Destroy(gameObject);
+                if (gameObject.GetComponent<ItemBOUNCY>() != null && gameObject.GetComponent<ItemBOUNCY>().bouncesLeft > 0)
+                {
+                    Vector3 colVector = (enemyPos - bulletPos).normalized;
+
+                    if (col.gameObject.tag == "Wall")
+                    {
+                        Debug.Log("Blimbpet:" + colVector.ToString());
+
+                        if (Mathf.Abs(colVector.y) > Mathf.Abs(colVector.x))
+                        {
+                            colVector.x = xSpeed;
+                        }
+                        else
+                        {
+                            colVector.y = ySpeed;
+                        }
+                    }
+                    rb.velocity = speed * colVector.normalized;
+                    gameObject.GetComponent<ItemBOUNCY>().bouncesLeft--;
+                    transform.rotation = Quaternion.LookRotation(rb.velocity) * Quaternion.Euler(0, 90, 0);
+                    canCollide = false;
+                    lastColTime = timer;
+                }
+                else
+                {
+                    Destroy(gameObject);
+                    if (gameObject.GetComponent<lazerMovement>() != null)
+                    {
+                        SendMessage("DoOnDestroys");
+                    }
+                }
             }
         }
     }
@@ -90,6 +131,10 @@ public class Bullet_Movement : MonoBehaviour
             else
             {
                 Destroy(gameObject);
+                if (gameObject.GetComponent<lazerMovement>() != null)
+                {
+                    SendMessage("DoOnDestroys");
+                }
             }
         }
     }

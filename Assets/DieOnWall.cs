@@ -8,7 +8,7 @@ public class DieOnWall : MonoBehaviour
     {
         if (col.gameObject.tag == "Wall")
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
     }
 }

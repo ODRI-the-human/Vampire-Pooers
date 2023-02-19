@@ -153,6 +153,10 @@ public class Attack : MonoBehaviour
                         shotSpeed = normieShotSpeed;
                     }
                     break;
+                case 5:
+                    currentAngle = 0.3f * shotAngleCoeff * (0.5f * noExtraShots - i - 1);
+                    gameObject.GetComponent<lightningFire>().Target(currentTarget, currentAngle, noExtraShots);
+                    break;
             }
         }
     }

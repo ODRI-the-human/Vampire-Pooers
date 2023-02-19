@@ -14,6 +14,7 @@ public class ItemHOMING : MonoBehaviour
     bool isBullet = false;
     public int instances = 1;
     GameObject[] gos;
+    public float speed;
 
     void Start()
     {
@@ -22,6 +23,11 @@ public class ItemHOMING : MonoBehaviour
         {
             isBullet = true;
         }
+    }
+
+    void Update()
+    {
+        speed = rb.velocity.magnitude;
     }
 
     void FixedUpdate()
@@ -64,7 +70,7 @@ public class ItemHOMING : MonoBehaviour
                 bulletPos.x = gameObject.transform.position.x;
                 bulletPos.y = gameObject.transform.position.y;
                 vectorToEnemy = (closestEnemyPos - bulletPos).normalized;
-                rb.velocity = 10f * (rb.velocity + vectorToEnemy.normalized).normalized;
+                rb.velocity = speed * (rb.velocity + vectorToEnemy.normalized).normalized;
             }
         }
     }
