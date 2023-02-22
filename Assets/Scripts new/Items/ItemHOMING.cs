@@ -18,16 +18,22 @@ public class ItemHOMING : MonoBehaviour
 
     void Start()
     {
-        rb = gameObject.GetComponent<Rigidbody2D>();
-        if (gameObject.tag == "PlayerBullet" || gameObject.tag == "enemyBullet")
+        if (gameObject.GetComponent<checkAllLazerPositions>() == null)
         {
-            isBullet = true;
+            rb = gameObject.GetComponent<Rigidbody2D>();
+            if (gameObject.tag == "PlayerBullet" || gameObject.tag == "enemyBullet")
+            {
+                isBullet = true;
+            }
         }
     }
 
     void Update()
     {
-        speed = rb.velocity.magnitude;
+        if (isBullet)
+        {
+            speed = rb.velocity.magnitude;
+        }
     }
 
     void FixedUpdate()

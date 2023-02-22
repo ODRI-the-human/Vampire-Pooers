@@ -75,7 +75,7 @@ public class ItemDescriptions : MonoBehaviour
                 enemiesCanUse = true;
                 break;
             case (int)ITEMLIST.PIERCING:
-                itemDescription = "Your bullets pierce +1 enemies per stack.";
+                itemDescription = "Your bullets pierce +1 enemies per stack and deal 1.2x (0.2x per stack) damage after piercing each enemy.";
                 enemiesCanUse = true;
                 break;
             case (int)ITEMLIST.CREEP:
@@ -196,6 +196,9 @@ public class ItemDescriptions : MonoBehaviour
                 break;
             case (int)ITEMLIST.GRENADELAUNCHER:
                 itemDescription = "Swap your weapon to the grenade launcher - half the rate of fire, but shots explode on hit for 2x your bullet damage (can hit you!)";
+                break;
+            case (int)ITEMLIST.LAZER:
+                itemDescription = "Swap your weapon to the lazer pistol - slightly lower fire rate but infinite piercing and infinite shotspeed";
                 break;
         }
     }

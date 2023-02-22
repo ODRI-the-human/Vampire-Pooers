@@ -49,19 +49,10 @@ public class lightningFire : MonoBehaviour
         Harrybo.transform.localScale = new Vector3(1, 1, 1);//150, 1);
         Harrybo.transform.rotation = Quaternion.LookRotation(vecToTarget) * Quaternion.Euler(0, 90, 90 + 180 * noExtraShots + (360 / 2 * Mathf.PI) * currentAngle);
         Harrybo.GetComponent<lazerMovement>().owner = gameObject;
+        //Harrybo.GetComponent<lazerMovement>().targit = torgot;
         currentStep = 1;
 
         spawnedSprongleAudio = Instantiate(sprongleAudio);
-    }
-
-    void FixedUpdate()
-    {
-        timer--;
-
-        if (timer == 0)
-        {
-            manasn(hitboxPosses);
-        }
     }
 
     void Update()
@@ -102,10 +93,7 @@ public class lightningFire : MonoBehaviour
     public void FuckingKillComputer(List<Vector3> positions, float timedr)
     {
         timer = timedr;
-    }
 
-    public void manasn(List<Vector3> positions)
-    {
         Destroy(spawnedSprongleAudio);
         Instantiate(zappyAudio);
         Vector3 prevPlace = transform.position;

@@ -12,9 +12,12 @@ public class ItemSOY : MonoBehaviour
         {
             gameObject.GetComponent<DealDamage>().finalDamageDIV += 4;
             gameObject.GetComponent<DealDamage>().massCoeff /= 4;
-            gameObject.GetComponent<Attack>().fireTimerDIV += 4;
-            GameObject farter = gameObject.GetComponent<DealDamage>().master;
-            gameObject.GetComponent<Attack>().PlayerShootAudio = farter.GetComponent<EntityReferencerGuy>().soyShotAudio;
+            if (gameObject.GetComponent<Attack>() != null)
+            {
+                gameObject.GetComponent<Attack>().fireTimerDIV += 4;
+                GameObject farter = gameObject.GetComponent<DealDamage>().master;
+                gameObject.GetComponent<Attack>().PlayerShootAudio = farter.GetComponent<EntityReferencerGuy>().soyShotAudio;
+            }
         }
     }
 
@@ -22,7 +25,10 @@ public class ItemSOY : MonoBehaviour
     {
         gameObject.GetComponent<DealDamage>().finalDamageDIV -= 4;
         gameObject.GetComponent<DealDamage>().massCoeff *= 4;
-        gameObject.GetComponent<Attack>().fireTimerDIV -= 4;
+        if (gameObject.GetComponent<Attack>() != null)
+        {
+            gameObject.GetComponent<Attack>().fireTimerDIV -= 4;
+        }
 
         Debug.Log("Foodland Sale on NOW!!!!!!!!");
     }

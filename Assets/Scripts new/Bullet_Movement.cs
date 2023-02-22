@@ -53,6 +53,7 @@ public class Bullet_Movement : MonoBehaviour
             {
                 Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>(), true);
                 rb.velocity = OriginalSpeed;
+                gameObject.GetComponent<DealDamage>().finalDamageMult *= 1 + 0.2f * gameObject.GetComponent<ItemPIERCING>().instances;
                 gameObject.GetComponent<ItemPIERCING>().piercesLeft--;
             }
             else

@@ -542,6 +542,10 @@ public class ItemHolder : MonoBehaviour
                 gameObject.GetComponent<weaponType>().weaponHeld = (int)ITEMLIST.GRENADELAUNCHER;
                 gameObject.GetComponent<weaponType>().SetWeapon();
                 break;
+            case (int)ITEMLIST.LAZER:
+                gameObject.GetComponent<weaponType>().weaponHeld = (int)ITEMLIST.LAZER;
+                gameObject.GetComponent<weaponType>().SetWeapon();
+                break;
 
 
 

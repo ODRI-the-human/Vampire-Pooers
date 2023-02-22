@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: -1628153870151973313}
   - component: {fileID: 6529777727849037366}
   - component: {fileID: 4664313912424211572}
+  - component: {fileID: -2398668522893488500}
   m_Layer: 8
   m_Name: newPlayer
   m_TagString: Player
@@ -416,3 +417,20 @@ MonoBehaviour:
   canStillHeal: 1
   itemsToGiveRoundly: 
   itemSelector: {fileID: 8977739677560480769, guid: b31ae58b4254d4247a286fb2be6bfd60, type: 3}
+--- !u!114 &-2398668522893488500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 503381878361641298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ebd05e0711f32d4fba4968c14b37756, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeAngles: []
+  vecToTarget: {x: 0, y: 0, z: 0}
+  moleProj: {fileID: 6152856860940002557, guid: 13c90bc400ac46f4383416a674875beb, type: 3}
+  sprongleAudio: {fileID: 527891173530036625, guid: c3aea6758bc7f7e41904bf8de9427d8a, type: 3}
+  spawnedSprongleAudio: {fileID: 0}

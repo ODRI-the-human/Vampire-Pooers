@@ -17,8 +17,10 @@ public class obstHP : MonoBehaviour
         owMyEntireRockIsInPain(col.gameObject);
     }
 
-    void owMyEntireRockIsInPain(GameObject thingy)
+    public void owMyEntireRockIsInPain(GameObject thingy)
     {
+        Debug.Log("bebeb");
+
         if (thingy.tag == "PlayerBullet" || thingy.tag == "enemyBullet")
         {
             HP -= thingy.GetComponent<DealDamage>().finalDamageStat / bulletResist;

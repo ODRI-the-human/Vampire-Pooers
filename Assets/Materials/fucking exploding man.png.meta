@@ -1189,6 +1189,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: fucking exploding man_50
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1be25bf87639084b9d63552624b8291
+      internalID: -1561745665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -1201,6 +1222,7 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       fucking exploding man_39: -398591202
+      fucking exploding man_50: -1561745665
       fucking exploding man_42: -1732810479
       fucking exploding man_27: 1853162820
       fucking exploding man_7: 2078236485

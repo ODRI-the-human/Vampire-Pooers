@@ -154,8 +154,19 @@ public class Attack : MonoBehaviour
                     }
                     break;
                 case 5:
+                    Vector3 neq;
+
+                    if (gameObject.tag == "Hostile" || gameObject.tag == "enemyBullet")
+                    {
+                        neq = currentTarget.transform.position;
+                    }
+                    else
+                    {
+                        neq = vectorToTarget;
+                    }
+
                     currentAngle = 0.3f * shotAngleCoeff * (0.5f * noExtraShots - i - 1);
-                    gameObject.GetComponent<lightningFire>().Target(currentTarget, currentAngle, noExtraShots);
+                    StartCoroutine(gameObject.GetComponent<lightningFireV2>().Target(neq, currentAngle, noExtraShots, 0.2f));
                     break;
             }
         }

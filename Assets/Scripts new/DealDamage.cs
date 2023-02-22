@@ -33,6 +33,11 @@ public class DealDamage : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (!overwriteDamageCalc)
+        {
+            damageAmt = damageBase * damageMult * finalDamageMult / finalDamageDIV;
+        }
+
         if (gameObject.tag == "Hostile" || gameObject.tag == "Player")
         {
             owner = gameObject;
@@ -45,6 +50,10 @@ public class DealDamage : MonoBehaviour
                 master = owner.GetComponent<DealDamage>().master;
             }
         }
+    }
+
+    public void CalcDamage()
+    {
         if (!overwriteDamageCalc)
         {
             damageAmt = damageBase * damageMult * finalDamageMult / finalDamageDIV;
@@ -75,7 +84,7 @@ public class DealDamage : MonoBehaviour
     }
 
     //For applying any on-hit effects - sends the RollOnHit message, which is picked up by any on-hit effects THIS object has, which then apply the effect or whatever to col.gameobject.
-    public void OnCollisionEnter2D(Collision2D col)
+    void OnCollisionEnter2D(Collision2D col)
     {
         if (gameObject.tag != col.gameObject.tag && col.gameObject.tag != "Wall" && col.gameObject.tag != "PlayerBullet" && col.gameObject.tag != "enemyBullet" && col.gameObject.GetComponent<DealDamage>() != null)
         {
@@ -83,11 +92,16 @@ public class DealDamage : MonoBehaviour
         }
     }
 
-    public void OnTriggerStay2D(Collider2D col)
+    void OnTriggerStay2D(Collider2D col)
     {
         if (finalDamageStat != 0 && gameObject.tag != col.gameObject.tag && col.gameObject.tag != "Wall" && col.gameObject.tag != "PlayerBullet" && col.gameObject.tag != "enemyBullet" && col.gameObject.GetComponent<DealDamage>() != null)
         {
             gameObject.SendMessage("RollOnHit", col.gameObject);
         }
+    }
+
+    public void TriggerTheOnHits(GameObject whoToEffect)
+    {
+        gameObject.SendMessage("RollOnHit", whoToEffect);
     }
 }

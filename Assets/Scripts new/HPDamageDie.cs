@@ -93,6 +93,8 @@ public class HPDamageDie : MonoBehaviour
 
     public void Hurty(float damageAmount, bool isCrit, bool playSound, float iFrameFac)
     {
+        Debug.Log("shoulda taken a lil damage cunt, " + gameObject.name.ToString() + " / " + damageAmount.ToString());
+
         if (gameObject.GetComponent<ItemEASIERTIMES>() != null && Mathf.RoundToInt(100 * (0.8f - 1f / (gameObject.GetComponent<ItemEASIERTIMES>().instances + 1f))) > Random.Range(0, 100))
         {
             //arse

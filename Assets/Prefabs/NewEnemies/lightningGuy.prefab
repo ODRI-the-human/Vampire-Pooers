@@ -22,8 +22,8 @@ GameObject:
   - component: {fileID: 1637301172094922029}
   - component: {fileID: 2794491946153304301}
   - component: {fileID: 106767412706403394}
-  - component: {fileID: 5056194431460541586}
   - component: {fileID: 5928339923709462739}
+  - component: {fileID: 5690015721013480133}
   m_Layer: 6
   m_Name: lightningGuy
   m_TagString: Hostile
@@ -371,28 +371,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponHeld: 0
---- !u!114 &5056194431460541586
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8034279136360660190}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f623988591fce354a950e5d03137e655, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  activeAngles: []
-  hitbox: []
-  hitboxPosses: []
-  zappyAudio: {fileID: 527891173530036625, guid: c3aea6758bc7f7e41904bf8de9427d8a, type: 3}
-  vecToTarget: {x: 0, y: 0, z: 0}
-  moleProj: {fileID: 4255455733749829593, guid: 0b0278643cc6aca46a6d2e2ab4efe311, type: 3}
-  warn: {fileID: 825219297, guid: ed869b2f8e0fbb8428d1d44562c143da, type: 3}
-  shootery: {fileID: -1044043673, guid: ed869b2f8e0fbb8428d1d44562c143da, type: 3}
-  line: {fileID: 5928339923709462739}
-  sprongleAudio: {fileID: 7119748913625021128, guid: 59137b6c46785054083ffee85b58ffcc, type: 3}
 --- !u!120 &5928339923709462739
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -492,3 +470,20 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!114 &5690015721013480133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8034279136360660190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ebd05e0711f32d4fba4968c14b37756, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeAngles: []
+  vecToTarget: {x: 0, y: 0, z: 0}
+  moleProj: {fileID: 6152856860940002557, guid: 13c90bc400ac46f4383416a674875beb, type: 3}
+  sprongleAudio: {fileID: 527891173530036625, guid: c3aea6758bc7f7e41904bf8de9427d8a, type: 3}
+  spawnedSprongleAudio: {fileID: 0}
