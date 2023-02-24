@@ -535,16 +535,25 @@ public class ItemHolder : MonoBehaviour
 
 
             case (int)ITEMLIST.PISTOL:
-                gameObject.GetComponent<weaponType>().weaponHeld = (int)ITEMLIST.PISTOL;
-                gameObject.GetComponent<weaponType>().SetWeapon();
+                if (gameObject.GetComponent<weaponType>() != null)
+                {
+                    gameObject.GetComponent<weaponType>().weaponHeld = (int)ITEMLIST.PISTOL;
+                    gameObject.GetComponent<weaponType>().SetWeapon();
+                }
                 break;
             case (int)ITEMLIST.GRENADELAUNCHER:
-                gameObject.GetComponent<weaponType>().weaponHeld = (int)ITEMLIST.GRENADELAUNCHER;
-                gameObject.GetComponent<weaponType>().SetWeapon();
+                if (gameObject.GetComponent<weaponType>() != null)
+                {
+                    gameObject.GetComponent<weaponType>().weaponHeld = (int)ITEMLIST.GRENADELAUNCHER;
+                    gameObject.GetComponent<weaponType>().SetWeapon();
+                }
                 break;
             case (int)ITEMLIST.LAZER:
-                gameObject.GetComponent<weaponType>().weaponHeld = (int)ITEMLIST.LAZER;
-                gameObject.GetComponent<weaponType>().SetWeapon();
+                if (gameObject.GetComponent<weaponType>() != null)
+                {
+                    gameObject.GetComponent<weaponType>().weaponHeld = (int)ITEMLIST.LAZER;
+                    gameObject.GetComponent<weaponType>().SetWeapon();
+                }
                 break;
 
 

@@ -12,7 +12,7 @@ public class SawShotCreep : MonoBehaviour
     {
         master = gameObject.GetComponent<ItemHolder>().master;
 
-        BOB = gameObject.GetComponent<ItemSAWSHOT>().guyLatchedTo;
+        BOB = gameObject.GetComponent<SawRotation>().guyLatchedTo;
 
         if (gameObject.tag == "PlayerBullet")
         {
@@ -29,7 +29,7 @@ public class SawShotCreep : MonoBehaviour
     {
         if (gameObject.GetComponent<DealDamage>().timer % 10 == 0)
         {
-            GameObject Bongo = Instantiate(creepy, gameObject.GetComponent<ItemSAWSHOT>().guyLatchedTo.transform.position, Quaternion.Euler(0,0,0));
+            GameObject Bongo = Instantiate(creepy, gameObject.GetComponent<SawRotation>().guyLatchedTo.transform.position, Quaternion.Euler(0,0,0));
             Bongo.transform.position = new Vector3(Bongo.transform.position.x, Bongo.transform.position.y, 0);
             Bongo.transform.localScale *= 0.35f;
             Bongo.GetComponent<SpriteRenderer>().color = Color.red;

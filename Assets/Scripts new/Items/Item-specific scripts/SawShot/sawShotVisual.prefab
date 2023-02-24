@@ -12,9 +12,11 @@ GameObject:
   - component: {fileID: 6088812858479825780}
   - component: {fileID: 1428558201798186657}
   - component: {fileID: 6755426215723942566}
-  m_Layer: 0
+  - component: {fileID: 7762448127425693486}
+  - component: {fileID: -4769880434525092234}
+  m_Layer: 9
   m_Name: sawShotVisual
-  m_TagString: Untagged
+  m_TagString: PlayerBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,3 +98,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ae96070cd3f6324997cef153d542bcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mode: 0
+--- !u!114 &7762448127425693486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4820591921083151624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30830851ecf01fa4e8e1c859ed98de6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  finalDamageStat: 0
+  procCoeff: 0
+  damageBase: 0
+  damageMult: 0
+  finalDamageMult: 1
+  finalDamageDIV: 1
+  critProb: 0.05
+  critMult: 2
+  owner: {fileID: 0}
+  master: {fileID: 0}
+  massCoeff: 2
+  overwriteDamageCalc: 0
+  onlyDamageOnce: 1
+  tickInterval: 1
+  timer: 0
+  damageAmt: 0
+  iFrameFac: 1
+  isBulletClone: 0
+  damageToPresent: 0
+--- !u!114 &-4769880434525092234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4820591921083151624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a77b42edf27e0ec40bdef5d44226c8e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemsHeld: 
+  master: {fileID: 0}
+  itemGained: 0
+  noToGive: 1
+  doTheShit: 1
+  playerBullet: {fileID: 0}
+  enemyBullet: {fileID: 0}

@@ -39,6 +39,7 @@ public class EntityReferencerGuy : MonoBehaviour
     public Material enemyBulletMaterial;
 
     public Mesh dagger;
+    public Mesh saw;
 
     public int numItemsExist = 33;
 

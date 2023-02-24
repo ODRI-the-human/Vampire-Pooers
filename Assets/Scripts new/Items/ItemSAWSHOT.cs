@@ -12,8 +12,6 @@ public class ItemSAWSHOT : MonoBehaviour
     public bool canDoTheThing = false;
     public bool isAProc = false;
 
-    GameObject Poop;
-
     public GameObject SawShotVisual;
 
     GameObject master;
@@ -22,76 +20,67 @@ public class ItemSAWSHOT : MonoBehaviour
     void Start()
     {
         master = gameObject.GetComponent<DealDamage>().master;
-        if (gameObject.GetComponent<Bullet_Movement>() != null && gameObject.GetComponent<DealDamage>().isBulletClone)
+        if (gameObject.GetComponent<DealDamage>().isBulletClone || gameObject.GetComponent<checkAllLazerPositions>() != null)
         {
             canDoTheThing = true;
             float procMoment = 100f - 20 * gameObject.GetComponent<DealDamage>().procCoeff;
             float pringle = Random.Range(0f, 100f);
+            Debug.Log(pringle.ToString());
             bool isCrit = false;
             if (pringle > procMoment)
             {
-                if (gameObject.GetComponent<ItemBOUNCY>() != null)
+                if (gameObject.GetComponent<checkAllLazerPositions>() == null)
                 {
-                    Destroy(GetComponent<ItemBOUNCY>());
+                    gameObject.GetComponent<MeshFilter>().mesh = master.GetComponent<EntityReferencerGuy>().saw;
+                    gameObject.AddComponent<ItemPIERCING>();
+                    gameObject.GetComponent<DealDamage>().onlyDamageOnce = false;
+                    if (gameObject.GetComponent<ItemBOUNCY>() != null)
+                    {
+                        Destroy(GetComponent<ItemBOUNCY>());
+                    }
                 }
-                gameObject.AddComponent<ItemPIERCING>();
-                gameObject.GetComponent<DealDamage>().onlyDamageOnce = false;
+
                 isAProc = true;
-                gameObject.GetComponent<MeshFilter>().mesh = null;//master.GetComponent<EntityReferencerGuy>().saw;
-                Poop = Instantiate(master.GetComponent<EntityReferencerGuy>().sawVisual, transform.position, transform.rotation);
-                Poop.transform.SetParent(gameObject.transform);
-                Poop.transform.localScale = transform.localScale;
             }
         }
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-        if (dogma)
-        {
-            timer++;
-        }
-    }
-
-    void Update()
-    {
-        if (dogma)
-        {
-            if (guyLatchedTo == null || timer == 100 * instances)
-            {
-                Destroy(Poop);
-                Destroy(gameObject);
-            }
-
-            Poop.transform.position = guyLatchedTo.transform.position + bulletOffset;
-            transform.position = guyLatchedTo.transform.position + new Vector3(0, 0, 5000);
-            Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), guyLatchedTo.GetComponent<Collider2D>(), false);
-        }
-    }
-
-    void OnCollisionEnter2D(Collision2D col)
+    void RollOnHit(GameObject enemo)
     {
         if (isAProc)
         {
-            if (col.gameObject.tag == "Wall")
+            if (enemo.tag == "Player" || enemo.tag == "Hostile")
             {
-                Destroy(Poop);
-            }
-            else
-            {
-                dogma = true;
-                guyLatchedTo = col.gameObject;
-                transform.rotation = Quaternion.Euler(0, 0, 0);
-                bulletOffset = transform.position - guyLatchedTo.transform.position;
-                Poop.transform.parent = null;
-                gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-                gameObject.GetComponent<Collider2D>().isTrigger = true;
-                gameObject.GetComponent<CircleCollider2D>().radius = 0.1f;
-                gameObject.GetComponent<DealDamage>().finalDamageMult /= 5;
-                gameObject.GetComponent<DealDamage>().tickInterval = 10;
-                gameObject.AddComponent<SawShotCreep>();
+                GameObject Poop = Instantiate(master.GetComponent<EntityReferencerGuy>().sawVisual, new Vector3(-9999, 9999), transform.rotation);
+                Poop.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
+                Poop.GetComponent<DealDamage>().overwriteDamageCalc = true;
+                Poop.GetComponent<DealDamage>().damageAmt = gameObject.GetComponent<DealDamage>().finalDamageStat / 5;
+                Poop.GetComponent<SawRotation>().instances = instances;
+
+                if (gameObject.GetComponent<checkAllLazerPositions>() != null)
+                {
+                    Poop.transform.localScale = 0.5f * transform.localScale;
+                }
+                else
+                {
+                    Poop.transform.localScale = transform.localScale;
+                }
+                
+                Poop.GetComponent<SawRotation>().guyLatchedTo = enemo;
+                Poop.GetComponent<SawRotation>().advanceTimer = true;
+                Poop.GetComponent<SawRotation>().bulletOffset = transform.position - (Poop.GetComponent<SawRotation>().guyLatchedTo).transform.position;
+                Poop.AddComponent<SawShotCreep>();
+
+                if (gameObject.GetComponent<DealDamage>().isBulletClone)
+                {
+                    Destroy(gameObject);
+                }
             }
         }
     }
+
+    //void OnCollisionEnter2D(Collision2D col)
+    //{
+    //    RollOnHits(col.gameObject);
+    //}
 }

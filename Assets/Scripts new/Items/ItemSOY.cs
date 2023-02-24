@@ -6,7 +6,7 @@ public class ItemSOY : MonoBehaviour
 {
     public bool runStart = true;
 
-    void Start()
+    void Awake()
     {
         if (!gameObject.GetComponent<DealDamage>().isBulletClone)
         {

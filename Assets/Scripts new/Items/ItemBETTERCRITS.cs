@@ -5,7 +5,7 @@ using UnityEngine;
 public class ItemBETTERCRITS : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         if (!gameObject.GetComponent<DealDamage>().isBulletClone)
         {

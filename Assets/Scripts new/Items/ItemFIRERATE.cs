@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ItemFIRERATE : MonoBehaviour
 {
-    void Start()
+    void Awake()
     {
         gameObject.GetComponent<Attack>().fireTimerLength -= 4;
     }
