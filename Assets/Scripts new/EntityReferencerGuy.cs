@@ -35,7 +35,7 @@ public class EntityReferencerGuy : MonoBehaviour
 
 
     public GameObject boss; //SHOULD JUST BE A TEMPORARY SOLUTION. BOSS SPAWNING SHOULD BE HANDLED BY THE SPAWNER.
-    bool hasSpawnedBoss = false;
+    int bosNumToSpawn = 1;
 
 
     public GameObject playerInstance;
@@ -48,9 +48,8 @@ public class EntityReferencerGuy : MonoBehaviour
 
     public int numItemsExist = 33;
 
-
-    public float timeLeft = 240;
     bool timerActive = true;
+    [HideInInspector] public float time = 180;
 
     void Start()
     {
@@ -62,23 +61,17 @@ public class EntityReferencerGuy : MonoBehaviour
 
     void Update()
     {
-        if (timeLeft < 0 && timerActive)
+        if (time < 0)
         {
-            GameObject oopsers = Instantiate(neutralExplosion);
-            oopsers.transform.localScale *= 100;
-            Destroy(gameObject.GetComponent<StatsText>().timeText);
-            timerActive = false;
-        }
-        else
-        {
-            timeLeft -= Time.deltaTime;
+            for (int i = 0; i < bosNumToSpawn; i++)
+            {
+                Instantiate(boss, transform.position + new Vector3(Random.Range(-1.5f, 1.5f), Random.Range(-1.5f, 1.5f), 0), Quaternion.Euler(0, 0, 0));
+            }
+            gameObject.GetComponent<ThirdEnemySpawner>().spawnTimer = 999999999999;
+            bosNumToSpawn++;
+            time = 180;
         }
 
-        if (timeLeft < 60 && !hasSpawnedBoss)
-        {
-            Instantiate(boss, transform.position, Quaternion.Euler(0,0,0));
-            gameObject.GetComponent<ThirdEnemySpawner>().spawnTimer = 999999999999;
-            hasSpawnedBoss = true;
-        }
+        time -= Time.deltaTime;
     }
 }

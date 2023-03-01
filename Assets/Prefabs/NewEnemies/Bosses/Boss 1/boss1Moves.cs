@@ -132,6 +132,7 @@ public class boss1Moves : MonoBehaviour
         gameObject.GetComponent<Attack>().angleAddAmount = 0;
         gameObject.GetComponent<Attack>().shotSpeed = 4;
         gameObject.GetComponent<NewPlayerMovement>().speedMult = 1;
+        gameObject.GetComponent<NewPlayerMovement>().recievesKnockback = false;
         bulletHeckAngleMult = 0;
 
         Invoke(nameof(SelectAttack), 1.5f);

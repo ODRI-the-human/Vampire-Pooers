@@ -6,9 +6,7 @@ public class checkAllLazerPositions : MonoBehaviour
 {
     public List<Vector3> hitboxPosses = new List<Vector3>();
     public List<GameObject> ignoredHomings = new List<GameObject>();
-    public List<GameObject> ignoredPiercings = new List<GameObject>();
     public List<GameObject> ignoredHits = new List<GameObject>();
-    public List<GameObject> ignoredSplits = new List<GameObject>();
 
     public Vector3 vecToMove;
     public GameObject owner;
@@ -25,7 +23,6 @@ public class checkAllLazerPositions : MonoBehaviour
     GameObject thinguy;
     public bool setVecToMoveAutomatically = true;
     public bool actuallyHit = true;
-    int pierceInstances = 0;
     public float splitDamMult = 1;
 
     // Start is called before the first frame update
@@ -38,8 +35,6 @@ public class checkAllLazerPositions : MonoBehaviour
     IEnumerator LateStart(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
-
-        pierceInstances = gameObject.GetComponent<ItemPIERCING>().instances;
         float damageVal = gameObject.GetComponent<DealDamage>().damageAmt;
         gameObject.GetComponent<DealDamage>().overwriteDamageCalc = true;
         gameObject.GetComponent<DealDamage>().damageAmt = damageVal * splitDamMult;
@@ -150,7 +145,7 @@ public class checkAllLazerPositions : MonoBehaviour
 
                     if (doContinue && gameObject.GetComponent<ItemPIERCING>() != null)
                     {
-                        gameObject.GetComponent<DealDamage>().damageAmt *= 1 + 0.2f * pierceInstances;
+                        gameObject.GetComponent<DealDamage>().damageAmt *= 1 + 0.2f * gameObject.GetComponent<ItemPIERCING>().instances;
                         gameObject.GetComponent<DealDamage>().finalDamageStat = gameObject.GetComponent<DealDamage>().damageAmt;
                         ignoredHits.Add(col.gameObject);
                     }

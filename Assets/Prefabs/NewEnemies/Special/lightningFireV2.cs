@@ -25,6 +25,7 @@ public class lightningFireV2 : MonoBehaviour
 
     public GameObject sprongleAudio;
     public GameObject spawnedSprongleAudio;
+    bool prevKnockbackSetting;
 
     void Start()
     {
@@ -43,7 +44,9 @@ public class lightningFireV2 : MonoBehaviour
         {
             vecToTarget = targetPos - transform.position;
             gameObject.GetComponent<NewPlayerMovement>().speedMult = 0;
+            prevKnockbackSetting = gameObject.GetComponent<NewPlayerMovement>().recievesKnockback;
             gameObject.GetComponent<NewPlayerMovement>().recievesKnockback = false;
+            gameObject.GetComponent<NewPlayerMovement>().knockBackVector = Vector2.zero;
         }
 
         vecToTarget = new Vector3(vecToTarget.x, vecToTarget.y, 0);
@@ -95,7 +98,8 @@ public class lightningFireV2 : MonoBehaviour
             Darrenbo.GetComponent<DealDamage>().damageBase += gameObject.GetComponent<Attack>().Crongus + gameObject.GetComponent<Attack>().levelDamageBonus;
 
             gameObject.GetComponent<NewPlayerMovement>().speedMult = 1;
-            gameObject.GetComponent<NewPlayerMovement>().recievesKnockback = true;
+
+            gameObject.GetComponent<NewPlayerMovement>().recievesKnockback = prevKnockbackSetting;
         }
 
         if (spawnedSprongleAudio != null)

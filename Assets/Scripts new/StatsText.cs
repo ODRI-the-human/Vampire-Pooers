@@ -66,10 +66,10 @@ public class StatsText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float timeLeft = gameObject.GetComponent<EntityReferencerGuy>().timeLeft;
+        float timeLeft = gameObject.GetComponent<EntityReferencerGuy>().time;
         int seconds = Mathf.FloorToInt(timeLeft % 60);
         int minutes = Mathf.FloorToInt(timeLeft / 60);
-        timeText.text = "PORTAL CLOSES IN:" + "\n" + string.Format("{0:00} : {1:00}", minutes, seconds);
+        timeText.text = "boss(es) spawn in:" + "\n" + string.Format("{0:00} : {1:00}", minutes, seconds);
 
 
 

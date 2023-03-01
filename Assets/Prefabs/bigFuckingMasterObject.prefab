@@ -80,12 +80,14 @@ MonoBehaviour:
   soyShotAudio: {fileID: 0}
   neutralExplosion: {fileID: 0}
   camera: {fileID: 0}
+  boss: {fileID: 0}
   playerInstance: {fileID: 0}
   playerBulletMaterial: {fileID: 0}
   enemyBulletMaterial: {fileID: 0}
   dagger: {fileID: 0}
+  saw: {fileID: 0}
   numItemsExist: 28
-  timeLeft: 240
+  time: 180
 --- !u!114 &9014303847402346882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -99,6 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnTimerLength: 200
+  spawnTimer: 0
   minSpawnMultiplier: 2
   maxSpawnMultiplier: 4
   waveText: {fileID: 0}
