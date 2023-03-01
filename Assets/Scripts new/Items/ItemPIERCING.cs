@@ -6,6 +6,7 @@ public class ItemPIERCING : MonoBehaviour
 {
     public int instances = 1;
     public int piercesLeft;
+    public bool giveDamageBonus = true;
 
     void Start()
     {

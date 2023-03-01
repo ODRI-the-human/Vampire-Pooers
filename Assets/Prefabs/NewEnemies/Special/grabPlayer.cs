@@ -5,7 +5,6 @@ using UnityEngine;
 public class grabPlayer : MonoBehaviour
 {
     GameObject blumby;
-
     
     void OnCollisionEnter2D(Collision2D col)
     {

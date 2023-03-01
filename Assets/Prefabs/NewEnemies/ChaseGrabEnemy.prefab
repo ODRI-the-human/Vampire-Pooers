@@ -96,7 +96,7 @@ MonoBehaviour:
   knockBackVector: {x: 0, y: 0}
   desiredVector: {x: 0, y: 0, z: 0}
   moveDirection: {x: 0, y: 0, z: 0}
-  baseMoveSpeed: 4.5
+  baseMoveSpeed: 6
   currentMoveSpeed: 0
   speedDiv: 1
   speedMult: 1
@@ -140,6 +140,7 @@ MonoBehaviour:
   damageAmt: 0
   iFrameFac: 1
   isBulletClone: 0
+  damageToPresent: 0
 --- !u!114 &-5622376081394152181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,7 +155,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: 0
   MaxHP: 100
-  Barry63: {fileID: 2232971130497578917, guid: dc46db39e4e70b144915e7a0652cc396, type: 3}
   PlayerDieAudio: {fileID: 1098745368026675434, guid: 26556f7af7586304588a534b37c199bc, type: 3}
   PlayerHurtAudio: {fileID: 5472873928898165319, guid: 1edb877ad01c07344b1cad0d27b62330, type: 3}
   CritAudio: {fileID: 4189199820661322247, guid: cfea01d8a8cd2594fa1446da0a6dd1b2, type: 3}
@@ -199,6 +199,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shotSpeed: 5
   currentAngle: 0
+  vectorToTarget: {x: 0, y: 0}
   noExtraShots: 0
   shotAngleCoeff: 1
   trueDamageValue: 0
@@ -225,6 +226,10 @@ MonoBehaviour:
   levelDamageBonus: 0
   scaleAddMult: 1
   stopwatchDebuffAmount: 0
+  doShootAutomatically: 1
+  getEnemyPos: 1
+  angleAddAmount: 0
+  velToGiveBullets: {x: 0, y: 0, z: 0}
 --- !u!114 &-4158026962821771435
 MonoBehaviour:
   m_ObjectHideFlags: 0

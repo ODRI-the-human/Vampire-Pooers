@@ -7,7 +7,6 @@ public class HPDamageDie : MonoBehaviour
 
     public float HP;
     public float MaxHP;
-    public GameObject Barry63;
     public GameObject PlayerDieAudio;
     public GameObject PlayerHurtAudio;
     public GameObject CritAudio;

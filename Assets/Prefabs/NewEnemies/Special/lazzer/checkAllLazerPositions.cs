@@ -20,9 +20,13 @@ public class checkAllLazerPositions : MonoBehaviour
 
     public Material shoot;
     public Material invis;
+    public Material warn;
 
     GameObject thinguy;
     public bool setVecToMoveAutomatically = true;
+    public bool actuallyHit = true;
+    int pierceInstances = 0;
+    public float splitDamMult = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +39,11 @@ public class checkAllLazerPositions : MonoBehaviour
     {
         yield return new WaitForSeconds(waitTime);
 
+        pierceInstances = gameObject.GetComponent<ItemPIERCING>().instances;
+        float damageVal = gameObject.GetComponent<DealDamage>().damageAmt;
+        gameObject.GetComponent<DealDamage>().overwriteDamageCalc = true;
+        gameObject.GetComponent<DealDamage>().damageAmt = damageVal * splitDamMult;
+
         if (setVecToMoveAutomatically)
         {
             vecToMove = new Vector3(transform.up.x, transform.up.y, 0).normalized;
@@ -42,7 +51,10 @@ public class checkAllLazerPositions : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, 0);
         line.positionCount = 150;
 
-        Invoke(nameof(DIE), 0.25f);
+        if (actuallyHit)
+        {
+            Invoke(nameof(DIE), 0.25f);
+        }
 
         for (int i = 0; i < 150; i++)
         {
@@ -54,7 +66,7 @@ public class checkAllLazerPositions : MonoBehaviour
                 break;
             }
 
-            line.SetPosition(i, new Vector3(transform.position.x, transform.position.y, -2));
+            line.SetPosition(i, new Vector3(transform.position.x, transform.position.y, -1));
             hitboxPosses.Add(transform.position);
 
             transform.position += 0.4f * vecToMove;
@@ -63,7 +75,7 @@ public class checkAllLazerPositions : MonoBehaviour
             if (gameObject.GetComponent<ItemHOMING>() != null)
             {
                 //Debug.Log("pdaspodfsj");
-                Collider2D[] shitColliders = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y), 3.5f * gameObject.GetComponent<ItemHOMING>().instances);
+                Collider2D[] shitColliders = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y), 3 * gameObject.GetComponent<ItemHOMING>().instances);
                 foreach (var col in shitColliders)
                 {
                     //Debug.Log("pdaspodfsj");
@@ -83,7 +95,7 @@ public class checkAllLazerPositions : MonoBehaviour
                         {
                             Vector3 vectorToEnemy = col.gameObject.transform.position - transform.position;
                             vectorToEnemy = new Vector3(vectorToEnemy.x, vectorToEnemy.y, 0);
-                            vecToMove = (vecToMove + 0.35f * vectorToEnemy.normalized).normalized;
+                            vecToMove = (vecToMove + 0.2f * vectorToEnemy.normalized).normalized;
 
                             Vector3 colVec = col.transform.position - transform.position;
                             colVec = new Vector3(colVec.x, colVec.y, 0);
@@ -94,6 +106,8 @@ public class checkAllLazerPositions : MonoBehaviour
                                 ignoredHomings.Add(col.gameObject);
                             }
                         }
+
+                        break;
                     }
                 }
             }
@@ -115,7 +129,7 @@ public class checkAllLazerPositions : MonoBehaviour
                         }
                     }
 
-                    if (doContinue)
+                    if (doContinue && actuallyHit)
                     {
                         //Debug.Log("fsdmmfds");
                         float procMoment = 100f - 100f * gameObject.GetComponent<DealDamage>().critProb * gameObject.GetComponent<DealDamage>().procCoeff;
@@ -134,34 +148,27 @@ public class checkAllLazerPositions : MonoBehaviour
                         ignoredHits.Add(col.gameObject);
                     }
 
-                    // Applying piercing.
-                    bool doTheseEffects = true;
-
-                    foreach (GameObject blimpy in ignoredPiercings)
+                    if (doContinue && gameObject.GetComponent<ItemPIERCING>() != null)
                     {
-                        if (col.gameObject == blimpy)
-                        {
-                            doTheseEffects = false;
-                        }
-                    }
-
-                    if (doTheseEffects && gameObject.GetComponent<ItemPIERCING>() != null)
-                    {
-                        gameObject.GetComponent<DealDamage>().finalDamageMult *= 1 + 0.2f * gameObject.GetComponent<ItemPIERCING>().instances;
-                        ignoredPiercings.Add(col.gameObject);
+                        gameObject.GetComponent<DealDamage>().damageAmt *= 1 + 0.2f * pierceInstances;
+                        gameObject.GetComponent<DealDamage>().finalDamageStat = gameObject.GetComponent<DealDamage>().damageAmt;
+                        ignoredHits.Add(col.gameObject);
                     }
 
                     // Applying split shots.
-                    if (doTheseEffects && gameObject.GetComponent<ItemSPLIT>() != null && gameObject.GetComponent<ItemSPLIT>().canSplit)
+                    if (doContinue && gameObject.GetComponent<ItemSPLIT>() != null && gameObject.GetComponent<ItemSPLIT>().canSplit)
                     {
                         for (int j = 0; j < 2; j++)
                         {
                             GameObject merman = Instantiate(thinguy, transform.position, Quaternion.Euler(0, 0, 0));
                             merman.GetComponent<checkAllLazerPositions>().vecToMove = (2 * j - 1) * new Vector3(vecToMove.y, -vecToMove.x, 0); // Rotates vector 90 degrees.
                             merman.GetComponent<checkAllLazerPositions>().setVecToMoveAutomatically = false;
-                            merman.GetComponent<DealDamage>().finalDamageMult = 0.3f * gameObject.GetComponent<ItemSPLIT>().instances * gameObject.GetComponent<DealDamage>().finalDamageMult;
+                            //merman.GetComponent<DealDamage>().overwriteDamageCalc = false;
+                            merman.GetComponent<checkAllLazerPositions>().splitDamMult *= 0.3f * gameObject.GetComponent<ItemSPLIT>().instances;// * gameObject.GetComponent<DealDamage>().damageAmt;
+                            //merman.GetComponent<DealDamage>().CalcDamage();// * gameObject.GetComponent<DealDamage>().damageAmt;
+                            //merman.GetComponent<DealDamage>().finalDamageStat = gameObject.GetComponent<DealDamage>().damageAmt;
                             merman.GetComponent<ItemSPLIT>().canSplit = false;
-                            ignoredSplits.Add(col.gameObject);
+                            ignoredHits.Add(col.gameObject);
                         }
                     }
                 }
@@ -215,7 +222,10 @@ public class checkAllLazerPositions : MonoBehaviour
                 if (col.gameObject.tag == "Wall")
                 {
                     // Damaging rocks.
-                    col.gameObject.GetComponent<obstHP>().owMyEntireRockIsInPain(gameObject);
+                    if (col.gameObject.GetComponent<obstHP>() != null)
+                    {
+                        col.gameObject.GetComponent<obstHP>().owMyEntireRockIsInPain(gameObject);
+                    }
 
                     // Applying bouncy effect.
                     if (gameObject.GetComponent<ItemBOUNCY>() != null && gameObject.GetComponent<ItemBOUNCY>().bouncesLeft != 0)
@@ -249,13 +259,29 @@ public class checkAllLazerPositions : MonoBehaviour
             }
         }
 
-        line.material = shoot;
-        line.widthMultiplier = (gameObject.GetComponent<DealDamage>().finalDamageStat / 2 + 25) / 100;
+        if (actuallyHit)
+        {
+            line.material = shoot;
+            line.widthMultiplier = (gameObject.GetComponent<DealDamage>().finalDamageStat / 2 + 25) / 100;
+        }
+        else
+        {
+            line.material = warn;
+            line.widthMultiplier = 0.1f;
+        }
     }
 
     void Update()
     {
-        line.widthMultiplier /= 1 + 8 * Time.deltaTime;
+        if (actuallyHit)
+        {
+            line.widthMultiplier /= 1 + 8 * Time.deltaTime;
+        }
+
+        if (owner == null)
+        {
+            Destroy(gameObject);
+        }
     }
 
     void DIE()

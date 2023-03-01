@@ -32,13 +32,8 @@ public class lightningFireV2 : MonoBehaviour
         LayerEnemy = LayerMask.NameToLayer("Enemy Bullets");
     }
 
-    public IEnumerator Target(Vector3 targetPos, float currentAngle, int numExtras, float timeToWait)
+    public IEnumerator Target(Vector3 targetPos, float currentAngle, int numExtras)
     {
-        if (gameObject.tag == "Hostile")
-        {
-            yield return new WaitForSecondsRealtime(timeToWait);
-        }
-
         activeAngles.Add(currentAngle);
         noExtraShots = numExtras;
 
@@ -47,6 +42,8 @@ public class lightningFireV2 : MonoBehaviour
         if (gameObject.tag == "Hostile")
         {
             vecToTarget = targetPos - transform.position;
+            gameObject.GetComponent<NewPlayerMovement>().speedMult = 0;
+            gameObject.GetComponent<NewPlayerMovement>().recievesKnockback = false;
         }
 
         vecToTarget = new Vector3(vecToTarget.x, vecToTarget.y, 0);
@@ -68,6 +65,7 @@ public class lightningFireV2 : MonoBehaviour
         {
             Harrybo.tag = "enemyBullet";
             Harrybo.layer = LayerEnemy;
+            Harrybo.GetComponent<checkAllLazerPositions>().actuallyHit = false;
         }
 
         Harrybo.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
@@ -76,11 +74,34 @@ public class lightningFireV2 : MonoBehaviour
         Harrybo.GetComponent<checkAllLazerPositions>().master = gameObject.GetComponent<DealDamage>().master;
         Harrybo.GetComponent<DealDamage>().damageBase += gameObject.GetComponent<Attack>().Crongus + gameObject.GetComponent<Attack>().levelDamageBonus; // applies converter damage bonus to bullets
 
+        if (gameObject.tag == "Hostile")
+        {
+            yield return new WaitForSecondsRealtime(0.6f);
+            Destroy(Harrybo);
+        }
+
+        if (gameObject.tag == "Hostile" || gameObject.tag == "enemyBullet")
+        {
+            GameObject Darrenbo = Instantiate(moleProj, transform.position, Quaternion.Euler(0, 0, 0));
+            Darrenbo.transform.localScale = new Vector3(1, 1, 1);//150, 1);
+            Darrenbo.transform.rotation = Quaternion.LookRotation(vecToTarget) * Quaternion.Euler(0, 90, 90 + (180 / Mathf.PI) * currentAngle); //90 + 180 * noExtraShots + 
+            Darrenbo.GetComponent<checkAllLazerPositions>().owner = gameObject;
+            Darrenbo.tag = "enemyBullet";
+            Darrenbo.layer = LayerEnemy;
+            Darrenbo.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
+            Darrenbo.GetComponent<DealDamage>().finalDamageMult *= gameObject.GetComponent<DealDamage>().finalDamageMult;
+            Darrenbo.GetComponent<DealDamage>().owner = gameObject;
+            Darrenbo.GetComponent<checkAllLazerPositions>().master = gameObject.GetComponent<DealDamage>().master;
+            Darrenbo.GetComponent<DealDamage>().damageBase += gameObject.GetComponent<Attack>().Crongus + gameObject.GetComponent<Attack>().levelDamageBonus;
+
+            gameObject.GetComponent<NewPlayerMovement>().speedMult = 1;
+            gameObject.GetComponent<NewPlayerMovement>().recievesKnockback = true;
+        }
+
         if (spawnedSprongleAudio != null)
         {
             Destroy(spawnedSprongleAudio);
         }
-
         spawnedSprongleAudio = Instantiate(sprongleAudio);
     }
 }

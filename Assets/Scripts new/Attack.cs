@@ -8,7 +8,7 @@ public class Attack : MonoBehaviour
     Vector2 newShotVector;
     Rigidbody2D bulletRB;
     public float currentAngle;
-    Vector2 vectorToTarget;
+    public Vector2 vectorToTarget;
     public int noExtraShots = 0;
     public float shotAngleCoeff = 1;
     public float trueDamageValue;
@@ -49,6 +49,13 @@ public class Attack : MonoBehaviour
 
     public float stopwatchDebuffAmount;
 
+    public bool doShootAutomatically = true;
+    bool isEnemy = false;
+    public bool getEnemyPos = true;
+    public float angleAddAmount = 0;
+
+    public Vector3 velToGiveBullets;
+
     void Start()
     {
         timesFired = -1;
@@ -57,6 +64,7 @@ public class Attack : MonoBehaviour
         if (gameObject.tag == "Hostile" || gameObject.tag == "enemyFamiliar")
         {
             Player = GameObject.Find("newPlayer");
+            isEnemy = true;
             if (Player.GetComponent<ItemSTOPWATCH>() != null)
             {
                 stopwatchDebuffAmount = 1 / (0.4f * Player.GetComponent<ItemSTOPWATCH>().instances + 1);
@@ -81,7 +89,12 @@ public class Attack : MonoBehaviour
             reTargetTimer = reTargetTimerLength;
         }
 
-        if (fireTimer > Mathf.Clamp(fireTimerLength * fireTimerLengthMLT / fireTimerDIV, 2, 9999999999))
+        if (currentTarget != null && getEnemyPos)
+        {
+            vectorToTarget = (currentTarget.transform.position - gameObject.transform.position).normalized;
+        }
+
+        if (fireTimer > Mathf.Clamp(fireTimerLength * fireTimerLengthMLT / fireTimerDIV, 2, 9999999999) && doShootAutomatically)
         {
             switch (playerControlled)
             {
@@ -101,7 +114,6 @@ public class Attack : MonoBehaviour
                     }
                     if ((currentTarget.transform.position - gameObject.transform.position).magnitude < visionRange && specialFireType != 2)
                     {
-                        vectorToTarget = (currentTarget.transform.position - gameObject.transform.position).normalized;
                         UseWeapon();
                         fireTimer = 0;
                         Instantiate(PlayerShootAudio);
@@ -111,10 +123,9 @@ public class Attack : MonoBehaviour
         }
     }
 
-    void UseWeapon()
+    public void UseWeapon()
     {
         timesFired++;
-
         switch (newAttack)
         {
             case 0:
@@ -134,7 +145,7 @@ public class Attack : MonoBehaviour
                     SpawnAttack(currentAngle);
                     break;
                 case 1:
-                    currentAngle = (Mathf.PI / 4) * i;
+                    currentAngle = shotAngleCoeff * (Mathf.PI / 4) * i + angleAddAmount;
                     SpawnAttack(currentAngle);
                     break;
                 case 2:
@@ -166,7 +177,7 @@ public class Attack : MonoBehaviour
                     }
 
                     currentAngle = 0.3f * shotAngleCoeff * (0.5f * noExtraShots - i - 1);
-                    StartCoroutine(gameObject.GetComponent<lightningFireV2>().Target(neq, currentAngle, noExtraShots, 0.2f));
+                    StartCoroutine(gameObject.GetComponent<lightningFireV2>().Target(neq, currentAngle, noExtraShots));
                     break;
             }
         }
@@ -182,7 +193,8 @@ public class Attack : MonoBehaviour
             vectorToTarget = new Vector2(1,0);
         }
         newShotVector = new Vector2(vectorToTarget.x * Mathf.Cos(currentAngle) - vectorToTarget.y * Mathf.Sin(currentAngle), vectorToTarget.x * Mathf.Sin(currentAngle) + vectorToTarget.y * Mathf.Cos(currentAngle));
-        bulletRB.velocity = newShotVector * shotSpeed;
+        velToGiveBullets = newShotVector * shotSpeed;
+        bulletRB.velocity = velToGiveBullets;
         newObject.GetComponent<DealDamage>().master = gameObject.GetComponent<DealDamage>().master;
         if (attachItems)
         {
@@ -192,7 +204,7 @@ public class Attack : MonoBehaviour
             //newObject.AddComponent<KillBullets>();
             newObject.GetComponent<weaponType>().weaponHeld = newObject.GetComponent<weaponType>().weaponHeld;
             newObject.GetComponent<DealDamage>().owner = gameObject;
-            newObject.GetComponent<DealDamage>().isBulletClone = true;
+            //newObject.GetComponent<DealDamage>().isBulletClone = true;
             newObject.GetComponent<DealDamage>().finalDamageMult *= gameObject.GetComponent<DealDamage>().finalDamageMult;
             newObject.GetComponent<DealDamage>().damageBase += Crongus + levelDamageBonus; // applies converter damage bonus to bullets
         }

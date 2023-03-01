@@ -31,7 +31,7 @@ public class showDamageNumbers : MonoBehaviour
 
         texty = Instantiate(DamageNumber);
         texty.transform.SetParent(GameObject.Find("Canvas").transform);
-        texty.transform.localPosition = 108 * (pos - camera.transform.position + new Vector3(1.9f, 0, 0));
+        texty.transform.localPosition = (1080 / (2 * camera.GetComponent<Camera>().orthographicSize)) * (pos - camera.transform.position + new Vector3(1.5f, 0, 0) * camera.GetComponent<Camera>().orthographicSize / 5);
         texty.transform.localPosition = new Vector3(texty.transform.localPosition.x, texty.transform.localPosition.y, 324); // done on a separate line, to keep it simple (stupid)
         texty.text = (plusOrMinus + Mathf.RoundToInt(damage)).ToString();
 

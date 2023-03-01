@@ -148,8 +148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: 0
   MaxHP: 100
-  Barry63: {fileID: 6964255014020883914, guid: 526b17258aed02c4c9c574bcca2b87c3, type: 3}
-  PlayerDieAudio: {fileID: 7927511119378929990, guid: 5524052d8b9da4f43a8bffc27f9db6d9, type: 3}
+  PlayerDieAudio: {fileID: 6964255014020883914, guid: 526b17258aed02c4c9c574bcca2b87c3, type: 3}
   PlayerHurtAudio: {fileID: 5963825423898132415, guid: e7b6397eaf92c834aaecbf3499716cb0, type: 3}
   CritAudio: {fileID: 4189199820661322247, guid: cfea01d8a8cd2594fa1446da0a6dd1b2, type: 3}
   iFramesTimer: 50
@@ -157,7 +156,7 @@ MonoBehaviour:
   sprite: {fileID: 5905868436867884629}
   material: {fileID: 0}
   colorChangeTimer: 0
-  XP: {fileID: 6964255014020883914, guid: 526b17258aed02c4c9c574bcca2b87c3, type: 3}
+  XP: {fileID: 2232971130497578917, guid: dc46db39e4e70b144915e7a0652cc396, type: 3}
   damageReduction: 0
   perfectWaves: 0
 --- !u!114 &1698531144881374718
@@ -182,7 +181,7 @@ MonoBehaviour:
   critMult: 2
   owner: {fileID: 0}
   master: {fileID: 0}
-  massCoeff: 2
+  massCoeff: 1
   overwriteDamageCalc: 1
   onlyDamageOnce: 0
   tickInterval: 1
@@ -205,6 +204,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shotSpeed: 8
   currentAngle: 0
+  vectorToTarget: {x: 0, y: 0}
   noExtraShots: 0
   shotAngleCoeff: 1
   trueDamageValue: 0
@@ -231,6 +231,10 @@ MonoBehaviour:
   levelDamageBonus: 0
   scaleAddMult: 1
   stopwatchDebuffAmount: 0
+  doShootAutomatically: 1
+  getEnemyPos: 1
+  angleAddAmount: 0
+  velToGiveBullets: {x: 0, y: 0, z: 0}
 --- !u!114 &5717554992336324117
 MonoBehaviour:
   m_ObjectHideFlags: 0

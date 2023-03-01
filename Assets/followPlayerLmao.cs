@@ -8,10 +8,12 @@ public class followPlayerLmao : MonoBehaviour
     Vector3 mouseVector;
     Vector3 vectorMan;
     float fuckAngle;
+    public int whichGuy;
 
     void Start()
     {
-        Player = GameObject.Find("newPlayer");
+        GameObject[] gos = GameObject.FindGameObjectsWithTag("Player");
+        Player = gos[whichGuy];
     }
 
     void Update()

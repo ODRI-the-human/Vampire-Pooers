@@ -94,7 +94,7 @@ public class DealDamage : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D col)
     {
-        if (finalDamageStat != 0 && gameObject.tag != col.gameObject.tag && col.gameObject.tag != "Wall" && col.gameObject.tag != "PlayerBullet" && col.gameObject.tag != "enemyBullet" && col.gameObject.GetComponent<DealDamage>() != null)
+        if (finalDamageStat != 0 && gameObject.tag != col.gameObject.tag && col.gameObject.tag != "Wall" && col.gameObject.tag != "PlayerBullet" && col.gameObject.tag != "enemyBullet" && col.gameObject.GetComponent<DealDamage>() != null && col.gameObject.GetComponent<HPDamageDie>().iFrames < 0)
         {
             gameObject.SendMessage("RollOnHit", col.gameObject);
         }

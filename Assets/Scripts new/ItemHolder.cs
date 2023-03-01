@@ -610,6 +610,14 @@ public class ItemHolder : MonoBehaviour
         Rigidbody2D enemyBRB = enemyBulletPrefab.GetComponent<Rigidbody2D>();
         master.GetComponent<ThirdEnemySpawner>().enemyBullet = enemyBulletPrefab;
         enemyBRB.simulated = false;
+
+        Invoke(nameof(setBulletsToClones), 0.1f);
+    }
+
+    void setBulletsToClones()
+    {
+        playerBulletPrefab.GetComponent<DealDamage>().isBulletClone = true;
+        enemyBulletPrefab.GetComponent<DealDamage>().isBulletClone = true;
     }
 
     void Update()

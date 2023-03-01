@@ -189,6 +189,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shotSpeed: 8
   currentAngle: 0
+  vectorToTarget: {x: 0, y: 0}
   noExtraShots: 0
   shotAngleCoeff: 1
   trueDamageValue: 0
@@ -215,6 +216,10 @@ MonoBehaviour:
   levelDamageBonus: 0
   scaleAddMult: 1
   stopwatchDebuffAmount: 0
+  doShootAutomatically: 1
+  getEnemyPos: 1
+  angleAddAmount: 0
+  velToGiveBullets: {x: 0, y: 0, z: 0}
 --- !u!114 &7158769378574457366
 MonoBehaviour:
   m_ObjectHideFlags: 0

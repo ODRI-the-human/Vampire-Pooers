@@ -58,7 +58,7 @@ public class ItemBERSERK : MonoBehaviour
             timer = 0;
         }
 
-        if (timer == 150 * instances && gameObject.GetComponent<weaponType>().weaponHeld == (int)ITEMLIST.DARKARTS)
+        if (timer == 75 + 75 * instances && gameObject.GetComponent<weaponType>().weaponHeld == (int)ITEMLIST.DARKARTS)
         {
             gameObject.GetComponent<weaponType>().weaponHeld = pastWeapon;
             Debug.Log("Bringus");

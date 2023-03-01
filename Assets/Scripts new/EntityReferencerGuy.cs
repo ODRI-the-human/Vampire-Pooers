@@ -33,6 +33,11 @@ public class EntityReferencerGuy : MonoBehaviour
     public GameObject neutralExplosion;
     public GameObject camera;
 
+
+    public GameObject boss; //SHOULD JUST BE A TEMPORARY SOLUTION. BOSS SPAWNING SHOULD BE HANDLED BY THE SPAWNER.
+    bool hasSpawnedBoss = false;
+
+
     public GameObject playerInstance;
 
     public Material playerBulletMaterial;
@@ -46,7 +51,6 @@ public class EntityReferencerGuy : MonoBehaviour
 
     public float timeLeft = 240;
     bool timerActive = true;
-
 
     void Start()
     {
@@ -68,6 +72,13 @@ public class EntityReferencerGuy : MonoBehaviour
         else
         {
             timeLeft -= Time.deltaTime;
+        }
+
+        if (timeLeft < 60 && !hasSpawnedBoss)
+        {
+            Instantiate(boss, transform.position, Quaternion.Euler(0,0,0));
+            gameObject.GetComponent<ThirdEnemySpawner>().spawnTimer = 999999999999;
+            hasSpawnedBoss = true;
         }
     }
 }

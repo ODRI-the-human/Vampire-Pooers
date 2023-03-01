@@ -144,6 +144,7 @@ MonoBehaviour:
   rb: {fileID: 4255455733749829592}
   speed: 0
   master: {fileID: 0}
+  canCollide: 1
 --- !u!114 &-1365107204755030205
 MonoBehaviour:
   m_ObjectHideFlags: 0

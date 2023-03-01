@@ -77,7 +77,7 @@ public class moleGamingV3 : MonoBehaviour
             Invoke(nameof(Shooty), 1 / stopwatchDebuffAmount);//1);
         }
     }
-
+    
     public void TargetOthers()
     {
         GetAllMoles();
@@ -104,7 +104,12 @@ public class moleGamingV3 : MonoBehaviour
     void Shooty()
     {
         GetAllMoles();
-        spawnedZap = Instantiate(zapAudio);
+
+        if (moles.Count > 0)
+        {
+            spawnedZap = Instantiate(zapAudio);
+        }
+        
         foreach (GameObject mole in moles)
         {
             mole.GetComponent<moleStatus>().ActuallyShoot();

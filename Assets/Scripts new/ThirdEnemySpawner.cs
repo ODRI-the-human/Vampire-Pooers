@@ -6,7 +6,7 @@ using TMPro;
 public class ThirdEnemySpawner : MonoBehaviour
 {
     public float spawnTimerLength = 200f;
-    float spawnTimer = 0;
+    public float spawnTimer = 0;
     int spawnNumber = 1; // records the number of times a group of enemies has been spawned, so more enemies will be spawned after a period of time and (later) more dangerous enemies will spawn.
     int waveNumber = 0;
     public int minSpawnMultiplier = 2;
@@ -46,7 +46,7 @@ public class ThirdEnemySpawner : MonoBehaviour
     int typeToAvoidSpawning = -5;
 
     int spawnTypeMin = 0;
-    int spawnTypeMax = 11;
+    int spawnTypeMax = 12;
 
     Vector3 placeToSpawn;
 

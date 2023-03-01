@@ -156,8 +156,10 @@ MonoBehaviour:
   line: {fileID: -8539403832840598318}
   master: {fileID: 0}
   shoot: {fileID: 2100000, guid: 6a7214e8be07cb14587ff3180ea0b46f, type: 2}
+  warn: {fileID: 2100000, guid: fba9229bb5d773248b7d70e956c6b896, type: 2}
   invis: {fileID: 2100000, guid: a66365599d0d4264e9fd35d01ff3d088, type: 2}
   setVecToMoveAutomatically: 1
+  actuallyHit: 1
 --- !u!114 &7319165172531854056
 MonoBehaviour:
   m_ObjectHideFlags: 0
