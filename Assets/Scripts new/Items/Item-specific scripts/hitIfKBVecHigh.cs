@@ -18,7 +18,7 @@ public class hitIfKBVecHigh : MonoBehaviour
     {
         if (col.gameObject.tag == "Hostile" && col.gameObject != responsible)
         {
-            float damageAmt = gameObject.GetComponent<NewPlayerMovement>().knockBackVector.magnitude;
+            float damageAmt = 3 * gameObject.GetComponent<NewPlayerMovement>().knockBackVector.magnitude;
             col.gameObject.GetComponent<NewPlayerMovement>().knockBackVector = (col.gameObject.transform.position - transform.position).normalized * gameObject.GetComponent<NewPlayerMovement>().knockBackVector.magnitude;
             col.gameObject.AddComponent<hitIfKBVecHigh>();
             col.gameObject.GetComponent<hitIfKBVecHigh>().responsible = gameObject;

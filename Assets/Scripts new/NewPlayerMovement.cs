@@ -81,7 +81,7 @@ public class NewPlayerMovement : MonoBehaviour
                         Instantiate(dodgeAudio);
                         dodgeTimer = dodgeTimerLength / 2;
                         gameObject.GetComponent<HPDamageDie>().damageReduction += 500;
-                        gameObject.GetComponent<DealDamage>().massCoeff += 3;
+                        gameObject.GetComponent<DealDamage>().massCoeff += 7.5f;
                         speedMult = 1.5f * dodgeSpeedUp;
                         gameObject.layer = LayerSB;
                         isDodging = 1;
@@ -154,7 +154,7 @@ public class NewPlayerMovement : MonoBehaviour
                     isDodging = 0;
                     speedMult = 1;
                     gameObject.GetComponent<HPDamageDie>().damageReduction -= 500;
-                    gameObject.GetComponent<DealDamage>().massCoeff -= 3;
+                    gameObject.GetComponent<DealDamage>().massCoeff -= 7.5f;
                     SendMessage("dodgeEndEffects");
                     gameObject.GetComponent<HPDamageDie>().iFrames = 10;
                     break;
