@@ -41,6 +41,7 @@ public class weaponType : MonoBehaviour
                 if (gameObject.GetComponent<Attack>() != null)
                 {
                     gameObject.GetComponent<Attack>().specialFireType = 3;
+                    gameObject.GetComponent<Attack>().fireTimerLengthMLT = 0.5f;
                 }
                 break;
             case (int)ITEMLIST.LAZER:

@@ -13,6 +13,11 @@ public class Healing : MonoBehaviour
         master = GameObject.Find("bigFuckingMasterObject");
     }
 
+    public void newWaveEffects()
+    {
+        Healo(10);
+    }
+
     public void Healo(float amount)
     {
         gameObject.GetComponent<HPDamageDie>().HP += amount * healMult / healDiv;

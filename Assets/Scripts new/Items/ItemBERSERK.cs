@@ -14,6 +14,7 @@ public class ItemBERSERK : MonoBehaviour
     GameObject spawnedRedPlane;
 
     public int instances = 1;
+    bool isActive = false;
 
     // Start is called before the first frame update
     void Start()
@@ -39,16 +40,16 @@ public class ItemBERSERK : MonoBehaviour
 
     public void goBerserk()
     {
-        if (gameObject.GetComponent<weaponType>().weaponHeld != (int)ITEMLIST.DARKARTS) //&& gameObject.GetComponent<LevelUp>().level % 2 == 0)
+        if (gameObject.GetComponent<weaponType>().weaponHeld != (int)ITEMLIST.DARKARTS && gameObject.GetComponent<LevelUp>().level % 2 == 0)
         {
             pastWeapon = gameObject.GetComponent<weaponType>().weaponHeld;
             gameObject.GetComponent<weaponType>().weaponHeld = (int)ITEMLIST.DARKARTS;
-            gameObject.GetComponent<Attack>().fireTimerLengthMLT /= 2;
             Debug.Log("Dingus");
             gameObject.GetComponent<weaponType>().SetWeapon();
             master.GetComponent<AudioSource>().volume = 0;
             spawnedMusic = Instantiate(music);
             spawnedRedPlane = Instantiate(redPlane);
+            isActive = true;
         }
         timer = 0;
     }
@@ -61,15 +62,28 @@ public class ItemBERSERK : MonoBehaviour
             timer = 0;
         }
 
+        if (isActive && gameObject.GetComponent<weaponType>().weaponHeld != (int)ITEMLIST.DARKARTS) // For if the player picks up a new weapon while this is active.
+        {
+            pastWeapon = gameObject.GetComponent<weaponType>().weaponHeld;
+            gameObject.GetComponent<weaponType>().weaponHeld = (int)ITEMLIST.DARKARTS;
+            gameObject.GetComponent<weaponType>().SetWeapon();
+        }
+
         if (timer == 75 + 75 * instances && gameObject.GetComponent<weaponType>().weaponHeld == (int)ITEMLIST.DARKARTS)
         {
-            gameObject.GetComponent<weaponType>().weaponHeld = pastWeapon;
-            Debug.Log("Bringus");
-            gameObject.GetComponent<weaponType>().SetWeapon();
-            Destroy(spawnedMusic);
-            Destroy(spawnedRedPlane);
-            master.GetComponent<AudioSource>().volume = 1;
+            EndBerserk();
         }
+    }
+
+    public void EndBerserk()
+    {
+        gameObject.GetComponent<weaponType>().weaponHeld = pastWeapon;
+        Debug.Log("Bringus");
+        gameObject.GetComponent<weaponType>().SetWeapon();
+        Destroy(spawnedMusic);
+        Destroy(spawnedRedPlane);
+        master.GetComponent<AudioSource>().volume = 1;
+        isActive = false;
     }
 
     public void Undo()
