@@ -18,9 +18,7 @@ public class ItemBRICK : MonoBehaviour
                 gameObject.GetComponent<DealDamage>().finalDamageMult *= 4;
                 if (gameObject.GetComponent<checkAllLazerPositions>() == null)
                 {
-                    gameObject.AddComponent<ItemPIERCING>();
-                    gameObject.AddComponent<ItemPIERCING>().giveDamageBonus = false;
-                    gameObject.GetComponent<ItemPIERCING>().instances = 5000;
+                    gameObject.GetComponent<Bullet_Movement>().piercesLeft = 5000;
                     gameObject.transform.localScale *= 2;
                 }
             }

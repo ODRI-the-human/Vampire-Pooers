@@ -8,6 +8,11 @@ public class familiarMovement : MonoBehaviour
     public GameObject toFollow;
     public Rigidbody2D rb;
 
+    void Start()
+    {
+        gameObject.GetComponent<Attack>().massToGiveBullets = 0.333f;
+    }
+
     // Update is called once per frame
     void Update()
     {

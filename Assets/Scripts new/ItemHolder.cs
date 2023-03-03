@@ -208,18 +208,18 @@ public class ItemHolder : MonoBehaviour
                 }
                 break;
             case (int)ITEMLIST.FOURDIRMARTY:
-                if (isGuy)
-                {
-                    if (gameObject.GetComponent<ItemFOURDIRMARTY>() == null)
-                    {
-                        gameObject.AddComponent<ItemFOURDIRMARTY>();
-                    }
-                    else
-                    {
-                        gameObject.GetComponent<ItemFOURDIRMARTY>().instances++;
-                    }
-                }
-                break;
+                //if (isGuy)
+                //{
+                //    if (gameObject.GetComponent<ItemFOURDIRMARTY>() == null)
+                //    {
+                //        gameObject.AddComponent<ItemFOURDIRMARTY>();
+                //    }
+                //    else
+                //    {
+                //        gameObject.GetComponent<ItemFOURDIRMARTY>().instances++;
+                //    }
+                //}
+                //break;
             case (int)ITEMLIST.PIERCING:
                 if (isBullet)
                 {

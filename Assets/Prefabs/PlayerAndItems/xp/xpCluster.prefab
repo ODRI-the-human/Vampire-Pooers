@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dad7f34175b649340be78bf65b7cfcc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberToSpawn: 25
+  numberToSpawn: 100
   xp: {fileID: 6124614279667160435, guid: b448494b9362a2a429b8d6416d89f7e6, type: 3}

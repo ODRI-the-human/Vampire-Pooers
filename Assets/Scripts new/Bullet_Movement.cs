@@ -12,6 +12,7 @@ public class Bullet_Movement : MonoBehaviour
     int timer = 0;
     int lastColTime = 0;
     public bool canCollide = true;
+    public int piercesLeft = 0;
 
     void Start()
     {
@@ -49,15 +50,15 @@ public class Bullet_Movement : MonoBehaviour
 
         if (canCollide)
         {
-            if (gameObject.GetComponent<ItemPIERCING>() != null && gameObject.GetComponent<ItemPIERCING>().piercesLeft > 0 && col.gameObject.tag != "Wall")
+            if (piercesLeft > 0 && col.gameObject.tag != "Wall")
             {
                 Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>(), true);
                 rb.velocity = OriginalSpeed;
-                if (gameObject.GetComponent<ItemPIERCING>().giveDamageBonus)
+                if (gameObject.GetComponent<ItemPIERCING>() != null)
                 {
                     gameObject.GetComponent<DealDamage>().finalDamageMult *= 1 + 0.2f * gameObject.GetComponent<ItemPIERCING>().instances;
                 }
-                gameObject.GetComponent<ItemPIERCING>().piercesLeft--;
+                piercesLeft--;
             }
             else
             {

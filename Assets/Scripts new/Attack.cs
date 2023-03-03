@@ -55,6 +55,7 @@ public class Attack : MonoBehaviour
     public float angleAddAmount = 0;
 
     public Vector3 velToGiveBullets;
+    public float massToGiveBullets = 0.5f; // This is for familiars and stuff so I can set their bullets mass coeff manually.
 
     void Start()
     {
@@ -215,7 +216,7 @@ public class Attack : MonoBehaviour
             newObject.GetComponent<DealDamage>().damageBase = gameObject.GetComponent<DealDamage>().damageBase;
             newObject.GetComponent<DealDamage>().damageMult = gameObject.GetComponent<DealDamage>().damageMult;
             newObject.GetComponent<DealDamage>().finalDamageMult = gameObject.GetComponent<DealDamage>().finalDamageMult;
-            newObject.GetComponent<DealDamage>().massCoeff = 1;
+            newObject.GetComponent<DealDamage>().massCoeff = massToGiveBullets;
             newObject.GetComponent<DealDamage>().finalDamageDIV = gameObject.GetComponent<DealDamage>().finalDamageDIV;
             newObject.GetComponent<weaponType>().weaponHeld = newObject.GetComponent<weaponType>().weaponHeld;
             newObject.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
