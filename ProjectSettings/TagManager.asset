@@ -46,7 +46,7 @@ TagManager:
   - HitEnemBulletsAndEnemies
   - HitPlayerBulletsAndPlayer
   - OnlyHitWallsAndEnemies
-  - 
+  - ProjectileBlockingForEnemies
   - 
   - 
   - 

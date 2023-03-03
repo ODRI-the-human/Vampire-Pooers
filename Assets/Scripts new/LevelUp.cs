@@ -15,13 +15,17 @@ public class LevelUp : MonoBehaviour
     public delegate void LevelBonus();
     public static LevelBonus levelEffects;
 
+    void Start()
+    {
+        LevelUp.levelEffects += UpdateStats;
+    }
+
     void Update()
     {
         nextXP = level * 40 + 10 * Mathf.Pow(level, 2);
         if (XP >= nextXP)
         {
             level += 1;
-            UpdateStats();
             LevelUp.levelEffects();
         }
 

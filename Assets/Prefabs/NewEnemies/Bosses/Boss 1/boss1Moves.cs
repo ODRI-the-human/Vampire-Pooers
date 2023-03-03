@@ -57,7 +57,7 @@ public class boss1Moves : MonoBehaviour
             gameObject.GetComponent<weaponType>().weaponHeld = (int)ITEMLIST.LAZER;
             gameObject.GetComponent<weaponType>().SetWeapon();
             gameObject.GetComponent<Attack>().noExtraShots++;
-            gameObject.GetComponent<Attack>().UseWeapon();
+            gameObject.GetComponent<Attack>().UseWeapon(false);
         }
 
         ResetAll();
@@ -75,7 +75,7 @@ public class boss1Moves : MonoBehaviour
         {
             yield return new WaitForSeconds(0.75f * bulletHeckAngleMult);
             gameObject.GetComponent<Attack>().angleAddAmount += bulletHeckAngleMult * (Mathf.PI / 18);
-            gameObject.GetComponent<Attack>().UseWeapon();
+            gameObject.GetComponent<Attack>().UseWeapon(false);
         }
 
         ResetAll();
@@ -93,7 +93,7 @@ public class boss1Moves : MonoBehaviour
         {
             yield return new WaitForSeconds(0.1f);
             gameObject.GetComponent<Attack>().shotAngleCoeff -= 0.8f;
-            gameObject.GetComponent<Attack>().UseWeapon();
+            gameObject.GetComponent<Attack>().UseWeapon(false);
         }
 
         ResetAll();

@@ -103,7 +103,8 @@ public class Attack : MonoBehaviour
                     vectorToTarget = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x - gameObject.transform.position.x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y - gameObject.transform.position.y).normalized;
                     if (Input.GetButton("Fire1"))
                     {
-                        UseWeapon();
+                        UseWeapon(false);
+                        timesFired++;
                         fireTimer = 0;
                         Instantiate(PlayerShootAudio);
                     }
@@ -115,7 +116,8 @@ public class Attack : MonoBehaviour
                     }
                     if ((currentTarget.transform.position - gameObject.transform.position).magnitude < visionRange && specialFireType != 2)
                     {
-                        UseWeapon();
+                        UseWeapon(false);
+                        timesFired++;
                         fireTimer = 0;
                         Instantiate(PlayerShootAudio);
                     }
@@ -124,9 +126,8 @@ public class Attack : MonoBehaviour
         }
     }
 
-    public void UseWeapon()
+    public void UseWeapon(bool angleOverride) // angleOverride is false most of the time, but true if you want to use an input currentAngle.
     {
-        timesFired++;
         switch (newAttack)
         {
             case 0:
@@ -142,17 +143,26 @@ public class Attack : MonoBehaviour
             switch (specialFireType)
             {
                 case 0:
-                    currentAngle = 0.3f * shotAngleCoeff * (0.5f * noExtraShots - i - 1);
+                    if (!angleOverride)
+                    {
+                        currentAngle = 0.3f * shotAngleCoeff * (0.5f * noExtraShots - i - 1);
+                    }
                     SpawnAttack(currentAngle);
                     break;
                 case 1:
-                    currentAngle = shotAngleCoeff * (Mathf.PI / 4) * i + angleAddAmount;
+                    if (!angleOverride)
+                    {
+                        currentAngle = shotAngleCoeff * (Mathf.PI / 4) * i + angleAddAmount;
+                    }
                     SpawnAttack(currentAngle);
                     break;
                 case 2:
                     break; // For enemies that don't shoot.
-                case 3:
-                    currentAngle = (Mathf.PI / 4) * (i+1);
+                case 3: // For berserk.
+                    if (!angleOverride)
+                    {
+                        currentAngle = (Mathf.PI / 4) * (i + 1);
+                    }
                     SpawnDarkart();
                     break;
                 case 4: // For Monstro enemy.
@@ -177,7 +187,10 @@ public class Attack : MonoBehaviour
                         neq = vectorToTarget;
                     }
 
-                    currentAngle = 0.3f * shotAngleCoeff * (0.5f * noExtraShots - i - 1);
+                    if (!angleOverride)
+                    {
+                        currentAngle = 0.3f * shotAngleCoeff * (0.5f * noExtraShots - i - 1);
+                    }
                     StartCoroutine(gameObject.GetComponent<lightningFireV2>().Target(neq, currentAngle, noExtraShots));
                     break;
             }

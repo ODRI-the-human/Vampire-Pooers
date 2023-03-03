@@ -19,10 +19,11 @@ public class ItemBERSERK : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("Added berserk wahoo");
         if (gameObject.tag == "Player")
         {
             LevelUp.levelEffects += goBerserk;
-            Debug.Log("Added berserk wahoo");
+            //Debug.Log("Added berserk wahoo");
             EventManager.DeathEffects += refreshBerserk;
         }
         master = GameObject.Find("bigFuckingMasterObject");
