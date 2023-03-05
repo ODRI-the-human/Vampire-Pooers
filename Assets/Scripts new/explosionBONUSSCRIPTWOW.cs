@@ -10,5 +10,7 @@ public class explosionBONUSSCRIPTWOW : MonoBehaviour
     void Start()
     {
         Instantiate(explosionAudio);
+        GameObject cameron = GameObject.Find("Main Camera");
+        cameron.GetComponent<cameraMovement>().CameraShake(Mathf.RoundToInt(transform.localScale.x * 10));
     }
 }

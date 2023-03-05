@@ -193,6 +193,15 @@ public class HPDamageDie : MonoBehaviour
                 {
                     Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>(), true);
                 }
+
+                // Calculating damage falloff when hit by an explosoin (real)
+                if (col.gameObject.GetComponent<explosionBONUSSCRIPTWOW>() != null)
+                {
+                    Vector3 vecFromCtr = (col.transform.position - transform.position) / (2.65f * col.transform.localScale.x);
+                    float fracFromCtr = new Vector3(vecFromCtr.x, vecFromCtr.y, 0).magnitude;
+                    damageAmount *= Mathf.Clamp(1.5f * (-3.33f * Mathf.Log(fracFromCtr + 1) + 1), 0, 1);
+                }
+
                 Hurty(damageAmount, isCrit, true, col.GetComponent<DealDamage>().iFrameFac);
             }
         }

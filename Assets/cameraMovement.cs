@@ -59,8 +59,11 @@ public class cameraMovement : MonoBehaviour
         }
     }
 
-    public void CameraShake()
+    public void CameraShake(int amount)
     {
-        shakeTimer = 25;
+        if (amount > shakeTimer)
+        {
+            shakeTimer = amount;
+        }
     }
 }

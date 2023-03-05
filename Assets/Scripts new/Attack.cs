@@ -106,7 +106,8 @@ public class Attack : MonoBehaviour
                         UseWeapon(false);
                         timesFired++;
                         fireTimer = 0;
-                        Instantiate(PlayerShootAudio);
+                        GameObject ordio = Instantiate(PlayerShootAudio);
+                        ordio.GetComponent<AudioSource>().pitch *= Random.Range(0.8f, 1.2f);
                     }
                     break;
                 case false:
@@ -119,7 +120,8 @@ public class Attack : MonoBehaviour
                         UseWeapon(false);
                         timesFired++;
                         fireTimer = 0;
-                        Instantiate(PlayerShootAudio);
+                        GameObject ordio = Instantiate(PlayerShootAudio);
+                        ordio.GetComponent<AudioSource>().pitch *= Random.Range(0.8f, 1.2f);
                     }
                     break;
             }
@@ -221,6 +223,10 @@ public class Attack : MonoBehaviour
             //newObject.GetComponent<DealDamage>().isBulletClone = true;
             newObject.GetComponent<DealDamage>().finalDamageMult *= gameObject.GetComponent<DealDamage>().finalDamageMult;
             newObject.GetComponent<DealDamage>().damageBase += Crongus + levelDamageBonus; // applies converter damage bonus to bullets
+            if (gameObject.tag == "Player")
+            {
+                cameron.GetComponent<cameraMovement>().CameraShake(Mathf.RoundToInt(gameObject.GetComponent<DealDamage>().damageToPresent / 6));
+            }
         }
         else
         {
@@ -230,6 +236,7 @@ public class Attack : MonoBehaviour
             newObject.GetComponent<DealDamage>().damageMult = gameObject.GetComponent<DealDamage>().damageMult;
             newObject.GetComponent<DealDamage>().finalDamageMult = gameObject.GetComponent<DealDamage>().finalDamageMult;
             newObject.GetComponent<DealDamage>().massCoeff = massToGiveBullets;
+            newObject.GetComponent<DealDamage>().owner = gameObject;
             newObject.GetComponent<DealDamage>().finalDamageDIV = gameObject.GetComponent<DealDamage>().finalDamageDIV;
             newObject.GetComponent<weaponType>().weaponHeld = newObject.GetComponent<weaponType>().weaponHeld;
             newObject.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
@@ -275,7 +282,7 @@ public class Attack : MonoBehaviour
     {
         mouseVector = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
         vectorMan = Camera.main.ScreenToWorldPoint(mouseVector) - transform.position;
-        cameron.GetComponent<cameraMovement>().CameraShake();
+        cameron.GetComponent<cameraMovement>().CameraShake(25);
 
         if (vectorMan.y > 0 && vectorMan.x > 0)
         {

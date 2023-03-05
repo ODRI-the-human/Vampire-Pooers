@@ -32,7 +32,8 @@ public class ItemHOMING : MonoBehaviour
     {
         if (isBullet)
         {
-            speed = rb.velocity.magnitude;
+            GameObject bumbo = gameObject.GetComponent<DealDamage>().owner;
+            speed = bumbo.GetComponent<Attack>().shotSpeed;
         }
     }
 
@@ -43,6 +44,8 @@ public class ItemHOMING : MonoBehaviour
             homingCheckTimer--;
             if (homingCheckTimer <= 0)
             {
+                currentNearest = Vector3.zero;
+
                 homingCheckTimer = 6;
                 if (gameObject.tag == "PlayerBullet")
                 {
@@ -67,9 +70,12 @@ public class ItemHOMING : MonoBehaviour
                 }
             }
 
-            currentNearest = closest.transform.position;
+            if (closest != null)
+            {
+                currentNearest = closest.transform.position;
+            }
 
-            if ((transform.position - currentNearest).magnitude < 5 * instances)
+            if ((transform.position - currentNearest).magnitude < 5 * instances && currentNearest != Vector3.zero)
             {
                 closestEnemyPos.x = currentNearest.x;
                 closestEnemyPos.y = currentNearest.y;

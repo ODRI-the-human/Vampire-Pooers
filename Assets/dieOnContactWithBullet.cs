@@ -5,11 +5,15 @@ using UnityEngine;
 public class dieOnContactWithBullet : MonoBehaviour
 {
     public GameObject master;
+    public bool calcScaleAuto;
     public int instances;
 
     void Start()
     {
-        transform.localScale = master.transform.localScale;
+        if (calcScaleAuto)
+        {
+            transform.localScale = master.transform.localScale;
+        }
     }
 
     void FixedUpdate()

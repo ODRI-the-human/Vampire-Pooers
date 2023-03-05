@@ -568,13 +568,13 @@ public class ItemHolder : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D col)
-    {
-        if (col.tag == "item")
-        {
-            GiveFunny(col.gameObject);
-        }
-    }
+    //void OnTriggerEnter2D(Collider2D col)
+    //{
+    //    if (col.tag == "item")
+    //    {
+    //        GiveFunny(col.gameObject);
+    //    }
+    //}
 
     public void GiveFunny(GameObject bumbino)
     {

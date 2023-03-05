@@ -90,18 +90,20 @@ MonoBehaviour:
   damageBase: 50
   damageMult: 1
   finalDamageMult: 1
-  knockBackCoeff: 3
   finalDamageDIV: 1
   critProb: 0.05
   critMult: 2
   owner: {fileID: 0}
   master: {fileID: 0}
+  massCoeff: 2
   overwriteDamageCalc: 0
   onlyDamageOnce: 1
   tickInterval: 1
   timer: 0
   damageAmt: 0
+  iFrameFac: 1
   isBulletClone: 0
+  damageToPresent: 0
 --- !u!114 &3366299037568390934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,7 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a03a314de007c4a48bbc3c2583903c2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 5
+  timer: 10
 --- !u!212 &-5299763833223998159
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -36,6 +36,13 @@ public class itemPedestal : MonoBehaviour
         {
             specialItemWeightsSum += i;
         }
+
+        Invoke(nameof(enableHitbox), 0.5f);
+    }
+
+    void enableHitbox()
+    {
+        gameObject.GetComponent<Collider2D>().enabled = true;
     }
 
     void Update()
@@ -106,13 +113,13 @@ public class itemPedestal : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D col)
-    {
-        if (col.gameObject.tag == "Player")
-        {
-            GiveDaItem(col.gameObject);
-        }
-    }
+    //void OnTriggerEnter2D(Collider2D col)
+    //{
+    //    if (col.gameObject.tag == "Player")
+    //    {
+    //        GiveDaItem(col.gameObject);
+    //    }
+    //}
 
     public void GiveDaItem(GameObject barry)
     {

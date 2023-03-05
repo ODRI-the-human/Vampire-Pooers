@@ -51,12 +51,17 @@ public class EntityReferencerGuy : MonoBehaviour
     bool timerActive = true;
     [HideInInspector] public float time = 180;
 
+    public GameObject keepBestStatObj;
+    bool playerHasDied = false;
+
     void Start()
     {
         GameObject pedestal = gameObject.GetComponent<ThirdEnemySpawner>().itemPedestal;
         numItemsExist = pedestal.GetComponent<itemPedestal>().spriteArray.GetLength(0);
         playerInstance = GameObject.Find("newPlayer");
         //Application.targetFrameRate = 60;
+
+        DontDestroyOnLoad(keepBestStatObj);
     }
 
     void Update()
@@ -72,6 +77,15 @@ public class EntityReferencerGuy : MonoBehaviour
             time = 180;
         }
 
-        time -= Time.deltaTime;
+        if (gameObject.GetComponent<ThirdEnemySpawner>().enemiesAreSpawning)
+        {
+            time -= Time.deltaTime;
+        }
+
+        if (playerInstance == null && !playerHasDied)
+        {
+            keepBestStatObj.GetComponent<keepBestScore>().ShowStats();
+            playerHasDied = true;
+        }
     }
 }

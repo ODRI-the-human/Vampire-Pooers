@@ -7,8 +7,8 @@ public class ThirdEnemySpawner : MonoBehaviour
 {
     public float spawnTimerLength = 200f;
     public float spawnTimer = 0;
-    int spawnNumber = 1; // records the number of times a group of enemies has been spawned, so more enemies will be spawned after a period of time and (later) more dangerous enemies will spawn.
-    int waveNumber = 0;
+    public int spawnNumber = 1; // records the number of times a group of enemies has been spawned, so more enemies will be spawned after a period of time and (later) more dangerous enemies will spawn.
+    public int waveNumber = 0;
     public int minSpawnMultiplier = 2;
     public int maxSpawnMultiplier = 4;
     float spawnScaleRate = 0.09f;
@@ -49,6 +49,8 @@ public class ThirdEnemySpawner : MonoBehaviour
     int spawnTypeMax = 12;
 
     Vector3 placeToSpawn;
+    public bool enemiesAreSpawning = true;
+    public float totalSpawnsSurvived = 0;
 
     void Start()
     {
@@ -65,10 +67,12 @@ public class ThirdEnemySpawner : MonoBehaviour
         {
             if (GameObject.FindGameObjectsWithTag("item").Length < 1)
             {
+                enemiesAreSpawning = true;
                 if (spawnNumber - waveNumber != noSpawnsBeforeNewWave)
                 {
                     PickAction();
                     spawnNumber += 1;
+                    totalSpawnsSurvived++;
                     spawnTimerLength /= 1.025f;
                     spawnTimer = spawnTimerLength;
                 }
@@ -78,6 +82,7 @@ public class ThirdEnemySpawner : MonoBehaviour
                     {
                         PickAction();
                         spawnNumber += 1;
+                        totalSpawnsSurvived++;
                         spawnTimerLength /= 1.025f;
                         spawnTimer = spawnTimerLength;
                     }
@@ -284,6 +289,7 @@ public class ThirdEnemySpawner : MonoBehaviour
 
     void SpawnItems()
     {
+        enemiesAreSpawning = false;
         for (int i = 0; i < 3; i++)
         {
             GameObject newObject = Instantiate(itemPedestal, new Vector3(5 * i - 5, 3, 8) + Camera.transform.position, transform.rotation) as GameObject;

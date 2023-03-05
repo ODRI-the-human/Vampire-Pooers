@@ -67,7 +67,7 @@ public class checkAllLazerPositions : MonoBehaviour
             transform.position += 0.4f * vecToMove;
 
             // Applying homing effect.
-            if (gameObject.GetComponent<ItemHOMING>() != null)
+            if (gameObject.GetComponent<ItemHOMING>() != null && actuallyHit)
             {
                 //Debug.Log("pdaspodfsj");
                 Collider2D[] shitColliders = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y), 3 * gameObject.GetComponent<ItemHOMING>().instances);
@@ -151,7 +151,7 @@ public class checkAllLazerPositions : MonoBehaviour
                     }
 
                     // Applying split shots.
-                    if (doContinue && gameObject.GetComponent<ItemSPLIT>() != null && gameObject.GetComponent<ItemSPLIT>().canSplit)
+                    if (doContinue && gameObject.GetComponent<ItemSPLIT>() != null && gameObject.GetComponent<ItemSPLIT>().canSplit && actuallyHit)
                     {
                         for (int j = 0; j < 2; j++)
                         {
@@ -171,7 +171,7 @@ public class checkAllLazerPositions : MonoBehaviour
                 if ((col.gameObject.tag == "PlayerBullet" && gameObject.tag == "enemyBullet") || (col.gameObject.tag == "enemyBullet" && gameObject.tag == "PlayerBullet"))
                 {
                     // Damaging homing mines.
-                    if (col.gameObject.GetComponent<HPDamageDie>() != null)
+                    if (col.gameObject.GetComponent<HPDamageDie>() != null && actuallyHit)
                     {
                         float procMoment = 100f - 100f * gameObject.GetComponent<DealDamage>().critProb * gameObject.GetComponent<DealDamage>().procCoeff;
                         float pringle = Random.Range(0f, 100f);
@@ -189,7 +189,7 @@ public class checkAllLazerPositions : MonoBehaviour
                     }
 
                     // Applying contact shots.
-                    if (gameObject.GetComponent<ItemCONTACT>() != null && contacts != gameObject.GetComponent<ItemCONTACT>().instances * 2)
+                    if (gameObject.GetComponent<ItemCONTACT>() != null && contacts != gameObject.GetComponent<ItemCONTACT>().instances * 2 && actuallyHit)
                     {
                         int LayerPlayerBullet = LayerMask.NameToLayer("PlayerBullets");
                         int LayerEnemyBullet = LayerMask.NameToLayer("EnemyBullets");
@@ -211,6 +211,24 @@ public class checkAllLazerPositions : MonoBehaviour
                         Vector3 vel = (col.gameObject.GetComponent<Rigidbody2D>().velocity).normalized;
                         Vector3 blinkus = vecToMove.normalized;
                         col.gameObject.GetComponent<Rigidbody2D>().velocity = velMag * (2 * blinkus + vel).normalized;
+                    }
+
+                    // Bouncing lazers off contact shots, dodge explosions and the like.
+                    if (col.gameObject.GetComponent<dieOnContactWithBullet>() != null && actuallyHit)
+                    {
+                        if (gameObject.tag == "enemyBullet" && col.gameObject.tag == "PlayerBullet")
+                        {
+                            gameObject.tag = "PlayerBullet";
+                        }
+
+                        if (gameObject.tag == "PlayerBullet" && col.gameObject.tag == "enemyBullet")
+                        {
+                            gameObject.tag = "enemyBullet";
+                        }
+
+                        vecToMove = transform.position - col.transform.position;
+                        vecToMove = new Vector3(vecToMove.x, vecToMove.y, 0).normalized;
+                        col.gameObject.GetComponent<dieOnContactWithBullet>().instances -= 1;
                     }
                 }
 

@@ -27,11 +27,11 @@ public class StatsText : MonoBehaviour
     public int LevelChangeTimer = 100;
     int totalTime = 0;
 
-    float lastMaxHP;
-    float lastXP;
-    float lastDMG;
-    float lastFirerate;
-    float lastLevel; 
+    public float lastMaxHP;
+    public float lastXP;
+    public float lastDMG;
+    public float lastFirerate;
+    public float lastLevel; 
     
     float lastLongMaxHP;
     float lastLongXP;
@@ -70,6 +70,11 @@ public class StatsText : MonoBehaviour
         int seconds = Mathf.FloorToInt(timeLeft % 60);
         int minutes = Mathf.FloorToInt(timeLeft / 60);
         timeText.text = "boss(es) spawn in:" + "\n" + string.Format("{0:00} : {1:00}", minutes, seconds);
+
+        if (!gameObject.GetComponent<ThirdEnemySpawner>().enemiesAreSpawning)
+        {
+            timeText.text += ", paused right now lol";
+        }
 
 
 

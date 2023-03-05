@@ -22,6 +22,7 @@ public class visualPoopoo : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             EventManager.DeathEffects = null;
+            LevelUp.levelEffects = null;
             //playerInstance.GetComponent<LevelUp>().levelEffects = null;
         }
 

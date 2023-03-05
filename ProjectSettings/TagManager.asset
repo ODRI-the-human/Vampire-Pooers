@@ -25,6 +25,7 @@ TagManager:
   - enemyFamiliar
   - itemIcons
   - obstacle
+  - keepBestScore
   layers:
   - Default
   - TransparentFX

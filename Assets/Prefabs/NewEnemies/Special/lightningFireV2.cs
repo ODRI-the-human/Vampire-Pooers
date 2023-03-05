@@ -79,7 +79,7 @@ public class lightningFireV2 : MonoBehaviour
 
         if (gameObject.tag == "Hostile")
         {
-            yield return new WaitForSecondsRealtime(0.6f);
+            yield return new WaitForSecondsRealtime(0.8f);
             Destroy(Harrybo);
         }
 

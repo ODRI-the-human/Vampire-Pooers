@@ -16,7 +16,7 @@ public class getItemDescription : MonoBehaviour
             GameObject[] gos = GameObject.FindGameObjectsWithTag("item");
             GameObject closest = null;
             float distance = Mathf.Infinity;
-            Vector3 position = transform.position;
+            Vector3 position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             foreach (GameObject go in gos)
             {
                 Vector3 diff = go.transform.position - position;

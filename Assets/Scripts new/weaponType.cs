@@ -26,7 +26,7 @@ public class weaponType : MonoBehaviour
                 {
                     gameObject.GetComponent<Attack>().specialFireType = 0;
                     gameObject.GetComponent<Attack>().fireTimerLengthMLT = 1;
-                    gameObject.GetComponent<Attack>().shotSpeed = 10;
+                    gameObject.GetComponent<Attack>().shotSpeed = 15;
                 }
                 break;
             case (int)ITEMLIST.GRENADELAUNCHER:

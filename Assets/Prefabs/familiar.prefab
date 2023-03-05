@@ -156,7 +156,9 @@ MonoBehaviour:
   tickInterval: 1
   timer: 0
   damageAmt: 0
+  iFrameFac: 1
   isBulletClone: 0
+  damageToPresent: 0
 --- !u!114 &8984978239919591108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,6 +173,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shotSpeed: 8
   currentAngle: 0
+  vectorToTarget: {x: 0, y: 0}
   noExtraShots: 0
   shotAngleCoeff: 1
   trueDamageValue: 0
@@ -178,7 +181,7 @@ MonoBehaviour:
   Bullet: {fileID: 4255455733749829593, guid: 27160d46bf5b97a4898af82130ae1a42, type: 3}
   fireTimerLength: 30
   fireTimer: 0
-  PlayerShootAudio: {fileID: 2894936639441958211, guid: f4849f6de8b809d48a7220ff85910c8b, type: 3}
+  PlayerShootAudio: {fileID: 2232971130497578917, guid: dc46db39e4e70b144915e7a0652cc396, type: 3}
   Player: {fileID: 0}
   playerControlled: 1
   specialFireType: 0
@@ -197,6 +200,11 @@ MonoBehaviour:
   levelDamageBonus: 0
   scaleAddMult: 1
   stopwatchDebuffAmount: 0
+  doShootAutomatically: 1
+  getEnemyPos: 1
+  angleAddAmount: 0
+  velToGiveBullets: {x: 0, y: 0, z: 0}
+  massToGiveBullets: 0.5
 --- !u!114 &4094460240105576254
 MonoBehaviour:
   m_ObjectHideFlags: 0
