@@ -28,7 +28,7 @@ public class ItemSPLIT : MonoBehaviour
         Vector2 bulletPos = new Vector2(col.transform.position.x, col.transform.position.y);
         ShotVector = speed * (bulletPos - enemyPos).normalized;
 
-        if (canSplit && col.gameObject.tag != "Wall")
+        if (canSplit && col.gameObject.tag != "Wall" && gameObject.GetComponent<darkArtMovement>() != null)
         {
             if (gameObject.tag == "PlayerBullet" || gameObject.tag == "enemyBullet")
             {
