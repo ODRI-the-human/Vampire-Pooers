@@ -15,7 +15,14 @@ public class ItemSPLIT : MonoBehaviour
     void Start()
     {
         owner = gameObject.GetComponent<DealDamage>().owner;
-        speed = gameObject.GetComponent<Rigidbody2D>().velocity.magnitude;
+        if (gameObject.GetComponent<Rigidbody2D>() != null)
+        {
+            speed = gameObject.GetComponent<Rigidbody2D>().velocity.magnitude;
+        }
+        else
+        {
+            speed = 15;
+        }
         Buuleter = owner.GetComponent<Attack>().Bullet;
     }
 
@@ -28,7 +35,8 @@ public class ItemSPLIT : MonoBehaviour
         Vector2 bulletPos = new Vector2(col.transform.position.x, col.transform.position.y);
         ShotVector = speed * (bulletPos - enemyPos).normalized;
 
-        if (canSplit && col.gameObject.tag != "Wall" && gameObject.GetComponent<darkArtMovement>() != null)
+        Debug.Log("Splimt");
+        if (canSplit && col.gameObject.tag != "Wall")
         {
             if (gameObject.tag == "PlayerBullet" || gameObject.tag == "enemyBullet")
             {
@@ -42,9 +50,16 @@ public class ItemSPLIT : MonoBehaviour
                     Splitman1.GetComponent<DealDamage>().damageBase += owner.GetComponent<Attack>().Crongus;
                     Splitman1.GetComponent<Rigidbody2D>().simulated = true;
                     Splitman1.GetComponent<DealDamage>().isBulletClone = true;
-                    Splitman1.GetComponent<Rigidbody2D>().velocity = new Vector3(ShotVector.x * Mathf.Cos(-((i * 2) - 1) * Mathf.PI / 2) - ShotVector.y * Mathf.Sin(-((i * 2) - 1) * Mathf.PI / 2), ShotVector.x * Mathf.Sin(-((i * 2) - 1) * Mathf.PI / 2) + ShotVector.y * Mathf.Cos(-((i * 2) - 1) * Mathf.PI / 2), 0);
                     Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), Splitman1.GetComponent<Collider2D>(), true);
                     Splitman1.GetComponent<ItemSPLIT>().canSplit = false;
+                    if (gameObject.GetComponent<isMelee>() != null)
+                    {
+                        speed = 15;
+                        ShotVector = speed * (owner.transform.position - col.gameObject.transform.position).normalized;
+                        Splitman1.transform.position = col.gameObject.transform.position;
+                        Splitman1.transform.localScale = 0.3f * new Vector3(1, 1, 1);
+                    }
+                    Splitman1.GetComponent<Rigidbody2D>().velocity = new Vector3(ShotVector.x * Mathf.Cos(-((i * 2) - 1) * Mathf.PI / 2) - ShotVector.y * Mathf.Sin(-((i * 2) - 1) * Mathf.PI / 2), ShotVector.x * Mathf.Sin(-((i * 2) - 1) * Mathf.PI / 2) + ShotVector.y * Mathf.Cos(-((i * 2) - 1) * Mathf.PI / 2), 0);
                 }
             }
         }
@@ -52,6 +67,6 @@ public class ItemSPLIT : MonoBehaviour
 
     public void Undo()
     {
-        //nothin
+        Destroy(this);
     }
 }

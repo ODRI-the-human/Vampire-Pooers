@@ -16,5 +16,6 @@ public class ItemBETTERCRITS : MonoBehaviour
     public void Undo()
     {
         gameObject.GetComponent<DealDamage>().critMult -= 1;
+        Destroy(this);
     }
 }

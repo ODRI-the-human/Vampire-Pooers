@@ -12,5 +12,6 @@ public class ItemFIRERATE : MonoBehaviour
     public void Undo()
     {
         gameObject.GetComponent<Attack>().fireTimerLength += 4;
+        Destroy(this);
     }
 }

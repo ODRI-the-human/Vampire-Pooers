@@ -14,5 +14,6 @@ public class ItemMOREXP : MonoBehaviour
     void Undo()
     {
         gameObject.GetComponent<LevelUp>().xpMult -= 0.3f;
+        Destroy(this);
     }
 }

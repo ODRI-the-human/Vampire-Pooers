@@ -200,6 +200,9 @@ public class ItemDescriptions : MonoBehaviour
             case (int)ITEMLIST.LAZER:
                 itemDescription = "Swap your weapon to the lazer pistol - slightly lower fire rate but infinite piercing and infinite shotspeed";
                 break;
+            case (int)ITEMLIST.BAT:
+                itemDescription = "Swap your weapon to the bat - deals high knockback to enemies, and blocked bullets are given all your bullet effects.";
+                break;
         }
     }
 }

@@ -10,11 +10,18 @@ public class ItemCREEPSHOT : MonoBehaviour
     void Start()
     {
         master = gameObject.GetComponent<DealDamage>().master;
-        creeper = master.GetComponent<EntityReferencerGuy>().CreepHostile;
     }
 
     void OnCollisionEnter2D(Collision2D col)
     {
+        if (gameObject.tag == "PlayerBullet")
+        {
+            creeper = master.GetComponent<EntityReferencerGuy>().Creep;
+        }
+        if (gameObject.tag == "enemyBullet")
+        {
+            creeper = master.GetComponent<EntityReferencerGuy>().CreepHostile;
+        }
         GameObject buoerber = Instantiate(creeper, transform.position, Quaternion.Euler(0, 0, 0));
         buoerber.transform.position = new Vector3(transform.position.x, transform.position.y, 0);
         buoerber.GetComponent<DealDamage>().overwriteDamageCalc = true;

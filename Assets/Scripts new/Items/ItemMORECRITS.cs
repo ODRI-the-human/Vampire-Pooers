@@ -16,5 +16,6 @@ public class ItemMORECRITS : MonoBehaviour
     public void Undo()
     {
         gameObject.GetComponent<DealDamage>().critProb -= 0.2f;
+        Destroy(this);
     }
 }

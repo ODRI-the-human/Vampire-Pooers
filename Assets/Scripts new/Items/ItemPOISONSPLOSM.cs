@@ -28,5 +28,6 @@ public class ItemPOISONSPLOSM : MonoBehaviour
     public void Undo()
     {
         EventManager.DeathEffects -= SpawnPoison;
+        Destroy(this);
     }
 }

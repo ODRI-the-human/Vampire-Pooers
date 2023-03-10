@@ -13,5 +13,6 @@ public class ItemHEALMLT : MonoBehaviour
     public void Undo()
     {
         gameObject.GetComponent<Healing>().healMult -= 1;
+        Destroy(this);
     }
 }

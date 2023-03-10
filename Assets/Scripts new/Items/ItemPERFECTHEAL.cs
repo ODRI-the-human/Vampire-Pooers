@@ -21,5 +21,6 @@ public class ItemPERFECTHEAL : MonoBehaviour
     public void Undo()
     {
         gameObject.GetComponent<HPDamageDie>().MaxHP -= totalIncrease;
+        Destroy(this);
     }
 }

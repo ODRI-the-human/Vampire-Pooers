@@ -57,6 +57,8 @@ public class Attack : MonoBehaviour
     public Vector3 velToGiveBullets;
     public float massToGiveBullets = 0.5f; // This is for familiars and stuff so I can set their bullets mass coeff manually.
 
+    public bool holdDownToShoot = true; // Make this false if the player should need to click for every shot (i.e. with the bat)
+
     void Start()
     {
         timesFired = -1;
@@ -84,6 +86,13 @@ public class Attack : MonoBehaviour
         fireTimerLength = Mathf.Clamp(fireTimerLength, 0, 99999);
         fireTimerActualLength = Mathf.Clamp(50 / (fireTimerLength * fireTimerLengthMLT / fireTimerDIV),0,25);
 
+        switch (gameObject.GetComponent<weaponType>().weaponHeld) // For capping your fire rate to the proper amount based on what weapon you're using.
+        {
+            case (int)ITEMLIST.BAT:
+                fireTimerActualLength = Mathf.Clamp(fireTimerActualLength, 0, 12);
+                break;
+        }
+
         if (reTargetTimer <= 0)
         {
             ReTarget();
@@ -95,19 +104,23 @@ public class Attack : MonoBehaviour
             vectorToTarget = (currentTarget.transform.position - gameObject.transform.position).normalized;
         }
 
-        if (fireTimer > Mathf.Clamp(fireTimerLength * fireTimerLengthMLT / fireTimerDIV, 2, 9999999999) && doShootAutomatically)
+        if (fireTimer > (50 / fireTimerActualLength) && doShootAutomatically)
         {
             switch (playerControlled)
             {
                 case true:
                     vectorToTarget = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x - gameObject.transform.position.x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y - gameObject.transform.position.y).normalized;
-                    if (Input.GetButton("Fire1"))
+                    if ((Input.GetButton("Fire1") && holdDownToShoot) || (Input.GetButtonDown("Fire1") && !holdDownToShoot)) // if the player is holding shoot with hold enabled, or presses shoot with hold disabled.
                     {
                         UseWeapon(false);
                         timesFired++;
                         fireTimer = 0;
                         GameObject ordio = Instantiate(PlayerShootAudio);
-                        ordio.GetComponent<AudioSource>().pitch *= Random.Range(0.8f, 1.2f);
+
+                        if (gameObject.tag == "Player")
+                        {
+                            cameron.GetComponent<cameraMovement>().CameraShake(Mathf.RoundToInt(Mathf.Clamp(gameObject.GetComponent<DealDamage>().damageToPresent, 0, 75) / 6));
+                        }
                     }
                     break;
                 case false:
@@ -121,7 +134,6 @@ public class Attack : MonoBehaviour
                         timesFired++;
                         fireTimer = 0;
                         GameObject ordio = Instantiate(PlayerShootAudio);
-                        ordio.GetComponent<AudioSource>().pitch *= Random.Range(0.8f, 1.2f);
                     }
                     break;
             }
@@ -195,6 +207,10 @@ public class Attack : MonoBehaviour
                     }
                     StartCoroutine(gameObject.GetComponent<lightningFireV2>().Target(neq, currentAngle, noExtraShots));
                     break;
+                case 6: //enptic basball bat
+                    GameObject battery = gameObject.GetComponent<weaponType>().spawnedBat;
+                    battery.GetComponent<faceInFunnyDirection>().Attackment(50 / fireTimerActualLength);
+                    break;
             }
         }
     }
@@ -223,10 +239,6 @@ public class Attack : MonoBehaviour
             //newObject.GetComponent<DealDamage>().isBulletClone = true;
             newObject.GetComponent<DealDamage>().finalDamageMult *= gameObject.GetComponent<DealDamage>().finalDamageMult;
             newObject.GetComponent<DealDamage>().damageBase += Crongus + levelDamageBonus; // applies converter damage bonus to bullets
-            if (gameObject.tag == "Player")
-            {
-                cameron.GetComponent<cameraMovement>().CameraShake(Mathf.RoundToInt(gameObject.GetComponent<DealDamage>().damageToPresent / 6));
-            }
         }
         else
         {
@@ -282,7 +294,6 @@ public class Attack : MonoBehaviour
     {
         mouseVector = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
         vectorMan = Camera.main.ScreenToWorldPoint(mouseVector) - transform.position;
-        cameron.GetComponent<cameraMovement>().CameraShake(25);
 
         if (vectorMan.y > 0 && vectorMan.x > 0)
         {

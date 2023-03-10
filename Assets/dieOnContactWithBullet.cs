@@ -8,6 +8,8 @@ public class dieOnContactWithBullet : MonoBehaviour
     public bool calcScaleAuto;
     public int instances;
 
+    public bool reduceInstOnHit = true;
+
     void Start()
     {
         if (calcScaleAuto)

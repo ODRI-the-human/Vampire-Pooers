@@ -89,6 +89,6 @@ public class ItemHOMING : MonoBehaviour
 
     public void Undo()
     {
-        //nothin
+        Destroy(this);
     }
 }

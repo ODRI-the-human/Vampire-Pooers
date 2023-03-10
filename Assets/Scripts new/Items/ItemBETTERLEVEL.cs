@@ -13,5 +13,6 @@ public class ItemBETTERLEVEL : MonoBehaviour
     public void Undo()
     {
         gameObject.GetComponent<LevelUp>().effectMult -= 2;
+        Destroy(this);
     }
 }

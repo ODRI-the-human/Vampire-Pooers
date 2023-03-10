@@ -73,4 +73,9 @@ public class ItemDAGGERTHROW : MonoBehaviour
             }
         }
     }
+
+    void Undo()
+    {
+        Destroy(this);
+    }
 }

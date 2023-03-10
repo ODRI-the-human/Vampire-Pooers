@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6480279826713567055}
   - component: {fileID: 1813148305880209526}
   - component: {fileID: 1852962525613621483}
+  - component: {fileID: -4466847297539045563}
   m_Layer: 0
   m_Name: PlayerShoot
   m_TagString: Untagged
@@ -142,3 +143,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: 25
+--- !u!114 &-4466847297539045563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2894936639441958211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af619a7b9161c8141b55d755a1dfe949, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

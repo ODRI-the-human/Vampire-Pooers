@@ -53,6 +53,6 @@ public class ItemHOLYMANTIS : MonoBehaviour
 
     public void Undo()
     {
-        //nothin
+        Destroy(this);
     }
 }

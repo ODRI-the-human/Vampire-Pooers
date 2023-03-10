@@ -39,7 +39,7 @@ public class ItemORBITAL2 : MonoBehaviour
     {
         foreach (GameObject orb in Orbs)
         {
-            orb.GetComponent<ItemHolder>().ApplyAll();
+            //orb.GetComponent<ItemHolder>().ApplyAll();
             if (gameObject.GetComponent<weaponType>() != null) // && gameObject.GetComponent<weaponType>().weaponHeld == (int)WEAPONS.DARKARTS
             {
                 orb.GetComponent<weaponType>().weaponHeld = gameObject.GetComponent<weaponType>().weaponHeld;
@@ -106,5 +106,7 @@ public class ItemORBITAL2 : MonoBehaviour
                 Destroy(friend);
             }
         }
+
+        Destroy(this);
     }
 }

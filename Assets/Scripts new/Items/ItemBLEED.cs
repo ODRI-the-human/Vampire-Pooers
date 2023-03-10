@@ -26,6 +26,6 @@ public class ItemBLEED : MonoBehaviour
 
     public void Undo()
     {
-        //nothin
+        Destroy(this);
     }
 }

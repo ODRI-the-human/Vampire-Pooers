@@ -34,6 +34,7 @@ public class EntityReferencerGuy : MonoBehaviour
     public GameObject neutralExplosion;
     public GameObject camera;
 
+    public GameObject bat;
 
     public GameObject boss; //SHOULD JUST BE A TEMPORARY SOLUTION. BOSS SPAWNING SHOULD BE HANDLED BY THE SPAWNER.
     int bosNumToSpawn = 1;

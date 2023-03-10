@@ -10,8 +10,8 @@ public class ItemHolder : MonoBehaviour
     public int noToGive = 1;
     int timermf;
 
-    bool isBullet = false;
-    bool isGuy = true;
+    public bool isBullet = false;
+    public bool isGuy = true;
 
     public bool doTheShit = true;
 
@@ -52,6 +52,14 @@ public class ItemHolder : MonoBehaviour
             isGuy = false;
             isBullet = true;
         }
+
+        if (gameObject.GetComponent<OrbitalMovement2>() != null)
+        {
+            isGuy = true;
+            isBullet = false;
+        }
+
+        ApplyBatItems(true);
     }
 
     public void ApplyAll()
@@ -60,6 +68,20 @@ public class ItemHolder : MonoBehaviour
         {
             itemGained = item;
             ApplyItems();
+        }
+    }
+
+    void ApplyBatItems(bool isFirstTime)
+    {
+        if (gameObject.GetComponent<weaponType>() != null && gameObject.GetComponent<weaponType>().spawnedBat != null)
+        {
+            GameObject battest = gameObject.GetComponent<weaponType>().spawnedBat;
+            battest.GetComponent<ItemHolder>().itemsHeld = itemsHeld;
+            if (!isFirstTime)
+            {
+                battest.SendMessage("Undo");
+            }
+            battest.GetComponent<ItemHolder>().ApplyAll();
         }
     }
 
@@ -555,6 +577,13 @@ public class ItemHolder : MonoBehaviour
                     gameObject.GetComponent<weaponType>().SetWeapon();
                 }
                 break;
+            case (int)ITEMLIST.BAT:
+                if (gameObject.GetComponent<weaponType>() != null)
+                {
+                    gameObject.GetComponent<weaponType>().weaponHeld = (int)ITEMLIST.BAT;
+                    gameObject.GetComponent<weaponType>().SetWeapon();
+                }
+                break;
 
 
 
@@ -585,6 +614,7 @@ public class ItemHolder : MonoBehaviour
             itemsHeld.Add(itemGained);
             ApplyItems();
         }
+        ApplyBatItems(false);
         MakeEpicBullets();
         SendMessage("itemsAdded");
     }

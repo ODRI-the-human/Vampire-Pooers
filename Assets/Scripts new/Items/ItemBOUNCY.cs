@@ -15,6 +15,6 @@ public class ItemBOUNCY : MonoBehaviour
 
     public void Undo()
     {
-        //nothin
+        Destroy(this);
     }
 }

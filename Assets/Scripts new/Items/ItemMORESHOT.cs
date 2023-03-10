@@ -22,5 +22,6 @@ public class ItemMORESHOT : MonoBehaviour
         {
             gameObject.GetComponent<Attack>().shotAngleCoeff -= 1.3f;
         }
+        Destroy(this);
     }
 }

@@ -8,6 +8,6 @@ public class ItemEASIERTIMES : MonoBehaviour
 
     public void Undo()
     {
-        //nothin
+        Destroy(this);
     }
 }

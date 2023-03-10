@@ -12,15 +12,10 @@ public class darkArtMovement : MonoBehaviour
     public GameObject owner;
     bool gaming;
 
-    void Awake()
-    {
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.CONTACT);
-    }
-
     void Start()
     {
         owner = gameObject.GetComponent<DealDamage>().owner;
-        //gameObject.AddComponent<ItemCONTACT>();
+        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.CONTACT);
     }
 
     // Update is called once per frame

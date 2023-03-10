@@ -57,6 +57,7 @@ public enum ITEMLIST
     PISTOL,
     GRENADELAUNCHER,
     LAZER,
+    BAT,
 
 
     DARKARTS,

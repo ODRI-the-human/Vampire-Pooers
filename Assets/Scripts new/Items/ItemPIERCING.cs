@@ -13,6 +13,6 @@ public class ItemPIERCING : MonoBehaviour
 
     public void Undo()
     {
-        //nothin
+        Destroy(this);
     }
 }

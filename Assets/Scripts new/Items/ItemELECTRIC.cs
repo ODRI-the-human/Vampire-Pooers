@@ -83,6 +83,6 @@ public class ItemELECTRIC : MonoBehaviour
 
     public void Undo()
     {
-        //nothin
+        Destroy(this);
     }
 }

@@ -45,6 +45,6 @@ public class ItemCREEP : MonoBehaviour
 
     public void Undo()
     {
-        //nothin
+        Destroy(this);
     }
 }

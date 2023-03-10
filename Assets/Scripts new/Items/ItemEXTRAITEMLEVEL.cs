@@ -33,5 +33,6 @@ public class ItemEXTRAITEMLEVEL : MonoBehaviour
     public void Undo()
     {
         LevelUp.levelEffects -= giveExtraItems;
+        Destroy(this);
     }
 }

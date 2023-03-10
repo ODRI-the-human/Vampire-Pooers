@@ -19,7 +19,7 @@ public class obstHP : MonoBehaviour
 
     public void owMyEntireRockIsInPain(GameObject thingy)
     {
-        Debug.Log("bebeb");
+        //Debug.Log("bebeb");
 
         if (thingy.tag == "PlayerBullet" || thingy.tag == "enemyBullet")
         {

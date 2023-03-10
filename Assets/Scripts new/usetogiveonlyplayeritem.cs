@@ -7,6 +7,14 @@ public class usetogiveonlyplayeritem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.SOY);
+        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.BAT);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.LUCKIER);
+        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.BRICK);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.LUCKIER);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.LUCKIER);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.LUCKIER);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.LUCKIER);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.LUCKIER);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.LUCKIER);
     }
 }

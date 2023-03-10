@@ -20,5 +20,6 @@ public class ItemDMGADDPT5 : MonoBehaviour
     public void Undo()
     {
         gameObject.GetComponent<DealDamage>().damageBase -= 25f;
+        Destroy(this);
     }
 }

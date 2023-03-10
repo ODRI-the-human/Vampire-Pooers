@@ -14,5 +14,6 @@ public class ItemLEVELHEAL : MonoBehaviour
     void Undo()
     {
         gameObject.GetComponent<LevelUp>().healMult -= 1;
+        Destroy(this);
     }
 }

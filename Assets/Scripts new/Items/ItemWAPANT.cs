@@ -46,6 +46,6 @@ public class ItemWAPANT : MonoBehaviour
 
     public void Undo()
     {
-        //nothin
+        Destroy(this);
     }
 }

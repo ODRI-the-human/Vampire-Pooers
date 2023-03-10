@@ -18,6 +18,6 @@ public class ItemDMGMLT2 : MonoBehaviour
     public void Undo()
     {
         gameObject.GetComponent<DealDamage>().damageMult -= 1f;
-        Debug.Log("DogShit Valley");
+        Destroy(this);
     }
 }

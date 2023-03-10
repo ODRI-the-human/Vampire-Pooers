@@ -14,5 +14,6 @@ public class ItemBETTERDODGE : MonoBehaviour
     {
         gameObject.GetComponent<NewPlayerMovement>().dodgeTimerLength -= 3;
         gameObject.GetComponent<NewPlayerMovement>().dodgeSpeedUp -= 0.5f;
+        Destroy(this);
     }
 }

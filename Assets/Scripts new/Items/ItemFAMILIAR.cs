@@ -25,4 +25,9 @@ public class ItemFAMILIAR : MonoBehaviour
     {
         
     }
+
+    void Undo()
+    {
+        Destroy(this);
+    }
 }

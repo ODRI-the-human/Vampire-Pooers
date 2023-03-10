@@ -64,5 +64,7 @@ public class ItemORBITAL1 : MonoBehaviour
                 Destroy(friend);
             }
         }
+
+        Destroy(this);
     }
 }

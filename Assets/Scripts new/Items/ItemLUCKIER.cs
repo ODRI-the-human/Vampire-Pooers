@@ -16,5 +16,6 @@ public class ItemLUCKIER : MonoBehaviour
     public void Undo()
     {
         gameObject.GetComponent<DealDamage>().procCoeff -= 1;
+        Destroy(this);
     }
 }

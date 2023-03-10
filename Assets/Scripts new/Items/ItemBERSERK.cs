@@ -91,5 +91,6 @@ public class ItemBERSERK : MonoBehaviour
     {
         LevelUp.levelEffects -= goBerserk;
         EventManager.DeathEffects -= refreshBerserk;
+        Destroy(this);
     }
 }

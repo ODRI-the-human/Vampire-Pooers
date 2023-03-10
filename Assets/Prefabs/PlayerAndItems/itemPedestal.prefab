@@ -190,6 +190,7 @@ MonoBehaviour:
   - {fileID: -1874220701, guid: 2577e3cd26680cc499504306f54c325a, type: 3}
   - {fileID: -1499990303, guid: 2577e3cd26680cc499504306f54c325a, type: 3}
   - {fileID: -1561745665, guid: 2577e3cd26680cc499504306f54c325a, type: 3}
+  - {fileID: -403990978, guid: 2577e3cd26680cc499504306f54c325a, type: 3}
   spriteRenderer: {fileID: 7674381605585770212}
   description: 
   enemiesCanUse: 0

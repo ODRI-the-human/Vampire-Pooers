@@ -5,4 +5,9 @@ using UnityEngine;
 public class ItemMORELEVELSTATS : MonoBehaviour
 {
     public int instances = 1;
+
+    public void Undo()
+    {
+        Destroy(this);
+    }
 }

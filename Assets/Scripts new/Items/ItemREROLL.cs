@@ -25,7 +25,7 @@ public class ItemREROLL : MonoBehaviour
         gameObject.GetComponent<ItemHolder>().itemsHeld = newItems;
         SendMessage("Undo");
         Invoke(nameof(POOPOO),0.1f);
-        Invoke(nameof(REMOVE),0.2f);
+        Invoke(nameof(Undo),0.1f);
     }
 
     public void POOPOO()
@@ -33,13 +33,8 @@ public class ItemREROLL : MonoBehaviour
         gameObject.GetComponent<ItemHolder>().ApplyAll();
     }
 
-    public void REMOVE()
-    {
-        Destroy(this);
-    }
-
     public void Undo()
     {
-        //nothin
+        Destroy(this);
     }
 }

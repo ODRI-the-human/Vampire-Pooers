@@ -28,6 +28,6 @@ public class ItemDODGESPLOSION : MonoBehaviour
 
     public void Undo()
     {
-        //nothin
+        Destroy(this);
     }
 }

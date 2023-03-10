@@ -62,6 +62,6 @@ public class ItemATG : MonoBehaviour
 
     public void Undo()
     {
-        //thing here
+        Destroy(this);
     }
 }
