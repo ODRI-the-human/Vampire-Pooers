@@ -13,27 +13,32 @@ public class ItemREROLL : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameObject.GetComponent<OtherStuff>().Sprinkle(0);
+        //gameObject.GetComponent<OtherStuff>().Sprinkle(0);
+        gameObject.SendMessage("Undo");
         master = GameObject.Find("bigFuckingMasterObject");
         maxRange = master.GetComponent<EntityReferencerGuy>().numItemsExist;
         Debug.Log("Boingser");
         foreach (int item in gameObject.GetComponent<ItemHolder>().itemsHeld)
         {
             int itemChosen = Random.Range(minRange, maxRange);
+            while (itemChosen == (int)ITEMLIST.REROLL)
+            {
+                itemChosen = Random.Range(minRange, maxRange);
+            }
             newItems.Add(itemChosen);
         }
         gameObject.GetComponent<ItemHolder>().itemsHeld = newItems;
-        SendMessage("Undo");
         Invoke(nameof(POOPOO),0.1f);
-        Invoke(nameof(Undo),0.1f);
+        Invoke(nameof(KILL),0.2f);
     }
 
     public void POOPOO()
     {
         gameObject.GetComponent<ItemHolder>().ApplyAll();
+        gameObject.GetComponent<ItemHolder>().MakeEpicBullets();
     }
 
-    public void Undo()
+    public void KILL()
     {
         Destroy(this);
     }

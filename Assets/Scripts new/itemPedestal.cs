@@ -25,7 +25,7 @@ public class itemPedestal : MonoBehaviour
     {
         master = GameObject.Find("bigFuckingMasterObject");
         maxRange = master.GetComponent<EntityReferencerGuy>().numItemsExist;
-        //maxRange = 22;
+        //maxRange = 29;
         itemChosen = Random.Range(minRange, maxRange);
         spriteRenderer.sprite = spriteArray[itemChosen];
         gos = GameObject.FindGameObjectsWithTag("item");

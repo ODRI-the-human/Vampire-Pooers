@@ -19,7 +19,7 @@ public class ItemSAWSHOT : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("got saw: " + gameObject.name.ToString());
+        //Debug.Log("got saw: " + gameObject.name.ToString());
         master = gameObject.GetComponent<DealDamage>().master;
         if (gameObject.GetComponent<DealDamage>().isBulletClone || gameObject.GetComponent<checkAllLazerPositions>() != null)
         {
@@ -32,7 +32,7 @@ public class ItemSAWSHOT : MonoBehaviour
         canDoTheThing = true;
         float procMoment = 100f - 20 * gameObject.GetComponent<DealDamage>().procCoeff;
         float pringle = Random.Range(0f, 100f);
-        Debug.Log(pringle.ToString());
+        //Debug.Log(pringle.ToString());
         bool isCrit = false;
         if (pringle > procMoment)
         {

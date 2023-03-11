@@ -15,6 +15,7 @@ public class ItemHP50 : MonoBehaviour
     public void Undo()
     {
         gameObject.GetComponent<HPDamageDie>().MaxHP -= 50;
+        Debug.Log("Removed a HP25.");
         Destroy(this);
     }
 }

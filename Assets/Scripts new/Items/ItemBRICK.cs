@@ -5,11 +5,13 @@ using UnityEngine;
 public class ItemBRICK : MonoBehaviour
 {
     public int instances = 1;
-    bool isAProc;
+    public bool isAProc;
 
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("brick added");
+
         if ((gameObject.tag == "PlayerBullet" || gameObject.tag == "enemyBullet") && (gameObject.GetComponent<DealDamage>().isBulletClone || gameObject.GetComponent<checkAllLazerPositions>() != null))
         {
             DetermineShotRolls();
@@ -41,6 +43,7 @@ public class ItemBRICK : MonoBehaviour
     {
         if (isAProc)
         {
+            Debug.Log("undid funny brick");
             gameObject.GetComponent<DealDamage>().finalDamageMult /= 4;
             gameObject.transform.localScale /= 2;
         }
@@ -48,6 +51,7 @@ public class ItemBRICK : MonoBehaviour
 
     public void Undo()
     {
+        Debug.Log("Removed brick");
         Destroy(this);
     }
 }

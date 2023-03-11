@@ -32,14 +32,11 @@ public class ItemSOY : MonoBehaviour
         if (gameObject.GetComponent<Attack>() != null)
         {
             gameObject.GetComponent<Attack>().fireTimerDIV -= 4;
-        }
-
-        if (gameObject.GetComponent<Attack>() != null)
-        {
-            gameObject.GetComponent<Attack>().fireTimerDIV += 4;
             GameObject farter = gameObject.GetComponent<DealDamage>().master;
             gameObject.GetComponent<Attack>().PlayerShootAudio = farter.GetComponent<EntityReferencerGuy>().normieShotAudio;
         }
+
+        Destroy(this);
 
         Debug.Log("Foodland Sale on NOW!!!!!!!!");
     }

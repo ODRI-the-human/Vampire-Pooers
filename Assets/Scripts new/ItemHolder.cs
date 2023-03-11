@@ -38,6 +38,12 @@ public class ItemHolder : MonoBehaviour
             isBullet = false;
         }
 
+        if (gameObject.GetComponent<OrbitalMovement2>() != null)
+        {
+            isGuy = true;
+            isBullet = false;
+        }
+
         if (doTheShit)
         {
             ApplyAll();
@@ -46,20 +52,6 @@ public class ItemHolder : MonoBehaviour
         {
             MakeEpicBullets();
         }
-
-        if (gameObject.tag == "PlayerBullet" || gameObject.tag == "enemyBullet")
-        {
-            isGuy = false;
-            isBullet = true;
-        }
-
-        if (gameObject.GetComponent<OrbitalMovement2>() != null)
-        {
-            isGuy = true;
-            isBullet = false;
-        }
-
-        ApplyBatItems(true);
     }
 
     public void ApplyAll()
@@ -71,22 +63,18 @@ public class ItemHolder : MonoBehaviour
         }
     }
 
-    void ApplyBatItems(bool isFirstTime)
+    public void ApplyItems()
     {
         if (gameObject.GetComponent<weaponType>() != null && gameObject.GetComponent<weaponType>().spawnedBat != null)
         {
             GameObject battest = gameObject.GetComponent<weaponType>().spawnedBat;
             battest.GetComponent<ItemHolder>().itemsHeld = itemsHeld;
-            if (!isFirstTime)
-            {
-                battest.SendMessage("Undo");
-            }
-            battest.GetComponent<ItemHolder>().ApplyAll();
+            battest.GetComponent<ItemHolder>().itemGained = itemGained;
+            battest.GetComponent<ItemHolder>().isBullet = true;
+            battest.GetComponent<ItemHolder>().isGuy = true;
+            battest.GetComponent<ItemHolder>().ApplyItems();
         }
-    }
 
-    public void ApplyItems()
-    {
         switch (itemGained)
         {
             case (int)ITEMLIST.HP25:
@@ -405,10 +393,10 @@ public class ItemHolder : MonoBehaviour
                 }
                 break;
             case (int)ITEMLIST.REROLL:
-                //if (isGuy)
-                //{
-                //    gameObject.AddComponent<ItemREROLL>();
-                //}
+                if (isGuy)
+                {
+                    gameObject.AddComponent<ItemREROLL>();
+                }
                 break;
             case (int)ITEMLIST.BRICK:
                 if (isBullet)
@@ -614,12 +602,11 @@ public class ItemHolder : MonoBehaviour
             itemsHeld.Add(itemGained);
             ApplyItems();
         }
-        ApplyBatItems(false);
         MakeEpicBullets();
         SendMessage("itemsAdded");
     }
 
-    void MakeEpicBullets()
+    public void MakeEpicBullets()
     {
         Destroy(playerBulletPrefab);
         Destroy(enemyBulletPrefab);

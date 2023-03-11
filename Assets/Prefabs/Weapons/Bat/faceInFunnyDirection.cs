@@ -6,19 +6,19 @@ public class faceInFunnyDirection : MonoBehaviour
 {
     float dirFacing = 1;
     float prevDirFacing = 1;
-    public float dirChangeTimer;
+    public float dirChangeTimer = -20;
     public float dirChangeTimerMax;
 
     public GameObject owner;
     public GameObject camera;
     public GameObject hitSFX;
     float speed = 1;
-    bool keepCounting = true;
+    bool keepCounting = false;
     GameObject master;
 
     public GameObject contactMan;
 
-    float bulletSpeedMult = 12;
+    float bulletSpeedMult = 15;
     int numDeflected = 0; // for the 4dirmarty item!
 
     // Start is called before the first frame update
@@ -28,6 +28,8 @@ public class faceInFunnyDirection : MonoBehaviour
         Debug.Log("Bat spawned");
         gameObject.GetComponent<DealDamage>().owner = owner;
         gameObject.GetComponent<DealDamage>().master = master;
+        //gameObject.GetComponent<ItemHolder>().isGuy = false;
+        //gameObject.GetComponent<ItemHolder>().isBullet = true;
         camera = GameObject.Find("Main Camera");
     }
 
@@ -41,6 +43,7 @@ public class faceInFunnyDirection : MonoBehaviour
 
         gameObject.GetComponent<DealDamage>().finalDamageMult = owner.GetComponent<DealDamage>().finalDamageMult;
         gameObject.SendMessage("DetermineShotRolls"); // For items like sawshot and brick.
+        Debug.Log("hitty");
         keepCounting = true;
     }
 
@@ -82,10 +85,9 @@ public class faceInFunnyDirection : MonoBehaviour
     {
         if (bullet.GetComponent<Bullet_Movement>() != null)
         {
-            bullet.GetComponent<Rigidbody2D>().velocity *= bulletSpeedMult;
-            float speedle = (bullet.GetComponent<Rigidbody2D>().velocity).magnitude;
-            Debug.Log(speedle);
-            bullet.GetComponent<Rigidbody2D>().velocity = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized * speedle;
+            Vector2 blombo = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position);
+            blombo = blombo.normalized;
+            bullet.GetComponent<Rigidbody2D>().velocity = blombo * bulletSpeedMult;
             bullet.SendMessage("Undo");
             bullet.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
             bullet.GetComponent<ItemHolder>().ApplyAll();

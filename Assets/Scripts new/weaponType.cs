@@ -9,12 +9,12 @@ public class weaponType : MonoBehaviour
     public GameObject spawnedBat;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
 
         if (gameObject.tag == "Player" || gameObject.tag == "PlayerBullet")
         {
-            weaponHeld = (int)ITEMLIST.PISTOL;
+            //weaponHeld = (int)ITEMLIST.PISTOL;
             master = GameObject.Find("bigFuckingMasterObject");
         }
 

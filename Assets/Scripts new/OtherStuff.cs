@@ -23,36 +23,48 @@ public class OtherStuff : MonoBehaviour
         master = GameObject.Find("bigFuckingMasterObject");
     }
 
-    public void Sprinkle(int which)
-    {
-        Invoke(nameof(DeleteItems), 0);
-        poohead = which;
-    }
+    //public void Sprinkle(int which)
+    //{
+    //    Invoke(nameof(DeleteItems), 0);
+    //    poohead = which;
+    //}
 
-    public void DeleteItems()
+    //public void DeleteItems()
+    //{
+    //    int counterGuy = 0;
+    //    switch (poohead)
+    //    {
+    //        case 0: // removes all items.
+    //            scripts = GetComponents(typeof(MonoBehaviour));
+    //            foreach (Component thing in scripts)
+    //            {
+    //                counterGuy++;
+    //                if (counterGuy > numNormalScripts && counterGuy != scripts.Length) // Only does the following for the 13th script onwards, and doesn't do it for the last script.
+    //                {
+    //                    Destroy(thing);
+    //                }
+    //            }
+    //            foreach (GameObject familiar in familiars)
+    //            {
+    //                Destroy(familiar);
+    //            }
+    //            familiars.Clear();
+    //            break;
+    //        case 1: // removes first item.
+    //            break;
+    //    }
+    //}
+
+    public void Undo() // clears familiars for the reroll item.
     {
-        int counterGuy = 0;
-        switch (poohead)
+        foreach (GameObject familiar in familiars)
         {
-            case 0: // removes all items.
-                scripts = GetComponents(typeof(MonoBehaviour));
-                foreach (Component thing in scripts)
-                {
-                    counterGuy++;
-                    if (counterGuy > numNormalScripts && counterGuy != scripts.Length) // Only does the following for the 13th script onwards, and doesn't do it for the last script.
-                    {
-                        Destroy(thing);
-                    }
-                }
-                foreach (GameObject familiar in familiars)
-                {
-                    Destroy(familiar);
-                }
-                familiars.Clear();
-                break;
-            case 1: // removes first item.
-                break;
+            Destroy(familiar);
         }
+        familiars.Clear();
+        familiarBonusDMG = 0;
+        familiarBonusFIRERATE = 0;
+        familiarBonusHOMING = 0;
     }
 
     public void AddNewFamiliar(GameObject newGuy, int item)
