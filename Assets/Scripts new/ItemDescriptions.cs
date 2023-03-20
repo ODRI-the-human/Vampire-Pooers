@@ -131,7 +131,7 @@ public class ItemDescriptions : MonoBehaviour
                 enemiesCanUse = true;
                 break;
             case (int)ITEMLIST.BETTERLEVEL:
-                itemDescription = "Recieve +2x the stat bonuses upon levelling up per stack.";
+                itemDescription = "Recieve +100% the stat bonuses upon levelling up per stack.";
                 break;
             case (int)ITEMLIST.EXTRAITEMLEVEL:
                 itemDescription = "When levelling to a level divisible by 4, your next item gets applied an extra time. Items get applied an extra time per level, per stack.";
@@ -179,6 +179,9 @@ public class ItemDescriptions : MonoBehaviour
             case (int)ITEMLIST.BETTERCRITS:
                 itemDescription = "Crit multiplier increased by 100%";
                 enemiesCanUse = true;
+                break;
+            case (int)ITEMLIST.MARCEL:
+                itemDescription = "hey guys its teh epic marcelageloo";
                 break;
 
 

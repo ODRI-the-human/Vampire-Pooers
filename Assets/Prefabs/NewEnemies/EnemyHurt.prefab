@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8531968631791101865}
   m_Layer: 0
   m_Name: EnemyHurt
-  m_TagString: Untagged
+  m_TagString: audio
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

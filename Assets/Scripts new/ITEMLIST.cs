@@ -48,6 +48,7 @@ public enum ITEMLIST
     LUCKIER,
     MORECRITS,
     BETTERCRITS,
+    MARCEL,
 
 
 

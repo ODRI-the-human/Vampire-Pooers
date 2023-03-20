@@ -34,6 +34,7 @@ public class ItemSAWSHOT : MonoBehaviour
         float pringle = Random.Range(0f, 100f);
         //Debug.Log(pringle.ToString());
         bool isCrit = false;
+        isAProc = false;
         if (pringle > procMoment)
         {
             if (gameObject.GetComponent<checkAllLazerPositions>() == null && gameObject.GetComponent<isMelee>() == null)

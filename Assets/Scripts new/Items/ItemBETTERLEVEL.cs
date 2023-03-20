@@ -7,12 +7,12 @@ public class ItemBETTERLEVEL : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameObject.GetComponent<LevelUp>().effectMult += 2;
+        gameObject.GetComponent<LevelUp>().effectMult += 1;
     }
 
     public void Undo()
     {
-        gameObject.GetComponent<LevelUp>().effectMult -= 2;
+        gameObject.GetComponent<LevelUp>().effectMult -= 1;
         Destroy(this);
     }
 }

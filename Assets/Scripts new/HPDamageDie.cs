@@ -20,6 +20,8 @@ public class HPDamageDie : MonoBehaviour
     GameObject Player;
     public GameObject XP;
 
+    public bool makeKillSound = true;
+
     public float damageReduction = 0;
 
     public int perfectWaves = 0;
@@ -67,7 +69,10 @@ public class HPDamageDie : MonoBehaviour
                 }
             }
             Instantiate(XP, transform.position, Quaternion.Euler(0, 0, 0));
-            Instantiate(PlayerDieAudio);
+            if (makeKillSound)
+            {
+                Instantiate(PlayerDieAudio);
+            }
             Destroy(gameObject);
             SendMessage("ApplyOwnOnDeaths");
             EventManager.DeathEffects(transform.position);

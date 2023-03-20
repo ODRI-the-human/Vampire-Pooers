@@ -26,6 +26,7 @@ TagManager:
   - itemIcons
   - obstacle
   - keepBestScore
+  - audio
   layers:
   - Default
   - TransparentFX

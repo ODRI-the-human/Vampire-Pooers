@@ -33,6 +33,7 @@ public class EntityReferencerGuy : MonoBehaviour
     public GameObject normieShotAudio;
     public GameObject neutralExplosion;
     public GameObject camera;
+    public GameObject marcelageloo;
 
     public GameObject bat;
 

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2984376920157261752}
   m_Layer: 0
   m_Name: moleZap
-  m_TagString: Untagged
+  m_TagString: audio
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

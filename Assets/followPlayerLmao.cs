@@ -18,7 +18,7 @@ public class followPlayerLmao : MonoBehaviour
 
     void Update()
     {
-        transform.position = Player.transform.position + new Vector3(0,0.1f,-1);
+        transform.position = Player.transform.position + new Vector3(0,0.1f,-7);
 
         mouseVector = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
         vectorMan = Camera.main.ScreenToWorldPoint(mouseVector) - transform.position;

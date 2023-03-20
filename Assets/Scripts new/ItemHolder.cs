@@ -528,6 +528,19 @@ public class ItemHolder : MonoBehaviour
             case (int)ITEMLIST.BETTERCRITS:
                 gameObject.AddComponent<ItemBETTERCRITS>();
                 break;
+            case (int)ITEMLIST.MARCEL:
+                if (isGuy)
+                {
+                    if (gameObject.GetComponent<ItemMARCEL>() == null)
+                    {
+                        gameObject.AddComponent<ItemMARCEL>();
+                    }
+                    else
+                    {
+                        gameObject.GetComponent<ItemMARCEL>().instances++;
+                    }
+                }
+                break;
 
 
             case (int)ITEMLIST.DODGEROLL:
