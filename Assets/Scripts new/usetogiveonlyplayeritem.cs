@@ -8,28 +8,6 @@ public class usetogiveonlyplayeritem : MonoBehaviour
     void Start()
     {
         gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.PISTOL);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.BLEED);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.BLEED);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.BLEED);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.BLEED);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.BLEED);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.BLEED);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.BLEED);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.BLEED);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.BLEED);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.BLEED);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.BLEED);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.BLEED);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.BLEED);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.BLEED);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.BLEED);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.POISONSPLOSM);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.POISONSPLOSM);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.POISONSPLOSM);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.POISONSPLOSM);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.POISONSPLOSM);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.CONTACT);
-        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.LUCKIER);
-        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.ORBITAL2);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.MARCEL);
     }
 }

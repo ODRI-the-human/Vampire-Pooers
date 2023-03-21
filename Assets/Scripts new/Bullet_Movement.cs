@@ -9,6 +9,9 @@ public class Bullet_Movement : MonoBehaviour
     Vector2 OriginalSpeed;
     public GameObject master;
 
+    public bool doKillBullet = false;
+    [System.NonSerialized] public float liveTime = 0.6f;
+
     int timer = 0;
     int lastColTime = 0;
     public bool canCollide = true;
@@ -17,6 +20,10 @@ public class Bullet_Movement : MonoBehaviour
     void Start()
     {
         master = gameObject.GetComponent<DealDamage>().master;
+        if (gameObject.GetComponent<DealDamage>().isBulletClone && doKillBullet)
+        {
+            Invoke(nameof(KillBullet), liveTime);
+        }
     }
 
     void FixedUpdate()
@@ -95,6 +102,11 @@ public class Bullet_Movement : MonoBehaviour
                 }
             }
         }
+    }
+
+    void KillBullet()
+    {
+        Destroy(gameObject);
     }
 
     // for contact item.

@@ -52,6 +52,9 @@ public class ThirdEnemySpawner : MonoBehaviour
     public bool enemiesAreSpawning = true;
     public float totalSpawnsSurvived = 0;
 
+    public List<int> playerBannedItems = new List<int>();
+    public int playerBannedWeapon;
+
     void Start()
     {
         Player = GameObject.Find("newPlayer");
@@ -296,6 +299,8 @@ public class ThirdEnemySpawner : MonoBehaviour
         {
             GameObject newObject = Instantiate(itemPedestal, new Vector3(5 * i - 5, 3, 8) + Camera.transform.position, transform.rotation) as GameObject;
             newObject.transform.localScale = new Vector3(5, 5, 5);
+            newObject.GetComponent<itemPedestal>().bannedItems = playerBannedItems;
+            newObject.GetComponent<itemPedestal>().bannedWeapon = playerBannedWeapon;
         }
         StartWave();
     }

@@ -4,51 +4,24 @@ using UnityEngine;
 
 public class ItemHOLYMANTIS : MonoBehaviour
 {
-    public float maxTimesHit = 1;
-    public float timesHit;
     public int instances = 1;
-    float iFrames = 0;
 
     void Start()
     {
-        maxTimesHit = instances;
-        timesHit = maxTimesHit;
+        newWaveEffects();
     }
 
-    void FixedUpdate()
+    public void OnHurtEffects()
     {
-        iFrames--;
-    }
-
-    void OnCollisionEnter2D(Collision2D col)
-    {
-        if (col.gameObject.tag != gameObject.tag && timesHit > 0)
+        if (gameObject.GetComponent<HPDamageDie>().damageDiv > 1)
         {
-            if (iFrames < 0)
-            {
-                gameObject.GetComponent<HPDamageDie>().HP += instances * col.gameObject.GetComponent<DealDamage>().finalDamageStat / (instances + 1);
-                iFrames = gameObject.GetComponent<HPDamageDie>().iFramesTimer;
-                timesHit--;
-            }
+            gameObject.GetComponent<HPDamageDie>().damageDiv--;
         }
     }
 
-    void OnTriggerStay2D(Collider2D col)
+    public void newWaveEffects()
     {
-        if (col.gameObject.tag != gameObject.tag && timesHit > 0 && col.gameObject.GetComponent<DealDamage>().finalDamageStat != 0)
-        {
-            if (iFrames < 0)
-            {
-                gameObject.GetComponent<HPDamageDie>().HP += instances * col.gameObject.GetComponent<DealDamage>().finalDamageStat / (instances + 1);
-                iFrames = gameObject.GetComponent<HPDamageDie>().iFramesTimer;
-                timesHit--;
-            }
-        }
-
-        if (col.tag == "item")
-        {
-            timesHit = maxTimesHit;
-        }
+        gameObject.GetComponent<HPDamageDie>().damageDiv = (instances + 1);
     }
 
     public void Undo()

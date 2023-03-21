@@ -145,7 +145,6 @@ public class ItemHolder : MonoBehaviour
                     }
                     else
                     {
-                        gameObject.GetComponent<ItemWAPANT>().wapantTimerLength /= 1.2f;
                         gameObject.GetComponent<ItemWAPANT>().instances++;
                     }
                 }
@@ -160,8 +159,7 @@ public class ItemHolder : MonoBehaviour
                     else
                     {
                         gameObject.GetComponent<ItemHOLYMANTIS>().instances++;
-                        gameObject.GetComponent<ItemHOLYMANTIS>().maxTimesHit++;
-                        gameObject.GetComponent<ItemHOLYMANTIS>().timesHit = gameObject.GetComponent<ItemHOLYMANTIS>().maxTimesHit;
+
                     }
                 }
                 break;

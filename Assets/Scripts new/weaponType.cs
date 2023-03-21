@@ -37,6 +37,7 @@ public class weaponType : MonoBehaviour
                     gameObject.GetComponent<Attack>().fireTimerLengthMLT = 1;
                     gameObject.GetComponent<Attack>().shotSpeed = 15;
                     gameObject.GetComponent<Attack>().holdDownToShoot = true;
+                    master.GetComponent<ThirdEnemySpawner>().playerBannedWeapon = (int)ITEMLIST.PISTOL;
                 }
                 break;
             case (int)ITEMLIST.GRENADELAUNCHER:
@@ -46,6 +47,7 @@ public class weaponType : MonoBehaviour
                     gameObject.GetComponent<Attack>().fireTimerLengthMLT = 1.5f;
                     gameObject.GetComponent<Attack>().shotSpeed = 45;
                     gameObject.GetComponent<Attack>().holdDownToShoot = true;
+                    master.GetComponent<ThirdEnemySpawner>().playerBannedWeapon = (int)ITEMLIST.GRENADELAUNCHER;
                 }
                 break;
             case (int)ITEMLIST.DARKARTS:
@@ -54,6 +56,7 @@ public class weaponType : MonoBehaviour
                     gameObject.GetComponent<Attack>().specialFireType = 3;
                     gameObject.GetComponent<Attack>().fireTimerLengthMLT = 0.5f;
                     gameObject.GetComponent<Attack>().holdDownToShoot = true;
+                    master.GetComponent<ThirdEnemySpawner>().playerBannedWeapon = (int)ITEMLIST.DARKARTS;
                 }
                 break;
             case (int)ITEMLIST.LAZER:
@@ -63,6 +66,7 @@ public class weaponType : MonoBehaviour
                     gameObject.GetComponent<Attack>().fireTimerLengthMLT = 1.2f;
                     gameObject.GetComponent<Attack>().shotSpeed = 10;
                     gameObject.GetComponent<Attack>().holdDownToShoot = true;
+                    master.GetComponent<ThirdEnemySpawner>().playerBannedWeapon = (int)ITEMLIST.LAZER;
                 }
                 break;
             case (int)ITEMLIST.BAT:
@@ -73,6 +77,8 @@ public class weaponType : MonoBehaviour
                     gameObject.GetComponent<Attack>().holdDownToShoot = false;
                     spawnedBat = Instantiate(master.GetComponent<EntityReferencerGuy>().bat);
                     spawnedBat.GetComponent<faceInFunnyDirection>().owner = gameObject;
+                    master.GetComponent<ThirdEnemySpawner>().playerBannedWeapon = (int)ITEMLIST.BAT;
+
                 }
                 break;
         }

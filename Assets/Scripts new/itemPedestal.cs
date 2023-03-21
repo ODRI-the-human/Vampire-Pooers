@@ -18,16 +18,19 @@ public class itemPedestal : MonoBehaviour
     public bool enemiesCanUse;
 
     int[] specialItemWeights = new int[] { 20, 20, 20, 10, 10, 10, 4, 1 }; //{ 20, 20, 20, 10, 10, 10, 4, 1 };
+    public List<int> bannedItems = new List<int>();
+    public int bannedWeapon;
     public int specialItemWeightsSum;
 
     // Start is called before the first frame update
     void Start()
     {
+        //bannedItems.Add((int)ITEMLIST.HP25);
+        bannedItems.Add(bannedWeapon);
         master = GameObject.Find("bigFuckingMasterObject");
         maxRange = master.GetComponent<EntityReferencerGuy>().numItemsExist;
-        //maxRange = 29;
-        itemChosen = Random.Range(minRange, maxRange);
-        spriteRenderer.sprite = spriteArray[itemChosen];
+        //maxRange = 5;
+        GetARandomItem();
         gos = GameObject.FindGameObjectsWithTag("item");
         GameObject.Find("newPlayer").GetComponent<getItemDescription>().itemsExist = true;
         Invoke(nameof(SetDescription), 0.1f);
@@ -49,13 +52,26 @@ public class itemPedestal : MonoBehaviour
     {
         foreach (GameObject go in gos)
         {
-            if (go.GetComponent<itemPedestal>().itemChosen == itemChosen && go != gameObject)
+            bool isFine = true;
+
+            foreach (int item in bannedItems)
+            {
+                if (item == itemChosen)
+                isFine = false;
+            }
+
+            if ((go.GetComponent<itemPedestal>().itemChosen == itemChosen && go != gameObject) || !isFine)
             {
                 Debug.Log("WOw, something was fucked up!!!!!!!!!!!!");
-                itemChosen = Mathf.RoundToInt(Random.Range(minRange, maxRange));
-                spriteRenderer.sprite = spriteArray[itemChosen];
+                GetARandomItem();
             }
         }
+    }
+
+    void GetARandomItem()
+    {
+        itemChosen = Mathf.RoundToInt(Random.Range(minRange, maxRange));
+        spriteRenderer.sprite = spriteArray[itemChosen];
     }
 
     void SetDescription()

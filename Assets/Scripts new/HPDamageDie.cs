@@ -19,17 +19,16 @@ public class HPDamageDie : MonoBehaviour
     Color originalColor;
     GameObject Player;
     public GameObject XP;
-    public float[] resistVals;
+    [System.NonSerialized] public float[] resistVals = new float[] { 0, 0, 0, 0, 0, 0, 0, 0 }; // Should be a minimum of one entry for each actual real damage type.
 
     public bool makeKillSound = true;
 
     public float damageReduction = 0;
+    [System.NonSerialized] public float damageDiv = 1;
 
     public int perfectWaves = 0;
 
     GameObject master;
-
-    GameObject poisonSplosm;
 
     // Start is called before the first frame update
     void Awake()
@@ -131,6 +130,7 @@ public class HPDamageDie : MonoBehaviour
                 }
 
                 damageAmount -= damageAmount * (resistVals[damageType] / 100);
+                damageAmount /= damageDiv;
 
                 HP -= damageAmount;
                 if (playerControlled == true)
@@ -139,13 +139,15 @@ public class HPDamageDie : MonoBehaviour
                     perfectWaves = -1;
                 }
 
-                if (gameObject.GetComponent<ItemHOLYMANTIS>() != null && gameObject.GetComponent<ItemHOLYMANTIS>().timesHit > 0)
-                {
-                    damageAmount = damageAmount - gameObject.GetComponent<ItemHOLYMANTIS>().instances * damageAmount / (gameObject.GetComponent<ItemHOLYMANTIS>().instances + 1);
-                }
+                //if (gameObject.GetComponent<ItemHOLYMANTIS>() != null && gameObject.GetComponent<ItemHOLYMANTIS>().timesHit > 0)
+                //{
+                //    damageAmount = damageAmount - gameObject.GetComponent<ItemHOLYMANTIS>().instances * damageAmount / (gameObject.GetComponent<ItemHOLYMANTIS>().instances + 1);
+                //}
 
                 master.GetComponent<showDamageNumbers>().showDamage(transform.position, damageAmount, damageType, isCrit);
             }
+
+            SendMessage("OnHurtEffects");
         }
     }
 

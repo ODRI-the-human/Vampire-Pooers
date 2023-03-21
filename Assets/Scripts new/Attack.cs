@@ -5,6 +5,7 @@ using UnityEngine;
 public class Attack : MonoBehaviour
 {
     public float shotSpeed = 5f;
+    public float bulletLengthMult = 1;
     Vector2 newShotVector;
     Rigidbody2D bulletRB;
     public float currentAngle;
@@ -228,6 +229,11 @@ public class Attack : MonoBehaviour
         velToGiveBullets = newShotVector * shotSpeed;
         bulletRB.velocity = velToGiveBullets;
         newObject.GetComponent<DealDamage>().master = gameObject.GetComponent<DealDamage>().master;
+        if (gameObject.GetComponent<Bullet_Movement>() != null)
+        {
+            newObject.GetComponent<Bullet_Movement>().liveTime /= bulletLengthMult;
+        }
+        newObject.GetComponent<DealDamage>().isBulletClone = true;
         if (attachItems)
         {
             //newObject.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;

@@ -159,6 +159,7 @@ MonoBehaviour:
   iFrameFac: 1
   isBulletClone: 0
   damageToPresent: 0
+  damageType: 0
 --- !u!114 &8984978239919591108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,7 +172,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a79b14745a3e2fd4f8a0b5a259cfcb25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shotSpeed: 8
+  shotSpeed: 13
+  bulletLengthMult: 1.5
   currentAngle: 0
   vectorToTarget: {x: 0, y: 0}
   noExtraShots: 0
@@ -205,6 +207,7 @@ MonoBehaviour:
   angleAddAmount: 0
   velToGiveBullets: {x: 0, y: 0, z: 0}
   massToGiveBullets: 0.5
+  holdDownToShoot: 1
 --- !u!114 &4094460240105576254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -221,6 +224,8 @@ MonoBehaviour:
   master: {fileID: 0}
   itemGained: 0
   noToGive: 1
+  isBullet: 0
+  isGuy: 1
   doTheShit: 1
   playerBullet: {fileID: 0}
   enemyBullet: {fileID: 0}
@@ -251,3 +256,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponHeld: 0
+  master: {fileID: 0}
+  spawnedBat: {fileID: 0}

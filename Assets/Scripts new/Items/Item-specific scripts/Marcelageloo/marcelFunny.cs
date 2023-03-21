@@ -23,6 +23,8 @@ public class marcelFunny : MonoBehaviour
     int thingUpTo = 0;
     int spriteNo = 0;
 
+    int timer = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -58,6 +60,28 @@ public class marcelFunny : MonoBehaviour
         else
         {
             canType = false;
+        }
+    }
+
+    void FixedUpdate()
+    {
+        Collider2D[] jimbob = Physics2D.OverlapCircleAll(transform.position, 2.5f * transform.localScale.x);
+        foreach (var col in jimbob)
+        {
+            Debug.Log("dog things");
+            if (col.gameObject.tag == "enemyBullet")
+            {
+                Vector3 gromble = transform.position - col.gameObject.transform.position;
+                Vector2 grombley = 0.2f * new Vector2(gromble.x, gromble.y).normalized;
+                col.gameObject.GetComponent<Rigidbody2D>().velocity -= grombley;
+            }
+
+            if (col.gameObject.tag == "Hostile")
+            {
+                col.gameObject.GetComponent<NewPlayerMovement>().isSlowed = 1;
+                col.gameObject.GetComponent<NewPlayerMovement>().slowTimer = 100;
+                col.gameObject.GetComponent<NewPlayerMovement>().speedDiv = 2;
+            }
         }
     }
 
@@ -102,28 +126,6 @@ public class marcelFunny : MonoBehaviour
             Destroy(Letter);
         }
     }
-
-    //void KillAudio()
-    //{
-    //    GameObject[] sounds = GameObject.FindGameObjectsWithTag("audio");
-
-    //    foreach (GameObject sound in sounds)
-    //    {
-    //        Destroy(sound);
-    //    }
-    //}
-
-    //void DestroySquare()
-    //{
-    //    StartKill();
-    //    canvas.SetActive(true);
-    //    foreach (GameObject Letter in spawnedLetters)
-    //    {
-    //        Destroy(Letter);
-    //    }
-    //    Destroy(gameObject);
-    //    Destroy(spawnedBlackSquare);
-    //}
 
     void SpawnNew()
     {
