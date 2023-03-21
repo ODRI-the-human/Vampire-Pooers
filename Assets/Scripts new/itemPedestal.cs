@@ -18,8 +18,13 @@ public class itemPedestal : MonoBehaviour
     public bool enemiesCanUse;
 
     int[] specialItemWeights = new int[] { 20, 20, 20, 10, 10, 10, 4, 1 }; //{ 20, 20, 20, 10, 10, 10, 4, 1 };
+    int[] itemQualWeights = new int[] { 20, 10, 2, 0, 6, 6 };
+    public int chosenQuality;
+    public int qualityWeightsSum;
+    public int randomedQuality; // This stores the quality of the item the random.range picked when rolling for an item.
     public List<int> bannedItems = new List<int>();
     public int bannedWeapon;
+    public int bannedDodge;
     public int specialItemWeightsSum;
 
     // Start is called before the first frame update
@@ -27,20 +32,45 @@ public class itemPedestal : MonoBehaviour
     {
         //bannedItems.Add((int)ITEMLIST.HP25);
         bannedItems.Add(bannedWeapon);
+        bannedItems.Add(bannedDodge);
         master = GameObject.Find("bigFuckingMasterObject");
         maxRange = master.GetComponent<EntityReferencerGuy>().numItemsExist;
         //maxRange = 5;
-        GetARandomItem();
         gos = GameObject.FindGameObjectsWithTag("item");
         GameObject.Find("newPlayer").GetComponent<getItemDescription>().itemsExist = true;
-        Invoke(nameof(SetDescription), 0.1f);
+        Invoke(nameof(SetDescription), 0.02f);
 
         foreach (int i in specialItemWeights)
         {
             specialItemWeightsSum += i;
         }
+        
+
+        GetARandomItem();
 
         Invoke(nameof(enableHitbox), 0.5f);
+    }
+
+    void GetQuality()
+    {
+        qualityWeightsSum = 0;
+        foreach (int i in itemQualWeights)
+        {
+            qualityWeightsSum += i;
+        }
+
+        int randomWacky = Random.Range(0, qualityWeightsSum);
+        Debug.Log(randomWacky.ToString());
+        int currentWeightSum = 0;
+        for (int i = 0; i < itemQualWeights.Length; i++)
+        {
+            currentWeightSum += itemQualWeights[i];
+            if (randomWacky < currentWeightSum)
+            {
+                chosenQuality = i;
+                break;
+            }
+        }
     }
 
     void enableHitbox()
@@ -70,8 +100,18 @@ public class itemPedestal : MonoBehaviour
 
     void GetARandomItem()
     {
-        itemChosen = Mathf.RoundToInt(Random.Range(minRange, maxRange));
-        spriteRenderer.sprite = spriteArray[itemChosen];
+        randomedQuality = -5;
+
+        while (randomedQuality != chosenQuality)
+        {
+            GetQuality();
+            itemChosen = Mathf.RoundToInt(Random.Range(minRange, maxRange));
+            spriteRenderer.sprite = spriteArray[itemChosen];
+
+            gameObject.GetComponent<ItemDescriptions>().itemChosen = itemChosen;
+            gameObject.GetComponent<ItemDescriptions>().getItemDescription();
+            randomedQuality = gameObject.GetComponent<ItemDescriptions>().quality;
+        }
     }
 
     void SetDescription()

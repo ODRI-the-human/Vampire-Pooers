@@ -27,6 +27,7 @@ public class DealDamage : MonoBehaviour
     public float iFrameFac = 1;
 
     public bool isBulletClone = false;
+    public bool isSourceBullet = false;
 
     public float damageToPresent;
 

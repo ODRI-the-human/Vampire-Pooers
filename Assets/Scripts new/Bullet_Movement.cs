@@ -10,7 +10,7 @@ public class Bullet_Movement : MonoBehaviour
     public GameObject master;
 
     public bool doKillBullet = false;
-    [System.NonSerialized] public float liveTime = 0.6f;
+    [System.NonSerialized] public float liveTime = 0.75f;
 
     int timer = 0;
     int lastColTime = 0;

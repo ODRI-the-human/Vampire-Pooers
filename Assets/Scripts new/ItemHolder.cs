@@ -545,12 +545,14 @@ public class ItemHolder : MonoBehaviour
                 if (gameObject.tag == "Player")
                 {
                     gameObject.GetComponent<NewPlayerMovement>().mouseAltMode = 0;
+                    master.GetComponent<ThirdEnemySpawner>().playerBannedDodge = (int)ITEMLIST.DODGEROLL;
                 }
                 break;
             case (int)ITEMLIST.SHOULDERBASH:
                 if (gameObject.tag == "Player")
                 {
                     gameObject.GetComponent<NewPlayerMovement>().mouseAltMode = 1;
+                    master.GetComponent<ThirdEnemySpawner>().playerBannedDodge = (int)ITEMLIST.SHOULDERBASH;
                 }
                 break;
 
@@ -560,6 +562,11 @@ public class ItemHolder : MonoBehaviour
                 {
                     gameObject.GetComponent<weaponType>().weaponHeld = (int)ITEMLIST.PISTOL;
                     gameObject.GetComponent<weaponType>().SetWeapon();
+
+                    if (gameObject.tag == "Player")
+                    {
+                        master.GetComponent<ThirdEnemySpawner>().playerBannedWeapon = (int)ITEMLIST.PISTOL;
+                    }
                 }
                 break;
             case (int)ITEMLIST.GRENADELAUNCHER:
@@ -567,6 +574,11 @@ public class ItemHolder : MonoBehaviour
                 {
                     gameObject.GetComponent<weaponType>().weaponHeld = (int)ITEMLIST.GRENADELAUNCHER;
                     gameObject.GetComponent<weaponType>().SetWeapon();
+
+                    if (gameObject.tag == "Player")
+                    {
+                        master.GetComponent<ThirdEnemySpawner>().playerBannedWeapon = (int)ITEMLIST.GRENADELAUNCHER;
+                    }
                 }
                 break;
             case (int)ITEMLIST.LAZER:
@@ -574,6 +586,11 @@ public class ItemHolder : MonoBehaviour
                 {
                     gameObject.GetComponent<weaponType>().weaponHeld = (int)ITEMLIST.LAZER;
                     gameObject.GetComponent<weaponType>().SetWeapon();
+
+                    if (gameObject.tag == "Player")
+                    {
+                        master.GetComponent<ThirdEnemySpawner>().playerBannedWeapon = (int)ITEMLIST.LAZER ;
+                    }
                 }
                 break;
             case (int)ITEMLIST.BAT:
@@ -581,6 +598,11 @@ public class ItemHolder : MonoBehaviour
                 {
                     gameObject.GetComponent<weaponType>().weaponHeld = (int)ITEMLIST.BAT;
                     gameObject.GetComponent<weaponType>().SetWeapon();
+
+                    if (gameObject.tag == "Player")
+                    {
+                        master.GetComponent<ThirdEnemySpawner>().playerBannedWeapon = (int)ITEMLIST.BAT;
+                    }
                 }
                 break;
 
@@ -645,7 +667,9 @@ public class ItemHolder : MonoBehaviour
     void setBulletsToClones()
     {
         playerBulletPrefab.GetComponent<DealDamage>().isBulletClone = true;
+        playerBulletPrefab.GetComponent<DealDamage>().isSourceBullet = true;
         enemyBulletPrefab.GetComponent<DealDamage>().isBulletClone = true;
+        enemyBulletPrefab.GetComponent<DealDamage>().isSourceBullet = true;
     }
 
     void Update()

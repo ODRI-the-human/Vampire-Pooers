@@ -54,6 +54,7 @@ public class ThirdEnemySpawner : MonoBehaviour
 
     public List<int> playerBannedItems = new List<int>();
     public int playerBannedWeapon;
+    public int playerBannedDodge;
 
     void Start()
     {
@@ -301,6 +302,7 @@ public class ThirdEnemySpawner : MonoBehaviour
             newObject.transform.localScale = new Vector3(5, 5, 5);
             newObject.GetComponent<itemPedestal>().bannedItems = playerBannedItems;
             newObject.GetComponent<itemPedestal>().bannedWeapon = playerBannedWeapon;
+            newObject.GetComponent<itemPedestal>().bannedDodge = playerBannedDodge;
         }
         StartWave();
     }

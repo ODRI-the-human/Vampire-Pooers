@@ -108,7 +108,7 @@ public class marcelFunny : MonoBehaviour
         GameObject[] enemyShots = GameObject.FindGameObjectsWithTag("enemyBullet");
         foreach (GameObject bulletter in enemyShots)
         {
-            if (bulletter.GetComponent<DealDamage>().isBulletClone)
+            if (!bulletter.GetComponent<DealDamage>().isSourceBullet)
             {
                 Destroy(bulletter);
             }

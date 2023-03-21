@@ -234,6 +234,7 @@ public class Attack : MonoBehaviour
             newObject.GetComponent<Bullet_Movement>().liveTime /= bulletLengthMult;
         }
         newObject.GetComponent<DealDamage>().isBulletClone = true;
+        newObject.GetComponent<DealDamage>().isSourceBullet = false;
         if (attachItems)
         {
             //newObject.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
