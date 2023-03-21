@@ -11,7 +11,7 @@ public class ItemCONTACT : MonoBehaviour
     void Start()
     {
         int LayerProjectileBlocking = LayerMask.NameToLayer("ProjectileBlocking");
-        if ((gameObject.tag == "PlayerBullet" || gameObject.tag == "enemyBullet") && gameObject.layer != LayerProjectileBlocking && gameObject.GetComponent<faceInFunnyDirection>() != null) //the last one is to prevent it from being given to the baseball bat.
+        if ((gameObject.tag == "PlayerBullet" || gameObject.tag == "enemyBullet") && gameObject.layer != LayerProjectileBlocking && gameObject.GetComponent<faceInFunnyDirection>() == null) //the last one is to prevent it from being given to the baseball bat.
         {
             master = gameObject.GetComponent<DealDamage>().master;
             GameObject Bingus = Instantiate(master.GetComponent<EntityReferencerGuy>().contactMan);

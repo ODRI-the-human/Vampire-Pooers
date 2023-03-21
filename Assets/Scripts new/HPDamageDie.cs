@@ -19,6 +19,7 @@ public class HPDamageDie : MonoBehaviour
     Color originalColor;
     GameObject Player;
     public GameObject XP;
+    public float[] resistVals;
 
     public bool makeKillSound = true;
 
@@ -95,9 +96,10 @@ public class HPDamageDie : MonoBehaviour
         colorChangeTimer--;
     }
 
-    public void Hurty(float damageAmount, bool isCrit, bool playSound, float iFrameFac)
+    public void Hurty(float damageAmount, bool isCrit, bool playSound, float iFrameFac, int damageType)
     {
         Debug.Log("shoulda taken a lil damage cunt, " + gameObject.name.ToString() + " / " + damageAmount.ToString());
+        //Debug.Log(resistVals[damageType].ToString());
 
         if (gameObject.GetComponent<ItemEASIERTIMES>() != null && Mathf.RoundToInt(100 * (0.8f - 1f / (gameObject.GetComponent<ItemEASIERTIMES>().instances + 1f))) > Random.Range(0, 100))
         {
@@ -128,6 +130,8 @@ public class HPDamageDie : MonoBehaviour
                     }
                 }
 
+                damageAmount -= damageAmount * (resistVals[damageType] / 100);
+
                 HP -= damageAmount;
                 if (playerControlled == true)
                 {
@@ -137,12 +141,10 @@ public class HPDamageDie : MonoBehaviour
 
                 if (gameObject.GetComponent<ItemHOLYMANTIS>() != null && gameObject.GetComponent<ItemHOLYMANTIS>().timesHit > 0)
                 {
-                    master.GetComponent<showDamageNumbers>().showDamage(transform.position, damageAmount - gameObject.GetComponent<ItemHOLYMANTIS>().instances * damageAmount / (gameObject.GetComponent<ItemHOLYMANTIS>().instances + 1), (int)DAMAGETYPES.NORMAL, isCrit);
+                    damageAmount = damageAmount - gameObject.GetComponent<ItemHOLYMANTIS>().instances * damageAmount / (gameObject.GetComponent<ItemHOLYMANTIS>().instances + 1);
                 }
-                else
-                {
-                    master.GetComponent<showDamageNumbers>().showDamage(transform.position, damageAmount, (int)DAMAGETYPES.NORMAL, isCrit);
-                }
+
+                master.GetComponent<showDamageNumbers>().showDamage(transform.position, damageAmount, damageType, isCrit);
             }
         }
     }
@@ -166,7 +168,7 @@ public class HPDamageDie : MonoBehaviour
             {
                 Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>(), true);
             }
-            Hurty(damageAmount, isCrit, true, 1);
+            Hurty(damageAmount, isCrit, true, 1, col.gameObject.GetComponent<DealDamage>().damageType);
         }
     }
 
@@ -207,7 +209,7 @@ public class HPDamageDie : MonoBehaviour
                     damageAmount *= Mathf.Clamp(1.5f * (-3.33f * Mathf.Log(fracFromCtr + 1) + 1), 0, 1);
                 }
 
-                Hurty(damageAmount, isCrit, true, col.GetComponent<DealDamage>().iFrameFac);
+                Hurty(damageAmount, isCrit, true, col.GetComponent<DealDamage>().iFrameFac, col.gameObject.GetComponent<DealDamage>().damageType);
             }
         }
     }

@@ -30,6 +30,8 @@ public class DealDamage : MonoBehaviour
 
     public float damageToPresent;
 
+    public int damageType;
+
     // Start is called before the first frame update
     void Start()
     {

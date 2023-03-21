@@ -153,15 +153,15 @@ public class ItemDescriptions : MonoBehaviour
                 itemDescription = "Gain 30% extra XP from XP drops.";
                 break;
             case (int)ITEMLIST.FAMILIAR:
-                itemDescription = "Gain a follower that shoots 20 damage bullets. All followers deal 1.5x damage (+0.5x per stack).";
+                itemDescription = "Gain a gunner that shoots 20 damage bullets. All gunners deal 1.5x damage (+0.5x per stack).";
                 enemiesCanUse = true;
                 break;
             case (int)ITEMLIST.HOMINGFAMILIAR:
-                itemDescription = "Gain a follower that shoots 20 damage bullets. All followers get one instance of homing (+1 instance per stack).";
+                itemDescription = "Gain a gunner that shoots 20 damage bullets. All gunners get one instance of homing (+1 instance per stack).";
                 enemiesCanUse = true;
                 break;
             case (int)ITEMLIST.AUTOFAMILIAR:
-                itemDescription = "Gain a follower that automatically shoots 15 damage bullets. All familiars shoot 1.5x faster (+0.5x per stack)";
+                itemDescription = "Gain a gunner that automatically shoots 15 damage bullets. All gunners shoot 1.5x faster (+0.5x per stack)";
                 enemiesCanUse = true;
                 break;
             case (int)ITEMLIST.SAWSHOT:

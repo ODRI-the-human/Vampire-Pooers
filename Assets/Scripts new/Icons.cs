@@ -9,7 +9,6 @@ public class Icons : MonoBehaviour
     public GameObject owner;
     public TextMeshProUGUI statusText;
     public TextMeshProUGUI texty;
-    public GameObject canvas;
     GameObject camera;
     public int statusType;
     public float statusPosition;
@@ -20,8 +19,7 @@ public class Icons : MonoBehaviour
     void Start()
     {
         texty = Instantiate(statusText);
-        texty.transform.SetParent(GameObject.Find("Canvas").transform);
-        canvas = GameObject.Find("bigFuckingMasterObject").GetComponent<EntityReferencerGuy>().canvas;
+        texty.transform.SetParent(GameObject.Find("worldSpaceCanvas").transform);
         camera = GameObject.Find("Main Camera");
     }
 
@@ -118,10 +116,9 @@ public class Icons : MonoBehaviour
 
         transform.position = new Vector3(owner.transform.position.x + statusTransConst * statusPosition, owner.transform.position.y + 0.9f, -0.5f);
 
-        texty.transform.localPosition = (1080 / (2 * camera.GetComponent<Camera>().orthographicSize)) * (owner.transform.position - camera.transform.position + new Vector3(1.9f + statusTransConst * statusPosition, 0.5f, 3) * camera.GetComponent<Camera>().orthographicSize / 5);
-        texty.transform.localPosition = new Vector3(texty.transform.localPosition.x, texty.transform.localPosition.y, 324); // done on a separate line, to keep it simple (stupid)
+        texty.transform.position = transform.position + new Vector3(0.25f, -0.4f, 0);
 
-        //texty.transform.localPosition = 108 * (owner.transform.position - camera.transform.position + new Vector3(1.9f + statusTransConst * statusPosition, 0.5f,3));
+        //texty.transform.localPosition = (owner.transform.position - camera.transform.position + new Vector3(statusTransConst * statusPosition, 0.4f, 3)) * (Screen.currentResolution.height / (2 * camera.GetComponent<Camera>().orthographicSize));// + 0.02f, 0.04f, 3);
         //texty.transform.localPosition = new Vector3(texty.transform.localPosition.x, texty.transform.localPosition.y, 324); // done on a separate line, to keep it simple (stupid)
     }
 }

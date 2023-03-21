@@ -12,5 +12,6 @@ public class explosionBONUSSCRIPTWOW : MonoBehaviour
         Instantiate(explosionAudio);
         GameObject cameron = GameObject.Find("Main Camera");
         cameron.GetComponent<cameraMovement>().CameraShake(Mathf.RoundToInt(transform.localScale.x * 10));
+        gameObject.GetComponent<DealDamage>().damageType = (int)DAMAGETYPES.EXPLOSION;
     }
 }

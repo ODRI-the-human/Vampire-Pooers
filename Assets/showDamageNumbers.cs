@@ -7,14 +7,12 @@ public class showDamageNumbers : MonoBehaviour
 {
     public TextMeshProUGUI DamageNumber;
     public TextMeshProUGUI texty;
-    public GameObject canvas;
     public Rigidbody2D rb;
     string plusOrMinus;
     GameObject camera;
 
     void Start()
     {
-        canvas = gameObject.GetComponent<EntityReferencerGuy>().canvas;
         camera = GameObject.Find("Main Camera");
     }
 
@@ -30,9 +28,9 @@ public class showDamageNumbers : MonoBehaviour
         }
 
         texty = Instantiate(DamageNumber);
-        texty.transform.SetParent(GameObject.Find("Canvas").transform);
-        texty.transform.localPosition = (1080 / (2 * camera.GetComponent<Camera>().orthographicSize)) * (pos - camera.transform.position + new Vector3(1.5f, 0, 0) * camera.GetComponent<Camera>().orthographicSize / 5);
-        texty.transform.localPosition = new Vector3(texty.transform.localPosition.x, texty.transform.localPosition.y, 324); // done on a separate line, to keep it simple (stupid)
+        texty.transform.SetParent(GameObject.Find("worldSpaceCanvas").transform);
+        texty.transform.position = pos;
+        texty.transform.localScale = new Vector3(1, 1, 1);
         texty.text = (plusOrMinus + Mathf.RoundToInt(damage)).ToString();
 
         switch (damageType)

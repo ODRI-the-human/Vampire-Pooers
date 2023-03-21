@@ -138,7 +138,7 @@ public class checkAllLazerPositions : MonoBehaviour
                             isCrit = true;
                         }
                         float damageAmount = gameObject.GetComponent<DealDamage>().finalDamageStat * critMult;
-                        col.gameObject.GetComponent<HPDamageDie>().Hurty(damageAmount, isCrit, true, 1);
+                        col.gameObject.GetComponent<HPDamageDie>().Hurty(damageAmount, isCrit, true, 1, (int)DAMAGETYPES.ELECTRIC);
                         gameObject.GetComponent<DealDamage>().TriggerTheOnHits(col.gameObject);
                         ignoredHits.Add(col.gameObject);
                     }
@@ -184,7 +184,7 @@ public class checkAllLazerPositions : MonoBehaviour
                             isCrit = true;
                         }
                         float damageAmount = gameObject.GetComponent<DealDamage>().finalDamageStat * critMult;
-                        col.gameObject.GetComponent<HPDamageDie>().Hurty(damageAmount, isCrit, true, 1);
+                        col.gameObject.GetComponent<HPDamageDie>().Hurty(damageAmount, isCrit, true, 1, (int)DAMAGETYPES.ELECTRIC);
                         ignoredHits.Add(col.gameObject);
                     }
 

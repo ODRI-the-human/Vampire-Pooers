@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 6124614279667160432}
   - component: {fileID: 6124614279667160438}
   - component: {fileID: 6494472582259200810}
-  - component: {fileID: 1976119426139333138}
   - component: {fileID: -5350604149646242019}
   m_Layer: 12
   m_Name: xp
@@ -116,19 +115,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07034cf0f725c7a48abeee883dc654d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1976119426139333138
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6124614279667160435}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 404eaf837fcd6b94298369b855638c77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timer: 1800
 --- !u!114 &-5350604149646242019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,3 +129,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   timer: 0
+  taken: 0
