@@ -37,6 +37,9 @@ public class ThirdEnemySpawner : MonoBehaviour
     public GameObject chargeEnemy;
     public GameObject lazerEnemy;
 
+    int xpPerWave = 120;
+    int currentXP = 0;
+
     bool assignProperBullet;
 
     public GameObject toSpawn;
@@ -76,6 +79,7 @@ public class ThirdEnemySpawner : MonoBehaviour
                 {
                     PickAction();
                     spawnNumber += 1;
+                    currentXP += xpPerWave;
                     totalSpawnsSurvived++;
                     spawnTimerLength /= 1.025f;
                     spawnTimer = spawnTimerLength;
@@ -86,6 +90,7 @@ public class ThirdEnemySpawner : MonoBehaviour
                     {
                         PickAction();
                         spawnNumber += 1;
+                        currentXP += xpPerWave;
                         totalSpawnsSurvived++;
                         spawnTimerLength /= 1.025f;
                         spawnTimer = spawnTimerLength;
@@ -118,13 +123,13 @@ public class ThirdEnemySpawner : MonoBehaviour
     {
         Debug.Log("Spawning a... LIBERAL!");
         numberEnemiesSpawned = Mathf.RoundToInt(Random.Range(minSpawnMultiplier * ((spawnNumber + waveNumber * 2) * spawnScaleRate), maxSpawnMultiplier * ((spawnNumber + waveNumber * 2) * spawnScaleRate))) + 1;
-        SpawnType = Random.Range(spawnTypeMin, spawnTypeMax);
+        SpawnType = 1;  Random.Range(spawnTypeMin, spawnTypeMax);
 
         typeToAvoidSpawning = 4;
 
         while (typeToAvoidSpawning == SpawnType)
         {
-            SpawnType = Random.Range(spawnTypeMin, spawnTypeMax);
+            SpawnType = 1;//Random.Range(spawnTypeMin, spawnTypeMax);
         }
 
         typeToAvoidSpawning = -5;
@@ -228,6 +233,12 @@ public class ThirdEnemySpawner : MonoBehaviour
                 SpawnRandomly();
                 break;
         }
+
+        GameObject[] allEnemies = GameObject.FindGameObjectsWithTag("Hostile");
+        foreach (GameObject enemy in allEnemies)
+        {
+            enemy.GetComponent<LevelUp>().XP = currentXP;
+        }
     }
 
     void GetAFunnyPosition()
@@ -274,6 +285,8 @@ public class ThirdEnemySpawner : MonoBehaviour
                     gameObject.GetComponent<moleGamingV3>().StartCycle();
                 }
             }
+
+            gameObject.GetComponent<doMasterCurses>().ApplyDropItemOnDeath(spawned);
         }
     }
 
@@ -290,6 +303,7 @@ public class ThirdEnemySpawner : MonoBehaviour
                 spawned.GetComponent<Attack>().Bullet = enemyBullet;
             }
             spawned.GetComponent<Attack>().currentTarget = Player;
+            gameObject.GetComponent<doMasterCurses>().ApplyDropItemOnDeath(spawned);
         }
     }
 

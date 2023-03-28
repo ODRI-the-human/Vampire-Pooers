@@ -12,12 +12,9 @@ public class LevelUp : MonoBehaviour
     public float nextXP;
     public GameObject PlayerXPAudio;
 
-    public delegate void LevelBonus();
-    public static LevelBonus levelEffects;
-
     void Start()
     {
-        LevelUp.levelEffects += UpdateStats;
+        
     }
 
     void Update()
@@ -26,11 +23,11 @@ public class LevelUp : MonoBehaviour
         if (XP >= nextXP)
         {
             level += 1;
-            LevelUp.levelEffects();
+            SendMessage("LevelEffects");
         }
     }
 
-    void UpdateStats()
+    void LevelEffects()
     {
         gameObject.GetComponent<HPDamageDie>().MaxHP += effectMult * 5f;
         gameObject.GetComponent<HPDamageDie>().HP += effectMult * 5f;

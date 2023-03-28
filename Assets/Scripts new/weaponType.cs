@@ -8,16 +8,28 @@ public class weaponType : MonoBehaviour
     public GameObject master;
     public GameObject spawnedBat;
 
+
+    //Stores the PREVIOUS stats of the weapon held, needed for when enemies use Dark Arts.
+    public int previousFireType;
+    public float previousFireTimerLengthMLT;
+
     // Start is called before the first frame update
     void Awake()
     {
-
-        if (gameObject.tag == "Player" || gameObject.tag == "PlayerBullet" || gameObject.tag == "Hostile" || gameObject.tag == "enemyBullet")
+        if (gameObject.tag == "Player" || gameObject.tag == "PlayerBullet")
         {
-            //weaponHeld = (int)ITEMLIST.PISTOL;
+            weaponHeld = (int)ITEMLIST.PISTOL;
             master = GameObject.Find("bigFuckingMasterObject");
         }
+    }
 
+    void Start()
+    {
+        if (gameObject.GetComponent<Attack>() != null)
+        {
+            previousFireType = gameObject.GetComponent<Attack>().specialFireType;
+            previousFireTimerLengthMLT = gameObject.GetComponent<Attack>().fireTimerLengthMLT;
+        }
         SetWeapon();
     }
 
@@ -30,6 +42,13 @@ public class weaponType : MonoBehaviour
 
         switch (weaponHeld)
         {
+            case 0: // For resetting enemies' shit back to their normie settings.
+                if (gameObject.GetComponent<Attack>() != null)
+                {
+                    gameObject.GetComponent<Attack>().specialFireType = previousFireType;
+                    gameObject.GetComponent<Attack>().fireTimerLengthMLT = previousFireTimerLengthMLT;
+                }
+                break;
             case (int)ITEMLIST.PISTOL:
                 if (gameObject.GetComponent<Attack>() != null)
                 {
@@ -51,6 +70,9 @@ public class weaponType : MonoBehaviour
             case (int)ITEMLIST.DARKARTS:
                 if (gameObject.GetComponent<Attack>() != null)
                 {
+                    previousFireType = gameObject.GetComponent<Attack>().specialFireType;
+                    previousFireTimerLengthMLT = gameObject.GetComponent<Attack>().fireTimerLengthMLT;
+
                     gameObject.GetComponent<Attack>().specialFireType = 3;
                     gameObject.GetComponent<Attack>().fireTimerLengthMLT = 0.5f;
                     gameObject.GetComponent<Attack>().holdDownToShoot = true;

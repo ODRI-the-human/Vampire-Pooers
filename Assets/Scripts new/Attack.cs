@@ -78,6 +78,9 @@ public class Attack : MonoBehaviour
             }
         }
         cameron = GameObject.Find("Main Camera");
+
+        GameObject mastery = gameObject.GetComponent<DealDamage>().master;
+        darkArtSword = mastery.gameObject.GetComponent<EntityReferencerGuy>().darkArtSword;
     }
 
     // Update is called once per frame, as you know
@@ -299,8 +302,8 @@ public class Attack : MonoBehaviour
 
     void SpawnDarkart()
     {
-        mouseVector = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
-        vectorMan = Camera.main.ScreenToWorldPoint(mouseVector) - transform.position;
+        vectorMan = vectorToTarget;
+        //vectorMan = Camera.main.ScreenToWorldPoint(mouseVector) - transform.position;
 
         if (vectorMan.y > 0 && vectorMan.x > 0)
         {

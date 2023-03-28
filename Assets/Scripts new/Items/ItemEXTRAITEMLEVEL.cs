@@ -7,13 +7,7 @@ public class ItemEXTRAITEMLEVEL : MonoBehaviour
     public int instances = 1;
     int noExtraToGive = 0;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        LevelUp.levelEffects += giveExtraItems;
-    }
-
-    public void giveExtraItems()
+    public void LevelEffects()
     {
         if (gameObject.GetComponent<LevelUp>().level % 4 == 0)
         {
@@ -22,17 +16,16 @@ public class ItemEXTRAITEMLEVEL : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D col)
+    public void itemsAdded(bool isPassive)
     {
-        if (col.tag == "item")
+        if (isPassive)
         {
-            gameObject.GetComponent<ItemHolder>().noToGive = 1;
+            gameObject.GetComponent<ItemHolder>().noToGive = 1; // Only resets the number to add if the player chooses a passive item.
         }
     }
 
     public void Undo()
     {
-        LevelUp.levelEffects -= giveExtraItems;
         Destroy(this);
     }
 }

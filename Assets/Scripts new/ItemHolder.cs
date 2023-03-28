@@ -48,10 +48,6 @@ public class ItemHolder : MonoBehaviour
         {
             ApplyAll();
         }
-        if (gameObject.tag == "Player")
-        {
-            MakeEpicBullets();
-        }
     }
 
     public void ApplyAll()
@@ -60,6 +56,11 @@ public class ItemHolder : MonoBehaviour
         {
             itemGained = item;
             ApplyItems();
+        }
+
+        if (gameObject.tag == "Player")
+        {
+            MakeEpicBullets();
         }
     }
 
@@ -628,15 +629,27 @@ public class ItemHolder : MonoBehaviour
 
     public void GiveFunny(GameObject bumbino)
     {
-        Debug.Log("POOP! HAHA!");
+        bool itemIsPassive = false;
         itemGained = bumbino.GetComponent<itemPedestal>().itemChosen;
-        for (int i = 0; i < noToGive; i++)
+        if (bumbino.GetComponent<ItemDescriptions>().quality == (int)ITEMTIERS.WEAPON || bumbino.GetComponent<ItemDescriptions>().quality == (int)ITEMTIERS.DODGE) // Makes it so extra copies of items only get applied if they're NOT a weapon or dodge, otherwise you could waste them.
         {
             itemsHeld.Add(itemGained);
             ApplyItems();
         }
+        else
+        {
+            itemIsPassive = true;
+            for (int i = 0; i < noToGive; i++)
+            {
+                itemsHeld.Add(itemGained);
+                ApplyItems();
+            }
+        }
+
+        Debug.Log(itemIsPassive.ToString());
+
         MakeEpicBullets();
-        SendMessage("itemsAdded");
+        SendMessage("itemsAdded", itemIsPassive);
     }
 
     public void MakeEpicBullets()

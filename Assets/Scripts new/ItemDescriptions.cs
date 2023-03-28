@@ -8,6 +8,47 @@ public class ItemDescriptions : MonoBehaviour
     public bool enemiesCanUse = false;
     public int quality; // Each item has a quality.
     public string itemDescription;
+    public string curseDescription;
+
+    public void Start()
+    {
+        enemiesCanUse = false;
+    }
+
+    public void GetCurseDescription(int curseType)
+    {
+        Debug.Log("Curse Type: " + curseType.ToString());
+        switch (curseType)
+        {
+            case -2:
+                curseDescription = "";
+                break;
+            case 0: // Gives player three of the item, gives enemies one.
+                curseDescription = "Gain three of this item, but all enemies gain one instance.";
+                break;
+            case 1: // Get 1 of this item every time you pick up an item, lose 2 items on hit (perm)
+                curseDescription = "Gain one of this item every time you pick up an item in future, but lose 2 random items every time you take damage.";
+                break;
+            case 2: // Get 3 of the item, lose 5 random items (ONCE) if you get hit in the next 2 rounds.
+                curseDescription = "Gain three of this item, but if you get hit in the next 2 rounds, you lose 5 random items (only happens once).";
+                break;
+            case 3: // Give enemies one of the item, if an enemy dies in the next 2 rounds they can drop an item they hold.
+                curseDescription = "Enemies permanently gain one of this item, but have a 10% chance to drop a random item they hold on death for the next two rounds.";
+                break;
+            case 4: // Get five of the item, but can't heal ever again.
+                curseDescription = "Gain five of this item, but you can never heal again.";
+                break;
+            case 5: // Get five of the item, but die instantly if hit in the next 2 rounds.
+                curseDescription = "Gain five of this item, but taking any damage in the next two rounds instantly kills you";
+                break;
+            case 6: // gives 3 of the item.
+                curseDescription = "Gain three of this item - no downside!";
+                break;
+            case 7: // gives 10 of the item.
+                curseDescription = "Gain ten of this item - no downside!";
+                break;
+        }
+    }
 
     public void getItemDescription()
     {

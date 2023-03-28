@@ -16,6 +16,13 @@ public class dieOnContactWithBullet : MonoBehaviour
         {
             transform.localScale = master.transform.localScale;
         }
+
+        gameObject.tag = master.tag;
+        if (gameObject.tag == "enemyBullet")
+        {
+            int LayerEnemy = LayerMask.NameToLayer("HitPlayerBulletsAndPlayer");
+            gameObject.layer = LayerEnemy;
+        }
     }
 
     void FixedUpdate()

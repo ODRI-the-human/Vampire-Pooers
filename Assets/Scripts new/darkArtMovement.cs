@@ -16,6 +16,12 @@ public class darkArtMovement : MonoBehaviour
     {
         owner = gameObject.GetComponent<DealDamage>().owner;
         gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.CONTACT);
+
+        if (gameObject.tag == "enemyBullet")
+        {
+            int LayerEnemy = LayerMask.NameToLayer("Enemy Bullets");
+            gameObject.layer = LayerEnemy;
+        }
     }
 
     // Update is called once per frame

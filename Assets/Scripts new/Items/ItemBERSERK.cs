@@ -22,7 +22,6 @@ public class ItemBERSERK : MonoBehaviour
         Debug.Log("Added berserk wahoo");
         if (gameObject.tag == "Player")
         {
-            LevelUp.levelEffects += goBerserk;
             //Debug.Log("Added berserk wahoo");
             EventManager.DeathEffects += refreshBerserk;
         }
@@ -39,7 +38,7 @@ public class ItemBERSERK : MonoBehaviour
         }
     }
 
-    public void goBerserk()
+    public void LevelEffects()
     {
         if (gameObject.GetComponent<weaponType>().weaponHeld != (int)ITEMLIST.DARKARTS && gameObject.GetComponent<LevelUp>().level % 2 == 0)
         {
@@ -47,9 +46,12 @@ public class ItemBERSERK : MonoBehaviour
             gameObject.GetComponent<weaponType>().weaponHeld = (int)ITEMLIST.DARKARTS;
             Debug.Log("Dingus");
             gameObject.GetComponent<weaponType>().SetWeapon();
-            master.GetComponent<AudioSource>().volume = 0;
-            spawnedMusic = Instantiate(music);
-            spawnedRedPlane = Instantiate(redPlane);
+            if (gameObject.tag == "Player")
+            {
+                master.GetComponent<AudioSource>().volume = 0;
+                spawnedMusic = Instantiate(music);
+                spawnedRedPlane = Instantiate(redPlane);
+            }
             isActive = true;
         }
         timer = 0;
@@ -81,15 +83,17 @@ public class ItemBERSERK : MonoBehaviour
         gameObject.GetComponent<weaponType>().weaponHeld = pastWeapon;
         Debug.Log("Bringus");
         gameObject.GetComponent<weaponType>().SetWeapon();
-        Destroy(spawnedMusic);
-        Destroy(spawnedRedPlane);
-        master.GetComponent<AudioSource>().volume = 1;
+        if (gameObject.tag == "Player")
+        {
+            Destroy(spawnedMusic);
+            Destroy(spawnedRedPlane);
+            master.GetComponent<AudioSource>().volume = 1;
+        }
         isActive = false;
     }
 
     public void Undo()
     {
-        LevelUp.levelEffects -= goBerserk;
         EventManager.DeathEffects -= refreshBerserk;
         Destroy(this);
     }

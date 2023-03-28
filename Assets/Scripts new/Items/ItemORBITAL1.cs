@@ -40,7 +40,7 @@ public class ItemORBITAL1 : MonoBehaviour
         }
     }
 
-    void itemsAdded()
+    void itemsAdded(bool isPassive)
     {
         GameObject[] orboes = GameObject.FindGameObjectsWithTag("PlayerBullet");
         foreach (GameObject friend in orboes)

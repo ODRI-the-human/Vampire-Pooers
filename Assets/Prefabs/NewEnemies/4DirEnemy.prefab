@@ -22,6 +22,8 @@ GameObject:
   - component: {fileID: -3992161366189140871}
   - component: {fileID: 2855108504808942690}
   - component: {fileID: -5676924277236056286}
+  - component: {fileID: 9185487411788389557}
+  - component: {fileID: 2295536695418798505}
   m_Layer: 6
   m_Name: 4DirEnemy
   m_TagString: Hostile
@@ -100,9 +102,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   knockBackVector: {x: 0, y: 0}
   desiredVector: {x: 0, y: 0, z: 0}
+  moveDirection: {x: 0, y: 0, z: 0}
   baseMoveSpeed: 2.5
   currentMoveSpeed: 0
+  speedDiv: 1
+  speedMult: 1
+  slowTimer: 0
   isSlowed: 1
+  moveTowardsPlayer: 1
+  recievesKnockback: 1
   dodgeUp: 1
   dodgeTimerLength: 20
   dodgeSpeedUp: 2
@@ -137,7 +145,11 @@ MonoBehaviour:
   tickInterval: 1
   timer: 0
   damageAmt: 0
+  iFrameFac: 1
   isBulletClone: 0
+  isSourceBullet: 0
+  damageToPresent: 0
+  damageType: 0
 --- !u!114 &-5622376081394152181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,17 +164,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: 0
   MaxHP: 150
-  Barry63: {fileID: 2232971130497578917, guid: dc46db39e4e70b144915e7a0652cc396, type: 3}
   PlayerDieAudio: {fileID: 1098745368026675434, guid: 26556f7af7586304588a534b37c199bc, type: 3}
   PlayerHurtAudio: {fileID: 5472873928898165319, guid: 1edb877ad01c07344b1cad0d27b62330, type: 3}
   CritAudio: {fileID: 4189199820661322247, guid: cfea01d8a8cd2594fa1446da0a6dd1b2, type: 3}
-  rb: {fileID: 8034279136360660184}
   iFramesTimer: 50
   iFrames: 0
   sprite: {fileID: 0}
   material: {fileID: 0}
   colorChangeTimer: 0
   XP: {fileID: 6124614279667160435, guid: b448494b9362a2a429b8d6416d89f7e6, type: 3}
+  makeKillSound: 1
   damageReduction: 0
   perfectWaves: 0
 --- !u!114 &373114558742256855
@@ -178,7 +189,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shotSpeed: 4
+  bulletLengthMult: 1
   currentAngle: 0
+  vectorToTarget: {x: 0, y: 0}
   noExtraShots: 3
   shotAngleCoeff: 1.5
   trueDamageValue: 0
@@ -204,6 +217,13 @@ MonoBehaviour:
   Crongus: 0
   levelDamageBonus: 0
   scaleAddMult: 1
+  stopwatchDebuffAmount: 0
+  doShootAutomatically: 1
+  getEnemyPos: 1
+  angleAddAmount: 0
+  velToGiveBullets: {x: 0, y: 0, z: 0}
+  massToGiveBullets: 0.5
+  holdDownToShoot: 1
 --- !u!114 &3594553613020165186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220,6 +240,8 @@ MonoBehaviour:
   master: {fileID: 0}
   itemGained: 0
   noToGive: 1
+  isBullet: 0
+  isGuy: 1
   doTheShit: 1
   playerBullet: {fileID: 0}
   enemyBullet: {fileID: 0}
@@ -366,3 +388,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponHeld: 0
+  master: {fileID: 0}
+  spawnedBat: {fileID: 0}
+--- !u!114 &9185487411788389557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8034279136360660190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22a60c87a4a2674478bfb47d57bf3d0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 1
+  effectMult: 1
+  xpMult: 1
+  XP: 0
+  healMult: 0
+  nextXP: 0
+  PlayerXPAudio: {fileID: 0}
+--- !u!114 &2295536695418798505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8034279136360660190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 367a428bc6689ea4cb035b653287ac5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healMult: 1
+  healDiv: 1

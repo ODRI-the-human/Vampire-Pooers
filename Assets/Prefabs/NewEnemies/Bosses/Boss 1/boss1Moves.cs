@@ -16,7 +16,7 @@ public class boss1Moves : MonoBehaviour
 
     void SelectAttack()
     {
-        int attackType = Random.Range(0, 5);
+        int attackType = Random.Range(0, 5); // hey mesh check out this hilarious code, it's SO FUNNY!@!!!!!!!!!!!!!!!!!!!!!
 
         Debug.Log("lol");
 
@@ -53,7 +53,7 @@ public class boss1Moves : MonoBehaviour
 
         for (int i = 0; i < 4; i++)
         {
-            yield return new WaitForSeconds(0.75f);
+            yield return new WaitForSeconds(0.8f);
             gameObject.GetComponent<weaponType>().weaponHeld = (int)ITEMLIST.LAZER;
             gameObject.GetComponent<weaponType>().SetWeapon();
             gameObject.GetComponent<Attack>().noExtraShots++;

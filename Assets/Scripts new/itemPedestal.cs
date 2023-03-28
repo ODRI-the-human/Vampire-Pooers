@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class itemPedestal : MonoBehaviour
 {
+    public bool doRandomiseItem = true; // Make this false if the object that spawns this specifically wants it to spawn a particular item.
+
     public int itemChosen;
     int minRange = 0;
     public Sprite[] spriteArray;
@@ -12,9 +14,10 @@ public class itemPedestal : MonoBehaviour
     GameObject[] gos;
     GameObject master;
     bool cursed = false;
-    int curseType = -2;
+    public int curseType = -2;
 
     public string description;
+    public string curseDescription;
     public bool enemiesCanUse;
 
     int[] specialItemWeights = new int[] { 20, 20, 20, 10, 10, 10, 4, 1 }; //{ 20, 20, 20, 10, 10, 10, 4, 1 };
@@ -45,8 +48,14 @@ public class itemPedestal : MonoBehaviour
             specialItemWeightsSum += i;
         }
         
-
-        GetARandomItem();
+        if (doRandomiseItem)
+        {
+            GetARandomItem();
+        }
+        else
+        {
+            spriteRenderer.sprite = spriteArray[itemChosen];
+        }
 
         Invoke(nameof(enableHitbox), 0.5f);
     }
@@ -80,20 +89,23 @@ public class itemPedestal : MonoBehaviour
 
     void Update()
     {
-        foreach (GameObject go in gos)
+        if (doRandomiseItem)
         {
-            bool isFine = true;
-
-            foreach (int item in bannedItems)
+            foreach (GameObject go in gos)
             {
-                if (item == itemChosen)
-                isFine = false;
-            }
+                bool isFine = true;
 
-            if ((go.GetComponent<itemPedestal>().itemChosen == itemChosen && go != gameObject) || !isFine)
-            {
-                Debug.Log("WOw, something was fucked up!!!!!!!!!!!!");
-                GetARandomItem();
+                foreach (int item in bannedItems)
+                {
+                    if (item == itemChosen)
+                        isFine = false;
+                }
+
+                if ((go.GetComponent<itemPedestal>().itemChosen == itemChosen && go != gameObject) || !isFine)
+                {
+                    Debug.Log("WOw, something was fucked up!!!!!!!!!!!!");
+                    GetARandomItem();
+                }
             }
         }
     }
@@ -123,7 +135,13 @@ public class itemPedestal : MonoBehaviour
         // this is for cursed items!
         curseType = -2;
         enemiesCanUse = gameObject.GetComponent<ItemDescriptions>().enemiesCanUse;
-        int sproinkle = 2;//Random.Range(1, 21);
+        int sproinkle = -2;
+
+        if (enemiesCanUse)
+        {
+            sproinkle = 1;// Random.Range(1, 21);
+        }
+
         if (sproinkle == 1)
         {
             int randomWacky = Random.Range(0, specialItemWeightsSum);
@@ -140,33 +158,8 @@ public class itemPedestal : MonoBehaviour
             }
         }
 
-        switch (curseType)
-        {
-            case 0:
-                spriteRenderer.color = Color.magenta - new Color(0.3f, 0.2f, 0.2f, 0);
-                break;
-            case 1:
-                spriteRenderer.color = Color.blue - new Color(0.3f, 0.2f, 0.2f, 0);
-                break;
-            case 2:
-                spriteRenderer.color = Color.blue;
-                break;
-            case 3:
-                spriteRenderer.color = Color.red;
-                break;
-            case 4:
-                spriteRenderer.color = Color.magenta;
-                break;
-            case 5:
-                spriteRenderer.color = Color.cyan;
-                break;
-            case 6: // gives 3 of the item.
-                spriteRenderer.color = Color.green;
-                break;
-            case 7: // gives 10 of the item.
-                spriteRenderer.color = Color.yellow;
-                break;
-        }
+        gameObject.GetComponent<ItemDescriptions>().GetCurseDescription(curseType);
+        curseDescription = gameObject.GetComponent<ItemDescriptions>().curseDescription;
     }
 
     //void OnTriggerEnter2D(Collider2D col)
@@ -179,55 +172,89 @@ public class itemPedestal : MonoBehaviour
 
     public void GiveDaItem(GameObject barry)
     {
-        int dunkey = -5;
+        int numToGiveEnemies = 0;
+        int numToGivePlayer = 0;
+
+
         switch (curseType)
         {
-            case 0:
-                for (int i = 0; i < 2; i++)
+            case 0: // Gives player three of the item, gives enemies one.
+                numToGiveEnemies = 1;
+                numToGivePlayer = 3;
+                break;
+            case 1: // Get 1 of this item every time you pick up an item, lose 2 items on hit (perm)
+                if (barry.GetComponent<lose2ItemPerm>() == null)
                 {
-                    barry.GetComponent<ItemHolder>().itemGained = itemChosen;
-                    barry.GetComponent<ItemHolder>().itemsHeld.Add(itemChosen);
-                    barry.GetComponent<ItemHolder>().ApplyItems();
+                    barry.AddComponent<lose2ItemPerm>();
+                    barry.GetComponent<lose2ItemPerm>().itemsToGiveOnRoundStart.Add(itemChosen);
                 }
-                master.GetComponent<ItemHolder>().itemGained = itemChosen;
-                master.GetComponent<ItemHolder>().itemsHeld.Add(itemChosen);
-                break;
-            case 1:
-                //dunkey = itemChosen;
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
-            case 4:
-                for (int i = 0; i < 3; i++)
+                else
                 {
-                    barry.GetComponent<ItemHolder>().itemGained = itemChosen;
-                    barry.GetComponent<ItemHolder>().itemsHeld.Add(itemChosen);
-                    barry.GetComponent<ItemHolder>().ApplyItems();
+                    barry.GetComponent<lose2ItemPerm>().itemsToGiveOnRoundStart.Add(itemChosen);
+                    barry.GetComponent<lose2ItemPerm>().numItemsToLose += 2;
                 }
+
+                numToGivePlayer = 3;
+                // Need one thing to apply it the first time, another to make the player lose extra items/gain extra items.
                 break;
-            case 5:
+            case 2: // Get 3 of the item, lose 5 random items (ONCE) if you get hit in the next 2 rounds.
+                if (barry.GetComponent<lose5ItemTemp>() == null)
+                {
+                    barry.AddComponent<lose5ItemTemp>();
+                }
+                else
+                {
+                    barry.GetComponent<lose5ItemTemp>().roundsLeft.Add(2);
+                    barry.GetComponent<lose5ItemTemp>().numItemsToLose += 5;
+                }
+
+                numToGivePlayer = 3;
+                // Need one thing to apply it the first time, another to make the player lose extra items/gain extra items (and set the proper timers).
+                break;
+            case 3: // Give enemies one of the item, if an enemy dies in the next 2 rounds they can drop an item they hold.
+                master.GetComponent<doMasterCurses>().numRoundsDropItemLeft = 2;
+                numToGiveEnemies = 1;
+                // Just need to enable the thingy on the master script, or reset the timer if it.
+                break;
+            case 4: // Get five of the item, but can't heal ever again.
+                if (barry.GetComponent<disableHealing>() == null)
+                {
+                    barry.AddComponent<disableHealing>();
+                }
+                numToGivePlayer = 5;
+                break;
+            case 5: // Get five of the item, but die instantly if hit in the next 2 rounds.
+                if (barry.GetComponent<killInstantly>() == null)
+                {
+                    barry.AddComponent<killInstantly>();
+                }
+                else
+                {
+                    barry.GetComponent<killInstantly>().roundsLeft = 2;
+                }
+
+                numToGivePlayer = 5;
                 break;
             case 6: // gives 3 of the item.
-                for (int i = 0; i < 3; i++)
-                {
-                    barry.GetComponent<ItemHolder>().itemGained = itemChosen;
-                    barry.GetComponent<ItemHolder>().itemsHeld.Add(itemChosen);
-                    barry.GetComponent<ItemHolder>().ApplyItems();
-                }
+                numToGivePlayer = 3;
                 break;
             case 7: // gives 10 of the item.
-                for (int i = 0; i < 10; i++)
-                {
-                    barry.GetComponent<ItemHolder>().itemGained = itemChosen;
-                    barry.GetComponent<ItemHolder>().itemsHeld.Add(itemChosen);
-                    barry.GetComponent<ItemHolder>().ApplyItems();
-                }
+                numToGivePlayer = 10;
                 break;
         }
 
-        barry.GetComponent<OtherStuff>().ApplyItemCurse(curseType, dunkey);
+        for (int i = 1; i < numToGivePlayer; i++)
+        {
+            barry.GetComponent<ItemHolder>().itemGained = itemChosen;
+            barry.GetComponent<ItemHolder>().itemsHeld.Add(itemChosen);
+            barry.GetComponent<ItemHolder>().ApplyItems();
+        }
+
+        for (int i = 1; i < numToGiveEnemies; i++)
+        {
+            master.GetComponent<ItemHolder>().itemGained = itemChosen;
+            master.GetComponent<ItemHolder>().itemsHeld.Add(itemChosen);
+        }
 
         foreach (GameObject go in gos)
         {

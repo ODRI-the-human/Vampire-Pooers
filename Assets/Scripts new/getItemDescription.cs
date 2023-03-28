@@ -7,6 +7,7 @@ public class getItemDescription : MonoBehaviour
     public bool itemsExist = false;
     int itemNearest = 0;
     public string itemDescription;
+    public string curseDescription;
 
     // Update is called once per frame
     void Update()
@@ -29,11 +30,13 @@ public class getItemDescription : MonoBehaviour
             }
 
             itemDescription = closest.GetComponent<itemPedestal>().description;
+            curseDescription = closest.GetComponent<itemPedestal>().curseDescription;
 
         }
         else
         {
-            itemDescription = "poop malam";
+            itemDescription = "";
+            curseDescription = "";
         }
     }
 }

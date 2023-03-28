@@ -15,6 +15,7 @@ public class StatsText : MonoBehaviour
     public TextMeshProUGUI LevelText;
     public TextMeshProUGUI LevelChangeText;
     public TextMeshProUGUI itemScreenText;
+    public TextMeshProUGUI curseText;
     public TextMeshProUGUI FirerateText;
     public TextMeshProUGUI FirerateChangeText;
 
@@ -152,6 +153,7 @@ public class StatsText : MonoBehaviour
         FirerateText.text = "Fire rate: " + (Mathf.Round(Player.GetComponent<Attack>().fireTimerActualLength * 100) / 100).ToString();
         LevelText.text = "Level: " + Player.GetComponent<LevelUp>().level.ToString();
         itemScreenText.text = Player.GetComponent<getItemDescription>().itemDescription;
+        curseText.text = Player.GetComponent<getItemDescription>().curseDescription;
 
         lastMaxHP = Player.GetComponent<HPDamageDie>().MaxHP;
         lastXP = Player.GetComponent<LevelUp>().XP;

@@ -78,7 +78,7 @@ public class ItemORBITAL2 : MonoBehaviour
         timey++;
     }
 
-    void itemsAdded()
+    void itemsAdded(bool isPassive)
     {
         if (timey > 5)
         {
