@@ -59,6 +59,8 @@ public class ItemSAWSHOT : MonoBehaviour
             if (enemo.tag == "Player" || enemo.tag == "Hostile")
             {
                 GameObject Poop = Instantiate(master.GetComponent<EntityReferencerGuy>().sawVisual, new Vector3(-9999, 9999), Quaternion.Euler(0, 0, 0));
+                Poop.tag = gameObject.tag;
+                Poop.GetComponent<MeshRenderer>().material = gameObject.GetComponent<MeshRenderer>().material;
                 Poop.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
                 Poop.GetComponent<DealDamage>().overwriteDamageCalc = true;
                 Poop.GetComponent<DealDamage>().damageAmt = gameObject.GetComponent<DealDamage>().finalDamageStat / 5;

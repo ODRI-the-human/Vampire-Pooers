@@ -37,7 +37,7 @@ public class ThirdEnemySpawner : MonoBehaviour
     public GameObject chargeEnemy;
     public GameObject lazerEnemy;
 
-    int xpPerWave = 120;
+    int xpPerWave = 7;
     int currentXP = 0;
 
     bool assignProperBullet;
@@ -123,13 +123,13 @@ public class ThirdEnemySpawner : MonoBehaviour
     {
         Debug.Log("Spawning a... LIBERAL!");
         numberEnemiesSpawned = Mathf.RoundToInt(Random.Range(minSpawnMultiplier * ((spawnNumber + waveNumber * 2) * spawnScaleRate), maxSpawnMultiplier * ((spawnNumber + waveNumber * 2) * spawnScaleRate))) + 1;
-        SpawnType = 1;  Random.Range(spawnTypeMin, spawnTypeMax);
+        SpawnType = 1;//Random.Range(spawnTypeMin, spawnTypeMax);
 
         typeToAvoidSpawning = 4;
 
         while (typeToAvoidSpawning == SpawnType)
         {
-            SpawnType = 1;//Random.Range(spawnTypeMin, spawnTypeMax);
+            SpawnType = 1;// Random.Range(spawnTypeMin, spawnTypeMax);
         }
 
         typeToAvoidSpawning = -5;
@@ -237,7 +237,7 @@ public class ThirdEnemySpawner : MonoBehaviour
         GameObject[] allEnemies = GameObject.FindGameObjectsWithTag("Hostile");
         foreach (GameObject enemy in allEnemies)
         {
-            enemy.GetComponent<LevelUp>().XP = currentXP;
+            enemy.GetComponent<LevelUp>().GiveXP(currentXP);
         }
     }
 

@@ -39,8 +39,9 @@ public class ItemWAPANT : MonoBehaviour
         if (wapantTimer < 1 && isActive)
         {
             wapantTimer = wapantTimerLength / (1.25f * instances);
-            GameObject Fatty = Instantiate(wapantCircle, transform.position + new Vector3(0, 0, 0), transform.rotation);
+            GameObject Fatty = Instantiate(wapantCircle, transform.position, transform.rotation);
             Fatty.transform.localScale *= 0.5f + 0.3f * instances;
+            Fatty.transform.position = new Vector3(Fatty.transform.position.x, Fatty.transform.position.y, 0);
         }
     }
 

@@ -7,7 +7,6 @@ public class ItemATG : MonoBehaviour
     public GameObject ATGMissile;
     public GameObject MasterObject;
     public GameObject owner;
-    bool hostile;
     float procMoment;
     public int instances = 1;
     float pringle;
@@ -20,17 +19,15 @@ public class ItemATG : MonoBehaviour
 
             if (gameObject.tag == "PlayerBullet" || gameObject.tag == "Player")
             {
-                hostile = false;
                 ATGMissile = MasterObject.GetComponent<EntityReferencerGuy>().ATGMissile;
             }
             else
             {
-                hostile = true;
                 ATGMissile = MasterObject.GetComponent<EntityReferencerGuy>().ATGMissileHostile;
             }
-
-            owner = gameObject.GetComponent<DealDamage>().owner;
         }
+
+        owner = gameObject.GetComponent<DealDamage>().owner;
     }
 
     public void RollOnHit(GameObject POOhead)
@@ -48,7 +45,7 @@ public class ItemATG : MonoBehaviour
                 ARSEMAN.GetComponent<MissileTracking>().owner = owner;
                 ARSEMAN.GetComponent<MissileTracking>().instances = instances;
 
-                if (hostile)
+                if (gameObject.tag == "enemyBullet")
                 {
                     ARSEMAN.tag = "enemyBullet";
                 }

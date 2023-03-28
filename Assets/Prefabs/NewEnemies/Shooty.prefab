@@ -385,6 +385,8 @@ MonoBehaviour:
   weaponHeld: 0
   master: {fileID: 0}
   spawnedBat: {fileID: 0}
+  previousFireType: 0
+  previousFireTimerLengthMLT: 0
 --- !u!114 &3443813416580436273
 MonoBehaviour:
   m_ObjectHideFlags: 0

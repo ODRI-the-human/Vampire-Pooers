@@ -5,14 +5,14 @@ using UnityEngine;
 public class ItemDescriptions : MonoBehaviour
 {
     public int itemChosen;
-    public bool enemiesCanUse = false;
+    public bool enemiesCanUse = true;
     public int quality; // Each item has a quality.
     public string itemDescription;
     public string curseDescription;
 
     public void Start()
     {
-        enemiesCanUse = false;
+        enemiesCanUse = true;
     }
 
     public void GetCurseDescription(int curseType)
@@ -56,57 +56,57 @@ public class ItemDescriptions : MonoBehaviour
         {
             case (int)ITEMLIST.HP25:
                 itemDescription = "Increases max HP by 25 per stack.";
-                enemiesCanUse = true;
+                
                 quality = (int)ITEMTIERS.COMMON;
                 break;
             case (int)ITEMLIST.HP50:
                 itemDescription = "Increases max HP by 50 per stack.";
-                enemiesCanUse = true;
+                
                 break;
             case (int)ITEMLIST.DMGADDPT5:
                 itemDescription = "Increases base damage by 25 per stack.";
-                enemiesCanUse = true;
+                
                 quality = (int)ITEMTIERS.COMMON;
                 break;
             case (int)ITEMLIST.DMGMLT2:
                 itemDescription = "Doubles damage. Multiplier increases by +1x per stack.";
-                enemiesCanUse = true;
+                
                 quality = (int)ITEMTIERS.UNCOMMON;
                 break;
             case (int)ITEMLIST.FIRERATE:
                 itemDescription = "Decreases fire delay by 4.";
-                enemiesCanUse = true;
+                
                 quality = (int)ITEMTIERS.COMMON;
                 break;
             case (int)ITEMLIST.SOY:
                 itemDescription = "Per stack, increases firerate by 5x, but quarters damage and bullet knockback.";
-                enemiesCanUse = true;
+                
                 quality = (int)ITEMTIERS.UNCOMMON;
                 break;
             case (int)ITEMLIST.HOMING:
                 itemDescription = "Homing shots. Stacks increase range from which bullets home.";
-                enemiesCanUse = true;
+                
                 quality = (int)ITEMTIERS.UNCOMMON;
                 break;
             case (int)ITEMLIST.ATG:
                 itemDescription = "10% chance on hitting an enemy to fire a homing missile, dealing 3x (+3x per stack) of the damage that procced it.";
-                enemiesCanUse = true;
+                
                 quality = (int)ITEMTIERS.UNCOMMON;
                 break;
             case (int)ITEMLIST.MORESHOT:
                 itemDescription = "Per stack, fire +1 projectile in an arc.";
-                enemiesCanUse = true;
+                
                 quality = (int)ITEMTIERS.UNCOMMON;
                 break;
             case (int)ITEMLIST.WAPANT:
                 itemDescription = "Every 3 seconds, create a slowing puddle of creep. Size of creep increases with stacks.";
                 quality = (int)ITEMTIERS.COMMON;
-                enemiesCanUse = true;
+                
                 break;
             case (int)ITEMLIST.HOLYMANTIS:
                 itemDescription = "Divide the first damage you take each round by 2 (+1 per stack). Works +1 time per round, per stack.";
                 quality = (int)ITEMTIERS.UNCOMMON;
-                enemiesCanUse = true;
+                
                 break;
             case (int)ITEMLIST.CONVERTER:
                 itemDescription = "At the end of each round, 10% (+10% per stack) of your missing %HP is added to your base damage.";
@@ -115,7 +115,7 @@ public class ItemDescriptions : MonoBehaviour
             case (int)ITEMLIST.EASIERTIMES:
                 itemDescription = "20% chance to block damage. Chance increases with stacks.";
                 quality = (int)ITEMTIERS.COMMON;
-                enemiesCanUse = true;
+                
                 break;
             case (int)ITEMLIST.STOPWATCH:
                 itemDescription = "Enemies move and shoot 25% slower. Slowdown increases with stacks.";
@@ -124,22 +124,22 @@ public class ItemDescriptions : MonoBehaviour
             case (int)ITEMLIST.BOUNCY:
                 itemDescription = "Your bullets bounce +1 time per stack.";
                 quality = (int)ITEMTIERS.UNCOMMON;
-                enemiesCanUse = true;
+                
                 break;
             case (int)ITEMLIST.FOURDIRMARTY:
                 itemDescription = "Every 5 (-1 per stack) shots, fire 3 extra bullets around you that copy all your item effects.";
                 quality = (int)ITEMTIERS.COMMON;
-                enemiesCanUse = true;
+                
                 break;
             case (int)ITEMLIST.PIERCING:
                 itemDescription = "Your bullets pierce +1 enemies per stack and deal 1.2x (0.2x per stack) damage after piercing each enemy.";
                 quality = (int)ITEMTIERS.UNCOMMON;
-                enemiesCanUse = true;
+                
                 break;
             case (int)ITEMLIST.CREEP:
                 itemDescription = "Leave creep on the ground that deals 10% of your damage per tick. Size of creep increases with stacks.";
                 quality = (int)ITEMTIERS.COMMON;
-                enemiesCanUse = true;
+                
                 break;
             case (int)ITEMLIST.DODGESPLOSION:
                 itemDescription = "At the end of your dodge, deal 50 damage to enemies and deflect bullets within a radius. Radius increases with stacks.";
@@ -152,17 +152,17 @@ public class ItemDescriptions : MonoBehaviour
             case (int)ITEMLIST.ORBITAL1:
                 itemDescription = "Gain a long-range orbital that blocks enemy shots and deals damage. Stacks add extra orbitals.";
                 quality = (int)ITEMTIERS.UNCOMMON;
-                enemiesCanUse = true;
+                
                 break;
             case (int)ITEMLIST.ORBITAL2:
                 itemDescription = "Gain a close-range orbital that blocks enemy shots, damages enemies, and shoots, copying all your bullet effects and dealing 25% of your damage. Stacks add extra orbitals.";
                 quality = (int)ITEMTIERS.UNCOMMON;
-                enemiesCanUse = true;
+                
                 break;
             case (int)ITEMLIST.SPLIT:
                 itemDescription = "Your shots split on hit. Split shots deal 30% (+30% per stack) of your damage.";
                 quality = (int)ITEMTIERS.UNCOMMON;
-                enemiesCanUse = true;
+                
                 break;
             case (int)ITEMLIST.CONTACT:
                 itemDescription = "Enemy bullets bounce off your bullets and now damage enemies rather than you. Your bullets are destroyed after 2 (+2 per stack) collisions.";
@@ -171,7 +171,7 @@ public class ItemDescriptions : MonoBehaviour
             case (int)ITEMLIST.BLEED:
                 itemDescription = "Your attacks have a 15% (+15% per stack) chance to inflict bleed for 2 seconds. New procs refill the timer and add a new stack.";
                 quality = (int)ITEMTIERS.COMMON;
-                enemiesCanUse = true;
+                
                 break;
             case (int)ITEMLIST.POISONSPLOSM:
                 itemDescription = "Enemies explode on death, poisoning nearby enemies for 2 seconds for 10% of your damage. Size of explosion increases with stacks.";
@@ -196,12 +196,12 @@ public class ItemDescriptions : MonoBehaviour
             case (int)ITEMLIST.HEALMLT:
                 quality = (int)ITEMTIERS.UNCOMMON;
                 itemDescription = "All healing sources are double as effective. Bonus increases linearly with stacks.";
-                enemiesCanUse = true;
+                
                 break;
             case (int)ITEMLIST.BRICK:
                 quality = (int)ITEMTIERS.UNCOMMON;
                 itemDescription = "10% chance (+10% per stack) of shooting a bullet that deals 4x damage and infinitely pierces enemies.";
-                enemiesCanUse = true;
+                
                 break;
             case (int)ITEMLIST.BETTERLEVEL:
                 quality = (int)ITEMTIERS.COMMON;
@@ -226,7 +226,7 @@ public class ItemDescriptions : MonoBehaviour
             case (int)ITEMLIST.DAGGERTHROW:
                 quality = (int)ITEMTIERS.UNCOMMON;
                 itemDescription = "Every 3rd shot, fire 3 (+2 per stack) daggers in an arc that deal 10 damage and inflict bleed.";
-                enemiesCanUse = true;
+                
                 break;
             case (int)ITEMLIST.MOREXP:
                 quality = (int)ITEMTIERS.COMMON;
@@ -235,37 +235,37 @@ public class ItemDescriptions : MonoBehaviour
             case (int)ITEMLIST.FAMILIAR:
                 quality = (int)ITEMTIERS.COMMON;
                 itemDescription = "Gain a gunner that shoots 20 damage bullets. All gunners deal 1.5x damage (+0.5x per stack).";
-                enemiesCanUse = true;
+                
                 break;
             case (int)ITEMLIST.HOMINGFAMILIAR:
                 quality = (int)ITEMTIERS.COMMON;
                 itemDescription = "Gain a gunner that shoots 20 damage bullets. All gunners get one instance of homing (+1 instance per stack).";
-                enemiesCanUse = true;
+                
                 break;
             case (int)ITEMLIST.AUTOFAMILIAR:
                 quality = (int)ITEMTIERS.COMMON;
                 itemDescription = "Gain a gunner that automatically shoots 15 damage bullets. All gunners shoot 1.5x faster (+0.5x per stack)";
-                enemiesCanUse = true;
+                
                 break;
             case (int)ITEMLIST.SAWSHOT:
                 quality = (int)ITEMTIERS.UNCOMMON;
                 itemDescription = "20% chance for bullets to stick to enemies, dealing 20% of your bullet damage 10 (+10 per stack) times over 2 (+2 per stack) seconds and creating a small creep puddle. Can proc on-hit effects.";
-                enemiesCanUse = true;
+                
                 break;
             case (int)ITEMLIST.LUCKIER:
                 quality = (int)ITEMTIERS.COMMON;
                 itemDescription = "Proc coefficient increased by 1 (proc effects are more likely to occur)";
-                enemiesCanUse = true;
+                
                 break;
             case (int)ITEMLIST.MORECRITS:
                 quality = (int)ITEMTIERS.COMMON;
                 itemDescription = "Crit chance increased by 20%";
-                enemiesCanUse = true;
+                
                 break;
             case (int)ITEMLIST.BETTERCRITS:
                 quality = (int)ITEMTIERS.UNCOMMON;
                 itemDescription = "Crit multiplier increased by 100%";
-                enemiesCanUse = true;
+                
                 break;
             case (int)ITEMLIST.MARCEL:
                 quality = (int)ITEMTIERS.LEGENDARY;
@@ -276,28 +276,34 @@ public class ItemDescriptions : MonoBehaviour
 
             case (int)ITEMLIST.DODGEROLL:
                 quality = (int)ITEMTIERS.DODGE;
+                enemiesCanUse = false;
                 itemDescription = "Swap your dodge ability back to dodge roll.";
                 break;
             case (int)ITEMLIST.SHOULDERBASH:
                 quality = (int)ITEMTIERS.DODGE;
+                enemiesCanUse = false;
                 itemDescription = "Swap your dodge ability to shoulderbash - dodge a shorter distance, but faster, and knock enemies back greatly. Enemies take damage upon hitting a wall or another enemy.";
                 break;
 
 
             case (int)ITEMLIST.PISTOL:
                 quality = (int)ITEMTIERS.WEAPON;
+                enemiesCanUse = false;
                 itemDescription = "Swap your weapon back to the pistol.";
                 break;
             case (int)ITEMLIST.GRENADELAUNCHER:
                 quality = (int)ITEMTIERS.WEAPON;
+                enemiesCanUse = false;
                 itemDescription = "Swap your weapon to the grenade launcher - half the rate of fire, but shots explode on hit for 2x your bullet damage (can hit you!)";
                 break;
             case (int)ITEMLIST.LAZER:
                 quality = (int)ITEMTIERS.WEAPON;
+                enemiesCanUse = false;
                 itemDescription = "Swap your weapon to the lazer pistol - slightly lower fire rate but infinite piercing and infinite shotspeed";
                 break;
             case (int)ITEMLIST.BAT:
                 quality = (int)ITEMTIERS.WEAPON;
+                enemiesCanUse = false;
                 itemDescription = "Swap your weapon to the bat - deals high knockback to enemies, and blocked bullets are given all your bullet effects.";
                 break;
         }

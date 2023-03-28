@@ -95,7 +95,7 @@ public class HPDamageDie : MonoBehaviour
         colorChangeTimer--;
     }
 
-    public void Hurty(float damageAmount, bool isCrit, bool playSound, float iFrameFac, int damageType)
+    public void Hurty(float damageAmount, bool isCrit, bool playSound, float iFrameFac, int damageType, bool bypassIframes)
     {
         Debug.Log("shoulda taken a lil damage cunt, " + gameObject.name.ToString() + " / " + damageAmount.ToString());
         //Debug.Log(resistVals[damageType].ToString());
@@ -112,7 +112,7 @@ public class HPDamageDie : MonoBehaviour
                 colorChangeTimer = 3;
             }
 
-            if (iFrames < 0 && damageAmount != 0)
+            if ((iFrames < 0 || bypassIframes) && damageAmount != 0)
             {
                 if (playSound)
                 {
@@ -170,7 +170,7 @@ public class HPDamageDie : MonoBehaviour
             {
                 Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>(), true);
             }
-            Hurty(damageAmount, isCrit, true, 1, col.gameObject.GetComponent<DealDamage>().damageType);
+            Hurty(damageAmount, isCrit, true, 1, col.gameObject.GetComponent<DealDamage>().damageType, false);
         }
     }
 
@@ -211,7 +211,7 @@ public class HPDamageDie : MonoBehaviour
                     damageAmount *= Mathf.Clamp(1.5f * (-3.33f * Mathf.Log(fracFromCtr + 1) + 1), 0, 1);
                 }
 
-                Hurty(damageAmount, isCrit, true, col.GetComponent<DealDamage>().iFrameFac, col.gameObject.GetComponent<DealDamage>().damageType);
+                Hurty(damageAmount, isCrit, true, col.GetComponent<DealDamage>().iFrameFac, col.gameObject.GetComponent<DealDamage>().damageType, false);
             }
         }
     }

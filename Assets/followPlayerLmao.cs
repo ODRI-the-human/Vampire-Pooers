@@ -18,6 +18,11 @@ public class followPlayerLmao : MonoBehaviour
 
     void Update()
     {
+        if (Player == null)
+        {
+            Destroy(gameObject);
+        }
+
         transform.position = Player.transform.position + new Vector3(0,0.1f,-7);
 
         mouseVector = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);

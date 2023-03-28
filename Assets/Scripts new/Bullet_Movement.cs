@@ -117,7 +117,7 @@ public class Bullet_Movement : MonoBehaviour
             if (col.gameObject.GetComponent<dieOnContactWithBullet>() != null)
             {
                 int LayerPlayerBullet = LayerMask.NameToLayer("PlayerBullets");
-                int LayerEnemyBullet = LayerMask.NameToLayer("EnemyBullets");
+                int LayerEnemyBullet = LayerMask.NameToLayer("Enemy Bullets");
                 if (gameObject.tag == "enemyBullet")
                 {
                     gameObject.GetComponent<MeshRenderer>().material = master.GetComponent<EntityReferencerGuy>().playerBulletMaterial;

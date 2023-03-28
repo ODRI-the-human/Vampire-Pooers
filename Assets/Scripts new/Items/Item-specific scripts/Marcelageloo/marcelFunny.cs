@@ -17,10 +17,11 @@ public class marcelFunny : MonoBehaviour
     GameObject canvas;
     public GameObject owner;
     GameObject spawnedBlackSquare;
+    bool hasFinished = false;
 
     public bool canType = false;
 
-    int thingUpTo = 0;
+    public int thingUpTo = 0;
     int spriteNo = 0;
 
     int timer = 0;
@@ -38,22 +39,23 @@ public class marcelFunny : MonoBehaviour
     {
         if (Input.GetButtonDown(nextButtonName) && canType)
         {
-            if (thingUpTo < 11)
+            if (thingUpTo < 12)
             {
                 ChangeToEvil();
                 thingUpTo++;
                 SpawnNew();
-            }
-            else
-            {
-                spawnedBlackSquare = Instantiate(blackSquare, new Vector3(0, 0, -5), Quaternion.Euler(0, 0, 0));
-                StartCoroutine(StartKill());
-                //Invoke(nameof(DestroySquare), 0.75f);
-            }
+            }            
+        }
+
+        if (thingUpTo >= 12 && !hasFinished)
+        {
+            spawnedBlackSquare = Instantiate(blackSquare, new Vector3(0, 0, -5), Quaternion.Euler(0, 0, 0));
+            StartCoroutine(StartKill());
+            hasFinished = true;
         }
 
         float distFromPlayer = (transform.position - owner.transform.position).magnitude;
-        if (distFromPlayer < 2.5f * transform.localScale.x)
+        if (distFromPlayer < 2.5f * transform.localScale.x && gameObject.tag == "PlayerBullet")
         {
             canType = true;
         }
@@ -65,22 +67,59 @@ public class marcelFunny : MonoBehaviour
 
     void FixedUpdate()
     {
+        timer++;
+
+        if (owner == null)
+        {
+            Destroy(gameObject);
+        }
+
+        bool hasTyped = false;
+
         Collider2D[] jimbob = Physics2D.OverlapCircleAll(transform.position, 2.5f * transform.localScale.x);
         foreach (var col in jimbob)
         {
             Debug.Log("dog things");
-            if (col.gameObject.tag == "enemyBullet")
+            if (gameObject.tag == "PlayerBullet")
             {
-                Vector3 gromble = transform.position - col.gameObject.transform.position;
-                Vector2 grombley = 0.2f * new Vector2(gromble.x, gromble.y).normalized;
-                col.gameObject.GetComponent<Rigidbody2D>().velocity -= grombley;
-            }
+                if (col.gameObject.tag == "enemyBullet")
+                {
+                    Vector3 gromble = transform.position - col.gameObject.transform.position;
+                    Vector2 grombley = 0.2f * new Vector2(gromble.x, gromble.y).normalized;
+                    col.gameObject.GetComponent<Rigidbody2D>().velocity -= grombley;
+                }
 
-            if (col.gameObject.tag == "Hostile")
+                if (col.gameObject.tag == "Hostile")
+                {
+                    col.gameObject.GetComponent<NewPlayerMovement>().isSlowed = 1;
+                    col.gameObject.GetComponent<NewPlayerMovement>().slowTimer = 100;
+                    col.gameObject.GetComponent<NewPlayerMovement>().speedDiv = 2;
+                }
+            }
+            else
             {
-                col.gameObject.GetComponent<NewPlayerMovement>().isSlowed = 1;
-                col.gameObject.GetComponent<NewPlayerMovement>().slowTimer = 100;
-                col.gameObject.GetComponent<NewPlayerMovement>().speedDiv = 2;
+                if (col.gameObject.tag == "PlayerBullet")
+                {
+                    Vector3 gromble = transform.position - col.gameObject.transform.position;
+                    Vector2 grombley = 0.2f * new Vector2(gromble.x, gromble.y).normalized;
+                    col.gameObject.GetComponent<Rigidbody2D>().velocity -= grombley;
+                }
+
+                if (col.gameObject.tag == "Player")
+                {
+                    col.gameObject.GetComponent<NewPlayerMovement>().isSlowed = 1;
+                    col.gameObject.GetComponent<NewPlayerMovement>().slowTimer = 100;
+                    col.gameObject.GetComponent<NewPlayerMovement>().speedDiv = 2;
+                }
+
+                if (col.gameObject.tag == "Hostile" && !hasTyped && timer % 35 == 0 && thingUpTo < 12)
+                {
+                    hasTyped = true;
+
+                    ChangeToEvil();
+                    thingUpTo++;
+                    SpawnNew();
+                }
             }
         }
     }
@@ -90,25 +129,57 @@ public class marcelFunny : MonoBehaviour
         Time.timeScale = 0.005f;
 
         canvas.SetActive(false);
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Hostile");
+
         float HPToRefund = 0;
-        foreach (GameObject enemo in enemies)
-        {
-            enemo.GetComponent<HPDamageDie>().makeKillSound = false;
-            enemo.GetComponent<HPDamageDie>().HP -= 2000;
-            HPToRefund += 10;
-        }
 
-        GameObject[] sounds = GameObject.FindGameObjectsWithTag("audio");
-        foreach (GameObject sound in sounds)
+        if (gameObject.tag == "PlayerBullet")
         {
-            Destroy(sound);
-        }
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Hostile");
+            foreach (GameObject enemo in enemies)
+            {
+                enemo.GetComponent<HPDamageDie>().makeKillSound = false;
+                enemo.GetComponent<HPDamageDie>().HP -= 2000;
+                HPToRefund += 10;
+            }
 
-        GameObject[] enemyShots = GameObject.FindGameObjectsWithTag("enemyBullet");
-        foreach (GameObject bulletter in enemyShots)
+            GameObject[] sounds = GameObject.FindGameObjectsWithTag("audio");
+            foreach (GameObject sound in sounds)
+            {
+                Destroy(sound);
+            }
+
+            GameObject[] enemyShots = GameObject.FindGameObjectsWithTag("enemyBullet");
+            foreach (GameObject bulletter in enemyShots)
+            {
+                if (!bulletter.GetComponent<DealDamage>().isSourceBullet)
+                {
+                    Destroy(bulletter);
+                }
+            }
+        }
+        else
         {
-            if (!bulletter.GetComponent<DealDamage>().isSourceBullet)
+            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+            foreach (GameObject enemo in players)
+            {
+                enemo.GetComponent<HPDamageDie>().makeKillSound = false;
+                enemo.GetComponent<HPDamageDie>().HP -= 2000;
+            }
+
+            GameObject[] enemoes = GameObject.FindGameObjectsWithTag("Hostile");
+            foreach (GameObject enemo in enemoes)
+            {
+                Destroy(enemo);
+            }
+
+            GameObject[] enemyShots = GameObject.FindGameObjectsWithTag("enemyBullet");
+            foreach (GameObject bulletter in enemyShots)
+            {
+                Destroy(bulletter);
+            }
+
+            GameObject[] playerShots = GameObject.FindGameObjectsWithTag("PlayerBullet");
+            foreach (GameObject bulletter in enemyShots)
             {
                 Destroy(bulletter);
             }
@@ -116,10 +187,14 @@ public class marcelFunny : MonoBehaviour
 
         yield return new WaitForSecondsRealtime(0.75f);
 
-        Time.timeScale = 1;
-        canvas.SetActive(true);
-        Destroy(gameObject);
         Destroy(spawnedBlackSquare);
+        Time.timeScale = 1;
+        if (gameObject.tag == "PlayerBullet")
+        {
+            canvas.SetActive(true);
+        }
+
+        Destroy(gameObject);
         owner.GetComponent<Healing>().Healo(HPToRefund);
         foreach (GameObject Letter in spawnedLetters)
         {
@@ -138,6 +213,7 @@ public class marcelFunny : MonoBehaviour
 
         GameObject spawned = Instantiate(letter, gameObject.transform.position + new Vector3(0.5f * (i - 0.5f * thingUpTo), 1.5f, -5), Quaternion.Euler(0, 0, 0)); // MARCELAGELOO
         spawnedLetters.Add(spawned);   //            012345164577
+        spawned.transform.SetParent(gameObject.transform);
 
         int letterNumber = letterOrders[thingUpTo];
         nextButtonName = keyThings[letterNumber];

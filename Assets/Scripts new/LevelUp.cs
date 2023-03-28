@@ -48,6 +48,15 @@ public class LevelUp : MonoBehaviour
         }
     }
 
+    public void GiveXP(int amount)
+    {
+        XP += Mathf.RoundToInt(amount * xpMult);
+        if (gameObject.GetComponent<ItemHEALTHXP>() != null)
+        {
+            XP += Mathf.RoundToInt(amount * 2 * gameObject.GetComponent<ItemHEALTHXP>().instances * (gameObject.GetComponent<HPDamageDie>().MaxHP - gameObject.GetComponent<HPDamageDie>().HP) / gameObject.GetComponent<HPDamageDie>().MaxHP);
+        }
+    }
+
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.tag == "XP")

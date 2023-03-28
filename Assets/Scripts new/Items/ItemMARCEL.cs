@@ -13,6 +13,7 @@ public class ItemMARCEL : MonoBehaviour
     {
         GameObject master = gameObject.GetComponent<DealDamage>().master;
         marcelInstance = master.GetComponent<EntityReferencerGuy>().marcelageloo;
+        //timer = Random.Range(0, 1100);
     }
 
     void FixedUpdate()
@@ -20,6 +21,14 @@ public class ItemMARCEL : MonoBehaviour
         if (timer > ((30 / instances) + 15) * 50)
         {
             GameObject marceller = Instantiate(marcelInstance, transform.position + new Vector3(Random.Range(-5, 5), Random.Range(-5, 5), 0), Quaternion.Euler(0, 0, 0));
+            if (gameObject.tag == "Player")
+            {
+                marceller.tag = "PlayerBullet";
+            }
+            else
+            {
+                marceller.tag = "enemyBullet";
+            }
             marceller.transform.localScale *= 1 + 0.5f * instances;
             marceller.GetComponent<marcelFunny>().owner = gameObject;
             timer = 0;

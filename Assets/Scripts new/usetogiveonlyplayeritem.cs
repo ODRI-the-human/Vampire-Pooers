@@ -8,6 +8,6 @@ public class usetogiveonlyplayeritem : MonoBehaviour
     void Start()
     {
         //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.PISTOL);
-        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.DODGEROLL);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.MARCEL);
     }
 }

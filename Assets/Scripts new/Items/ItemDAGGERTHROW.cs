@@ -63,6 +63,21 @@ public class ItemDAGGERTHROW : MonoBehaviour
                 newShotVector = new Vector2(vectorToTarget.x * Mathf.Cos(currentAngle) - vectorToTarget.y * Mathf.Sin(currentAngle), vectorToTarget.x * Mathf.Sin(currentAngle) + vectorToTarget.y * Mathf.Cos(currentAngle));
                 bulletRB.velocity = newShotVector * shotSpeed;
                 bulletRB.simulated = true;
+
+                int LayerPlayerBullet = LayerMask.NameToLayer("PlayerBullets");
+                int LayerEnemyBullet = LayerMask.NameToLayer("Enemy Bullets");
+                if (gameObject.tag == "Hostile" || gameObject.tag == "enemyBullet")
+                {
+                    newObject.GetComponent<MeshRenderer>().material = master.GetComponent<EntityReferencerGuy>().enemyBulletMaterial;
+                    newObject.layer = LayerEnemyBullet;
+                    newObject.tag = "enemyBullet";
+                }
+                else
+                {
+                    newObject.GetComponent<MeshRenderer>().material = master.GetComponent<EntityReferencerGuy>().playerBulletMaterial;
+                    newObject.layer = LayerPlayerBullet;
+                    newObject.tag = "PlayerBullet";
+                }
             }
         }
         

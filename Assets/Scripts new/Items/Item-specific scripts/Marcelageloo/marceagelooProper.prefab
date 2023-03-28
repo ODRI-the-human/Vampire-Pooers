@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1655304900822193931}
   - component: {fileID: 1655304900822193930}
+  - component: {fileID: 5067163828331559074}
   m_Layer: 0
   m_Name: marcelRadius
   m_TagString: Untagged
@@ -84,6 +85,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5067163828331559074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1655304900822193928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27778f63f3be88845bf5107b1b808ac8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8931664151580459564
 GameObject:
   m_ObjectHideFlags: 0
@@ -97,7 +110,7 @@ GameObject:
   - component: {fileID: 2244279947131928797}
   m_Layer: 0
   m_Name: marceagelooProper
-  m_TagString: Untagged
+  m_TagString: PlayerBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -214,4 +227,6 @@ MonoBehaviour:
   letter: {fileID: 548960335516243992, guid: 2d55941e151e42b498c55ca73300c504, type: 3}
   squarezy: {fileID: 5963825423898132415, guid: e7b6397eaf92c834aaecbf3499716cb0, type: 3}
   blackSquare: {fileID: 5963825423898132415, guid: ff781d63f0a565d41945b3dc35cb52d6, type: 3}
+  owner: {fileID: 0}
   canType: 0
+  thingUpTo: 0
