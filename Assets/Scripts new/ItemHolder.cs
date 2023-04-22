@@ -23,9 +23,9 @@ public class ItemHolder : MonoBehaviour
 
     void Start()
     {
-        master = GameObject.Find("bigFuckingMasterObject");
-        playerBullet = master.GetComponent<EntityReferencerGuy>().playerBullet;
-        enemyBullet = master.GetComponent<EntityReferencerGuy>().enemyBullet;
+        master = EntityReferencerGuy.Instance.master;
+        playerBullet = EntityReferencerGuy.Instance.playerBullet;
+        enemyBullet = EntityReferencerGuy.Instance.enemyBullet;
         if (gameObject.tag == "PlayerBullet" || gameObject.tag == "enemyBullet")
         {
             isGuy = false;
@@ -58,10 +58,10 @@ public class ItemHolder : MonoBehaviour
             ApplyItems();
         }
 
-        if (gameObject.tag == "Player")
-        {
-            MakeEpicBullets();
-        }
+        //if (gameObject.tag == "Player")
+        //{
+        //    MakeEpicBullets();
+        //}
     }
 
     public void ApplyItems()
@@ -645,52 +645,53 @@ public class ItemHolder : MonoBehaviour
 
         Debug.Log(itemIsPassive.ToString());
 
-        MakeEpicBullets();
         SendMessage("itemsAdded", itemIsPassive);
     }
 
-    public void MakeEpicBullets()
-    {
-        if (gameObject.tag == "Player")
-        {
-            Destroy(playerBulletPrefab);
-            Destroy(enemyBulletPrefab);
+    // The following is all for the old (bad) bullet pool system that wasn't very efficient anyway.
+    
+    //public void MakeEpicBullets()
+    //{
+    //    if (gameObject.tag == "Player")
+    //    {
+    //        Destroy(playerBulletPrefab);
+    //        Destroy(enemyBulletPrefab);
 
-            playerBulletPrefab = Instantiate(playerBullet, new Vector3(999999, 999999, 999999), transform.rotation);
-            playerBulletPrefab.GetComponent<ItemHolder>().itemsHeld = itemsHeld;
-            Rigidbody2D playerBRB = playerBulletPrefab.GetComponent<Rigidbody2D>();
-            playerBRB.simulated = false;
-            playerBRB.GetComponent<DealDamage>().master = gameObject.GetComponent<DealDamage>().master;
-            playerBRB.GetComponent<DealDamage>().owner = gameObject;
-            if (gameObject.GetComponent<weaponType>().weaponHeld == (int)ITEMLIST.GRENADELAUNCHER)
-            {
-                playerBulletPrefab.AddComponent<explodeOnHit>();
-            }
-            gameObject.GetComponent<Attack>().Bullet = playerBulletPrefab;
-            enemyBulletPrefab = Instantiate(enemyBullet, new Vector3(9999999, 9999999, 9999999), transform.rotation);
-            enemyBulletPrefab.GetComponent<ItemHolder>().itemsHeld = master.GetComponent<ItemHolder>().itemsHeld;
-            Rigidbody2D enemyBRB = enemyBulletPrefab.GetComponent<Rigidbody2D>();
-            master.GetComponent<ThirdEnemySpawner>().enemyBullet = enemyBulletPrefab;
-            enemyBRB.simulated = false;
+    //        playerBulletPrefab = Instantiate(playerBullet, new Vector3(999999, 999999, 999999), transform.rotation);
+    //        playerBulletPrefab.GetComponent<ItemHolder>().itemsHeld = itemsHeld;
+    //        Rigidbody2D playerBRB = playerBulletPrefab.GetComponent<Rigidbody2D>();
+    //        playerBRB.simulated = false;
+    //        playerBRB.GetComponent<DealDamage>().master = gameObject.GetComponent<DealDamage>().master;
+    //        playerBRB.GetComponent<DealDamage>().owner = gameObject;
+    //        if (gameObject.GetComponent<weaponType>().weaponHeld == (int)ITEMLIST.GRENADELAUNCHER)
+    //        {
+    //            playerBulletPrefab.AddComponent<explodeOnHit>();
+    //        }
+    //        gameObject.GetComponent<Attack>().Bullet = playerBulletPrefab;
+    //        enemyBulletPrefab = Instantiate(enemyBullet, new Vector3(9999999, 9999999, 9999999), transform.rotation);
+    //        enemyBulletPrefab.GetComponent<ItemHolder>().itemsHeld = master.GetComponent<ItemHolder>().itemsHeld;
+    //        Rigidbody2D enemyBRB = enemyBulletPrefab.GetComponent<Rigidbody2D>();
+    //        master.GetComponent<ThirdEnemySpawner>().enemyBullet = enemyBulletPrefab;
+    //        enemyBRB.simulated = false;
 
-            Invoke(nameof(setBulletsToClones), 0.1f);
-        }
-    }
+    //        Invoke(nameof(setBulletsToClones), 0.1f);
+    //    }
+    //}
 
-    void setBulletsToClones()
-    {
-        playerBulletPrefab.GetComponent<DealDamage>().isBulletClone = true;
-        playerBulletPrefab.GetComponent<DealDamage>().isSourceBullet = true;
-        enemyBulletPrefab.GetComponent<DealDamage>().isBulletClone = true;
-        enemyBulletPrefab.GetComponent<DealDamage>().isSourceBullet = true;
-    }
+    //void setBulletsToClones()
+    //{
+    //    playerBulletPrefab.GetComponent<DealDamage>().isBulletClone = true;
+    //    playerBulletPrefab.GetComponent<DealDamage>().isSourceBullet = true;
+    //    enemyBulletPrefab.GetComponent<DealDamage>().isBulletClone = true;
+    //    enemyBulletPrefab.GetComponent<DealDamage>().isSourceBullet = true;
+    //}
 
-    void Update()
-    {
-        if (gameObject.tag == "Player")
-        {
-            playerBulletPrefab.transform.position = new Vector3(999999, 999999, 999999);
-            enemyBulletPrefab.transform.position = new Vector3(9999999, 9999999, 9999999);
-        }
-    }
+    //void Update()
+    //{
+    //    if (gameObject.tag == "Player")
+    //    {
+    //        playerBulletPrefab.transform.position = new Vector3(999999, 999999, 999999);
+    //        enemyBulletPrefab.transform.position = new Vector3(9999999, 9999999, 9999999);
+    //    }
+    //}
 }

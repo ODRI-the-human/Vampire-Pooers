@@ -10,7 +10,7 @@ public class Healing : MonoBehaviour
 
     void Start()
     {
-        master = GameObject.Find("bigFuckingMasterObject");
+        master = EntityReferencerGuy.Instance.master;
     }
 
     public void newWaveEffects()
@@ -21,7 +21,7 @@ public class Healing : MonoBehaviour
     public void Healo(float amount)
     {
         float healyAmount = amount * healMult / healDiv;
-        if (gameObject.GetComponent<HPDamageDie>().HP + healyAmount > gameObject.GetComponent<HPDamageDie>().MaxHP)
+        if (gameObject.GetComponent<HPDamageDie>().HP + healyAmount > gameObject.GetComponent<HPDamageDie>().MaxHP) // If player would overheal, reduces healing amount to what's required to reach max HP.
         {
             Debug.Log(healyAmount.ToString());
             healyAmount = gameObject.GetComponent<HPDamageDie>().MaxHP - gameObject.GetComponent<HPDamageDie>().HP;

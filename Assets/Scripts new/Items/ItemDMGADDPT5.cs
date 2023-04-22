@@ -11,10 +11,7 @@ public class ItemDMGADDPT5 : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        if (!gameObject.GetComponent<DealDamage>().isBulletClone)
-        {
-            gameObject.GetComponent<DealDamage>().damageBase += 25f;
-        }
+        gameObject.GetComponent<DealDamage>().damageBase += 25f;
     }
 
     public void Undo()

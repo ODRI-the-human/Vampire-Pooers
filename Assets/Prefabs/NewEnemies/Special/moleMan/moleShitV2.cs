@@ -125,8 +125,8 @@ public class moleShitV2 : MonoBehaviour
 
         if (goesFirst)
         {
-            master = gameObject.GetComponent<DealDamage>().master;
-            camera = master.GetComponent<EntityReferencerGuy>().camera;
+            master = EntityReferencerGuy.Instance.master;
+            camera = EntityReferencerGuy.Instance.camera;
             player = gameObject.GetComponent<Attack>().currentTarget;
             FindRockPositions();
             PickPosition();

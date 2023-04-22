@@ -13,7 +13,6 @@ public class Statuses : MonoBehaviour
     GameObject spawnedElectricIcon;
     GameObject slowIcon;
     GameObject spawnedSlowIcon;
-    GameObject master;
     public int poisonStacks;
     public int bleedStacks = 0;
     public int hasElectric = 0;
@@ -27,11 +26,10 @@ public class Statuses : MonoBehaviour
 
     void Start()
     {
-        master = GameObject.Find("bigFuckingMasterObject");
-        poisonIcon = master.GetComponent<EntityReferencerGuy>().poisonIcon;
-        bleedIcon = master.GetComponent<EntityReferencerGuy>().bleedIcon;
-        electricIcon = master.GetComponent<EntityReferencerGuy>().electricIcon;
-        slowIcon = master.GetComponent<EntityReferencerGuy>().slowIcon;
+        poisonIcon = EntityReferencerGuy.Instance.poisonIcon;
+        bleedIcon = EntityReferencerGuy.Instance.bleedIcon;
+        electricIcon = EntityReferencerGuy.Instance.electricIcon;
+        slowIcon = EntityReferencerGuy.Instance.slowIcon;
         if (gameObject.GetComponent<NewPlayerMovement>() != null)
         {
             spawnedSlowIcon = Instantiate(slowIcon);

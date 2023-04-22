@@ -18,7 +18,7 @@ public class ItemORBITAL1 : MonoBehaviour
         {
             for (int i = 0; i < instances; i++)
             {
-                orbSkothos = GameObject.Find("bigFuckingMasterObject").GetComponent<EntityReferencerGuy>().orbSkothos;
+                orbSkothos = EntityReferencerGuy.Instance.orbSkothos;
                 GameObject newObject = Instantiate(orbSkothos);
                 newObject.GetComponent<DealDamage>().procCoeff = 0;
                 newObject.GetComponent<DealDamage>().damageBase = 10;

@@ -12,8 +12,6 @@ public class checkAllLazerPositions : MonoBehaviour
     public GameObject owner;
     public LineRenderer line;
 
-    public GameObject master;
-
     int contacts = 0;
 
     public Material shoot;
@@ -21,6 +19,7 @@ public class checkAllLazerPositions : MonoBehaviour
     public Material warn;
 
     GameObject thinguy;
+    public GameObject master;
     public bool setVecToMoveAutomatically = true;
     public bool actuallyHit = true;
     public float splitDamMult = 1;
@@ -196,12 +195,12 @@ public class checkAllLazerPositions : MonoBehaviour
 
                         if (gameObject.tag == "PlayerBullet")
                         {
-                            col.gameObject.GetComponent<MeshRenderer>().material = master.GetComponent<EntityReferencerGuy>().playerBulletMaterial;
+                            col.gameObject.GetComponent<MeshRenderer>().material = EntityReferencerGuy.Instance.playerBulletMaterial;
                             col.gameObject.layer = LayerPlayerBullet;
                         }
                         else
                         {
-                            col.gameObject.GetComponent<MeshRenderer>().material = master.GetComponent<EntityReferencerGuy>().enemyBulletMaterial;
+                            col.gameObject.GetComponent<MeshRenderer>().material = EntityReferencerGuy.Instance.enemyBulletMaterial;
                             col.gameObject.layer = LayerEnemyBullet;
                         }
 

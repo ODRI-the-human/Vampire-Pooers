@@ -17,7 +17,7 @@ public class ItemREROLL : MonoBehaviour
         if (gameObject.tag == "Player" || gameObject.tag == "MasterObject")
         {
             gameObject.SendMessage("Undo");
-            master = GameObject.Find("bigFuckingMasterObject");
+            master = EntityReferencerGuy.Instance.master;
             maxRange = master.GetComponent<EntityReferencerGuy>().numItemsExist;
             Debug.Log("Boingser");
             foreach (int item in gameObject.GetComponent<ItemHolder>().itemsHeld)
@@ -37,12 +37,11 @@ public class ItemREROLL : MonoBehaviour
 
     public void POOPOO()
     {
-        GameObject player = master.GetComponent<EntityReferencerGuy>().playerInstance;
+        GameObject player = EntityReferencerGuy.Instance.playerInstance;
         if (gameObject.tag == "Player")
         {
             player.GetComponent<ItemHolder>().ApplyAll();
         }
-        player.GetComponent<ItemHolder>().MakeEpicBullets();
     }
 
     public void KILL()

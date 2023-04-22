@@ -5,7 +5,6 @@ using UnityEngine;
 public class ItemATG : MonoBehaviour
 {
     public GameObject ATGMissile;
-    public GameObject MasterObject;
     public GameObject owner;
     float procMoment;
     public int instances = 1;
@@ -13,18 +12,13 @@ public class ItemATG : MonoBehaviour
 
     void Start()
     {
-        if (!gameObject.GetComponent<DealDamage>().isBulletClone)
+        if (gameObject.tag == "PlayerBullet" || gameObject.tag == "Player")
         {
-            MasterObject = GameObject.Find("bigFuckingMasterObject");
-
-            if (gameObject.tag == "PlayerBullet" || gameObject.tag == "Player")
-            {
-                ATGMissile = MasterObject.GetComponent<EntityReferencerGuy>().ATGMissile;
-            }
-            else
-            {
-                ATGMissile = MasterObject.GetComponent<EntityReferencerGuy>().ATGMissileHostile;
-            }
+            ATGMissile = EntityReferencerGuy.Instance.ATGMissile;//MasterObject.GetComponent<EntityReferencerGuy>().ATGMissile;
+        }
+        else
+        {
+            ATGMissile = EntityReferencerGuy.Instance.ATGMissileHostile;
         }
 
         owner = gameObject.GetComponent<DealDamage>().owner;

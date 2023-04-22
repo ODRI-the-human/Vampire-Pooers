@@ -8,17 +8,15 @@ public class ItemWAPANT : MonoBehaviour
     public float wapantTimerLength = 150f;
     public int instances = 1;
     public GameObject wapantCircle;
-    public GameObject MasterObject;
     bool isActive = false;
 
     void Start()
     {
-        MasterObject = GameObject.Find("bigFuckingMasterObject");
-        wapantCircle = MasterObject.GetComponent<EntityReferencerGuy>().wapantCircle;
+        wapantCircle = EntityReferencerGuy.Instance.wapantCircle;
 
         if (gameObject.tag == "Player")
         {
-            wapantCircle = MasterObject.GetComponent<EntityReferencerGuy>().wapantCircle;
+            wapantCircle = EntityReferencerGuy.Instance.wapantCircle;
             isActive = true;
         }
 
@@ -26,7 +24,7 @@ public class ItemWAPANT : MonoBehaviour
         {
             if (gameObject.tag == "Hostile")
             {
-                wapantCircle = MasterObject.GetComponent<EntityReferencerGuy>().wapantCircleHostile;
+                wapantCircle = EntityReferencerGuy.Instance.wapantCircleHostile;
                 isActive = true;
             }
         }

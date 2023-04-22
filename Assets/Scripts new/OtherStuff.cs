@@ -20,7 +20,7 @@ public class OtherStuff : MonoBehaviour
 
     void Start()
     {
-        master = GameObject.Find("bigFuckingMasterObject");
+        master = EntityReferencerGuy.Instance.master;
     }
 
     //public void Sprinkle(int which)
@@ -81,7 +81,7 @@ public class OtherStuff : MonoBehaviour
         if (gameObject.tag == "Hostile")
         {
             newGuy.tag = "enemyFamiliar";
-            newGuy.GetComponent<Attack>().Bullet = master.GetComponent<EntityReferencerGuy>().enemyBullet;
+            newGuy.GetComponent<Attack>().Bullet = EntityReferencerGuy.Instance.enemyBullet;
             newGuy.GetComponent<Attack>().playerControlled = false;
         }
         switch (item)

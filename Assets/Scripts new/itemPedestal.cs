@@ -12,7 +12,7 @@ public class itemPedestal : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     int maxRange;
     GameObject[] gos;
-    GameObject master;
+    public GameObject master;
     bool cursed = false;
     public int curseType = -2;
 
@@ -36,8 +36,8 @@ public class itemPedestal : MonoBehaviour
         //bannedItems.Add((int)ITEMLIST.HP25);
         bannedItems.Add(bannedWeapon);
         bannedItems.Add(bannedDodge);
-        master = GameObject.Find("bigFuckingMasterObject");
-        maxRange = master.GetComponent<EntityReferencerGuy>().numItemsExist;
+        master = EntityReferencerGuy.Instance.master;
+        maxRange = EntityReferencerGuy.Instance.numItemsExist;
         //maxRange = 5;
         gos = GameObject.FindGameObjectsWithTag("item");
         GameObject.Find("newPlayer").GetComponent<getItemDescription>().itemsExist = true;
@@ -139,10 +139,10 @@ public class itemPedestal : MonoBehaviour
 
         if (enemiesCanUse)
         {
-            sproinkle = 1;// Random.Range(1, 21);
+            sproinkle = Random.Range(0, 16); // Determines whether the item is cursed or not (1/15 chance)
         }
 
-        if (sproinkle == 1)
+        if (sproinkle == 0)
         {
             int randomWacky = Random.Range(0, specialItemWeightsSum);
             int currentWeightSum = 0;
@@ -152,7 +152,6 @@ public class itemPedestal : MonoBehaviour
                 if (randomWacky < currentWeightSum)
                 {
                     curseType = i;
-                    Debug.Log("curse type: " + curseType.ToString());
                     break;
                 }
             }
@@ -193,8 +192,6 @@ public class itemPedestal : MonoBehaviour
                     barry.GetComponent<lose2ItemPerm>().itemsToGiveOnRoundStart.Add(itemChosen);
                     barry.GetComponent<lose2ItemPerm>().numItemsToLose += 2;
                 }
-
-                numToGivePlayer = 3;
                 // Need one thing to apply it the first time, another to make the player lose extra items/gain extra items.
                 break;
             case 2: // Get 3 of the item, lose 5 random items (ONCE) if you get hit in the next 2 rounds.
@@ -250,9 +247,9 @@ public class itemPedestal : MonoBehaviour
             barry.GetComponent<ItemHolder>().ApplyItems();
         }
 
-        for (int i = 1; i < numToGiveEnemies; i++)
+        for (int i = 0; i < numToGiveEnemies; i++)
         {
-            master.GetComponent<ItemHolder>().itemGained = itemChosen;
+            //master.GetComponent<ItemHolder>().itemGained = itemChosen;
             master.GetComponent<ItemHolder>().itemsHeld.Add(itemChosen);
         }
 

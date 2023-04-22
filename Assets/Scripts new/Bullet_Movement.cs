@@ -7,29 +7,48 @@ public class Bullet_Movement : MonoBehaviour
     public Rigidbody2D rb;
     public float speed;
     Vector2 OriginalSpeed;
-    public GameObject master;
 
     public bool doKillBullet = false;
-    [System.NonSerialized] public float liveTime = 0.75f;
 
     int timer = 0;
     int lastColTime = 0;
     public bool canCollide = true;
     public int piercesLeft = 0;
 
+    int LayerPlayerBullet;
+    int LayerEnemyBullet;
+    int defaultLayer;
+    string defaultTag;
+    Material defaultMaterial;
+
     void Start()
     {
-        master = gameObject.GetComponent<DealDamage>().master;
-        if (gameObject.GetComponent<DealDamage>().isBulletClone && doKillBullet)
-        {
-            Invoke(nameof(KillBullet), liveTime);
-        }
+        LayerPlayerBullet = LayerMask.NameToLayer("PlayerBullets");
+        LayerEnemyBullet = LayerMask.NameToLayer("Enemy Bullets");
+
+        defaultLayer = gameObject.layer;
+        defaultTag = gameObject.tag;
+        defaultMaterial = gameObject.GetComponent<MeshRenderer>().material;
+    }
+
+    void EndOfShotRolls()
+    {
+        gameObject.layer = defaultLayer;
+        gameObject.GetComponent<MeshRenderer>().material = defaultMaterial;
+        gameObject.tag = defaultTag;
     }
 
     void FixedUpdate()
     {
         OriginalSpeed = rb.velocity;
         speed = rb.velocity.magnitude;
+
+        //if (timer == 0) // Need to do this here and like this cos the scripts that recieve determineshotrolls aren't available
+        //{
+        //    gameObject.SendMessage("DetermineShotRolls");
+        //}
+
+        timer++;
 
         if (timer != lastColTime)
         {
@@ -94,7 +113,7 @@ public class Bullet_Movement : MonoBehaviour
                 }
                 else
                 {
-                    Destroy(gameObject);
+                    KillBullet();
                     if (gameObject.GetComponent<lazerMovement>() != null)
                     {
                         SendMessage("DoOnDestroys");
@@ -106,7 +125,20 @@ public class Bullet_Movement : MonoBehaviour
 
     void KillBullet()
     {
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        //gameObject.SetActive(false);
+        GameObject owner = gameObject.GetComponent<DealDamage>().owner;
+        if (owner != null) // Returns object to pool if owner is still alive, kills the bullet if owner is dead.
+        {
+            if (gameObject.active == true)
+            {
+                owner.GetComponent<Attack>().bulletPool.Release(gameObject);
+            }
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     // for contact item.
@@ -116,17 +148,15 @@ public class Bullet_Movement : MonoBehaviour
         {
             if (col.gameObject.GetComponent<dieOnContactWithBullet>() != null)
             {
-                int LayerPlayerBullet = LayerMask.NameToLayer("PlayerBullets");
-                int LayerEnemyBullet = LayerMask.NameToLayer("Enemy Bullets");
                 if (gameObject.tag == "enemyBullet")
                 {
-                    gameObject.GetComponent<MeshRenderer>().material = master.GetComponent<EntityReferencerGuy>().playerBulletMaterial;
+                    gameObject.GetComponent<MeshRenderer>().material = EntityReferencerGuy.Instance.playerBulletMaterial;
                     gameObject.layer = LayerPlayerBullet;
                     gameObject.tag = "PlayerBullet";
                 }
                 else
                 {
-                    gameObject.GetComponent<MeshRenderer>().material = master.GetComponent<EntityReferencerGuy>().enemyBulletMaterial;
+                    gameObject.GetComponent<MeshRenderer>().material = EntityReferencerGuy.Instance.enemyBulletMaterial;
                     gameObject.layer = LayerEnemyBullet;
                     gameObject.tag = "enemyBullet";
                 }
@@ -142,13 +172,13 @@ public class Bullet_Movement : MonoBehaviour
                     col.gameObject.GetComponent<dieOnContactWithBullet>().instances -= 1;
                     if (col.gameObject.GetComponent<dieOnContactWithBullet>().instances == 0)
                     {
-                        col.gameObject.GetComponent<dieOnContactWithBullet>().CommitDie();
+                        KillBullet();
                     }
                 }
             }
             else
             {
-                Destroy(gameObject);
+                KillBullet();
                 if (gameObject.GetComponent<lazerMovement>() != null)
                 {
                     SendMessage("DoOnDestroys");

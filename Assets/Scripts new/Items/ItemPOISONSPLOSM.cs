@@ -15,7 +15,7 @@ public class ItemPOISONSPLOSM : MonoBehaviour
             
             Debug.Log("Added poison wahoo");
         }
-        poisonSplosm = GameObject.Find("bigFuckingMasterObject").GetComponent<EntityReferencerGuy>().poisonSplosm;
+        poisonSplosm = EntityReferencerGuy.Instance.poisonSplosm;
     }
 
     public void SpawnPoison(Vector3 pos)

@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 4255455733749829595}
   - component: {fileID: 4255455733749829592}
   - component: {fileID: 9080384525931548618}
-  - component: {fileID: -3635382963841210237}
   - component: {fileID: -1365107204755030205}
   - component: {fileID: 5700807271172768676}
   - component: {fileID: 8210489353096964633}
+  - component: {fileID: -3635382963841210237}
   m_Layer: 9
   m_Name: PlayerBullet
   m_TagString: PlayerBullet
@@ -131,24 +131,6 @@ MonoBehaviour:
   doTheShit: 1
   playerBullet: {fileID: 0}
   enemyBullet: {fileID: 0}
---- !u!114 &-3635382963841210237
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4255455733749829593}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c701a039179b66f43ac84a0db3d08655, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 4255455733749829592}
-  speed: 0
-  master: {fileID: 0}
-  doKillBullet: 1
-  canCollide: 1
-  piercesLeft: 0
 --- !u!114 &-1365107204755030205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,12 +155,11 @@ MonoBehaviour:
   master: {fileID: 0}
   massCoeff: 0.5
   overwriteDamageCalc: 0
-  onlyDamageOnce: 1
+  onlyDamageOnce: 0
   tickInterval: 1
   timer: 0
   damageAmt: 0
   iFrameFac: 1
-  isBulletClone: 0
   damageToPresent: 0
   damageType: 0
 --- !u!114 &5700807271172768676
@@ -196,6 +177,8 @@ MonoBehaviour:
   weaponHeld: 0
   master: {fileID: 0}
   spawnedBat: {fileID: 0}
+  previousFireType: 0
+  previousFireTimerLengthMLT: 0
 --- !u!58 &8210489353096964633
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -212,3 +195,20 @@ CircleCollider2D:
   m_Offset: {x: 0.009165883, y: 0}
   serializedVersion: 2
   m_Radius: 0.3
+--- !u!114 &-3635382963841210237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4255455733749829593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c701a039179b66f43ac84a0db3d08655, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 4255455733749829592}
+  speed: 0
+  doKillBullet: 1
+  canCollide: 1
+  piercesLeft: 0

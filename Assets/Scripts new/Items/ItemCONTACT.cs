@@ -5,17 +5,22 @@ using UnityEngine;
 public class ItemCONTACT : MonoBehaviour
 {
     public int instances = 1;
-    public GameObject master;
+    GameObject Bingus; // This is the contact instance.
+
+    void Start()
+    {
+        DetermineShotRolls();
+    }
 
     // Start is called before the first frame update
-    void Start()
+    void DetermineShotRolls()
     {
         int LayerProjectileBlocking = LayerMask.NameToLayer("ProjectileBlocking");
         if ((gameObject.tag == "PlayerBullet" || gameObject.tag == "enemyBullet") && gameObject.layer != LayerProjectileBlocking && gameObject.GetComponent<faceInFunnyDirection>() == null) //the last one is to prevent it from being given to the baseball bat.
         {
-            master = gameObject.GetComponent<DealDamage>().master;
-            GameObject Bingus = Instantiate(master.GetComponent<EntityReferencerGuy>().contactMan);
+            Bingus = Instantiate(EntityReferencerGuy.Instance.contactMan, transform.position, Quaternion.Euler(0, 0, 0));
             Bingus.GetComponent<dieOnContactWithBullet>().instances = 2 * instances;
+            Bingus.transform.parent = gameObject.transform;
             Bingus.GetComponent<dieOnContactWithBullet>().master = gameObject;
             if (gameObject.GetComponent<darkArtMovement>() != null)
             {
@@ -31,7 +36,15 @@ public class ItemCONTACT : MonoBehaviour
                 Bingus.GetComponent<dieOnContactWithBullet>().instances = 50000000;
             }
             Bingus.tag = gameObject.tag;
-            Bingus.transform.localScale = master.transform.localScale;
+            Bingus.transform.localScale = 2 * gameObject.transform.localScale;
+        }
+    }
+
+    void EndOfShotRolls()
+    {
+        if (Bingus != null)
+        {
+            Destroy(Bingus);
         }
     }
 

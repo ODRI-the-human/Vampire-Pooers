@@ -17,7 +17,7 @@ public class ItemDescriptions : MonoBehaviour
 
     public void GetCurseDescription(int curseType)
     {
-        Debug.Log("Curse Type: " + curseType.ToString());
+        //Debug.Log("Curse Type: " + curseType.ToString());
         switch (curseType)
         {
             case -2:

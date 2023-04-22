@@ -12,12 +12,12 @@ GameObject:
   - component: {fileID: 110440509597865851}
   - component: {fileID: 110440509597865850}
   - component: {fileID: 110440509597865849}
-  - component: {fileID: 110440509597865853}
   - component: {fileID: -3033583009772547652}
   - component: {fileID: -4542741102433382798}
   - component: {fileID: 8031604352272101920}
   - component: {fileID: -5903357068065279301}
   - component: {fileID: 5716069322335169520}
+  - component: {fileID: 110440509597865853}
   m_Layer: 7
   m_Name: Bullet
   m_TagString: enemyBullet
@@ -111,23 +111,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &110440509597865853
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 110440509597865848}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c701a039179b66f43ac84a0db3d08655, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 110440509597865849}
-  speed: 0
-  master: {fileID: 0}
-  canCollide: 1
-  piercesLeft: 0
 --- !u!114 &-3033583009772547652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,13 +135,13 @@ MonoBehaviour:
   master: {fileID: 0}
   massCoeff: 0.5
   overwriteDamageCalc: 0
-  onlyDamageOnce: 1
+  onlyDamageOnce: 0
   tickInterval: 1
   timer: 0
   damageAmt: 0
   iFrameFac: 1
-  isBulletClone: 0
   damageToPresent: 0
+  damageType: 0
 --- !u!114 &-4542741102433382798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,6 +170,8 @@ MonoBehaviour:
   master: {fileID: 0}
   itemGained: 0
   noToGive: 1
+  isBullet: 0
+  isGuy: 1
   doTheShit: 1
   playerBullet: {fileID: 0}
   enemyBullet: {fileID: 0}
@@ -203,6 +188,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponHeld: 0
+  master: {fileID: 0}
+  spawnedBat: {fileID: 0}
+  previousFireType: 0
+  previousFireTimerLengthMLT: 0
 --- !u!58 &5716069322335169520
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -219,3 +208,20 @@ CircleCollider2D:
   m_Offset: {x: 0.009165883, y: 0}
   serializedVersion: 2
   m_Radius: 0.3
+--- !u!114 &110440509597865853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110440509597865848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c701a039179b66f43ac84a0db3d08655, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 110440509597865849}
+  speed: 0
+  doKillBullet: 0
+  canCollide: 1
+  piercesLeft: 0

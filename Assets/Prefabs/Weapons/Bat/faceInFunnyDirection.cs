@@ -24,7 +24,7 @@ public class faceInFunnyDirection : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        master = GameObject.Find("bigFuckingMasterObject");
+        master = EntityReferencerGuy.Instance.master;
         Debug.Log("Bat spawned");
         gameObject.GetComponent<DealDamage>().owner = owner;
         gameObject.GetComponent<DealDamage>().master = master;

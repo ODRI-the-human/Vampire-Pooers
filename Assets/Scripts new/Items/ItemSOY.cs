@@ -8,11 +8,8 @@ public class ItemSOY : MonoBehaviour
 
     void Awake()
     {
-        if (!gameObject.GetComponent<DealDamage>().isBulletClone)
-        {
-            gameObject.GetComponent<DealDamage>().finalDamageDIV += 4;
-            gameObject.GetComponent<DealDamage>().massCoeff /= 4;
-        }
+        gameObject.GetComponent<DealDamage>().finalDamageDIV += 4;
+        gameObject.GetComponent<DealDamage>().massCoeff /= 4;
     }
 
     void Start()
@@ -20,8 +17,7 @@ public class ItemSOY : MonoBehaviour
         if (gameObject.GetComponent<Attack>() != null)
         {
             gameObject.GetComponent<Attack>().fireTimerDIV += 4;
-            GameObject farter = gameObject.GetComponent<DealDamage>().master;
-            gameObject.GetComponent<Attack>().PlayerShootAudio = farter.GetComponent<EntityReferencerGuy>().soyShotAudio;
+            gameObject.GetComponent<Attack>().PlayerShootAudio = EntityReferencerGuy.Instance.soyShotAudio;
         }
     }
 
@@ -32,8 +28,7 @@ public class ItemSOY : MonoBehaviour
         if (gameObject.GetComponent<Attack>() != null)
         {
             gameObject.GetComponent<Attack>().fireTimerDIV -= 4;
-            GameObject farter = gameObject.GetComponent<DealDamage>().master;
-            gameObject.GetComponent<Attack>().PlayerShootAudio = farter.GetComponent<EntityReferencerGuy>().normieShotAudio;
+            gameObject.GetComponent<Attack>().PlayerShootAudio = EntityReferencerGuy.Instance.normieShotAudio;
         }
 
         Destroy(this);

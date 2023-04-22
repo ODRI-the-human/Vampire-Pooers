@@ -31,13 +31,10 @@ public class dieOnContactWithBullet : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        transform.position = master.transform.position;
     }
 
-    public void CommitDie()
+    void Update()
     {
-        Destroy(master);
-        Destroy(gameObject);
+        transform.position = master.transform.position;
     }
 }

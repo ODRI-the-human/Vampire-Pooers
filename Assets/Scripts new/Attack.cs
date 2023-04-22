@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class Attack : MonoBehaviour
 {
@@ -60,8 +61,29 @@ public class Attack : MonoBehaviour
 
     public bool holdDownToShoot = true; // Make this false if the player should need to click for every shot (i.e. with the bat)
 
+    public ObjectPool<GameObject> bulletPool;
+    public int numBulletsPossible = 16; // This is for object pooling; this should be plenty for most enemies in default circumstances.
+
+
     void Start()
     {
+
+        bulletPool = new ObjectPool<GameObject>(() =>
+        {
+            return Instantiate(Bullet);
+        }, gameObject =>
+        {
+            gameObject.SetActive(true);
+            gameObject.SendMessage("DetermineShotRolls");
+        }, gameObject =>
+        {
+            gameObject.SendMessage("EndOfShotRolls");
+            gameObject.SetActive(false);
+        }, gameObject =>
+        {
+            Destroy(gameObject);
+        }, true, numBulletsPossible, 300);
+
         timesFired = -1;
         newAttack = 0;
         stopwatchDebuffAmount = 1;
@@ -79,8 +101,7 @@ public class Attack : MonoBehaviour
         }
         cameron = GameObject.Find("Main Camera");
 
-        GameObject mastery = gameObject.GetComponent<DealDamage>().master;
-        darkArtSword = mastery.gameObject.GetComponent<EntityReferencerGuy>().darkArtSword;
+        darkArtSword = EntityReferencerGuy.Instance.darkArtSword;
     }
 
     // Update is called once per frame, as you know
@@ -90,11 +111,14 @@ public class Attack : MonoBehaviour
         fireTimerLength = Mathf.Clamp(fireTimerLength, 0, 99999);
         fireTimerActualLength = Mathf.Clamp(50 / (fireTimerLength * fireTimerLengthMLT / fireTimerDIV),0,25);
 
-        switch (gameObject.GetComponent<weaponType>().weaponHeld) // For capping your fire rate to the proper amount based on what weapon you're using.
+        if (gameObject.GetComponent<weaponType>() != null) // For capping your fire rate to the proper amount based on what weapon you're using.
         {
-            case (int)ITEMLIST.BAT:
-                fireTimerActualLength = Mathf.Clamp(fireTimerActualLength, 0, 12);
-                break;
+            switch (gameObject.GetComponent<weaponType>().weaponHeld)
+            {
+                case (int)ITEMLIST.BAT:
+                    fireTimerActualLength = Mathf.Clamp(fireTimerActualLength, 0, 12);
+                    break;
+            }
         }
 
         if (reTargetTimer <= 0)
@@ -221,7 +245,8 @@ public class Attack : MonoBehaviour
 
     public void SpawnAttack(float currentAngle)
     {
-        GameObject newObject = Instantiate(Bullet, transform.position, transform.rotation);
+        GameObject newObject = bulletPool.Get();//Instantiate(Bullet, transform.position, transform.rotation);
+        newObject.transform.position = transform.position;
         newObject.transform.localScale = new Vector3(trueDamageValue * 0.0015f + .45f * scaleAddMult, trueDamageValue * 0.0015f + .45f * scaleAddMult, trueDamageValue * 0.0015f + .45f * scaleAddMult);
         bulletRB = newObject.GetComponent<Rigidbody2D>();
         if (!doAim)
@@ -232,23 +257,15 @@ public class Attack : MonoBehaviour
         velToGiveBullets = newShotVector * shotSpeed;
         bulletRB.velocity = velToGiveBullets;
         newObject.GetComponent<DealDamage>().master = gameObject.GetComponent<DealDamage>().master;
-        if (gameObject.GetComponent<Bullet_Movement>() != null)
-        {
-            newObject.GetComponent<Bullet_Movement>().liveTime /= bulletLengthMult;
-        }
-        newObject.GetComponent<DealDamage>().isBulletClone = true;
-        newObject.GetComponent<DealDamage>().isSourceBullet = false;
         if (attachItems)
         {
-            //newObject.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
-            newObject.GetComponent<ItemHolder>().doTheShit = false;
+            newObject.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
             newObject.GetComponent<Rigidbody2D>().simulated = true;
             //newObject.AddComponent<KillBullets>();
             newObject.GetComponent<weaponType>().weaponHeld = newObject.GetComponent<weaponType>().weaponHeld;
             newObject.GetComponent<DealDamage>().owner = gameObject;
-            //newObject.GetComponent<DealDamage>().isBulletClone = true;
             newObject.GetComponent<DealDamage>().finalDamageMult *= gameObject.GetComponent<DealDamage>().finalDamageMult;
-            newObject.GetComponent<DealDamage>().damageBase += Crongus + levelDamageBonus; // applies converter damage bonus to bullets
+            newObject.GetComponent<DealDamage>().damageAdd += Crongus + levelDamageBonus; // applies converter damage bonus to bullets
         }
         else
         {
@@ -347,11 +364,12 @@ public class Attack : MonoBehaviour
         reTargetTimer--;
     }
 
-    void OnTriggerEnter2D(Collider2D col)
+    public void itemsAdded(GameObject nothing)
     {
-        if (col.tag == "item")
-        {
-            timesFired = -1;
-        }
+        Debug.Log("funker dunker");
+
+        bulletPool.Dispose();
+        bulletPool.Clear();
+        timesFired = -1;
     }
 }

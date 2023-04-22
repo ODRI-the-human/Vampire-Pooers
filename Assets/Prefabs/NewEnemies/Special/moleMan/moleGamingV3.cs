@@ -27,8 +27,8 @@ public class moleGamingV3 : MonoBehaviour
 
     void Start()
     {
-        player = gameObject.GetComponent<EntityReferencerGuy>().playerInstance;
-        camera = gameObject.GetComponent<EntityReferencerGuy>().camera;
+        player = EntityReferencerGuy.Instance.playerInstance;
+        camera = EntityReferencerGuy.Instance.camera;
     }
 
     public void CheckForStopWatch()

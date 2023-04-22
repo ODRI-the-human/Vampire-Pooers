@@ -7,6 +7,7 @@ public class DealDamage : MonoBehaviour
     public float finalDamageStat;
     public float procCoeff;
     public float damageBase;
+    public float damageAdd;
     public float damageMult;
     public float finalDamageMult = 1;
     public float finalDamageDIV = 1;
@@ -26,9 +27,6 @@ public class DealDamage : MonoBehaviour
 
     public float iFrameFac = 1;
 
-    public bool isBulletClone = false;
-    public bool isSourceBullet = false;
-
     public float damageToPresent;
 
     public int damageType;
@@ -38,20 +36,14 @@ public class DealDamage : MonoBehaviour
     {
         if (!overwriteDamageCalc)
         {
-            damageAmt = damageBase * damageMult * finalDamageMult / finalDamageDIV;
+            damageAmt = (damageBase + damageAdd) * damageMult * finalDamageMult / finalDamageDIV;
         }
+
+        master = EntityReferencerGuy.Instance.master;
 
         if (gameObject.tag == "Hostile" || gameObject.tag == "Player")
         {
             owner = gameObject;
-            master = GameObject.Find("bigFuckingMasterObject");
-        }
-        else
-        {
-            if (owner != null)
-            {
-                master = owner.GetComponent<DealDamage>().master;
-            }
         }
     }
 

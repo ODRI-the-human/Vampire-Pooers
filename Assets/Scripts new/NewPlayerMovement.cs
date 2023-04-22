@@ -186,7 +186,7 @@ public class NewPlayerMovement : MonoBehaviour
             if (isDodging == 1 && mouseAltMode == 1)
             {
                 col.gameObject.AddComponent<hitIfKBVecHigh>();
-                GameObject master = gameObject.GetComponent<DealDamage>().master;
+                GameObject master = EntityReferencerGuy.Instance.master;
                 master.GetComponent<visualPoopoo>().bigHitFreeze(0.1f);
             }
         }

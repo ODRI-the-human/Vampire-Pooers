@@ -14,14 +14,14 @@ public class weaponType : MonoBehaviour
     public float previousFireTimerLengthMLT;
 
     // Start is called before the first frame update
-    void Awake()
-    {
-        if (gameObject.tag == "Player" || gameObject.tag == "PlayerBullet")
-        {
-            weaponHeld = (int)ITEMLIST.PISTOL;
-            master = GameObject.Find("bigFuckingMasterObject");
-        }
-    }
+    //void Awake()
+    //{
+    //    if (gameObject.tag == "Player" || gameObject.tag == "PlayerBullet")
+    //    {
+    //        weaponHeld = (int)ITEMLIST.PISTOL;
+    //        master = EntityReferencerGuy.Instance.master;
+    //    }
+    //}
 
     void Start()
     {
@@ -30,6 +30,13 @@ public class weaponType : MonoBehaviour
             previousFireType = gameObject.GetComponent<Attack>().specialFireType;
             previousFireTimerLengthMLT = gameObject.GetComponent<Attack>().fireTimerLengthMLT;
         }
+
+        if (gameObject.tag == "Player" || gameObject.tag == "PlayerBullet")
+        {
+            weaponHeld = (int)ITEMLIST.PISTOL;
+            master = EntityReferencerGuy.Instance.master;
+        }
+
         SetWeapon();
     }
 
@@ -93,7 +100,7 @@ public class weaponType : MonoBehaviour
                     gameObject.GetComponent<Attack>().specialFireType = 6;
                     gameObject.GetComponent<Attack>().fireTimerLengthMLT = 1;
                     gameObject.GetComponent<Attack>().holdDownToShoot = false;
-                    spawnedBat = Instantiate(master.GetComponent<EntityReferencerGuy>().bat);
+                    spawnedBat = Instantiate(EntityReferencerGuy.Instance.bat);
                     spawnedBat.GetComponent<faceInFunnyDirection>().owner = gameObject;
                 }
                 break;

@@ -20,8 +20,6 @@ public class ThirdEnemySpawner : MonoBehaviour
     int noSpawnsBeforeNewWave = 4; // actually should be one more than the desired number, for some reason.
     public int numberEnemiesSpawned;
 
-    public GameObject enemyBullet;
-
     public bool bypassWaves;
 
     public GameObject chaseEnemy;
@@ -39,8 +37,6 @@ public class ThirdEnemySpawner : MonoBehaviour
 
     int xpPerWave = 7;
     int currentXP = 0;
-
-    bool assignProperBullet;
 
     public GameObject toSpawn;
     GameObject Player;
@@ -123,13 +119,13 @@ public class ThirdEnemySpawner : MonoBehaviour
     {
         Debug.Log("Spawning a... LIBERAL!");
         numberEnemiesSpawned = Mathf.RoundToInt(Random.Range(minSpawnMultiplier * ((spawnNumber + waveNumber * 2) * spawnScaleRate), maxSpawnMultiplier * ((spawnNumber + waveNumber * 2) * spawnScaleRate))) + 1;
-        SpawnType = 1;//Random.Range(spawnTypeMin, spawnTypeMax);
+        SpawnType = Random.Range(spawnTypeMin, spawnTypeMax);
 
         typeToAvoidSpawning = 4;
 
         while (typeToAvoidSpawning == SpawnType)
         {
-            SpawnType = 1;// Random.Range(spawnTypeMin, spawnTypeMax);
+            SpawnType = Random.Range(spawnTypeMin, spawnTypeMax);
         }
 
         typeToAvoidSpawning = -5;
@@ -138,27 +134,22 @@ public class ThirdEnemySpawner : MonoBehaviour
         {
             case 0:
                 toSpawn = chaseEnemy;
-                assignProperBullet = false;
                 SpawnRandomly();
                 break;
             case 1:
                 toSpawn = shootEnemy;
-                assignProperBullet = true;
                 SpawnInGroup();
                 break;
             case 2:
                 toSpawn = fourDirEnemy;
-                assignProperBullet = true;
                 SpawnInGroup();
                 break;
             case 3:
                 toSpawn = eightDirEnemy;
-                assignProperBullet = true;
                 SpawnInGroup();
                 break;
             case 4:
                 toSpawn = spinEnemy;
-                assignProperBullet = false;
                 SpawnPosX = 0;
                 SpawnPosY = 0;
                 while (Mathf.Abs(SpawnPosX) < 10 && Mathf.Abs(SpawnPosY) < 6)
@@ -195,41 +186,34 @@ public class ThirdEnemySpawner : MonoBehaviour
                 else
                 {
                     numberEnemiesSpawned = 5;
-                    assignProperBullet = false;
                     toSpawn = mole;
                     SpawnInGroup();
                 }
                 break;
             case 6:
                 toSpawn = homingMineGuy;
-                assignProperBullet = false;
                 SpawnRandomly();
                 break;
             case 7:
                 toSpawn = telefragGuy;
-                assignProperBullet = false;
                 SpawnRandomly();
                 break;
             case 8:
                 toSpawn = notMonstro;
-                assignProperBullet = true;
                 numberEnemiesSpawned = 2;
                 SpawnRandomly();
                 break;
             case 9:
                 toSpawn = grabEnemy;
-                assignProperBullet = false;
                 numberEnemiesSpawned = 2;
                 SpawnRandomly();
                 break;
             case 10:
                 toSpawn = chargeEnemy;
-                assignProperBullet = false;
                 SpawnRandomly();
                 break;
             case 11:
                 toSpawn = lazerEnemy;
-                assignProperBullet = false;
                 SpawnRandomly();
                 break;
         }
@@ -270,10 +254,6 @@ public class ThirdEnemySpawner : MonoBehaviour
             float SpawnPosYVariation = Random.Range(-1f, 1f);
             GameObject spawned = Instantiate(toSpawn, new Vector3(SpawnPosX + SpawnPosXVariation, SpawnPosY + SpawnPosYVariation, 0), transform.rotation);
             spawned.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
-            if (assignProperBullet)
-            {
-                spawned.GetComponent<Attack>().Bullet = enemyBullet;
-            }
             spawned.GetComponent<Attack>().currentTarget = Player;
 
             if (toSpawn == mole)
@@ -298,10 +278,6 @@ public class ThirdEnemySpawner : MonoBehaviour
 
             GameObject spawned = Instantiate(toSpawn, new Vector3(SpawnPosX, SpawnPosY, 0), transform.rotation);
             spawned.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
-            if (assignProperBullet)
-            {
-                spawned.GetComponent<Attack>().Bullet = enemyBullet;
-            }
             spawned.GetComponent<Attack>().currentTarget = Player;
             gameObject.GetComponent<doMasterCurses>().ApplyDropItemOnDeath(spawned);
         }

@@ -36,6 +36,8 @@ public class EntityReferencerGuy : MonoBehaviour
     public GameObject camera;
     public GameObject marcelageloo;
 
+    public GameObject master;
+
     public GameObject bat;
 
     public GameObject boss; //SHOULD JUST BE A TEMPORARY SOLUTION. BOSS SPAWNING SHOULD BE HANDLED BY THE SPAWNER.
@@ -49,6 +51,7 @@ public class EntityReferencerGuy : MonoBehaviour
 
     public Mesh dagger;
     public Mesh saw;
+    public Mesh bullet;
 
     public int numItemsExist = 33;
 
@@ -57,6 +60,21 @@ public class EntityReferencerGuy : MonoBehaviour
 
     public GameObject keepBestStatObj;
     bool playerHasDied = false;
+
+    public static EntityReferencerGuy Instance { get; private set; }
+    private void Awake()
+    {
+        // If there is an instance, and it's not me, delete myself.
+
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
 
     void Start()
     {

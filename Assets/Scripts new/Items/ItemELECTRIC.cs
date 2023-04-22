@@ -15,16 +15,13 @@ public class ItemELECTRIC : MonoBehaviour
 
     void Start()
     {
-        if (!gameObject.GetComponent<DealDamage>().isBulletClone)
+        if (gameObject.tag == "Player")
         {
-            if (gameObject.tag == "Player")
-            {
-                owner = gameObject;
-            }
-            else
-            {
-                owner = gameObject.GetComponent<DealDamage>().owner;
-            }
+            owner = gameObject;
+        }
+        else
+        {
+            owner = gameObject.GetComponent<DealDamage>().owner;
         }
     }
 
@@ -57,7 +54,7 @@ public class ItemELECTRIC : MonoBehaviour
             }
         }
 
-        masterObject = gameObject.GetComponent<DealDamage>().master;
+        masterObject = EntityReferencerGuy.Instance.master;
 
         if (dealTheDamage)
         {

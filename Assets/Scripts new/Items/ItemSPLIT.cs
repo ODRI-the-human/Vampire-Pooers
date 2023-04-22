@@ -49,7 +49,6 @@ public class ItemSPLIT : MonoBehaviour
                     Splitman1.GetComponent<DealDamage>().owner = owner;
                     Splitman1.GetComponent<DealDamage>().damageBase += owner.GetComponent<Attack>().Crongus;
                     Splitman1.GetComponent<Rigidbody2D>().simulated = true;
-                    Splitman1.GetComponent<DealDamage>().isBulletClone = true;
                     Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), Splitman1.GetComponent<Collider2D>(), true);
                     Splitman1.GetComponent<ItemSPLIT>().canSplit = false;
                     if (gameObject.GetComponent<isMelee>() != null)

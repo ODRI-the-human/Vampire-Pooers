@@ -5,22 +5,19 @@ using UnityEngine;
 public class SawShotCreep : MonoBehaviour
 {
     GameObject creepy;
-    GameObject master;
     GameObject BOB;
 
     void Start()
     {
-        master = gameObject.GetComponent<ItemHolder>().master;
-
         BOB = gameObject.GetComponent<SawRotation>().guyLatchedTo;
 
         if (gameObject.tag == "PlayerBullet")
         {
-            creepy = master.GetComponent<EntityReferencerGuy>().Creep;
+            creepy = EntityReferencerGuy.Instance.Creep;
         }
         else
         {
-            creepy = master.GetComponent<EntityReferencerGuy>().CreepHostile;
+            creepy = EntityReferencerGuy.Instance.CreepHostile;
         }
     }
 

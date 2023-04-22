@@ -53,7 +53,7 @@ public class HPDamageDie : MonoBehaviour
 
     void Start()
     {
-        master = GameObject.Find("bigFuckingMasterObject");
+        master = EntityReferencerGuy.Instance.master;
     }
 
     void Update()
@@ -97,7 +97,7 @@ public class HPDamageDie : MonoBehaviour
 
     public void Hurty(float damageAmount, bool isCrit, bool playSound, float iFrameFac, int damageType, bool bypassIframes)
     {
-        Debug.Log("shoulda taken a lil damage cunt, " + gameObject.name.ToString() + " / " + damageAmount.ToString());
+        //Debug.Log("shoulda taken a lil damage cunt, " + gameObject.name.ToString() + " / " + damageAmount.ToString());
         //Debug.Log(resistVals[damageType].ToString());
 
         if (gameObject.GetComponent<ItemEASIERTIMES>() != null && Mathf.RoundToInt(100 * (0.8f - 1f / (gameObject.GetComponent<ItemEASIERTIMES>().instances + 1f))) > Random.Range(0, 100))
@@ -114,6 +114,7 @@ public class HPDamageDie : MonoBehaviour
 
             if ((iFrames < 0 || bypassIframes) && damageAmount != 0)
             {
+                SendMessage("OnHurtEffects");
                 if (playSound)
                 {
                     GameObject hurteo = Instantiate(PlayerHurtAudio, new Vector3(0,0,-5), transform.rotation);
@@ -146,8 +147,6 @@ public class HPDamageDie : MonoBehaviour
 
                 master.GetComponent<showDamageNumbers>().showDamage(transform.position, damageAmount, damageType, isCrit);
             }
-
-            SendMessage("OnHurtEffects");
         }
     }
 

@@ -12,16 +12,11 @@ public class ItemDAGGERTHROW : MonoBehaviour
     Vector2 vectorToTarget;
     GameObject Player;
     float currentAngle;
-
-    GameObject master;
-
     public int instances = 1;
 
     void Start()
-    {
-        master = gameObject.GetComponent<ItemHolder>().master;
-        
-        Bullet = master.GetComponent<EntityReferencerGuy>().playerBullet;
+    {        
+        Bullet = EntityReferencerGuy.Instance.playerBullet;
 
         Player = gameObject.GetComponent<Attack>().Player;
 
@@ -55,7 +50,7 @@ public class ItemDAGGERTHROW : MonoBehaviour
                 currentAngle = (Mathf.PI / 10) * i;
                 GameObject newObject = Instantiate(Bullet, transform.position, transform.rotation);
                 newObject.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
-                newObject.GetComponent<MeshFilter>().mesh = master.GetComponent<EntityReferencerGuy>().dagger;
+                newObject.GetComponent<MeshFilter>().mesh = EntityReferencerGuy.Instance.dagger;
                 newObject.GetComponent<DealDamage>().damageBase = 10;
                 newObject.AddComponent<ItemBLEED>();
                 newObject.GetComponent<ItemBLEED>().instances = 20;
@@ -68,13 +63,13 @@ public class ItemDAGGERTHROW : MonoBehaviour
                 int LayerEnemyBullet = LayerMask.NameToLayer("Enemy Bullets");
                 if (gameObject.tag == "Hostile" || gameObject.tag == "enemyBullet")
                 {
-                    newObject.GetComponent<MeshRenderer>().material = master.GetComponent<EntityReferencerGuy>().enemyBulletMaterial;
+                    newObject.GetComponent<MeshRenderer>().material = EntityReferencerGuy.Instance.enemyBulletMaterial;
                     newObject.layer = LayerEnemyBullet;
                     newObject.tag = "enemyBullet";
                 }
                 else
                 {
-                    newObject.GetComponent<MeshRenderer>().material = master.GetComponent<EntityReferencerGuy>().playerBulletMaterial;
+                    newObject.GetComponent<MeshRenderer>().material = EntityReferencerGuy.Instance.playerBulletMaterial;
                     newObject.layer = LayerPlayerBullet;
                     newObject.tag = "PlayerBullet";
                 }

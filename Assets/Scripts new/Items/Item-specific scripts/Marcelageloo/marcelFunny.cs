@@ -151,14 +151,11 @@ public class marcelFunny : MonoBehaviour
             GameObject[] enemyShots = GameObject.FindGameObjectsWithTag("enemyBullet");
             foreach (GameObject bulletter in enemyShots)
             {
-                if (!bulletter.GetComponent<DealDamage>().isSourceBullet)
-                {
-                    Destroy(bulletter);
-                }
+                Destroy(bulletter);
             }
         }
-        else
-        {
+        else // For when the enemy is using the item.
+        { 
             GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
             foreach (GameObject enemo in players)
             {

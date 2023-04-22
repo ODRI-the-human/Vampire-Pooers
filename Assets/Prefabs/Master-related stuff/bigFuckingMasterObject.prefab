@@ -84,6 +84,7 @@ MonoBehaviour:
   neutralExplosion: {fileID: 0}
   camera: {fileID: 0}
   marcelageloo: {fileID: 0}
+  master: {fileID: 7002239379606652682}
   bat: {fileID: 0}
   boss: {fileID: 0}
   playerInstance: {fileID: 0}
@@ -91,6 +92,7 @@ MonoBehaviour:
   enemyBulletMaterial: {fileID: 0}
   dagger: {fileID: 0}
   saw: {fileID: 0}
+  bullet: {fileID: -376743608157148433, guid: eaec530731a49634da14386363b5e336, type: 3}
   numItemsExist: 28
   time: 180
   keepBestStatObj: {fileID: 0}
@@ -115,7 +117,6 @@ MonoBehaviour:
   waveText: {fileID: 0}
   itemPedestal: {fileID: 9051745121226363957, guid: 72417c4e267300a49a8f5f6b6e1e3f5c, type: 3}
   numberEnemiesSpawned: 0
-  enemyBullet: {fileID: 0}
   bypassWaves: 0
   chaseEnemy: {fileID: 8034279136360660190, guid: a8c7cbd396c89da40a8668c886edd2c8, type: 3}
   shootEnemy: {fileID: 8034279136360660190, guid: caa3a51a8cac6ec488da882b6b93a4ed, type: 3}

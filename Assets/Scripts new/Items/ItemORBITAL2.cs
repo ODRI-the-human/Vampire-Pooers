@@ -15,7 +15,7 @@ public class ItemORBITAL2 : MonoBehaviour
     {
         if (gameObject.tag == "Player" || gameObject.tag == "Hostile")
         {
-            orbSkothos2 = GameObject.Find("bigFuckingMasterObject").GetComponent<EntityReferencerGuy>().orbSkothos2;
+            orbSkothos2 = EntityReferencerGuy.Instance.orbSkothos2;
             Invoke(nameof(SetStats),0.1f);
         }
     }

@@ -25,9 +25,9 @@ public class ItemBERSERK : MonoBehaviour
             //Debug.Log("Added berserk wahoo");
             EventManager.DeathEffects += refreshBerserk;
         }
-        master = GameObject.Find("bigFuckingMasterObject");
-        music = master.GetComponent<EntityReferencerGuy>().berserkMusic;
-        redPlane = master.GetComponent<EntityReferencerGuy>().berserkPlane;
+        master = EntityReferencerGuy.Instance.master;
+        music = EntityReferencerGuy.Instance.berserkMusic;
+        redPlane = EntityReferencerGuy.Instance.berserkPlane;
     }
 
     public void refreshBerserk(Vector3 pos)

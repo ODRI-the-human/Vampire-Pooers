@@ -6,13 +6,15 @@ public class ItemBRICK : MonoBehaviour
 {
     public int instances = 1;
     public bool isAProc;
+    public Vector3 normieScale;
 
-    // Start is called before the first frame update
     void Start()
     {
         Debug.Log("brick added");
 
-        if ((gameObject.tag == "PlayerBullet" || gameObject.tag == "enemyBullet") && (gameObject.GetComponent<DealDamage>().isBulletClone || gameObject.GetComponent<checkAllLazerPositions>() != null))
+        normieScale = transform.localScale;
+
+        if (gameObject.GetComponent<Bullet_Movement>() != null || gameObject.GetComponent<checkAllLazerPositions>() != null)
         {
             DetermineShotRolls();
         }
@@ -20,22 +22,30 @@ public class ItemBRICK : MonoBehaviour
 
     public void DetermineShotRolls()
     {
-        float procMoment = 100f - instances * 10 * gameObject.GetComponent<DealDamage>().procCoeff;
+        float procMoment = 100f - 10 * gameObject.GetComponent<DealDamage>().procCoeff;
         float pringle = Random.Range(0f, 100f);
         isAProc = false;
         if (pringle > procMoment)
         {
             isAProc = true;
-            gameObject.GetComponent<DealDamage>().finalDamageMult *= 4;
+            gameObject.GetComponent<DealDamage>().finalDamageMult *= 4 * instances;
             if (gameObject.GetComponent<checkAllLazerPositions>() == null)
             {
-                gameObject.transform.localScale *= 2;
+                //transform.localScale = 2 * normieScale;
 
                 if (gameObject.GetComponent<Bullet_Movement>() != null)
                 {
-                    gameObject.GetComponent<Bullet_Movement>().piercesLeft = 5000;
+                    gameObject.GetComponent<Bullet_Movement>().piercesLeft += 5000;
                 }
             }
+        }
+    }
+
+    void Update()
+    {
+        if (isAProc && gameObject.GetComponent<checkAllLazerPositions>() == null)
+        {
+            transform.localScale = 2 * normieScale;
         }
     }
 
@@ -45,7 +55,8 @@ public class ItemBRICK : MonoBehaviour
         {
             Debug.Log("undid funny brick");
             gameObject.GetComponent<DealDamage>().finalDamageMult /= 4;
-            gameObject.transform.localScale /= 2;
+            transform.localScale = normieScale;
+            gameObject.GetComponent<Bullet_Movement>().piercesLeft -= 5000;
         }
     }
 

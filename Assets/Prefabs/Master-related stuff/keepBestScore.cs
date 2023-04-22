@@ -55,9 +55,9 @@ public class keepBestScore : MonoBehaviour
             worstTextObj.SetActive(false);
             bullyTextObj.SetActive(false);
             resetTextObj.SetActive(false);
-            master = GameObject.Find("bigFuckingMasterObject");
-            Player = master.GetComponent<EntityReferencerGuy>().playerInstance;
-            master.GetComponent<EntityReferencerGuy>().keepBestStatObj = gameObject;
+            master = EntityReferencerGuy.Instance.master;
+            Player = EntityReferencerGuy.Instance.playerInstance;
+            EntityReferencerGuy.Instance.keepBestStatObj = gameObject;
         }
     }
 

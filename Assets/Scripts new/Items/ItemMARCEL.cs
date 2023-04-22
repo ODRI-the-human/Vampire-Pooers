@@ -11,8 +11,7 @@ public class ItemMARCEL : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameObject master = gameObject.GetComponent<DealDamage>().master;
-        marcelInstance = master.GetComponent<EntityReferencerGuy>().marcelageloo;
+        marcelInstance = EntityReferencerGuy.Instance.marcelageloo;
         //timer = Random.Range(0, 1100);
     }
 

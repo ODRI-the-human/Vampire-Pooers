@@ -12,8 +12,8 @@ public class ItemDODGESPLOSION : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        dodgeSplosion = GameObject.Find("bigFuckingMasterObject").GetComponent<EntityReferencerGuy>().dodgeSplosion;
-        contacter = GameObject.Find("bigFuckingMasterObject").GetComponent<EntityReferencerGuy>().contactMan;
+        dodgeSplosion = EntityReferencerGuy.Instance.dodgeSplosion;
+        contacter = EntityReferencerGuy.Instance.contactMan;
     }
 
     public void dodgeEndEffects()

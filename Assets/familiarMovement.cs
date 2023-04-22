@@ -11,7 +11,6 @@ public class familiarMovement : MonoBehaviour
     void Start()
     {
         gameObject.GetComponent<Attack>().massToGiveBullets = 0.333f;
-        gameObject.GetComponent<DealDamage>().master = GameObject.Find("bigFuckingMasterObject");
     }
 
     // Update is called once per frame

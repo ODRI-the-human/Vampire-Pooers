@@ -29,6 +29,7 @@ public class SawRotation : MonoBehaviour
             float damageAmount = gameObject.GetComponent<DealDamage>().finalDamageStat * critMult;
 
             guyLatchedTo.GetComponent<HPDamageDie>().Hurty(damageAmount, isCrit, true, 1, (int)DAMAGETYPES.NORMAL, true);
+            gameObject.SendMessage("RollOnHit", guyLatchedTo);
         }
 
         if (advanceTimer)

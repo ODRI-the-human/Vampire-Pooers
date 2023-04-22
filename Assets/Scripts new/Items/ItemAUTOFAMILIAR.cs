@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ItemAUTOFAMILIAR : MonoBehaviour
 {
-    GameObject master;
     GameObject normieFamiliar;
     GameObject spawnedGuy;
 
@@ -13,8 +12,7 @@ public class ItemAUTOFAMILIAR : MonoBehaviour
     {
         if (gameObject.tag == "Player" || gameObject.tag == "Hostile")
         {
-            master = GameObject.Find("bigFuckingMasterObject");
-            normieFamiliar = master.GetComponent<EntityReferencerGuy>().normieFamiliar;
+            normieFamiliar = EntityReferencerGuy.Instance.normieFamiliar;
             spawnedGuy = Instantiate(normieFamiliar, transform.position, transform.rotation);
             spawnedGuy.GetComponent<Attack>().playerControlled = false;
             spawnedGuy.GetComponent<DealDamage>().damageBase = 15;

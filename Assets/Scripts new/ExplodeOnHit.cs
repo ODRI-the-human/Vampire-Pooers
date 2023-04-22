@@ -12,8 +12,7 @@ public class explodeOnHit : MonoBehaviour
     
     void Start()
     {
-        GameObject master = gameObject.GetComponent<DealDamage>().master;
-        explosion = master.GetComponent<EntityReferencerGuy>().neutralExplosion;
+        explosion = EntityReferencerGuy.Instance.neutralExplosion;
     }
 
     void FixedUpdate()

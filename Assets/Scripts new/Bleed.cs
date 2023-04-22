@@ -11,7 +11,7 @@ public class Bleed : MonoBehaviour
 
     void Start()
     {
-        icon = GameObject.Find("bigFuckingMasterObject").GetComponent<EntityReferencerGuy>().bleedIcon;
+        icon = EntityReferencerGuy.Instance.bleedIcon;
         spawnedIcon = Instantiate(icon);
         spawnedIcon.GetComponent<Icons>().owner = gameObject;
         spawnedIcon.GetComponent<Icons>().statusType = 0;
