@@ -286,6 +286,12 @@ public class ThirdEnemySpawner : MonoBehaviour
     void SpawnItems()
     {
         enemiesAreSpawning = false;
+        GameObject[] enemyBullets = GameObject.FindGameObjectsWithTag("enemyBullet");
+        foreach (GameObject bullet in enemyBullets)
+        {
+            Destroy(bullet);
+        }
+
         for (int i = 0; i < 3; i++)
         {
             GameObject newObject = Instantiate(itemPedestal, new Vector3(5 * i - 5, 3, 8) + Camera.transform.position, transform.rotation) as GameObject;

@@ -18,9 +18,6 @@ public class setLightColour : MonoBehaviour
 
         switch (curseType)
         {
-            case -2:
-                gameObject.GetComponent<Light>().intensity = 0;
-                break;
             case 0: // Gives player three of the item, gives enemies one.
                 gameObject.GetComponent<Light>().color = Color.red;
                 break;
@@ -46,5 +43,7 @@ public class setLightColour : MonoBehaviour
                 gameObject.GetComponent<Light>().color = new Color(1, 0.843f, 0, 1);
                 break;
         }
+
+        gameObject.GetComponent<Light>().intensity = 40;
     }
 }

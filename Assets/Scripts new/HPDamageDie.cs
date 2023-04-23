@@ -20,6 +20,8 @@ public class HPDamageDie : MonoBehaviour
     GameObject Player;
     public GameObject XP;
     [System.NonSerialized] public float[] resistVals = new float[] { 0, 0, 0, 0, 0, 0, 0, 0 }; // Should be a minimum of one entry for each actual real damage type.
+    public string lastDamageSourceName;
+    GameObject lastDamageSource;
 
     public bool makeKillSound = true;
 
@@ -95,10 +97,11 @@ public class HPDamageDie : MonoBehaviour
         colorChangeTimer--;
     }
 
-    public void Hurty(float damageAmount, bool isCrit, bool playSound, float iFrameFac, int damageType, bool bypassIframes)
+    public void Hurty(float damageAmount, bool isCrit, bool playSound, float iFrameFac, int damageType, bool bypassIframes, GameObject objectResponsible)
     {
         //Debug.Log("shoulda taken a lil damage cunt, " + gameObject.name.ToString() + " / " + damageAmount.ToString());
         //Debug.Log(resistVals[damageType].ToString());
+        lastDamageSourceName = objectResponsible.ToString();
 
         if (gameObject.GetComponent<ItemEASIERTIMES>() != null && Mathf.RoundToInt(100 * (0.8f - 1f / (gameObject.GetComponent<ItemEASIERTIMES>().instances + 1f))) > Random.Range(0, 100))
         {
@@ -169,7 +172,7 @@ public class HPDamageDie : MonoBehaviour
             {
                 Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>(), true);
             }
-            Hurty(damageAmount, isCrit, true, 1, col.gameObject.GetComponent<DealDamage>().damageType, false);
+            Hurty(damageAmount, isCrit, true, 1, col.gameObject.GetComponent<DealDamage>().damageType, false, col.gameObject);
         }
     }
 
@@ -210,7 +213,7 @@ public class HPDamageDie : MonoBehaviour
                     damageAmount *= Mathf.Clamp(1.5f * (-3.33f * Mathf.Log(fracFromCtr + 1) + 1), 0, 1);
                 }
 
-                Hurty(damageAmount, isCrit, true, col.GetComponent<DealDamage>().iFrameFac, col.gameObject.GetComponent<DealDamage>().damageType, false);
+                Hurty(damageAmount, isCrit, true, col.GetComponent<DealDamage>().iFrameFac, col.gameObject.GetComponent<DealDamage>().damageType, false, col.gameObject);
             }
         }
     }

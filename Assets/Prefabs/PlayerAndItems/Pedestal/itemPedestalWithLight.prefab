@@ -145,7 +145,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.3287239, g: 0, b: 1, a: 1}
-  m_Intensity: 40
+  m_Intensity: 0
   m_Range: 8
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -422,8 +422,10 @@ MonoBehaviour:
   - {fileID: -70919585, guid: e0fb38cd9cae423489f4b20e3884c4b0, type: 3}
   - {fileID: -1699823426, guid: e0fb38cd9cae423489f4b20e3884c4b0, type: 3}
   spriteRenderer: {fileID: 9051745121226363958}
+  master: {fileID: 0}
   curseType: -2
   description: 
+  curseDescription: 
   enemiesCanUse: 0
   chosenQuality: 0
   qualityWeightsSum: 0
@@ -448,3 +450,4 @@ MonoBehaviour:
   enemiesCanUse: 0
   quality: 0
   itemDescription: 
+  curseDescription: 

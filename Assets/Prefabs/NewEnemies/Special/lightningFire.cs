@@ -112,7 +112,7 @@ public class lightningFire : MonoBehaviour
                 Debug.Log("Current lazer check pos:" + currentPlace.ToString());
                 if ((currentPlace - torgot.transform.position).magnitude < 0.5f)
                 {
-                    torgot.GetComponent<HPDamageDie>().Hurty(gameObject.GetComponent<DealDamage>().finalDamageStat, false, true, 1, (int)DAMAGETYPES.ELECTRIC, false);
+                    torgot.GetComponent<HPDamageDie>().Hurty(gameObject.GetComponent<DealDamage>().finalDamageStat, false, true, 1, (int)DAMAGETYPES.ELECTRIC, false, gameObject);
                 }
             }
 
