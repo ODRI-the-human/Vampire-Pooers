@@ -10,6 +10,14 @@ public class ItemATG : MonoBehaviour
     public int instances = 1;
     float pringle;
 
+    void IncreaseInstances(string name)
+    {
+        if (name == this.GetType().ToString())
+        {
+            instances++;
+        }
+    }
+
     void Start()
     {
         if (gameObject.tag == "PlayerBullet" || gameObject.tag == "Player")

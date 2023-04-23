@@ -14,6 +14,14 @@ public class ItemDAGGERTHROW : MonoBehaviour
     float currentAngle;
     public int instances = 1;
 
+    void IncreaseInstances(string name)
+    {
+        if (name == this.GetType().ToString())
+        {
+            instances++;
+        }
+    }
+
     void Start()
     {        
         Bullet = EntityReferencerGuy.Instance.playerBullet;

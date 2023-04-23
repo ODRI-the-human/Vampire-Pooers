@@ -14,6 +14,14 @@ public class ItemFOURDIRMARTY : MonoBehaviour
         garryFredricson = 0;
     }
 
+    void IncreaseInstances(string name)
+    {
+        if (name == this.GetType().ToString())
+        {
+            instances++;
+        }
+    }
+
     void Update()
     {
         if (gameObject.GetComponent<Attack>().timesFired % 4 == 0 && garryFredricson == 0)

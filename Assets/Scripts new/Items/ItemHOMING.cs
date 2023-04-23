@@ -16,6 +16,14 @@ public class ItemHOMING : MonoBehaviour
     GameObject[] gos;
     public float speed;
 
+    void IncreaseInstances(string name)
+    {
+        if (name == this.GetType().ToString())
+        {
+            instances++;
+        }
+    }
+
     void Start()
     {
         if (gameObject.GetComponent<checkAllLazerPositions>() == null)

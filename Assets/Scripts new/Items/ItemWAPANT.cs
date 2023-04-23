@@ -10,6 +10,14 @@ public class ItemWAPANT : MonoBehaviour
     public GameObject wapantCircle;
     bool isActive = false;
 
+    void IncreaseInstances(string name)
+    {
+        if (name == this.GetType().ToString())
+        {
+            instances++;
+        }
+    }
+
     void Start()
     {
         wapantCircle = EntityReferencerGuy.Instance.wapantCircle;

@@ -40,7 +40,8 @@ public class itemPedestal : MonoBehaviour
         maxRange = EntityReferencerGuy.Instance.numItemsExist;
         //maxRange = 5;
         gos = GameObject.FindGameObjectsWithTag("item");
-        GameObject.Find("newPlayer").GetComponent<getItemDescription>().itemsExist = true;
+        EntityReferencerGuy.Instance.playerInstance.GetComponent<getItemDescription>().itemsExist = true;
+        EntityReferencerGuy.Instance.playerInstance.GetComponent<Attack>().canShoot = false;
         Invoke(nameof(SetDescription), 0.02f);
 
         foreach (int i in specialItemWeights)
@@ -120,29 +121,28 @@ public class itemPedestal : MonoBehaviour
             itemChosen = Mathf.RoundToInt(Random.Range(minRange, maxRange));
             spriteRenderer.sprite = spriteArray[itemChosen];
 
-            gameObject.GetComponent<ItemDescriptions>().itemChosen = itemChosen;
-            gameObject.GetComponent<ItemDescriptions>().getItemDescription();
-            randomedQuality = gameObject.GetComponent<ItemDescriptions>().quality;
+            master.GetComponent<ItemDescriptions>().itemChosen = itemChosen;
+            master.GetComponent<ItemDescriptions>().getItemDescription();
+            randomedQuality = master.GetComponent<ItemDescriptions>().quality;
         }
     }
 
     void SetDescription()
     {
-        gameObject.GetComponent<ItemDescriptions>().itemChosen = itemChosen;
-        gameObject.GetComponent<ItemDescriptions>().getItemDescription();
-        description = gameObject.GetComponent<ItemDescriptions>().itemDescription;
+        master.GetComponent<ItemDescriptions>().itemChosen = itemChosen;
+        master.GetComponent<ItemDescriptions>().getItemDescription();
+        description = master.GetComponent<ItemDescriptions>().itemDescription;
 
         // this is for cursed items!
         curseType = -2;
-        enemiesCanUse = gameObject.GetComponent<ItemDescriptions>().enemiesCanUse;
         int sproinkle = -2;
 
-        if (enemiesCanUse)
+        if (chosenQuality != (int)ITEMTIERS.WEAPON)
         {
-            sproinkle = Random.Range(0, 16); // Determines whether the item is cursed or not (1/15 chance)
+            sproinkle = Random.Range(0, 11); // Determines whether the item is cursed or not (1/10 chance)
         }
 
-        if (sproinkle == 0)
+        if (sproinkle == 5)
         {
             int randomWacky = Random.Range(0, specialItemWeightsSum);
             int currentWeightSum = 0;
@@ -157,8 +157,8 @@ public class itemPedestal : MonoBehaviour
             }
         }
 
-        gameObject.GetComponent<ItemDescriptions>().GetCurseDescription(curseType);
-        curseDescription = gameObject.GetComponent<ItemDescriptions>().curseDescription;
+        master.GetComponent<ItemDescriptions>().GetCurseDescription(curseType);
+        curseDescription = master.GetComponent<ItemDescriptions>().curseDescription;
     }
 
     //void OnTriggerEnter2D(Collider2D col)

@@ -15,12 +15,12 @@ GameObject:
   - component: {fileID: 4374958713579622480}
   - component: {fileID: 25942212581661553}
   - component: {fileID: 5978693283028907381}
-  - component: {fileID: -1108829160977246395}
   - component: {fileID: -2547675152280945318}
   - component: {fileID: 5168991052472996590}
   - component: {fileID: -2434447446673772548}
   - component: {fileID: -4320272428008137812}
   - component: {fileID: 3951051313804528509}
+  - component: {fileID: 6494547038156782421}
   m_Layer: 0
   m_Name: bigFuckingMasterObject
   m_TagString: MasterObject
@@ -219,23 +219,6 @@ MonoBehaviour:
   doTheShit: 1
   playerBullet: {fileID: 0}
   enemyBullet: {fileID: 0}
---- !u!114 &-1108829160977246395
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7002239379606652682}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 898bb6c7b1e863142a7762589706224b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemChosen: 0
-  enemiesCanUse: 0
-  quality: 0
-  itemDescription: 
-  curseDescription: 
 --- !u!114 &-2547675152280945318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -391,3 +374,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numRoundsDropItemLeft: 0
+--- !u!114 &6494547038156782421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7002239379606652682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eced7db9ba902254698e2a49e38b4b49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemChosen: 0
+  enemiesCanUse: 1
+  addNewScriptForNewInstance: 0
+  whatUses: 0
+  quality: 0
+  itemDescription: 
+  curseDescription: 

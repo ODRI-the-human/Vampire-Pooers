@@ -9,6 +9,14 @@ public class ItemCREEP : MonoBehaviour
     public GameObject Creep;
     bool isPerson = false;
 
+    void IncreaseInstances(string name)
+    {
+        if (name == this.GetType().ToString())
+        {
+            instances++;
+        }
+    }
+
     void Start()
     {
         if (gameObject.tag == "Hostile")

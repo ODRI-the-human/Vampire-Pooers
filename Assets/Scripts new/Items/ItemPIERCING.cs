@@ -6,6 +6,14 @@ public class ItemPIERCING : MonoBehaviour
 {
     public int instances = 1;
 
+    void IncreaseInstances(string name)
+    {
+        if (name == this.GetType().ToString())
+        {
+            instances++;
+        }
+    }
+
     void Start()
     {
         gameObject.GetComponent<Bullet_Movement>().piercesLeft += 1;

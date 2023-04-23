@@ -5,6 +5,15 @@ using UnityEngine;
 public class ItemCREEPSHOT : MonoBehaviour
 {
     public GameObject creeper;
+    public int instances = 1;
+
+    void IncreaseInstances(string name)
+    {
+        if (name == this.GetType().ToString())
+        {
+            instances++;
+        }
+    }
 
     void OnCollisionEnter2D(Collision2D col)
     {
@@ -19,6 +28,11 @@ public class ItemCREEPSHOT : MonoBehaviour
         GameObject buoerber = Instantiate(creeper, transform.position, Quaternion.Euler(0, 0, 0));
         buoerber.transform.position = new Vector3(transform.position.x, transform.position.y, 0);
         buoerber.GetComponent<DealDamage>().overwriteDamageCalc = true;
-        buoerber.GetComponent<DealDamage>().damageAmt = 0.1f * gameObject.GetComponent<DealDamage>().damageAmt;
+        buoerber.GetComponent<DealDamage>().damageAmt = 0.1f * gameObject.GetComponent<DealDamage>().damageAmt * instances;
+    }
+
+    void Undo()
+    {
+        Destroy(this);
     }
 }

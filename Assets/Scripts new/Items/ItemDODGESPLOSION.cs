@@ -9,6 +9,14 @@ public class ItemDODGESPLOSION : MonoBehaviour
     GameObject contacter;
     public int instances = 1;
 
+    void IncreaseInstances(string name)
+    {
+        if (name == this.GetType().ToString())
+        {
+            instances++;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {

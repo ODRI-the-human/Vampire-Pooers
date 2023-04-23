@@ -7,6 +7,14 @@ public class ItemPERFECTHEAL : MonoBehaviour
     public int instances = 1;
     int totalIncrease = 0;
 
+    void IncreaseInstances(string name)
+    {
+        if (name == this.GetType().ToString())
+        {
+            instances++;
+        }
+    }
+
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.tag == "item" && gameObject.GetComponent<HPDamageDie>().perfectWaves > 1)

@@ -59,6 +59,9 @@ public class ThirdEnemySpawner : MonoBehaviour
     {
         Player = GameObject.Find("newPlayer");
         Camera = GameObject.Find("Main Camera");
+
+        playerBannedDodge = (int)ITEMLIST.DODGEROLL;
+        playerBannedWeapon = (int)ITEMLIST.PISTOL;
     }
 
     // Update is called once per frame

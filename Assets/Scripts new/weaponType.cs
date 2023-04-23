@@ -13,16 +13,6 @@ public class weaponType : MonoBehaviour
     public int previousFireType;
     public float previousFireTimerLengthMLT;
 
-    // Start is called before the first frame update
-    //void Awake()
-    //{
-    //    if (gameObject.tag == "Player" || gameObject.tag == "PlayerBullet")
-    //    {
-    //        weaponHeld = (int)ITEMLIST.PISTOL;
-    //        master = EntityReferencerGuy.Instance.master;
-    //    }
-    //}
-
     void Start()
     {
         if (gameObject.GetComponent<Attack>() != null)
@@ -72,6 +62,10 @@ public class weaponType : MonoBehaviour
                     gameObject.GetComponent<Attack>().fireTimerLengthMLT = 1.5f;
                     gameObject.GetComponent<Attack>().shotSpeed = 45;
                     gameObject.GetComponent<Attack>().holdDownToShoot = true;
+                }
+                if (gameObject.GetComponent<Attack>() == null)
+                {
+                    gameObject.AddComponent<explodeOnHit>();
                 }
                 break;
             case (int)ITEMLIST.DARKARTS:

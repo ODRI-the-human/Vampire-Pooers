@@ -123,7 +123,7 @@ public class Bullet_Movement : MonoBehaviour
         }
     }
 
-    void KillBullet()
+    public void KillBullet()
     {
         //Destroy(gameObject);
         //gameObject.SetActive(false);

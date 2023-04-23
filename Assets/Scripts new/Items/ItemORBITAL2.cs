@@ -11,6 +11,14 @@ public class ItemORBITAL2 : MonoBehaviour
 
     int timey = 0;
 
+    void IncreaseInstances(string name)
+    {
+        if (name == this.GetType().ToString())
+        {
+            instances++;
+        }
+    }
+
     void Start()
     {
         if (gameObject.tag == "Player" || gameObject.tag == "Hostile")

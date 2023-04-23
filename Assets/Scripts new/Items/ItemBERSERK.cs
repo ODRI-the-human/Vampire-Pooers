@@ -16,6 +16,14 @@ public class ItemBERSERK : MonoBehaviour
     public int instances = 1;
     bool isActive = false;
 
+    void IncreaseInstances(string name)
+    {
+        if (name == this.GetType().ToString())
+        {
+            instances++;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {

@@ -22,6 +22,7 @@ public class mouseItemSelection : MonoBehaviour
         {
             col.gameObject.GetComponent<itemPedestal>().GiveDaItem(master);
             master.GetComponent<ItemHolder>().GiveFunny(col.gameObject);
+            EntityReferencerGuy.Instance.playerInstance.GetComponent<Attack>().canShoot = true;
         }
     }
 }

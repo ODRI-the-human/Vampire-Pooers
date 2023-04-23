@@ -44,6 +44,9 @@ public class setLightColour : MonoBehaviour
                 break;
         }
 
-        gameObject.GetComponent<Light>().intensity = 40;
+        if (curseType != -2)
+        {
+            gameObject.GetComponent<Light>().intensity = 40;
+        }
     }
 }

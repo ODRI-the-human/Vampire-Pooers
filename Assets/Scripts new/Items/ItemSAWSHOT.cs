@@ -14,6 +14,14 @@ public class ItemSAWSHOT : MonoBehaviour
 
     public GameObject SawShotVisual;
 
+    void IncreaseInstances(string name)
+    {
+        if (name == this.GetType().ToString())
+        {
+            instances++;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {

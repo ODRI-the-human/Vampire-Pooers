@@ -13,6 +13,12 @@ public class explodeOnHit : MonoBehaviour
     void Start()
     {
         explosion = EntityReferencerGuy.Instance.neutralExplosion;
+        timer = 0;
+    }
+
+    public void DetermineShotRolls()
+    {
+        timer = 0;
     }
 
     void FixedUpdate()
@@ -20,7 +26,7 @@ public class explodeOnHit : MonoBehaviour
         if (timer == 15 && gameObject.GetComponent<Rigidbody2D>().simulated)
         {
             exploSoin();
-            Destroy(gameObject);
+            gameObject.GetComponent<Bullet_Movement>().KillBullet();
         }
 
         timer++;

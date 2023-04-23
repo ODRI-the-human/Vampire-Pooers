@@ -8,6 +8,14 @@ public class ItemBRICK : MonoBehaviour
     public bool isAProc;
     public Vector3 normieScale;
 
+    void IncreaseInstances(string name)
+    {
+        if (name == this.GetType().ToString())
+        {
+            instances++;
+        }
+    }
+
     void Start()
     {
         Debug.Log("brick added");

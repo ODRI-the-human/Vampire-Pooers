@@ -26,7 +26,7 @@ public class HPDamageDie : MonoBehaviour
     public bool makeKillSound = true;
 
     public float damageReduction = 0;
-    [System.NonSerialized] public float damageDiv = 1;
+    public float damageDiv = 1;
 
     public int perfectWaves = 0;
 
@@ -117,7 +117,6 @@ public class HPDamageDie : MonoBehaviour
 
             if ((iFrames < 0 || bypassIframes) && damageAmount != 0)
             {
-                SendMessage("OnHurtEffects");
                 if (playSound)
                 {
                     GameObject hurteo = Instantiate(PlayerHurtAudio, new Vector3(0,0,-5), transform.rotation);
@@ -149,6 +148,7 @@ public class HPDamageDie : MonoBehaviour
                 //}
 
                 master.GetComponent<showDamageNumbers>().showDamage(transform.position, damageAmount, damageType, isCrit);
+                SendMessage("OnHurtEffects");
             }
         }
     }

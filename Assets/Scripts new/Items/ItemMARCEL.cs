@@ -8,7 +8,14 @@ public class ItemMARCEL : MonoBehaviour
     GameObject marcelInstance;
     int timer = 2200;
 
-    // Start is called before the first frame update
+    void IncreaseInstances(string name)
+    {
+        if (name == this.GetType().ToString())
+        {
+            instances++;
+        }
+    }
+
     void Start()
     {
         marcelInstance = EntityReferencerGuy.Instance.marcelageloo;

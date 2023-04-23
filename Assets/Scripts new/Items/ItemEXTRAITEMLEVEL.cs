@@ -7,6 +7,14 @@ public class ItemEXTRAITEMLEVEL : MonoBehaviour
     public int instances = 1;
     int noExtraToGive = 0;
 
+    void IncreaseInstances(string name)
+    {
+        if (name == this.GetType().ToString())
+        {
+            instances++;
+        }
+    }
+
     public void LevelEffects()
     {
         if (gameObject.GetComponent<LevelUp>().level % 4 == 0)

@@ -5,6 +5,13 @@ using UnityEngine;
 public class ItemMORELEVELSTATS : MonoBehaviour
 {
     public int instances = 1;
+    void IncreaseInstances(string name)
+    {
+        if (name == this.GetType().ToString())
+        {
+            instances++;
+        }
+    }
 
     public void Undo()
     {

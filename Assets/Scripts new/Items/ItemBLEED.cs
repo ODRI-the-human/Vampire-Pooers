@@ -9,6 +9,14 @@ public class ItemBLEED : MonoBehaviour
     float procMoment;
     float iFrameLength = 0;
 
+    void IncreaseInstances(string name)
+    {
+        if (name == this.GetType().ToString())
+        {
+            instances++;
+        }
+    }
+
     void RollOnHit(GameObject guyToEffect)
     {
         procMoment = 100f - instances * 15 * gameObject.GetComponent<DealDamage>().procCoeff;

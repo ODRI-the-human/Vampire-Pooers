@@ -7,6 +7,14 @@ public class ItemPOISONSPLOSM : MonoBehaviour
     public int instances = 1;
     public GameObject poisonSplosm;
 
+    void IncreaseInstances(string name)
+    {
+        if (name == this.GetType().ToString())
+        {
+            instances++;
+        }
+    }
+
     void Start()
     {
         if (gameObject.tag == "Player")

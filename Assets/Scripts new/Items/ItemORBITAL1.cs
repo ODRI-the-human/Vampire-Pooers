@@ -7,6 +7,14 @@ public class ItemORBITAL1 : MonoBehaviour
     GameObject orbSkothos;
     public int instances = 1;
 
+    void IncreaseInstances(string name)
+    {
+        if (name == this.GetType().ToString())
+        {
+            instances++;
+        }
+    }
+
     void Start()
     {
         SpawnGaries();

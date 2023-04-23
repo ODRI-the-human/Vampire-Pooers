@@ -6,10 +6,12 @@ public class ItemHEALTHXP : MonoBehaviour
 {
     public int instances = 1;
 
-    // Start is called before the first frame update
-    void Start()
+    void IncreaseInstances(string name)
     {
-        
+        if (name == this.GetType().ToString())
+        {
+            instances++;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D col)

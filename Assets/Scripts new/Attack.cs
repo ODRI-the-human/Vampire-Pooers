@@ -63,6 +63,7 @@ public class Attack : MonoBehaviour
 
     public ObjectPool<GameObject> bulletPool;
     public int numBulletsPossible = 16; // This is for object pooling; this should be plenty for most enemies in default circumstances.
+    public bool canShoot = true;
 
 
     void Start()
@@ -138,7 +139,7 @@ public class Attack : MonoBehaviour
             {
                 case true:
                     vectorToTarget = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x - gameObject.transform.position.x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y - gameObject.transform.position.y).normalized;
-                    if ((Input.GetButton("Fire1") && holdDownToShoot) || (Input.GetButtonDown("Fire1") && !holdDownToShoot)) // if the player is holding shoot with hold enabled, or presses shoot with hold disabled.
+                    if (((Input.GetButton("Fire1") && holdDownToShoot) || (Input.GetButtonDown("Fire1") && !holdDownToShoot)) && canShoot) // if the player is holding shoot with hold enabled, or presses shoot with hold disabled.
                     {
                         UseWeapon(false);
                         timesFired++;
@@ -364,12 +365,10 @@ public class Attack : MonoBehaviour
         reTargetTimer--;
     }
 
-    public void itemsAdded(GameObject nothing)
+    public void itemsAdded(bool nothing)
     {
         Debug.Log("funker dunker");
-
         bulletPool.Dispose();
-        bulletPool.Clear();
         timesFired = -1;
     }
 }

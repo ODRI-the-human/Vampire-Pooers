@@ -12,6 +12,14 @@ public class ItemSPLIT : MonoBehaviour
     public int instances = 1;
     GameObject Buuleter;
 
+    void IncreaseInstances(string name)
+    {
+        if (name == this.GetType().ToString())
+        {
+            instances++;
+        }
+    }
+
     void Start()
     {
         owner = gameObject.GetComponent<DealDamage>().owner;
@@ -25,8 +33,6 @@ public class ItemSPLIT : MonoBehaviour
         }
         Buuleter = owner.GetComponent<Attack>().Bullet;
     }
-
-
 
     // Start is called before the first frame update
     void OnCollisionEnter2D(Collision2D col)

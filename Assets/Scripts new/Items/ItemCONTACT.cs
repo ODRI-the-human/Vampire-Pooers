@@ -7,6 +7,14 @@ public class ItemCONTACT : MonoBehaviour
     public int instances = 1;
     GameObject Bingus; // This is the contact instance.
 
+    void IncreaseInstances(string name)
+    {
+        if (name == this.GetType().ToString())
+        {
+            instances++;
+        }
+    }
+
     void Start()
     {
         DetermineShotRolls();

@@ -111,7 +111,6 @@ GameObject:
   - component: {fileID: 7674381605585770213}
   - component: {fileID: 7674381605585770212}
   - component: {fileID: 7674381605585770216}
-  - component: {fileID: 8191072633798459801}
   m_Layer: 12
   m_Name: itemPedestal
   m_TagString: item
@@ -236,6 +235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 581f48f82327f234f92a4cde03cff3f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doRandomiseItem: 1
   itemChosen: 0
   spriteArray:
   - {fileID: 357339062, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
@@ -292,7 +292,10 @@ MonoBehaviour:
   - {fileID: -70919585, guid: e0fb38cd9cae423489f4b20e3884c4b0, type: 3}
   - {fileID: -1699823426, guid: e0fb38cd9cae423489f4b20e3884c4b0, type: 3}
   spriteRenderer: {fileID: 7674381605585770212}
+  master: {fileID: 0}
+  curseType: -2
   description: 
+  curseDescription: 
   enemiesCanUse: 0
   chosenQuality: 0
   qualityWeightsSum: 0
@@ -301,19 +304,3 @@ MonoBehaviour:
   bannedWeapon: 0
   bannedDodge: 0
   specialItemWeightsSum: 0
---- !u!114 &8191072633798459801
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7674381605585770215}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 898bb6c7b1e863142a7762589706224b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemChosen: 0
-  enemiesCanUse: 0
-  quality: 0
-  itemDescription: 
