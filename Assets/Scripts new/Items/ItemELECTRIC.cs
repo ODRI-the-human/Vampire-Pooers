@@ -23,7 +23,7 @@ public class ItemELECTRIC : MonoBehaviour
 
     void Start()
     {
-        if (gameObject.tag == "Player")
+        if (gameObject.tag == "Player" || gameObject.tag == "Hostile")
         {
             owner = gameObject;
         }
@@ -54,10 +54,11 @@ public class ItemELECTRIC : MonoBehaviour
                     owner.GetComponent<ItemELECTRIC>().enemiesEffected.Add(gamer);
                 }
 
-                gamer.GetComponent<Statuses>().hasElectric = 1;
+                gamer.GetComponent<Statuses>().hasElectric = true;
                 if (!gamer.GetComponent<Statuses>().iconOrder.Contains(2))
                 {
                     gamer.GetComponent<Statuses>().iconOrder.Add(2);
+                    gamer.GetComponent<Statuses>().electricDealers.Add(owner);
                 }
             }
         }

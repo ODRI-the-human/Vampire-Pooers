@@ -41,7 +41,7 @@ public class itemPedestal : MonoBehaviour
         //maxRange = 5;
         gos = GameObject.FindGameObjectsWithTag("item");
         EntityReferencerGuy.Instance.playerInstance.GetComponent<getItemDescription>().itemsExist = true;
-        EntityReferencerGuy.Instance.playerInstance.GetComponent<Attack>().canShoot = false;
+        //EntityReferencerGuy.Instance.playerInstance.GetComponent<Attack>().canShoot = false;
         Invoke(nameof(SetDescription), 0.02f);
 
         foreach (int i in specialItemWeights)

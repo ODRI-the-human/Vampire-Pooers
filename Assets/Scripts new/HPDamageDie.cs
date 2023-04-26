@@ -58,26 +58,34 @@ public class HPDamageDie : MonoBehaviour
         master = EntityReferencerGuy.Instance.master;
     }
 
+    public void ApplyOwnOnDeaths()
+    {
+        Instantiate(XP, transform.position, Quaternion.Euler(0, 0, 0));
+        if (makeKillSound)
+        {
+            Instantiate(PlayerDieAudio);
+        }
+    }
+
     void Update()
     {
         if (HP < 0.5f)
         {
-            if (gameObject.GetComponent<moleShit>() != null)
+            SendMessage("ApplyOwnOnDeaths");
+            if (lastDamageSource != null) // otherwise it gets very funny
             {
-                if (gameObject.GetComponent<moleShit>().goesFirst && gameObject.GetComponent<moleShit>().mates.Count != 0)
+                if (gameObject.tag == "Hostile")
                 {
-                    GameObject bazza = gameObject.GetComponent<moleShit>().mates[0];
-                    bazza.GetComponent<moleShit>().goesFirst = true;
+                    lastDamageSource.SendMessage("ApplyItemOnDeaths", gameObject); // Calls the on-kill effects on the object responsible for the kill.
+                }
+                else
+                {
+                    EntityReferencerGuy.Instance.master.SendMessage("ApplyItemOnDeaths", gameObject);
                 }
             }
-            Instantiate(XP, transform.position, Quaternion.Euler(0, 0, 0));
-            if (makeKillSound)
-            {
-                Instantiate(PlayerDieAudio);
-            }
+
             Destroy(gameObject);
-            SendMessage("ApplyOwnOnDeaths");
-            EventManager.DeathEffects(transform.position);
+            //EventManager.DeathEffects(transform.position);
         }
 
         if (HP > MaxHP)
@@ -101,7 +109,8 @@ public class HPDamageDie : MonoBehaviour
     {
         //Debug.Log("shoulda taken a lil damage cunt, " + gameObject.name.ToString() + " / " + damageAmount.ToString());
         //Debug.Log(resistVals[damageType].ToString());
-        lastDamageSourceName = objectResponsible.ToString();
+        lastDamageSource = objectResponsible.GetComponent<DealDamage>().owner;
+        lastDamageSourceName = lastDamageSource.ToString();
 
         if (gameObject.GetComponent<ItemEASIERTIMES>() != null && Mathf.RoundToInt(100 * (0.8f - 1f / (gameObject.GetComponent<ItemEASIERTIMES>().instances + 1f))) > Random.Range(0, 100))
         {

@@ -24,10 +24,14 @@ public class ItemDODGESPLOSION : MonoBehaviour
         contacter = EntityReferencerGuy.Instance.contactMan;
     }
 
-    public void dodgeEndEffects()
+    public void DodgeEndEffects()
     {
         GameObject explodyDodge = Instantiate(dodgeSplosion, transform.position, transform.rotation);
         explodyDodge.transform.localScale *= 2.5f + 1.2f * instances;
+        if (gameObject.tag == "Hostile")
+        {
+            explodyDodge.tag = "enemyBullet";
+        }
         GameObject explodySodge = Instantiate(contacter, transform.position, transform.rotation);
         explodySodge.transform.localScale = explodyDodge.transform.localScale / 6;
         explodySodge.GetComponent<dieOnContactWithBullet>().master = explodyDodge;

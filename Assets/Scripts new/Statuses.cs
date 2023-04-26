@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,7 +16,8 @@ public class Statuses : MonoBehaviour
     GameObject spawnedSlowIcon;
     public int poisonStacks;
     public int bleedStacks = 0;
-    public int hasElectric = 0;
+    public bool hasElectric = false;
+    public List<GameObject> electricDealers = new List<GameObject>(); 
     public int bleedTimer = 0;
     public bool isFrozen = false;
     public int freezeTimer = 0;
@@ -49,15 +51,23 @@ public class Statuses : MonoBehaviour
 
     void FixedUpdate()
     {
-        //if (freezeTimer >= 0)
-        //{
-        //    gameObject.GetComponent<NewPlayerMovement>().isSlowed = 2;
-        //    gameObject.GetComponent<NewPlayerMovement>().slowTimer = freezeTimer;
-        //}
-        //else
-        //{
+        // Every 5 updates it checks if the enemies to deal electric are still alive, if not, removes them, and if none are alive it removes the status.
+        if (timer % 5 == 0)
+        {
+            for (int i = 0; i < electricDealers.Count; i++)
+            {
+                if (electricDealers[i] == null)
+                {
+                    electricDealers.RemoveAt(i);
+                }
+            }
 
-        //}
+            if (electricDealers.Count == 0)
+            {
+                hasElectric = false;
+            }
+        }
+        timer++;
 
         for (int i = 0; i < poisonTimers.Count; i++)
         {
@@ -90,19 +100,23 @@ public class Statuses : MonoBehaviour
             bleedStacks = 0;
         }
     }
+    
+    public void TriggerPoison(float damageAmt)
+    {
+        poisonTimers.Add(0);
+        poisonDamages.Add(damageAmt);
+        if (!iconOrder.Contains(1))
+        {
+            iconOrder.Add(1);
+        }
+        poisonStacks++;
+    }
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.GetComponent<TriggerPoison>() != null)
+        if (col.gameObject.GetComponent<TriggerPoison>() != null && gameObject.GetComponent<HPDamageDie>().iFrames < 0)
         {
-            poisonTimers.Add(0);
-            GameObject arse = col.gameObject.GetComponent<TriggerPoison>().owner;
-            poisonDamages.Add(arse.GetComponent<DealDamage>().damageToPresent * 0.1f);
-            if (!iconOrder.Contains(1))
-            {
-                iconOrder.Add(1);
-            }
-            poisonStacks++;
+            TriggerPoison(col.gameObject.GetComponent<TriggerPoison>().damageAmt);
         }
 
         if (col.gameObject.GetComponent<wapantCircle>() != null)

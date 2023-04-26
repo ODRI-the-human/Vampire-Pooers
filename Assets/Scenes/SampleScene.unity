@@ -449,7 +449,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5168991052472996590, guid: 2c1e033fc431a694499cc08ddf9a90b1, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5168991052472996590, guid: 2c1e033fc431a694499cc08ddf9a90b1, type: 3}
       propertyPath: m_audioClip
@@ -12857,7 +12857,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8d71c1993331384d95ba9aa69f26870, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  whichGuy: 0
+  Player: {fileID: 658927873}
 --- !u!1001 &4535434739227045201
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12891,15 +12891,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4142080894617498614, guid: 60144d236f99e61488c7f949bb853116, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4142080894617498614, guid: 60144d236f99e61488c7f949bb853116, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4142080894617498614, guid: 60144d236f99e61488c7f949bb853116, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4142080894617498614, guid: 60144d236f99e61488c7f949bb853116, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

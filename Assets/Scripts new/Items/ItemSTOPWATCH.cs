@@ -4,18 +4,30 @@ using UnityEngine;
 
 public class ItemSTOPWATCH : MonoBehaviour
 {
-    public int instances = 1;
+    float amountLol = 1.3f;
 
-    void IncreaseInstances(string name)
+    void Start()
     {
-        if (name == this.GetType().ToString())
+        if (gameObject.tag == "Player")
         {
-            instances++;
+            EntityReferencerGuy.Instance.master.GetComponent<MasterItemManager>().stopWatchInstances *= amountLol;
+        }
+        else
+        {
+            EntityReferencerGuy.Instance.master.GetComponent<MasterItemManager>().stopWatchInstances /= amountLol;
         }
     }
 
     public void Undo()
     {
+        if (gameObject.tag == "Player")
+        {
+            EntityReferencerGuy.Instance.master.GetComponent<MasterItemManager>().stopWatchInstances *= amountLol;
+        }
+        else
+        {
+            EntityReferencerGuy.Instance.master.GetComponent<MasterItemManager>().stopWatchInstances /= amountLol;
+        }
         Destroy(this);
     }
 }

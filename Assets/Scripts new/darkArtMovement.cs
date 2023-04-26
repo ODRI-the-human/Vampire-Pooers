@@ -15,7 +15,7 @@ public class darkArtMovement : MonoBehaviour
     void Start()
     {
         owner = gameObject.GetComponent<DealDamage>().owner;
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.CONTACT);
+        gameObject.AddComponent<ItemCONTACT>();
 
         if (gameObject.tag == "enemyBullet")
         {

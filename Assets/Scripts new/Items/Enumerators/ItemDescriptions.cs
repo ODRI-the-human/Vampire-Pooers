@@ -131,7 +131,7 @@ public class ItemDescriptions : MonoBehaviour
             case (int)ITEMLIST.STOPWATCH:
                 itemDescription = "Enemies move and shoot 25% slower. Slowdown increases with stacks.";
                 quality = (int)ITEMTIERS.UNCOMMON;
-                addNewScriptForNewInstance = false;
+                addNewScriptForNewInstance = true;
                 whatUses = (int)ITEMOWNERS.MASTERANDPLAYER;
                 break;
             case (int)ITEMLIST.BOUNCY:
@@ -201,7 +201,7 @@ public class ItemDescriptions : MonoBehaviour
                 whatUses = (int)ITEMOWNERS.BULLET;
                 break;
             case (int)ITEMLIST.POISONSPLOSM:
-                itemDescription = "Enemies explode on death, poisoning nearby enemies for 2 seconds for 10% of your damage. Size of explosion increases with stacks.";
+                itemDescription = "Enemies explode into poison on death, dealing 10% of their max health to nearby enemies over time. Size of explosion increases with stacks.";
                 quality = (int)ITEMTIERS.UNCOMMON;
                 addNewScriptForNewInstance = false;
                 whatUses = (int)ITEMOWNERS.MASTERANDPLAYER;
@@ -213,7 +213,7 @@ public class ItemDescriptions : MonoBehaviour
                 whatUses = (int)ITEMOWNERS.ALL;
                 break;
             case (int)ITEMLIST.BERSERK:
-                itemDescription = "Upon levelling up to an even level, your weapon is swapped with a melee knife that blocks all enemy shots for 3 (+3 per stack) seconds. Hits restore 5HP and kills restore 1 second on the timer.";
+                itemDescription = "Upon levelling up to an even level, your weapon is swapped with a melee dagger that blocks all enemy shots for 3 (+3 per stack) seconds. Hits restore 5HP and kills restore 1 second on the timer.";
                 quality = (int)ITEMTIERS.LEGENDARY;
                 addNewScriptForNewInstance = false;
                 whatUses = (int)ITEMOWNERS.ALL;

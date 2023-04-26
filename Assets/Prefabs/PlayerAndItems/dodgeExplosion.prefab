@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 158271131209982274}
   - component: {fileID: 158271131209982301}
   - component: {fileID: 158271131209982300}
+  - component: {fileID: 5735784433530354594}
   - component: {fileID: 7532106500356426380}
   - component: {fileID: 3366299037568390934}
   - component: {fileID: -5299763833223998159}
@@ -73,6 +74,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.08
+--- !u!114 &5735784433530354594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 158271131209982302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f04496c6858ed1c41be55bae1e00fca5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7532106500356426380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88,6 +101,7 @@ MonoBehaviour:
   finalDamageStat: 0
   procCoeff: 1
   damageBase: 50
+  damageAdd: 0
   damageMult: 1
   finalDamageMult: 1
   finalDamageDIV: 1
@@ -102,8 +116,8 @@ MonoBehaviour:
   timer: 0
   damageAmt: 0
   iFrameFac: 1
-  isBulletClone: 0
   damageToPresent: 0
+  damageType: 0
 --- !u!114 &3366299037568390934
 MonoBehaviour:
   m_ObjectHideFlags: 0

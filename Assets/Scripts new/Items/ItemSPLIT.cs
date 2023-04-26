@@ -31,18 +31,18 @@ public class ItemSPLIT : MonoBehaviour
         {
             speed = 15;
         }
-        Buuleter = owner.GetComponent<Attack>().Bullet;
     }
 
     // Start is called before the first frame update
-    void OnCollisionEnter2D(Collision2D col)
+    void RollOnHit(GameObject victim)
     {
+        Buuleter = gameObject;
         Vector2 enemyPos = new Vector2(transform.position.x, transform.position.y);
-        Vector2 bulletPos = new Vector2(col.transform.position.x, col.transform.position.y);
+        Vector2 bulletPos = new Vector2(victim.transform.position.x, victim.transform.position.y);
         ShotVector = speed * (bulletPos - enemyPos).normalized;
 
         Debug.Log("Splimt");
-        if (canSplit && col.gameObject.tag != "Wall")
+        if (canSplit && victim.tag != "Wall")
         {
             if (gameObject.tag == "PlayerBullet" || gameObject.tag == "enemyBullet")
             {
@@ -55,18 +55,26 @@ public class ItemSPLIT : MonoBehaviour
                     Splitman1.GetComponent<DealDamage>().owner = owner;
                     Splitman1.GetComponent<DealDamage>().damageBase += owner.GetComponent<Attack>().Crongus;
                     Splitman1.GetComponent<Rigidbody2D>().simulated = true;
-                    Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), Splitman1.GetComponent<Collider2D>(), true);
+                    Physics2D.IgnoreCollision(victim.GetComponent<Collider2D>(), Splitman1.GetComponent<Collider2D>(), true);
                     Splitman1.GetComponent<ItemSPLIT>().canSplit = false;
                     if (gameObject.GetComponent<isMelee>() != null)
                     {
                         speed = 15;
-                        ShotVector = speed * (owner.transform.position - col.gameObject.transform.position).normalized;
-                        Splitman1.transform.position = col.gameObject.transform.position;
+                        ShotVector = speed * (owner.transform.position - victim.transform.position).normalized;
+                        Splitman1.transform.position = victim.transform.position;
                         Splitman1.transform.localScale = 0.3f * new Vector3(1, 1, 1);
                     }
                     Splitman1.GetComponent<Rigidbody2D>().velocity = new Vector3(ShotVector.x * Mathf.Cos(-((i * 2) - 1) * Mathf.PI / 2) - ShotVector.y * Mathf.Sin(-((i * 2) - 1) * Mathf.PI / 2), ShotVector.x * Mathf.Sin(-((i * 2) - 1) * Mathf.PI / 2) + ShotVector.y * Mathf.Cos(-((i * 2) - 1) * Mathf.PI / 2), 0);
                 }
             }
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (!canSplit)
+        {
+            Destroy(gameObject);
         }
     }
 

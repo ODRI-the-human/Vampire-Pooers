@@ -24,7 +24,7 @@ public class SawShotCreep : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (gameObject.GetComponent<DealDamage>().timer % 10 == 0)
+        if (gameObject.GetComponent<DealDamage>().timer % 20 == 0)
         {
             GameObject Bongo = Instantiate(creepy, gameObject.GetComponent<SawRotation>().guyLatchedTo.transform.position, Quaternion.Euler(0,0,0));
             Bongo.transform.position = new Vector3(Bongo.transform.position.x, Bongo.transform.position.y, 0);

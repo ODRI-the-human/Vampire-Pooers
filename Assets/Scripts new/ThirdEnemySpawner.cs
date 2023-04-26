@@ -20,6 +20,10 @@ public class ThirdEnemySpawner : MonoBehaviour
     int noSpawnsBeforeNewWave = 4; // actually should be one more than the desired number, for some reason.
     public int numberEnemiesSpawned;
 
+    int stepUpTo = 0; // Keeps track of what step the spawner is up to, 0 is spawning, 1 is waiting for player to pick items.
+    GameObject[] spawnedPedestals;
+    int numSpawnedPedestals;
+
     public bool bypassWaves;
 
     public GameObject chaseEnemy;
@@ -57,6 +61,8 @@ public class ThirdEnemySpawner : MonoBehaviour
 
     void Start()
     {
+        spawnTimer = 5;
+
         Player = GameObject.Find("newPlayer");
         Camera = GameObject.Find("Main Camera");
 
@@ -67,37 +73,44 @@ public class ThirdEnemySpawner : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (stepUpTo == 1)
+        {
+            if (GameObject.FindGameObjectsWithTag("item").Length == 0)
+            {
+                StartWave();
+            }
+            else
+            {
+                spawnTimer = 50;
+            }
+        }
+
         waveText.text = "Wave: " + (spawnNumber - 1).ToString() + " / Round: " + (waveNumber + 1).ToString();
-        spawnTimer -= 1;
+        spawnTimer--;
         if (spawnTimer < 0)
         {
-            if (GameObject.FindGameObjectsWithTag("item").Length < 1)
+            enemiesAreSpawning = true;
+            if (spawnNumber - waveNumber != noSpawnsBeforeNewWave)
             {
-                enemiesAreSpawning = true;
-                if (spawnNumber - waveNumber != noSpawnsBeforeNewWave)
+                PickAction();
+                spawnNumber += 1;
+                currentXP += xpPerWave;
+                spawnTimerLength /= 1.025f;
+                spawnTimer = spawnTimerLength;
+            }
+            else
+            {
+                if (GameObject.FindGameObjectsWithTag("Hostile").Length < 1)
                 {
                     PickAction();
                     spawnNumber += 1;
                     currentXP += xpPerWave;
-                    totalSpawnsSurvived++;
                     spawnTimerLength /= 1.025f;
                     spawnTimer = spawnTimerLength;
                 }
-                else
-                {
-                    if (GameObject.FindGameObjectsWithTag("Hostile").Length < 1)
-                    {
-                        PickAction();
-                        spawnNumber += 1;
-                        currentXP += xpPerWave;
-                        totalSpawnsSurvived++;
-                        spawnTimerLength /= 1.025f;
-                        spawnTimer = spawnTimerLength;
-                    }
-                }
             }
         }
-        if (GameObject.FindGameObjectsWithTag("Hostile").Length < 1)
+        if (GameObject.FindGameObjectsWithTag("Hostile").Length < 1 && spawnTimer > 10)
         {
             if (GameObject.FindGameObjectsWithTag("item").Length < 1)
             {
@@ -111,6 +124,7 @@ public class ThirdEnemySpawner : MonoBehaviour
         if (spawnNumber - waveNumber != noSpawnsBeforeNewWave && !bypassWaves)
         {
             SpawnEnemies();
+            totalSpawnsSurvived++;
         }
         else
         {
@@ -120,6 +134,8 @@ public class ThirdEnemySpawner : MonoBehaviour
 
     void SpawnEnemies()
     {
+        stepUpTo = 0;
+
         Debug.Log("Spawning a... LIBERAL!");
         numberEnemiesSpawned = Mathf.RoundToInt(Random.Range(minSpawnMultiplier * ((spawnNumber + waveNumber * 2) * spawnScaleRate), maxSpawnMultiplier * ((spawnNumber + waveNumber * 2) * spawnScaleRate))) + 1;
         SpawnType = Random.Range(spawnTypeMin, spawnTypeMax);
@@ -221,10 +237,21 @@ public class ThirdEnemySpawner : MonoBehaviour
                 break;
         }
 
+
+        // For giving enemies XP
         GameObject[] allEnemies = GameObject.FindGameObjectsWithTag("Hostile");
         foreach (GameObject enemy in allEnemies)
         {
             enemy.GetComponent<LevelUp>().GiveXP(currentXP);
+        }
+
+        // For enemy on round end items.
+        if (totalSpawnsSurvived % 8 == 0) // If this current spawn is divisible by 8, do the on round ends.
+        {
+            foreach (GameObject enemy in allEnemies)
+            {
+                enemy.SendMessage("newWaveEffects");
+            }
         }
     }
 
@@ -258,10 +285,10 @@ public class ThirdEnemySpawner : MonoBehaviour
             GameObject spawned = Instantiate(toSpawn, new Vector3(SpawnPosX + SpawnPosXVariation, SpawnPosY + SpawnPosYVariation, 0), transform.rotation);
             spawned.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
             spawned.GetComponent<Attack>().currentTarget = Player;
+            spawned.GetComponent<Attack>().stopwatchDebuffAmount = gameObject.GetComponent<MasterItemManager>().stopWatchDebuffAmt;
 
             if (toSpawn == mole)
             {
-                gameObject.GetComponent<moleGamingV3>().CheckForStopWatch();
                 if (!gameObject.GetComponent<moleGamingV3>().doCycle)
                 {
                     gameObject.GetComponent<moleGamingV3>().doCycle = true;
@@ -282,6 +309,7 @@ public class ThirdEnemySpawner : MonoBehaviour
             GameObject spawned = Instantiate(toSpawn, new Vector3(SpawnPosX, SpawnPosY, 0), transform.rotation);
             spawned.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
             spawned.GetComponent<Attack>().currentTarget = Player;
+            spawned.GetComponent<Attack>().stopwatchDebuffAmount = gameObject.GetComponent<MasterItemManager>().stopWatchDebuffAmt;
             gameObject.GetComponent<doMasterCurses>().ApplyDropItemOnDeath(spawned);
         }
     }
@@ -303,7 +331,8 @@ public class ThirdEnemySpawner : MonoBehaviour
             newObject.GetComponent<itemPedestal>().bannedWeapon = playerBannedWeapon;
             newObject.GetComponent<itemPedestal>().bannedDodge = playerBannedDodge;
         }
-        StartWave();
+
+        stepUpTo = 1;
     }
 
     void StartWave()

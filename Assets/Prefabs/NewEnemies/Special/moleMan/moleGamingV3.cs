@@ -29,14 +29,7 @@ public class moleGamingV3 : MonoBehaviour
     {
         player = EntityReferencerGuy.Instance.playerInstance;
         camera = EntityReferencerGuy.Instance.camera;
-    }
-
-    public void CheckForStopWatch()
-    {
-        if (player.GetComponent<ItemSTOPWATCH>() != null)
-        {
-            stopwatchDebuffAmount = 1 / (0.4f * player.GetComponent<ItemSTOPWATCH>().instances + 1);
-        }
+        stopwatchDebuffAmount = gameObject.GetComponent<Attack>().stopwatchDebuffAmount;
     }
 
     public void StartCycle()

@@ -77,7 +77,7 @@ public class Icons : MonoBehaviour
                 }
                 break;
             case 2:
-                if (owner.GetComponent<Statuses>().hasElectric == 0)
+                if (!owner.GetComponent<Statuses>().hasElectric)
                 {
                     transform.localScale = new Vector3(0, 0, 0);
                     texty.transform.localScale = new Vector3(0, 0, 0);

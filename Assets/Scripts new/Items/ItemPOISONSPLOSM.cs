@@ -17,25 +17,32 @@ public class ItemPOISONSPLOSM : MonoBehaviour
 
     void Start()
     {
-        if (gameObject.tag == "Player")
-        {
-            EventManager.DeathEffects += SpawnPoison;
-            
-            Debug.Log("Added poison wahoo");
-        }
+        //if (gameObject.tag == "Player")
+        //{
+        //    EventManager.DeathEffects += SpawnPoison;
+        //    Debug.Log("Added poison wahoo");
+        //}
         poisonSplosm = EntityReferencerGuy.Instance.poisonSplosm;
     }
 
-    public void SpawnPoison(Vector3 pos)
+    public void ApplyItemOnDeaths(GameObject who)
     {
-        GameObject Marty = Instantiate(poisonSplosm, pos, transform.rotation);
+        GameObject Marty = Instantiate(poisonSplosm, who.transform.position, transform.rotation);
         Marty.transform.localScale *= (0.5f + instances * 0.5f);
         Marty.GetComponent<TriggerPoison>().owner = gameObject;
+        Marty.GetComponent<TriggerPoison>().damageAmt = who.GetComponent<HPDamageDie>().MaxHP / 40;
+        if (who.tag == "Hostile")
+        {
+            Marty.tag = "PlayerBullet";
+        }
+        else
+        {
+            Marty.tag = "enemyBullet";
+        }
     }
 
     public void Undo()
     {
-        EventManager.DeathEffects -= SpawnPoison;
         Destroy(this);
     }
 }

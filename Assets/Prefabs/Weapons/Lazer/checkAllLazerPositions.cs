@@ -89,7 +89,7 @@ public class checkAllLazerPositions : MonoBehaviour
                         {
                             Vector3 vectorToEnemy = col.gameObject.transform.position - transform.position;
                             vectorToEnemy = new Vector3(vectorToEnemy.x, vectorToEnemy.y, 0);
-                            vecToMove = (vecToMove + 0.2f * vectorToEnemy.normalized).normalized;
+                            vecToMove = (vecToMove + 0.3f * gameObject.GetComponent<ItemHOMING>().instances * vectorToEnemy.normalized / (0.02f + Mathf.Pow(vectorToEnemy.magnitude, 1.2f))).normalized;
 
                             Vector3 colVec = col.transform.position - transform.position;
                             colVec = new Vector3(colVec.x, colVec.y, 0);

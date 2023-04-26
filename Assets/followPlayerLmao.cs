@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class followPlayerLmao : MonoBehaviour
 {
-    GameObject Player;
+    public GameObject Player;
     Vector3 mouseVector;
     Vector3 vectorMan;
     float fuckAngle;
-    public int whichGuy;
+    //public int whichGuy;
 
-    void Start()
-    {
-        GameObject[] gos = GameObject.FindGameObjectsWithTag("Player");
-        Player = gos[whichGuy];
-    }
+    //void Start()
+    //{
+    //    GameObject[] gos = GameObject.FindGameObjectsWithTag("Player");
+    //    Player = gos[whichGuy];
+    //}
 
     void Update()
     {

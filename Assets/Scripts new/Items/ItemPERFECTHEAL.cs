@@ -15,9 +15,9 @@ public class ItemPERFECTHEAL : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D col)
+    void newWaveEffects()
     {
-        if (col.tag == "item" && gameObject.GetComponent<HPDamageDie>().perfectWaves > 1)
+        if (gameObject.GetComponent<HPDamageDie>().perfectWaves > 1)
         {
             gameObject.GetComponent<HPDamageDie>().MaxHP += 10 * instances;
             totalIncrease += 10 * instances;

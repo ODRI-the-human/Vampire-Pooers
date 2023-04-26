@@ -147,7 +147,7 @@ public class NewPlayerMovement : MonoBehaviour
                     gameObject.layer = LayerPlayer;
                     isDodging = 0;
                     speedMult = 1;
-                    SendMessage("dodgeEndEffects");
+                    SendMessage("DodgeEndEffects");
                     break;
                 case 1:
                     gameObject.layer = LayerPlayer;
@@ -155,7 +155,7 @@ public class NewPlayerMovement : MonoBehaviour
                     speedMult = 1;
                     gameObject.GetComponent<HPDamageDie>().damageReduction -= 500;
                     gameObject.GetComponent<DealDamage>().massCoeff -= 7.5f;
-                    SendMessage("dodgeEndEffects");
+                    SendMessage("DodgeEndEffects");
                     gameObject.GetComponent<HPDamageDie>().iFrames = 10;
                     break;
             }    
@@ -172,6 +172,11 @@ public class NewPlayerMovement : MonoBehaviour
         {
             knockBackVector *= 0;
         }
+
+        //if (dodgeTimer % 50 == 0)
+        //{
+        //    SendMessage("DodgeEndEffects");
+        //}
 
         slowTimer--;
         dodgeTimer--;

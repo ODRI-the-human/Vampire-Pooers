@@ -5,4 +5,5 @@ using UnityEngine;
 public class TriggerPoison : MonoBehaviour
 {
     public GameObject owner;
+    public float damageAmt;
 }

@@ -21,7 +21,6 @@ public class visualPoopoo : MonoBehaviour
         if (Input.GetButton("Restart"))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            EventManager.DeathEffects = null;
             //playerInstance.GetComponent<LevelUp>().levelEffects = null;
         }
 

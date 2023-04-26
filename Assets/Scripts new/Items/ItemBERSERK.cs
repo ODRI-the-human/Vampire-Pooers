@@ -31,14 +31,13 @@ public class ItemBERSERK : MonoBehaviour
         if (gameObject.tag == "Player")
         {
             //Debug.Log("Added berserk wahoo");
-            EventManager.DeathEffects += refreshBerserk;
         }
         master = EntityReferencerGuy.Instance.master;
         music = EntityReferencerGuy.Instance.berserkMusic;
         redPlane = EntityReferencerGuy.Instance.berserkPlane;
     }
 
-    public void refreshBerserk(Vector3 pos)
+    public void ApplyItemOnDeaths(GameObject who)
     {
         if (gameObject.GetComponent<weaponType>().weaponHeld == (int)ITEMLIST.DARKARTS)
         {
@@ -91,6 +90,7 @@ public class ItemBERSERK : MonoBehaviour
         gameObject.GetComponent<weaponType>().weaponHeld = pastWeapon;
         Debug.Log("Bringus");
         gameObject.GetComponent<weaponType>().SetWeapon();
+        gameObject.GetComponent<Attack>().bulletPool.Dispose();
         if (gameObject.tag == "Player")
         {
             Destroy(spawnedMusic);
@@ -102,7 +102,6 @@ public class ItemBERSERK : MonoBehaviour
 
     public void Undo()
     {
-        EventManager.DeathEffects -= refreshBerserk;
         Destroy(this);
     }
 }

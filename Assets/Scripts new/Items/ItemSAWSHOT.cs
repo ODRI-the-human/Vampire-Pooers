@@ -75,7 +75,6 @@ public class ItemSAWSHOT : MonoBehaviour
             {
                 GameObject Poop = Instantiate(EntityReferencerGuy.Instance.sawVisual, new Vector3(-9999, 9999), Quaternion.Euler(0, 0, 0));
                 Poop.tag = gameObject.tag;
-                Poop.GetComponent<MeshRenderer>().material = gameObject.GetComponent<MeshRenderer>().material;
                 Poop.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
                 Poop.GetComponent<DealDamage>().overwriteDamageCalc = true;
                 Poop.GetComponent<DealDamage>().damageAmt = gameObject.GetComponent<DealDamage>().finalDamageStat / 5;
@@ -96,7 +95,10 @@ public class ItemSAWSHOT : MonoBehaviour
                 Poop.AddComponent<SawShotCreep>();
 
                 GameObject owner = gameObject.GetComponent<DealDamage>().owner;
-                owner.GetComponent<Attack>().bulletPool.Release(gameObject);
+                if (gameObject.GetComponent<Bullet_Movement>() != null)
+                {
+                    owner.GetComponent<Attack>().bulletPool.Release(gameObject);
+                }
             }
         }
     }

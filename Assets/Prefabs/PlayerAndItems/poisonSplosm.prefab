@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 158271131209982303}
   - component: {fileID: -2313905176839998536}
   - component: {fileID: 5690344240346263225}
+  - component: {fileID: 7605988930588389229}
   m_Layer: 9
   m_Name: poisonSplosm
   m_TagString: PlayerBullet
@@ -151,3 +152,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
+  damageAmt: 0
+--- !u!114 &7605988930588389229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 158271131209982302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f04496c6858ed1c41be55bae1e00fca5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

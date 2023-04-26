@@ -87,18 +87,15 @@ public class Attack : MonoBehaviour
 
         timesFired = -1;
         newAttack = 0;
-        stopwatchDebuffAmount = 1;
         if (gameObject.tag == "Hostile" || gameObject.tag == "enemyFamiliar")
         {
             Player = GameObject.Find("newPlayer");
             isEnemy = true;
-            if (Player.GetComponent<ItemSTOPWATCH>() != null)
-            {
-                stopwatchDebuffAmount = 1 / (0.4f * Player.GetComponent<ItemSTOPWATCH>().instances + 1);
-                fireTimerLength /= stopwatchDebuffAmount;
-                shotSpeed *= stopwatchDebuffAmount;
-                gameObject.GetComponent<NewPlayerMovement>().baseMoveSpeed *= stopwatchDebuffAmount;
-            }
+
+            // Applying debuffs due to stopwatch.
+            fireTimerLength /= stopwatchDebuffAmount;
+            shotSpeed *= stopwatchDebuffAmount;
+            gameObject.GetComponent<NewPlayerMovement>().baseMoveSpeed *= stopwatchDebuffAmount;
         }
         cameron = GameObject.Find("Main Camera");
 
@@ -265,7 +262,7 @@ public class Attack : MonoBehaviour
             //newObject.AddComponent<KillBullets>();
             newObject.GetComponent<weaponType>().weaponHeld = newObject.GetComponent<weaponType>().weaponHeld;
             newObject.GetComponent<DealDamage>().owner = gameObject;
-            newObject.GetComponent<DealDamage>().finalDamageMult *= gameObject.GetComponent<DealDamage>().finalDamageMult;
+            newObject.GetComponent<DealDamage>().finalDamageMult = gameObject.GetComponent<DealDamage>().finalDamageMult;
             newObject.GetComponent<DealDamage>().damageAdd += Crongus + levelDamageBonus; // applies converter damage bonus to bullets
         }
         else

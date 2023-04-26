@@ -23,38 +23,6 @@ public class OtherStuff : MonoBehaviour
         master = EntityReferencerGuy.Instance.master;
     }
 
-    //public void Sprinkle(int which)
-    //{
-    //    Invoke(nameof(DeleteItems), 0);
-    //    poohead = which;
-    //}
-
-    //public void DeleteItems()
-    //{
-    //    int counterGuy = 0;
-    //    switch (poohead)
-    //    {
-    //        case 0: // removes all items.
-    //            scripts = GetComponents(typeof(MonoBehaviour));
-    //            foreach (Component thing in scripts)
-    //            {
-    //                counterGuy++;
-    //                if (counterGuy > numNormalScripts && counterGuy != scripts.Length) // Only does the following for the 13th script onwards, and doesn't do it for the last script.
-    //                {
-    //                    Destroy(thing);
-    //                }
-    //            }
-    //            foreach (GameObject familiar in familiars)
-    //            {
-    //                Destroy(familiar);
-    //            }
-    //            familiars.Clear();
-    //            break;
-    //        case 1: // removes first item.
-    //            break;
-    //    }
-    //}
-
     public void Undo() // clears familiars for the reroll item.
     {
         foreach (GameObject familiar in familiars)
@@ -114,54 +82,14 @@ public class OtherStuff : MonoBehaviour
         }
     }
 
-    public void ApplyItemCurse(int curseType, int item)
-    {
-        switch (curseType)
-        {
-            case 1: //get one of this item whenever you pick up an item, but lose 2 random items upon taking damage.
-                break;
-            case 2:
-                if (item != -5)
-                {
-                    itemsToGiveRoundly.Add(item);
-                }
-                break;
-            case 3:
-                break;
-            case 4:
-                canStillHeal = false;
-                break;
-            case 5:
-                break;
-        }
-    }
-
     void Update()
     {
-        if (!canStillHeal)
-        {
-            gameObject.GetComponent<Healing>().healMult = 0;
-        }
-
         // For making it possible to click on items to pick them up.
         if (Input.GetButtonDown("Fire1") && gameObject.tag == "Player")
         {
             Vector2 spawnPos = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
             GameObject BumboSoccer = Instantiate(itemSelector, spawnPos, transform.rotation);
             BumboSoccer.GetComponent<mouseItemSelection>().master = gameObject;
-        }
-    }
-
-    void OnTriggerEnter2D(Collider2D col)
-    {
-        if (col.tag == "item")
-        {
-            foreach(var item in itemsToGiveRoundly)
-            {
-                gameObject.GetComponent<ItemHolder>().itemGained = item;
-                gameObject.GetComponent<ItemHolder>().itemsHeld.Add(item);
-                gameObject.GetComponent<ItemHolder>().ApplyItems();
-            }
         }
     }
 }

@@ -7,8 +7,11 @@ public class ItemLAZER : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameObject.GetComponent<weaponType>().weaponHeld = (int)ITEMLIST.LAZER;
-        gameObject.GetComponent<weaponType>().SetWeapon();
+        if (gameObject.GetComponent<weaponType>() != null)
+        {
+            gameObject.GetComponent<weaponType>().weaponHeld = (int)ITEMLIST.LAZER;
+            gameObject.GetComponent<weaponType>().SetWeapon();
+        }
 
         if (gameObject.tag == "Player")
         {
