@@ -75,7 +75,7 @@ public class Statuses : MonoBehaviour
 
             if (poisonTimers[i] % 25 == 0)
             {
-                gameObject.GetComponent<HPDamageDie>().Hurty(poisonDamages[i], false, true, 0, (int)DAMAGETYPES.POISON, true, gameObject);
+                gameObject.GetComponent<HPDamageDie>().Hurty(poisonDamages[i], false, true, 0, (int)DAMAGETYPES.POISON, true, null);
                 //master.GetComponent<showDamageNumbers>().showDamage(transform.position, poisonDamages[i], (int)DAMAGETYPES.POISON, false);
             }
 
@@ -91,7 +91,7 @@ public class Statuses : MonoBehaviour
 
         if (bleedTimer % 10 == 0 && bleedStacks > 0)
         {
-            gameObject.GetComponent<HPDamageDie>().Hurty(3 * bleedStacks, false, true, 0, (int)DAMAGETYPES.BLEED, true, gameObject);
+            gameObject.GetComponent<HPDamageDie>().Hurty(3 * bleedStacks, false, true, 0, (int)DAMAGETYPES.BLEED, true, null);
             //master.GetComponent<showDamageNumbers>().showDamage(transform.position, 3 * bleedStacks, (int)DAMAGETYPES.BLEED, false);
         }
 

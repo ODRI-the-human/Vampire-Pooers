@@ -109,8 +109,6 @@ public class HPDamageDie : MonoBehaviour
     {
         //Debug.Log("shoulda taken a lil damage cunt, " + gameObject.name.ToString() + " / " + damageAmount.ToString());
         //Debug.Log(resistVals[damageType].ToString());
-        lastDamageSource = objectResponsible.GetComponent<DealDamage>().owner;
-        lastDamageSourceName = lastDamageSource.ToString();
 
         if (gameObject.GetComponent<ItemEASIERTIMES>() != null && Mathf.RoundToInt(100 * (0.8f - 1f / (gameObject.GetComponent<ItemEASIERTIMES>().instances + 1f))) > Random.Range(0, 100))
         {
@@ -158,7 +156,13 @@ public class HPDamageDie : MonoBehaviour
 
                 master.GetComponent<showDamageNumbers>().showDamage(transform.position, damageAmount, damageType, isCrit);
                 SendMessage("OnHurtEffects");
-                objectResponsible.SendMessage("SendRollOnHits", gameObject);
+
+                if (objectResponsible != null)
+                {
+                    lastDamageSource = objectResponsible.GetComponent<DealDamage>().owner;
+                    lastDamageSourceName = lastDamageSource.ToString();
+                    objectResponsible.SendMessage("SendRollOnHits", gameObject);
+                }
             }
         }
     }
