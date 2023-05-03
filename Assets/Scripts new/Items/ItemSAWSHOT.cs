@@ -25,7 +25,6 @@ public class ItemSAWSHOT : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Debug.Log("got saw: " + gameObject.name.ToString());
         if (gameObject.GetComponent<Bullet_Movement>() != null || gameObject.GetComponent<checkAllLazerPositions>() != null)
         {
             DetermineShotRolls();
@@ -35,22 +34,13 @@ public class ItemSAWSHOT : MonoBehaviour
     public void DetermineShotRolls()
     {
         canDoTheThing = true;
-        float procMoment = 100f - 20 * gameObject.GetComponent<DealDamage>().procCoeff;
-        float pringle = Random.Range(0f, 100f);
-        //Debug.Log(pringle.ToString());
-        bool isCrit = false;
-        isAProc = false;
-        if (pringle > procMoment)
+        int numEffects = gameObject.GetComponent<DealDamage>().ChanceRoll(20, gameObject, 900);
+        if (numEffects == 1)
         {
             if (gameObject.GetComponent<checkAllLazerPositions>() == null && gameObject.GetComponent<isMelee>() == null)
             {
                 gameObject.GetComponent<MeshFilter>().mesh = EntityReferencerGuy.Instance.saw;
-                //gameObject.GetComponent<DealDamage>().onlyDamageOnce = false;
                 gameObject.GetComponent<Bullet_Movement>().piercesLeft += 1;
-                //if (gameObject.GetComponent<ItemBOUNCY>() != null)
-                //{
-                //    Destroy(GetComponent<ItemBOUNCY>());
-                //}
             }
 
             isAProc = true;
@@ -64,41 +54,42 @@ public class ItemSAWSHOT : MonoBehaviour
             gameObject.GetComponent<MeshFilter>().mesh = EntityReferencerGuy.Instance.bullet;
             gameObject.GetComponent<Bullet_Movement>().piercesLeft -= 1;
         }
+
+        isAProc = false;
     }
 
 
-    void RollOnHit(GameObject enemo)
+    void RollOnHit(GameObject[] objects)
     {
+        GameObject enemo = objects[0];
+
         if (isAProc)
         {
-            if (enemo.tag == "Player" || enemo.tag == "Hostile")
+            GameObject Poop = Instantiate(EntityReferencerGuy.Instance.sawVisual, new Vector3(-9999, 9999), Quaternion.Euler(0, 0, 0));
+            Poop.tag = gameObject.tag;
+            Poop.GetComponent<DealDamage>().overwriteDamageCalc = true;
+            Poop.GetComponent<DealDamage>().damageAmt = gameObject.GetComponent<DealDamage>().finalDamageStat / 5;
+            Poop.GetComponent<SawRotation>().instances = instances;
+
+            if (gameObject.GetComponent<checkAllLazerPositions>() != null)
             {
-                GameObject Poop = Instantiate(EntityReferencerGuy.Instance.sawVisual, new Vector3(-9999, 9999), Quaternion.Euler(0, 0, 0));
-                Poop.tag = gameObject.tag;
-                Poop.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
-                Poop.GetComponent<DealDamage>().overwriteDamageCalc = true;
-                Poop.GetComponent<DealDamage>().damageAmt = gameObject.GetComponent<DealDamage>().finalDamageStat / 5;
-                Poop.GetComponent<SawRotation>().instances = instances;
-
-                if (gameObject.GetComponent<checkAllLazerPositions>() != null)
-                {
-                    Poop.transform.localScale = 0.5f * transform.localScale;
-                }
-                else
-                {
-                    Poop.transform.localScale = transform.localScale;
-                }
+                Poop.transform.localScale = 0.5f * transform.localScale;
+            }
+            else
+            {
+                Poop.transform.localScale = transform.localScale;
+            }
                 
-                Poop.GetComponent<SawRotation>().guyLatchedTo = enemo;
-                Poop.GetComponent<SawRotation>().advanceTimer = true;
-                Poop.GetComponent<SawRotation>().bulletOffset = 0.5f * (transform.position - (Poop.GetComponent<SawRotation>().guyLatchedTo).transform.position).normalized;
-                Poop.AddComponent<SawShotCreep>();
+            Poop.GetComponent<SawRotation>().guyLatchedTo = enemo;
+            Poop.GetComponent<SawRotation>().advanceTimer = true;
+            Poop.GetComponent<SawRotation>().bulletOffset = 0.5f * (transform.position - (Poop.GetComponent<SawRotation>().guyLatchedTo).transform.position).normalized;
+            //Poop.AddComponent<SawShotCreep>();
 
-                GameObject owner = gameObject.GetComponent<DealDamage>().owner;
-                if (gameObject.GetComponent<Bullet_Movement>() != null)
-                {
-                    owner.GetComponent<Attack>().bulletPool.Release(gameObject);
-                }
+            GameObject owner = gameObject.GetComponent<DealDamage>().owner;
+            Poop.GetComponent<DealDamage>().owner = owner;
+            if (gameObject.GetComponent<Bullet_Movement>() != null)
+            {
+                owner.GetComponent<Attack>().bulletPool.Release(gameObject);
             }
         }
     }

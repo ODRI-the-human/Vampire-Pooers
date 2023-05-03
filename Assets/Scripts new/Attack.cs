@@ -107,7 +107,7 @@ public class Attack : MonoBehaviour
     {
         trueDamageValue = gameObject.GetComponent<DealDamage>().finalDamageStat;
         fireTimerLength = Mathf.Clamp(fireTimerLength, 0, 99999);
-        fireTimerActualLength = Mathf.Clamp(50 / (fireTimerLength * fireTimerLengthMLT / fireTimerDIV),0,25);
+        fireTimerActualLength = Mathf.Clamp(50 / (fireTimerLength * fireTimerLengthMLT / fireTimerDIV),0,50);
 
         if (gameObject.GetComponent<weaponType>() != null) // For capping your fire rate to the proper amount based on what weapon you're using.
         {

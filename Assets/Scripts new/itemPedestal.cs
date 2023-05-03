@@ -75,7 +75,7 @@ public class itemPedestal : MonoBehaviour
         for (int i = 0; i < itemQualWeights.Length; i++)
         {
             currentWeightSum += itemQualWeights[i];
-            if (randomWacky < currentWeightSum)
+            if (randomWacky <= currentWeightSum)
             {
                 chosenQuality = i;
                 break;

@@ -32,29 +32,30 @@ public class ItemATG : MonoBehaviour
         owner = gameObject.GetComponent<DealDamage>().owner;
     }
 
-    public void RollOnHit(GameObject POOhead)
+    void RollOnHit(GameObject[] objects)
     {
-        procMoment = 100f - 10 * gameObject.GetComponent<DealDamage>().procCoeff;
-        pringle = Random.Range(0f, 100f);
-        Debug.Log("Poo: " + pringle.ToString());
-        Debug.Log("Ass: " + procMoment.ToString());
-        if (pringle > procMoment)
+        GameObject victim = objects[0];
+        GameObject source = objects[1];
+
+        Component[] components = gameObject.GetComponents(typeof(Component));
+        int scriptIndex = System.Array.IndexOf(components, this);
+
+        int numEffects = gameObject.GetComponent<DealDamage>().ChanceRoll(10, source, scriptIndex);
+        for (int i = 0; i < numEffects; i++)
         {
+            GameObject ARSEMAN = Instantiate(ATGMissile, owner.transform.position, owner.transform.rotation);
+            ARSEMAN.GetComponent<MissileTracking>().owner = owner;
+            ARSEMAN.GetComponent<MissileTracking>().damageAmt = source.GetComponent<DealDamage>().damageAmt;
+            ARSEMAN.GetComponent<MissileTracking>().instances = instances;
+            ARSEMAN.GetComponent<MissileTracking>().scriptIndex = scriptIndex;
 
-            if (gameObject.tag == "PlayerBullet" || gameObject.tag == "enemyBullet")
+            if (gameObject.tag == "Hostile")
             {
-                GameObject ARSEMAN = Instantiate(ATGMissile, owner.transform.position, owner.transform.rotation);
-                ARSEMAN.GetComponent<MissileTracking>().owner = owner;
-                ARSEMAN.GetComponent<MissileTracking>().instances = instances;
-
-                if (gameObject.tag == "enemyBullet")
-                {
-                    ARSEMAN.tag = "enemyBullet";
-                }
-                else
-                {
-                    ARSEMAN.tag = "PlayerBullet";
-                }
+                ARSEMAN.tag = "enemyBullet";
+            }
+            else
+            {
+                ARSEMAN.tag = "PlayerBullet";
             }
         }
     }

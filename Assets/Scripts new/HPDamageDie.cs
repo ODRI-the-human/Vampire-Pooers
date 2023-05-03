@@ -158,13 +158,14 @@ public class HPDamageDie : MonoBehaviour
 
                 master.GetComponent<showDamageNumbers>().showDamage(transform.position, damageAmount, damageType, isCrit);
                 SendMessage("OnHurtEffects");
+                objectResponsible.SendMessage("SendRollOnHits", gameObject);
             }
         }
     }
 
     public void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.tag != gameObject.tag && col.gameObject.GetComponent<DealDamage>().finalDamageStat - damageReduction >= 0)
+        if (col.gameObject.GetComponent<DealDamage>() != null && col.gameObject.tag != gameObject.tag && col.gameObject.GetComponent<DealDamage>().finalDamageStat - damageReduction >= 0)
         {
             float procMoment = 100f - 100f * col.gameObject.GetComponent<DealDamage>().critProb * col.gameObject.GetComponent<DealDamage>().procCoeff;
             float pringle = Random.Range(0f, 100f);

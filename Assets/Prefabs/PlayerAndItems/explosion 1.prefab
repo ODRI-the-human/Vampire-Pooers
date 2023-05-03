@@ -186,19 +186,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   finalDamageStat: 0
-  procCoeff: 0
+  procCoeff: 1
   damageBase: 150
+  damageAdd: 0
   damageMult: 1
   finalDamageMult: 1
-  knockBackCoeff: 5
   finalDamageDIV: 1
   critProb: 0.05
   critMult: 2
   owner: {fileID: 0}
   master: {fileID: 0}
+  massCoeff: 2
   overwriteDamageCalc: 1
   onlyDamageOnce: 1
   tickInterval: 1
   timer: 0
   damageAmt: 0
-  isBulletClone: 0
+  iFrameFac: 1
+  damageToPresent: 0
+  damageType: 0
+  procChainIndexes: 

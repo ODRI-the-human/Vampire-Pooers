@@ -96,7 +96,7 @@ public class ItemDescriptions : MonoBehaviour
                 itemDescription = "10% chance on hitting an enemy to fire a homing missile, dealing 3x (+3x per stack) of the damage that procced it.";
                 quality = (int)ITEMTIERS.UNCOMMON;
                 addNewScriptForNewInstance = false;
-                whatUses = (int)ITEMOWNERS.BULLET;
+                whatUses = (int)ITEMOWNERS.BEING;
                 break;
             case (int)ITEMLIST.MORESHOT:
                 itemDescription = "Per stack, fire +1 projectile in an arc.";
@@ -198,7 +198,7 @@ public class ItemDescriptions : MonoBehaviour
                 itemDescription = "Your attacks have a 15% (+15% per stack) chance to inflict bleed for 2 seconds. New procs refill the timer and add a new stack.";
                 quality = (int)ITEMTIERS.COMMON;
                 addNewScriptForNewInstance = false;
-                whatUses = (int)ITEMOWNERS.BULLET;
+                whatUses = (int)ITEMOWNERS.BEING;
                 break;
             case (int)ITEMLIST.POISONSPLOSM:
                 itemDescription = "Enemies explode into poison on death, dealing 10% of their max health to nearby enemies over time. Size of explosion increases with stacks.";
@@ -339,7 +339,7 @@ public class ItemDescriptions : MonoBehaviour
                 quality = (int)ITEMTIERS.NULL;
                 itemDescription = "On collision, your shots leave creep that deals 10% (+10% per stack) of your bullet damage per tick";
                 addNewScriptForNewInstance = false;
-                whatUses = (int)ITEMOWNERS.BULLET;
+                whatUses = (int)ITEMOWNERS.ALL;
                 break;
 
 

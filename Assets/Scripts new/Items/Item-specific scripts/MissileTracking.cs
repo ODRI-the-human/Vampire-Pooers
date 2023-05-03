@@ -12,6 +12,8 @@ public class MissileTracking : MonoBehaviour
     public Rigidbody2D rb;
     public GameObject explosion;
     public GameObject owner;
+    public float damageAmt;
+    public int scriptIndex;
 
     // Update is called once per frame
     void FixedUpdate()
@@ -53,8 +55,9 @@ public class MissileTracking : MonoBehaviour
         GameObject newObject = Instantiate(explosion, transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
         newObject.transform.localScale = new Vector3(2, 2, 2);
         newObject.GetComponent<DealDamage>().owner = owner;
-        newObject.GetComponent<DealDamage>().damageAmt = 3 * instances * owner.GetComponent<DealDamage>().damageToPresent;
+        newObject.GetComponent<DealDamage>().damageAmt = 3 * damageAmt;
         newObject.GetComponent<DealDamage>().massCoeff = 2 * owner.GetComponent<DealDamage>().massCoeff;
+        newObject.GetComponent<DealDamage>().procChainIndexes.Add(scriptIndex);
         Destroy(gameObject);
     }
 }

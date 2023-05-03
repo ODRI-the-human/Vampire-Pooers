@@ -17,17 +17,22 @@ public class ItemBLEED : MonoBehaviour
         }
     }
 
-    void RollOnHit(GameObject guyToEffect)
+    void RollOnHit(GameObject[] objects)
     {
-        procMoment = 100f - instances * 15 * gameObject.GetComponent<DealDamage>().procCoeff;
-        pringle = Random.Range(0f, 100f);
-        if (pringle > procMoment)
+        GameObject victim = objects[0];
+        GameObject source = objects[1];
+
+        Component[] components = gameObject.GetComponents(typeof(Component));
+        int scriptIndex = System.Array.IndexOf(components, this);
+
+        int numEffects = gameObject.GetComponent<DealDamage>().ChanceRoll(15 * instances, source, scriptIndex);
+        for (int i = 0; i < numEffects; i++)
         {
-            guyToEffect.GetComponent<Statuses>().bleedStacks += 1;
-            guyToEffect.GetComponent<Statuses>().bleedTimer = 0;
-            if (!guyToEffect.GetComponent<Statuses>().iconOrder.Contains(0))
+            victim.GetComponent<Statuses>().bleedStacks += 1;
+            victim.GetComponent<Statuses>().bleedTimer = 0;
+            if (!victim.GetComponent<Statuses>().iconOrder.Contains(0))
             {
-                guyToEffect.GetComponent<Statuses>().iconOrder.Add(0);
+                victim.GetComponent<Statuses>().iconOrder.Add(0);
             }
         }
     }

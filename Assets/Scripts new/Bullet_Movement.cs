@@ -126,19 +126,24 @@ public class Bullet_Movement : MonoBehaviour
     public void KillBullet()
     {
         //Destroy(gameObject);
-        //gameObject.SetActive(false);
         GameObject owner = gameObject.GetComponent<DealDamage>().owner;
         if (owner != null) // Returns object to pool if owner is still alive, kills the bullet if owner is dead.
         {
             if (gameObject.active == true)
             {
-                owner.GetComponent<Attack>().bulletPool.Release(gameObject);
+                Invoke(nameof(DisableBullet), 0.01f);
             }
         }
         else
         {
             Destroy(gameObject);
         }
+    }
+
+    void DisableBullet()
+    {
+        GameObject owner = gameObject.GetComponent<DealDamage>().owner;
+        owner.GetComponent<Attack>().bulletPool.Release(gameObject);
     }
 
     // for contact item.
