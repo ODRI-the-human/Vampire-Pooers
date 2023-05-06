@@ -69,7 +69,7 @@ public class HPDamageDie : MonoBehaviour
 
     void Update()
     {
-        if (HP < 0.5f)
+        if (HP <= 0)
         {
             SendMessage("ApplyOwnOnDeaths");
             if (lastDamageSource != null) // otherwise it gets very funny
@@ -81,6 +81,7 @@ public class HPDamageDie : MonoBehaviour
                 else
                 {
                     EntityReferencerGuy.Instance.master.SendMessage("ApplyItemOnDeaths", gameObject);
+                    EntityReferencerGuy.Instance.camera.SendMessage("CheckAlivePlayers");
                 }
             }
 

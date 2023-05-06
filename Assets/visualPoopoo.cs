@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class visualPoopoo : MonoBehaviour
 {
@@ -9,33 +10,31 @@ public class visualPoopoo : MonoBehaviour
     float amounter;
     bool isFrozen;
 
+    public InputActionAsset actions;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        actions.FindActionMap("menus").FindAction("restart").performed += OnRestart;
+        actions.FindActionMap("menus").FindAction("slowmo").performed += OnSlowmo;
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnRestart(InputAction.CallbackContext context)
     {
-        if (Input.GetButton("Restart"))
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            //playerInstance.GetComponent<LevelUp>().levelEffects = null;
-        }
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 
-        if (Input.GetButtonDown("Pause"))
+    void OnSlowmo(InputAction.CallbackContext context)
+    {
+        if (isPaused)
         {
-            if (isPaused)
-            {
-                Time.timeScale = 1;
-                isPaused = false;
-            }
-            else
-            {
-                Time.timeScale = 0.05f;
-                isPaused = true;
-            }
+            Time.timeScale = 1;
+            isPaused = false;
+        }
+        else
+        {
+            Time.timeScale = 0.05f;
+            isPaused = true;
         }
     }
 

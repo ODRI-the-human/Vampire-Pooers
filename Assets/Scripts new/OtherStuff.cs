@@ -82,14 +82,14 @@ public class OtherStuff : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        // For making it possible to click on items to pick them up.
-        if (Input.GetButtonDown("Fire1") && gameObject.tag == "Player")
-        {
-            Vector2 spawnPos = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
-            GameObject BumboSoccer = Instantiate(itemSelector, spawnPos, transform.rotation);
-            BumboSoccer.GetComponent<mouseItemSelection>().master = gameObject;
-        }
-    }
+    //void Update()
+    //{
+    //    // For making it possible to click on items to pick them up.
+    //    if (Input.GetButtonDown("Fire1") && gameObject.tag == "Player")
+    //    {
+    //        Vector2 spawnPos = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
+    //        GameObject BumboSoccer = Instantiate(itemSelector, spawnPos, transform.rotation);
+    //        BumboSoccer.GetComponent<mouseItemSelection>().master = gameObject;
+    //    }
+    //}
 }

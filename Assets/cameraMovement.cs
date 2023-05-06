@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class cameraMovement : MonoBehaviour
 {
-    GameObject Player;
+    GameObject[] players;
     public float amountToChangeWithMouse = 0.05f;
     public float moveSpeed = 0.04f;
     public float camShakeAmount = 1.5f;
@@ -20,17 +20,34 @@ public class cameraMovement : MonoBehaviour
 
     void Start()
     {
-        Player = GameObject.Find("newPlayer");
         xBound = RightBorder.transform.position.x - 6;
         yBound = TopBorder.transform.position.y - 6;
+        CheckAlivePlayers();
+    }
+
+    void CheckAlivePlayers()
+    {
+        players = GameObject.FindGameObjectsWithTag("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 distFromPlayer = Player.transform.position - transform.position + amountToChangeWithMouse * new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x - gameObject.transform.position.x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y - gameObject.transform.position.y, 0).normalized;
-        distFromPlayer.z = 0;
+        Vector3 avgVector = Vector3.zero;
+
+        foreach (GameObject player in players)
+        {
+            avgVector += player.transform.position + amountToChangeWithMouse * new Vector3(player.GetComponent<Attack>().vectorToTarget.x, player.GetComponent<Attack>().vectorToTarget.y, 0);
+        }
+
+        avgVector /= players.Length;
+
+        Vector3 distFromPlayer = avgVector - transform.position;
         transform.position = new Vector3(transform.position.x, transform.position.y, -10.6f) + moveSpeed * distFromPlayer;
+
+        //Vector3 distFromPlayer = Player.transform.position - transform.position + amountToChangeWithMouse * new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x - gameObject.transform.position.x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y - gameObject.transform.position.y, 0).normalized;
+        //distFromPlayer.z = 0;
+        //transform.position = new Vector3(transform.position.x, transform.position.y, -10.6f) + moveSpeed * distFromPlayer;
 
         if (transform.position.x < -xBound)
         {

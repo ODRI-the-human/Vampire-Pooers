@@ -33,13 +33,13 @@ public class DealDamage : MonoBehaviour
     public List<int> procChainIndexes = new List<int>();
 
     // Start is called before the first frame update
+    void Awake()
+    {
+        CalcDamage();
+    }
+
     void Start()
     {
-        if (!overwriteDamageCalc)
-        {
-            damageAmt = (damageBase + damageAdd) * damageMult * finalDamageMult / finalDamageDIV;
-        }
-
         master = EntityReferencerGuy.Instance.master;
 
         if (gameObject.tag == "Hostile" || gameObject.tag == "Player")
@@ -57,16 +57,14 @@ public class DealDamage : MonoBehaviour
     {
         if (!overwriteDamageCalc)
         {
-            damageAmt = damageBase * damageMult * finalDamageMult / finalDamageDIV;
+            damageAmt = damageBase;// * damageMult * finalDamageMult / finalDamageDIV;
+            damageAmt = damageBase * finalDamageMult;
         }
     }
 
     void Update()
     {
-        if (!overwriteDamageCalc)
-        {
-            damageAmt = damageBase * damageMult * finalDamageMult / finalDamageDIV;
-        }
+        CalcDamage();
 
         damageToPresent = damageBase * damageMult * finalDamageMult / finalDamageDIV;
     }

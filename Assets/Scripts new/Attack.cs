@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.InputSystem;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -43,7 +44,7 @@ public class Attack : MonoBehaviour
     public float levelDamageBonus = 0;
     public float scaleAddMult = 1;
 
-    Vector3 mouseVector;
+    [System.NonSerialized] public Vector3 mouseVector;
     Vector3 vectorMan;
     float fuckAngle;
 
@@ -65,9 +66,15 @@ public class Attack : MonoBehaviour
     public int numBulletsPossible = 16; // This is for object pooling; this should be plenty for most enemies in default circumstances.
     public bool canShoot = true;
 
+    public InputActionAsset actions;
+    public InputAction shootAction;
+    public InputAction aimAction;
+
 
     void Start()
     {
+        actions.FindActionMap("gameplay").FindAction("shoot").performed += OnShoot;
+        aimAction = actions.FindActionMap("gameplay").FindAction("aim");
 
         bulletPool = new ObjectPool<GameObject>(() =>
         {
@@ -102,6 +109,22 @@ public class Attack : MonoBehaviour
         darkArtSword = EntityReferencerGuy.Instance.darkArtSword;
     }
 
+    void OnShoot(InputAction.CallbackContext context)
+    {
+        if (fireTimer > (50 / fireTimerActualLength))
+        {
+            UseWeapon(false);
+            timesFired++;
+            fireTimer = 0;
+            GameObject ordio = Instantiate(PlayerShootAudio);
+
+            if (gameObject.tag == "Player")
+            {
+                cameron.GetComponent<cameraMovement>().CameraShake(Mathf.RoundToInt(Mathf.Clamp(gameObject.GetComponent<DealDamage>().damageToPresent, 0, 75) / 6));
+            }
+        }
+    }
+
     // Update is called once per frame, as you know
     void Update()
     {
@@ -130,26 +153,14 @@ public class Attack : MonoBehaviour
             vectorToTarget = (currentTarget.transform.position - gameObject.transform.position).normalized;
         }
 
-        if (fireTimer > (50 / fireTimerActualLength) && doShootAutomatically)
+        switch (playerControlled)
         {
-            switch (playerControlled)
-            {
-                case true:
-                    vectorToTarget = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x - gameObject.transform.position.x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y - gameObject.transform.position.y).normalized;
-                    if (((Input.GetButton("Fire1") && holdDownToShoot) || (Input.GetButtonDown("Fire1") && !holdDownToShoot)) && canShoot) // if the player is holding shoot with hold enabled, or presses shoot with hold disabled.
-                    {
-                        UseWeapon(false);
-                        timesFired++;
-                        fireTimer = 0;
-                        GameObject ordio = Instantiate(PlayerShootAudio);
-
-                        if (gameObject.tag == "Player")
-                        {
-                            cameron.GetComponent<cameraMovement>().CameraShake(Mathf.RoundToInt(Mathf.Clamp(gameObject.GetComponent<DealDamage>().damageToPresent, 0, 75) / 6));
-                        }
-                    }
-                    break;
-                case false:
+            case true:
+                vectorToTarget = (aimAction.ReadValue<Vector2>() - new Vector2(transform.position.x, transform.position.y)).normalized;
+                break;
+            case false:
+                if (fireTimer > (50 / fireTimerActualLength) && doShootAutomatically)
+                {
                     if (currentTarget == null)
                     {
                         ReTarget();
@@ -161,8 +172,8 @@ public class Attack : MonoBehaviour
                         fireTimer = 0;
                         GameObject ordio = Instantiate(PlayerShootAudio);
                     }
-                    break;
-            }
+                }
+                break;
         }
     }
 

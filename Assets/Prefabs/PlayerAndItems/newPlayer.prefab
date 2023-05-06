@@ -134,6 +134,16 @@ MonoBehaviour:
   mouseAltMode: 0
   dodgeOnlineAudio: {fileID: 5421414380371828586, guid: 090f0d82356e1134a9266a60cb419682, type: 3}
   dodgeAudio: {fileID: 576013723491271631, guid: 8068abbc9251dc147a95e0c091540981, type: 3}
+  actions: {fileID: -944628639613478452, guid: efec5903eb847d34cbbf520695eb1f3d, type: 3}
+  moveAction:
+    m_Name: Move
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 47933a1e-6da7-4ec8-ad02-64ecc6c0599d
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
 --- !u!114 &-4590834480761037546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,17 +167,10 @@ MonoBehaviour:
   material: {fileID: 0}
   colorChangeTimer: 0
   XP: {fileID: 2232971130497578917, guid: dc46db39e4e70b144915e7a0652cc396, type: 3}
-  resistVals:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
+  lastDamageSourceName: 
   makeKillSound: 1
   damageReduction: 0
+  damageDiv: 1
   perfectWaves: 0
 --- !u!114 &1698531144881374718
 MonoBehaviour:
@@ -184,6 +187,7 @@ MonoBehaviour:
   finalDamageStat: 0
   procCoeff: 1
   damageBase: 50
+  damageAdd: 0
   damageMult: 1
   finalDamageMult: 1
   finalDamageDIV: 1
@@ -198,9 +202,9 @@ MonoBehaviour:
   timer: 0
   damageAmt: 0
   iFrameFac: 1
-  isBulletClone: 0
   damageToPresent: 0
   damageType: 0
+  procChainIndexes: 
 --- !u!114 &3646255009062352282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,6 +218,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shotSpeed: 8
+  bulletLengthMult: 1
   currentAngle: 0
   vectorToTarget: {x: 0, y: 0}
   noExtraShots: 0
@@ -248,6 +253,27 @@ MonoBehaviour:
   velToGiveBullets: {x: 0, y: 0, z: 0}
   massToGiveBullets: 0.5
   holdDownToShoot: 1
+  numBulletsPossible: 16
+  canShoot: 1
+  actions: {fileID: -944628639613478452, guid: efec5903eb847d34cbbf520695eb1f3d, type: 3}
+  shootAction:
+    m_Name: Shoot
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: e7f33504-01a2-48bb-8fa8-864c588e946b
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  aimAction:
+    m_Name: Aim
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 3ad5fd91-d8df-442e-b6b4-fb38accb1b63
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
 --- !u!114 &5717554992336324117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -264,11 +290,6 @@ MonoBehaviour:
   master: {fileID: 0}
   itemGained: 0
   noToGive: 1
-  isBullet: 0
-  isGuy: 1
-  doTheShit: 1
-  playerBullet: {fileID: 0}
-  enemyBullet: {fileID: 0}
 --- !u!212 &5905868436867884629
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -355,6 +376,8 @@ MonoBehaviour:
   weaponHeld: 4
   master: {fileID: 0}
   spawnedBat: {fileID: 0}
+  previousFireType: 0
+  previousFireTimerLengthMLT: 0
 --- !u!114 &-8736019012613081854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -381,6 +404,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemsExist: 0
   itemDescription: 
+  curseDescription: 
 --- !u!114 &-1628153870151973313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -397,6 +421,7 @@ MonoBehaviour:
   poisonStacks: 0
   bleedStacks: 0
   hasElectric: 0
+  electricDealers: []
   bleedTimer: 0
   isFrozen: 0
   freezeTimer: 0

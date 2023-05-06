@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using TMPro;
+using UnityEngine.InputSystem;
 
 public class NewPlayerMovement : MonoBehaviour
 {
@@ -37,12 +38,56 @@ public class NewPlayerMovement : MonoBehaviour
     public GameObject dodgeAudio;
     Rigidbody2D rb;
 
+    public InputActionAsset actions;
+    public InputAction moveAction;
+
     void Start()
     {
+        moveAction = actions.FindActionMap("gameplay").FindAction("move");
+        actions.FindActionMap("gameplay").FindAction("dodge").performed += OnDodge;
+
         rb = gameObject.GetComponent<Rigidbody2D>();
         LayerPlayer = LayerMask.NameToLayer("Player");
         LayerNone = LayerMask.NameToLayer("OnlyHitWalls");
         LayerSB = LayerMask.NameToLayer("OnlyHitWallsAndEnemies");
+    }
+
+    void OnDodge(InputAction.CallbackContext context) // Applying the dodge when the player, ya know, dodges.
+    {
+        if (dodgeTimer < -50)
+        {
+            switch (mouseAltMode)
+            {
+                case 0:
+                    if (dodgeMode == 0)
+                    {
+                        Vector2 mouseVector = Camera.main.ScreenToWorldPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y));
+                        moveDirection = new Vector3(mouseVector.x - transform.position.x, mouseVector.y - transform.position.y, 0).normalized;
+                    }
+
+                    Instantiate(dodgeAudio);
+                    dodgeTimer = dodgeTimerLength;
+                    gameObject.layer = LayerNone;
+                    speedMult = dodgeSpeedUp;
+                    isDodging = 1;
+                    break;
+                case 1:
+                    if (dodgeMode == 0)
+                    {
+                        Vector2 mouseVector = Camera.main.ScreenToWorldPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y));
+                        moveDirection = new Vector3(mouseVector.x - transform.position.x, mouseVector.y - transform.position.y, 0).normalized;
+                    }
+
+                    Instantiate(dodgeAudio);
+                    dodgeTimer = dodgeTimerLength / 2;
+                    gameObject.GetComponent<HPDamageDie>().damageReduction += 500;
+                    gameObject.GetComponent<DealDamage>().massCoeff += 7.5f;
+                    speedMult = 1.5f * dodgeSpeedUp;
+                    gameObject.layer = LayerSB;
+                    isDodging = 1;
+                    break;
+            }
+        }
     }
 
     void Update()
@@ -54,53 +99,14 @@ public class NewPlayerMovement : MonoBehaviour
 
         if (gameObject.tag == "Player")
         {
-            if (Input.GetButtonDown("Dodge") && dodgeTimer < -50)
-            {
-                switch (mouseAltMode)
-                {
-                    case 0:
-                        if (dodgeMode == 0)
-                        {
-                            Vector2 mouseVector = Camera.main.ScreenToWorldPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y));
-                            moveDirection = new Vector3(mouseVector.x - transform.position.x, mouseVector.y - transform.position.y, 0).normalized;
-                        }
-
-                        Instantiate(dodgeAudio);
-                        dodgeTimer = dodgeTimerLength;
-                        gameObject.layer = LayerNone;
-                        speedMult = dodgeSpeedUp;
-                        isDodging = 1;
-                        break;
-                    case 1:
-                        if (dodgeMode == 0)
-                        {
-                            Vector2 mouseVector = Camera.main.ScreenToWorldPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y));
-                            moveDirection = new Vector3(mouseVector.x - transform.position.x, mouseVector.y - transform.position.y, 0).normalized;
-                        }
-
-                        Instantiate(dodgeAudio);
-                        dodgeTimer = dodgeTimerLength / 2;
-                        gameObject.GetComponent<HPDamageDie>().damageReduction += 500;
-                        gameObject.GetComponent<DealDamage>().massCoeff += 7.5f;
-                        speedMult = 1.5f * dodgeSpeedUp;
-                        gameObject.layer = LayerSB;
-                        isDodging = 1;
-                        break;
-                }
-            }
-
             if (isDodging == 0)
             {
-                float moveX = Input.GetAxisRaw("Horizontal");
-                float moveY = Input.GetAxisRaw("Vertical");
-                moveDirection = new Vector2(moveX, moveY).normalized;
+                moveDirection = moveAction.ReadValue<Vector2>().normalized;//new Vector2(moveX, moveY).normalized;
             }
 
             desiredVector = moveDirection;
             Vector3 moveDir = currentMoveSpeed * desiredVector * Time.deltaTime;
             transform.position += moveDir;
-
-
         }
         else
         {
@@ -118,17 +124,17 @@ public class NewPlayerMovement : MonoBehaviour
             }
         }
 
-        if (Input.GetButtonDown("ChangeDodgeMode"))
-        {
-            if (dodgeMode == 1)
-            {
-                dodgeMode = 0;
-            }
-            else
-            {
-                dodgeMode = 1;
-            }
-        }
+        //if (Input.GetButtonDown("ChangeDodgeMode"))
+        //{
+        //    if (dodgeMode == 1)
+        //    {
+        //        dodgeMode = 0;
+        //    }
+        //    else
+        //    {
+        //        dodgeMode = 1;
+        //    }
+        //}
     }
 
     void FixedUpdate()

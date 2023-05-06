@@ -23,9 +23,9 @@ public class followPlayerLmao : MonoBehaviour
             Destroy(gameObject);
         }
 
-        transform.position = Player.transform.position + new Vector3(0,0.1f,-7);
+        transform.position = Player.transform.position + new Vector3(0,0.1f,-1);
 
-        mouseVector = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
+        mouseVector = Player.GetComponent<Attack>().vectorToTarget;
         vectorMan = Camera.main.ScreenToWorldPoint(mouseVector) - transform.position;
 
         if (vectorMan.y > 0 && vectorMan.x > 0)

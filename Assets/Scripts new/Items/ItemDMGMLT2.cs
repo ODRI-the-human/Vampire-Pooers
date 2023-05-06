@@ -4,17 +4,38 @@ using UnityEngine;
 
 public class ItemDMGMLT2 : MonoBehaviour
 {
-    public bool runStart = true;
+    public int instances = 1;
+    public float initialDamage;
+    public float bonusDamage;
+
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
-        gameObject.GetComponent<DealDamage>().damageMult += 1f;
+        GetDamVal();
+    }
+
+    void GetDamVal()
+    {
+        initialDamage = gameObject.GetComponent<DealDamage>().damageBase;
+        bonusDamage = instances * initialDamage / 2;
+        gameObject.GetComponent<DealDamage>().damageBase += bonusDamage;
+    }
+
+    void IncreaseInstances(string name)
+    {
+        if (name == this.GetType().ToString())
+        {
+            gameObject.GetComponent<DealDamage>().damageBase += initialDamage / 2;
+            bonusDamage += initialDamage / 2;
+            instances++;
+            //GetDamVal();
+        }
     }
 
     public void Undo()
     {
-        gameObject.GetComponent<DealDamage>().damageMult -= 1f;
+        gameObject.GetComponent<DealDamage>().damageBase -= bonusDamage;
         Destroy(this);
     }
 }
