@@ -23,9 +23,9 @@ public class ItemSOY : MonoBehaviour
     void GetDamVal()
     {
         initialDamage = gameObject.GetComponent<DealDamage>().damageBase;
-        float funnyDamage = 3 * Mathf.Pow((4), -1) * initialDamage;
-        gameObject.GetComponent<DealDamage>().damageBase -= funnyDamage;
-        bonusDamage += funnyDamage;
+        float funnyDamage = 4 * instances;
+        gameObject.GetComponent<DealDamage>().damageBase /= funnyDamage;
+        bonusDamage = funnyDamage;
         gameObject.GetComponent<DealDamage>().massCoeff /= 4 * instances;
         if (gameObject.GetComponent<Attack>() != null)
         {
@@ -37,9 +37,9 @@ public class ItemSOY : MonoBehaviour
     {
         if (name == this.GetType().ToString())
         {
-            ResetVal();
+            Invoke(nameof(ResetVal), 0.005f);
             instances++;
-            GetDamVal();
+            Invoke(nameof(GetDamVal), 0.005f);
         }
     }
 
@@ -50,7 +50,7 @@ public class ItemSOY : MonoBehaviour
             gameObject.GetComponent<Attack>().fireTimerDIV = 1;
         }
         gameObject.GetComponent<DealDamage>().massCoeff = 1;
-        gameObject.GetComponent<DealDamage>().damageBase += bonusDamage;
+        gameObject.GetComponent<DealDamage>().damageBase *= bonusDamage;
     }
 
     public void Undo()

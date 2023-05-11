@@ -54,12 +54,7 @@ public class ItemELECTRIC : MonoBehaviour
                     owner.GetComponent<ItemELECTRIC>().enemiesEffected.Add(gamer);
                 }
 
-                gamer.GetComponent<Statuses>().hasElectric = true;
-                if (!gamer.GetComponent<Statuses>().iconOrder.Contains(2))
-                {
-                    gamer.GetComponent<Statuses>().iconOrder.Add(2);
-                    gamer.GetComponent<Statuses>().electricDealers.Add(owner);
-                }
+                gamer.GetComponent<Statuses>().AddStatus((int)STATUSES.ELECTRIC, 0, gameObject);
             }
         }
 

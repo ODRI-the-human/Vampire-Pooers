@@ -228,6 +228,17 @@
     ],
     "controlSchemes": [
         {
+            "name": "controller",
+            "bindingGroup": "controller",
+            "devices": [
+                {
+                    "devicePath": "<Gamepad>",
+                    "isOptional": true,
+                    "isOR": false
+                }
+            ]
+        },
+        {
             "name": "keyboard",
             "bindingGroup": "keyboard",
             "devices": [
@@ -239,17 +250,6 @@
                 {
                     "devicePath": "<Mouse>",
                     "isOptional": false,
-                    "isOR": false
-                }
-            ]
-        },
-        {
-            "name": "controller",
-            "bindingGroup": "controller",
-            "devices": [
-                {
-                    "devicePath": "<Gamepad>",
-                    "isOptional": true,
                     "isOR": false
                 }
             ]

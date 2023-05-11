@@ -23,31 +23,12 @@ public class followPlayerLmao : MonoBehaviour
             Destroy(gameObject);
         }
 
-        transform.position = Player.transform.position + new Vector3(0,0.1f,-1);
+        transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y, -0.8f);// + new Vector3(0,0.1f,-1);
 
-        mouseVector = Player.GetComponent<Attack>().vectorToTarget;
-        vectorMan = Camera.main.ScreenToWorldPoint(mouseVector) - transform.position;
-
-        if (vectorMan.y > 0 && vectorMan.x > 0)
-        {
-            fuckAngle = (180 / Mathf.PI) * Mathf.Atan(vectorMan.y / vectorMan.x);
-        }
-        if (vectorMan.y > 0 && vectorMan.x < 0)
-        {
-            fuckAngle = 180 + (180 / Mathf.PI) * Mathf.Atan(vectorMan.y / vectorMan.x);
-        }
-        if (vectorMan.y < 0 && vectorMan.x < 0)
-        {
-            fuckAngle = (180 / Mathf.PI) * Mathf.Atan(vectorMan.y / vectorMan.x) + 180;
-        }
-        if (vectorMan.y < 0 && vectorMan.x > 0)
-        {
-            fuckAngle = 90 + (180 / Mathf.PI) * Mathf.Atan(vectorMan.y / vectorMan.x) + 270;
-        }
-
-        Quaternion actualRotation = Quaternion.Euler(0, -fuckAngle + 220, 0);
+        vectorMan = Player.GetComponent<Attack>().vectorToTarget;
+        Quaternion actualRotation = Quaternion.LookRotation(-vectorMan, new Vector3(0, 0, -1));
 
         transform.rotation = actualRotation;
-        transform.Rotate(-50, 0, 0, Space.World);
+        transform.Rotate(0, 0, 40, Space.World);
     }
 }

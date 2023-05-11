@@ -33,4 +33,9 @@ public class wapantCircle : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        col.gameObject.GetComponent<Statuses>().AddStatus((int)STATUSES.SLOW, 0, gameObject);
+    }
 }

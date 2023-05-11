@@ -9,6 +9,8 @@ public class ItemBLEED : MonoBehaviour
     float procMoment;
     float iFrameLength = 0;
 
+    public bool overrideRoll = false;
+
     void IncreaseInstances(string name)
     {
         if (name == this.GetType().ToString())
@@ -25,15 +27,19 @@ public class ItemBLEED : MonoBehaviour
         Component[] components = gameObject.GetComponents(typeof(Component));
         int scriptIndex = System.Array.IndexOf(components, this);
 
-        int numEffects = gameObject.GetComponent<DealDamage>().ChanceRoll(15 * instances, source, scriptIndex);
+        int numEffects = 0;
+        if (overrideRoll)
+        {
+            numEffects = 1;
+        }
+        else
+        {
+            numEffects = gameObject.GetComponent<DealDamage>().ChanceRoll(15 * instances, source, scriptIndex);
+        }
+
         for (int i = 0; i < numEffects; i++)
         {
-            victim.GetComponent<Statuses>().bleedStacks += 1;
-            victim.GetComponent<Statuses>().bleedTimer = 0;
-            if (!victim.GetComponent<Statuses>().iconOrder.Contains(0))
-            {
-                victim.GetComponent<Statuses>().iconOrder.Add(0);
-            }
+            victim.GetComponent<Statuses>().AddStatus((int)STATUSES.BLEED, 0, gameObject);
         }
     }
 

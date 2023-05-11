@@ -18,24 +18,28 @@ public class ItemDMGMLT2 : MonoBehaviour
     void GetDamVal()
     {
         initialDamage = gameObject.GetComponent<DealDamage>().damageBase;
-        bonusDamage = instances * initialDamage / 2;
-        gameObject.GetComponent<DealDamage>().damageBase += bonusDamage;
+        bonusDamage = 1 + 0.5f * instances;
+        gameObject.GetComponent<DealDamage>().damageBase *= bonusDamage;
+    }
+
+    void ResetVal()
+    {
+        gameObject.GetComponent<DealDamage>().damageBase /= bonusDamage;
     }
 
     void IncreaseInstances(string name)
     {
         if (name == this.GetType().ToString())
         {
-            gameObject.GetComponent<DealDamage>().damageBase += initialDamage / 2;
-            bonusDamage += initialDamage / 2;
+            Invoke(nameof(ResetVal), 0.005f);
             instances++;
-            //GetDamVal();
+            Invoke(nameof(GetDamVal), 0.005f);
         }
     }
 
     public void Undo()
     {
-        gameObject.GetComponent<DealDamage>().damageBase -= bonusDamage;
+        ResetVal();
         Destroy(this);
     }
 }

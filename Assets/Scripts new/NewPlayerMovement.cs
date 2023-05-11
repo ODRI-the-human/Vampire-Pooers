@@ -38,13 +38,17 @@ public class NewPlayerMovement : MonoBehaviour
     public GameObject dodgeAudio;
     Rigidbody2D rb;
 
-    public InputActionAsset actions;
-    public InputAction moveAction;
+    //public InputActionAsset actions;
+    //public InputAction moveAction;
 
     void Start()
     {
-        moveAction = actions.FindActionMap("gameplay").FindAction("move");
-        actions.FindActionMap("gameplay").FindAction("dodge").performed += OnDodge;
+        //if (actions != null)
+        //{
+        //    actions.FindActionMap("gameplay").Enable();
+        //    moveAction = actions.FindActionMap("gameplay").FindAction("move");
+        //    actions.FindActionMap("gameplay").FindAction("dodge").performed += OnDodge;
+        //}
 
         rb = gameObject.GetComponent<Rigidbody2D>();
         LayerPlayer = LayerMask.NameToLayer("Player");
@@ -52,7 +56,15 @@ public class NewPlayerMovement : MonoBehaviour
         LayerSB = LayerMask.NameToLayer("OnlyHitWallsAndEnemies");
     }
 
-    void OnDodge(InputAction.CallbackContext context) // Applying the dodge when the player, ya know, dodges.
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        if (isDodging == 0)
+        {
+            moveDirection = context.ReadValue<Vector2>().normalized;//new Vector2(moveX, moveY).normalized;
+        }
+    }
+
+    public void OnDodge(InputAction.CallbackContext context) // Applying the dodge when the player, ya know, dodges.
     {
         if (dodgeTimer < -50)
         {
@@ -99,11 +111,6 @@ public class NewPlayerMovement : MonoBehaviour
 
         if (gameObject.tag == "Player")
         {
-            if (isDodging == 0)
-            {
-                moveDirection = moveAction.ReadValue<Vector2>().normalized;//new Vector2(moveX, moveY).normalized;
-            }
-
             desiredVector = moveDirection;
             Vector3 moveDir = currentMoveSpeed * desiredVector * Time.deltaTime;
             transform.position += moveDir;
@@ -164,7 +171,7 @@ public class NewPlayerMovement : MonoBehaviour
                     SendMessage("DodgeEndEffects");
                     gameObject.GetComponent<HPDamageDie>().iFrames = 10;
                     break;
-            }    
+            }
         }
 
         if (slowTimer == 0)
@@ -200,16 +207,6 @@ public class NewPlayerMovement : MonoBehaviour
                 GameObject master = EntityReferencerGuy.Instance.master;
                 master.GetComponent<visualPoopoo>().bigHitFreeze(0.1f);
             }
-        }
-    }
-
-    void OnTriggerStay2D(Collider2D col)
-    {
-        if (col.gameObject.GetComponent<wapantCircle>() != null)
-        {
-            isSlowed = 1;
-            slowTimer = 100;
-            speedDiv = 2;
         }
     }
 }

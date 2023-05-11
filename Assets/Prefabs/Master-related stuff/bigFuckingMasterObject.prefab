@@ -68,12 +68,9 @@ MonoBehaviour:
   playerBullet: {fileID: 4255455733749829593, guid: 27160d46bf5b97a4898af82130ae1a42, type: 3}
   enemyBullet: {fileID: 110440509597865848, guid: 86b090c27b6523a4c99b4b66761df257, type: 3}
   contactMan: {fileID: 4255455733749829593, guid: dc2eb433a1769274e8646cbd1309c8e3, type: 3}
-  bleedIcon: {fileID: 8308961761143311193, guid: d77f5724f8a7f544f952b32cf7b0c8cb, type: 3}
-  poisonIcon: {fileID: 8308961761143311193, guid: 10920e523ffe5274f8d69aa451b6bf40, type: 3}
+  statusIcon: {fileID: 8308961761143311193, guid: e51f3a062e1fdd74ba4e9eee32b2c966, type: 3}
   canvas: {fileID: 0}
   poisonSplosm: {fileID: 158271131209982302, guid: 5f4283f47709081418d74e8afda1b2be, type: 3}
-  electricIcon: {fileID: 8308961761143311193, guid: e51f3a062e1fdd74ba4e9eee32b2c966, type: 3}
-  slowIcon: {fileID: 8308961761143311193, guid: 9056674da775b2746b4f310bf3196c88, type: 3}
   berserkMusic: {fileID: 989204346807140580, guid: 2d0360a6201468449a81a1244d658e07, type: 3}
   berserkPlane: {fileID: 4759339331114859231, guid: 2f9288612e676474c8a41b1035f33871, type: 3}
   darkArtSword: {fileID: 7955111713391121560, guid: 35c958ea85b00c144830eefba828d8c3, type: 3}

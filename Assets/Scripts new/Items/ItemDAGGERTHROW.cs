@@ -39,15 +39,7 @@ public class ItemDAGGERTHROW : MonoBehaviour
     {
         if (gameObject.GetComponent<Attack>().timesFired % 3 == 0 && !hasShot)
         {
-            switch (gameObject.GetComponent<Attack>().playerControlled)
-            {
-                case true:
-                    vectorToTarget = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x - gameObject.transform.position.x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y - gameObject.transform.position.y).normalized;
-                    break;
-                case false:
-                    vectorToTarget = (Player.transform.position - gameObject.transform.position).normalized;
-                    break;
-            }
+            vectorToTarget = gameObject.GetComponent<Attack>().vectorToTarget;
 
             Debug.Log("Gamemaker Studio 2");
 
@@ -60,8 +52,14 @@ public class ItemDAGGERTHROW : MonoBehaviour
                 newObject.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
                 newObject.GetComponent<MeshFilter>().mesh = EntityReferencerGuy.Instance.dagger;
                 newObject.GetComponent<DealDamage>().damageBase = 10;
-                newObject.AddComponent<ItemBLEED>();
-                newObject.GetComponent<ItemBLEED>().instances = 20;
+                newObject.GetComponent<DealDamage>().owner = gameObject;
+                newObject.GetComponent<Bullet_Movement>().isPooledBullet = false;
+                newObject.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
+                if (newObject.GetComponent<ItemBLEED>() == null)
+                {
+                    newObject.AddComponent<ItemBLEED>();
+                }
+                newObject.GetComponent<ItemBLEED>().overrideRoll = true;
                 bulletRB = newObject.GetComponent<Rigidbody2D>();
                 newShotVector = new Vector2(vectorToTarget.x * Mathf.Cos(currentAngle) - vectorToTarget.y * Mathf.Sin(currentAngle), vectorToTarget.x * Mathf.Sin(currentAngle) + vectorToTarget.y * Mathf.Cos(currentAngle));
                 bulletRB.velocity = newShotVector * shotSpeed;

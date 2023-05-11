@@ -37,15 +37,15 @@ public class marcelFunny : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown(nextButtonName) && canType)
-        {
-            if (thingUpTo < 12)
-            {
-                ChangeToEvil();
-                thingUpTo++;
-                SpawnNew();
-            }            
-        }
+        //if (Input.GetButtonDown(nextButtonName) && canType)
+        //{
+        //    if (thingUpTo < 12)
+        //    {
+        //        ChangeToEvil();
+        //        thingUpTo++;
+        //        SpawnNew();
+        //    }            
+        //}
 
         if (thingUpTo >= 12 && !hasFinished)
         {
@@ -91,9 +91,16 @@ public class marcelFunny : MonoBehaviour
 
                 if (col.gameObject.tag == "Hostile")
                 {
-                    col.gameObject.GetComponent<NewPlayerMovement>().isSlowed = 1;
-                    col.gameObject.GetComponent<NewPlayerMovement>().slowTimer = 100;
-                    col.gameObject.GetComponent<NewPlayerMovement>().speedDiv = 2;
+                    col.gameObject.GetComponent<Statuses>().AddStatus((int)STATUSES.SLOW, 0, gameObject);
+                }
+
+                if (col.gameObject.tag == "Player" && !hasTyped && timer % 35 == 0 && thingUpTo < 12)
+                {
+                    hasTyped = true;
+
+                    ChangeToEvil();
+                    thingUpTo++;
+                    SpawnNew();
                 }
             }
             else
@@ -107,9 +114,7 @@ public class marcelFunny : MonoBehaviour
 
                 if (col.gameObject.tag == "Player")
                 {
-                    col.gameObject.GetComponent<NewPlayerMovement>().isSlowed = 1;
-                    col.gameObject.GetComponent<NewPlayerMovement>().slowTimer = 100;
-                    col.gameObject.GetComponent<NewPlayerMovement>().speedDiv = 2;
+                    col.gameObject.GetComponent<Statuses>().AddStatus((int)STATUSES.SLOW, 0, gameObject);
                 }
 
                 if (col.gameObject.tag == "Hostile" && !hasTyped && timer % 35 == 0 && thingUpTo < 12)

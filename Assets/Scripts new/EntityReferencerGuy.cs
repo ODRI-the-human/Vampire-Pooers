@@ -19,12 +19,9 @@ public class EntityReferencerGuy : MonoBehaviour
     public GameObject playerBullet;
     public GameObject enemyBullet;
     public GameObject contactMan;
-    public GameObject bleedIcon;
-    public GameObject poisonIcon;
+    public GameObject statusIcon;
     public GameObject canvas;
     public GameObject poisonSplosm;
-    public GameObject electricIcon;
-    public GameObject slowIcon;
     public GameObject berserkMusic;
     public GameObject berserkPlane;
     public GameObject darkArtSword;

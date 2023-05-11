@@ -15,8 +15,12 @@ public class visualPoopoo : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        actions.FindActionMap("menus").FindAction("restart").performed += OnRestart;
-        actions.FindActionMap("menus").FindAction("slowmo").performed += OnSlowmo;
+        if (actions != null)
+        {
+            actions.FindActionMap("menus").Enable();
+            actions.FindActionMap("menus").FindAction("restart").performed += OnRestart;
+            actions.FindActionMap("menus").FindAction("slowmo").performed += OnSlowmo;
+        }
     }
 
     void OnRestart(InputAction.CallbackContext context)

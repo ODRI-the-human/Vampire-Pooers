@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 503381878361641303}
   - component: {fileID: 503381878361641300}
-  - component: {fileID: 7255376658375002501}
+  - component: {fileID: -7919601699808704564}
   - component: {fileID: 6042566988791242225}
   - component: {fileID: -8092890325184602512}
   - component: {fileID: -4590834480761037546}
@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 6529777727849037366}
   - component: {fileID: 4664313912424211572}
   - component: {fileID: -2398668522893488500}
+  - component: {fileID: 8653322415924238181}
   m_Layer: 8
   m_Name: newPlayer
   m_TagString: Player
@@ -69,8 +70,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!70 &7255376658375002501
-CapsuleCollider2D:
+--- !u!58 &-7919601699808704564
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -83,8 +84,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.2, y: 0.2}
-  m_Direction: 0
+  serializedVersion: 2
+  m_Radius: 0.25
 --- !u!95 &6042566988791242225
 Animator:
   serializedVersion: 4
@@ -134,16 +135,6 @@ MonoBehaviour:
   mouseAltMode: 0
   dodgeOnlineAudio: {fileID: 5421414380371828586, guid: 090f0d82356e1134a9266a60cb419682, type: 3}
   dodgeAudio: {fileID: 576013723491271631, guid: 8068abbc9251dc147a95e0c091540981, type: 3}
-  actions: {fileID: -944628639613478452, guid: efec5903eb847d34cbbf520695eb1f3d, type: 3}
-  moveAction:
-    m_Name: Move
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 47933a1e-6da7-4ec8-ad02-64ecc6c0599d
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
 --- !u!114 &-4590834480761037546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,32 +239,13 @@ MonoBehaviour:
   scaleAddMult: 1
   stopwatchDebuffAmount: 0
   doShootAutomatically: 1
-  getEnemyPos: 1
+  getEnemyPos: 0
   angleAddAmount: 0
   velToGiveBullets: {x: 0, y: 0, z: 0}
   massToGiveBullets: 0.5
   holdDownToShoot: 1
   numBulletsPossible: 16
   canShoot: 1
-  actions: {fileID: -944628639613478452, guid: efec5903eb847d34cbbf520695eb1f3d, type: 3}
-  shootAction:
-    m_Name: Shoot
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: e7f33504-01a2-48bb-8fa8-864c588e946b
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  aimAction:
-    m_Name: Aim
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 3ad5fd91-d8df-442e-b6b4-fb38accb1b63
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
 --- !u!114 &5717554992336324117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -480,3 +452,105 @@ MonoBehaviour:
   moleProj: {fileID: 6152856860940002557, guid: 13c90bc400ac46f4383416a674875beb, type: 3}
   sprongleAudio: {fileID: 527891173530036625, guid: c3aea6758bc7f7e41904bf8de9427d8a, type: 3}
   spawnedSprongleAudio: {fileID: 0}
+--- !u!114 &8653322415924238181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 503381878361641298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: efec5903eb847d34cbbf520695eb1f3d, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -8092890325184602512}
+        m_TargetAssemblyTypeName: NewPlayerMovement, Assembly-CSharp
+        m_MethodName: OnMove
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 0fc52bd7-247a-4d6e-a179-954b09527c5e
+    m_ActionName: gameplay/move[/XInputControllerWindows/leftStick,/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -8092890325184602512}
+        m_TargetAssemblyTypeName: NewPlayerMovement, Assembly-CSharp
+        m_MethodName: OnDodge
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 9773a763-f1a3-453a-9a0a-16c78b74e42d
+    m_ActionName: gameplay/dodge[/Mouse/rightButton,/XInputControllerWindows/leftTrigger]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3646255009062352282}
+        m_TargetAssemblyTypeName: Attack, Assembly-CSharp
+        m_MethodName: InputAim
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 1d91efab-03d6-4cd8-ad94-d726967c240d
+    m_ActionName: gameplay/aim[/XInputControllerWindows/rightStick,/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3646255009062352282}
+        m_TargetAssemblyTypeName: Attack, Assembly-CSharp
+        m_MethodName: OnShoot
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 18dbaa31-e82a-4e96-868b-143572ec8bb9
+    m_ActionName: gameplay/shoot[/Mouse/leftButton,/XInputControllerWindows/rightTrigger]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e8a9b557-0955-4450-b0f5-4d2392cba5cb
+    m_ActionName: menus/restart[/Keyboard/1]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 830bd37b-28eb-4406-8b81-0110870422d5
+    m_ActionName: menus/slowmo[/Keyboard/2]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: keyboard
+  m_DefaultActionMap: gameplay
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}

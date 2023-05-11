@@ -66,15 +66,21 @@ public class Attack : MonoBehaviour
     public int numBulletsPossible = 16; // This is for object pooling; this should be plenty for most enemies in default circumstances.
     public bool canShoot = true;
 
-    public InputActionAsset actions;
-    public InputAction shootAction;
-    public InputAction aimAction;
+    //public InputActionAsset actions;
+    //public InputAction shootAction;
+    //public InputAction aimAction;
+    bool isFiring = false;
 
 
     void Start()
     {
-        actions.FindActionMap("gameplay").FindAction("shoot").performed += OnShoot;
-        aimAction = actions.FindActionMap("gameplay").FindAction("aim");
+        //if (actions != null)
+        //{
+        //    actions.FindActionMap("gameplay").Enable();
+        //    actions.FindActionMap("gameplay").FindAction("shoot").performed += OnShoot;
+        //    actions.FindActionMap("gameplay").FindAction("shoot").canceled += StopShoot;
+        //    aimAction = actions.FindActionMap("gameplay").FindAction("aim");
+        //}
 
         bulletPool = new ObjectPool<GameObject>(() =>
         {
@@ -109,22 +115,32 @@ public class Attack : MonoBehaviour
         darkArtSword = EntityReferencerGuy.Instance.darkArtSword;
     }
 
-    void OnShoot(InputAction.CallbackContext context)
+    public void OnShoot(InputAction.CallbackContext context)
     {
-        if (fireTimer > (50 / fireTimerActualLength))
-        {
-            UseWeapon(false);
-            timesFired++;
-            fireTimer = 0;
-            GameObject ordio = Instantiate(PlayerShootAudio);
-
-            if (gameObject.tag == "Player")
-            {
-                cameron.GetComponent<cameraMovement>().CameraShake(Mathf.RoundToInt(Mathf.Clamp(gameObject.GetComponent<DealDamage>().damageToPresent, 0, 75) / 6));
-            }
-        }
+        isFiring = context.action.triggered;
     }
 
+    public void InputAim(InputAction.CallbackContext context)
+    {
+        Vector3 vectorToTarget3 = (new Vector3(context.ReadValue<Vector2>().x, context.ReadValue<Vector2>().y, 0) - Camera.main.WorldToScreenPoint(transform.position));
+        vectorToTarget = new Vector2(vectorToTarget3.x, vectorToTarget3.y).normalized;
+    }
+
+    //void TriggerAShot()
+    //{
+    //    if (isFiring && fireTimer > (50 / fireTimerActualLength))
+    //    {
+    //        UseWeapon(false);
+    //        timesFired++;
+    //        fireTimer = 0;
+    //        GameObject ordio = Instantiate(PlayerShootAudio);
+
+    //        if (gameObject.tag == "Player")
+    //        {
+    //            cameron.GetComponent<cameraMovement>().CameraShake(Mathf.RoundToInt(Mathf.Clamp(gameObject.GetComponent<DealDamage>().damageToPresent, 0, 75) / 6));
+    //        }
+    //    }
+    //}
     // Update is called once per frame, as you know
     void Update()
     {
@@ -156,7 +172,18 @@ public class Attack : MonoBehaviour
         switch (playerControlled)
         {
             case true:
-                vectorToTarget = (aimAction.ReadValue<Vector2>() - new Vector2(transform.position.x, transform.position.y)).normalized;
+                if (isFiring && fireTimer > (50 / fireTimerActualLength))
+                {
+                    UseWeapon(false);
+                    timesFired++;
+                    fireTimer = 0;
+                    GameObject ordio = Instantiate(PlayerShootAudio);
+
+                    if (gameObject.tag == "Player")
+                    {
+                        cameron.GetComponent<cameraMovement>().CameraShake(Mathf.RoundToInt(Mathf.Clamp(gameObject.GetComponent<DealDamage>().damageToPresent, 0, 75) / 6));
+                    }
+                }
                 break;
             case false:
                 if (fireTimer > (50 / fireTimerActualLength) && doShootAutomatically)

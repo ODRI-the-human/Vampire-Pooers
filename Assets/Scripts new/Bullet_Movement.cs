@@ -21,6 +21,8 @@ public class Bullet_Movement : MonoBehaviour
     string defaultTag;
     Material defaultMaterial;
 
+    public bool isPooledBullet = true;
+
     void Start()
     {
         LayerPlayerBullet = LayerMask.NameToLayer("PlayerBullets");
@@ -127,11 +129,11 @@ public class Bullet_Movement : MonoBehaviour
     {
         //Destroy(gameObject);
         GameObject owner = gameObject.GetComponent<DealDamage>().owner;
-        if (owner != null) // Returns object to pool if owner is still alive, kills the bullet if owner is dead.
+        if (owner != null && isPooledBullet) // Returns object to pool if owner is still alive, kills the bullet if owner is dead.
         {
             if (gameObject.active == true)
             {
-                Invoke(nameof(DisableBullet), 0.01f);
+                Invoke(nameof(DisableBullet), 0.001f);
             }
         }
         else
