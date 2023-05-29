@@ -1,23 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+
 
 public class getItemDescription : MonoBehaviour
 {
+    GameObject spawnedSelector;
     public bool itemsExist = false;
     int itemNearest = 0;
     public string itemDescription;
+    Vector3 position;
+    public GameObject itemSelector;
     public string curseDescription;
 
-    // Update is called once per frame
-    void Update()
+    public void InputAim(InputAction.CallbackContext context)
     {
         if (itemsExist)
         {
             GameObject[] gos = GameObject.FindGameObjectsWithTag("item");
             GameObject closest = null;
             float distance = Mathf.Infinity;
-            Vector3 position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            position = new Vector3(Camera.main.ScreenToWorldPoint(context.ReadValue<Vector2>()).x, Camera.main.ScreenToWorldPoint(context.ReadValue<Vector2>()).y, 0);
             foreach (GameObject go in gos)
             {
                 Vector3 diff = go.transform.position - position;
@@ -37,6 +41,17 @@ public class getItemDescription : MonoBehaviour
         {
             itemDescription = "";
             curseDescription = "";
+        }
+    }
+
+    public void OnShoot(InputAction.CallbackContext context)
+    {
+        if (itemsExist && context.started)
+        {
+            Destroy(spawnedSelector);
+
+            spawnedSelector = Instantiate(itemSelector, position, transform.rotation);
+            spawnedSelector.GetComponent<mouseItemSelection>().master = gameObject;
         }
     }
 }

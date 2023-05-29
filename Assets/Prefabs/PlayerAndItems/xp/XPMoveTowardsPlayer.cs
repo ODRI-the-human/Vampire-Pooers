@@ -26,7 +26,7 @@ public class XPMoveTowardsPlayer : MonoBehaviour
     {
         destroyTimer++;
 
-        if (destroyTimer % 3 == 0 && destroyTimer >= 100)
+        if (destroyTimer % 2 == 0 && destroyTimer >= 150)
         {
             if (isVisible)
             {
@@ -44,7 +44,7 @@ public class XPMoveTowardsPlayer : MonoBehaviour
             }
         }
 
-        if (destroyTimer > 150)
+        if (destroyTimer > 200)
         {
             Destroy(gameObject);
         }

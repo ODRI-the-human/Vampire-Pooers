@@ -28,6 +28,15 @@ public class ItemORBITAL2 : MonoBehaviour
         }
     }
 
+    public void OnShootEffects()
+    {
+        foreach (GameObject orb in Orbs)
+        {
+            orb.GetComponent<Attack>().vectorToTarget = gameObject.GetComponent<Attack>().mouseVector - orb.transform.position;
+            orb.GetComponent<Attack>().UseWeapon(false);
+        }
+    }
+
     void SetStats()
     {
         for (int i = 0; i < instances; i++)

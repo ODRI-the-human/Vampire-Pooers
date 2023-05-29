@@ -53,6 +53,7 @@ public class weaponType : MonoBehaviour
                     gameObject.GetComponent<Attack>().fireTimerLengthMLT = 1;
                     gameObject.GetComponent<Attack>().shotSpeed = 15;
                     gameObject.GetComponent<Attack>().holdDownToShoot = true;
+                    gameObject.GetComponent<Attack>().shotParticles = EntityReferencerGuy.Instance.regularShotParticle;
                 }
                 break;
             case (int)ITEMLIST.GRENADELAUNCHER:
@@ -62,9 +63,11 @@ public class weaponType : MonoBehaviour
                     gameObject.GetComponent<Attack>().fireTimerLengthMLT = 1.5f;
                     gameObject.GetComponent<Attack>().shotSpeed = 45;
                     gameObject.GetComponent<Attack>().holdDownToShoot = true;
+                    gameObject.GetComponent<Attack>().shotParticles = EntityReferencerGuy.Instance.regularShotParticle;
                 }
                 if (gameObject.GetComponent<Attack>() == null)
                 {
+                    gameObject.GetComponent<DealDamage>().damageBase *= 1.5f;
                     gameObject.AddComponent<explodeOnHit>();
                 }
                 break;
@@ -77,6 +80,7 @@ public class weaponType : MonoBehaviour
                     gameObject.GetComponent<Attack>().specialFireType = 3;
                     gameObject.GetComponent<Attack>().fireTimerLengthMLT = 0.5f;
                     gameObject.GetComponent<Attack>().holdDownToShoot = true;
+                    gameObject.GetComponent<Attack>().shotParticles = EntityReferencerGuy.Instance.empty;
                 }
                 break;
             case (int)ITEMLIST.LAZER:
@@ -86,6 +90,7 @@ public class weaponType : MonoBehaviour
                     gameObject.GetComponent<Attack>().fireTimerLengthMLT = 1.2f;
                     gameObject.GetComponent<Attack>().shotSpeed = 10;
                     gameObject.GetComponent<Attack>().holdDownToShoot = true;
+                    gameObject.GetComponent<Attack>().shotParticles = EntityReferencerGuy.Instance.empty;
                 }
                 break;
             case (int)ITEMLIST.BAT:
@@ -96,6 +101,7 @@ public class weaponType : MonoBehaviour
                     gameObject.GetComponent<Attack>().holdDownToShoot = false;
                     spawnedBat = Instantiate(EntityReferencerGuy.Instance.bat);
                     spawnedBat.GetComponent<faceInFunnyDirection>().owner = gameObject;
+                    gameObject.GetComponent<Attack>().shotParticles = EntityReferencerGuy.Instance.empty;
                 }
                 break;
         }

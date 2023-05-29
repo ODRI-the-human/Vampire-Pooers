@@ -126,11 +126,6 @@ MonoBehaviour:
   master: {fileID: 0}
   itemGained: 0
   noToGive: 1
-  isBullet: 0
-  isGuy: 1
-  doTheShit: 1
-  playerBullet: {fileID: 0}
-  enemyBullet: {fileID: 0}
 --- !u!114 &-1365107204755030205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,6 +141,7 @@ MonoBehaviour:
   finalDamageStat: 50
   procCoeff: 1
   damageBase: 50
+  damageAdd: 0
   damageMult: 1
   finalDamageMult: 1
   finalDamageDIV: 1
@@ -162,6 +158,7 @@ MonoBehaviour:
   iFrameFac: 1
   damageToPresent: 0
   damageType: 0
+  procChainIndexes: 
 --- !u!114 &5700807271172768676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,3 +209,4 @@ MonoBehaviour:
   doKillBullet: 1
   canCollide: 1
   piercesLeft: 0
+  isPooledBullet: 1

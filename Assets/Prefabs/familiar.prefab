@@ -9,15 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6465258072512375914}
-  - component: {fileID: 6465258072512375925}
-  - component: {fileID: 6465258072512375924}
   - component: {fileID: 6465258072512375927}
   - component: {fileID: 4350419538097284281}
   - component: {fileID: 8984978239919591108}
   - component: {fileID: 4094460240105576254}
   - component: {fileID: 6596505954230717738}
-  - component: {fileID: -8526392082089182474}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: familiar
   m_TagString: Familiar
   m_Icon: {fileID: 0}
@@ -39,43 +36,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &6465258072512375925
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6465258072512375926}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
---- !u!58 &6465258072512375924
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6465258072512375926}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.08
 --- !u!212 &6465258072512375927
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -140,26 +100,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30830851ecf01fa4e8e1c859ed98de6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  finalDamageStat: 0
+  finalDamageStat: 20
   procCoeff: 0
-  damageBase: 20
-  damageMult: 1
-  finalDamageMult: 1
-  finalDamageDIV: 1
-  critProb: 0.05
-  critMult: 2
+  damageBase: 0
+  damageAdd: 0
+  damageMult: 0
+  finalDamageMult: 0
+  finalDamageDIV: 0
+  critProb: 0
+  critMult: 0
   owner: {fileID: 0}
   master: {fileID: 0}
-  massCoeff: 2
+  massCoeff: 0
   overwriteDamageCalc: 0
   onlyDamageOnce: 1
   tickInterval: 1
   timer: 0
-  damageAmt: 0
+  damageAmt: 20
   iFrameFac: 1
-  isBulletClone: 0
   damageToPresent: 0
   damageType: 0
+  procChainIndexes: 
 --- !u!114 &8984978239919591108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,7 +150,7 @@ MonoBehaviour:
   specialFireType: 0
   darkArtSword: {fileID: 7955111713391121560, guid: 35c958ea85b00c144830eefba828d8c3, type: 3}
   fireTimerDIV: 1
-  attachItems: 0
+  attachItems: 1
   doAim: 1
   fireTimerActualLength: 0
   visionRange: 6
@@ -203,11 +164,15 @@ MonoBehaviour:
   scaleAddMult: 1
   stopwatchDebuffAmount: 0
   doShootAutomatically: 1
-  getEnemyPos: 1
+  getEnemyPos: 0
   angleAddAmount: 0
   velToGiveBullets: {x: 0, y: 0, z: 0}
   massToGiveBullets: 0.5
   holdDownToShoot: 1
+  numBulletsPossible: 16
+  canShoot: 1
+  isFiring: 0
+  shotParticles: {fileID: 2232971130497578917, guid: dc46db39e4e70b144915e7a0652cc396, type: 3}
 --- !u!114 &4094460240105576254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,11 +189,6 @@ MonoBehaviour:
   master: {fileID: 0}
   itemGained: 0
   noToGive: 1
-  isBullet: 0
-  isGuy: 1
-  doTheShit: 1
-  playerBullet: {fileID: 0}
-  enemyBullet: {fileID: 0}
 --- !u!114 &6596505954230717738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,19 +202,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toFollow: {fileID: 0}
-  rb: {fileID: 6465258072512375925}
---- !u!114 &-8526392082089182474
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6465258072512375926}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1fa510d5f65fe4b429d86a4e95a6e22d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponHeld: 0
-  master: {fileID: 0}
-  spawnedBat: {fileID: 0}
+  owner: {fileID: 0}

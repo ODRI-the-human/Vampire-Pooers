@@ -23,6 +23,7 @@ public class ItemSPLIT : MonoBehaviour
     void Start()
     {
         owner = gameObject.GetComponent<DealDamage>().owner;
+        Buuleter = owner.GetComponent<Attack>().Bullet;
         if (gameObject.GetComponent<Rigidbody2D>() != null)
         {
             speed = gameObject.GetComponent<Rigidbody2D>().velocity.magnitude;
@@ -34,9 +35,10 @@ public class ItemSPLIT : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void RollOnHit(GameObject victim)
+    void RollOnHit(GameObject[] gameObjects)
     {
-        Buuleter = gameObject;
+        GameObject victim = gameObjects[0];
+
         Vector2 enemyPos = new Vector2(transform.position.x, transform.position.y);
         Vector2 bulletPos = new Vector2(victim.transform.position.x, victim.transform.position.y);
         ShotVector = speed * (bulletPos - enemyPos).normalized;
@@ -49,13 +51,16 @@ public class ItemSPLIT : MonoBehaviour
                 for (int i = 0; i < 2; i++)
                 {
                     GameObject Splitman1 = Instantiate(Buuleter, transform.position, transform.rotation);
-                    Splitman1.transform.localScale = 0.6f * instances * gameObject.transform.localScale;
+                    Splitman1.transform.localScale = 0.8f * instances * gameObject.transform.localScale;
                     Splitman1.GetComponent<DealDamage>().finalDamageMult *= 0.3f * gameObject.GetComponent<DealDamage>().finalDamageMult * instances;
                     Splitman1.GetComponent<DealDamage>().massCoeff = 0.5f * gameObject.GetComponent<DealDamage>().massCoeff;
                     Splitman1.GetComponent<DealDamage>().owner = owner;
                     Splitman1.GetComponent<DealDamage>().damageBase += owner.GetComponent<Attack>().Crongus;
+                    Splitman1.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
                     Splitman1.GetComponent<Rigidbody2D>().simulated = true;
+                    Splitman1.GetComponent<Bullet_Movement>().isPooledBullet = false;
                     Physics2D.IgnoreCollision(victim.GetComponent<Collider2D>(), Splitman1.GetComponent<Collider2D>(), true);
+                    Splitman1.AddComponent<ItemSPLIT>();
                     Splitman1.GetComponent<ItemSPLIT>().canSplit = false;
                     if (gameObject.GetComponent<isMelee>() != null)
                     {

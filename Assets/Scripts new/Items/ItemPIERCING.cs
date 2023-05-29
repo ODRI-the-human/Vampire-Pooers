@@ -16,6 +16,11 @@ public class ItemPIERCING : MonoBehaviour
 
     void Start()
     {
+        DetermineShotRolls();
+    }
+
+    void DetermineShotRolls()
+    {
         gameObject.GetComponent<Bullet_Movement>().piercesLeft += 1;
     }
 

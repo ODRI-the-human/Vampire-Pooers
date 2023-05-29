@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class familiarMovement : MonoBehaviour
 {
-
+    public int gunnerType; // Stores what gunner this is, i.e. homing/normie/auto etc.
     public GameObject toFollow;
-    public Rigidbody2D rb;
+    public GameObject owner;
 
     void Start()
     {
@@ -16,6 +16,12 @@ public class familiarMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (gunnerType != (int)ITEMLIST.AUTOFAMILIAR)
+        {
+            gameObject.GetComponent<Attack>().isFiring = owner.GetComponent<Attack>().isFiring;
+            gameObject.GetComponent<Attack>().vectorToTarget = owner.GetComponent<Attack>().mouseVector - transform.position;
+        }
+       
         if (toFollow == null)
         {
             Destroy(gameObject);

@@ -8,21 +8,24 @@ public class mouseItemSelection : MonoBehaviour
 
     void Start()
     {
+        GameObject[] pedestals = GameObject.FindGameObjectsWithTag("item");
+        foreach (GameObject pedestal in pedestals)
+        {
+            Vector3 posDiff = pedestal.transform.position - transform.position;
+            posDiff = new Vector3(posDiff.x, posDiff.y, 0);
+            if (posDiff.magnitude < 0.5f)
+            {
+                pedestal.GetComponent<itemPedestal>().GiveDaItem(master);
+                master.GetComponent<ItemHolder>().GiveFunny(pedestal);
+                EntityReferencerGuy.Instance.playerInstance.GetComponent<Attack>().canShoot = true;
+            }
+        }
+
         Invoke(nameof(deathMoment), 0.1f);
     }
 
     void deathMoment()
     {
         Destroy(gameObject);
-    }
-
-    void OnTriggerEnter2D(Collider2D col)
-    {
-        if (col.gameObject.tag == "item")
-        {
-            col.gameObject.GetComponent<itemPedestal>().GiveDaItem(master);
-            master.GetComponent<ItemHolder>().GiveFunny(col.gameObject);
-            EntityReferencerGuy.Instance.playerInstance.GetComponent<Attack>().canShoot = true;
-        }
     }
 }

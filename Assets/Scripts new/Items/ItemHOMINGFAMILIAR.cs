@@ -4,24 +4,14 @@ using UnityEngine;
 
 public class ItemHOMINGFAMILIAR : MonoBehaviour
 {
-    GameObject normieFamiliar;
-    GameObject spawnedGuy;
-
     // Start is called before the first frame update
     void Start()
     {
-        if (gameObject.tag == "Player" || gameObject.tag == "Hostile")
+        if (gameObject.GetComponent<gunnerManagement>() == null)
         {
-            normieFamiliar = EntityReferencerGuy.Instance.normieFamiliar;
-            spawnedGuy = Instantiate(normieFamiliar, transform.position, transform.rotation);
-            gameObject.GetComponent<OtherStuff>().AddNewFamiliar(spawnedGuy, (int)ITEMLIST.HOMINGFAMILIAR);
+            gameObject.AddComponent<gunnerManagement>();
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        gameObject.GetComponent<gunnerManagement>().AddNew((int)ITEMLIST.HOMINGFAMILIAR);
     }
 
     void Undo()

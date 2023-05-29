@@ -137,8 +137,10 @@ MonoBehaviour:
   material: {fileID: 0}
   colorChangeTimer: 0
   XP: {fileID: 6124614279667160435, guid: b448494b9362a2a429b8d6416d89f7e6, type: 3}
+  lastDamageSourceName: 
   makeKillSound: 1
   damageReduction: 0
+  damageDiv: 1
   perfectWaves: 0
 --- !u!114 &6146499720883180670
 MonoBehaviour:
@@ -155,6 +157,7 @@ MonoBehaviour:
   finalDamageStat: 50
   procCoeff: 0
   damageBase: 50
+  damageAdd: 0
   damageMult: 1
   finalDamageMult: 1
   finalDamageDIV: 1
@@ -169,10 +172,9 @@ MonoBehaviour:
   timer: 0
   damageAmt: 0
   iFrameFac: 1
-  isBulletClone: 0
-  isSourceBullet: 0
   damageToPresent: 0
   damageType: 0
+  procChainIndexes: 
 --- !u!114 &373114558742256855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -221,6 +223,8 @@ MonoBehaviour:
   velToGiveBullets: {x: 0, y: 0, z: 0}
   massToGiveBullets: 0.5
   holdDownToShoot: 1
+  numBulletsPossible: 16
+  canShoot: 1
 --- !u!114 &8437550650503696219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,11 +241,6 @@ MonoBehaviour:
   master: {fileID: 0}
   itemGained: 0
   noToGive: 1
-  isBullet: 0
-  isGuy: 1
-  doTheShit: 1
-  playerBullet: {fileID: 0}
-  enemyBullet: {fileID: 0}
 --- !u!114 &-226583629137854842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,17 +253,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 370f01fd484cd784f9ca5eaa41a674d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 0
-  poisonStacks: 0
+  statusOrders: 
+  statusStacks: 00000000000000000000000000000000
+  spawnedIcons: []
+  iconPrefab: {fileID: 0}
   bleedStacks: 0
-  hasElectric: 0
-  bleedTimer: 0
-  isFrozen: 0
-  freezeTimer: 0
-  freezeTimerLength: 100
   poisonTimers: 
   poisonDamages: []
-  iconOrder: 
+  poisonStacks: 0
+  hasElectric: 0
+  electricDealers: []
+  hasSlow: 0
 --- !u!114 &-972464548959991730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,7 +283,6 @@ MonoBehaviour:
   familiarBonusHOMING: 0
   canStillHeal: 1
   itemsToGiveRoundly: 
-  itemSelector: {fileID: 0}
 --- !u!195 &687514019896633325
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -387,6 +385,8 @@ MonoBehaviour:
   weaponHeld: 0
   master: {fileID: 0}
   spawnedBat: {fileID: 0}
+  previousFireType: 0
+  previousFireTimerLengthMLT: 0
 --- !u!120 &5928339923709462739
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -501,6 +501,7 @@ MonoBehaviour:
   activeAngles: []
   vecToTarget: {x: 0, y: 0, z: 0}
   moleProj: {fileID: 6152856860940002557, guid: 13c90bc400ac46f4383416a674875beb, type: 3}
+  mainMaterial: {fileID: 2100000, guid: 6a7214e8be07cb14587ff3180ea0b46f, type: 2}
   sprongleAudio: {fileID: 527891173530036625, guid: c3aea6758bc7f7e41904bf8de9427d8a, type: 3}
   spawnedSprongleAudio: {fileID: 0}
 --- !u!114 &-3144673201500430151

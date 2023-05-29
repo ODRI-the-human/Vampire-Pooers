@@ -11,6 +11,7 @@ public class lightningFireV2 : MonoBehaviour
     float fuckAngle;
 
     public GameObject moleProj;
+    public Material mainMaterial;
 
     int currentStep = 0;
     int noExtraShots;
@@ -62,6 +63,7 @@ public class lightningFireV2 : MonoBehaviour
         {
             Harrybo.tag = "PlayerBullet";
             Harrybo.layer = LayerPlayer;
+            Harrybo.GetComponent<checkAllLazerPositions>().shoot = mainMaterial;
         }
 
         if (gameObject.tag == "Hostile" || gameObject.tag == "enemyBullet")
@@ -69,6 +71,7 @@ public class lightningFireV2 : MonoBehaviour
             Harrybo.tag = "enemyBullet";
             Harrybo.layer = LayerEnemy;
             Harrybo.GetComponent<checkAllLazerPositions>().actuallyHit = false;
+            Harrybo.GetComponent<checkAllLazerPositions>().lineRandPos = 0;
         }
 
         Harrybo.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
@@ -86,6 +89,7 @@ public class lightningFireV2 : MonoBehaviour
         if (gameObject.tag == "Hostile" || gameObject.tag == "enemyBullet")
         {
             GameObject Darrenbo = Instantiate(moleProj, transform.position, Quaternion.Euler(0, 0, 0));
+            Darrenbo.GetComponent<checkAllLazerPositions>().shoot = mainMaterial;
             Darrenbo.transform.localScale = new Vector3(1, 1, 1);//150, 1);
             Darrenbo.transform.rotation = Quaternion.LookRotation(vecToTarget) * Quaternion.Euler(0, 90, 90 + (180 / Mathf.PI) * currentAngle); //90 + 180 * noExtraShots + 
             Darrenbo.GetComponent<checkAllLazerPositions>().owner = gameObject;

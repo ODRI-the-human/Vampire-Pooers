@@ -152,7 +152,10 @@ MonoBehaviour:
   vecToMove: {x: 0, y: 0, z: 0}
   owner: {fileID: 0}
   line: {fileID: -8539403832840598318}
-  shoot: {fileID: 2100000, guid: 6a7214e8be07cb14587ff3180ea0b46f, type: 2}
+  hitParticles: {fileID: 4986113990878371290, guid: 0ab5f86364f050c40a205ba163b0a7a3, type: 3}
+  light: {fileID: 3987269225006903482, guid: a3706ea3333fd5648844a9708b444d17, type: 3}
+  lineRandPos: 0.2
+  shoot: {fileID: 2100000, guid: bd23e476d69d9124fb911731384e2053, type: 2}
   invis: {fileID: 2100000, guid: a66365599d0d4264e9fd35d01ff3d088, type: 2}
   warn: {fileID: 2100000, guid: fba9229bb5d773248b7d70e956c6b896, type: 2}
   master: {fileID: 0}
@@ -207,3 +210,4 @@ MonoBehaviour:
   iFrameFac: 1
   damageToPresent: 0
   damageType: 0
+  procChainIndexes: 

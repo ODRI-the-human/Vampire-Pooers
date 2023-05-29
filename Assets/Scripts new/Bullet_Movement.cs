@@ -125,6 +125,11 @@ public class Bullet_Movement : MonoBehaviour
         }
     }
 
+    public void NoLongerReturnToPool()
+    {
+        isPooledBullet = false;
+    }
+
     public void KillBullet()
     {
         //Destroy(gameObject);

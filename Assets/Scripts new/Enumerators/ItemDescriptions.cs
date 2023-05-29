@@ -316,13 +316,7 @@ public class ItemDescriptions : MonoBehaviour
                 break;
             case (int)ITEMLIST.MORECRITS:
                 quality = (int)ITEMTIERS.COMMON;
-                itemDescription = "Crit chance increased by 20%";
-                addNewScriptForNewInstance = true;
-                whatUses = (int)ITEMOWNERS.ALL;
-                break;
-            case (int)ITEMLIST.BETTERCRITS:
-                quality = (int)ITEMTIERS.UNCOMMON;
-                itemDescription = "Crit multiplier increased by 100%";
+                itemDescription = "Crit chance increased by 20% per stack";
                 addNewScriptForNewInstance = true;
                 whatUses = (int)ITEMOWNERS.ALL;
                 break;

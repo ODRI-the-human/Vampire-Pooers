@@ -18,6 +18,11 @@ public class ItemBOUNCY : MonoBehaviour
 
     void Start()
     {
+        DetermineShotRolls();
+    }
+
+    void DetermineShotRolls()
+    {
         bouncesLeft = instances;
     }
 

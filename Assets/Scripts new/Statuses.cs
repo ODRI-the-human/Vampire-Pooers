@@ -62,8 +62,7 @@ public class Statuses : MonoBehaviour
             if (statusOrders[i] == statusType)
             {
                 statusOrders.RemoveAt(i);
-                Destroy(spawnedIcons[i]);
-                Destroy(spawnedIcons[i].GetComponent<Icons>().texty);
+                spawnedIcons[i].GetComponent<Icons>().Die();
                 spawnedIcons.RemoveAt(i);
             }
         }

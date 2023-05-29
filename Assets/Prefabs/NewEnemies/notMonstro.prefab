@@ -157,7 +157,7 @@ MonoBehaviour:
   damageBase: 50
   damageAdd: 0
   damageMult: 1
-  finalDamageMult: 1
+  finalDamageMult: 0.5
   finalDamageDIV: 1
   critProb: 0.05
   critMult: 2
@@ -172,6 +172,7 @@ MonoBehaviour:
   iFrameFac: 1
   damageToPresent: 0
   damageType: 0
+  procChainIndexes: 
 --- !u!114 &373114558742256855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,6 +223,7 @@ MonoBehaviour:
   holdDownToShoot: 1
   numBulletsPossible: 16
   canShoot: 1
+  shotParticles: {fileID: 0}
 --- !u!114 &8437550650503696219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,17 +252,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 370f01fd484cd784f9ca5eaa41a674d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 0
-  poisonStacks: 0
+  statusOrders: 
+  statusStacks: 00000000000000000000000000000000
+  spawnedIcons: []
+  iconPrefab: {fileID: 0}
   bleedStacks: 0
-  hasElectric: 0
-  bleedTimer: 0
-  isFrozen: 0
-  freezeTimer: 0
-  freezeTimerLength: 100
   poisonTimers: 
   poisonDamages: []
-  iconOrder: 
+  poisonStacks: 0
+  hasElectric: 0
+  electricDealers: []
+  hasSlow: 0
 --- !u!114 &-972464548959991730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -280,7 +282,6 @@ MonoBehaviour:
   familiarBonusHOMING: 0
   canStillHeal: 1
   itemsToGiveRoundly: 
-  itemSelector: {fileID: 0}
 --- !u!195 &687514019896633325
 NavMeshAgent:
   m_ObjectHideFlags: 0

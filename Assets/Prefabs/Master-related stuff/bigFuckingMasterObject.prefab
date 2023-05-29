@@ -81,6 +81,8 @@ MonoBehaviour:
   neutralExplosion: {fileID: 0}
   camera: {fileID: 0}
   marcelageloo: {fileID: 0}
+  regularShotParticle: {fileID: 4986113990878371290, guid: 5251b42d6c448694c98012722de6e439, type: 3}
+  empty: {fileID: 2232971130497578917, guid: dc46db39e4e70b144915e7a0652cc396, type: 3}
   master: {fileID: 7002239379606652682}
   bat: {fileID: 0}
   boss: {fileID: 0}

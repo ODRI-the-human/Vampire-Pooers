@@ -69,11 +69,16 @@ public class Attack : MonoBehaviour
     //public InputActionAsset actions;
     //public InputAction shootAction;
     //public InputAction aimAction;
-    bool isFiring = false;
-
+    public bool isFiring = false;
+    public GameObject shotParticles;
 
     void Start()
     {
+        if (stopwatchDebuffAmount == 0)
+        {
+            stopwatchDebuffAmount = 1;
+        }
+
         //if (actions != null)
         //{
         //    actions.FindActionMap("gameplay").Enable();
@@ -95,7 +100,7 @@ public class Attack : MonoBehaviour
             gameObject.SetActive(false);
         }, gameObject =>
         {
-            Destroy(gameObject);
+            Destroy(gameObject);//gameObject.SendMessage("NoLongerReturnToPool");
         }, true, numBulletsPossible, 300);
 
         timesFired = -1;
@@ -117,11 +122,17 @@ public class Attack : MonoBehaviour
 
     public void OnShoot(InputAction.CallbackContext context)
     {
-        isFiring = context.action.triggered;
+        bool wasChangeInState = false;
+        if (isFiring != context.action.triggered)
+        {
+            isFiring = context.action.triggered;
+            SendMessage("StartedOrEndedShooting", isFiring); // Used primarily by NewPlayerMovement to slow the player when shooting.
+        }
     }
 
     public void InputAim(InputAction.CallbackContext context)
     {
+        mouseVector = Camera.main.ScreenToWorldPoint(context.ReadValue<Vector2>());
         Vector3 vectorToTarget3 = (new Vector3(context.ReadValue<Vector2>().x, context.ReadValue<Vector2>().y, 0) - Camera.main.WorldToScreenPoint(transform.position));
         vectorToTarget = new Vector2(vectorToTarget3.x, vectorToTarget3.y).normalized;
     }
@@ -142,6 +153,22 @@ public class Attack : MonoBehaviour
     //    }
     //}
     // Update is called once per frame, as you know
+
+
+    void CreateShotFX()
+    {
+        GameObject ordio = Instantiate(PlayerShootAudio, transform.position, transform.rotation);
+        GameObject particles = Instantiate(shotParticles, transform.position, transform.rotation);
+
+        if (particles.GetComponent<ParticleSystem>() != null)
+        {
+            particles.transform.rotation = Quaternion.LookRotation(vectorToTarget, new Vector3(1, 0, 0)) * Quaternion.Euler(-90, 0, 0);
+            var ps = particles.GetComponent<ParticleSystem>();
+            ps.Emit(3);
+        }
+    }
+
+
     void Update()
     {
         trueDamageValue = gameObject.GetComponent<DealDamage>().finalDamageStat;
@@ -177,7 +204,7 @@ public class Attack : MonoBehaviour
                     UseWeapon(false);
                     timesFired++;
                     fireTimer = 0;
-                    GameObject ordio = Instantiate(PlayerShootAudio);
+                    CreateShotFX();
 
                     if (gameObject.tag == "Player")
                     {
@@ -197,7 +224,7 @@ public class Attack : MonoBehaviour
                         UseWeapon(false);
                         timesFired++;
                         fireTimer = 0;
-                        GameObject ordio = Instantiate(PlayerShootAudio);
+                        CreateShotFX();
                     }
                 }
                 break;
@@ -206,6 +233,8 @@ public class Attack : MonoBehaviour
 
     public void UseWeapon(bool angleOverride) // angleOverride is false most of the time, but true if you want to use an input currentAngle.
     {
+        SendMessage("OnShootEffects");
+
         switch (newAttack)
         {
             case 0:
@@ -289,7 +318,7 @@ public class Attack : MonoBehaviour
         {
             vectorToTarget = new Vector2(1,0);
         }
-        newShotVector = new Vector2(vectorToTarget.x * Mathf.Cos(currentAngle) - vectorToTarget.y * Mathf.Sin(currentAngle), vectorToTarget.x * Mathf.Sin(currentAngle) + vectorToTarget.y * Mathf.Cos(currentAngle));
+        newShotVector = new Vector2(vectorToTarget.x * Mathf.Cos(currentAngle) - vectorToTarget.y * Mathf.Sin(currentAngle), vectorToTarget.x * Mathf.Sin(currentAngle) + vectorToTarget.y * Mathf.Cos(currentAngle)).normalized;
         velToGiveBullets = newShotVector * shotSpeed;
         bulletRB.velocity = velToGiveBullets;
         newObject.GetComponent<DealDamage>().master = gameObject.GetComponent<DealDamage>().master;
@@ -299,7 +328,7 @@ public class Attack : MonoBehaviour
             newObject.GetComponent<Rigidbody2D>().simulated = true;
             //newObject.AddComponent<KillBullets>();
             newObject.GetComponent<weaponType>().weaponHeld = newObject.GetComponent<weaponType>().weaponHeld;
-            newObject.GetComponent<DealDamage>().owner = gameObject;
+            newObject.GetComponent<DealDamage>().owner = gameObject.GetComponent<DealDamage>().owner;
             newObject.GetComponent<DealDamage>().finalDamageMult = gameObject.GetComponent<DealDamage>().finalDamageMult;
             newObject.GetComponent<DealDamage>().damageAdd += Crongus + levelDamageBonus; // applies converter damage bonus to bullets
         }
@@ -311,7 +340,7 @@ public class Attack : MonoBehaviour
             newObject.GetComponent<DealDamage>().damageMult = gameObject.GetComponent<DealDamage>().damageMult;
             newObject.GetComponent<DealDamage>().finalDamageMult = gameObject.GetComponent<DealDamage>().finalDamageMult;
             newObject.GetComponent<DealDamage>().massCoeff = massToGiveBullets;
-            newObject.GetComponent<DealDamage>().owner = gameObject;
+            newObject.GetComponent<DealDamage>().owner = gameObject.GetComponent<DealDamage>().owner;
             newObject.GetComponent<DealDamage>().finalDamageDIV = gameObject.GetComponent<DealDamage>().finalDamageDIV;
             newObject.GetComponent<weaponType>().weaponHeld = newObject.GetComponent<weaponType>().weaponHeld;
             newObject.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
@@ -402,8 +431,16 @@ public class Attack : MonoBehaviour
 
     public void itemsAdded(bool nothing)
     {
+        GameObject[] bullets = GameObject.FindGameObjectsWithTag("PlayerBullet");
+        foreach (GameObject bullet in bullets)
+        {
+            if (bullet.GetComponent<Bullet_Movement>() != null)
+            {
+                Destroy(bullet);
+            }
+        }
+        bulletPool.Clear();
         Debug.Log("funker dunker");
-        bulletPool.Dispose();
         timesFired = -1;
     }
 }

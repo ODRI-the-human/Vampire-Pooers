@@ -38,18 +38,8 @@ public class NewPlayerMovement : MonoBehaviour
     public GameObject dodgeAudio;
     Rigidbody2D rb;
 
-    //public InputActionAsset actions;
-    //public InputAction moveAction;
-
     void Start()
     {
-        //if (actions != null)
-        //{
-        //    actions.FindActionMap("gameplay").Enable();
-        //    moveAction = actions.FindActionMap("gameplay").FindAction("move");
-        //    actions.FindActionMap("gameplay").FindAction("dodge").performed += OnDodge;
-        //}
-
         rb = gameObject.GetComponent<Rigidbody2D>();
         LayerPlayer = LayerMask.NameToLayer("Player");
         LayerNone = LayerMask.NameToLayer("OnlyHitWalls");
@@ -58,10 +48,7 @@ public class NewPlayerMovement : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        if (isDodging == 0)
-        {
-            moveDirection = context.ReadValue<Vector2>().normalized;//new Vector2(moveX, moveY).normalized;
-        }
+        desiredVector = context.ReadValue<Vector2>().normalized;//new Vector2(moveX, moveY).normalized;
     }
 
     public void OnDodge(InputAction.CallbackContext context) // Applying the dodge when the player, ya know, dodges.
@@ -102,6 +89,20 @@ public class NewPlayerMovement : MonoBehaviour
         }
     }
 
+    void StartedOrEndedShooting(bool trueForStartedFalseForEnded)
+    {
+        if (trueForStartedFalseForEnded)
+        {
+            speedMult = 0.5f;
+            Debug.Log("slowed");
+        }
+        else
+        {
+            speedMult = 1;
+            Debug.Log("speeded");
+        }
+    }
+
     void Update()
     {
         rb.velocity = new Vector2(0, 0);
@@ -111,8 +112,11 @@ public class NewPlayerMovement : MonoBehaviour
 
         if (gameObject.tag == "Player")
         {
-            desiredVector = moveDirection;
-            Vector3 moveDir = currentMoveSpeed * desiredVector * Time.deltaTime;
+            if (isDodging == 0)
+            {
+                moveDirection = desiredVector;
+            }
+            Vector3 moveDir = currentMoveSpeed * moveDirection * Time.deltaTime;
             transform.position += moveDir;
         }
         else

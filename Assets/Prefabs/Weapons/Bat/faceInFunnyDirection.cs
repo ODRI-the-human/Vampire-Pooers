@@ -56,8 +56,7 @@ public class faceInFunnyDirection : MonoBehaviour
 
         transform.position = owner.transform.position;
 
-        Vector3 blimpPos = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position);
-        blimpPos = new Vector3(blimpPos.x, blimpPos.y, 0);
+        Vector3 blimpPos = owner.GetComponent<Attack>().vectorToTarget;
         transform.rotation = Quaternion.LookRotation(blimpPos, new Vector3(0, 0, 1));
         transform.Rotate(0, 0, 90 + 90 * dirFacing, Space.World);
         gameObject.GetComponent<DealDamage>().damageBase = owner.GetComponent<DealDamage>().damageBase;

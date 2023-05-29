@@ -47,7 +47,6 @@ public enum ITEMLIST
     SAWSHOT,
     LUCKIER,
     MORECRITS,
-    BETTERCRITS,
     MARCEL,
 
 

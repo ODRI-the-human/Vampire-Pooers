@@ -37,7 +37,7 @@ public class visualPoopoo : MonoBehaviour
         }
         else
         {
-            Time.timeScale = 0.05f;
+            Time.timeScale = 0.01f;
             isPaused = true;
         }
     }

@@ -339,6 +339,7 @@ public class ThirdEnemySpawner : MonoBehaviour
     {
         Player.SendMessage("newWaveEffects");
         waveNumber++;
+        stepUpTo = 0;
         spawnNumber = 0;
     }
 }

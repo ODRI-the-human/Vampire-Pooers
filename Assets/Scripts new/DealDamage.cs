@@ -119,8 +119,13 @@ public class DealDamage : MonoBehaviour
         //erm nothing, literally just here to get the sendmessages to shut the fuck up about no recievers!
     }
 
-    public int ChanceRoll(float value, GameObject source, int procItemIndex) // Items that are rolling for a chance-based thing use this.
+    public int ChanceRoll(float value, GameObject source, int procItemIndex) // Items that are rolling for a chance-based thing use this. 
     {
+        if (gameObject.tag == "Hostile" || gameObject.tag == "Player") // The player and shit shouldn't have proc indexes anyway
+        {
+            procChainIndexes.Clear();
+        }
+
         bool scriptIsUsed = false; // This stores whether the current script doing the roll has already been used in the proc chain.
         List<int> procIndexes = source.GetComponent<DealDamage>().procChainIndexes;
 
@@ -138,6 +143,7 @@ public class DealDamage : MonoBehaviour
         if (!scriptIsUsed)
         {
             float percentChance = value * source.GetComponent<DealDamage>().procCoeff;
+            Debug.Log("erm percentage chance do be: " + percentChance.ToString() + ", value: " + value.ToString());
 
             for (int i = 0; i < 20; i++)
             {

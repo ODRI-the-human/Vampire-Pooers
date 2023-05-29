@@ -172,17 +172,30 @@ public class HPDamageDie : MonoBehaviour
     {
         if (col.gameObject.GetComponent<DealDamage>() != null && col.gameObject.tag != gameObject.tag && col.gameObject.GetComponent<DealDamage>().finalDamageStat - damageReduction >= 0)
         {
-            float procMoment = 100f - 100f * col.gameObject.GetComponent<DealDamage>().critProb * col.gameObject.GetComponent<DealDamage>().procCoeff;
-            float pringle = Random.Range(0f, 100f);
+            float critChance = 100f * col.gameObject.GetComponent<DealDamage>().critProb;
+            int numCrits = gameObject.GetComponent<DealDamage>().ChanceRoll(critChance, col.gameObject, -5);
             float critMult = 1;
             bool isCrit = false;
-            if (pringle > procMoment)
+
+            for (int i = 0; i < numCrits; i++)
             {
-                critMult = col.gameObject.GetComponent<DealDamage>().critMult;
+                critMult *= 2;
                 Instantiate(CritAudio);
                 isCrit = true;
             }
+
             float damageAmount = col.gameObject.GetComponent<DealDamage>().finalDamageStat * critMult;
+
+            //float procMoment = 100f - 100f * col.gameObject.GetComponent<DealDamage>().critProb * col.gameObject.GetComponent<DealDamage>().procCoeff;
+            //float pringle = Random.Range(0f, 100f);
+            //bool isCrit = false;
+            //if (pringle > procMoment)
+            //{
+            //    critMult = col.gameObject.GetComponent<DealDamage>().critMult;
+            //    Instantiate(CritAudio);
+            //    isCrit = true;
+            //}
+            //float damageAmount = col.gameObject.GetComponent<DealDamage>().finalDamageStat * critMult;
             if (col.gameObject.GetComponent<DealDamage>().onlyDamageOnce)
             {
                 Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>(), true);

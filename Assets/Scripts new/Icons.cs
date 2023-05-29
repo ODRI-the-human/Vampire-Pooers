@@ -19,6 +19,7 @@ public class Icons : MonoBehaviour
     void Start()
     {
         texty = Instantiate(statusText);
+        texty.GetComponent<dieIfOwnerIsNull>().owner = gameObject;
         texty.transform.SetParent(GameObject.Find("worldSpaceCanvas").transform);
         texty.transform.localScale = new Vector3(1, 1, 1);
 
@@ -28,8 +29,19 @@ public class Icons : MonoBehaviour
         GetNewPos();
     }
 
+    public void Die()
+    {
+        Destroy(texty.gameObject);
+        Destroy(gameObject);
+    }
+
     void Update()
     {
+        if (parent == null)
+        {
+            Die();
+        }
+
         transform.position = parent.transform.position + new Vector3(((1 - numStatusesApplied) * 0.5f + index) * 0.5f, 1, 0);
         texty.transform.position = transform.position + new Vector3(0.25f, -0.3f, 0);
         if (parent.GetComponent<Statuses>().statusStacks[statusType] != 0)

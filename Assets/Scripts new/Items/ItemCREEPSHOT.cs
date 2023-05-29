@@ -19,33 +19,29 @@ public class ItemCREEPSHOT : MonoBehaviour
     {
         if (col.gameObject.tag == "Wall" && (gameObject.tag == "PlayerBullet" || gameObject.tag == "enemyBullet"))
         {
-            GameObject owner = gameObject.GetComponent<DealDamage>().owner;
-            owner.GetComponent<ItemCREEPSHOT>().SpawnTheCreep(gameObject);
+            SpawnTheCreep();
         }
     }
 
     void RollOnHit(GameObject[] objects)
     {
-        if (gameObject.tag == "Player" || gameObject.tag == "Hostile")
-        {
-            SpawnTheCreep(objects[1]);
-        }
+        SpawnTheCreep();
     }
 
-    void SpawnTheCreep(GameObject source)
+    void SpawnTheCreep()
     {
-        if (gameObject.tag == "Player")
+        if (gameObject.tag == "PlayerBullet")
         {
             creeper = EntityReferencerGuy.Instance.Creep;
         }
-        if (gameObject.tag == "Hostile")
+        if (gameObject.tag == "enemyBullet")
         {
             creeper = EntityReferencerGuy.Instance.CreepHostile;
         }
         GameObject buoerber = Instantiate(creeper);
-        buoerber.transform.position = new Vector3(source.transform.position.x, source.transform.position.y, 0);
+        buoerber.transform.position = new Vector3(transform.position.x, transform.position.y, 0);
         buoerber.GetComponent<DealDamage>().overwriteDamageCalc = true;
-        buoerber.GetComponent<DealDamage>().damageAmt = 0.1f * source.GetComponent<DealDamage>().damageAmt * instances;
+        buoerber.GetComponent<DealDamage>().damageAmt = 0.2f * gameObject.GetComponent<DealDamage>().damageAmt * instances;
         buoerber.GetComponent<DealDamage>().owner = gameObject.GetComponent<DealDamage>().owner;
     }
 

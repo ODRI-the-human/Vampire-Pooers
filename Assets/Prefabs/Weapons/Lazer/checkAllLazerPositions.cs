@@ -11,6 +11,9 @@ public class checkAllLazerPositions : MonoBehaviour
     public Vector3 vecToMove;
     public GameObject owner;
     public LineRenderer line;
+    public GameObject hitParticles;
+    public GameObject light;
+    public float lineRandPos = 0.2f;
 
     int contacts = 0;
 
@@ -31,12 +34,15 @@ public class checkAllLazerPositions : MonoBehaviour
         StartCoroutine(LateStart(0.02f));
     }
 
+    void LightFunny()
+    {
+        GameObject lighty = Instantiate(light, transform.position, transform.rotation);
+        lighty.GetComponent<Light>().color = shoot.color;
+    }
+
     IEnumerator LateStart(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
-        float damageVal = gameObject.GetComponent<DealDamage>().damageAmt;
-        gameObject.GetComponent<DealDamage>().overwriteDamageCalc = true;
-        gameObject.GetComponent<DealDamage>().damageAmt = damageVal * splitDamMult;
 
         if (setVecToMoveAutomatically)
         {
@@ -48,11 +54,14 @@ public class checkAllLazerPositions : MonoBehaviour
         if (actuallyHit)
         {
             Invoke(nameof(DIE), 0.25f);
+            //LightFunny();
         }
 
         for (int i = 0; i < 150; i++)
         {
             //Debug.Log(vecToMove.ToString());
+
+            line.SetPosition(i, new Vector3(transform.position.x, transform.position.y, -1) + new Vector3(Random.Range(-lineRandPos, lineRandPos), Random.Range(-lineRandPos, lineRandPos), 0));
 
             if (vecToMove == Vector3.zero)
             {
@@ -60,7 +69,6 @@ public class checkAllLazerPositions : MonoBehaviour
                 break;
             }
 
-            line.SetPosition(i, new Vector3(transform.position.x, transform.position.y, -1));
             hitboxPosses.Add(transform.position);
 
             transform.position += 0.4f * vecToMove;
@@ -137,7 +145,8 @@ public class checkAllLazerPositions : MonoBehaviour
                             isCrit = true;
                         }
                         float damageAmount = gameObject.GetComponent<DealDamage>().finalDamageStat * critMult;
-                        col.gameObject.GetComponent<HPDamageDie>().Hurty(damageAmount, isCrit, true, 1, (int)DAMAGETYPES.ELECTRIC, false, gameObject);
+                        col.gameObject.GetComponent<HPDamageDie>().Hurty(gameObject.GetComponent<DealDamage>().damageAmt, isCrit, true, 1, (int)DAMAGETYPES.ELECTRIC, false, gameObject);
+                        //gameObject.GetComponent<ParticleSystem>().Emit(50);
                         //gameObject.GetComponent<DealDamage>().TriggerTheOnHits(col.gameObject);
                         ignoredHits.Add(col.gameObject);
                     }
@@ -158,7 +167,7 @@ public class checkAllLazerPositions : MonoBehaviour
                             merman.GetComponent<checkAllLazerPositions>().vecToMove = (2 * j - 1) * new Vector3(vecToMove.y, -vecToMove.x, 0); // Rotates vector 90 degrees.
                             merman.GetComponent<checkAllLazerPositions>().setVecToMoveAutomatically = false;
                             //merman.GetComponent<DealDamage>().overwriteDamageCalc = false;
-                            merman.GetComponent<checkAllLazerPositions>().splitDamMult *= 0.3f * gameObject.GetComponent<ItemSPLIT>().instances;// * gameObject.GetComponent<DealDamage>().damageAmt;
+                            merman.GetComponent<DealDamage>().damageBase *= 0.3f * gameObject.GetComponent<ItemSPLIT>().instances;// * gameObject.GetComponent<DealDamage>().damageAmt;
                             //merman.GetComponent<DealDamage>().CalcDamage();// * gameObject.GetComponent<DealDamage>().damageAmt;
                             //merman.GetComponent<DealDamage>().finalDamageStat = gameObject.GetComponent<DealDamage>().damageAmt;
                             merman.GetComponent<ItemSPLIT>().canSplit = false;
@@ -183,7 +192,7 @@ public class checkAllLazerPositions : MonoBehaviour
                             isCrit = true;
                         }
                         float damageAmount = gameObject.GetComponent<DealDamage>().finalDamageStat * critMult;
-                        col.gameObject.GetComponent<HPDamageDie>().Hurty(damageAmount, isCrit, true, 1, (int)DAMAGETYPES.ELECTRIC, false, gameObject);
+                        col.gameObject.GetComponent<HPDamageDie>().Hurty(gameObject.GetComponent<DealDamage>().damageAmt, isCrit, true, 1, (int)DAMAGETYPES.ELECTRIC, false, gameObject);
                         ignoredHits.Add(col.gameObject);
                     }
 
@@ -233,6 +242,14 @@ public class checkAllLazerPositions : MonoBehaviour
 
                 if (col.gameObject.tag == "Wall")
                 {
+                    if (actuallyHit)
+                    {
+                        GameObject particles = Instantiate(hitParticles, transform.position, Quaternion.Euler(0, 0, 0));
+                        var renderer = particles.GetComponent<ParticleSystemRenderer>();
+                        renderer.trailMaterial = shoot; // Applies the new value directly to the Particle System
+                        LightFunny();
+                    }
+
                     // Damaging rocks.
                     if (col.gameObject.GetComponent<obstHP>() != null)
                     {

@@ -19,6 +19,7 @@ public class ItemHolder : MonoBehaviour
 
     public void ApplyAll()
     {
+        SendMessage("itemsAdded", true);
         foreach (int item in itemsHeld)
         {
             itemGained = item;
@@ -61,6 +62,8 @@ public class ItemHolder : MonoBehaviour
         {
             doGiveItem = true;
         }
+
+        Debug.Log("well okay die" + gameObject.name);
 
 
         // Applies the item, either adding a new instance of the script or incrementing a script's 'instances' value.

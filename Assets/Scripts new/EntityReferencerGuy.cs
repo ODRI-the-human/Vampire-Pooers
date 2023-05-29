@@ -32,6 +32,8 @@ public class EntityReferencerGuy : MonoBehaviour
     public GameObject neutralExplosion;
     public GameObject camera;
     public GameObject marcelageloo;
+    public GameObject regularShotParticle;
+    public GameObject empty;
 
     public GameObject master;
 
