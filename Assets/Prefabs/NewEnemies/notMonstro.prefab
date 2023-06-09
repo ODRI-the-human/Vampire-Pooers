@@ -17,7 +17,6 @@ GameObject:
   - component: {fileID: 373114558742256855}
   - component: {fileID: 8437550650503696219}
   - component: {fileID: -226583629137854842}
-  - component: {fileID: -972464548959991730}
   - component: {fileID: 687514019896633325}
   - component: {fileID: 1637301172094922029}
   - component: {fileID: 2794491946153304301}
@@ -163,6 +162,7 @@ MonoBehaviour:
   critMult: 2
   owner: {fileID: 0}
   master: {fileID: 0}
+  isMelee: 0
   massCoeff: 2
   overwriteDamageCalc: 0
   onlyDamageOnce: 0
@@ -223,7 +223,10 @@ MonoBehaviour:
   holdDownToShoot: 1
   numBulletsPossible: 16
   canShoot: 1
+  isFiring: 0
   shotParticles: {fileID: 0}
+  meleeHitObj: {fileID: 0}
+  hitboxSpawnDelay: 0
 --- !u!114 &8437550650503696219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,25 +266,6 @@ MonoBehaviour:
   hasElectric: 0
   electricDealers: []
   hasSlow: 0
---- !u!114 &-972464548959991730
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8034279136360660190}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2fbc6a30d6769c4bb440728c49f0ade, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scripts: []
-  familiars: []
-  familiarBonusDMG: 0
-  familiarBonusFIRERATE: 0
-  familiarBonusHOMING: 0
-  canStillHeal: 1
-  itemsToGiveRoundly: 
 --- !u!195 &687514019896633325
 NavMeshAgent:
   m_ObjectHideFlags: 0

@@ -32,9 +32,9 @@ public class weaponType : MonoBehaviour
 
     public void SetWeapon()
     {
-        if (spawnedBat != null)
+        if (gameObject.GetComponent<BatVisual>() != null)
         {
-            Destroy(spawnedBat);
+            gameObject.GetComponent<BatVisual>().Kill();
         }
 
         switch (weaponHeld)
@@ -96,12 +96,17 @@ public class weaponType : MonoBehaviour
             case (int)ITEMLIST.BAT:
                 if (gameObject.GetComponent<Attack>() != null)
                 {
-                    gameObject.GetComponent<Attack>().specialFireType = 6;
+                    //gameObject.GetComponent<Attack>().specialFireType = 6;
                     gameObject.GetComponent<Attack>().fireTimerLengthMLT = 1;
                     gameObject.GetComponent<Attack>().holdDownToShoot = false;
-                    spawnedBat = Instantiate(EntityReferencerGuy.Instance.bat);
-                    spawnedBat.GetComponent<faceInFunnyDirection>().owner = gameObject;
+                    //spawnedBat = Instantiate(EntityReferencerGuy.Instance.bat);
+                    //spawnedBat.GetComponent<faceInFunnyDirection>().owner = gameObject;
                     gameObject.GetComponent<Attack>().shotParticles = EntityReferencerGuy.Instance.empty;
+                    gameObject.AddComponent<BatVisual>();
+
+                    gameObject.GetComponent<Attack>().meleeHitObj = EntityReferencerGuy.Instance.batHitbox;
+                    gameObject.GetComponent<Attack>().hitboxSpawnDelay = 0.1f;
+                    gameObject.GetComponent<Attack>().specialFireType = 3;
                 }
                 break;
         }

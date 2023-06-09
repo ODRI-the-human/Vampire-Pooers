@@ -39,6 +39,11 @@ public class lose5ItemTemp : MonoBehaviour
             }
         }
 
+        Invoke(nameof(ApplyItems), 0.001f);
+    }
+
+    void ApplyItems()
+    {
         gameObject.GetComponent<ItemHolder>().ApplyAll();
         Destroy(this);
     }

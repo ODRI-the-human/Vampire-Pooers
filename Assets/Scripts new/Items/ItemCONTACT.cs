@@ -24,7 +24,7 @@ public class ItemCONTACT : MonoBehaviour
     void DetermineShotRolls()
     {
         int LayerProjectileBlocking = LayerMask.NameToLayer("ProjectileBlocking");
-        if ((gameObject.tag == "PlayerBullet" || gameObject.tag == "enemyBullet") && gameObject.layer != LayerProjectileBlocking && gameObject.GetComponent<faceInFunnyDirection>() == null) //the last one is to prevent it from being given to the baseball bat.
+        if ((gameObject.tag == "PlayerBullet" || gameObject.tag == "enemyBullet") && gameObject.layer != LayerProjectileBlocking && gameObject.GetComponent<meleeGeneral>() == null) //the last one is to prevent it from being given to melee (cos melee works differently ya know)
         {
             Bingus = Instantiate(EntityReferencerGuy.Instance.contactMan, transform.position, Quaternion.Euler(0, 0, 0));
             Bingus.GetComponent<dieOnContactWithBullet>().instances = 2 * instances;
@@ -45,6 +45,14 @@ public class ItemCONTACT : MonoBehaviour
             }
             Bingus.tag = gameObject.tag;
             Bingus.transform.localScale = 2 * gameObject.transform.localScale;
+        }
+
+        if (gameObject.GetComponent<meleeGeneral>() != null)
+        {
+            gameObject.AddComponent<dieOnContactWithBullet>();
+            gameObject.GetComponent<dieOnContactWithBullet>().instances = 2 * instances;
+            gameObject.GetComponent<dieOnContactWithBullet>().reduceInstOnHit = false;
+            gameObject.GetComponent<dieOnContactWithBullet>().master = gameObject;
         }
     }
 

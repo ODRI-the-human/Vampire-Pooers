@@ -10,11 +10,15 @@ public class DestroyAfterMarty : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        timer--;
+        if (timer == 20)
+        {
+            Destroy(gameObject.GetComponent<Collider2D>());
+        }
 
         if (timer <= 0)
         {
             Destroy(gameObject);
         }
+        timer--;
     }
 }

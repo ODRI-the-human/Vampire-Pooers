@@ -68,7 +68,7 @@ public class Bullet_Movement : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D col)
+    void HitShit(Collider2D col)
     {
         Vector2 enemyPos = new Vector2(transform.position.x, transform.position.y);
         Vector2 bulletPos = new Vector2(col.transform.position.x, col.transform.position.y);
@@ -76,7 +76,7 @@ public class Bullet_Movement : MonoBehaviour
         float xSpeed = rb.velocity.normalized.x;
         float ySpeed = rb.velocity.normalized.y;
 
-        if (canCollide)
+        if (canCollide && col.gameObject.GetComponent<dieOnContactWithBullet>() == null)
         {
             if (piercesLeft > 0 && col.gameObject.tag != "Wall")
             {
@@ -123,39 +123,8 @@ public class Bullet_Movement : MonoBehaviour
                 }
             }
         }
-    }
 
-    public void NoLongerReturnToPool()
-    {
-        isPooledBullet = false;
-    }
-
-    public void KillBullet()
-    {
-        //Destroy(gameObject);
-        GameObject owner = gameObject.GetComponent<DealDamage>().owner;
-        if (owner != null && isPooledBullet) // Returns object to pool if owner is still alive, kills the bullet if owner is dead.
-        {
-            if (gameObject.active == true)
-            {
-                Invoke(nameof(DisableBullet), 0.001f);
-            }
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
-
-    void DisableBullet()
-    {
-        GameObject owner = gameObject.GetComponent<DealDamage>().owner;
-        owner.GetComponent<Attack>().bulletPool.Release(gameObject);
-    }
-
-    // for contact item.
-    void OnTriggerEnter2D(Collider2D col)
-    {
+        // for contact item.
         if ((col.gameObject.tag == "PlayerBullet" && gameObject.tag == "enemyBullet") || (col.gameObject.tag == "enemyBullet" && gameObject.tag == "PlayerBullet"))
         {
             if (col.gameObject.GetComponent<dieOnContactWithBullet>() != null)
@@ -173,13 +142,12 @@ public class Bullet_Movement : MonoBehaviour
                     gameObject.tag = "enemyBullet";
                 }
 
-                Vector2 enemyPos = new Vector2(transform.position.x, transform.position.y);
-                Vector2 bulletPos = new Vector2(col.transform.position.x, col.transform.position.y);
                 rb.velocity = speed * (enemyPos - bulletPos).normalized;
                 transform.rotation = Quaternion.LookRotation(rb.velocity) * Quaternion.Euler(0, 90, 0);
+                gameObject.GetComponent<DealDamage>().finalDamageMult *= 1 + 0.1f * col.gameObject.GetComponent<dieOnContactWithBullet>().instances;
                 //gameObject.GetComponent<DealDamage>().owner = col.gameObject.GetComponent<DealDamage>().owner;
 
-                if (col.gameObject.GetComponent<dieOnContactWithBullet>() != null && col.gameObject.GetComponent<dieOnContactWithBullet>().reduceInstOnHit)
+                if (col.gameObject.GetComponent<dieOnContactWithBullet>().reduceInstOnHit)
                 {
                     col.gameObject.GetComponent<dieOnContactWithBullet>().instances -= 1;
                     if (col.gameObject.GetComponent<dieOnContactWithBullet>().instances == 0)
@@ -197,5 +165,38 @@ public class Bullet_Movement : MonoBehaviour
                 }
             }
         }
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        HitShit(col.collider);
+    }
+
+    public void KillBullet()
+    {
+        //Destroy(gameObject);
+        GameObject owner = gameObject.GetComponent<DealDamage>().owner;
+        if (owner != null && isPooledBullet) // Returns object to pool if owner is still alive, kills the bullet if owner is dead.
+        {
+            Invoke(nameof(DisableBullet), 0.001f);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    void DisableBullet()
+    {
+        if (gameObject.active == true)
+        {
+            GameObject owner = gameObject.GetComponent<DealDamage>().owner;
+            owner.GetComponent<Attack>().bulletPool.Release(gameObject);
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        HitShit(col);
     }
 }

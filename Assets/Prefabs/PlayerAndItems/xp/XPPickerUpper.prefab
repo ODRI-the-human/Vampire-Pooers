@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5198959615854064035}
   - component: {fileID: 3841798933148938002}
   - component: {fileID: -2346603862675002404}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: XPPickerUpper
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -36,6 +36,9 @@ public class grabPlayer : MonoBehaviour
 
     void ApplyOwnOnDeaths()
     {
-        blumby.GetComponent<NewPlayerMovement>().slowTimer = 1;
+        if (blumby != null)
+        {
+            blumby.GetComponent<NewPlayerMovement>().slowTimer = 1;
+        }
     }
 }

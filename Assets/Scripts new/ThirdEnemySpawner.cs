@@ -39,7 +39,7 @@ public class ThirdEnemySpawner : MonoBehaviour
     public GameObject chargeEnemy;
     public GameObject lazerEnemy;
 
-    int xpPerWave = 7;
+    int xpPerWave = 3;
     int currentXP = 0;
 
     public GameObject toSpawn;
@@ -110,9 +110,10 @@ public class ThirdEnemySpawner : MonoBehaviour
                 }
             }
         }
-        if (GameObject.FindGameObjectsWithTag("Hostile").Length < 1 && spawnTimer > 10)
+
+        if (Mathf.Round(spawnTimer) % 100 == 0)
         {
-            if (GameObject.FindGameObjectsWithTag("item").Length < 1)
+            if (GameObject.FindGameObjectsWithTag("Hostile").Length < 1 && GameObject.FindGameObjectsWithTag("item").Length < 1)
             {
                 spawnTimer = 0;
             }

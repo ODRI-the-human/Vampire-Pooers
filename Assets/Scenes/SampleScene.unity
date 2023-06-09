@@ -12915,6 +12915,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cringe
       objectReference: {fileID: 0}
+    - target: {fileID: 3616513699099699532, guid: 60144d236f99e61488c7f949bb853116, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4142080894617498614, guid: 60144d236f99e61488c7f949bb853116, type: 3}
       propertyPath: m_RootOrder
       value: 0

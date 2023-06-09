@@ -36,8 +36,8 @@ public class checkAllLazerPositions : MonoBehaviour
 
     void LightFunny()
     {
-        GameObject lighty = Instantiate(light, transform.position, transform.rotation);
-        lighty.GetComponent<Light>().color = shoot.color;
+        //GameObject lighty = Instantiate(light, transform.position, transform.rotation);
+        //lighty.GetComponent<Light>().color = shoot.color;
     }
 
     IEnumerator LateStart(float waitTime)

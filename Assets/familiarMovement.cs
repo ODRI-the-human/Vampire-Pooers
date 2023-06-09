@@ -19,7 +19,10 @@ public class familiarMovement : MonoBehaviour
         if (gunnerType != (int)ITEMLIST.AUTOFAMILIAR)
         {
             gameObject.GetComponent<Attack>().isFiring = owner.GetComponent<Attack>().isFiring;
-            gameObject.GetComponent<Attack>().vectorToTarget = owner.GetComponent<Attack>().mouseVector - transform.position;
+
+            Vector3 vec3 = owner.GetComponent<Attack>().mouseVector - transform.position;
+            gameObject.GetComponent<Attack>().vectorToTarget = new Vector2(vec3.x, vec3.y).normalized;
+            //gameObject.GetComponent<Attack>().vectorToTarget = owner.GetComponent<Attack>().vectorToTarget;
         }
        
         if (toFollow == null)

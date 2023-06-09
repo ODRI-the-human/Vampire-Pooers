@@ -25,6 +25,11 @@ public class lose2ItemPerm : MonoBehaviour
             }
         }
 
+        Invoke(nameof(ApplyItems), 0.001f);
+    }
+
+    void ApplyItems()
+    {
         gameObject.GetComponent<ItemHolder>().ApplyAll();
     }
 

@@ -139,7 +139,10 @@ public class moleStatus : MonoBehaviour
         }
 
         nearestFriend = closest;
-        distanceFromNearest = (nearestFriend.transform.position - posToUse).magnitude;
+        if (nearestFriend != null)
+        {
+            distanceFromNearest = (nearestFriend.transform.position - posToUse).magnitude;
+        }
     }
 
     public void ActuallyShoot()

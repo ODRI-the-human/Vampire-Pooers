@@ -11,11 +11,7 @@ GameObject:
   - component: {fileID: 9120770125534799274}
   - component: {fileID: 5277277099020790287}
   - component: {fileID: 7987222752058728133}
-  - component: {fileID: 8726222802350384163}
-  - component: {fileID: 8726222802350384189}
-  - component: {fileID: 8726222802350384191}
-  - component: {fileID: -8012106344521636743}
-  - component: {fileID: 6424529828967585436}
+  - component: {fileID: 7403643382011843120}
   m_Layer: 9
   m_Name: bat
   m_TagString: PlayerBullet
@@ -89,7 +85,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &8726222802350384163
+--- !u!114 &7403643382011843120
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -98,93 +94,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8491726996849524496}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 550908397ab1bf14499ff4c440aec4ae, type: 3}
+  m_Script: {fileID: 11500000, guid: 4d2d4feb5fb08bc478992cbc9213566c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dirChangeTimer: 0
-  dirChangeTimerMax: 0
-  owner: {fileID: 0}
-  camera: {fileID: 0}
-  hitSFX: {fileID: 527891173530036625, guid: 416963ff0f63d5143b616711deb547da, type: 3}
-  contactMan: {fileID: 8726222801865428504}
---- !u!114 &8726222802350384189
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8491726996849524496}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30830851ecf01fa4e8e1c859ed98de6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  finalDamageStat: 0
-  procCoeff: 1
-  damageBase: 50
-  damageMult: 1
-  finalDamageMult: 1
-  finalDamageDIV: 1
-  critProb: 0.05
-  critMult: 2
-  owner: {fileID: 0}
-  master: {fileID: 0}
-  massCoeff: 6
-  overwriteDamageCalc: 0
-  onlyDamageOnce: 0
-  tickInterval: 1
-  timer: 0
-  damageAmt: 0
-  iFrameFac: 1
-  isBulletClone: 0
-  damageToPresent: 0
---- !u!114 &8726222802350384191
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8491726996849524496}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a77b42edf27e0ec40bdef5d44226c8e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemsHeld: 
-  master: {fileID: 0}
-  itemGained: 0
-  noToGive: 1
-  doTheShit: 0
-  playerBullet: {fileID: 0}
-  enemyBullet: {fileID: 0}
---- !u!114 &-8012106344521636743
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8491726996849524496}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9e468222e9c5b949b80b94276c0f555, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!58 &6424529828967585436
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8491726996849524496}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -1.6, y: 0}
-  serializedVersion: 2
-  m_Radius: 1.2
 --- !u!1 &8726222801865428504
 GameObject:
   m_ObjectHideFlags: 0

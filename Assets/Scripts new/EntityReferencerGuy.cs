@@ -34,6 +34,8 @@ public class EntityReferencerGuy : MonoBehaviour
     public GameObject marcelageloo;
     public GameObject regularShotParticle;
     public GameObject empty;
+    public GameObject batHitbox;
+    public GameObject chargeBar;
 
     public GameObject master;
 

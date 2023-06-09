@@ -25,19 +25,16 @@ public class ItemSAWSHOT : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (gameObject.GetComponent<Bullet_Movement>() != null || gameObject.GetComponent<checkAllLazerPositions>() != null)
-        {
-            DetermineShotRolls();
-        }
+        DetermineShotRolls();
     }
 
     public void DetermineShotRolls()
     {
         canDoTheThing = true;
         int numEffects = gameObject.GetComponent<DealDamage>().ChanceRoll(20, gameObject, 900);
-        if (numEffects == 1)
+        if (numEffects > 0)
         {
-            if (gameObject.GetComponent<checkAllLazerPositions>() == null && gameObject.GetComponent<isMelee>() == null)
+            if (gameObject.GetComponent<checkAllLazerPositions>() == null && gameObject.GetComponent<meleeGeneral>() == null)
             {
                 gameObject.GetComponent<MeshFilter>().mesh = EntityReferencerGuy.Instance.saw;
                 gameObject.GetComponent<Bullet_Movement>().piercesLeft += 1;
@@ -49,7 +46,7 @@ public class ItemSAWSHOT : MonoBehaviour
 
     public void EndOfShotRolls()
     {
-        if (isAProc && (gameObject.GetComponent<checkAllLazerPositions>() == null && gameObject.GetComponent<isMelee>() == null))
+        if (isAProc && (gameObject.GetComponent<checkAllLazerPositions>() == null && gameObject.GetComponent<meleeGeneral>() == null))
         {
             gameObject.GetComponent<MeshFilter>().mesh = EntityReferencerGuy.Instance.bullet;
             gameObject.GetComponent<Bullet_Movement>().piercesLeft -= 1;
@@ -71,7 +68,7 @@ public class ItemSAWSHOT : MonoBehaviour
             Poop.GetComponent<DealDamage>().damageAmt = gameObject.GetComponent<DealDamage>().finalDamageStat / 5;
             Poop.GetComponent<SawRotation>().instances = instances;
 
-            if (gameObject.GetComponent<checkAllLazerPositions>() != null)
+            if (gameObject.GetComponent<Bullet_Movement>() == null)
             {
                 Poop.transform.localScale = 0.5f * transform.localScale;
             }

@@ -36,5 +36,10 @@ public class obstHP : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    public void doOnDestroy()
+    {
+        //shut up!
+    }
 }
 

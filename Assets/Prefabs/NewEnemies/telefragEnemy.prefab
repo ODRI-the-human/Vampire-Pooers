@@ -17,7 +17,6 @@ GameObject:
   - component: {fileID: 373114558742256855}
   - component: {fileID: 8437550650503696219}
   - component: {fileID: -226583629137854842}
-  - component: {fileID: -972464548959991730}
   - component: {fileID: 687514019896633325}
   - component: {fileID: 1637301172094922029}
   - component: {fileID: 2794491946153304301}
@@ -136,8 +135,10 @@ MonoBehaviour:
   material: {fileID: 0}
   colorChangeTimer: 0
   XP: {fileID: 6124614279667160435, guid: b448494b9362a2a429b8d6416d89f7e6, type: 3}
+  lastDamageSourceName: 
   makeKillSound: 1
   damageReduction: 0
+  damageDiv: 1
   perfectWaves: 0
 --- !u!114 &6146499720883180670
 MonoBehaviour:
@@ -154,6 +155,7 @@ MonoBehaviour:
   finalDamageStat: 50
   procCoeff: 0
   damageBase: 50
+  damageAdd: 0
   damageMult: 1
   finalDamageMult: 1
   finalDamageDIV: 1
@@ -161,6 +163,7 @@ MonoBehaviour:
   critMult: 2
   owner: {fileID: 0}
   master: {fileID: 0}
+  isMelee: 0
   massCoeff: 2
   overwriteDamageCalc: 0
   onlyDamageOnce: 0
@@ -168,10 +171,9 @@ MonoBehaviour:
   timer: 0
   damageAmt: 0
   iFrameFac: 1
-  isBulletClone: 0
-  isSourceBullet: 0
   damageToPresent: 0
   damageType: 0
+  procChainIndexes: 
 --- !u!114 &373114558742256855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220,6 +222,12 @@ MonoBehaviour:
   velToGiveBullets: {x: 0, y: 0, z: 0}
   massToGiveBullets: 0.5
   holdDownToShoot: 1
+  numBulletsPossible: 16
+  canShoot: 1
+  isFiring: 0
+  shotParticles: {fileID: 0}
+  meleeHitObj: {fileID: 0}
+  hitboxSpawnDelay: 0
 --- !u!114 &8437550650503696219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,11 +244,6 @@ MonoBehaviour:
   master: {fileID: 0}
   itemGained: 0
   noToGive: 1
-  isBullet: 0
-  isGuy: 1
-  doTheShit: 1
-  playerBullet: {fileID: 0}
-  enemyBullet: {fileID: 0}
 --- !u!114 &-226583629137854842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253,37 +256,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 370f01fd484cd784f9ca5eaa41a674d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 0
-  poisonStacks: 0
+  statusOrders: 
+  statusStacks: 00000000000000000000000000000000
+  spawnedIcons: []
+  iconPrefab: {fileID: 0}
   bleedStacks: 0
-  hasElectric: 0
-  bleedTimer: 0
-  isFrozen: 0
-  freezeTimer: 0
-  freezeTimerLength: 100
   poisonTimers: 
   poisonDamages: []
-  iconOrder: 
---- !u!114 &-972464548959991730
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8034279136360660190}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2fbc6a30d6769c4bb440728c49f0ade, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scripts: []
-  familiars: []
-  familiarBonusDMG: 0
-  familiarBonusFIRERATE: 0
-  familiarBonusHOMING: 0
-  canStillHeal: 1
-  itemsToGiveRoundly: 
-  itemSelector: {fileID: 0}
+  poisonStacks: 0
+  hasElectric: 0
+  electricDealers: []
+  hasSlow: 0
 --- !u!195 &687514019896633325
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -386,6 +369,8 @@ MonoBehaviour:
   weaponHeld: 0
   master: {fileID: 0}
   spawnedBat: {fileID: 0}
+  previousFireType: 0
+  previousFireTimerLengthMLT: 0
 --- !u!114 &-2846433956371819802
 MonoBehaviour:
   m_ObjectHideFlags: 0

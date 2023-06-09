@@ -22,10 +22,10 @@ public class ItemBRICK : MonoBehaviour
 
         normieScale = transform.localScale;
 
-        if (gameObject.GetComponent<Bullet_Movement>() != null || gameObject.GetComponent<checkAllLazerPositions>() != null)
-        {
-            DetermineShotRolls();
-        }
+        //if (gameObject.GetComponent<Bullet_Movement>() != null || gameObject.GetComponent<checkAllLazerPositions>() != null)
+        //{
+        DetermineShotRolls();
+        //}
     }
 
     public void DetermineShotRolls()
@@ -39,7 +39,7 @@ public class ItemBRICK : MonoBehaviour
             gameObject.GetComponent<DealDamage>().finalDamageMult *= 4 * instances;
             if (gameObject.GetComponent<checkAllLazerPositions>() == null)
             {
-                //transform.localScale = 2 * normieScale;
+                transform.localScale = 2 * normieScale;
 
                 if (gameObject.GetComponent<Bullet_Movement>() != null)
                 {

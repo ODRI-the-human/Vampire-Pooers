@@ -46,6 +46,8 @@ public class DealDamage : MonoBehaviour
         {
             owner = gameObject;
         }
+
+        CalcDamage();
     }
 
     public void DetermineShotRolls()

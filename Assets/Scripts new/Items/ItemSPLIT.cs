@@ -39,38 +39,46 @@ public class ItemSPLIT : MonoBehaviour
     {
         GameObject victim = gameObjects[0];
 
-        Vector2 enemyPos = new Vector2(transform.position.x, transform.position.y);
-        Vector2 bulletPos = new Vector2(victim.transform.position.x, victim.transform.position.y);
-        ShotVector = speed * (bulletPos - enemyPos).normalized;
-
-        Debug.Log("Splimt");
-        if (canSplit && victim.tag != "Wall")
+        if (gameObject.GetComponent<meleeGeneral>() == null)
         {
-            if (gameObject.tag == "PlayerBullet" || gameObject.tag == "enemyBullet")
+            Vector2 enemyPos = new Vector2(transform.position.x, transform.position.y);
+            Vector2 bulletPos = new Vector2(victim.transform.position.x, victim.transform.position.y);
+            ShotVector = speed * (bulletPos - enemyPos).normalized;
+
+            Debug.Log("Splimt");
+            if (canSplit && victim.tag != "Wall")
             {
-                for (int i = 0; i < 2; i++)
+                if (gameObject.tag == "PlayerBullet" || gameObject.tag == "enemyBullet")
                 {
-                    GameObject Splitman1 = Instantiate(Buuleter, transform.position, transform.rotation);
-                    Splitman1.transform.localScale = 0.8f * instances * gameObject.transform.localScale;
-                    Splitman1.GetComponent<DealDamage>().finalDamageMult *= 0.3f * gameObject.GetComponent<DealDamage>().finalDamageMult * instances;
-                    Splitman1.GetComponent<DealDamage>().massCoeff = 0.5f * gameObject.GetComponent<DealDamage>().massCoeff;
-                    Splitman1.GetComponent<DealDamage>().owner = owner;
-                    Splitman1.GetComponent<DealDamage>().damageBase += owner.GetComponent<Attack>().Crongus;
-                    Splitman1.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
-                    Splitman1.GetComponent<Rigidbody2D>().simulated = true;
-                    Splitman1.GetComponent<Bullet_Movement>().isPooledBullet = false;
-                    Physics2D.IgnoreCollision(victim.GetComponent<Collider2D>(), Splitman1.GetComponent<Collider2D>(), true);
-                    Splitman1.AddComponent<ItemSPLIT>();
-                    Splitman1.GetComponent<ItemSPLIT>().canSplit = false;
-                    if (gameObject.GetComponent<isMelee>() != null)
+                    for (int i = 0; i < 2; i++)
                     {
+                        GameObject Splitman1 = Instantiate(Buuleter, transform.position, transform.rotation);
+                        Splitman1.transform.localScale = 0.8f * instances * gameObject.transform.localScale;
+                        Splitman1.GetComponent<DealDamage>().finalDamageMult *= 0.3f * gameObject.GetComponent<DealDamage>().finalDamageMult * instances;
+                        Splitman1.GetComponent<DealDamage>().massCoeff = 0.5f * gameObject.GetComponent<DealDamage>().massCoeff;
+                        Splitman1.GetComponent<DealDamage>().owner = owner;
+                        Splitman1.GetComponent<DealDamage>().damageBase += owner.GetComponent<Attack>().Crongus;
+                        Splitman1.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
+                        Splitman1.GetComponent<Rigidbody2D>().simulated = true;
+                        Splitman1.GetComponent<Bullet_Movement>().isPooledBullet = false;
+                        Physics2D.IgnoreCollision(victim.GetComponent<Collider2D>(), Splitman1.GetComponent<Collider2D>(), true);
+                        Splitman1.AddComponent<ItemSPLIT>();
+                        Splitman1.GetComponent<ItemSPLIT>().canSplit = false;
                         speed = 15;
                         ShotVector = speed * (owner.transform.position - victim.transform.position).normalized;
                         Splitman1.transform.position = victim.transform.position;
                         Splitman1.transform.localScale = 0.3f * new Vector3(1, 1, 1);
+                        Splitman1.GetComponent<Rigidbody2D>().velocity = new Vector3(ShotVector.x * Mathf.Cos(-((i * 2) - 1) * Mathf.PI / 2) - ShotVector.y * Mathf.Sin(-((i * 2) - 1) * Mathf.PI / 2), ShotVector.x * Mathf.Sin(-((i * 2) - 1) * Mathf.PI / 2) + ShotVector.y * Mathf.Cos(-((i * 2) - 1) * Mathf.PI / 2), 0);
                     }
-                    Splitman1.GetComponent<Rigidbody2D>().velocity = new Vector3(ShotVector.x * Mathf.Cos(-((i * 2) - 1) * Mathf.PI / 2) - ShotVector.y * Mathf.Sin(-((i * 2) - 1) * Mathf.PI / 2), ShotVector.x * Mathf.Sin(-((i * 2) - 1) * Mathf.PI / 2) + ShotVector.y * Mathf.Cos(-((i * 2) - 1) * Mathf.PI / 2), 0);
                 }
+            }
+        }
+        else
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                GameObject owner = gameObject.GetComponent<DealDamage>().owner;
+                StartCoroutine(owner.GetComponent<Attack>().SpawnMelee(Mathf.PI * (1 + 2 * i) / 2, victim.transform.position - owner.transform.position, victim, 0.3f * instances, 0));
             }
         }
     }

@@ -23,7 +23,7 @@ public class NewPlayerMovement : MonoBehaviour
     public bool recievesKnockback = true;
 
     [HideInInspector] public int dodgeUp = 1;
-    int isDodging = 0;
+    public int isDodging = 0;
     int dodgeTimer = -30;
     public int dodgeTimerLength = 20;
     public float dodgeSpeedUp = 2;
@@ -67,7 +67,7 @@ public class NewPlayerMovement : MonoBehaviour
                     Instantiate(dodgeAudio);
                     dodgeTimer = dodgeTimerLength;
                     gameObject.layer = LayerNone;
-                    speedMult = dodgeSpeedUp;
+                    speedMult *= dodgeSpeedUp;
                     isDodging = 1;
                     break;
                 case 1:
@@ -81,7 +81,7 @@ public class NewPlayerMovement : MonoBehaviour
                     dodgeTimer = dodgeTimerLength / 2;
                     gameObject.GetComponent<HPDamageDie>().damageReduction += 500;
                     gameObject.GetComponent<DealDamage>().massCoeff += 7.5f;
-                    speedMult = 1.5f * dodgeSpeedUp;
+                    speedMult *= 1.5f * dodgeSpeedUp;
                     gameObject.layer = LayerSB;
                     isDodging = 1;
                     break;
@@ -89,16 +89,16 @@ public class NewPlayerMovement : MonoBehaviour
         }
     }
 
-    void StartedOrEndedShooting(bool trueForStartedFalseForEnded)
+    void AttackStatus(bool didStart)
     {
-        if (trueForStartedFalseForEnded)
+        if (didStart)
         {
-            speedMult = 0.5f;
+            speedMult *= 0.65f;
             Debug.Log("slowed");
         }
         else
         {
-            speedMult = 1;
+            speedMult /= 0.65f;
             Debug.Log("speeded");
         }
     }
@@ -121,7 +121,7 @@ public class NewPlayerMovement : MonoBehaviour
         }
         else
         {
-            if (moveTowardsPlayer)
+            if (moveTowardsPlayer && gameObject.GetComponent<Attack>().currentTarget != null)
             {
                 desiredVector = gameObject.GetComponent<Attack>().currentTarget.transform.position - transform.position;
             }
@@ -148,6 +148,11 @@ public class NewPlayerMovement : MonoBehaviour
         //}
     }
 
+    public void DodgeEndEffects()
+    {
+        // stop
+    }
+
     void FixedUpdate()
     {
         // Resetting slow and dodge, and causing all dodge end effects..
@@ -163,13 +168,13 @@ public class NewPlayerMovement : MonoBehaviour
                 case 0:
                     gameObject.layer = LayerPlayer;
                     isDodging = 0;
-                    speedMult = 1;
+                    speedMult /= dodgeSpeedUp;
                     SendMessage("DodgeEndEffects");
                     break;
                 case 1:
                     gameObject.layer = LayerPlayer;
                     isDodging = 0;
-                    speedMult = 1;
+                    speedMult /= 1.5f * dodgeSpeedUp;
                     gameObject.GetComponent<HPDamageDie>().damageReduction -= 500;
                     gameObject.GetComponent<DealDamage>().massCoeff -= 7.5f;
                     SendMessage("DodgeEndEffects");
@@ -203,7 +208,21 @@ public class NewPlayerMovement : MonoBehaviour
     {
         if ((col.gameObject.tag == "Hostile" || col.gameObject.tag == "enemyBullet" || col.gameObject.tag == "Player" || col.gameObject.tag == "PlayerBullet") && col.gameObject.tag != gameObject.tag && recievesKnockback)
         {
-            knockBackVector = 10 * col.gameObject.GetComponent<DealDamage>().massCoeff * new Vector2(transform.position.x - col.gameObject.transform.position.x, transform.position.y - col.gameObject.transform.position.y).normalized;
+            if (gameObject.GetComponent<HPDamageDie>().iFrames <= 0)
+            {
+                GameObject referenceObj;
+
+                if (col.gameObject.GetComponent<meleeGeneral>() != null) // if the col object is a melee weapon, the ref obj is the owner! else it's the collision obj itself.
+                {
+                    referenceObj = col.gameObject.GetComponent<DealDamage>().owner;
+                }
+                else
+                {
+                    referenceObj = col.gameObject;
+                }
+
+                knockBackVector += 10 * col.gameObject.GetComponent<DealDamage>().massCoeff * new Vector2(transform.position.x - referenceObj.transform.position.x, transform.position.y - referenceObj.transform.position.y).normalized;
+            }
 
             if (isDodging == 1 && mouseAltMode == 1)
             {

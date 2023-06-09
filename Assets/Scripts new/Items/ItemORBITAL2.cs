@@ -32,7 +32,9 @@ public class ItemORBITAL2 : MonoBehaviour
     {
         foreach (GameObject orb in Orbs)
         {
-            orb.GetComponent<Attack>().vectorToTarget = gameObject.GetComponent<Attack>().mouseVector - orb.transform.position;
+            //Vector3 vec3 = gameObject.GetComponent<Attack>().mouseVector - orb.transform.position;
+            //orb.GetComponent<Attack>().vectorToTarget = new Vector2(vec3.x, vec3.y).normalized;
+            //orb.GetComponent<Attack>().vectorToTarget = gameObject.GetComponent<Attack>().vectorToTarget;
             orb.GetComponent<Attack>().UseWeapon(false);
         }
     }
@@ -44,6 +46,7 @@ public class ItemORBITAL2 : MonoBehaviour
             myGuy = Instantiate(orbSkothos2);
             myGuy.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
             myGuy.GetComponent<DealDamage>().owner = gameObject;
+            myGuy.GetComponent<Attack>().getEnemyPos = false;
             myGuy.GetComponent<OrbitalMovement2>().timerDelay = i * (2 * Mathf.PI / 0.03f) / instances;
             myGuy.GetComponent<OrbitalMovement2>().distanceFromPlayer = 1 + 0.08f * instances;
             Orbs.Add(myGuy);

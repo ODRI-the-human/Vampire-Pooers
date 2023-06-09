@@ -44,7 +44,7 @@ public class Attack : MonoBehaviour
     public float levelDamageBonus = 0;
     public float scaleAddMult = 1;
 
-    [System.NonSerialized] public Vector3 mouseVector;
+    public Vector3 mouseVector;
     Vector3 vectorMan;
     float fuckAngle;
 
@@ -71,9 +71,17 @@ public class Attack : MonoBehaviour
     //public InputAction aimAction;
     public bool isFiring = false;
     public GameObject shotParticles;
+    public float chargeTime = 0; // This is for charging weapons, like the bat n shit.
+    public bool isChargedAttack = false;
+    public GameObject chargeBar;
+
+    // For melee!
+    public GameObject meleeHitObj;
+    public float hitboxSpawnDelay;
 
     void Start()
     {
+
         if (stopwatchDebuffAmount == 0)
         {
             stopwatchDebuffAmount = 1;
@@ -113,21 +121,59 @@ public class Attack : MonoBehaviour
             // Applying debuffs due to stopwatch.
             fireTimerLength /= stopwatchDebuffAmount;
             shotSpeed *= stopwatchDebuffAmount;
-            gameObject.GetComponent<NewPlayerMovement>().baseMoveSpeed *= stopwatchDebuffAmount;
+            if (gameObject.GetComponent<NewPlayerMovement>() != null)
+            {
+                gameObject.GetComponent<NewPlayerMovement>().baseMoveSpeed *= stopwatchDebuffAmount;
+            }
         }
         cameron = GameObject.Find("Main Camera");
-
-        darkArtSword = EntityReferencerGuy.Instance.darkArtSword;
+        fireTimerLengthMLT = 1;
     }
 
     public void OnShoot(InputAction.CallbackContext context)
     {
-        bool wasChangeInState = false;
-        if (isFiring != context.action.triggered)
+        //bool wasChangeInState = false;
+        //if (isFiring != context.action.triggered)
+        //{
+        //    isFiring = context.action.triggered;
+        //    SendMessage("StartedOrEndedShooting", isFiring); // Used primarily by NewPlayerMovement to slow the player when shooting.
+        //}
+        //context.action.performed += ctx => Debug.Log("starte");
+        context.action.performed += ctx =>
         {
-            isFiring = context.action.triggered;
-            SendMessage("StartedOrEndedShooting", isFiring); // Used primarily by NewPlayerMovement to slow the player when shooting.
-        }
+            isChargedAttack = false; //resets status of charge attack.
+            if (holdDownToShoot)
+            {
+                SendMessage("AttackStatus", true);
+                isFiring = true;
+            }
+            else
+            {
+                chargeTime = Time.time;
+                chargeBar = Instantiate(EntityReferencerGuy.Instance.chargeBar);
+                chargeBar.GetComponent<chargeBarAmt>().owner = gameObject;
+                chargeBar.transform.SetParent(GameObject.Find("worldSpaceCanvas").transform);
+                chargeBar.transform.localScale = new Vector3(1, 1, 1);
+                isFiring = false;
+            }
+        };
+        context.action.canceled += ctx =>
+        {
+            if (holdDownToShoot)
+            {
+                SendMessage("AttackStatus", false);
+                isFiring = false;
+            }
+            else
+            {
+                isFiring = true; // this is because non-hold to shoot weapons actually attack on mouse RELEASE rather than click.
+                if (Time.time - chargeTime > (2 / fireTimerActualLength))
+                {
+                    isChargedAttack = true;
+                }
+                Destroy(chargeBar);
+            }
+        };
     }
 
     public void InputAim(InputAction.CallbackContext context)
@@ -175,15 +221,15 @@ public class Attack : MonoBehaviour
         fireTimerLength = Mathf.Clamp(fireTimerLength, 0, 99999);
         fireTimerActualLength = Mathf.Clamp(50 / (fireTimerLength * fireTimerLengthMLT / fireTimerDIV),0,50);
 
-        if (gameObject.GetComponent<weaponType>() != null) // For capping your fire rate to the proper amount based on what weapon you're using.
-        {
-            switch (gameObject.GetComponent<weaponType>().weaponHeld)
-            {
-                case (int)ITEMLIST.BAT:
-                    fireTimerActualLength = Mathf.Clamp(fireTimerActualLength, 0, 12);
-                    break;
-            }
-        }
+        //if (gameObject.GetComponent<weaponType>() != null) // For capping your fire rate to the proper amount based on what weapon you're using.
+        //{
+        //    switch (gameObject.GetComponent<weaponType>().weaponHeld)
+        //    {
+        //        case (int)ITEMLIST.BAT:
+        //            fireTimerActualLength = Mathf.Clamp(fireTimerActualLength, 0, 12);
+        //            break;
+        //    }
+        //}
 
         if (reTargetTimer <= 0)
         {
@@ -196,10 +242,16 @@ public class Attack : MonoBehaviour
             vectorToTarget = (currentTarget.transform.position - gameObject.transform.position).normalized;
         }
 
+        int isDodging = 0;
+        if (gameObject.GetComponent<NewPlayerMovement>() != null)
+        {
+            isDodging = gameObject.GetComponent<NewPlayerMovement>().isDodging;
+        }
+
         switch (playerControlled)
         {
             case true:
-                if (isFiring && fireTimer > (50 / fireTimerActualLength))
+                if (isFiring && fireTimer > (50 / fireTimerActualLength) && isDodging == 0)
                 {
                     UseWeapon(false);
                     timesFired++;
@@ -213,7 +265,7 @@ public class Attack : MonoBehaviour
                 }
                 break;
             case false:
-                if (fireTimer > (50 / fireTimerActualLength) && doShootAutomatically)
+                if (fireTimer > (50 / fireTimerActualLength) && doShootAutomatically && isDodging == 0)
                 {
                     if (currentTarget == null)
                     {
@@ -224,11 +276,26 @@ public class Attack : MonoBehaviour
                         UseWeapon(false);
                         timesFired++;
                         fireTimer = 0;
-                        CreateShotFX();
+                        //CreateShotFX();
                     }
                 }
                 break;
         }
+
+        if (!holdDownToShoot)
+        {
+            isFiring = false; // essentially just makes it so isfiring just gets disabled by default if they need to hold down.
+        }
+    }
+
+    public void AttackStatus(bool didStart)
+    {
+        //shut thje fuck up
+    }
+
+    public void OnShootEffects()
+    {
+        //shut up
     }
 
     public void UseWeapon(bool angleOverride) // angleOverride is false most of the time, but true if you want to use an input currentAngle.
@@ -265,12 +332,13 @@ public class Attack : MonoBehaviour
                     break;
                 case 2:
                     break; // For enemies that don't shoot.
-                case 3: // For berserk.
+                case 3: // For melee.
                     if (!angleOverride)
                     {
-                        currentAngle = (Mathf.PI / 4) * (i + 1);
+                        //currentAngle = shotAngleCoeff * (Mathf.PI / 4) * (-0.5f * (noExtraShots) + 0.5f * i);
+                        currentAngle = 3 * ((-0.25f * noExtraShots) + (i + 1) * 0.5f);
                     }
-                    SpawnDarkart();
+                    StartCoroutine(SpawnMelee(currentAngle, new Vector3(0, 0, 0), null, 1, 1));
                     break;
                 case 4: // For Monstro enemy.
                     for (int j = 0; j < 15; j++)
@@ -300,10 +368,10 @@ public class Attack : MonoBehaviour
                     }
                     StartCoroutine(gameObject.GetComponent<lightningFireV2>().Target(neq, currentAngle, noExtraShots));
                     break;
-                case 6: //enptic basball bat
-                    GameObject battery = gameObject.GetComponent<weaponType>().spawnedBat;
-                    battery.GetComponent<faceInFunnyDirection>().Attackment(50 / fireTimerActualLength);
-                    break;
+                //case 6: //enptic basball bat
+                //    GameObject battery = gameObject.GetComponent<weaponType>().spawnedBat;
+                //    battery.GetComponent<faceInFunnyDirection>().Attackment(50 / fireTimerActualLength);
+                //    break;
             }
         }
     }
@@ -382,44 +450,63 @@ public class Attack : MonoBehaviour
         currentTarget = closest;
     }
 
-    void SpawnDarkart()
+    public IEnumerator SpawnMelee(float thisAngle, Vector3 pos, GameObject objToIgnore, float damageMult, float delayMult) // pos is for moving the hitbox elsewhere, while objToIgnore is to have the hitboxes ignore a certain object, mainly for split shots.
     {
-        vectorMan = vectorToTarget;
-        //vectorMan = Camera.main.ScreenToWorldPoint(mouseVector) - transform.position;
+        bool isThisAttackCharged = isChargedAttack;
+        GameObject hitBox = Instantiate(meleeHitObj, transform.position + pos, transform.rotation);
+        hitBox.SetActive(false);
 
-        if (vectorMan.y > 0 && vectorMan.x > 0)
+        yield return new WaitForSeconds(hitboxSpawnDelay * delayMult);
+
+        hitBox.SetActive(true);
+        hitBox.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
+        hitBox.transform.rotation = Quaternion.LookRotation(vectorToTarget, new Vector3(1, 0, 0)) * Quaternion.Euler(0, 90, 180 + thisAngle * 360 / (2 * Mathf.PI));
+        hitBox.GetComponent<DealDamage>().owner = gameObject;
+        hitBox.GetComponent<DealDamage>().finalDamageMult = damageMult * gameObject.GetComponent<DealDamage>().finalDamageMult;
+        hitBox.GetComponent<meleeGeneral>().isCharged = isThisAttackCharged;
+
+        if (objToIgnore != null)
         {
-            fuckAngle = (180 / Mathf.PI) * Mathf.Atan(vectorMan.y / vectorMan.x);
-        }
-        else if (vectorMan.y > 0 && vectorMan.x < 0)
-        {
-            fuckAngle = 180 + (180 / Mathf.PI) * Mathf.Atan(vectorMan.y / vectorMan.x);
-        }
-        else if (vectorMan.y < 0 && vectorMan.x < 0)
-        {
-            fuckAngle = (180 / Mathf.PI) * Mathf.Atan(vectorMan.y / vectorMan.x) + 180;
-        }
-        else if (vectorMan.y < 0 && vectorMan.x > 0)
-        {
-            fuckAngle = 90 + (180 / Mathf.PI) * Mathf.Atan(vectorMan.y / vectorMan.x) + 270;
+            Physics2D.IgnoreCollision(hitBox.GetComponent<Collider2D>(), objToIgnore.GetComponent<Collider2D>(), true);
         }
 
-        fuckAngle += currentAngle * 180/Mathf.PI;
 
-        GameObject Swordo = Instantiate(darkArtSword, transform.position, Quaternion.Euler(0,0,fuckAngle));
-        Swordo.GetComponent<darkArtMovement>().initAngle = fuckAngle;
-        Swordo.GetComponent<darkArtMovement>().LorR = newAttack;
-        Swordo.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
-        Swordo.GetComponent<DealDamage>().owner = gameObject;
-        
-        if (gameObject.tag == "Player" || gameObject.tag == "PlayerBullet")
-        {
-            Swordo.tag = "PlayerBullet";
-        }
-        else if (gameObject.tag == "Hostile" || gameObject.tag == "enemyBullet")
-        {
-            Swordo.tag = "enemyBullet";
-        }
+        //vectorMan = vectorToTarget;
+        ////vectorMan = Camera.main.ScreenToWorldPoint(mouseVector) - transform.position;
+
+        //if (vectorMan.y > 0 && vectorMan.x > 0)
+        //{
+        //    fuckAngle = (180 / Mathf.PI) * Mathf.Atan(vectorMan.y / vectorMan.x);
+        //}
+        //else if (vectorMan.y > 0 && vectorMan.x < 0)
+        //{
+        //    fuckAngle = 180 + (180 / Mathf.PI) * Mathf.Atan(vectorMan.y / vectorMan.x);
+        //}
+        //else if (vectorMan.y < 0 && vectorMan.x < 0)
+        //{
+        //    fuckAngle = (180 / Mathf.PI) * Mathf.Atan(vectorMan.y / vectorMan.x) + 180;
+        //}
+        //else if (vectorMan.y < 0 && vectorMan.x > 0)
+        //{
+        //    fuckAngle = 90 + (180 / Mathf.PI) * Mathf.Atan(vectorMan.y / vectorMan.x) + 270;
+        //}
+
+        //fuckAngle += currentAngle * 180/Mathf.PI;
+
+        //GameObject Swordo = Instantiate(darkArtSword, transform.position, Quaternion.Euler(0,0,fuckAngle));
+        //Swordo.GetComponent<darkArtMovement>().initAngle = fuckAngle;
+        //Swordo.GetComponent<darkArtMovement>().LorR = newAttack;
+        //Swordo.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
+        //Swordo.GetComponent<DealDamage>().owner = gameObject;
+
+        //if (gameObject.tag == "Player" || gameObject.tag == "PlayerBullet")
+        //{
+        //    Swordo.tag = "PlayerBullet";
+        //}
+        //else if (gameObject.tag == "Hostile" || gameObject.tag == "enemyBullet")
+        //{
+        //    Swordo.tag = "enemyBullet";
+        //}
 
     }
 
@@ -431,16 +518,23 @@ public class Attack : MonoBehaviour
 
     public void itemsAdded(bool nothing)
     {
-        GameObject[] bullets = GameObject.FindGameObjectsWithTag("PlayerBullet");
-        foreach (GameObject bullet in bullets)
+        if (gameObject.tag == "Player")
         {
-            if (bullet.GetComponent<Bullet_Movement>() != null)
+            GameObject[] bullets = GameObject.FindGameObjectsWithTag("PlayerBullet");
+            foreach (GameObject bullet in bullets)
             {
-                Destroy(bullet);
+                if (bullet.GetComponent<Bullet_Movement>() != null)
+                {
+                    Destroy(bullet);
+                }
             }
+            if (bulletPool != null)
+            {
+                bulletPool.Clear();
+
+            }
+            Debug.Log("funker dunker");
+            timesFired = -1;
         }
-        bulletPool.Clear();
-        Debug.Log("funker dunker");
-        timesFired = -1;
     }
 }

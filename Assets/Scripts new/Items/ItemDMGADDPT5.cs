@@ -11,7 +11,7 @@ public class ItemDMGADDPT5 : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         GetDamVal();
     }

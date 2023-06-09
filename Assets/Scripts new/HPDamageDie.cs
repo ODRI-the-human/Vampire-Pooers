@@ -108,8 +108,22 @@ public class HPDamageDie : MonoBehaviour
 
     public void Hurty(float damageAmount, bool isCrit, bool playSound, float iFrameFac, int damageType, bool bypassIframes, GameObject objectResponsible)
     {
-        //Debug.Log("shoulda taken a lil damage cunt, " + gameObject.name.ToString() + " / " + damageAmount.ToString());
-        //Debug.Log(resistVals[damageType].ToString());
+        // Just doing the message to show that hurty happened xd!
+        string responsibleName;
+        if (objectResponsible == null)
+        {
+            responsibleName = "Unknown (prolly status)";
+        }
+        else
+        {
+            responsibleName = objectResponsible.name.ToString();
+        }
+        Debug.Log("damage taken, victim: " + gameObject.name.ToString() + ", responsible: " + responsibleName + ", amount: " + damageAmount.ToString());
+
+
+
+
+
 
         if (gameObject.GetComponent<ItemEASIERTIMES>() != null && Mathf.RoundToInt(100 * (0.8f - 1f / (gameObject.GetComponent<ItemEASIERTIMES>().instances + 1f))) > Random.Range(0, 100))
         {
@@ -144,10 +158,14 @@ public class HPDamageDie : MonoBehaviour
                 damageAmount /= damageDiv;
 
                 HP -= damageAmount;
+                perfectWaves = -1;
                 if (playerControlled == true)
                 {
                     iFrames = iFramesTimer * iFrameFac;
-                    perfectWaves = -1;
+                }
+                else
+                {
+                    //iFrames = 1;
                 }
 
                 //if (gameObject.GetComponent<ItemHOLYMANTIS>() != null && gameObject.GetComponent<ItemHOLYMANTIS>().timesHit > 0)
@@ -166,6 +184,16 @@ public class HPDamageDie : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void ApplyItemOnDeaths()
+    {
+        //please stop making errors
+    }
+
+    public void OnHurtEffects()
+    {
+        //shut the fuck up
     }
 
     public void OnCollisionEnter2D(Collision2D col)

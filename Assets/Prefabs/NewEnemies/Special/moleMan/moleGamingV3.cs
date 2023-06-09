@@ -29,7 +29,7 @@ public class moleGamingV3 : MonoBehaviour
     {
         player = EntityReferencerGuy.Instance.playerInstance;
         camera = EntityReferencerGuy.Instance.camera;
-        stopwatchDebuffAmount = gameObject.GetComponent<Attack>().stopwatchDebuffAmount;
+        stopwatchDebuffAmount = gameObject.GetComponent<MasterItemManager>().stopWatchDebuffAmt;
     }
 
     public void StartCycle()
@@ -75,8 +75,10 @@ public class moleGamingV3 : MonoBehaviour
     {
         GetAllMoles();
         moles[0].GetComponent<moleStatus>().firstAndy = true;
-        moles[0].GetComponent<moleStatus>().SpawnLazer();
-
+        if (moles.Count > 1)
+        {
+            moles[0].GetComponent<moleStatus>().SpawnLazer();
+        }
 
         currentStep = 2;
         //foreach (GameObject mole in moles)

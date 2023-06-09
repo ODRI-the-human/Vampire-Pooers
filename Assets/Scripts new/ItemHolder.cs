@@ -56,8 +56,8 @@ public class ItemHolder : MonoBehaviour
 
         // Checks what exactly to give the item to, and hence only applies the item when it is required.
         bool doGiveItem = false;
-        if (((gameObject.tag == "Player" || gameObject.tag == "Hostile") && (whoToGiveTo == (int)ITEMOWNERS.ALL || whoToGiveTo == (int)ITEMOWNERS.BEING)) || // For 'being'
-           ((gameObject.tag == "PlayerBullet" || gameObject.tag == "enemyBullet") && (whoToGiveTo == (int)ITEMOWNERS.ALL || whoToGiveTo == (int)ITEMOWNERS.BULLET)) || // For 'bullet'
+        if ((gameObject.GetComponent<Attack>() != null && (whoToGiveTo == (int)ITEMOWNERS.ALL || whoToGiveTo == (int)ITEMOWNERS.BEING)) || // For 'being'
+           ((gameObject.tag == "PlayerBullet" || gameObject.tag == "enemyBullet") && gameObject.GetComponent<Attack>() == null && (whoToGiveTo == (int)ITEMOWNERS.ALL || whoToGiveTo == (int)ITEMOWNERS.BULLET)) || // For 'bullet'
            ((gameObject.tag == "Player" || gameObject.tag == "MasterObject") && (whoToGiveTo == (int)ITEMOWNERS.MASTERANDPLAYER))) // For 'masterandplayer'
         {
             doGiveItem = true;
@@ -170,6 +170,11 @@ public class ItemHolder : MonoBehaviour
     //        GiveFunny(col.gameObject);
     //    }
     //}
+
+    public void itemsAdded()
+    {
+        //stop saying there is no fucking reciever
+    }
 
     public void GiveFunny(GameObject bumbino)
     {
