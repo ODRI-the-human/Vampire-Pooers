@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: -4320272428008137812}
   - component: {fileID: 3951051313804528509}
   - component: {fileID: 6494547038156782421}
+  - component: {fileID: -3502133126984018075}
   m_Layer: 0
   m_Name: bigFuckingMasterObject
   m_TagString: MasterObject
@@ -85,6 +86,7 @@ MonoBehaviour:
   empty: {fileID: 2232971130497578917, guid: dc46db39e4e70b144915e7a0652cc396, type: 3}
   batHitbox: {fileID: 2061944661215622530, guid: b3f228f4731f7a944b43ad93aa54e41f, type: 3}
   chargeBar: {fileID: 4188144092211136378, guid: be34825c5fc5ca14abc3804e1d661da1, type: 3}
+  reticle: {fileID: 4754094839536224065, guid: 3cf94e0441922d44c8ce3505152e57bb, type: 3}
   master: {fileID: 7002239379606652682}
   bat: {fileID: 0}
   boss: {fileID: 0}
@@ -391,3 +393,27 @@ MonoBehaviour:
   quality: 0
   itemDescription: 
   curseDescription: 
+--- !u!114 &-3502133126984018075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7002239379606652682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80f9e40149bb4194bbb4a3cb6a4d3f1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  players: []
+  playerPrefab: {fileID: 3448173853718531064, guid: 8cb54c64aaccac642a3a40ebff38add0, type: 3}
+  barry63: {fileID: 6964255014020883914, guid: 526b17258aed02c4c9c574bcca2b87c3, type: 3}
+  numPlayers: 2
+  player1Items: 
+  player2Items: 
+  player3Items: 
+  player4Items: 
+  player1: {fileID: 0}
+  player2: {fileID: 0}
+  player3: {fileID: 0}
+  player4: {fileID: 0}

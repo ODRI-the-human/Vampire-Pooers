@@ -13,7 +13,6 @@ public class moleGamingV3 : MonoBehaviour
 
     bool positionIsOkay;
 
-    GameObject player;
     Vector3 bumHead;
 
     public GameObject zapAudio;
@@ -27,7 +26,6 @@ public class moleGamingV3 : MonoBehaviour
 
     void Start()
     {
-        player = EntityReferencerGuy.Instance.playerInstance;
         camera = EntityReferencerGuy.Instance.camera;
         stopwatchDebuffAmount = gameObject.GetComponent<MasterItemManager>().stopWatchDebuffAmt;
     }
@@ -45,7 +43,6 @@ public class moleGamingV3 : MonoBehaviour
         GetAllMoles();
         foreach (GameObject mole in moles)
         {
-            bumHead = player.transform.position;
             positionIsOkay = false;
             FindRockPositions();
             while (!positionIsOkay)
@@ -189,10 +186,10 @@ public class moleGamingV3 : MonoBehaviour
     {
         bool bongus = true;
 
-        if ((posToUse - player.transform.position).magnitude < 4)
-        {
-            bongus = false;
-        }
+        //if ((posToUse - player.transform.position).magnitude < 4)
+        //{
+        //    bongus = false;
+        //}
 
         foreach (Vector3 place in badPositions)
         {
@@ -220,6 +217,12 @@ public class moleGamingV3 : MonoBehaviour
         foreach (GameObject obstacle in obstacles)
         {
             rockPositions.Add(obstacle.transform.position);
+        }
+
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        foreach (GameObject player in players)
+        {
+            rockPositions.Add(Vector3Int.RoundToInt(player.transform.position));
         }
     }
 }

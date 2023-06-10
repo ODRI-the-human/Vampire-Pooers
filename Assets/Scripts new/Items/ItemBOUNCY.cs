@@ -24,7 +24,7 @@ public class ItemBOUNCY : MonoBehaviour
     void DetermineShotRolls()
     {
         bouncesLeft = instances;
-        if (gameObject.GetComponent<Bullet_Movement>() != null)
+        if (gameObject.GetComponent<meleeGeneral>() != null)
         {
             gameObject.GetComponent<DealDamage>().massCoeff *= 1 + 0.5f * instances;
         }

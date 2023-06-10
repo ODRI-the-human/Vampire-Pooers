@@ -44,7 +44,7 @@ public class StatsText : MonoBehaviour
 
     void Awake()
     {
-        Player = GameObject.Find("newPlayer");
+        Player = GameObject.FindGameObjectsWithTag("Player")[0];
     }
 
     void Start()

@@ -38,8 +38,8 @@
                     "id": "18dbaa31-e82a-4e96-868b-143572ec8bb9",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
+                    "interactions": "Press",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -169,7 +169,7 @@
                     "id": "8e55943d-227b-4f08-9aff-9de077ae59e4",
                     "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "Normalize(max=1)",
                     "groups": "controller",
                     "action": "shoot",
                     "isComposite": false,

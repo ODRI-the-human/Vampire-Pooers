@@ -43,7 +43,7 @@ public class ThirdEnemySpawner : MonoBehaviour
     int currentXP = 0;
 
     public GameObject toSpawn;
-    GameObject Player;
+    GameObject[] players;
     GameObject Camera;
 
     int typeToAvoidSpawning = -5;
@@ -63,7 +63,7 @@ public class ThirdEnemySpawner : MonoBehaviour
     {
         spawnTimer = 5;
 
-        Player = GameObject.Find("newPlayer");
+        players = GameObject.FindGameObjectsWithTag("Player");
         Camera = GameObject.Find("Main Camera");
 
         playerBannedDodge = (int)ITEMLIST.DODGEROLL;
@@ -184,7 +184,7 @@ public class ThirdEnemySpawner : MonoBehaviour
                 GameObject spawned = Instantiate(toSpawn, new Vector3(SpawnPosX, SpawnPosY, 10.6f) + Camera.transform.position, Quaternion.identity);
                 spawned.transform.localScale = SpawnScaleVariation;
                 spawned.GetComponent<HPDamageDie>().HP *= 0.8f + 0.2f * numberEnemiesSpawned;
-                spawned.GetComponent<Attack>().currentTarget = Player;
+                spawned.GetComponent<Attack>().currentTarget = players[0];
                 break;
             case 5:
                 int numMoles = 0;
@@ -265,7 +265,7 @@ public class ThirdEnemySpawner : MonoBehaviour
         float xBound = Camera.GetComponent<cameraMovement>().xBound;
         float yBound = Camera.GetComponent<cameraMovement>().yBound;
 
-        while ((new Vector3(SpawnPosX, SpawnPosY, Player.transform.position.z) - Player.transform.position).magnitude < 10 || Mathf.Abs(SpawnPosY) > Mathf.Abs(yBound) || Mathf.Abs(SpawnPosX) > Mathf.Abs(xBound))
+        while ((new Vector3(SpawnPosX, SpawnPosY, Camera.transform.position.z) - Camera.transform.position).magnitude < 10 || Mathf.Abs(SpawnPosY) > Mathf.Abs(yBound) || Mathf.Abs(SpawnPosX) > Mathf.Abs(xBound))
         {
             SpawnPosX = camPos.x + Random.Range(-12.1f, 12.1f);
             SpawnPosY = camPos.y + Random.Range(-8.1f, 8.1f);
@@ -285,7 +285,7 @@ public class ThirdEnemySpawner : MonoBehaviour
             float SpawnPosYVariation = Random.Range(-1f, 1f);
             GameObject spawned = Instantiate(toSpawn, new Vector3(SpawnPosX + SpawnPosXVariation, SpawnPosY + SpawnPosYVariation, 0), transform.rotation);
             spawned.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
-            spawned.GetComponent<Attack>().currentTarget = Player;
+            spawned.GetComponent<Attack>().currentTarget = players[0];
             spawned.GetComponent<Attack>().stopwatchDebuffAmount = gameObject.GetComponent<MasterItemManager>().stopWatchDebuffAmt;
 
             if (toSpawn == mole)
@@ -309,7 +309,7 @@ public class ThirdEnemySpawner : MonoBehaviour
 
             GameObject spawned = Instantiate(toSpawn, new Vector3(SpawnPosX, SpawnPosY, 0), transform.rotation);
             spawned.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
-            spawned.GetComponent<Attack>().currentTarget = Player;
+            spawned.GetComponent<Attack>().currentTarget = players[0];
             spawned.GetComponent<Attack>().stopwatchDebuffAmount = gameObject.GetComponent<MasterItemManager>().stopWatchDebuffAmt;
             gameObject.GetComponent<doMasterCurses>().ApplyDropItemOnDeath(spawned);
         }
@@ -338,7 +338,14 @@ public class ThirdEnemySpawner : MonoBehaviour
 
     void StartWave()
     {
-        Player.SendMessage("newWaveEffects");
+        foreach (GameObject player in players)
+        {
+            if (player != null)
+            {
+                player.SendMessage("newWaveEffects");
+            }
+        }
+        gameObject.GetComponent<playerManagement>().NewRoundStarted();
         waveNumber++;
         stepUpTo = 0;
         spawnNumber = 0;

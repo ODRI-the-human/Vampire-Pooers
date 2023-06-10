@@ -13,11 +13,10 @@ public class mouseItemSelection : MonoBehaviour
         {
             Vector3 posDiff = pedestal.transform.position - transform.position;
             posDiff = new Vector3(posDiff.x, posDiff.y, 0);
-            if (posDiff.magnitude < 0.5f)
+            if (posDiff.magnitude < 1f)
             {
                 pedestal.GetComponent<itemPedestal>().GiveDaItem(master);
                 master.GetComponent<ItemHolder>().GiveFunny(pedestal);
-                EntityReferencerGuy.Instance.playerInstance.GetComponent<Attack>().canShoot = true;
             }
         }
 

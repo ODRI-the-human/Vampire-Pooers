@@ -10,7 +10,7 @@ public class ItemSOY : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         bonusDamage = 0;
         if (gameObject.GetComponent<Attack>() != null)

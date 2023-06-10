@@ -25,7 +25,7 @@ public class OrbitalMovement2 : MonoBehaviour
         transform.position = new Vector3(Player.transform.position.x + distanceFromPlayer * Mathf.Sin(0.03f * (timer + timerDelay)), Player.transform.position.y + distanceFromPlayer * Mathf.Cos(0.03f * (timer + timerDelay)), Player.transform.position.z);
         timer += Time.deltaTime * 60;
 
-        Vector3 vec3 = Player.GetComponent<Attack>().mouseVector - transform.position;
+        Vector3 vec3 = - transform.position + Player.GetComponent<Attack>().reticle.transform.position;
         gameObject.GetComponent<Attack>().vectorToTarget = new Vector2(vec3.x, vec3.y).normalized;
 
         Debug.Log("Orb vec/player vec: " + gameObject.GetComponent<Attack>().vectorToTarget.ToString() + "/" + Player.GetComponent<Attack>().vectorToTarget.ToString());

@@ -21,7 +21,8 @@ public class getItemDescription : MonoBehaviour
             GameObject[] gos = GameObject.FindGameObjectsWithTag("item");
             GameObject closest = null;
             float distance = Mathf.Infinity;
-            position = new Vector3(Camera.main.ScreenToWorldPoint(context.ReadValue<Vector2>()).x, Camera.main.ScreenToWorldPoint(context.ReadValue<Vector2>()).y, 0);
+            position = gameObject.GetComponent<Attack>().reticle.transform.position; //new Vector3(Camera.main.ScreenToWorldPoint(context.ReadValue<Vector2>()).x, Camera.main.ScreenToWorldPoint(context.ReadValue<Vector2>()).y, 0);
+            position = new Vector3(position.x, position.y, 0);
             foreach (GameObject go in gos)
             {
                 Vector3 diff = go.transform.position - position;
@@ -46,12 +47,16 @@ public class getItemDescription : MonoBehaviour
 
     public void OnShoot(InputAction.CallbackContext context)
     {
-        if (itemsExist && context.started)
+        context.action.performed += ctx =>
         {
-            Destroy(spawnedSelector);
+            if (itemsExist)
+            {
+                Destroy(spawnedSelector);
 
-            spawnedSelector = Instantiate(itemSelector, position, transform.rotation);
-            spawnedSelector.GetComponent<mouseItemSelection>().master = gameObject;
-        }
+                spawnedSelector = Instantiate(itemSelector, position, transform.rotation);
+                spawnedSelector.transform.SetParent(gameObject.transform);
+                spawnedSelector.GetComponent<mouseItemSelection>().master = gameObject;
+            }
+        };
     }
 }

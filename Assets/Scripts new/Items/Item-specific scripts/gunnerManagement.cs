@@ -17,6 +17,14 @@ public class gunnerManagement : MonoBehaviour
         
     }
 
+    void ApplyOwnOnDeaths()
+    {
+        foreach (GameObject gunner in gunners)
+        {
+            Destroy(gunner);
+        }
+    }
+
     public void AddNew(int item)
     {
         GameObject spawnedGuy = Instantiate(EntityReferencerGuy.Instance.normieFamiliar, transform.position, transform.rotation);
@@ -36,12 +44,16 @@ public class gunnerManagement : MonoBehaviour
         {
             case (int)ITEMLIST.FAMILIAR:
                 spawnedGuy.GetComponent<DealDamage>().finalDamageMult = 0.4f;
+                spawnedGuy.GetComponent<Attack>().getEnemyPos = false;
+                spawnedGuy.GetComponent<Attack>().playerControlled = true;
                 gunners.Add(spawnedGuy);
                 gunnerIDs.Add(item);
                 numDamageBonuses++;
                 break;
             case (int)ITEMLIST.HOMINGFAMILIAR:
                 spawnedGuy.GetComponent<DealDamage>().finalDamageMult = 0.4f;
+                spawnedGuy.GetComponent<Attack>().getEnemyPos = false;
+                spawnedGuy.GetComponent<Attack>().playerControlled = true;
                 gunners.Add(spawnedGuy);
                 gunnerIDs.Add(item);
                 numHomingBonuses++;

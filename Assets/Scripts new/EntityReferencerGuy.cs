@@ -36,6 +36,7 @@ public class EntityReferencerGuy : MonoBehaviour
     public GameObject empty;
     public GameObject batHitbox;
     public GameObject chargeBar;
+    public GameObject reticle;
 
     public GameObject master;
 
@@ -103,12 +104,6 @@ public class EntityReferencerGuy : MonoBehaviour
         if (gameObject.GetComponent<ThirdEnemySpawner>().enemiesAreSpawning)
         {
             time -= Time.deltaTime;
-        }
-
-        if (playerInstance == null && !playerHasDied)
-        {
-            keepBestStatObj.GetComponent<keepBestScore>().ShowStats();
-            playerHasDied = true;
         }
     }
 }

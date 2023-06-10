@@ -9,5 +9,6 @@ public class usetogiveonlyplayeritem : MonoBehaviour
     void Start()
     {
         gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.BAT);
+        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.SPLIT);
     }
 }

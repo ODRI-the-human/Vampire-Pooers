@@ -10,6 +10,11 @@ public class meleeGeneral : MonoBehaviour
 
     void Start()
     {
+        Invoke(nameof(EnableCollision), 0.01f);
+    }
 
+    void EnableCollision()
+    {
+        gameObject.GetComponent<Collider2D>().enabled = true;
     }
 }

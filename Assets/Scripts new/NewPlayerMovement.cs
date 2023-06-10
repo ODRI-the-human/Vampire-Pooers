@@ -48,7 +48,14 @@ public class NewPlayerMovement : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        desiredVector = context.ReadValue<Vector2>().normalized;//new Vector2(moveX, moveY).normalized;
+        if (gameObject.GetComponent<PlayerInput>().currentControlScheme == "keyboard")
+        {
+            desiredVector = context.ReadValue<Vector2>().normalized;//new Vector2(moveX, moveY).normalized;
+        }
+        else
+        {
+            desiredVector = context.ReadValue<Vector2>();
+        }
     }
 
     public void OnDodge(InputAction.CallbackContext context) // Applying the dodge when the player, ya know, dodges.
@@ -94,12 +101,12 @@ public class NewPlayerMovement : MonoBehaviour
         if (didStart)
         {
             speedMult *= 0.65f;
-            Debug.Log("slowed");
+            //Debug.Log("slowed");
         }
         else
         {
             speedMult /= 0.65f;
-            Debug.Log("speeded");
+            //Debug.Log("speeded");
         }
     }
 

@@ -70,10 +70,16 @@ public class Attack : MonoBehaviour
     //public InputAction shootAction;
     //public InputAction aimAction;
     public bool isFiring = false;
+    public bool isHoldingFire = false; // used by familiars.
     public GameObject shotParticles;
     public float chargeTime = 0; // This is for charging weapons, like the bat n shit.
     public bool isChargedAttack = false;
     public GameObject chargeBar;
+
+
+    public GameObject reticle;
+    public Vector3 reticlePos;
+
 
     // For melee!
     public GameObject meleeHitObj;
@@ -85,6 +91,12 @@ public class Attack : MonoBehaviour
         if (stopwatchDebuffAmount == 0)
         {
             stopwatchDebuffAmount = 1;
+        }
+
+        if (gameObject.tag == "Player")
+        {
+            reticle = Instantiate(EntityReferencerGuy.Instance.reticle);
+            reticle.transform.SetParent(gameObject.transform);
         }
 
         //if (actions != null)
@@ -141,6 +153,8 @@ public class Attack : MonoBehaviour
         //context.action.performed += ctx => Debug.Log("starte");
         context.action.performed += ctx =>
         {
+            Debug.Log("shooting performed");
+            isHoldingFire = true;
             isChargedAttack = false; //resets status of charge attack.
             if (holdDownToShoot)
             {
@@ -159,7 +173,9 @@ public class Attack : MonoBehaviour
         };
         context.action.canceled += ctx =>
         {
-            if (holdDownToShoot)
+            isHoldingFire = false;
+            Debug.Log("shooting ended");
+            if (holdDownToShoot && isFiring)
             {
                 SendMessage("AttackStatus", false);
                 isFiring = false;
@@ -178,9 +194,18 @@ public class Attack : MonoBehaviour
 
     public void InputAim(InputAction.CallbackContext context)
     {
-        mouseVector = Camera.main.ScreenToWorldPoint(context.ReadValue<Vector2>());
-        Vector3 vectorToTarget3 = (new Vector3(context.ReadValue<Vector2>().x, context.ReadValue<Vector2>().y, 0) - Camera.main.WorldToScreenPoint(transform.position));
-        vectorToTarget = new Vector2(vectorToTarget3.x, vectorToTarget3.y).normalized;
+        if (gameObject.GetComponent<PlayerInput>().currentControlScheme == "keyboard")
+        {
+            mouseVector = Camera.main.ScreenToWorldPoint(context.ReadValue<Vector2>());
+            reticlePos = new Vector3(mouseVector.x, mouseVector.y, 0) - cameron.transform.position;
+            Vector3 vectorToTarget3 = (new Vector3(context.ReadValue<Vector2>().x, context.ReadValue<Vector2>().y, 0) - Camera.main.WorldToScreenPoint(transform.position));
+            vectorToTarget = new Vector2(vectorToTarget3.x, vectorToTarget3.y).normalized;
+        }
+        else
+        {
+            vectorToTarget = context.ReadValue<Vector2>();
+            reticlePos = 5 * new Vector3(vectorToTarget.x, vectorToTarget.y, 0);
+        }
     }
 
     //void TriggerAShot()
@@ -219,7 +244,24 @@ public class Attack : MonoBehaviour
     {
         trueDamageValue = gameObject.GetComponent<DealDamage>().finalDamageStat;
         fireTimerLength = Mathf.Clamp(fireTimerLength, 0, 99999);
-        fireTimerActualLength = Mathf.Clamp(50 / (fireTimerLength * fireTimerLengthMLT / fireTimerDIV),0,50);
+        fireTimerActualLength = Mathf.Clamp(50 / (fireTimerLength * fireTimerLengthMLT / fireTimerDIV), 0, 50);
+
+        if (reticle != null)
+        {
+            Vector3 blobob;
+
+            if (gameObject.GetComponent<PlayerInput>().currentControlScheme == "keyboard")
+            {
+                blobob = reticlePos + cameron.transform.position;
+                //reticle.transform.position = blobob; //cameron.transform.position + reticlePos + new Vector3(0, 0, 5);
+            }
+            else
+            {
+                blobob = reticlePos + transform.position;
+            }
+
+            reticle.transform.position = new Vector3(blobob.x, blobob.y, -8);
+        }
 
         //if (gameObject.GetComponent<weaponType>() != null) // For capping your fire rate to the proper amount based on what weapon you're using.
         //{
@@ -251,7 +293,7 @@ public class Attack : MonoBehaviour
         switch (playerControlled)
         {
             case true:
-                if (isFiring && fireTimer > (50 / fireTimerActualLength) && isDodging == 0)
+                if (isFiring && fireTimer > (50 / fireTimerActualLength) && isDodging == 0 && vectorToTarget != Vector2.zero)
                 {
                     UseWeapon(false);
                     timesFired++;
@@ -271,7 +313,7 @@ public class Attack : MonoBehaviour
                     {
                         ReTarget();
                     }
-                    if ((currentTarget.transform.position - gameObject.transform.position).magnitude < visionRange && specialFireType != 2)
+                    if (currentTarget != null && (currentTarget.transform.position - gameObject.transform.position).magnitude < visionRange && specialFireType != 2)
                     {
                         UseWeapon(false);
                         timesFired++;
@@ -338,7 +380,7 @@ public class Attack : MonoBehaviour
                         //currentAngle = shotAngleCoeff * (Mathf.PI / 4) * (-0.5f * (noExtraShots) + 0.5f * i);
                         currentAngle = 3 * ((-0.25f * noExtraShots) + (i + 1) * 0.5f);
                     }
-                    StartCoroutine(SpawnMelee(currentAngle, new Vector3(0, 0, 0), null, 1, 1));
+                    StartCoroutine(SpawnMelee(currentAngle, new Vector3(0, 0, 0), null, 1, 1, 1));
                     break;
                 case 4: // For Monstro enemy.
                     for (int j = 0; j < 15; j++)
@@ -450,19 +492,21 @@ public class Attack : MonoBehaviour
         currentTarget = closest;
     }
 
-    public IEnumerator SpawnMelee(float thisAngle, Vector3 pos, GameObject objToIgnore, float damageMult, float delayMult) // pos is for moving the hitbox elsewhere, while objToIgnore is to have the hitboxes ignore a certain object, mainly for split shots.
+    public IEnumerator SpawnMelee(float thisAngle, Vector3 pos, GameObject objToIgnore, float damageMult, float delayMult, float scaleMult) // pos is for moving the hitbox elsewhere, while objToIgnore is to have the hitboxes ignore a certain object, mainly for split shots.
     {
         bool isThisAttackCharged = isChargedAttack;
         GameObject hitBox = Instantiate(meleeHitObj, transform.position + pos, transform.rotation);
         hitBox.SetActive(false);
 
-        yield return new WaitForSeconds(hitboxSpawnDelay * delayMult);
+        yield return new WaitForSeconds(0 * delayMult);
 
         hitBox.SetActive(true);
         hitBox.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
         hitBox.transform.rotation = Quaternion.LookRotation(vectorToTarget, new Vector3(1, 0, 0)) * Quaternion.Euler(0, 90, 180 + thisAngle * 360 / (2 * Mathf.PI));
+        hitBox.transform.localScale *= scaleMult;
         hitBox.GetComponent<DealDamage>().owner = gameObject;
         hitBox.GetComponent<DealDamage>().finalDamageMult = damageMult * gameObject.GetComponent<DealDamage>().finalDamageMult;
+        Debug.Log("Attack damage mult: " + (damageMult * gameObject.GetComponent<DealDamage>().finalDamageMult).ToString());
         hitBox.GetComponent<meleeGeneral>().isCharged = isThisAttackCharged;
 
         if (objToIgnore != null)

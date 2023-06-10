@@ -40,8 +40,13 @@ public class itemPedestal : MonoBehaviour
         maxRange = EntityReferencerGuy.Instance.numItemsExist;
         //maxRange = 5;
         gos = GameObject.FindGameObjectsWithTag("item");
-        EntityReferencerGuy.Instance.playerInstance.GetComponent<getItemDescription>().itemsExist = true;
-        //EntityReferencerGuy.Instance.playerInstance.GetComponent<Attack>().canShoot = false;
+
+        GameObject[] gosser = GameObject.FindGameObjectsWithTag("Player");
+        foreach (GameObject guy in gosser)
+        {
+            guy.GetComponent<getItemDescription>().itemsExist = true;
+        }
+
         Invoke(nameof(SetDescription), 0.02f);
 
         foreach (int i in specialItemWeights)
@@ -256,7 +261,11 @@ public class itemPedestal : MonoBehaviour
         foreach (GameObject go in gos)
         {
             Destroy(go);
-            GameObject.Find("newPlayer").GetComponent<getItemDescription>().itemsExist = false;
+            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+            foreach (GameObject player in players)
+            {
+                player.GetComponent<getItemDescription>().itemsExist = false;
+            }
         }
     }
 }

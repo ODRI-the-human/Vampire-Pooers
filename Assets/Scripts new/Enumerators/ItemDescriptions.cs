@@ -66,25 +66,25 @@ public class ItemDescriptions : MonoBehaviour
                 itemDescription = "Increases base damage by 25 per stack.";
                 quality = (int)ITEMTIERS.COMMON;
                 addNewScriptForNewInstance = false;
-                whatUses = (int)ITEMOWNERS.ALL;
+                whatUses = (int)ITEMOWNERS.CANSHOOT;
                 break;
             case (int)ITEMLIST.DMGMLT2:
                 itemDescription = "Doubles damage. Multiplier increases by +1x per stack.";
                 quality = (int)ITEMTIERS.UNCOMMON;
                 addNewScriptForNewInstance = false;
-                whatUses = (int)ITEMOWNERS.ALL;
+                whatUses = (int)ITEMOWNERS.CANSHOOT;
                 break;
             case (int)ITEMLIST.FIRERATE:
                 itemDescription = "Decreases fire delay by 4.";
                 quality = (int)ITEMTIERS.COMMON;
                 addNewScriptForNewInstance = true;
-                whatUses = (int)ITEMOWNERS.BEING;
+                whatUses = (int)ITEMOWNERS.CANSHOOT;
                 break;
             case (int)ITEMLIST.SOY:
                 itemDescription = "Per stack, increases firerate by 5x, but quarters damage and bullet knockback.";
                 quality = (int)ITEMTIERS.UNCOMMON;
                 addNewScriptForNewInstance = false;
-                whatUses = (int)ITEMOWNERS.ALL;
+                whatUses = (int)ITEMOWNERS.CANSHOOT;
                 break;
             case (int)ITEMLIST.HOMING:
                 itemDescription = "Homing shots. Stacks increase range from which bullets home.";
@@ -96,13 +96,13 @@ public class ItemDescriptions : MonoBehaviour
                 itemDescription = "10% chance on hitting an enemy to fire a homing missile, dealing 3x (+3x per stack) of the damage that procced it.";
                 quality = (int)ITEMTIERS.UNCOMMON;
                 addNewScriptForNewInstance = false;
-                whatUses = (int)ITEMOWNERS.BEING;
+                whatUses = (int)ITEMOWNERS.CANSHOOT;
                 break;
             case (int)ITEMLIST.MORESHOT:
                 itemDescription = "Per stack, fire +1 projectile in an arc.";
                 quality = (int)ITEMTIERS.UNCOMMON;
                 addNewScriptForNewInstance = true;
-                whatUses = (int)ITEMOWNERS.BEING;
+                whatUses = (int)ITEMOWNERS.CANSHOOT;
                 break;
             case (int)ITEMLIST.WAPANT:
                 itemDescription = "Every 3 seconds, create a slowing puddle of creep. Size of creep increases with stacks.";
@@ -144,7 +144,7 @@ public class ItemDescriptions : MonoBehaviour
                 itemDescription = "Every 5 (-1 per stack) shots, fire 3 extra bullets around you that copy all your item effects.";
                 quality = (int)ITEMTIERS.COMMON;
                 addNewScriptForNewInstance = false;
-                whatUses = (int)ITEMOWNERS.BEING;
+                whatUses = (int)ITEMOWNERS.CANSHOOT;
                 break;
             case (int)ITEMLIST.PIERCING:
                 itemDescription = "Your bullets pierce +1 enemies per stack and deal 1.2x (0.2x per stack) damage after piercing each enemy.";
@@ -198,7 +198,7 @@ public class ItemDescriptions : MonoBehaviour
                 itemDescription = "Your attacks have a 15% (+15% per stack) chance to inflict bleed for 2 seconds. New procs refill the timer and add a new stack.";
                 quality = (int)ITEMTIERS.COMMON;
                 addNewScriptForNewInstance = false;
-                whatUses = (int)ITEMOWNERS.BEING;
+                whatUses = (int)ITEMOWNERS.CANSHOOT;
                 break;
             case (int)ITEMLIST.POISONSPLOSM:
                 itemDescription = "Enemies explode into poison on death, dealing 10% of their max health to nearby enemies over time. Size of explosion increases with stacks.";
@@ -276,7 +276,7 @@ public class ItemDescriptions : MonoBehaviour
                 quality = (int)ITEMTIERS.UNCOMMON;
                 itemDescription = "Every 3rd shot, fire 3 (+2 per stack) daggers in an arc that deal 10 damage and inflict bleed.";
                 addNewScriptForNewInstance = false;
-                whatUses = (int)ITEMOWNERS.BEING;
+                whatUses = (int)ITEMOWNERS.CANSHOOT;
                 break;
             case (int)ITEMLIST.MOREXP:
                 quality = (int)ITEMTIERS.COMMON;

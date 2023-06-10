@@ -18,6 +18,11 @@ public class chargeBarAmt : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (owner == null)
+        {
+            Destroy(gameObject);
+        }
+
         transform.position = owner.transform.position + new Vector3(0, 1, 0);
         valueFac = (Time.time - owner.gameObject.GetComponent<Attack>().chargeTime) / (2 / owner.gameObject.GetComponent<Attack>().fireTimerActualLength);
         SetValue();
