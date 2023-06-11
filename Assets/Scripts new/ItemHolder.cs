@@ -52,7 +52,7 @@ public class ItemHolder : MonoBehaviour
         master.GetComponent<ItemDescriptions>().getItemDescription();
         bool addNewScriptForNewInstance = master.GetComponent<ItemDescriptions>().addNewScriptForNewInstance;
         int whoToGiveTo = master.GetComponent<ItemDescriptions>().whatUses;
-        Debug.Log("Who to give to: " + whoToGiveTo.ToString());
+        //Debug.Log("Who to give to: " + whoToGiveTo.ToString());
 
         // Checks what exactly to give the item to, and hence only applies the item when it is required.
         bool doGiveItem = false;
@@ -64,7 +64,7 @@ public class ItemHolder : MonoBehaviour
             doGiveItem = true;
         }
 
-        Debug.Log("well okay die" + gameObject.name);
+        //Debug.Log("well okay die" + gameObject.name);
 
 
         // Applies the item, either adding a new instance of the script or incrementing a script's 'instances' value.

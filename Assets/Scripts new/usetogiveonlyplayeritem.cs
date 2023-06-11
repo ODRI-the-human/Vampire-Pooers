@@ -6,9 +6,26 @@ public class usetogiveonlyplayeritem : MonoBehaviour
 {
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.BAT);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.SPLIT);
+        gameObject.GetComponent<weaponType>().weaponHeld = (int)ITEMLIST.PISTOL;
+        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.DMGADDPT5);
+        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.DMGADDPT5);
+        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.DMGADDPT5);
+        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.DMGADDPT5);
+        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.DMGADDPT5);
+        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.DMGADDPT5);
+        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.DMGADDPT5);
+        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.DMGADDPT5);
+        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.DMGADDPT5);
+        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.DMGADDPT5);
+        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.DMGADDPT5);
+        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.DMGADDPT5);
+        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.DMGADDPT5);
+        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.DMGADDPT5);
+        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.DMGADDPT5);
+        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.DMGADDPT5);
+        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.DMGADDPT5);
+        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.DMGADDPT5);
     }
 }

@@ -1,0 +1,46 @@
+{
+    "name": "joinAction",
+    "maps": [
+        {
+            "name": "joining",
+            "id": "8d523d04-3454-4f29-86ba-885914a3f7dc",
+            "actions": [
+                {
+                    "name": "join",
+                    "type": "Button",
+                    "id": "0fc52bd7-247a-4d6e-a179-954b09527c5e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "79d78a04-b7ed-413f-93bb-22dc79e585e8",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "controller",
+                    "action": "join",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "controller",
+            "bindingGroup": "controller",
+            "devices": [
+                {
+                    "devicePath": "<Gamepad>",
+                    "isOptional": true,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}

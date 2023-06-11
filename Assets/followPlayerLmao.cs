@@ -11,11 +11,11 @@ public class followPlayerLmao : MonoBehaviour
     float fuckAngle;
     //public int whichGuy;
 
-    //void Start()
-    //{
-    //    GameObject[] gos = GameObject.FindGameObjectsWithTag("Player");
-    //    Player = gos[whichGuy];
-    //}
+    void Start()
+    {
+        vectorMan = new Vector3(1, 0, 0);
+        lastMoveDir = new Vector3(1, 0, 0);
+    }
 
     void Update()
     {

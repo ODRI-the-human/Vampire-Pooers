@@ -54,6 +54,14 @@ public class moleGamingV3 : MonoBehaviour
                 bumHead.y = Mathf.Round(bumHead.y / 2) * 2;
                 bumHead.z = 0;
                 CheckPositionAvailability(bumHead);
+
+                foreach (GameObject player in gameObject.GetComponent<playerManagement>().players)
+                {
+                    if ((player.transform.position - bumHead).magnitude < 1)
+                    {
+                        positionIsOkay = false;
+                    }
+                }
             }
             mole.GetComponent<moleStatus>().posertion = new Vector3(bumHead.x, bumHead.y, -0.1f);
             badPositions.Add(bumHead);
@@ -217,12 +225,6 @@ public class moleGamingV3 : MonoBehaviour
         foreach (GameObject obstacle in obstacles)
         {
             rockPositions.Add(obstacle.transform.position);
-        }
-
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-        foreach (GameObject player in players)
-        {
-            rockPositions.Add(Vector3Int.RoundToInt(player.transform.position));
         }
     }
 }

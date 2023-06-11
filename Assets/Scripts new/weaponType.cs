@@ -21,11 +21,11 @@ public class weaponType : MonoBehaviour
             previousFireTimerLengthMLT = gameObject.GetComponent<Attack>().fireTimerLengthMLT;
         }
 
-        if (gameObject.tag == "Player" || gameObject.tag == "PlayerBullet")
-        {
-            weaponHeld = (int)ITEMLIST.PISTOL;
-            master = EntityReferencerGuy.Instance.master;
-        }
+        //if (gameObject.tag == "Player" || gameObject.tag == "PlayerBullet")
+        //{
+        //    weaponHeld = (int)ITEMLIST.PISTOL;
+        master = EntityReferencerGuy.Instance.master;
+        //}
 
         SetWeapon();
     }

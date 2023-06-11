@@ -137,7 +137,7 @@ public class ThirdEnemySpawner : MonoBehaviour
     {
         stepUpTo = 0;
 
-        Debug.Log("Spawning a... LIBERAL!");
+        //Debug.Log("Spawning a... LIBERAL!");
         numberEnemiesSpawned = Mathf.RoundToInt(Random.Range(minSpawnMultiplier * ((spawnNumber + waveNumber * 2) * spawnScaleRate), maxSpawnMultiplier * ((spawnNumber + waveNumber * 2) * spawnScaleRate))) + 1;
         SpawnType = Random.Range(spawnTypeMin, spawnTypeMax);
 

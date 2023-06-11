@@ -4,17 +4,29 @@ using UnityEngine;
 
 public class managePlayer : MonoBehaviour
 {
-    public int playerID = 1;
+    [System.NonSerialized] public int playerID = 0;
+    public int trashVar; // used just to visualise playerID. if playerID is serialised it all fucks up so this is just for debug!
+    public bool IDSet = false; // used just to visualise playerID. if playerID is serialised it all fucks up so this is just for debug!
 
     public Material player2Mat;
     public Material player3Mat;
     public Material player4Mat;
 
-    public void SetMaterial(int sauceID)
+    void Start()
+    {
+        SetMaterial();
+    }
+
+    void FixedUpdate()
+    {
+        trashVar = playerID;
+    }
+
+    public void SetMaterial()
     {
         Material sus = null;
 
-        switch (sauceID)
+        switch (playerID)
         {
             case 2:
                 sus = player2Mat;
@@ -27,9 +39,9 @@ public class managePlayer : MonoBehaviour
                 break;
         }
 
-        if (sauceID != 1)
+        if (playerID != 1)
         {
-            GameObject model = GameObject.Find("cringe");
+            GameObject model = gameObject.transform.Find("cringe").gameObject;
             MeshRenderer[] renderers = model.GetComponentsInChildren<MeshRenderer>();
             foreach (MeshRenderer rendy in renderers)
             {

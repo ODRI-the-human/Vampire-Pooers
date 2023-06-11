@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 3951051313804528509}
   - component: {fileID: 6494547038156782421}
   - component: {fileID: -3502133126984018075}
+  - component: {fileID: 6559764764057734732}
   m_Layer: 0
   m_Name: bigFuckingMasterObject
   m_TagString: MasterObject
@@ -408,7 +409,7 @@ MonoBehaviour:
   players: []
   playerPrefab: {fileID: 3448173853718531064, guid: 8cb54c64aaccac642a3a40ebff38add0, type: 3}
   barry63: {fileID: 6964255014020883914, guid: 526b17258aed02c4c9c574bcca2b87c3, type: 3}
-  numPlayers: 2
+  reviveQueue: 
   player1Items: 
   player2Items: 
   player3Items: 
@@ -417,3 +418,47 @@ MonoBehaviour:
   player2: {fileID: 0}
   player3: {fileID: 0}
   player4: {fileID: 0}
+--- !u!114 &6559764764057734732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7002239379606652682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 621567455fd1c4ceb811cc8a00b6a1a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NotificationBehavior: 0
+  m_MaxPlayerCount: 4
+  m_AllowJoining: 1
+  m_JoinBehavior: 0
+  m_PlayerJoinedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_PlayerLeftEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_JoinAction:
+    m_UseReference: 0
+    m_Action:
+      m_Name: 
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  m_PlayerPrefab: {fileID: 3448173853718531064, guid: 8cb54c64aaccac642a3a40ebff38add0, type: 3}
+  m_SplitScreen: 0
+  m_MaintainAspectRatioInSplitScreen: 0
+  m_FixedNumberOfSplitScreens: -1
+  m_SplitScreenRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1

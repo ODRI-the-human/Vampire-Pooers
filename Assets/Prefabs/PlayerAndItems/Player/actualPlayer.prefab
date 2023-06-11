@@ -25,8 +25,8 @@ GameObject:
   - component: {fileID: 4630160360779390101}
   - component: {fileID: 8338536482029528220}
   - component: {fileID: 8615446906374870054}
-  - component: {fileID: 5850393742412172751}
   - component: {fileID: 2129084523765817731}
+  - component: {fileID: 5850393742412172751}
   m_Layer: 8
   m_Name: actualPlayer
   m_TagString: Player
@@ -251,6 +251,7 @@ MonoBehaviour:
   numBulletsPossible: 16
   canShoot: 1
   isFiring: 0
+  isHoldingFire: 0
   shotParticles: {fileID: 4986113990878371290, guid: 5251b42d6c448694c98012722de6e439, type: 3}
   chargeTime: 0
   isChargedAttack: 0
@@ -446,6 +447,22 @@ MonoBehaviour:
   mainMaterial: {fileID: 2100000, guid: bd23e476d69d9124fb911731384e2053, type: 2}
   sprongleAudio: {fileID: 527891173530036625, guid: c3aea6758bc7f7e41904bf8de9427d8a, type: 3}
   spawnedSprongleAudio: {fileID: 0}
+--- !u!114 &2129084523765817731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3448173853718531064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3b5fa8ab11abcd4a9cff2ffa168bb92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trashVar: 0
+  player2Mat: {fileID: 2100000, guid: b91101dca5791f34aae2bccc7473d45d, type: 2}
+  player3Mat: {fileID: 2100000, guid: 192ec5537c92606479632d907098acce, type: 2}
+  player4Mat: {fileID: 2100000, guid: de741ee918ca6d84e870619da854dc78, type: 2}
 --- !u!114 &5850393742412172751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -567,27 +584,11 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 830bd37b-28eb-4406-8b81-0110870422d5
     m_ActionName: menus/slowmo[/Keyboard/2]
-  m_NeverAutoSwitchControlSchemes: 0
+  m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: keyboard
   m_DefaultActionMap: gameplay
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &2129084523765817731
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3448173853718531064}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3b5fa8ab11abcd4a9cff2ffa168bb92, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerID: 1
-  player2Mat: {fileID: 2100000, guid: b91101dca5791f34aae2bccc7473d45d, type: 2}
-  player3Mat: {fileID: 2100000, guid: 192ec5537c92606479632d907098acce, type: 2}
-  player4Mat: {fileID: 2100000, guid: de741ee918ca6d84e870619da854dc78, type: 2}
 --- !u!1001 &1717869420194927235
 PrefabInstance:
   m_ObjectHideFlags: 0

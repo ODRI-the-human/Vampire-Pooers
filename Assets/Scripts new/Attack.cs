@@ -153,7 +153,7 @@ public class Attack : MonoBehaviour
         //context.action.performed += ctx => Debug.Log("starte");
         context.action.performed += ctx =>
         {
-            Debug.Log("shooting performed");
+            //Debug.Log("shooting performed");
             isHoldingFire = true;
             isChargedAttack = false; //resets status of charge attack.
             if (holdDownToShoot)
@@ -174,7 +174,7 @@ public class Attack : MonoBehaviour
         context.action.canceled += ctx =>
         {
             isHoldingFire = false;
-            Debug.Log("shooting ended");
+            //Debug.Log("shooting ended");
             if (holdDownToShoot && isFiring)
             {
                 SendMessage("AttackStatus", false);
@@ -577,7 +577,7 @@ public class Attack : MonoBehaviour
                 bulletPool.Clear();
 
             }
-            Debug.Log("funker dunker");
+            //Debug.Log("funker dunker");
             timesFired = -1;
         }
     }

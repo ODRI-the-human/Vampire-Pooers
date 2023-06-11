@@ -66,13 +66,13 @@ public class ItemDescriptions : MonoBehaviour
                 itemDescription = "Increases base damage by 25 per stack.";
                 quality = (int)ITEMTIERS.COMMON;
                 addNewScriptForNewInstance = false;
-                whatUses = (int)ITEMOWNERS.CANSHOOT;
+                whatUses = (int)ITEMOWNERS.ALL;
                 break;
             case (int)ITEMLIST.DMGMLT2:
                 itemDescription = "Doubles damage. Multiplier increases by +1x per stack.";
                 quality = (int)ITEMTIERS.UNCOMMON;
                 addNewScriptForNewInstance = false;
-                whatUses = (int)ITEMOWNERS.CANSHOOT;
+                whatUses = (int)ITEMOWNERS.ALL;
                 break;
             case (int)ITEMLIST.FIRERATE:
                 itemDescription = "Decreases fire delay by 4.";
@@ -84,7 +84,7 @@ public class ItemDescriptions : MonoBehaviour
                 itemDescription = "Per stack, increases firerate by 5x, but quarters damage and bullet knockback.";
                 quality = (int)ITEMTIERS.UNCOMMON;
                 addNewScriptForNewInstance = false;
-                whatUses = (int)ITEMOWNERS.CANSHOOT;
+                whatUses = (int)ITEMOWNERS.ALL;
                 break;
             case (int)ITEMLIST.HOMING:
                 itemDescription = "Homing shots. Stacks increase range from which bullets home.";

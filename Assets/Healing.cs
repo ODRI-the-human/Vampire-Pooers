@@ -23,7 +23,7 @@ public class Healing : MonoBehaviour
         float healyAmount = amount * healMult / healDiv;
         if (gameObject.GetComponent<HPDamageDie>().HP + healyAmount > gameObject.GetComponent<HPDamageDie>().MaxHP) // If player would overheal, reduces healing amount to what's required to reach max HP.
         {
-            Debug.Log(healyAmount.ToString());
+            //Debug.Log(healyAmount.ToString());
             healyAmount = gameObject.GetComponent<HPDamageDie>().MaxHP - gameObject.GetComponent<HPDamageDie>().HP;
         }
         gameObject.GetComponent<HPDamageDie>().HP += healyAmount;

@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class playerManagement : MonoBehaviour
 {
     public GameObject[] players;
     public GameObject playerPrefab;
     public GameObject barry63;
-    public int numPlayers = 2;
+    [System.NonSerialized] public int numPlayers = 0;
     public List<int> reviveQueue = new List<int>();
 
     public List<int> player1Items = new List<int>();
@@ -20,19 +21,49 @@ public class playerManagement : MonoBehaviour
     public GameObject player3;
     public GameObject player4;
 
+    bool canStillSpawn = true;
+
     // Start is called before the first frame update
     void Start()
+    {
+        numPlayers = 0;
+        OnPlayerJoined();
+    }
+
+    public void OnPlayerJoined()
     {
         GetPlayers();
         numPlayers = players.Length;
 
-        int ID = 1;
+        //Debug.Log("num players: " + numPlayers.ToString());
 
         foreach (GameObject player in players)
         {
-            player.GetComponent<managePlayer>().playerID = ID;
-            player.GetComponent<managePlayer>().SetMaterial(ID);
-            ID++;
+            if (!player.GetComponent<managePlayer>().IDSet) // if the ID has not yet been set:
+            {
+                //Debug.Log("new player ID: " + numPlayers.ToString());
+                player.GetComponent<managePlayer>().playerID = numPlayers;
+                player.GetComponent<managePlayer>().IDSet = true;
+            }
+        }
+
+        foreach (GameObject player in players)
+        {
+            switch (player.GetComponent<managePlayer>().playerID)
+            {
+                case 1:
+                    player1 = player;
+                    break;
+                case 2:
+                    player2 = player;
+                    break;
+                case 3:
+                    player3 = player;
+                    break;
+                case 4:
+                    player4 = player;
+                    break;
+            }
         }
     }
 
@@ -132,37 +163,14 @@ public class playerManagement : MonoBehaviour
             {
                 Invoke(nameof(GetPlayers), 0.2f);
             }
+
+            gameObject.GetComponent<PlayerInputManager>().DisableJoining();
         }
     }
 
     void GetPlayers()
     {
         players = GameObject.FindGameObjectsWithTag("Player");
-        EntityReferencerGuy.Instance.camera.GetComponent<cameraMovement>().players = players;
-
-        foreach (GameObject player in players)
-        {
-            switch (player.GetComponent<managePlayer>().playerID)
-            {
-                case 1:
-                    player1 = player;
-                    break;
-                case 2:
-                    player2 = player;
-                    break;
-                case 3:
-                    player3 = player;
-                    break;
-                case 4:
-                    player4 = player;
-                    break;
-            }
-        }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        GameObject.Find("Main Camera").GetComponent<cameraMovement>().players = players;
     }
 }
