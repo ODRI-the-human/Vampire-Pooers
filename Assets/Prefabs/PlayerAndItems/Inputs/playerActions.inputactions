@@ -40,6 +40,24 @@
                     "processors": "",
                     "interactions": "Press",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "abilityOne",
+                    "type": "Button",
+                    "id": "8f8ae074-d443-4a30-a2d6-d64ac881c7ea",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "abilityTwo",
+                    "type": "Button",
+                    "id": "4217320d-f1e6-467a-b9a2-8ad08d39ceb8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -172,6 +190,50 @@
                     "processors": "Normalize(max=1)",
                     "groups": "controller",
                     "action": "shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "caeb72e2-b0fa-4019-a56b-9035c73802f5",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "keyboard",
+                    "action": "abilityOne",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7392db4f-6f9a-4a5a-a492-eb8498b7a0a0",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "controller",
+                    "action": "abilityOne",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2ef9f68b-e50e-4aef-9acd-a4246956eab4",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "keyboard",
+                    "action": "abilityTwo",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b0ac0533-d633-4482-a868-381b07cd6b11",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "controller",
+                    "action": "abilityTwo",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

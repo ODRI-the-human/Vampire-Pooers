@@ -57,7 +57,7 @@ public class moleGamingV3 : MonoBehaviour
 
                 foreach (GameObject player in gameObject.GetComponent<playerManagement>().players)
                 {
-                    if ((player.transform.position - bumHead).magnitude < 1)
+                    if ((player.transform.position - bumHead).magnitude < 3)
                     {
                         positionIsOkay = false;
                     }

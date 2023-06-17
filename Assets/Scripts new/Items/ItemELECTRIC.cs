@@ -35,12 +35,14 @@ public class ItemELECTRIC : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col) // featuring 15 million if statements
     {
-        dealTheDamage = false;
-        RollOnHit(col.gameObject);
+        //dealTheDamage = false;
+        //RollOnHit(col.gameObject);
     }
 
-    public void RollOnHit(GameObject gamer)
+    void RollOnHit(GameObject[] objects)
     {
+        GameObject gamer = objects[0];
+
         if (gamer.tag != "Wall")
         {
             if (gameObject.tag == "PlayerBullet" || gameObject.tag == "enemyBullet")
@@ -60,21 +62,20 @@ public class ItemELECTRIC : MonoBehaviour
 
         masterObject = EntityReferencerGuy.Instance.master;
 
-        if (dealTheDamage)
+        if (gameObject.GetComponent<Attack>() != null) // If the user is the player
         {
             foreach (GameObject Gareth in owner.GetComponent<ItemELECTRIC>().enemiesEffected)
             {
                 if (Gareth != null && Gareth != gamer)
                 {
-                    Gareth.GetComponent<HPDamageDie>().HP -= 10 * instances;
-                    Gareth.GetComponent<HPDamageDie>().sprite.color = Color.red;
-                    Gareth.GetComponent<HPDamageDie>().colorChangeTimer = 1;
-                    masterObject.GetComponent<showDamageNumbers>().showDamage(Gareth.transform.position, 10 * instances, (int)DAMAGETYPES.ELECTRIC, false);
+                    //Gareth.GetComponent<HPDamageDie>().HP -= 10 * instances;
+                    //Gareth.GetComponent<HPDamageDie>().sprite.color = Color.red;
+                    Gareth.GetComponent<HPDamageDie>().Hurty(10 * instances, false, true, 0, (int)DAMAGETYPES.ELECTRIC, true, null);
+                    //Gareth.GetComponent<HPDamageDie>().colorChangeTimer = 1;
+                    //masterObject.GetComponent<showDamageNumbers>().showDamage(Gareth.transform.position, 10 * instances, (int)DAMAGETYPES.ELECTRIC, false);
                 }
             }
         }
-
-        dealTheDamage = true;
     }
 
     void newWaveEffects()

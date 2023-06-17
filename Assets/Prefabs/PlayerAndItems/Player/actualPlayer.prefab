@@ -26,6 +26,9 @@ GameObject:
   - component: {fileID: 8338536482029528220}
   - component: {fileID: 8615446906374870054}
   - component: {fileID: 2129084523765817731}
+  - component: {fileID: -4800039110049089029}
+  - component: {fileID: -6700609130302507252}
+  - component: {fileID: 9138767398329353167}
   - component: {fileID: 5850393742412172751}
   m_Layer: 8
   m_Name: actualPlayer
@@ -460,9 +463,54 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trashVar: 0
+  IDSet: 0
   player2Mat: {fileID: 2100000, guid: b91101dca5791f34aae2bccc7473d45d, type: 2}
   player3Mat: {fileID: 2100000, guid: 192ec5537c92606479632d907098acce, type: 2}
   player4Mat: {fileID: 2100000, guid: de741ee918ca6d84e870619da854dc78, type: 2}
+--- !u!114 &-4800039110049089029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3448173853718531064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4871cab4b73fa5f479212000e3126d5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityOneCooldown: 0
+  abilityOneMaxCooldown: 1
+  abilityTwoCooldown: 0
+  abilityTwoMaxCooldown: 1
+--- !u!114 &-6700609130302507252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3448173853718531064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13c8cf6f24b133042862532ce4d4f44a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityNo: 1
+  abilityTimerMax: 50
+--- !u!114 &9138767398329353167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3448173853718531064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f1e544e479920f46a957039d2d24f87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityNo: 2
+  abilityTimerMax: 100
 --- !u!114 &5850393742412172751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -584,6 +632,38 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 830bd37b-28eb-4406-8b81-0110870422d5
     m_ActionName: menus/slowmo[/Keyboard/2]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -4800039110049089029}
+        m_TargetAssemblyTypeName: secondaryAbility, Assembly-CSharp
+        m_MethodName: useAbilityOne
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 8f8ae074-d443-4a30-a2d6-d64ac881c7ea
+    m_ActionName: gameplay/abilityOne[/Keyboard/shift,/XInputControllerWindows/leftShoulder]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -4800039110049089029}
+        m_TargetAssemblyTypeName: secondaryAbility, Assembly-CSharp
+        m_MethodName: useAbilityTwo
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 4217320d-f1e6-467a-b9a2-8ad08d39ceb8
+    m_ActionName: gameplay/abilityTwo[/Keyboard/space,/XInputControllerWindows/rightShoulder]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: keyboard
   m_DefaultActionMap: gameplay

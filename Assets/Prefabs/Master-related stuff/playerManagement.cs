@@ -8,7 +8,7 @@ public class playerManagement : MonoBehaviour
     public GameObject[] players;
     public GameObject playerPrefab;
     public GameObject barry63;
-    [System.NonSerialized] public int numPlayers = 0;
+    public int numPlayers = 0;
     public List<int> reviveQueue = new List<int>();
 
     public List<int> player1Items = new List<int>();
@@ -83,21 +83,23 @@ public class playerManagement : MonoBehaviour
 
         for (int i = 0; i < numPlayers; i++)
         {
+            Debug.Log("for iteration: " + i.ToString());
+
             switch (i)
             {
-                case 1:
+                case 0:
                     player = player1;
                     items = player1Items;
                     break;
-                case 2:
+                case 1:
                     player = player2;
                     items = player2Items;
                     break;
-                case 3:
+                case 2:
                     player = player3;
                     items = player3Items;
                     break;
-                case 4:
+                case 3:
                     player = player4;
                     items = player4Items;
                     break;
@@ -109,31 +111,31 @@ public class playerManagement : MonoBehaviour
             }
             else
             {
-                if (reviveQueue.Count != 0 && i == reviveQueue[0])
+                if (reviveQueue.Count != 0 && i == reviveQueue[0] - 1)
                 {
                     player = Instantiate(playerPrefab);
                     player.GetComponent<ItemHolder>().itemsHeld = items;
-                    player.GetComponent<managePlayer>().playerID = i;
+                    player.GetComponent<managePlayer>().playerID = i + 1;
                 }
             }
 
             switch (i)
             {
-                case 1:
+                case 0:
                     player1 = player;
                     player1Items = items;
                     break;
+                case 1:
+                    player2 = player;
+                    player2Items = items;
+                    break;
                 case 2:
-                    player2 = player;
-                    player2Items = items;
-                    break;
-                case 3:
-                    player2 = player;
-                    player2Items = items;
-                    break;
-                case 4:
                     player3 = player;
                     player3Items = items;
+                    break;
+                case 3:
+                    player4 = player;
+                    player4Items = items;
                     break;
             }
         }

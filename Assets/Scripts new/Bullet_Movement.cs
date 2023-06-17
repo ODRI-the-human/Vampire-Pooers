@@ -96,7 +96,7 @@ public class Bullet_Movement : MonoBehaviour
 
                     if (col.gameObject.tag == "Wall")
                     {
-                        Debug.Log("Blimbpet:" + colVector.ToString());
+                        //Debug.Log("Blimbpet:" + colVector.ToString());
 
                         if (Mathf.Abs(colVector.y) > Mathf.Abs(colVector.x))
                         {

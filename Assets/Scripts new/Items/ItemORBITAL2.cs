@@ -50,7 +50,7 @@ public class ItemORBITAL2 : MonoBehaviour
             myGuy.GetComponent<OrbitalMovement2>().timerDelay = i * (2 * Mathf.PI / 0.03f) / instances;
             myGuy.GetComponent<OrbitalMovement2>().distanceFromPlayer = 1 + 0.08f * instances;
             Orbs.Add(myGuy);
-            Debug.Log("fhdgdsifgds");
+            //Debug.Log("fhdgdsifgds");
         }
         Invoke(nameof(FinaliseStats), 0.1f);
     }

@@ -75,7 +75,7 @@ public class itemPedestal : MonoBehaviour
         }
 
         int randomWacky = Random.Range(0, qualityWeightsSum);
-        Debug.Log(randomWacky.ToString());
+        //Debug.Log(randomWacky.ToString());
         int currentWeightSum = 0;
         for (int i = 0; i < itemQualWeights.Length; i++)
         {
@@ -101,11 +101,11 @@ public class itemPedestal : MonoBehaviour
             {
                 bool isFine = true;
 
-                foreach (int item in bannedItems)
-                {
-                    if (item == itemChosen)
-                        isFine = false;
-                }
+                //foreach (int item in bannedItems)
+                //{
+                //    if (item == itemChosen)
+                //        isFine = false;
+                //}
 
                 if ((go.GetComponent<itemPedestal>().itemChosen == itemChosen && go != gameObject) || !isFine)
                 {
@@ -129,6 +129,14 @@ public class itemPedestal : MonoBehaviour
             master.GetComponent<ItemDescriptions>().itemChosen = itemChosen;
             master.GetComponent<ItemDescriptions>().getItemDescription();
             randomedQuality = master.GetComponent<ItemDescriptions>().quality;
+
+            foreach (int item in bannedItems)
+            {
+                if (item == itemChosen)
+                {
+                    randomedQuality = 50; // If the chosen item is a banned item, then the pedestal is forced to reroll.
+                }
+            }
         }
     }
 

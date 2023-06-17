@@ -8,6 +8,8 @@ public class Healing : MonoBehaviour
     public float healDiv = 1;
     GameObject master;
 
+    //int timer = 0;
+
     void Start()
     {
         master = EntityReferencerGuy.Instance.master;
@@ -17,6 +19,16 @@ public class Healing : MonoBehaviour
     {
         Healo(10);
     }
+
+    //void FixedUpdate()
+    //{
+    //    timer++;
+
+    //    if (timer % 300 == 0)
+    //    {
+    //        Healo(50);
+    //    }
+    //}
 
     public void Healo(float amount)
     {

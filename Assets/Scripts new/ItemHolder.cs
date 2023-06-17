@@ -56,7 +56,7 @@ public class ItemHolder : MonoBehaviour
 
         // Checks what exactly to give the item to, and hence only applies the item when it is required.
         bool doGiveItem = false;
-        if (((gameObject.GetComponent<Attack>()) && (whoToGiveTo == (int)ITEMOWNERS.ALL || whoToGiveTo == (int)ITEMOWNERS.BEING)) || // For 'being'
+        if (((gameObject.tag == "Player" || gameObject.tag == "Hostile") && (whoToGiveTo == (int)ITEMOWNERS.ALL || whoToGiveTo == (int)ITEMOWNERS.BEING)) || // For 'being'
            ((gameObject.GetComponent<Attack>() != null && (whoToGiveTo == (int)ITEMOWNERS.ALL || whoToGiveTo == (int)ITEMOWNERS.CANSHOOT))) || // For 'canshoot' - required so orbitals n shit don't get gunners.
            ((gameObject.tag == "PlayerBullet" || gameObject.tag == "enemyBullet") && gameObject.GetComponent<Attack>() == null && (whoToGiveTo == (int)ITEMOWNERS.ALL || whoToGiveTo == (int)ITEMOWNERS.BULLET)) || // For 'bullet'
            ((gameObject.tag == "Player" || gameObject.tag == "MasterObject") && (whoToGiveTo == (int)ITEMOWNERS.MASTERANDPLAYER))) // For 'masterandplayer'
@@ -196,7 +196,7 @@ public class ItemHolder : MonoBehaviour
             }
         }
 
-        Debug.Log(itemIsPassive.ToString());
+        //Debug.Log(itemIsPassive.ToString());
 
         SendMessage("itemsAdded", itemIsPassive);
     }

@@ -10,16 +10,22 @@ public class setBarValue : MonoBehaviour
     public Slider slider;
     public int valueToTrack;
 
-    public float timeOfChange = 0;
-    [System.NonSerialized] public float decayTimeFac = 0.05f;
+    // The below is only for the HP draining/healing effects! Ignore it for all other types.
+    public GameObject sliderObjToCopyPosOf;
+    public float lastVarVal;
+    [System.NonSerialized] public float decayTimeFac = 50;
     public float lastVal = 0;
     public bool keepCheckingTime = true;
-    public float longLastVal = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        lastVal = owner.GetComponent<HPDamageDie>().HP;
+        switch (valueToTrack)
+        {
+            case 1:
+                lastVal = owner.GetComponent<HPDamageDie>().HP;
+                break;
+        }
     }
 
     // Update is called once per frame
@@ -34,23 +40,95 @@ public class setBarValue : MonoBehaviour
                 value = owner.GetComponent<HPDamageDie>().HP;
                 maxValue = owner.GetComponent<HPDamageDie>().MaxHP;
                 break;
-            case 1: // HP change
+            case 1: // HP loss
                 if (lastVal != owner.GetComponent<HPDamageDie>().HP && keepCheckingTime)
                 {
-                    timeOfChange = Time.time;
                     keepCheckingTime = false;
                 }
 
                 if (lastVal > owner.GetComponent<HPDamageDie>().HP)
                 {
-                    lastVal -= decayTimeFac;
+                    lastVal -= decayTimeFac * Time.deltaTime;
                     keepCheckingTime = true;
+                }
+
+                if (lastVal < owner.GetComponent<HPDamageDie>().HP)
+                {
+                    lastVal = owner.GetComponent<HPDamageDie>().HP;
                 }
 
                 value = lastVal; //(lastVal - owner.GetComponent<HPDamageDie>().HP) * decayTimeFac
                 maxValue = owner.GetComponent<HPDamageDie>().MaxHP;
                 break;
-            case 2: // XP
+            case 2: // Healing
+                //if (lastVal != owner.GetComponent<HPDamageDie>().HP && keepCheckingTime)
+                //{
+                //    timeOfChange = Time.time;
+                //    keepCheckingTime = false;
+                //}
+                //if (lastVal < owner.GetComponent<HPDamageDie>().HP)
+                //{
+                //    lastVal += decayTimeFac * Time.deltaTime;
+                //    keepCheckingTime = true;
+                //    value = lastVal; //(lastVal - owner.GetComponent<HPDamageDie>().HP) * decayTimeFac
+                //}
+                //else
+                //{
+                //    timeOfChange = Time.time;
+                //    keepCheckingTime = false;
+                //    value = 0;
+                //}
+
+                //float missingHealthFac = owner.GetComponent<HPDamageDie>().MaxHP - owner.GetComponent<HPDamageDie>().HP;
+
+                //if (missingHealthFac != lastVal && keepCheckingTime)
+                //{
+                //    lastVal += missingHealthFac;
+                //    keepCheckingTime = false;
+                //}
+
+                //if (lastVal > 0)
+                //{
+                //    lastVal -= decayTimeFac * Time.deltaTime;
+                //}
+                //else
+                //{
+                //    lastVal = 0;
+                //    keepCheckingTime = true;
+                //}
+
+                //value = lastVal;
+                //maxValue = owner.GetComponent<HPDamageDie>().MaxHP;
+
+                //Debug.Log("value/maxval: " + value.ToString() + "/" + maxValue.ToString());
+
+                float missingHealth = owner.GetComponent<HPDamageDie>().MaxHP - owner.GetComponent<HPDamageDie>().HP;
+                if (missingHealth < lastVarVal) // if the player has more health than the last value of HP (i.e. has healed)
+                {
+                    // Set the new lastVarVal, and set new valueFac corresponding to the what % of the player's health they gained back:
+                    lastVal = lastVarVal - missingHealth;
+                    lastVarVal = missingHealth;
+                }
+                else
+                {
+                    if (missingHealth > lastVarVal)
+                    {
+                        lastVal = 0;
+                        lastVarVal = missingHealth;
+                    }
+                }
+
+                if (lastVal > 0)
+                {
+                    lastVal -= decayTimeFac * Time.deltaTime;
+                }
+
+                //Debug.Log("lastVal: " + lastVal.ToString());
+
+                value = lastVal;
+                maxValue = owner.GetComponent<HPDamageDie>().MaxHP;
+                break;
+            case 3: // XP
                 int currentLevel = owner.GetComponent<LevelUp>().level;
                 int nextLevel = currentLevel + 1;
 
@@ -60,6 +138,14 @@ public class setBarValue : MonoBehaviour
 
                 value = XP - floorXP;
                 maxValue = nextXP - floorXP;
+                break;
+            case 4:
+                value = owner.GetComponent<secondaryAbility>().abilityOneCooldown;
+                maxValue = owner.GetComponent<secondaryAbility>().abilityOneMaxCooldown;
+                break;
+            case 5:
+                value = owner.GetComponent<secondaryAbility>().abilityTwoCooldown;
+                maxValue = owner.GetComponent<secondaryAbility>().abilityTwoMaxCooldown;
                 break;
         }
 

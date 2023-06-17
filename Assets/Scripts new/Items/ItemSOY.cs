@@ -24,7 +24,7 @@ public class ItemSOY : MonoBehaviour
     {
         initialDamage = gameObject.GetComponent<DealDamage>().damageBase;
         float funnyDamage = 4 * instances;
-        gameObject.GetComponent<DealDamage>().damageBase /= funnyDamage;
+        gameObject.GetComponent<DealDamage>().finalDamageMult /= funnyDamage;
         bonusDamage = funnyDamage;
         gameObject.GetComponent<DealDamage>().massCoeff /= 4 * instances;
         if (gameObject.GetComponent<Attack>() != null)

@@ -28,7 +28,7 @@ public class OrbitalMovement2 : MonoBehaviour
         Vector3 vec3 = - transform.position + Player.GetComponent<Attack>().reticle.transform.position;
         gameObject.GetComponent<Attack>().vectorToTarget = new Vector2(vec3.x, vec3.y).normalized;
 
-        Debug.Log("Orb vec/player vec: " + gameObject.GetComponent<Attack>().vectorToTarget.ToString() + "/" + Player.GetComponent<Attack>().vectorToTarget.ToString());
+        //Debug.Log("Orb vec/player vec: " + gameObject.GetComponent<Attack>().vectorToTarget.ToString() + "/" + Player.GetComponent<Attack>().vectorToTarget.ToString());
 
         int currentWeapon = gameObject.GetComponent<weaponType>().weaponHeld;
         GameObject owner = gameObject.GetComponent<DealDamage>().owner;

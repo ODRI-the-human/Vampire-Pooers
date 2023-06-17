@@ -317,6 +317,8 @@ public class ThirdEnemySpawner : MonoBehaviour
 
     void SpawnItems()
     {
+        gameObject.GetComponent<playerManagement>().NewRoundStarted();
+
         enemiesAreSpawning = false;
         GameObject[] enemyBullets = GameObject.FindGameObjectsWithTag("enemyBullet");
         foreach (GameObject bullet in enemyBullets)
@@ -345,7 +347,6 @@ public class ThirdEnemySpawner : MonoBehaviour
                 player.SendMessage("newWaveEffects");
             }
         }
-        gameObject.GetComponent<playerManagement>().NewRoundStarted();
         waveNumber++;
         stepUpTo = 0;
         spawnNumber = 0;

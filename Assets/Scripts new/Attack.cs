@@ -261,6 +261,10 @@ public class Attack : MonoBehaviour
             }
 
             reticle.transform.position = new Vector3(blobob.x, blobob.y, -8);
+            Color retCol = reticle.GetComponent<SpriteRenderer>().color;
+            Vector3 retPosZ0 = new Vector3(blobob.x, blobob.y, 0);
+            retCol.a = (retPosZ0 - transform.position).magnitude;
+            reticle.GetComponent<SpriteRenderer>().color = retCol;
         }
 
         //if (gameObject.GetComponent<weaponType>() != null) // For capping your fire rate to the proper amount based on what weapon you're using.
@@ -313,7 +317,17 @@ public class Attack : MonoBehaviour
                     {
                         ReTarget();
                     }
-                    if (currentTarget != null && (currentTarget.transform.position - gameObject.transform.position).magnitude < visionRange && specialFireType != 2)
+
+                    if ((currentTarget.transform.position - gameObject.transform.position).magnitude < visionRange)
+                    {
+                        isHoldingFire = true;
+                    }
+                    else
+                    {
+                        isHoldingFire = false;
+                    }
+
+                    if (currentTarget != null && isHoldingFire && specialFireType != 2)
                     {
                         UseWeapon(false);
                         timesFired++;

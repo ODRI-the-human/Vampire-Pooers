@@ -30,6 +30,14 @@ public class gunnerManagement : MonoBehaviour
         GameObject spawnedGuy = Instantiate(EntityReferencerGuy.Instance.normieFamiliar, transform.position, transform.rotation);
         spawnedGuy.GetComponent<familiarMovement>().owner = gameObject;
         spawnedGuy.GetComponent<DealDamage>().owner = spawnedGuy;
+        if (gameObject.tag == "Player")
+        {
+            spawnedGuy.GetComponent<Attack>().Bullet = EntityReferencerGuy.Instance.playerBullet;
+        }
+        else
+        {
+            spawnedGuy.GetComponent<Attack>().Bullet = EntityReferencerGuy.Instance.enemyBullet;
+        }
         spawnedGuy.GetComponent<familiarMovement>().gunnerType = item;
         if (gunners.Count > 0)
         {
@@ -87,5 +95,10 @@ public class gunnerManagement : MonoBehaviour
     void Update()
     {
         
+    }
+
+    void Undo()
+    {
+        ApplyOwnOnDeaths();
     }
 }
