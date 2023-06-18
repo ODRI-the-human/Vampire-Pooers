@@ -6,6 +6,7 @@ public class lose2ItemPerm : MonoBehaviour
 {
     public int numItemsToLose = 2;
     public List<int> itemsToGiveOnRoundStart = new List<int>();
+    int numItemsPickedUp = -1;
 
     // Start is called before the first frame update
     void Start()
@@ -35,7 +36,8 @@ public class lose2ItemPerm : MonoBehaviour
 
     public void itemsAdded(bool isPassive)
     {
-        if (isPassive)
+        numItemsPickedUp++;
+        if (isPassive && numItemsPickedUp % 3 == 0 && numItemsPickedUp > 0)
         {
             foreach (int item in itemsToGiveOnRoundStart)
             {

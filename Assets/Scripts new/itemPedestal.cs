@@ -148,12 +148,12 @@ public class itemPedestal : MonoBehaviour
 
         // this is for cursed items!
         curseType = -2;
-        int sproinkle = -2;
+        int sproinkle = 5;
 
-        if (chosenQuality != (int)ITEMTIERS.WEAPON)
-        {
-            sproinkle = Random.Range(0, 11); // Determines whether the item is cursed or not (1/10 chance)
-        }
+        //if (chosenQuality != (int)ITEMTIERS.WEAPON)
+        //{
+        //    sproinkle = Random.Range(0, 11); // Determines whether the item is cursed or not (1/10 chance)
+        //}
 
         if (sproinkle == 5)
         {

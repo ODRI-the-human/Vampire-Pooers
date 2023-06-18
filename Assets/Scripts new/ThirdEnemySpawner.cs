@@ -317,7 +317,7 @@ public class ThirdEnemySpawner : MonoBehaviour
 
     void SpawnItems()
     {
-        gameObject.GetComponent<playerManagement>().NewRoundStarted();
+        gameObject.GetComponent<playerManagement>().SetPlayerStates();
 
         enemiesAreSpawning = false;
         GameObject[] enemyBullets = GameObject.FindGameObjectsWithTag("enemyBullet");

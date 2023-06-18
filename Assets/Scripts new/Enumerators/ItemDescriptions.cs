@@ -23,7 +23,7 @@ public class ItemDescriptions : MonoBehaviour
                 curseDescription = "Gain three of this item, but all enemies gain one instance.";
                 break;
             case 1: // Get 1 of this item every time you pick up an item, lose 2 items on hit (perm)
-                curseDescription = "Gain one of this item every time you pick up an item in future, but lose 2 random items every time you take damage.";
+                curseDescription = "Gain one of this item every third time you pick up an item, but lose 2 random items every time you take damage.";
                 break;
             case 2: // Get 3 of the item, lose 5 random items (ONCE) if you get hit in the next 2 rounds.
                 curseDescription = "Gain three of this item, but if you get hit in the next 2 rounds, you lose 5 random items (only happens once).";
