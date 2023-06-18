@@ -9,11 +9,6 @@ public class ItemGRENADELAUNCHER : MonoBehaviour
     {
         gameObject.GetComponent<weaponType>().weaponHeld = (int)ITEMLIST.GRENADELAUNCHER;
         gameObject.GetComponent<weaponType>().SetWeapon();
-
-        if (gameObject.tag == "Player")
-        {
-            EntityReferencerGuy.Instance.master.GetComponent<ThirdEnemySpawner>().playerBannedWeapon = (int)ITEMLIST.GRENADELAUNCHER;
-        }
     }
 
     // Update is called once per frame

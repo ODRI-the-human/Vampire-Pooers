@@ -6,6 +6,7 @@ public class giveenemiesitems : MonoBehaviour
 {
     void Start()
     {
-        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.FAMILIAR);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.ORBITAL2);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.SOY);
     }
 }

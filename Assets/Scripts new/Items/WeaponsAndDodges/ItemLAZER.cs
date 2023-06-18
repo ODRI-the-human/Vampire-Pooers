@@ -12,11 +12,6 @@ public class ItemLAZER : MonoBehaviour
             gameObject.GetComponent<weaponType>().weaponHeld = (int)ITEMLIST.LAZER;
             gameObject.GetComponent<weaponType>().SetWeapon();
         }
-
-        if (gameObject.tag == "Player")
-        {
-            EntityReferencerGuy.Instance.master.GetComponent<ThirdEnemySpawner>().playerBannedWeapon = (int)ITEMLIST.LAZER;
-        }
     }
 
     // Update is called once per frame

@@ -8,10 +8,6 @@ public class ItemDODGEROLL : MonoBehaviour
     void Start()
     {
         gameObject.GetComponent<NewPlayerMovement>().mouseAltMode = 0;
-        if (gameObject.tag == "Player")
-        {
-            EntityReferencerGuy.Instance.master.GetComponent<ThirdEnemySpawner>().playerBannedDodge = (int)ITEMLIST.DODGEROLL;
-        }
     }
 
     void Undo()

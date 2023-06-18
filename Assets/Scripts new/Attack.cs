@@ -64,7 +64,7 @@ public class Attack : MonoBehaviour
 
     public ObjectPool<GameObject> bulletPool;
     public int numBulletsPossible = 16; // This is for object pooling; this should be plenty for most enemies in default circumstances.
-    public bool canShoot = true;
+    public bool autoFire = true;
 
     //public InputActionAsset actions;
     //public InputAction shootAction;
@@ -311,7 +311,7 @@ public class Attack : MonoBehaviour
                 }
                 break;
             case false:
-                if (fireTimer > (50 / fireTimerActualLength) && doShootAutomatically && isDodging == 0)
+                if (fireTimer > (50 / fireTimerActualLength) && doShootAutomatically && isDodging == 0 && autoFire)
                 {
                     if (currentTarget == null)
                     {
@@ -394,7 +394,7 @@ public class Attack : MonoBehaviour
                         //currentAngle = shotAngleCoeff * (Mathf.PI / 4) * (-0.5f * (noExtraShots) + 0.5f * i);
                         currentAngle = 3 * ((-0.25f * noExtraShots) + (i + 1) * 0.5f);
                     }
-                    StartCoroutine(SpawnMelee(currentAngle, new Vector3(0, 0, 0), null, 1, 1, 1));
+                    StartCoroutine(SpawnMelee(currentAngle, new Vector3(0, 0, 0), null, 1, 1, 1, true));
                     break;
                 case 4: // For Monstro enemy.
                     for (int j = 0; j < 15; j++)
@@ -470,12 +470,12 @@ public class Attack : MonoBehaviour
             newObject.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
         }
 
-        switch (specialFireType)
-        {
-            case 4:
-                newObject.AddComponent<ItemCREEPSHOT>();
-                break;
-        }
+        //switch (specialFireType)
+        //{
+        //    case 4:
+        //        newObject.AddComponent<ItemCREEPSHOT>();
+        //        break;
+        //}
     }
 
     void ReTarget()
@@ -506,7 +506,7 @@ public class Attack : MonoBehaviour
         currentTarget = closest;
     }
 
-    public IEnumerator SpawnMelee(float thisAngle, Vector3 pos, GameObject objToIgnore, float damageMult, float delayMult, float scaleMult) // pos is for moving the hitbox elsewhere, while objToIgnore is to have the hitboxes ignore a certain object, mainly for split shots.
+    public IEnumerator SpawnMelee(float thisAngle, Vector3 pos, GameObject objToIgnore, float damageMult, float delayMult, float scaleMult, bool allowSplit) // pos is for moving the hitbox elsewhere, while objToIgnore is to have the hitboxes ignore a certain object, mainly for split shots.
     {
         bool isThisAttackCharged = isChargedAttack;
         GameObject hitBox = Instantiate(meleeHitObj, transform.position + pos, transform.rotation);
@@ -526,6 +526,13 @@ public class Attack : MonoBehaviour
         if (objToIgnore != null)
         {
             Physics2D.IgnoreCollision(hitBox.GetComponent<Collider2D>(), objToIgnore.GetComponent<Collider2D>(), true);
+        }
+
+        if (!allowSplit)
+        {
+            Debug.Log("no splite1");
+            hitBox.AddComponent<ItemSPLIT>();
+            hitBox.GetComponent<ItemSPLIT>().canSplit = false;
         }
 
 

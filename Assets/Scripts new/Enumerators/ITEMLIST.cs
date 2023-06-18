@@ -51,8 +51,8 @@ public enum ITEMLIST
 
 
 
-    DODGEROLL,
-    SHOULDERBASH,
+    //DODGEROLL,
+    //SHOULDERBASH,
 
     PISTOL,
     GRENADELAUNCHER,

@@ -12,11 +12,6 @@ public class ItemBAT : MonoBehaviour
             gameObject.GetComponent<weaponType>().weaponHeld = (int)ITEMLIST.BAT;
             gameObject.GetComponent<weaponType>().SetWeapon();
         }
-
-        if (gameObject.tag == "Player")
-        {
-            EntityReferencerGuy.Instance.master.GetComponent<ThirdEnemySpawner>().playerBannedWeapon = (int)ITEMLIST.BAT;
-        }
     }
 
     void Undo()

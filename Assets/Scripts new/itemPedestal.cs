@@ -25,19 +25,15 @@ public class itemPedestal : MonoBehaviour
     public int chosenQuality;
     public int qualityWeightsSum;
     public int randomedQuality; // This stores the quality of the item the random.range picked when rolling for an item.
-    public List<int> bannedItems = new List<int>();
-    public int bannedWeapon;
-    public int bannedDodge;
     public int specialItemWeightsSum;
 
     // Start is called before the first frame update
     void Start()
     {
         //bannedItems.Add((int)ITEMLIST.HP25);
-        bannedItems.Add(bannedWeapon);
-        bannedItems.Add(bannedDodge);
         master = EntityReferencerGuy.Instance.master;
         maxRange = EntityReferencerGuy.Instance.numItemsExist;
+        gameObject.GetComponent<Collider2D>().enabled = false;
         //maxRange = 5;
         gos = GameObject.FindGameObjectsWithTag("item");
 
@@ -47,7 +43,7 @@ public class itemPedestal : MonoBehaviour
             guy.GetComponent<getItemDescription>().itemsExist = true;
         }
 
-        Invoke(nameof(SetDescription), 0.02f);
+        //Invoke(nameof(SetDescription), 0.1f);
 
         foreach (int i in specialItemWeights)
         {
@@ -62,6 +58,8 @@ public class itemPedestal : MonoBehaviour
         {
             spriteRenderer.sprite = spriteArray[itemChosen];
         }
+
+        SetDescription();
 
         Invoke(nameof(enableHitbox), 0.5f);
     }
@@ -129,14 +127,6 @@ public class itemPedestal : MonoBehaviour
             master.GetComponent<ItemDescriptions>().itemChosen = itemChosen;
             master.GetComponent<ItemDescriptions>().getItemDescription();
             randomedQuality = master.GetComponent<ItemDescriptions>().quality;
-
-            foreach (int item in bannedItems)
-            {
-                if (item == itemChosen)
-                {
-                    randomedQuality = 50; // If the chosen item is a banned item, then the pedestal is forced to reroll.
-                }
-            }
         }
     }
 
@@ -148,12 +138,12 @@ public class itemPedestal : MonoBehaviour
 
         // this is for cursed items!
         curseType = -2;
-        int sproinkle = 5;
+        int sproinkle = -2;
 
-        //if (chosenQuality != (int)ITEMTIERS.WEAPON)
-        //{
-        //    sproinkle = Random.Range(0, 11); // Determines whether the item is cursed or not (1/10 chance)
-        //}
+        if (chosenQuality != (int)ITEMTIERS.WEAPON)
+        {
+            sproinkle = Random.Range(0, 21); // Determines whether the item is cursed or not (1/20 chance)
+        }
 
         if (sproinkle == 5)
         {

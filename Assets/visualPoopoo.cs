@@ -26,6 +26,7 @@ public class visualPoopoo : MonoBehaviour
     void OnRestart(InputAction.CallbackContext context)
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Resources.UnloadUnusedAssets();
     }
 
     void OnSlowmo(InputAction.CallbackContext context)

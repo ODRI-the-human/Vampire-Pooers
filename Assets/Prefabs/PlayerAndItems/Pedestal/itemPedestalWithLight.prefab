@@ -413,8 +413,6 @@ MonoBehaviour:
   - {fileID: 549624536, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
   - {fileID: 627135040, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
   - {fileID: 784971922, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
-  - {fileID: 1707582105, guid: d311485843036aa49a368687d9e6a914, type: 3}
-  - {fileID: 982943114, guid: d311485843036aa49a368687d9e6a914, type: 3}
   - {fileID: 1218775636, guid: e0fb38cd9cae423489f4b20e3884c4b0, type: 3}
   - {fileID: 555977383, guid: e0fb38cd9cae423489f4b20e3884c4b0, type: 3}
   - {fileID: -70919585, guid: e0fb38cd9cae423489f4b20e3884c4b0, type: 3}
@@ -428,7 +426,4 @@ MonoBehaviour:
   chosenQuality: 0
   qualityWeightsSum: 0
   randomedQuality: 0
-  bannedItems: 
-  bannedWeapon: 0
-  bannedDodge: 0
   specialItemWeightsSum: 0

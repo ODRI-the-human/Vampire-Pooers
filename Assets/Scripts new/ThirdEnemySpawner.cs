@@ -55,19 +55,12 @@ public class ThirdEnemySpawner : MonoBehaviour
     public bool enemiesAreSpawning = true;
     public float totalSpawnsSurvived = 0;
 
-    public List<int> playerBannedItems = new List<int>();
-    public int playerBannedWeapon;
-    public int playerBannedDodge;
-
     void Start()
     {
         spawnTimer = 5;
 
         players = GameObject.FindGameObjectsWithTag("Player");
         Camera = GameObject.Find("Main Camera");
-
-        playerBannedDodge = (int)ITEMLIST.DODGEROLL;
-        playerBannedWeapon = (int)ITEMLIST.PISTOL;
     }
 
     // Update is called once per frame
@@ -330,9 +323,6 @@ public class ThirdEnemySpawner : MonoBehaviour
         {
             GameObject newObject = Instantiate(itemPedestal, new Vector3(5 * i - 5, 3, 8) + Camera.transform.position, transform.rotation) as GameObject;
             newObject.transform.localScale = new Vector3(5, 5, 5);
-            newObject.GetComponent<itemPedestal>().bannedItems = playerBannedItems;
-            newObject.GetComponent<itemPedestal>().bannedWeapon = playerBannedWeapon;
-            newObject.GetComponent<itemPedestal>().bannedDodge = playerBannedDodge;
         }
 
         stepUpTo = 1;

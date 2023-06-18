@@ -22,11 +22,23 @@ public class OrbitalMovement2 : MonoBehaviour
             Destroy(gameObject);
         }
 
+        Vector3 vec3 = Vector3.zero;
+
+        if (Player.tag == "Player")
+        {
+            vec3 = Player.GetComponent<Attack>().reticle.transform.position - transform.position;
+            gameObject.GetComponent<Attack>().isFiring = Player.GetComponent<Attack>().isHoldingFire;
+        }
+        else
+        {
+            vec3 = Player.GetComponent<Attack>().currentTarget.transform.position - transform.position;
+            gameObject.GetComponent<Attack>().isFiring = true;
+            gameObject.GetComponent<Attack>().shotSpeed = 4;
+        }
+        gameObject.GetComponent<Attack>().vectorToTarget = new Vector2(vec3.x, vec3.y).normalized;
+
         transform.position = new Vector3(Player.transform.position.x + distanceFromPlayer * Mathf.Sin(0.03f * (timer + timerDelay)), Player.transform.position.y + distanceFromPlayer * Mathf.Cos(0.03f * (timer + timerDelay)), Player.transform.position.z);
         timer += Time.deltaTime * 60;
-
-        Vector3 vec3 = - transform.position + Player.GetComponent<Attack>().reticle.transform.position;
-        gameObject.GetComponent<Attack>().vectorToTarget = new Vector2(vec3.x, vec3.y).normalized;
 
         //Debug.Log("Orb vec/player vec: " + gameObject.GetComponent<Attack>().vectorToTarget.ToString() + "/" + Player.GetComponent<Attack>().vectorToTarget.ToString());
 

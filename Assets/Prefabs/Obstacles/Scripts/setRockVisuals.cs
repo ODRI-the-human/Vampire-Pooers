@@ -15,7 +15,7 @@ public class setRockVisuals : MonoBehaviour
         transform.rotation = Quaternion.Euler(180, 0, 90 * bumBoy);
 
         pooper = Random.Range(0f, 1f);
-        if (pooper > 0.5f)
+        if (pooper > 0.95f)
         {
             Instantiate(tnt, transform.position, Quaternion.Euler(180, 0, 180));
             Destroy(gameObject);

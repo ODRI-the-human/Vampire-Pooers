@@ -47,6 +47,7 @@ public class ItemORBITAL2 : MonoBehaviour
             myGuy.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
             myGuy.GetComponent<DealDamage>().owner = gameObject;
             myGuy.GetComponent<Attack>().getEnemyPos = false;
+            myGuy.GetComponent<Attack>().autoFire = false;
             myGuy.GetComponent<OrbitalMovement2>().timerDelay = i * (2 * Mathf.PI / 0.03f) / instances;
             myGuy.GetComponent<OrbitalMovement2>().distanceFromPlayer = 1 + 0.08f * instances;
             Orbs.Add(myGuy);

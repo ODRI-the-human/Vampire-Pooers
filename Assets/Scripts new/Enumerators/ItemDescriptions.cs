@@ -338,18 +338,18 @@ public class ItemDescriptions : MonoBehaviour
 
 
             // RMB abilities
-            case (int)ITEMLIST.DODGEROLL:
-                quality = (int)ITEMTIERS.DODGE;
-                itemDescription = "Swap your dodge ability back to dodge roll.";
-                addNewScriptForNewInstance = true;
-                whatUses = (int)ITEMOWNERS.BEING;
-                break;
-            case (int)ITEMLIST.SHOULDERBASH:
-                quality = (int)ITEMTIERS.DODGE;
-                itemDescription = "Swap your dodge ability to shoulderbash - dodge a shorter distance, but faster, and knock enemies back greatly. Enemies take damage upon hitting a wall or another enemy.";
-                addNewScriptForNewInstance = true;
-                whatUses = (int)ITEMOWNERS.BEING;
-                break;
+            //case (int)ITEMLIST.DODGEROLL:
+            //    quality = (int)ITEMTIERS.DODGE;
+            //    itemDescription = "Swap your dodge ability back to dodge roll.";
+            //    addNewScriptForNewInstance = true;
+            //    whatUses = (int)ITEMOWNERS.BEING;
+            //    break;
+            //case (int)ITEMLIST.SHOULDERBASH:
+            //    quality = (int)ITEMTIERS.DODGE;
+            //    itemDescription = "Swap your dodge ability to shoulderbash - dodge a shorter distance, but faster, and knock enemies back greatly. Enemies take damage upon hitting a wall or another enemy.";
+            //    addNewScriptForNewInstance = true;
+            //    whatUses = (int)ITEMOWNERS.BEING;
+            //    break;
 
 
             // Weapons

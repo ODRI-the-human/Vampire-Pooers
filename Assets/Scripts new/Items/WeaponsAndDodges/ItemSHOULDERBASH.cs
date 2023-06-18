@@ -8,10 +8,6 @@ public class ItemSHOULDERBASH : MonoBehaviour
     void Start()
     {
         gameObject.GetComponent<NewPlayerMovement>().mouseAltMode = 1;
-        if (gameObject.tag == "Player")
-        {
-            EntityReferencerGuy.Instance.master.GetComponent<ThirdEnemySpawner>().playerBannedDodge = (int)ITEMLIST.SHOULDERBASH;
-        }
     }
 
     void Undo()

@@ -9,11 +9,6 @@ public class ItemPISTOL : MonoBehaviour
     {
         gameObject.GetComponent<weaponType>().weaponHeld = (int)ITEMLIST.PISTOL;
         gameObject.GetComponent<weaponType>().SetWeapon();
-
-        if (gameObject.tag == "Player")
-        {
-            EntityReferencerGuy.Instance.GetComponent<ThirdEnemySpawner>().playerBannedWeapon = (int)ITEMLIST.PISTOL;
-        }
     }
 
     void Undo()

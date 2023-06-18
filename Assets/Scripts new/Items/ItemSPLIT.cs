@@ -62,8 +62,8 @@ public class ItemSPLIT : MonoBehaviour
                         Splitman1.GetComponent<Rigidbody2D>().simulated = true;
                         Splitman1.GetComponent<Bullet_Movement>().isPooledBullet = false;
                         Physics2D.IgnoreCollision(victim.GetComponent<Collider2D>(), Splitman1.GetComponent<Collider2D>(), true);
-                        //Splitman1.AddComponent<ItemSPLIT>();
-                        //Splitman1.GetComponent<ItemSPLIT>().canSplit = false;
+                        Splitman1.AddComponent<ItemSPLIT>();
+                        Splitman1.GetComponent<ItemSPLIT>().canSplit = false;
                         speed = 15;
                         ShotVector = speed * (owner.transform.position - victim.transform.position).normalized;
                         Splitman1.transform.position = victim.transform.position;
@@ -75,10 +75,13 @@ public class ItemSPLIT : MonoBehaviour
         }
         else
         {
-            for (int i = 0; i < 2; i++)
+            if (canSplit)
             {
-                GameObject owner = gameObject.GetComponent<DealDamage>().owner;
-                StartCoroutine(owner.GetComponent<Attack>().SpawnMelee(Mathf.PI * (1 + 2 * i) / 2, victim.transform.position - owner.transform.position, victim, 0.3f * instances * gameObject.GetComponent<DealDamage>().finalDamageMult, 0, 0.8f));
+                for (int i = 0; i < 2; i++)
+                {
+                    GameObject owner = gameObject.GetComponent<DealDamage>().owner;
+                    StartCoroutine(owner.GetComponent<Attack>().SpawnMelee(Mathf.PI * (1 + 2 * i) / 2, victim.transform.position - owner.transform.position, victim, 0.3f * instances * gameObject.GetComponent<DealDamage>().finalDamageMult, 0, 0.8f, false));
+                }
             }
         }
     }
