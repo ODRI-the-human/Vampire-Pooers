@@ -78,7 +78,7 @@ public class lightningFireV2 : MonoBehaviour
         Harrybo.GetComponent<DealDamage>().finalDamageMult *= gameObject.GetComponent<DealDamage>().finalDamageMult;
         Harrybo.GetComponent<DealDamage>().owner = gameObject;
         Harrybo.GetComponent<checkAllLazerPositions>().master = gameObject.GetComponent<DealDamage>().master;
-        Harrybo.GetComponent<DealDamage>().damageBase += gameObject.GetComponent<Attack>().Crongus + gameObject.GetComponent<Attack>().levelDamageBonus; // applies converter damage bonus to bullets
+        Harrybo.GetComponent<DealDamage>().damageAdd = gameObject.GetComponent<Attack>().damageBonus; // applies converter damage bonus to bullets
 
         if (gameObject.tag == "Hostile")
         {
@@ -99,7 +99,7 @@ public class lightningFireV2 : MonoBehaviour
             Darrenbo.GetComponent<DealDamage>().finalDamageMult *= gameObject.GetComponent<DealDamage>().finalDamageMult;
             Darrenbo.GetComponent<DealDamage>().owner = gameObject;
             Darrenbo.GetComponent<checkAllLazerPositions>().master = gameObject.GetComponent<DealDamage>().master;
-            Darrenbo.GetComponent<DealDamage>().damageBase += gameObject.GetComponent<Attack>().Crongus + gameObject.GetComponent<Attack>().levelDamageBonus;
+            Darrenbo.GetComponent<DealDamage>().damageAdd = gameObject.GetComponent<Attack>().damageBonus;
 
             gameObject.GetComponent<NewPlayerMovement>().speedMult = 1;
 

@@ -96,7 +96,7 @@ public class NewPlayerMovement : MonoBehaviour
         }
     }
 
-    void AttackStatus(bool didStart)
+    public void AttackStatus(bool didStart)
     {
         if (didStart)
         {

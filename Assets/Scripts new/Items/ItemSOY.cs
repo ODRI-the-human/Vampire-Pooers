@@ -12,34 +12,41 @@ public class ItemSOY : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        bonusDamage = 0;
+        //bonusDamage = 0;
         if (gameObject.GetComponent<Attack>() != null)
         {
             gameObject.GetComponent<Attack>().PlayerShootAudio = EntityReferencerGuy.Instance.soyShotAudio;
-        }
-        GetDamVal();
-    }
-
-    void GetDamVal()
-    {
-        initialDamage = gameObject.GetComponent<DealDamage>().damageBase;
-        float funnyDamage = 4 * instances;
-        gameObject.GetComponent<DealDamage>().finalDamageMult /= funnyDamage;
-        bonusDamage = funnyDamage;
-        gameObject.GetComponent<DealDamage>().massCoeff /= 4 * instances;
-        if (gameObject.GetComponent<Attack>() != null)
-        {
             gameObject.GetComponent<Attack>().fireTimerDIV = 1 + 4 * instances;
         }
+        gameObject.GetComponent<DealDamage>().massCoeff /= 4 * instances;
+        //GetDamVal();
+    }
+
+    //void GetDamVal()
+    //{
+    //    initialDamage = gameObject.GetComponent<DealDamage>().damageBase;
+    //    float funnyDamage = 4 * instances;
+    //    gameObject.GetComponent<DealDamage>().finalDamageMult /= funnyDamage;
+    //    bonusDamage = funnyDamage;
+    //    gameObject.GetComponent<DealDamage>().massCoeff /= 4 * instances;
+    //    if (gameObject.GetComponent<Attack>() != null)
+    //    {
+    //        gameObject.GetComponent<Attack>().fireTimerDIV = 1 + 4 * instances;
+    //    }
+    //}
+
+    void GetDamageMods()
+    {
+        gameObject.GetComponent<DealDamage>().damageToPassToVictim /= 4 * instances;
     }
 
     void IncreaseInstances(string name)
     {
         if (name == this.GetType().ToString())
         {
-            Invoke(nameof(ResetVal), 0.005f);
+            //Invoke(nameof(ResetVal), 0.005f);
             instances++;
-            Invoke(nameof(GetDamVal), 0.005f);
+            //Invoke(nameof(GetDamVal), 0.005f);
         }
     }
 
@@ -50,12 +57,12 @@ public class ItemSOY : MonoBehaviour
             gameObject.GetComponent<Attack>().fireTimerDIV = 1;
         }
         gameObject.GetComponent<DealDamage>().massCoeff = 1;
-        gameObject.GetComponent<DealDamage>().damageBase *= bonusDamage;
+        //gameObject.GetComponent<DealDamage>().damageBase *= bonusDamage;
     }
 
     public void Undo()
     {
-        ResetVal();
+        //ResetVal();
         gameObject.GetComponent<Attack>().PlayerShootAudio = EntityReferencerGuy.Instance.normieShotAudio;
         Destroy(this);
     }

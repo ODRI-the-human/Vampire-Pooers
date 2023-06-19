@@ -121,6 +121,7 @@ MonoBehaviour:
   damageToPresent: 0
   damageType: 0
   procChainIndexes: 
+  damageToPassToVictim: 0
 --- !u!114 &8984978239919591108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,7 +151,7 @@ MonoBehaviour:
   specialFireType: 0
   darkArtSword: {fileID: 7955111713391121560, guid: 35c958ea85b00c144830eefba828d8c3, type: 3}
   fireTimerDIV: 1
-  attachItems: 1
+  setDamageAutomatically: 0
   doAim: 1
   fireTimerActualLength: 0
   visionRange: 6
@@ -160,8 +161,9 @@ MonoBehaviour:
   timesFired: 0
   newAttack: 0
   Crongus: 0
-  levelDamageBonus: 0
+  damageBonus: 0
   scaleAddMult: 1
+  mouseVector: {x: 0, y: 0, z: 0}
   stopwatchDebuffAmount: 0
   doShootAutomatically: 1
   getEnemyPos: 0
@@ -170,9 +172,17 @@ MonoBehaviour:
   massToGiveBullets: 0.5
   holdDownToShoot: 1
   numBulletsPossible: 16
-  canShoot: 1
+  autoFire: 1
   isFiring: 0
+  isHoldingFire: 0
   shotParticles: {fileID: 2232971130497578917, guid: dc46db39e4e70b144915e7a0652cc396, type: 3}
+  chargeTime: 0
+  isChargedAttack: 0
+  chargeBar: {fileID: 0}
+  reticle: {fileID: 0}
+  reticlePos: {x: 0, y: 0, z: 0}
+  meleeHitObj: {fileID: 0}
+  hitboxSpawnDelay: 0
 --- !u!114 &4094460240105576254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,5 +211,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea0229c4d662964449d4513634b2f8c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gunnerType: 0
   toFollow: {fileID: 0}
   owner: {fileID: 0}

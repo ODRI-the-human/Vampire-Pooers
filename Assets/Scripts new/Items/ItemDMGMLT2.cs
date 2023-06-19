@@ -9,37 +9,41 @@ public class ItemDMGMLT2 : MonoBehaviour
     public float bonusDamage;
 
 
-    // Start is called before the first frame update
     void Awake()
     {
-        GetDamVal();
+        //GetDamVal();
     }
 
-    void GetDamVal()
+    void GetDamageMods()
     {
-        initialDamage = gameObject.GetComponent<DealDamage>().damageBase;
-        bonusDamage = 1 + 0.5f * instances;
-        gameObject.GetComponent<DealDamage>().damageBase *= bonusDamage;
+        gameObject.GetComponent<DealDamage>().damageToPassToVictim *= 1 + instances * 0.5f;
     }
 
-    void ResetVal()
-    {
-        gameObject.GetComponent<DealDamage>().damageBase /= bonusDamage;
-    }
+    //void GetDamVal()
+    //{
+    //    initialDamage = gameObject.GetComponent<DealDamage>().damageBase;
+    //    bonusDamage = 1 + 0.25f * instances;
+    //    gameObject.GetComponent<DealDamage>().damageBase*= bonusDamage;
+    //}
+
+    //void ResetVal()
+    //{
+    //    gameObject.GetComponent<DealDamage>().damageBase /= bonusDamage;
+    //}
 
     void IncreaseInstances(string name)
     {
         if (name == this.GetType().ToString())
         {
-            Invoke(nameof(ResetVal), 0.005f);
+            //Invoke(nameof(ResetVal), 0.005f);
             instances++;
-            Invoke(nameof(GetDamVal), 0.005f);
+            //Invoke(nameof(GetDamVal), 0.005f);
         }
     }
 
     public void Undo()
     {
-        ResetVal();
+        //ResetVal();
         Destroy(this);
     }
 }

@@ -27,12 +27,12 @@ public class OrbitalMovement2 : MonoBehaviour
         if (Player.tag == "Player")
         {
             vec3 = Player.GetComponent<Attack>().reticle.transform.position - transform.position;
-            gameObject.GetComponent<Attack>().isFiring = Player.GetComponent<Attack>().isHoldingFire;
+            gameObject.GetComponent<Attack>().isFiring = false;
         }
         else
         {
             vec3 = Player.GetComponent<Attack>().currentTarget.transform.position - transform.position;
-            gameObject.GetComponent<Attack>().isFiring = true;
+            gameObject.GetComponent<Attack>().isFiring = false;
             gameObject.GetComponent<Attack>().shotSpeed = 4;
         }
         gameObject.GetComponent<Attack>().vectorToTarget = new Vector2(vec3.x, vec3.y).normalized;
@@ -47,7 +47,7 @@ public class OrbitalMovement2 : MonoBehaviour
         int ownerWeapon = owner.GetComponent<weaponType>().weaponHeld;
         gameObject.GetComponent<Attack>().fireTimerLengthMLT = owner.GetComponent<Attack>().fireTimerLengthMLT;
         gameObject.GetComponent<Attack>().Crongus = owner.GetComponent<Attack>().Crongus;
-        gameObject.GetComponent<Attack>().levelDamageBonus = owner.GetComponent<Attack>().levelDamageBonus;
+        gameObject.GetComponent<Attack>().damageBonus = owner.GetComponent<Attack>().damageBonus;
         if (currentWeapon != ownerWeapon)
         {
             gameObject.GetComponent<weaponType>().weaponHeld = ownerWeapon;

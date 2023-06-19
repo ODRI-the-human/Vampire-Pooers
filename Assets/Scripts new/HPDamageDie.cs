@@ -193,21 +193,21 @@ public class HPDamageDie : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.GetComponent<DealDamage>() != null && col.gameObject.tag != gameObject.tag && col.gameObject.GetComponent<DealDamage>().finalDamageStat - damageReduction >= 0)
+        if (col.gameObject.GetComponent<DealDamage>() != null && col.gameObject.tag != gameObject.tag)// && col.gameObject.GetComponent<DealDamage>().finalDamageStat - damageReduction >= 0)
         {
-            float critChance = 100f * col.gameObject.GetComponent<DealDamage>().critProb;
-            int numCrits = gameObject.GetComponent<DealDamage>().ChanceRoll(critChance, col.gameObject, -5);
-            float critMult = 1;
-            bool isCrit = false;
+            //float critChance = 100f * col.gameObject.GetComponent<DealDamage>().critProb;
+            //int numCrits = gameObject.GetComponent<DealDamage>().ChanceRoll(critChance, col.gameObject, -5);
+            //float critMult = 1;
+            //bool isCrit = false;
 
-            for (int i = 0; i < numCrits; i++)
-            {
-                critMult *= 2;
-                Instantiate(CritAudio);
-                isCrit = true;
-            }
+            //for (int i = 0; i < numCrits; i++)
+            //{
+            //    critMult *= 2;
+            //    Instantiate(CritAudio);
+            //    isCrit = true;
+            //}
 
-            float damageAmount = col.gameObject.GetComponent<DealDamage>().finalDamageStat * critMult;
+            //float damageAmount = col.gameObject.GetComponent<DealDamage>().finalDamageStat * critMult;
 
             //float procMoment = 100f - 100f * col.gameObject.GetComponent<DealDamage>().critProb * col.gameObject.GetComponent<DealDamage>().procCoeff;
             //float pringle = Random.Range(0f, 100f);
@@ -223,7 +223,8 @@ public class HPDamageDie : MonoBehaviour
             {
                 Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>(), true);
             }
-            Hurty(damageAmount, isCrit, true, 1, col.gameObject.GetComponent<DealDamage>().damageType, false, col.gameObject);
+            col.gameObject.GetComponent<DealDamage>().CalculateDamage(gameObject);
+            //Hurty(damageAmount, isCrit, true, 1, col.gameObject.GetComponent<DealDamage>().damageType, false, col.gameObject);
         }
     }
 
@@ -239,33 +240,34 @@ public class HPDamageDie : MonoBehaviour
     {
         if (col.gameObject.GetComponent<DealDamage>() != null)
         {
-            if (col.gameObject.tag != gameObject.tag && col.gameObject.GetComponent<DealDamage>().finalDamageStat != 0)
+            //if (col.gameObject.tag != gameObject.tag && col.gameObject.GetComponent<DealDamage>().finalDamageStat != 0)
+            //{
+            //    float procMoment = 100f - 100f * col.gameObject.GetComponent<DealDamage>().critProb * col.gameObject.GetComponent<DealDamage>().procCoeff;
+            //    float pringle = Random.Range(0f, 100f);
+            //    float critMult = 1;
+            //    bool isCrit = false;
+            //    if (pringle > procMoment)
+            //    {
+            //        critMult = col.gameObject.GetComponent<DealDamage>().critMult;
+            //        isCrit = true;
+            //    }
+            //    float damageAmount = col.gameObject.GetComponent<DealDamage>().finalDamageStat * critMult;
+            if (col.gameObject.GetComponent<DealDamage>().onlyDamageOnce)
             {
-                float procMoment = 100f - 100f * col.gameObject.GetComponent<DealDamage>().critProb * col.gameObject.GetComponent<DealDamage>().procCoeff;
-                float pringle = Random.Range(0f, 100f);
-                float critMult = 1;
-                bool isCrit = false;
-                if (pringle > procMoment)
-                {
-                    critMult = col.gameObject.GetComponent<DealDamage>().critMult;
-                    isCrit = true;
-                }
-                float damageAmount = col.gameObject.GetComponent<DealDamage>().finalDamageStat * critMult;
-                if (col.gameObject.GetComponent<DealDamage>().onlyDamageOnce)
-                {
-                    Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>(), true);
-                }
-
-                // Calculating damage falloff when hit by an explosoin (real)
-                if (col.gameObject.GetComponent<explosionBONUSSCRIPTWOW>() != null)
-                {
-                    Vector3 vecFromCtr = (col.transform.position - transform.position) / (2.65f * col.transform.localScale.x);
-                    float fracFromCtr = new Vector3(vecFromCtr.x, vecFromCtr.y, 0).magnitude;
-                    damageAmount *= Mathf.Clamp(1.5f * (-3.33f * Mathf.Log(fracFromCtr + 1) + 1), 0, 1);
-                }
-
-                Hurty(damageAmount, isCrit, true, col.GetComponent<DealDamage>().iFrameFac, col.gameObject.GetComponent<DealDamage>().damageType, false, col.gameObject);
+                Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>(), true);
             }
+
+            col.gameObject.GetComponent<DealDamage>().CalculateDamage(gameObject);
+
+            // Calculating damage falloff when hit by an explosoin (real)
+            //if (col.gameObject.GetComponent<explosionBONUSSCRIPTWOW>() != null)
+            //{
+            //    Vector3 vecFromCtr = (col.transform.position - transform.position) / (2.65f * col.transform.localScale.x);
+            //    float fracFromCtr = new Vector3(vecFromCtr.x, vecFromCtr.y, 0).magnitude;
+            //    damageAmount *= Mathf.Clamp(1.5f * (-3.33f * Mathf.Log(fracFromCtr + 1) + 1), 0, 1);
+            //}
+
+            //Hurty(damageAmount, isCrit, true, col.GetComponent<DealDamage>().iFrameFac, col.gameObject.GetComponent<DealDamage>().damageType, false, col.gameObject);
         }
     }
 }

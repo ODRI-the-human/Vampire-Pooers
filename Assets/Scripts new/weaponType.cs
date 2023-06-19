@@ -96,6 +96,7 @@ public class weaponType : MonoBehaviour
             case (int)ITEMLIST.BAT:
                 if (gameObject.GetComponent<Attack>() != null)
                 {
+                    gameObject.GetComponent<NewPlayerMovement>().AttackStatus(false); // otherwise the player is slow (silly)
                     //gameObject.GetComponent<Attack>().specialFireType = 6;
                     gameObject.GetComponent<Attack>().fireTimerLengthMLT = 1;
                     gameObject.GetComponent<Attack>().holdDownToShoot = false;

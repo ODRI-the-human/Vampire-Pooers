@@ -45,7 +45,7 @@ public class ItemATG : MonoBehaviour
         {
             GameObject ARSEMAN = Instantiate(ATGMissile, owner.transform.position, owner.transform.rotation);
             ARSEMAN.GetComponent<MissileTracking>().owner = owner;
-            ARSEMAN.GetComponent<MissileTracking>().damageAmt = source.GetComponent<DealDamage>().damageAmt;
+            ARSEMAN.GetComponent<MissileTracking>().damageAmt = source.GetComponent<DealDamage>().damageToPassToVictim;
             ARSEMAN.GetComponent<MissileTracking>().instances = instances;
             ARSEMAN.GetComponent<MissileTracking>().scriptIndex = scriptIndex;
 

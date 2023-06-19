@@ -183,7 +183,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   finalDamageStat: 0
   procCoeff: 1
-  damageBase: 50
+  damageBase: 0
   damageAdd: 0
   damageMult: 1
   finalDamageMult: 1
@@ -202,6 +202,7 @@ MonoBehaviour:
   damageToPresent: 0
   damageType: 0
   procChainIndexes: 
+  damageToPassToVictim: 0
 --- !u!114 &1998500251313762096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,7 +242,7 @@ MonoBehaviour:
   timesFired: 0
   newAttack: 0
   Crongus: 0
-  levelDamageBonus: 0
+  damageBonus: 0
   scaleAddMult: 1
   mouseVector: {x: 0, y: 0, z: 0}
   stopwatchDebuffAmount: 0
@@ -252,7 +253,7 @@ MonoBehaviour:
   massToGiveBullets: 0.5
   holdDownToShoot: 1
   numBulletsPossible: 16
-  canShoot: 1
+  autoFire: 1
   isFiring: 0
   isHoldingFire: 0
   shotParticles: {fileID: 4986113990878371290, guid: 5251b42d6c448694c98012722de6e439, type: 3}

@@ -25,7 +25,7 @@ public class Attack : MonoBehaviour
     public int specialFireType;
     public GameObject darkArtSword;
     public float fireTimerDIV = 1;
-    public bool attachItems = true;
+    public bool setDamageAutomatically = true;
 
     public bool doAim = true; // this is for things like the 8-direction shooty enemy (should be false for them), just makes it so the enemy does or doesn't change its shot angle depending on where the target is.
     public float fireTimerActualLength;
@@ -41,7 +41,7 @@ public class Attack : MonoBehaviour
 
     public float Crongus = 0; // records total converter damage bonus.
 
-    public float levelDamageBonus = 0;
+    public float damageBonus = 0;
     public float scaleAddMult = 1;
 
     public Vector3 mouseVector;
@@ -446,29 +446,21 @@ public class Attack : MonoBehaviour
         velToGiveBullets = newShotVector * shotSpeed;
         bulletRB.velocity = velToGiveBullets;
         newObject.GetComponent<DealDamage>().master = gameObject.GetComponent<DealDamage>().master;
-        if (attachItems)
-        {
-            newObject.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
-            newObject.GetComponent<Rigidbody2D>().simulated = true;
-            //newObject.AddComponent<KillBullets>();
-            newObject.GetComponent<weaponType>().weaponHeld = newObject.GetComponent<weaponType>().weaponHeld;
-            newObject.GetComponent<DealDamage>().owner = gameObject.GetComponent<DealDamage>().owner;
-            newObject.GetComponent<DealDamage>().finalDamageMult = gameObject.GetComponent<DealDamage>().finalDamageMult;
-            newObject.GetComponent<DealDamage>().damageAdd += Crongus + levelDamageBonus; // applies converter damage bonus to bullets
-        }
-        else
-        {
-            newObject.GetComponent<DealDamage>().finalDamageMult = gameObject.GetComponent<DealDamage>().finalDamageMult;
-            newObject.GetComponent<DealDamage>().procCoeff = gameObject.GetComponent<DealDamage>().procCoeff;
-            newObject.GetComponent<DealDamage>().damageBase = gameObject.GetComponent<DealDamage>().damageBase;
-            newObject.GetComponent<DealDamage>().damageMult = gameObject.GetComponent<DealDamage>().damageMult;
-            newObject.GetComponent<DealDamage>().finalDamageMult = gameObject.GetComponent<DealDamage>().finalDamageMult;
-            newObject.GetComponent<DealDamage>().massCoeff = massToGiveBullets;
-            newObject.GetComponent<DealDamage>().owner = gameObject.GetComponent<DealDamage>().owner;
-            newObject.GetComponent<DealDamage>().finalDamageDIV = gameObject.GetComponent<DealDamage>().finalDamageDIV;
-            newObject.GetComponent<weaponType>().weaponHeld = newObject.GetComponent<weaponType>().weaponHeld;
-            newObject.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
-        }
+
+        newObject.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
+        newObject.GetComponent<Rigidbody2D>().simulated = true;
+        //newObject.AddComponent<KillBullets>();
+        newObject.GetComponent<weaponType>().weaponHeld = newObject.GetComponent<weaponType>().weaponHeld;
+        newObject.GetComponent<DealDamage>().owner = gameObject.GetComponent<DealDamage>().owner;
+        newObject.GetComponent<DealDamage>().finalDamageMult = gameObject.GetComponent<DealDamage>().finalDamageMult;
+        newObject.GetComponent<DealDamage>().damageAdd = damageBonus; // applies converter damage bonus to bullets
+        //if (!setDamageAutomatically) // for familiars and the like that have their own damage amts.
+        //{
+        //    newObject.GetComponent<DealDamage>().overwriteDamageCalc = true;
+        //    newObject.GetComponent<DealDamage>().damageBase = gameObject.GetComponent<DealDamage>().finalDamageStat;
+        //    newObject.GetComponent<DealDamage>().finalDamageMult = 1;
+        //    newObject.GetComponent<DealDamage>().damageAdd = 0;
+        //}
 
         //switch (specialFireType)
         //{

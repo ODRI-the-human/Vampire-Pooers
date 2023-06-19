@@ -36,8 +36,8 @@ public class LevelUp : MonoBehaviour
 
         if(gameObject.GetComponent<ItemMORELEVELSTATS>() != null)
         {
-            gameObject.GetComponent<Attack>().levelDamageBonus += Mathf.Pow(gameObject.GetComponent<ItemMORELEVELSTATS>().instances, 1.323f) * effectMult * 5;
-            gameObject.GetComponent<DealDamage>().damageBase += Mathf.Pow(gameObject.GetComponent<ItemMORELEVELSTATS>().instances, 1.323f) * effectMult * 5;
+            //gameObject.GetComponent<Attack>().levelDamageBonus += Mathf.Pow(gameObject.GetComponent<ItemMORELEVELSTATS>().instances, 1.323f) * effectMult * 5;
+            gameObject.GetComponent<Attack>().damageBonus += Mathf.Pow(gameObject.GetComponent<ItemMORELEVELSTATS>().instances, 1.323f) * effectMult * 5;
             gameObject.GetComponent<HPDamageDie>().iFramesTimer += Mathf.Pow(gameObject.GetComponent<ItemMORELEVELSTATS>().instances, 1.323f) * effectMult * 5;
             gameObject.GetComponent<Attack>().scaleAddMult += Mathf.Pow(gameObject.GetComponent<ItemMORELEVELSTATS>().instances, 1.323f) * effectMult * 0.015f;
         }
