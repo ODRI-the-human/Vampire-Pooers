@@ -10,18 +10,22 @@ public class ItemSOY : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         //bonusDamage = 0;
+        SetBonus();
+        //GetDamVal();
+    }
+
+    void SetBonus()
+    {
         if (gameObject.GetComponent<Attack>() != null)
         {
             gameObject.GetComponent<Attack>().PlayerShootAudio = EntityReferencerGuy.Instance.soyShotAudio;
             gameObject.GetComponent<Attack>().fireTimerDIV = 1 + 4 * instances;
         }
-        gameObject.GetComponent<DealDamage>().massCoeff /= 4 * instances;
-        //GetDamVal();
+        gameObject.GetComponent<DealDamage>().massCoeff = 1 / (4 * instances);
     }
-
     //void GetDamVal()
     //{
     //    initialDamage = gameObject.GetComponent<DealDamage>().damageBase;
@@ -46,6 +50,7 @@ public class ItemSOY : MonoBehaviour
         {
             //Invoke(nameof(ResetVal), 0.005f);
             instances++;
+            SetBonus();
             //Invoke(nameof(GetDamVal), 0.005f);
         }
     }

@@ -9,6 +9,11 @@ public class showAbilityTimer : MonoBehaviour
     public GameObject owner;
     public TextMeshProUGUI texta;
 
+    void Start()
+    {
+        owner = gameObject.GetComponentInParent<setUIOwner>().player;
+    }
+
     void Update()
     {
         float remainingTime = 0;

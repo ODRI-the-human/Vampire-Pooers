@@ -72,6 +72,7 @@ MonoBehaviour:
   contactMan: {fileID: 4255455733749829593, guid: dc2eb433a1769274e8646cbd1309c8e3, type: 3}
   statusIcon: {fileID: 8308961761143311193, guid: e51f3a062e1fdd74ba4e9eee32b2c966, type: 3}
   canvas: {fileID: 0}
+  canvasInnerBound: {fileID: 0}
   poisonSplosm: {fileID: 158271131209982302, guid: 5f4283f47709081418d74e8afda1b2be, type: 3}
   berserkMusic: {fileID: 989204346807140580, guid: 2d0360a6201468449a81a1244d658e07, type: 3}
   berserkPlane: {fileID: 4759339331114859231, guid: 2f9288612e676474c8a41b1035f33871, type: 3}
@@ -88,6 +89,57 @@ MonoBehaviour:
   batHitbox: {fileID: 2061944661215622530, guid: b3f228f4731f7a944b43ad93aa54e41f, type: 3}
   chargeBar: {fileID: 4188144092211136378, guid: be34825c5fc5ca14abc3804e1d661da1, type: 3}
   reticle: {fileID: 4754094839536224065, guid: 3cf94e0441922d44c8ce3505152e57bb, type: 3}
+  itemSprites:
+  - {fileID: 357339062, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
+  - {fileID: -1583978067, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
+  - {fileID: 1568974544, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
+  - {fileID: 2114151756, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
+  - {fileID: -1319513028, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
+  - {fileID: -2094273995, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
+  - {fileID: 1454076108, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
+  - {fileID: 2067604688, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
+  - {fileID: -1237453859, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
+  - {fileID: -1747033628, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
+  - {fileID: 1494514557, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
+  - {fileID: 1207318475, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
+  - {fileID: -1564244218, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
+  - {fileID: 366076890, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
+  - {fileID: -1170668435, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
+  - {fileID: -653474701, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
+  - {fileID: 447450742, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
+  - {fileID: 435674982, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
+  - {fileID: -274577282, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
+  - {fileID: 586958415, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
+  - {fileID: -1715584287, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
+  - {fileID: -754062375, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
+  - {fileID: -972650929, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
+  - {fileID: -1731989152, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
+  - {fileID: -1422791803, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
+  - {fileID: 960372061, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
+  - {fileID: -283604824, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
+  - {fileID: 1699564057, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
+  - {fileID: -2131360420, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
+  - {fileID: -218756566, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
+  - {fileID: 404526328, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
+  - {fileID: 1262581951, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
+  - {fileID: -653877599, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
+  - {fileID: -1029980180, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
+  - {fileID: -1453390167, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
+  - {fileID: -1476944678, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
+  - {fileID: -1108212045, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
+  - {fileID: -99731249, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
+  - {fileID: 1399094231, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
+  - {fileID: 1797180752, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
+  - {fileID: 2077597229, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
+  - {fileID: -22501252, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
+  - {fileID: -2008572483, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
+  - {fileID: 549624536, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
+  - {fileID: 627135040, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
+  weaponSprites:
+  - {fileID: 1218775636, guid: e0fb38cd9cae423489f4b20e3884c4b0, type: 3}
+  - {fileID: 555977383, guid: e0fb38cd9cae423489f4b20e3884c4b0, type: 3}
+  - {fileID: -70919585, guid: e0fb38cd9cae423489f4b20e3884c4b0, type: 3}
+  - {fileID: -1699823426, guid: e0fb38cd9cae423489f4b20e3884c4b0, type: 3}
   master: {fileID: 7002239379606652682}
   bat: {fileID: 0}
   boss: {fileID: 0}
@@ -137,9 +189,6 @@ MonoBehaviour:
   toSpawn: {fileID: 0}
   enemiesAreSpawning: 1
   totalSpawnsSurvived: 0
-  playerBannedItems: 
-  playerBannedWeapon: 0
-  playerBannedDodge: 0
 --- !u!114 &179530921809487071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -409,6 +458,7 @@ MonoBehaviour:
   players: []
   playerPrefab: {fileID: 3448173853718531064, guid: 8cb54c64aaccac642a3a40ebff38add0, type: 3}
   barry63: {fileID: 6964255014020883914, guid: 526b17258aed02c4c9c574bcca2b87c3, type: 3}
+  numPlayers: 0
   reviveQueue: 
   player1Items: 
   player2Items: 
@@ -418,6 +468,14 @@ MonoBehaviour:
   player2: {fileID: 0}
   player3: {fileID: 0}
   player4: {fileID: 0}
+  playerUI: {fileID: 2719203198195526788, guid: 1f8ee9dac1672434ab493dc959430458, type: 3}
+  player1UI: {fileID: 0}
+  player2UI: {fileID: 0}
+  player3UI: {fileID: 0}
+  player4UI: {fileID: 0}
+  player2Mat: {fileID: 2100000, guid: 106d02068bf6176448155156464a1f7f, type: 2}
+  player3Mat: {fileID: 2100000, guid: 17086d61348e090439881813bdcbc7f7, type: 2}
+  player4Mat: {fileID: 2100000, guid: 9792d980d76f89a4a9744c0f4db9333c, type: 2}
 --- !u!114 &6559764764057734732
 MonoBehaviour:
   m_ObjectHideFlags: 0

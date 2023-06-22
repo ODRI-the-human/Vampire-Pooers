@@ -20,6 +20,17 @@ public class setBarValue : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        owner = gameObject.GetComponentInParent<setUIOwner>().player;
+
+        //if (valueToTrack != 2)
+        //{
+        //    owner = rootScript.player;
+        //}
+        //else
+        //{
+        //    owner = transform.parent.gameObject.transform.parent.gameObject.transform.parent.gameObject.GetComponent<setUIOwner>().player;
+        //}
+
         switch (valueToTrack)
         {
             case 1:

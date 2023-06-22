@@ -21,6 +21,7 @@ public class EntityReferencerGuy : MonoBehaviour
     public GameObject contactMan;
     public GameObject statusIcon;
     public GameObject canvas;
+    public GameObject canvasInnerBound;
     public GameObject poisonSplosm;
     public GameObject berserkMusic;
     public GameObject berserkPlane;
@@ -37,6 +38,9 @@ public class EntityReferencerGuy : MonoBehaviour
     public GameObject batHitbox;
     public GameObject chargeBar;
     public GameObject reticle;
+
+    public Sprite[] itemSprites;
+    public Sprite[] weaponSprites;
 
     public GameObject master;
 

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class playerManagement : MonoBehaviour
 {
@@ -21,19 +22,33 @@ public class playerManagement : MonoBehaviour
     public GameObject player3;
     public GameObject player4;
 
+    // Stores the instances of players' UI.
+    public GameObject playerUI;
+    public GameObject player1UI;
+    public GameObject player2UI;
+    public GameObject player3UI;
+    public GameObject player4UI;
+
+    // These are the materials the player is assigned. These are assigned in the players' scripts, BUT we use these for colouring the HP bars.
+    public Material player2Mat;
+    public Material player3Mat;
+    public Material player4Mat;
+
     bool canStillSpawn = true;
 
     // Start is called before the first frame update
     void Start()
     {
         numPlayers = 0;
-        OnPlayerJoined();
+        //OnPlayerJoined();
     }
 
     public void OnPlayerJoined()
     {
+        Debug.Log("player joinersd");
         GetPlayers();
         numPlayers = players.Length;
+        GameObject newPlayer = null;
 
         //Debug.Log("num players: " + numPlayers.ToString());
 
@@ -42,6 +57,8 @@ public class playerManagement : MonoBehaviour
             if (!player.GetComponent<managePlayer>().IDSet) // if the ID has not yet been set:
             {
                 //Debug.Log("new player ID: " + numPlayers.ToString());
+                newPlayer = player;
+                player.GetComponent<getItemDescription>().itemsExist = true;
                 player.GetComponent<managePlayer>().playerID = numPlayers;
                 player.GetComponent<managePlayer>().IDSet = true;
             }
@@ -65,6 +82,76 @@ public class playerManagement : MonoBehaviour
                     break;
             }
         }
+
+        CreateNewPlayerUI(newPlayer);//, newPlayer.GetComponent<managePlayer>().playerID);
+
+        if (numPlayers == 2) // For now I'll just make it so 2-player co-op is possible, just to make UI shit easier. In future I'll add 4 player co-op.
+        {
+            gameObject.GetComponent<PlayerInputManager>().DisableJoining();
+        }
+    }
+
+    void CreateNewPlayerUI(GameObject newPlayer)//, int playerID)
+    {
+        GameObject newPlayerUI = Instantiate(playerUI);
+        newPlayerUI.transform.SetParent(gameObject.GetComponent<EntityReferencerGuy>().canvasInnerBound.transform);//SetParent(EntityReferencerGuy.Instance.canvas.transform);
+        newPlayerUI.GetComponent<setUIOwner>().player = newPlayer;
+
+        transform.Find("HPVisBar");
+
+        switch (newPlayer.GetComponent<managePlayer>().playerID)
+        {
+            case 1:
+                player1UI = newPlayerUI;
+                newPlayerUI.GetComponent<RectTransform>().anchorMin = new Vector2(0, 1);
+                newPlayerUI.GetComponent<RectTransform>().anchorMax = new Vector2(0, 1);
+
+                player1UI.transform.Find("itemVisBox").gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(380 * 2, 114);
+                player1UI.GetComponent<setUIOwner>().itemSprites.SendMessage("UpdateVisual");
+                break;
+            case 2:
+                player2UI = newPlayerUI;
+                player2UI.GetComponent<setUIOwner>().playerMat = player2Mat;
+                newPlayerUI.GetComponent<RectTransform>().anchorMin = new Vector2(0.5f, 1);
+                newPlayerUI.GetComponent<RectTransform>().anchorMax = new Vector2(0.5f, 1);
+
+                player1UI.transform.Find("itemVisBox").gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(380, 114);
+                player2UI.transform.Find("itemVisBox").gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(380, 114);
+                player1UI.GetComponent<setUIOwner>().itemSprites.SendMessage("UpdateVisual");
+                player2UI.GetComponent<setUIOwner>().itemSprites.SendMessage("UpdateVisual");
+                break;
+            case 3:
+                player3UI = newPlayerUI;
+                player3UI.GetComponent<setUIOwner>().playerMat = player3Mat;
+
+                player2UI.GetComponent<RectTransform>().anchorMin = new Vector2(0.333f, 1);
+                player2UI.GetComponent<RectTransform>().anchorMax = new Vector2(0.333f, 1);
+                player3UI.GetComponent<RectTransform>().anchorMin = new Vector2(0.666f, 1);
+                player3UI.GetComponent<RectTransform>().anchorMax = new Vector2(0.666f, 1);
+
+                player1UI.transform.Find("itemVisBox").gameObject.SetActive(false);
+                player2UI.transform.Find("itemVisBox").gameObject.SetActive(false);
+                player3UI.transform.Find("itemVisBox").gameObject.SetActive(false);
+                break;
+            case 4:
+                player4UI = newPlayerUI;
+                player4UI.GetComponent<setUIOwner>().playerMat = player4Mat;
+
+                player2UI.GetComponent<RectTransform>().anchorMin = new Vector2(0.25f, 1);
+                player2UI.GetComponent<RectTransform>().anchorMax = new Vector2(0.25f, 1);
+                player3UI.GetComponent<RectTransform>().anchorMin = new Vector2(0.5f, 1);
+                player3UI.GetComponent<RectTransform>().anchorMax = new Vector2(0.5f, 1);
+                player4UI.GetComponent<RectTransform>().anchorMax = new Vector2(0.75f, 1);
+                player4UI.GetComponent<RectTransform>().anchorMax = new Vector2(0.75f, 1);
+
+                player1UI.transform.Find("itemVisBox").gameObject.SetActive(false);
+                player2UI.transform.Find("itemVisBox").gameObject.SetActive(false);
+                player3UI.transform.Find("itemVisBox").gameObject.SetActive(false);
+                player4UI.transform.Find("itemVisBox").gameObject.SetActive(false);
+                break;
+        }
+
+        newPlayerUI.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, 0, 0);
     }
 
     public void SetPlayerStates()
@@ -105,6 +192,7 @@ public class playerManagement : MonoBehaviour
             GameObject player = Instantiate(playerPrefab);
             player.GetComponent<ItemHolder>().itemsHeld = items;
             player.GetComponent<managePlayer>().playerID = reviveQueue[0];
+            player.GetComponent<managePlayer>().IDSet = true;
 
             //switch (reviveQueue[0])
             //{

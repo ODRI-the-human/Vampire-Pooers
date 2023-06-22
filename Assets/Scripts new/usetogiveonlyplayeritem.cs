@@ -9,6 +9,6 @@ public class usetogiveonlyplayeritem : MonoBehaviour
     void Awake()
     {
         gameObject.GetComponent<weaponType>().weaponHeld = (int)ITEMLIST.PISTOL;
-        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.CONVERTER);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.HP25);
     }
 }

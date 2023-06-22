@@ -9,6 +9,11 @@ public class showHP : MonoBehaviour
     public TextMeshProUGUI texta;
     public int maxOrCurrent;
 
+    void Start()
+    {
+        owner = gameObject.GetComponentInParent<setUIOwner>().player;
+    }
+
     // Update is called once per frame
     void Update()
     {

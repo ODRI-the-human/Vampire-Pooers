@@ -232,7 +232,7 @@ MonoBehaviour:
   specialFireType: 0
   darkArtSword: {fileID: 7955111713391121560, guid: 35c958ea85b00c144830eefba828d8c3, type: 3}
   fireTimerDIV: 1
-  attachItems: 1
+  setDamageAutomatically: 1
   doAim: 1
   fireTimerActualLength: 0
   visionRange: 8
@@ -465,9 +465,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trashVar: 0
   IDSet: 0
-  player2Mat: {fileID: 2100000, guid: b91101dca5791f34aae2bccc7473d45d, type: 2}
-  player3Mat: {fileID: 2100000, guid: 192ec5537c92606479632d907098acce, type: 2}
-  player4Mat: {fileID: 2100000, guid: de741ee918ca6d84e870619da854dc78, type: 2}
+  player2Mat: {fileID: 2100000, guid: 106d02068bf6176448155156464a1f7f, type: 2}
+  player3Mat: {fileID: 2100000, guid: 17086d61348e090439881813bdcbc7f7, type: 2}
+  player4Mat: {fileID: 2100000, guid: 9792d980d76f89a4a9744c0f4db9333c, type: 2}
 --- !u!114 &-4800039110049089029
 MonoBehaviour:
   m_ObjectHideFlags: 0

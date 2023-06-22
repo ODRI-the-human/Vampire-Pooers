@@ -67,18 +67,18 @@ public class StatsText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        itemScreenText.text = Player.GetComponent<getItemDescription>().itemDescription;
-        curseText.text = Player.GetComponent<getItemDescription>().curseDescription;
+        //itemScreenText.text = Player.GetComponent<getItemDescription>().itemDescription;
+        //curseText.text = Player.GetComponent<getItemDescription>().curseDescription;
 
-        //float timeLeft = gameObject.GetComponent<EntityReferencerGuy>().time;
-        //int seconds = Mathf.FloorToInt(timeLeft % 60);
-        //int minutes = Mathf.FloorToInt(timeLeft / 60);
-        //timeText.text = "boss(es) spawn in:" + "\n" + string.Format("{0:00} : {1:00}", minutes, seconds);
+        float timeLeft = gameObject.GetComponent<EntityReferencerGuy>().time;
+        int seconds = Mathf.FloorToInt(timeLeft % 60);
+        int minutes = Mathf.FloorToInt(timeLeft / 60);
+        timeText.text = "boss(es) spawn in:" + "\n" + string.Format("{0:00} : {1:00}", minutes, seconds);
 
-        //if (!gameObject.GetComponent<ThirdEnemySpawner>().enemiesAreSpawning)
-        //{
-        //    timeText.text += ", paused right now lol";
-        //}
+        if (!gameObject.GetComponent<ThirdEnemySpawner>().enemiesAreSpawning)
+        {
+            timeText.text += ", paused right now lol";
+        }
 
 
 

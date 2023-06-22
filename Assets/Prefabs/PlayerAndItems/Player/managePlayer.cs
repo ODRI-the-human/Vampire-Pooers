@@ -7,6 +7,7 @@ public class managePlayer : MonoBehaviour
     [System.NonSerialized] public int playerID = 0;
     public int trashVar; // used just to visualise playerID. if playerID is serialised it all fucks up so this is just for debug!
     public bool IDSet = false; // used just to visualise playerID. if playerID is serialised it all fucks up so this is just for debug!
+    public GameObject itemsHeldVisualiser;
 
     public Material player2Mat;
     public Material player3Mat;
@@ -47,6 +48,14 @@ public class managePlayer : MonoBehaviour
             {
                 rendy.material = sus;
             }
+        }
+    }
+
+    void itemsAdded(bool itemIsPassive)
+    {
+        if (itemIsPassive && itemsHeldVisualiser != null)
+        {
+            itemsHeldVisualiser.GetComponent<itemVisualiser>().UpdateVisual();
         }
     }
 }
