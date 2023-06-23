@@ -6,6 +6,7 @@ using TMPro;
 public class itemVisualiser : MonoBehaviour
 {
     public TextMeshProUGUI texta;
+    public bool isMaster;
     public int[] itemStacks = new int[0];
     public List<int> itemPresOrder = new List<int>();
     public List<GameObject> itemNumbers = new List<GameObject>();
@@ -15,8 +16,16 @@ public class itemVisualiser : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        owner = gameObject.GetComponentInParent<setUIOwner>().player;
-        owner.GetComponent<managePlayer>().itemsHeldVisualiser = gameObject;
+        if (isMaster)
+        {
+            owner = EntityReferencerGuy.Instance.master;
+            owner.GetComponent<EntityReferencerGuy>().itemsHeldVisualiser = gameObject;
+        }
+        else
+        {
+            owner = gameObject.GetComponentInParent<setUIOwner>().player;
+            owner.GetComponent<managePlayer>().itemsHeldVisualiser = gameObject;
+        }
         UpdateVisual();
     }
 
@@ -29,7 +38,10 @@ public class itemVisualiser : MonoBehaviour
 
         itemNumbers.Clear();
 
-        gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(transform.parent.gameObject.GetComponent<RectTransform>().sizeDelta.x + 1, 150);
+        if (!isMaster)
+        {
+            gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(transform.parent.gameObject.GetComponent<RectTransform>().sizeDelta.x + 1, 150);
+        }
         itemStacks = new int[60];
         string stringToPass = "";
         itemPresOrder.Clear();
@@ -55,7 +67,7 @@ public class itemVisualiser : MonoBehaviour
         int i = 0;
 
         int maxNumOnLevel = Mathf.RoundToInt(transform.parent.gameObject.GetComponent<RectTransform>().sizeDelta.x) / 38;
-        Debug.Log("maxNumOnLevel: " + maxNumOnLevel.ToString());
+        int maxLevel = Mathf.FloorToInt(itemPresOrder.Count / maxNumOnLevel);
 
         foreach (int item in itemPresOrder)
         {
@@ -69,9 +81,18 @@ public class itemVisualiser : MonoBehaviour
                 level = Mathf.FloorToInt(i / maxNumOnLevel);
                 Debug.Log("Level: " + level.ToString());
 
-
-                itemNo.transform.localPosition = new Vector2(38f * i - (38f * maxNumOnLevel * level), -38f * level);
-                itemNumbers.Add(itemNo);
+                if (isMaster)
+                {
+                    itemNo.GetComponent<RectTransform>().anchorMin = new Vector2(1, 0);
+                    itemNo.GetComponent<RectTransform>().anchorMax = new Vector2(1, 0);
+                    itemNo.transform.localPosition = new Vector2(38f * i - (38f * maxNumOnLevel * level) - 38f * 2f, 38f * (maxLevel + 1 - level));
+                    itemNumbers.Add(itemNo);
+                }
+                else
+                {
+                    itemNo.transform.localPosition = new Vector2(38f * i - (38f * maxNumOnLevel * level), -38f * level);
+                    itemNumbers.Add(itemNo);
+                }
             }
 
             i++;

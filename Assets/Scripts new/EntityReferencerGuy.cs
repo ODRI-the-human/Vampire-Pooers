@@ -67,6 +67,8 @@ public class EntityReferencerGuy : MonoBehaviour
     public GameObject keepBestStatObj;
     bool playerHasDied = false;
 
+    public GameObject itemsHeldVisualiser;
+
     public static EntityReferencerGuy Instance { get; private set; }
     private void Awake()
     {
@@ -90,6 +92,14 @@ public class EntityReferencerGuy : MonoBehaviour
         //Application.targetFrameRate = 60;
 
         DontDestroyOnLoad(keepBestStatObj);
+    }
+
+    void BeganNewWave()
+    {
+        if (itemsHeldVisualiser != null)
+        {
+            itemsHeldVisualiser.GetComponent<itemVisualiser>().UpdateVisual();
+        }
     }
 
     void Update()

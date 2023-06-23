@@ -60,7 +60,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - ShowOnMinimap
   m_SortingLayers:
   - name: Default
     uniqueID: 0

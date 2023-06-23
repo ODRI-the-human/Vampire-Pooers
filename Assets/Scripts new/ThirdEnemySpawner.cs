@@ -7,7 +7,7 @@ public class ThirdEnemySpawner : MonoBehaviour
 {
     public float spawnTimerLength = 200f;
     public float spawnTimer = 0;
-    public int spawnNumber = 1; // records the number of times a group of enemies has been spawned, so more enemies will be spawned after a period of time and (later) more dangerous enemies will spawn.
+    public int spawnNumber = 0; // records the number of times a group of enemies has been spawned, so more enemies will be spawned after a period of time and (later) more dangerous enemies will spawn.
     public int waveNumber = 0;
     public int minSpawnMultiplier = 2;
     public int maxSpawnMultiplier = 4;
@@ -17,7 +17,7 @@ public class ThirdEnemySpawner : MonoBehaviour
     int SpawnType;
     public TextMeshProUGUI waveText;
     public GameObject itemPedestal;
-    int noSpawnsBeforeNewWave = 4; // actually should be one more than the desired number, for some reason.
+    public int noSpawnsBeforeNewWave = 4; // actually should be one more than the desired number, for some reason.
     public int numberEnemiesSpawned;
 
     int stepUpTo = 0; // Keeps track of what step the spawner is up to, 0 is spawning, 1 is waiting for player to pick items.
@@ -337,6 +337,7 @@ public class ThirdEnemySpawner : MonoBehaviour
                 player.SendMessage("newWaveEffects");
             }
         }
+        SendMessage("BeganNewWave");
         waveNumber++;
         stepUpTo = 0;
         spawnNumber = 0;

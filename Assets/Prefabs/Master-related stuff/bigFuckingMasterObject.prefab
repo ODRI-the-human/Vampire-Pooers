@@ -166,12 +166,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnTimerLength: 200
   spawnTimer: 0
-  spawnNumber: 1
+  spawnNumber: 0
   waveNumber: 0
   minSpawnMultiplier: 2
   maxSpawnMultiplier: 4
   waveText: {fileID: 0}
   itemPedestal: {fileID: 9051745121226363957, guid: 72417c4e267300a49a8f5f6b6e1e3f5c, type: 3}
+  noSpawnsBeforeNewWave: 4
   numberEnemiesSpawned: 0
   bypassWaves: 0
   chaseEnemy: {fileID: 8034279136360660190, guid: a8c7cbd396c89da40a8668c886edd2c8, type: 3}

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class giveenemiesitems : MonoBehaviour
 {
-    void Start()
+    void Awake()
     {
         //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.ORBITAL2);
         //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.SOY);
