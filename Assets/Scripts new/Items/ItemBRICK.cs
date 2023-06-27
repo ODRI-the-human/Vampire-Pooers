@@ -28,6 +28,14 @@ public class ItemBRICK : MonoBehaviour
         //}
     }
 
+    void GetDamageMods()
+    {
+        if (isAProc)
+        {
+            gameObject.GetComponent<DealDamage>().damageToPassToVictim *= instances * 4f;
+        }
+    }
+
     public void DetermineShotRolls()
     {
         float procMoment = 100f - 10 * gameObject.GetComponent<DealDamage>().procCoeff;
@@ -36,10 +44,10 @@ public class ItemBRICK : MonoBehaviour
         if (pringle > procMoment)
         {
             isAProc = true;
-            gameObject.GetComponent<DealDamage>().finalDamageMult *= 4 * instances;
             if (gameObject.GetComponent<checkAllLazerPositions>() == null)
             {
                 transform.localScale = 2 * normieScale;
+                gameObject.GetComponent<DealDamage>().massCoeff *= 4f;
 
                 if (gameObject.GetComponent<Bullet_Movement>() != null)
                 {

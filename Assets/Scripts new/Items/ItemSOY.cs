@@ -22,9 +22,9 @@ public class ItemSOY : MonoBehaviour
         if (gameObject.GetComponent<Attack>() != null)
         {
             gameObject.GetComponent<Attack>().PlayerShootAudio = EntityReferencerGuy.Instance.soyShotAudio;
-            gameObject.GetComponent<Attack>().fireTimerDIV = 1 + 4 * instances;
+            gameObject.GetComponent<Attack>().fireTimerDIV = 1 + 2 * instances;
         }
-        gameObject.GetComponent<DealDamage>().massCoeff = 1 / (4 * instances);
+        gameObject.GetComponent<DealDamage>().massCoeff = 1 / (2 * instances);
     }
     //void GetDamVal()
     //{
@@ -41,7 +41,7 @@ public class ItemSOY : MonoBehaviour
 
     void GetDamageMods()
     {
-        gameObject.GetComponent<DealDamage>().damageToPassToVictim /= 4 * instances;
+        gameObject.GetComponent<DealDamage>().damageToPassToVictim /= 2 * instances;
     }
 
     void IncreaseInstances(string name)

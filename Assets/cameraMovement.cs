@@ -21,7 +21,7 @@ public class cameraMovement : MonoBehaviour
 
     void Start()
     {
-        xBound = RightBorder.transform.position.x - 6;
+        xBound = RightBorder.transform.position.x - 10;
         yBound = TopBorder.transform.position.y - 6;
         //CheckAlivePlayers();
     }

@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class showPOIPosOnMap : MonoBehaviour
+public class revealPOI : MonoBehaviour
 {
-    void OnTriggerEnter2D(Collider2D collider)
+    void OnTriggerEnter2D(Collider2D col)
     {
         gameObject.GetComponent<SpriteRenderer>().enabled = true;
     }

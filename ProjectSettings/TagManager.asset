@@ -58,9 +58,9 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - ShowOnMinimap
+  - FOWToMask
+  - FOW
+  - ShowOnMap
   m_SortingLayers:
   - name: Default
     uniqueID: 0

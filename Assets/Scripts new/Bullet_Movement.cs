@@ -21,6 +21,9 @@ public class Bullet_Movement : MonoBehaviour
     string defaultTag;
     Material defaultMaterial;
 
+    float xSpeed;
+    float ySpeed;
+
     public bool isPooledBullet = true;
 
     void Start()
@@ -65,6 +68,12 @@ public class Bullet_Movement : MonoBehaviour
         if (rb.velocity != Vector2.zero)
         {
             transform.rotation = Quaternion.LookRotation(rb.velocity) * Quaternion.Euler(0, 90, 0);
+            xSpeed = rb.velocity.normalized.x;
+            ySpeed = rb.velocity.normalized.y;
+        }
+        else
+        {
+            KillBullet();
         }
     }
 
@@ -72,9 +81,6 @@ public class Bullet_Movement : MonoBehaviour
     {
         Vector2 enemyPos = new Vector2(transform.position.x, transform.position.y);
         Vector2 bulletPos = new Vector2(col.transform.position.x, col.transform.position.y);
-
-        float xSpeed = rb.velocity.normalized.x;
-        float ySpeed = rb.velocity.normalized.y;
 
         if (canCollide && col.gameObject.GetComponent<dieOnContactWithBullet>() == null)
         {
@@ -84,7 +90,7 @@ public class Bullet_Movement : MonoBehaviour
                 rb.velocity = OriginalSpeed;
                 if (gameObject.GetComponent<ItemPIERCING>() != null)
                 {
-                    gameObject.GetComponent<DealDamage>().finalDamageMult *= 1 + 0.2f * gameObject.GetComponent<ItemPIERCING>().instances;
+                    gameObject.GetComponent<ItemPIERCING>().IncreaseDamageBonus();
                 }
                 piercesLeft--;
             }
@@ -96,20 +102,22 @@ public class Bullet_Movement : MonoBehaviour
 
                     if (col.gameObject.tag == "Wall")
                     {
-                        //Debug.Log("Blimbpet:" + colVector.ToString());
+                        Debug.Log("Blimbpet:" + colVector.ToString());
 
-                        if (Mathf.Abs(colVector.y) > Mathf.Abs(colVector.x))
+                        if (Mathf.Abs(colVector.y) > Mathf.Abs(colVector.x)) // if the bullet hits on a horizontal surface
                         {
                             colVector.x = xSpeed;
+                            colVector.y = -ySpeed;
                         }
-                        else
+                        else // on a vertical surface
                         {
                             colVector.y = ySpeed;
+                            colVector.x = -xSpeed;
                         }
                     }
                     rb.velocity = speed * colVector.normalized;
                     gameObject.GetComponent<ItemBOUNCY>().bouncesLeft--;
-                    transform.rotation = Quaternion.LookRotation(rb.velocity) * Quaternion.Euler(0, 90, 0);
+                    //transform.rotation = Quaternion.LookRotation(rb.velocity) * Quaternion.Euler(0, 90, 0);
                     canCollide = false;
                     lastColTime = timer;
                 }
@@ -169,7 +177,10 @@ public class Bullet_Movement : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        HitShit(col.collider);
+        if (canCollide)
+        {
+            HitShit(col.collider);
+        }
     }
 
     public void KillBullet()

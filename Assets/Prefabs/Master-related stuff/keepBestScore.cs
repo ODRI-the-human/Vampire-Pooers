@@ -31,6 +31,8 @@ public class keepBestScore : MonoBehaviour
 
     GameObject Player;
 
+    public bool doRandomiseMeme;
+
 
     // Start is called before the first frame update
     void Start()
@@ -89,24 +91,27 @@ public class keepBestScore : MonoBehaviour
         bestText.text = "BEST RUN:\n" + "Wave: " + (bestWave).ToString() + "\nLevel: " + bestLevel.ToString() + "\nDMG: " + bestDamage.ToString() + "\nFire rate: " + bestFirerate.ToString() + "\nHP: " + bestHP.ToString();
         worstText.text = "WORST RUN:\n" + "Wave: " + (worstWave).ToString() + "\nLevel: " + worstLevel.ToString() + "\nDMG: " + worstDamage.ToString() + "\nFire rate: " + worstFirerate.ToString() + "\nHP: " + worstHP.ToString();
 
-        int textToDisplay = Random.Range(0, 5);
-        switch (textToDisplay)
+        if (doRandomiseMeme)
         {
-            case 0:
-                bullyText.text = "If you had dodged some of those attacks you might've survived...";
-                break;
-            case 1:
-                bullyText.text = "Unfortunate, guess you ran out of luck - remember your luck decreases at an exponential rate! (not really!)";
-                break;
-            case 2:
-                bullyText.text = "Remember: oh the treachery, every single brightly coloured circle is an enemy. Well, most of them. Some aren't brightly coloured.";
-                break;
-            case 3:
-                bullyText.text = "The Boberman is particularly susceptible to death - he can be killed by LITERALLY one single death. Be careful.";
-                break;
-            case 4:
-                bullyText.text = "Tip: press 'Q' to enter turn-based RPG mode. It'll give you time to plan all your moves! Pressing it again toggles it off. This is definitely NOT a debug tool.";
-                break;
+            int textToDisplay = Random.Range(0, 5);
+            switch (textToDisplay)
+            {
+                case 0:
+                    bullyText.text = "If you had dodged some of those attacks you might've survived...";
+                    break;
+                case 1:
+                    bullyText.text = "Unfortunate, guess you ran out of luck - remember your luck decreases at an exponential rate! (not really!)";
+                    break;
+                case 2:
+                    bullyText.text = "Remember: oh the treachery, every single brightly coloured circle is an enemy. Well, most of them. Some aren't brightly coloured.";
+                    break;
+                case 3:
+                    bullyText.text = "The Boberman is particularly susceptible to death - he can be killed by LITERALLY one single death. Be careful.";
+                    break;
+                case 4:
+                    bullyText.text = "Tip: press 'Q' to enter turn-based RPG mode. It'll give you time to plan all your moves! Pressing it again toggles it off. This is definitely NOT a debug tool.";
+                    break;
+            }
         }
 
         resetText.text = "Press R to restart";

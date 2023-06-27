@@ -12,6 +12,7 @@ public class managePlayer : MonoBehaviour
     public Material player2Mat;
     public Material player3Mat;
     public Material player4Mat;
+    public Material chosenMaterial;
 
     void Start()
     {
@@ -25,18 +26,16 @@ public class managePlayer : MonoBehaviour
 
     public void SetMaterial()
     {
-        Material sus = null;
-
         switch (playerID)
         {
             case 2:
-                sus = player2Mat;
+                chosenMaterial = player2Mat;
                 break;
             case 3:
-                sus = player3Mat;
+                chosenMaterial = player3Mat;
                 break;
             case 4:
-                sus = player4Mat;
+                chosenMaterial = player4Mat;
                 break;
         }
 
@@ -46,7 +45,7 @@ public class managePlayer : MonoBehaviour
             MeshRenderer[] renderers = model.GetComponentsInChildren<MeshRenderer>();
             foreach (MeshRenderer rendy in renderers)
             {
-                rendy.material = sus;
+                rendy.material = chosenMaterial;
             }
         }
     }

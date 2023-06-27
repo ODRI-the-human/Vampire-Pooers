@@ -5,6 +5,7 @@ using UnityEngine;
 public class ItemPIERCING : MonoBehaviour
 {
     public int instances = 1;
+    float damBonus = 1;
 
     void IncreaseInstances(string name)
     {
@@ -14,6 +15,21 @@ public class ItemPIERCING : MonoBehaviour
         }
     }
 
+    public void IncreaseDamageBonus()
+    {
+        Invoke(nameof(DoDamageBuff), 0.01f); // Just to make it so the damage buff gets applied specifically after the collision occurs.
+    }
+
+    void DoDamageBuff()
+    {
+        damBonus += 0.2f * instances;
+    }
+
+    void GetDamageMods()
+    {
+        gameObject.GetComponent<DealDamage>().damageToPassToVictim *= damBonus;
+    }
+
     void Start()
     {
         DetermineShotRolls();
@@ -21,6 +37,7 @@ public class ItemPIERCING : MonoBehaviour
 
     void DetermineShotRolls()
     {
+        damBonus = 1;
         gameObject.GetComponent<Bullet_Movement>().piercesLeft += 1;
     }
 
