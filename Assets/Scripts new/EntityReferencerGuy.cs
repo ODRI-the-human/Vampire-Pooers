@@ -36,6 +36,7 @@ public class EntityReferencerGuy : MonoBehaviour
     public GameObject regularShotParticle;
     public GameObject empty;
     public GameObject batHitbox;
+    public GameObject darkArtHitbox;
     public GameObject chargeBar;
     public GameObject reticle;
 
@@ -45,6 +46,7 @@ public class EntityReferencerGuy : MonoBehaviour
     public GameObject master;
 
     public GameObject bat;
+    public GameObject darkArt;
 
     public GameObject boss; //SHOULD JUST BE A TEMPORARY SOLUTION. BOSS SPAWNING SHOULD BE HANDLED BY THE SPAWNER.
     int bosNumToSpawn = 1;

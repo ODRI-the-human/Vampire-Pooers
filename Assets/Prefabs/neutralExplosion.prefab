@@ -185,9 +185,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30830851ecf01fa4e8e1c859ed98de6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  finalDamageStat: 100
+  finalDamageStat: 150
   procCoeff: 0
-  damageBase: 150
+  damageBase: 50
   damageAdd: 0
   damageMult: 1
   finalDamageMult: 1

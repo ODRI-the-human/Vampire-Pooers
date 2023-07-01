@@ -84,11 +84,11 @@ public class ItemORBITAL2 : MonoBehaviour
             orb.GetComponent<DealDamage>().damageMult = gameObject.GetComponent<DealDamage>().damageMult;
             orb.GetComponent<Attack>().Bullet = gameObject.GetComponent<Attack>().Bullet;
             orb.GetComponent<Attack>().specialFireType = gameObject.GetComponent<Attack>().specialFireType;
-            orb.GetComponent<Attack>().fireTimerDIV = gameObject.GetComponent<Attack>().fireTimerDIV;
+            orb.GetComponent<Attack>().fireTimerThreshold = gameObject.GetComponent<Attack>().fireTimerThreshold;
             orb.GetComponent<Attack>().noExtraShots = gameObject.GetComponent<Attack>().noExtraShots;
             orb.GetComponent<Attack>().shotAngleCoeff = gameObject.GetComponent<Attack>().shotAngleCoeff;
             orb.GetComponent<Attack>().shotSpeed = gameObject.GetComponent<Attack>().shotSpeed;
-            orb.GetComponent<Attack>().fireTimerLength = gameObject.GetComponent<Attack>().fireTimerLength;
+            orb.GetComponent<Attack>().fireTimerThreshold = gameObject.GetComponent<Attack>().fireTimerThreshold;
             orb.GetComponent<DealDamage>().finalDamageMult = 0.25f;
         }
     }

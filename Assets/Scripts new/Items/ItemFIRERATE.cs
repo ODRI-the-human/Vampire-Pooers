@@ -6,12 +6,12 @@ public class ItemFIRERATE : MonoBehaviour
 {
     void Awake()
     {
-        gameObject.GetComponent<Attack>().fireTimerLength -= 4;
+        gameObject.GetComponent<Attack>().fireRate += 1;
     }
 
     public void Undo()
     {
-        gameObject.GetComponent<Attack>().fireTimerLength += 4;
+        gameObject.GetComponent<Attack>().fireRate -= 1;
         Destroy(this);
     }
 }

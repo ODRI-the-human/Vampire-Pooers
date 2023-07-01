@@ -111,6 +111,7 @@ public class ItemHolder : MonoBehaviour
         }
 
         Debug.Log("weapon set xd");
+        weaponHeld = weaponToGive;
 
         switch (weaponToGive)
         {
@@ -146,18 +147,6 @@ public class ItemHolder : MonoBehaviour
                     gameObject.AddComponent<explodeOnHit>();
                 }
                 break;
-            case (int)ITEMLIST.DARKARTS:
-                if (gameObject.GetComponent<Attack>() != null)
-                {
-                    previousFireType = gameObject.GetComponent<Attack>().specialFireType;
-                    previousFireTimerLengthMLT = gameObject.GetComponent<Attack>().fireTimerLengthMLT;
-
-                    gameObject.GetComponent<Attack>().specialFireType = 3;
-                    gameObject.GetComponent<Attack>().fireTimerLengthMLT = 0.5f;
-                    gameObject.GetComponent<Attack>().holdDownToShoot = true;
-                    gameObject.GetComponent<Attack>().shotParticles = EntityReferencerGuy.Instance.empty;
-                }
-                break;
             case (int)ITEMLIST.LAZER:
                 if (gameObject.GetComponent<Attack>() != null)
                 {
@@ -185,9 +174,20 @@ public class ItemHolder : MonoBehaviour
                     gameObject.GetComponent<Attack>().specialFireType = 3;
                 }
                 break;
-        }
+            case (int)ITEMLIST.DARKARTS:
+                if (gameObject.GetComponent<Attack>() != null)
+                {
+                    gameObject.GetComponent<Attack>().fireTimerLengthMLT = 0.5f;
+                    gameObject.GetComponent<Attack>().holdDownToShoot = true;
+                    gameObject.GetComponent<Attack>().shotParticles = EntityReferencerGuy.Instance.empty;
+                    gameObject.AddComponent<BatVisual>();
 
-        weaponHeld = weaponToGive;
+                    gameObject.GetComponent<Attack>().meleeHitObj = EntityReferencerGuy.Instance.darkArtHitbox;
+                    gameObject.GetComponent<Attack>().hitboxSpawnDelay = 0.1f;
+                    gameObject.GetComponent<Attack>().specialFireType = 3;
+                }
+                break;
+        }
 
         SendMessage("itemsAdded", false);
     }

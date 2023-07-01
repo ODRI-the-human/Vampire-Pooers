@@ -108,6 +108,7 @@ MonoBehaviour:
   moveTowardsPlayer: 1
   recievesKnockback: 1
   dodgeUp: 1
+  isDodging: 0
   dodgeTimerLength: 20
   dodgeSpeedUp: 2
   mouseAltMode: 0
@@ -141,6 +142,8 @@ MonoBehaviour:
   damageReduction: 0
   damageDiv: 1
   perfectWaves: 0
+  DOTSources: []
+  DOTDamages: []
 --- !u!114 &6146499720883180670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,12 +162,10 @@ MonoBehaviour:
   damageAdd: 0
   damageMult: 1
   finalDamageMult: 1
-  finalDamageDIV: 1
   critProb: 0.05
   critMult: 2
   owner: {fileID: 0}
   master: {fileID: 0}
-  isMelee: 0
   massCoeff: 2
   overwriteDamageCalc: 0
   onlyDamageOnce: 0
@@ -175,6 +176,8 @@ MonoBehaviour:
   damageToPresent: 0
   damageType: 0
   procChainIndexes: 
+  procChanceBonus: 1
+  damageToPassToVictim: 0
 --- !u!114 &373114558742256855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,17 +197,13 @@ MonoBehaviour:
   noExtraShots: 0
   shotAngleCoeff: 1
   trueDamageValue: 0
-  fireTimerLengthMLT: 1
   Bullet: {fileID: 2232971130497578917, guid: dc46db39e4e70b144915e7a0652cc396, type: 3}
-  fireTimerLength: 75
-  fireTimer: 50
   PlayerShootAudio: {fileID: 2232971130497578917, guid: dc46db39e4e70b144915e7a0652cc396, type: 3}
   Player: {fileID: 0}
   playerControlled: 0
   specialFireType: 5
   darkArtSword: {fileID: 0}
-  fireTimerDIV: 1
-  attachItems: 1
+  setDamageAutomatically: 1
   doAim: 1
   fireTimerActualLength: 0
   visionRange: 8
@@ -214,8 +213,9 @@ MonoBehaviour:
   timesFired: 0
   newAttack: 0
   Crongus: 0
-  levelDamageBonus: 0
+  damageBonus: 0
   scaleAddMult: 1
+  mouseVector: {x: 0, y: 0, z: 0}
   stopwatchDebuffAmount: 0
   doShootAutomatically: 1
   getEnemyPos: 1
@@ -224,11 +224,22 @@ MonoBehaviour:
   massToGiveBullets: 0.5
   holdDownToShoot: 1
   numBulletsPossible: 16
-  canShoot: 1
+  autoFire: 1
   isFiring: 0
+  isHoldingFire: 0
   shotParticles: {fileID: 0}
+  chargeTime: 0
+  isChargedAttack: 0
+  chargeBar: {fileID: 0}
+  reticle: {fileID: 0}
+  reticlePos: {x: 0, y: 0, z: 0}
   meleeHitObj: {fileID: 0}
   hitboxSpawnDelay: 0
+  fireTimerLengthMLT: 1
+  fireTimerDIV: 1
+  fireRate: 0.75
+  fireTimer: 50
+  fireTimerThreshold: 0
 --- !u!114 &8437550650503696219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,7 +255,11 @@ MonoBehaviour:
   itemsHeld: 
   master: {fileID: 0}
   itemGained: 0
+  weaponHeld: 0
   noToGive: 1
+  spawnedBat: {fileID: 0}
+  previousFireType: 0
+  previousFireTimerLengthMLT: 0
 --- !u!114 &-226583629137854842
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -20,7 +20,16 @@ public class BatVisual : MonoBehaviour
 
     void Start()
     {
-        bat = Instantiate(EntityReferencerGuy.Instance.bat);
+        switch (gameObject.GetComponent<ItemHolder>().weaponHeld)
+        {
+            case (int)ITEMLIST.BAT:
+                bat = Instantiate(EntityReferencerGuy.Instance.bat);
+                break;
+            case (int)ITEMLIST.DARKARTS:
+                bat = Instantiate(EntityReferencerGuy.Instance.darkArt);
+                break;
+        }
+        //bat = Instantiate(EntityReferencerGuy.Instance.darkArt);
         bat.transform.parent = transform;
         owner = gameObject;
     }
@@ -33,7 +42,7 @@ public class BatVisual : MonoBehaviour
 
     void Update()
     {
-        fireRate = gameObject.GetComponent<Attack>().fireTimerActualLength;
+        fireRate = gameObject.GetComponent<Attack>().fireRate;
 
         transform.position = owner.transform.position;
 

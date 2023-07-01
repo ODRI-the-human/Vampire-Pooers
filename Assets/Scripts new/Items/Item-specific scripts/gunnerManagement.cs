@@ -87,7 +87,7 @@ public class gunnerManagement : MonoBehaviour
                 
             gunner.GetComponent<DealDamage>().finalDamageMult *= 1 + 0.5f * numDamageBonuses;
 
-            gunner.GetComponent<Attack>().fireTimerLengthMLT /= 0.5f * numFireRateBonuses;
+            gunner.GetComponent<Attack>().fireRate += 0.5f * numFireRateBonuses;
         }
     }
 

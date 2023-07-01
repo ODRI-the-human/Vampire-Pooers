@@ -47,11 +47,11 @@ public class ItemBERSERK : MonoBehaviour
 
     public void LevelEffects()
     {
-        if (gameObject.GetComponent<weaponType>().weaponHeld != (int)ITEMLIST.DARKARTS && gameObject.GetComponent<LevelUp>().level % 2 == 0)
+        if (gameObject.GetComponent<ItemHolder>().weaponHeld != (int)ITEMLIST.DARKARTS && gameObject.GetComponent<LevelUp>().level % 2 == 0)
         {
-            pastWeapon = gameObject.GetComponent<weaponType>().weaponHeld;
+            pastWeapon = gameObject.GetComponent<ItemHolder>().weaponHeld;
             Debug.Log("Dingus");
-            gameObject.GetComponent<weaponType>().SetWeapon((int)ITEMLIST.DARKARTS);
+            gameObject.GetComponent<ItemHolder>().SetWeapon((int)ITEMLIST.DARKARTS);
             if (gameObject.tag == "Player")
             {
                 master.GetComponent<AudioSource>().volume = 0;
@@ -71,13 +71,13 @@ public class ItemBERSERK : MonoBehaviour
             timer = 0;
         }
 
-        if (isActive && gameObject.GetComponent<weaponType>().weaponHeld != (int)ITEMLIST.DARKARTS) // For if the player picks up a new weapon while this is active.
+        if (isActive && gameObject.GetComponent<ItemHolder>().weaponHeld != (int)ITEMLIST.DARKARTS) // For if the player picks up a new weapon while this is active.
         {
-            pastWeapon = gameObject.GetComponent<weaponType>().weaponHeld;
-            gameObject.GetComponent<weaponType>().SetWeapon((int)ITEMLIST.DARKARTS);
+            pastWeapon = gameObject.GetComponent<ItemHolder>().weaponHeld;
+            gameObject.GetComponent<ItemHolder>().SetWeapon((int)ITEMLIST.DARKARTS);
         }
 
-        if (timer == 75 + 75 * instances && gameObject.GetComponent<weaponType>().weaponHeld == (int)ITEMLIST.DARKARTS)
+        if (timer == 75 + 75 * instances && gameObject.GetComponent<ItemHolder>().weaponHeld == (int)ITEMLIST.DARKARTS)
         {
             EndBerserk();
         }
@@ -86,7 +86,7 @@ public class ItemBERSERK : MonoBehaviour
     public void EndBerserk()
     {
         Debug.Log("Bringus");
-        gameObject.GetComponent<weaponType>().SetWeapon(pastWeapon);
+        gameObject.GetComponent<ItemHolder>().SetWeapon(pastWeapon);
         gameObject.GetComponent<Attack>().bulletPool.Dispose();
         if (gameObject.tag == "Player")
         {

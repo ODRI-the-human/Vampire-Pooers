@@ -15,16 +15,13 @@ public class Attack : MonoBehaviour
     public int noExtraShots = 0;
     public float shotAngleCoeff = 1;
     public float trueDamageValue;
-    public float fireTimerLengthMLT = 1;
     public GameObject Bullet;
-    public float fireTimerLength = 25;
-    public float fireTimer = 25;
+    //public float fireTimerLength = 25;
     public GameObject PlayerShootAudio;
     public GameObject Player;
     public bool playerControlled = false;
     public int specialFireType;
     public GameObject darkArtSword;
-    public float fireTimerDIV = 1;
     public bool setDamageAutomatically = true;
 
     public bool doAim = true; // this is for things like the 8-direction shooty enemy (should be false for them), just makes it so the enemy does or doesn't change its shot angle depending on where the target is.
@@ -85,6 +82,14 @@ public class Attack : MonoBehaviour
     public GameObject meleeHitObj;
     public float hitboxSpawnDelay;
 
+
+    public float fireTimerLengthMLT = 1; // This is set by weapons. Do not set this via item or it'll get fucked up when the item is removed.
+    public float fireTimerDIV = 1; // This is set by items. Always add to this.
+    public float fireRate = 2; // This is the new firerate variable, in shots/sec.
+    public float fireTimer = 25; // The actual timer for the fuckin guy.
+    public float fireTimerThreshold; // Set each Update. If the firetimer is larger than this value, the thing can shoot.
+
+
     void Start()
     {
 
@@ -131,7 +136,7 @@ public class Attack : MonoBehaviour
             isEnemy = true;
 
             // Applying debuffs due to stopwatch.
-            fireTimerLength /= stopwatchDebuffAmount;
+            fireTimerDIV *= stopwatchDebuffAmount;
             shotSpeed *= stopwatchDebuffAmount;
             if (gameObject.GetComponent<NewPlayerMovement>() != null)
             {
@@ -139,7 +144,6 @@ public class Attack : MonoBehaviour
             }
         }
         cameron = GameObject.Find("Main Camera");
-        fireTimerLengthMLT = 1;
     }
 
     public void OnShoot(InputAction.CallbackContext context)
@@ -242,9 +246,12 @@ public class Attack : MonoBehaviour
 
     void Update()
     {
-        trueDamageValue = gameObject.GetComponent<DealDamage>().finalDamageStat;
-        fireTimerLength = Mathf.Clamp(fireTimerLength, 0, 99999);
-        fireTimerActualLength = Mathf.Clamp(50 / (fireTimerLength * fireTimerLengthMLT / fireTimerDIV), 0, 50);
+        //fireTimerLength = Mathf.Clamp(fireTimerLength, 0, 99999);
+        //fireTimerActualLength = Mathf.Clamp(50 / (fireTimerLength * fireTimerLengthMLT / fireTimerDIV), 0, 50);
+
+
+        fireTimerThreshold = (50 * fireTimerLengthMLT) / (fireRate * fireTimerDIV);
+        
 
         if (reticle != null)
         {
@@ -297,7 +304,7 @@ public class Attack : MonoBehaviour
         switch (playerControlled)
         {
             case true:
-                if (isFiring && fireTimer > (50 / fireTimerActualLength) && isDodging == 0 && vectorToTarget != Vector2.zero)
+                if (isFiring && fireTimer > fireTimerThreshold && isDodging == 0 && vectorToTarget != Vector2.zero)
                 {
                     UseWeapon(false);
                     SendMessage("OnShootEffects");
@@ -312,7 +319,7 @@ public class Attack : MonoBehaviour
                 }
                 break;
             case false:
-                if (fireTimer > (50 / fireTimerActualLength) && doShootAutomatically && isDodging == 0 && autoFire)
+                if (fireTimer > fireTimerThreshold && doShootAutomatically && isDodging == 0 && autoFire)
                 {
                     if (currentTarget == null)
                     {
