@@ -17,7 +17,7 @@ public class dropItemOnHit : MonoBehaviour
     {
         float doesTheFunny = Random.Range(0, 100f);
 
-        if (doesTheFunny > 90)
+        if (doesTheFunny > 95f)
         {
             GameObject pedestal = Instantiate(itemPedestal, transform.position, Quaternion.Euler(0, 0, 0));
             pedestal.GetComponent<itemPedestal>().doRandomiseItem = false;

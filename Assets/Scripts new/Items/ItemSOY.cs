@@ -68,7 +68,10 @@ public class ItemSOY : MonoBehaviour
     public void Undo()
     {
         //ResetVal();
+        instances = 0;
         gameObject.GetComponent<Attack>().PlayerShootAudio = EntityReferencerGuy.Instance.normieShotAudio;
+        gameObject.GetComponent<Attack>().fireTimerDIV = 1 + 2 * instances;
+        gameObject.GetComponent<DealDamage>().massCoeff = 1;
         Destroy(this);
     }
 

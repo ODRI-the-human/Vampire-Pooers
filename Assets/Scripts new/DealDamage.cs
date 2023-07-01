@@ -10,7 +10,6 @@ public class DealDamage : MonoBehaviour
     public float damageAdd;
     public float damageMult;
     public float finalDamageMult = 1;
-    public float finalDamageDIV = 1;
     public float critProb = 0.05f;
     public float critMult = 2;
     public GameObject owner;
@@ -31,14 +30,9 @@ public class DealDamage : MonoBehaviour
 
     public int damageType;
     public List<int> procChainIndexes = new List<int>();
+    public float procChanceBonus = 1;
 
     public float damageToPassToVictim;
-
-    // Start is called before the first frame update
-    void Awake()
-    {
-        CalcDamage();
-    }
 
     void Start()
     {
@@ -66,25 +60,12 @@ public class DealDamage : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        CalcDamage();
+    //void Update()
+    //{
+    //    CalcDamage();
 
-        damageToPresent = damageBase * damageMult * finalDamageMult / finalDamageDIV;
-    }
-
-    void FixedUpdate()
-    {
-        timer++;
-        if (timer % tickInterval == 0)
-        {
-            finalDamageStat = damageAmt;
-        }
-        else
-        {
-            finalDamageStat = 0;
-        }
-    }
+    //    damageToPresent = damageBase * damageMult * finalDamageMult / finalDamageDIV;
+    //}
 
     //For applying any on-hit effects - sends the RollOnHit message, which is picked up by any on-hit effects THIS object has, which then apply the effect or whatever to col.gameobject.
     //void OnCollisionEnter2D(Collision2D col)
@@ -114,6 +95,20 @@ public class DealDamage : MonoBehaviour
         //no (throws error if this method isn't here :) )
     }
 
+    public float GetDamageAmount()
+    {
+        if (!overwriteDamageCalc)
+        {
+            damageToPassToVictim = (damageBase + damageAdd) * finalDamageMult;
+            SendMessage("GetDamageMods");
+        }
+        else
+        {
+            damageToPassToVictim = finalDamageStat;
+        }
+        return damageToPassToVictim;
+    }
+
     public void CalculateDamage(GameObject victim) // When an object is hurt, it calls this method on the responsible object.
     {
         float critChance = 100f * critProb;
@@ -121,13 +116,22 @@ public class DealDamage : MonoBehaviour
         float critMult = 1;
         bool isCrit = false;
 
-        for (int i = 0; i < numCrits; i++)
+        if (!overwriteDamageCalc)
         {
-            critMult *= 2;
-            isCrit = true;
+            for (int i = 0; i < numCrits; i++)
+            {
+                critMult *= 2;
+                isCrit = true;
+            }
+
+            damageToPassToVictim = (damageBase + damageAdd) * finalDamageMult * critMult;
+        }
+        else
+        {
+            damageToPassToVictim = finalDamageStat;
         }
 
-        damageToPassToVictim = (damageBase + damageAdd) * finalDamageMult * critMult;
+        SendMessage("GetDamageMods");
 
         if (gameObject.GetComponent<explosionBONUSSCRIPTWOW>() != null)
         {
@@ -137,9 +141,7 @@ public class DealDamage : MonoBehaviour
             damageToPassToVictim *= fracFromCtr;
         }
 
-        SendMessage("GetDamageMods");
-
-        victim.GetComponent<HPDamageDie>().Hurty(damageToPassToVictim, isCrit, true, 1, damageType, false, gameObject);
+        victim.GetComponent<HPDamageDie>().Hurty(damageToPassToVictim, isCrit, true, iFrameFac, damageType, false, gameObject);
     }
 
     public void SendRollOnHits(GameObject victim)
@@ -179,7 +181,7 @@ public class DealDamage : MonoBehaviour
 
         if (!scriptIsUsed)
         {
-            float percentChance = value * source.GetComponent<DealDamage>().procCoeff;
+            float percentChance = value * source.GetComponent<DealDamage>().procCoeff * procChanceBonus;
             Debug.Log("erm percentage chance do be: " + percentChance.ToString() + ", value: " + value.ToString());
 
             for (int i = 0; i < 20; i++)

@@ -41,7 +41,7 @@ public class ItemCREEP : MonoBehaviour
             GameObject newObject = Instantiate(Creep, transform.position + new Vector3(0, 0, 0), transform.rotation);
             newObject.transform.localScale *= 0.3f + 0.2f * instances;
             newObject.GetComponent<DealDamage>().overwriteDamageCalc = true;
-            newObject.GetComponent<DealDamage>().damageAmt = 0.1f * gameObject.GetComponent<DealDamage>().damageToPresent;
+            newObject.GetComponent<DealDamage>().finalDamageStat = 0.1f * gameObject.GetComponent<DealDamage>().GetDamageAmount() * instances;
             newObject.GetComponent<DealDamage>().massCoeff = 0;
             timerMarty = 20;
         }

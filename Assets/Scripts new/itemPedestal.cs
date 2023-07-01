@@ -21,18 +21,20 @@ public class itemPedestal : MonoBehaviour
     public bool enemiesCanUse;
 
     int[] specialItemWeights = new int[] { 20, 20, 20, 10, 10, 10, 4, 1 }; //{ 20, 20, 20, 10, 10, 10, 4, 1 };
-    int[] itemQualWeights = new int[] { 20, 10, 2, 0, 6, 6 };
+    int[] itemQualWeights = new int[] { 20, 10, 2, 0, 6};
     public int chosenQuality;
     public int qualityWeightsSum;
     public int randomedQuality; // This stores the quality of the item the random.range picked when rolling for an item.
     public int specialItemWeightsSum;
+
+    bool isWeapon = false;
 
     // Start is called before the first frame update
     void Start()
     {
         //bannedItems.Add((int)ITEMLIST.HP25);
         master = EntityReferencerGuy.Instance.master;
-        maxRange = EntityReferencerGuy.Instance.numItemsExist;
+        maxRange = (int)ITEMLIST.DARKARTS;
         gameObject.GetComponent<Collider2D>().enabled = false;
         //maxRange = 5;
         gos = GameObject.FindGameObjectsWithTag("item");
@@ -136,7 +138,6 @@ public class itemPedestal : MonoBehaviour
         master.GetComponent<ItemDescriptions>().getItemDescription();
         description = master.GetComponent<ItemDescriptions>().itemDescription;
 
-        // this is for cursed items!
         curseType = -2;
         int sproinkle = -2;
 
@@ -162,6 +163,7 @@ public class itemPedestal : MonoBehaviour
 
         master.GetComponent<ItemDescriptions>().GetCurseDescription(curseType);
         curseDescription = master.GetComponent<ItemDescriptions>().curseDescription;
+        doRandomiseItem = false;
     }
 
     //void OnTriggerEnter2D(Collider2D col)
@@ -176,7 +178,6 @@ public class itemPedestal : MonoBehaviour
     {
         int numToGiveEnemies = 0;
         int numToGivePlayer = 0;
-
 
         switch (curseType)
         {
@@ -223,7 +224,7 @@ public class itemPedestal : MonoBehaviour
                 }
                 numToGivePlayer = 5;
                 break;
-            case 5: // Get five of the item, but die instantly if hit in the next 2 rounds.
+            case 5: // Get three of the item, but die instantly if hit in the next 2 rounds.
                 if (barry.GetComponent<killInstantly>() == null)
                 {
                     barry.AddComponent<killInstantly>();
@@ -233,13 +234,13 @@ public class itemPedestal : MonoBehaviour
                     barry.GetComponent<killInstantly>().roundsLeft = 2;
                 }
 
-                numToGivePlayer = 5;
-                break;
-            case 6: // gives 3 of the item.
                 numToGivePlayer = 3;
                 break;
-            case 7: // gives 10 of the item.
-                numToGivePlayer = 10;
+            case 6: // gives 2 of the item.
+                numToGivePlayer = 2;
+                break;
+            case 7: // gives 5 of the item.
+                numToGivePlayer = 5;
                 break;
         }
 

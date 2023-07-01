@@ -135,6 +135,8 @@ MonoBehaviour:
   - {fileID: -2008572483, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
   - {fileID: 549624536, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
   - {fileID: 627135040, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
+  - {fileID: 1124128864, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
+  - {fileID: 784971922, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
   weaponSprites:
   - {fileID: 1218775636, guid: e0fb38cd9cae423489f4b20e3884c4b0, type: 3}
   - {fileID: 555977383, guid: e0fb38cd9cae423489f4b20e3884c4b0, type: 3}
@@ -152,6 +154,7 @@ MonoBehaviour:
   numItemsExist: 28
   time: 180
   keepBestStatObj: {fileID: 0}
+  itemsHeldVisualiser: {fileID: 0}
 --- !u!114 &9014303847402346882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,7 +272,11 @@ MonoBehaviour:
   itemsHeld: 
   master: {fileID: 0}
   itemGained: 0
+  weaponHeld: 0
   noToGive: 1
+  spawnedBat: {fileID: 0}
+  previousFireType: 0
+  previousFireTimerLengthMLT: 0
 --- !u!114 &-2547675152280945318
 MonoBehaviour:
   m_ObjectHideFlags: 0

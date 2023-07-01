@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemPISTOL : MonoBehaviour
+public class ItemBAT : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
     {
-        gameObject.GetComponent<weaponType>().weaponHeld = (int)ITEMLIST.PISTOL;
-        gameObject.GetComponent<weaponType>().SetWeapon();
+        if (gameObject.GetComponent<ItemHolder>() != null)
+        {
+            gameObject.GetComponent<ItemHolder>().SetWeapon((int)ITEMLIST.BAT);
+        }
     }
 
     void Undo()

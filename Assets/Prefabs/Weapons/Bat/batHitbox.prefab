@@ -69,7 +69,6 @@ MonoBehaviour:
   damageAdd: 0
   damageMult: 0
   finalDamageMult: 1
-  finalDamageDIV: 1
   critProb: 0.05
   critMult: 2
   owner: {fileID: 0}
@@ -84,6 +83,8 @@ MonoBehaviour:
   damageToPresent: 0
   damageType: 0
   procChainIndexes: 
+  procChanceBonus: 1
+  damageToPassToVictim: 0
 --- !u!114 &6575710697619101876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -99,7 +100,11 @@ MonoBehaviour:
   itemsHeld: 
   master: {fileID: 0}
   itemGained: 0
+  weaponHeld: 0
   noToGive: 1
+  spawnedBat: {fileID: 0}
+  previousFireType: 0
+  previousFireTimerLengthMLT: 0
 --- !u!114 &-4933221265213043764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,7 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c94feffa51d560a4990478209c11dea0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxDist: 3
+  maxDist: 2
   weapon: 0
   isCharged: 0
 --- !u!70 &1319991554950079764

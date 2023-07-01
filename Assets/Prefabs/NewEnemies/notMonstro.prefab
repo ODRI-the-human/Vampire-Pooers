@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 106767412706403394}
   - component: {fileID: 2890878642605960650}
   - component: {fileID: 1191864047276907855}
+  - component: {fileID: 1686623074653136144}
   m_Layer: 6
   m_Name: notMonstro
   m_TagString: Hostile
@@ -106,6 +107,7 @@ MonoBehaviour:
   moveTowardsPlayer: 1
   recievesKnockback: 1
   dodgeUp: 1
+  isDodging: 0
   dodgeTimerLength: 20
   dodgeSpeedUp: 2
   mouseAltMode: 0
@@ -157,12 +159,10 @@ MonoBehaviour:
   damageAdd: 0
   damageMult: 1
   finalDamageMult: 0.5
-  finalDamageDIV: 1
   critProb: 0.05
   critMult: 2
   owner: {fileID: 0}
   master: {fileID: 0}
-  isMelee: 0
   massCoeff: 2
   overwriteDamageCalc: 0
   onlyDamageOnce: 0
@@ -173,6 +173,7 @@ MonoBehaviour:
   damageToPresent: 0
   damageType: 0
   procChainIndexes: 
+  damageToPassToVictim: 0
 --- !u!114 &373114558742256855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,7 +203,7 @@ MonoBehaviour:
   specialFireType: 4
   darkArtSword: {fileID: 0}
   fireTimerDIV: 1
-  attachItems: 1
+  setDamageAutomatically: 1
   doAim: 1
   fireTimerActualLength: 0
   visionRange: 8
@@ -212,8 +213,9 @@ MonoBehaviour:
   timesFired: 0
   newAttack: 0
   Crongus: 0
-  levelDamageBonus: 0
+  damageBonus: 0
   scaleAddMult: 1
+  mouseVector: {x: 0, y: 0, z: 0}
   stopwatchDebuffAmount: 0
   doShootAutomatically: 1
   getEnemyPos: 1
@@ -222,9 +224,15 @@ MonoBehaviour:
   massToGiveBullets: 0.5
   holdDownToShoot: 1
   numBulletsPossible: 16
-  canShoot: 1
+  autoFire: 1
   isFiring: 0
+  isHoldingFire: 0
   shotParticles: {fileID: 0}
+  chargeTime: 0
+  isChargedAttack: 0
+  chargeBar: {fileID: 0}
+  reticle: {fileID: 0}
+  reticlePos: {x: 0, y: 0, z: 0}
   meleeHitObj: {fileID: 0}
   hitboxSpawnDelay: 0
 --- !u!114 &8437550650503696219
@@ -403,3 +411,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healMult: 1
   healDiv: 1
+--- !u!114 &1686623074653136144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8034279136360660190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aef50bc951df7ff4da95940d4e0bd6ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemNameToAdd:
+  - CREEPSHOT

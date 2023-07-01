@@ -300,6 +300,7 @@ public class Attack : MonoBehaviour
                 if (isFiring && fireTimer > (50 / fireTimerActualLength) && isDodging == 0 && vectorToTarget != Vector2.zero)
                 {
                     UseWeapon(false);
+                    SendMessage("OnShootEffects");
                     timesFired++;
                     fireTimer = 0;
                     CreateShotFX();
@@ -318,7 +319,7 @@ public class Attack : MonoBehaviour
                         ReTarget();
                     }
 
-                    if ((currentTarget.transform.position - gameObject.transform.position).magnitude < visionRange)
+                    if (currentTarget != null && (currentTarget.transform.position - gameObject.transform.position).magnitude < visionRange)
                     {
                         isHoldingFire = true;
                     }
@@ -330,6 +331,7 @@ public class Attack : MonoBehaviour
                     if (currentTarget != null && isHoldingFire && specialFireType != 2)
                     {
                         UseWeapon(false);
+                        SendMessage("OnShootEffects");
                         timesFired++;
                         fireTimer = 0;
                         //CreateShotFX();
@@ -356,8 +358,6 @@ public class Attack : MonoBehaviour
 
     public void UseWeapon(bool angleOverride) // angleOverride is false most of the time, but true if you want to use an input currentAngle.
     {
-        SendMessage("OnShootEffects");
-
         switch (newAttack)
         {
             case 0:
@@ -450,7 +450,8 @@ public class Attack : MonoBehaviour
         newObject.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
         newObject.GetComponent<Rigidbody2D>().simulated = true;
         //newObject.AddComponent<KillBullets>();
-        newObject.GetComponent<weaponType>().weaponHeld = newObject.GetComponent<weaponType>().weaponHeld;
+        //newObject.GetComponent<weaponType>().weaponHeld = newObject.GetComponent<weaponType>().weaponHeld;
+        newObject.GetComponent<ItemHolder>().weaponHeld = gameObject.GetComponent<ItemHolder>().weaponHeld;
         newObject.GetComponent<DealDamage>().owner = gameObject.GetComponent<DealDamage>().owner;
         newObject.GetComponent<DealDamage>().finalDamageMult = gameObject.GetComponent<DealDamage>().finalDamageMult;
         newObject.GetComponent<DealDamage>().damageAdd = damageBonus; // applies converter damage bonus to bullets

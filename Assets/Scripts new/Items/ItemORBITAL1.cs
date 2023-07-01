@@ -15,13 +15,15 @@ public class ItemORBITAL1 : MonoBehaviour
         }
     }
 
-    void Start()
-    {
-        SpawnGaries();
-    }
+    //void Start()
+    //{
+    //    SpawnGaries();
+    //}
 
     void SpawnGaries()
     {
+        Debug.Log("spawned orbz");
+
         if (gameObject.tag == "Player" || gameObject.tag == "Hostile")
         {
             for (int i = 0; i < instances; i++)

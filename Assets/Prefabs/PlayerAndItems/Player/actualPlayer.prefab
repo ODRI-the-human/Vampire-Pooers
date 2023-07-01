@@ -116,7 +116,6 @@ GameObject:
   - component: {fileID: 7385574667278638271}
   - component: {fileID: 8706545436728507647}
   - component: {fileID: 2304901379503929912}
-  - component: {fileID: 6642696964697470679}
   - component: {fileID: 3451283441647153064}
   - component: {fileID: 8089619415578574566}
   - component: {fileID: 4630160360779390101}
@@ -283,11 +282,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   finalDamageStat: 0
   procCoeff: 1
-  damageBase: 0
+  damageBase: 50
   damageAdd: 0
   damageMult: 1
   finalDamageMult: 1
-  finalDamageDIV: 1
   critProb: 0.05
   critMult: 2
   owner: {fileID: 0}
@@ -379,7 +377,11 @@ MonoBehaviour:
   itemsHeld: 
   master: {fileID: 0}
   itemGained: 0
+  weaponHeld: 0
   noToGive: 1
+  spawnedBat: {fileID: 0}
+  previousFireType: 0
+  previousFireTimerLengthMLT: 0
 --- !u!212 &8706545436728507647
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -451,23 +453,6 @@ MonoBehaviour:
   healMult: 0
   nextXP: 0
   PlayerXPAudio: {fileID: 8667424581410965265, guid: 49d370b240303f34381b4ae05a28b442, type: 3}
---- !u!114 &6642696964697470679
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3448173853718531064}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1fa510d5f65fe4b429d86a4e95a6e22d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponHeld: 4
-  master: {fileID: 0}
-  spawnedBat: {fileID: 0}
-  previousFireType: 0
-  previousFireTimerLengthMLT: 0
 --- !u!114 &3451283441647153064
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -11,6 +11,23 @@ public class ItemDescriptions : MonoBehaviour
     public string itemDescription;
     public string curseDescription;
 
+    void Start()
+    {
+        if (gameObject.GetComponent<itemPedestal>() != null)
+        {
+            Invoke(nameof(LateStart), 0.02f);
+            itemChosen = gameObject.GetComponent<itemPedestal>().itemChosen;
+            getItemDescription();
+        }
+    }
+
+    void LateStart()
+    {
+        GameObject backGround = gameObject.transform.Find("backgroundSprite").gameObject;
+        backGround.GetComponent<setBackgroundColor>().qualityChosen = quality;
+        backGround.GetComponent<setBackgroundColor>().SetColour();
+    }
+
     public void GetCurseDescription(int curseType)
     {
         //Debug.Log("Curse Type: " + curseType.ToString());
@@ -22,26 +39,26 @@ public class ItemDescriptions : MonoBehaviour
             case 0: // Gives player three of the item, gives enemies one.
                 curseDescription = "Gain three of this item, but all enemies gain one instance.";
                 break;
-            case 1: // Get 1 of this item every time you pick up an item, lose 2 items on hit (perm)
+            case 1: // Get 1 of this item every third time you pick up an item, lose 2 items on hit (perm)
                 curseDescription = "Gain one of this item every third time you pick up an item, but lose 2 random items every time you take damage.";
                 break;
             case 2: // Get 3 of the item, lose 5 random items (ONCE) if you get hit in the next 2 rounds.
                 curseDescription = "Gain three of this item, but if you get hit in the next 2 rounds, you lose 5 random items (only happens once).";
                 break;
             case 3: // Give enemies one of the item, if an enemy dies in the next 2 rounds they can drop an item they hold.
-                curseDescription = "Enemies permanently gain one of this item, but have a 10% chance to drop a random item they hold on death for the next two rounds.";
+                curseDescription = "Enemies permanently gain one of this item, but have a 5% chance to drop a random item they hold on death for the next two rounds.";
                 break;
             case 4: // Get five of the item, but can't heal ever again.
                 curseDescription = "Gain five of this item, but you can never heal again.";
                 break;
-            case 5: // Get five of the item, but die instantly if hit in the next 2 rounds.
-                curseDescription = "Gain five of this item, but taking any damage in the next two rounds instantly kills you";
+            case 5: // Get three of the item, but die instantly if hit in the next 2 rounds.
+                curseDescription = "Gain three of this item, but taking any damage in the next two rounds instantly kills you";
                 break;
             case 6: // gives 3 of the item.
-                curseDescription = "Gain three of this item - no downside!";
+                curseDescription = "Gain two of this item - no downside!";
                 break;
             case 7: // gives 10 of the item.
-                curseDescription = "Gain ten of this item - no downside!";
+                curseDescription = "Gain five of this item - no downside!";
                 break;
         }
     }
@@ -141,7 +158,7 @@ public class ItemDescriptions : MonoBehaviour
                 whatUses = (int)ITEMOWNERS.BULLET;
                 break;
             case (int)ITEMLIST.FOURDIRMARTY:
-                itemDescription = "Every 5 (-1 per stack) shots, fire 3 extra bullets around you that copy all your item effects.";
+                itemDescription = "Every 4 shots, fire a number of bullets in a circle around you.";
                 quality = (int)ITEMTIERS.COMMON;
                 addNewScriptForNewInstance = false;
                 whatUses = (int)ITEMOWNERS.CANSHOOT;
@@ -221,7 +238,7 @@ public class ItemDescriptions : MonoBehaviour
             case (int)ITEMLIST.REROLL:
                 quality = (int)ITEMTIERS.UNCOMMON;
                 itemDescription = "Reroll all your items.";
-                addNewScriptForNewInstance = true;
+                addNewScriptForNewInstance = false;
                 whatUses = (int)ITEMOWNERS.MASTERANDPLAYER;
                 break;
             case (int)ITEMLIST.PERFECTHEAL:
@@ -309,10 +326,10 @@ public class ItemDescriptions : MonoBehaviour
                 whatUses = (int)ITEMOWNERS.BULLET;
                 break;
             case (int)ITEMLIST.LUCKIER:
-                quality = (int)ITEMTIERS.COMMON;
-                itemDescription = "Proc coefficient increased by 1 (proc effects are more likely to occur)";
-                addNewScriptForNewInstance = true;
-                whatUses = (int)ITEMOWNERS.ALL;
+                quality = (int)ITEMTIERS.LEGENDARY;
+                itemDescription = "All luck-based events are more likely to occur";
+                addNewScriptForNewInstance = false;
+                whatUses = (int)ITEMOWNERS.BEING;
                 break;
             case (int)ITEMLIST.MORECRITS:
                 quality = (int)ITEMTIERS.COMMON;
@@ -333,7 +350,7 @@ public class ItemDescriptions : MonoBehaviour
                 quality = (int)ITEMTIERS.NULL;
                 itemDescription = "On collision, your shots leave creep that deals 10% (+10% per stack) of your bullet damage per tick";
                 addNewScriptForNewInstance = false;
-                whatUses = (int)ITEMOWNERS.ALL;
+                whatUses = (int)ITEMOWNERS.BULLET;
                 break;
 
 

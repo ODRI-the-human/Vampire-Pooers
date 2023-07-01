@@ -78,7 +78,6 @@ public class ThirdEnemySpawner : MonoBehaviour
             }
         }
 
-        waveText.text = "Wave: " + (spawnNumber - 1).ToString() + " / Round: " + (waveNumber + 1).ToString();
         spawnTimer--;
         if (spawnTimer < 0)
         {

@@ -71,7 +71,7 @@ public class checkAllLazerPositions : MonoBehaviour
 
             hitboxPosses.Add(transform.position);
 
-            transform.position += 0.4f * vecToMove;
+            transform.position += 0.6f * vecToMove;
 
             // Applying homing effect.
             if (gameObject.GetComponent<ItemHOMING>() != null && actuallyHit)
@@ -134,18 +134,19 @@ public class checkAllLazerPositions : MonoBehaviour
                     if (doContinue && actuallyHit)
                     {
                         //Debug.Log("fsdmmfds");
-                        float procMoment = 100f - 100f * gameObject.GetComponent<DealDamage>().critProb * gameObject.GetComponent<DealDamage>().procCoeff;
-                        float pringle = Random.Range(0f, 100f);
-                        float critMult = 1;
-                        bool isCrit = false;
-                        if (pringle > procMoment)
-                        {
-                            critMult = gameObject.GetComponent<DealDamage>().critMult;
-                            //Instantiate(CritAudio);
-                            isCrit = true;
-                        }
-                        float damageAmount = gameObject.GetComponent<DealDamage>().finalDamageStat * critMult;
-                        col.gameObject.GetComponent<HPDamageDie>().Hurty(gameObject.GetComponent<DealDamage>().damageAmt, isCrit, true, 1, (int)DAMAGETYPES.ELECTRIC, false, gameObject);
+                        //float procMoment = 100f - 100f * gameObject.GetComponent<DealDamage>().critProb * gameObject.GetComponent<DealDamage>().procCoeff;
+                        //float pringle = Random.Range(0f, 100f);
+                        //float critMult = 1;
+                        //bool isCrit = false;
+                        //if (pringle > procMoment)
+                        //{
+                        //    critMult = gameObject.GetComponent<DealDamage>().critMult;
+                        //    //Instantiate(CritAudio);
+                        //    isCrit = true;
+                        //}
+                        gameObject.GetComponent<DealDamage>().CalculateDamage(col.gameObject);
+                        //float damageAmount = gameObject.GetComponent<DealDamage>().finalDamageStat * critMult;
+                        //col.gameObject.GetComponent<HPDamageDie>().Hurty(gameObject.GetComponent<DealDamage>().damageAmt, isCrit, true, 1, (int)DAMAGETYPES.ELECTRIC, false, gameObject);
                         //gameObject.GetComponent<ParticleSystem>().Emit(50);
                         //gameObject.GetComponent<DealDamage>().TriggerTheOnHits(col.gameObject);
                         ignoredHits.Add(col.gameObject);
@@ -161,13 +162,13 @@ public class checkAllLazerPositions : MonoBehaviour
                     // Applying split shots.
                     if (doContinue && gameObject.GetComponent<ItemSPLIT>() != null && gameObject.GetComponent<ItemSPLIT>().canSplit && actuallyHit)
                     {
-                        for (int j = 0; j < 2; j++)
+                        for (int j = 0; j < 2 * gameObject.GetComponent<ItemSPLIT>().instances; j++)
                         {
                             GameObject merman = Instantiate(thinguy, transform.position, Quaternion.Euler(0, 0, 0));
-                            merman.GetComponent<checkAllLazerPositions>().vecToMove = (2 * j - 1) * new Vector3(vecToMove.y, -vecToMove.x, 0); // Rotates vector 90 degrees.
+                            merman.GetComponent<checkAllLazerPositions>().vecToMove = vecToMove.magnitude * new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0).normalized;//(2 * j - 1) * new Vector3(vecToMove.y, -vecToMove.x, 0); // Rotates vector 90 degrees.
                             merman.GetComponent<checkAllLazerPositions>().setVecToMoveAutomatically = false;
                             //merman.GetComponent<DealDamage>().overwriteDamageCalc = false;
-                            merman.GetComponent<DealDamage>().damageBase *= 0.3f * gameObject.GetComponent<ItemSPLIT>().instances;// * gameObject.GetComponent<DealDamage>().damageAmt;
+                            merman.GetComponent<DealDamage>().damageBase *= 0.3f;// * gameObject.GetComponent<DealDamage>().damageAmt;
                             //merman.GetComponent<DealDamage>().CalcDamage();// * gameObject.GetComponent<DealDamage>().damageAmt;
                             //merman.GetComponent<DealDamage>().finalDamageStat = gameObject.GetComponent<DealDamage>().damageAmt;
                             merman.GetComponent<ItemSPLIT>().canSplit = false;
@@ -179,20 +180,34 @@ public class checkAllLazerPositions : MonoBehaviour
                 if ((col.gameObject.tag == "PlayerBullet" && gameObject.tag == "enemyBullet") || (col.gameObject.tag == "enemyBullet" && gameObject.tag == "PlayerBullet"))
                 {
                     // Damaging homing mines.
-                    if (col.gameObject.GetComponent<HPDamageDie>() != null && actuallyHit)
+                    bool doContinue = true;
+
+                    foreach (GameObject thingy in ignoredHits)
                     {
-                        float procMoment = 100f - 100f * gameObject.GetComponent<DealDamage>().critProb * gameObject.GetComponent<DealDamage>().procCoeff;
-                        float pringle = Random.Range(0f, 100f);
-                        float critMult = 1;
-                        bool isCrit = false;
-                        if (pringle > procMoment)
+                        if (col.gameObject == thingy)
                         {
-                            critMult = gameObject.GetComponent<DealDamage>().critMult;
-                            //Instantiate(CritAudio);
-                            isCrit = true;
+                            doContinue = false;
                         }
-                        float damageAmount = gameObject.GetComponent<DealDamage>().finalDamageStat * critMult;
-                        col.gameObject.GetComponent<HPDamageDie>().Hurty(gameObject.GetComponent<DealDamage>().damageAmt, isCrit, true, 1, (int)DAMAGETYPES.ELECTRIC, false, gameObject);
+                    }
+
+                    if (doContinue && actuallyHit && col.gameObject.GetComponent<HPDamageDie>() != null)
+                    {
+                        //Debug.Log("fsdmmfds");
+                        //float procMoment = 100f - 100f * gameObject.GetComponent<DealDamage>().critProb * gameObject.GetComponent<DealDamage>().procCoeff;
+                        //float pringle = Random.Range(0f, 100f);
+                        //float critMult = 1;
+                        //bool isCrit = false;
+                        //if (pringle > procMoment)
+                        //{
+                        //    critMult = gameObject.GetComponent<DealDamage>().critMult;
+                        //    //Instantiate(CritAudio);
+                        //    isCrit = true;
+                        //}
+                        gameObject.GetComponent<DealDamage>().CalculateDamage(col.gameObject);
+                        //float damageAmount = gameObject.GetComponent<DealDamage>().finalDamageStat * critMult;
+                        //col.gameObject.GetComponent<HPDamageDie>().Hurty(gameObject.GetComponent<DealDamage>().damageAmt, isCrit, true, 1, (int)DAMAGETYPES.ELECTRIC, false, gameObject);
+                        //gameObject.GetComponent<ParticleSystem>().Emit(50);
+                        //gameObject.GetComponent<DealDamage>().TriggerTheOnHits(col.gameObject);
                         ignoredHits.Add(col.gameObject);
                     }
 
@@ -248,12 +263,14 @@ public class checkAllLazerPositions : MonoBehaviour
                         var renderer = particles.GetComponent<ParticleSystemRenderer>();
                         renderer.trailMaterial = shoot; // Applies the new value directly to the Particle System
                         LightFunny();
+                        SendMessage("OnWallHit");
                     }
 
                     // Damaging rocks.
                     if (col.gameObject.GetComponent<obstHP>() != null)
                     {
-                        col.gameObject.GetComponent<obstHP>().owMyEntireRockIsInPain(gameObject);
+                        float damageToDo = gameObject.GetComponent<DealDamage>().GetDamageAmount();
+                        col.gameObject.GetComponent<obstHP>().owMyEntireRockIsInPain(gameObject, damageToDo);
                     }
 
                     // Applying bouncy effect.

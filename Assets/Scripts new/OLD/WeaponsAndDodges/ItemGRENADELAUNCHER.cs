@@ -7,8 +7,7 @@ public class ItemGRENADELAUNCHER : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameObject.GetComponent<weaponType>().weaponHeld = (int)ITEMLIST.GRENADELAUNCHER;
-        gameObject.GetComponent<weaponType>().SetWeapon();
+        gameObject.GetComponent<ItemHolder>().SetWeapon((int)ITEMLIST.GRENADELAUNCHER);
     }
 
     // Update is called once per frame

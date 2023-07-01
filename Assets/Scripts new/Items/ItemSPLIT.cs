@@ -50,11 +50,11 @@ public class ItemSPLIT : MonoBehaviour
             {
                 if (gameObject.tag == "PlayerBullet" || gameObject.tag == "enemyBullet")
                 {
-                    for (int i = 0; i < 2; i++)
+                    for (int i = 0; i < 2 * instances; i++)
                     {
                         GameObject Splitman1 = Instantiate(Buuleter, transform.position, transform.rotation);
                         Splitman1.transform.localScale = 0.8f * instances * gameObject.transform.localScale;
-                        Splitman1.GetComponent<DealDamage>().finalDamageMult *= 0.3f * gameObject.GetComponent<DealDamage>().finalDamageMult * instances;
+                        Splitman1.GetComponent<DealDamage>().finalDamageMult *= 0.3f * gameObject.GetComponent<DealDamage>().finalDamageMult;
                         Splitman1.GetComponent<DealDamage>().massCoeff = 0.5f * gameObject.GetComponent<DealDamage>().massCoeff;
                         Splitman1.GetComponent<DealDamage>().owner = owner;
                         Splitman1.GetComponent<DealDamage>().damageBase += owner.GetComponent<Attack>().Crongus;
@@ -65,10 +65,9 @@ public class ItemSPLIT : MonoBehaviour
                         Splitman1.AddComponent<ItemSPLIT>();
                         Splitman1.GetComponent<ItemSPLIT>().canSplit = false;
                         speed = 15;
-                        ShotVector = speed * (owner.transform.position - victim.transform.position).normalized;
                         Splitman1.transform.position = victim.transform.position;
                         Splitman1.transform.localScale = 0.3f * new Vector3(1, 1, 1);
-                        Splitman1.GetComponent<Rigidbody2D>().velocity = new Vector3(ShotVector.x * Mathf.Cos(-((i * 2) - 1) * Mathf.PI / 2) - ShotVector.y * Mathf.Sin(-((i * 2) - 1) * Mathf.PI / 2), ShotVector.x * Mathf.Sin(-((i * 2) - 1) * Mathf.PI / 2) + ShotVector.y * Mathf.Cos(-((i * 2) - 1) * Mathf.PI / 2), 0);
+                        Splitman1.GetComponent<Rigidbody2D>().velocity = speed * new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0).normalized;
                     }
                 }
             }
@@ -80,7 +79,7 @@ public class ItemSPLIT : MonoBehaviour
                 for (int i = 0; i < 2; i++)
                 {
                     GameObject owner = gameObject.GetComponent<DealDamage>().owner;
-                    StartCoroutine(owner.GetComponent<Attack>().SpawnMelee(Mathf.PI * (1 + 2 * i) / 2, victim.transform.position - owner.transform.position, victim, 0.3f * instances * gameObject.GetComponent<DealDamage>().finalDamageMult, 0, 0.8f, false));
+                    StartCoroutine(owner.GetComponent<Attack>().SpawnMelee(Random.Range(0f, 10000f) * (1 + 2 * i) / 2, victim.transform.position - owner.transform.position, victim, 0.3f * instances * gameObject.GetComponent<DealDamage>().finalDamageMult, 0, 0.8f, false));
                 }
             }
         }

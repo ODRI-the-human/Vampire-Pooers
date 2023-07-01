@@ -38,7 +38,7 @@ public class explodeOnHit : MonoBehaviour
     {
         GameObject splodo = Instantiate(explosion, transform.position, Quaternion.Euler(0, 0, 0));
         splodo.transform.localScale = new Vector3(2, 2, 2);
-        splodo.GetComponent<DealDamage>().damageAmt = gameObject.GetComponent<DealDamage>().damageAmt;
+        splodo.GetComponent<DealDamage>().finalDamageStat = gameObject.GetComponent<DealDamage>().GetDamageAmount();
     }
 
     void OnCollisionEnter2D(Collision2D col)

@@ -240,6 +240,7 @@ GameObject:
   - component: {fileID: 9051745121226363959}
   - component: {fileID: 9051745121226363958}
   - component: {fileID: 9051745121226363962}
+  - component: {fileID: -1373568901774345628}
   m_Layer: 12
   m_Name: itemPedestalWithLight
   m_TagString: item
@@ -412,6 +413,7 @@ MonoBehaviour:
   - {fileID: -2008572483, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
   - {fileID: 549624536, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
   - {fileID: 627135040, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
+  - {fileID: 1124128864, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
   - {fileID: 784971922, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
   - {fileID: 1218775636, guid: e0fb38cd9cae423489f4b20e3884c4b0, type: 3}
   - {fileID: 555977383, guid: e0fb38cd9cae423489f4b20e3884c4b0, type: 3}
@@ -427,3 +429,21 @@ MonoBehaviour:
   qualityWeightsSum: 0
   randomedQuality: 0
   specialItemWeightsSum: 0
+--- !u!114 &-1373568901774345628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9051745121226363957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eced7db9ba902254698e2a49e38b4b49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemChosen: 0
+  addNewScriptForNewInstance: 0
+  whatUses: 0
+  quality: 0
+  itemDescription: 
+  curseDescription: 

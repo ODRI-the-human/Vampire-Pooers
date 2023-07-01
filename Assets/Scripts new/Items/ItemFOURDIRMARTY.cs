@@ -6,13 +6,6 @@ public class ItemFOURDIRMARTY : MonoBehaviour
 {
 
     public int instances = 1;
-    int garryFredricson;
-    int prevAttackNo;
-
-    void Start()
-    {
-        garryFredricson = 0;
-    }
 
     void IncreaseInstances(string name)
     {
@@ -22,9 +15,10 @@ public class ItemFOURDIRMARTY : MonoBehaviour
         }
     }
 
-    void Update()
+    void OnShootEffects()
     {
-        if (gameObject.GetComponent<Attack>().timesFired % 4 == 0 && garryFredricson == 0)
+        //Debug.Log("times fired: " + gameObject.GetComponent<Attack>().timesFired.ToString());
+        if (gameObject.GetComponent<Attack>().timesFired % 4 == 0)
         {
             for (int i = 1; i < instances * 4; i++)
             {
@@ -32,15 +26,7 @@ public class ItemFOURDIRMARTY : MonoBehaviour
                 //Debug.Log("Family Guy: " + gameObject.GetComponent<Attack>().currentAngle.ToString());
                 gameObject.GetComponent<Attack>().UseWeapon(true);
             }
-            garryFredricson = 1;
-            prevAttackNo = gameObject.GetComponent<Attack>().newAttack;
         }
-        
-        if (prevAttackNo != gameObject.GetComponent<Attack>().newAttack)
-        {
-            garryFredricson = 0;
-        }
-
     }
 
     public void Undo()

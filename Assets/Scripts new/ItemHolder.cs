@@ -8,12 +8,26 @@ public class ItemHolder : MonoBehaviour
     public List<int> itemsHeld = new List<int>();
     public GameObject master;
     public int itemGained;
+    public int weaponHeld;
     public int noToGive = 1;
     int timermf;
+
+    public GameObject spawnedBat;
+
+    //Stores the PREVIOUS stats of the weapon held, needed for when enemies use Dark Arts.
+    public int previousFireType;
+    public float previousFireTimerLengthMLT;
 
     void Start()
     {
         master = EntityReferencerGuy.Instance.master;
+
+        if (gameObject.GetComponent<Attack>() != null)
+        {
+            previousFireType = gameObject.GetComponent<Attack>().specialFireType;
+            previousFireTimerLengthMLT = gameObject.GetComponent<Attack>().fireTimerLengthMLT;
+        }
+
         ApplyAll();
     }
 
@@ -25,6 +39,7 @@ public class ItemHolder : MonoBehaviour
             itemGained = item;
             ApplyItems();
         }
+        SetWeapon(weaponHeld);
 
         //if (gameObject.tag == "Player")
         //{
@@ -86,91 +101,96 @@ public class ItemHolder : MonoBehaviour
                 }
             }
         }
-
-        //    case (int)ITEMLIST.DODGEROLL:
-        //        if (gameObject.tag == "Player")
-        //        {
-        //            gameObject.GetComponent<NewPlayerMovement>().mouseAltMode = 0;
-        //            master.GetComponent<ThirdEnemySpawner>().playerBannedDodge = (int)ITEMLIST.DODGEROLL;
-        //        }
-        //        break;
-        //    case (int)ITEMLIST.SHOULDERBASH:
-        //        if (gameObject.tag == "Player")
-        //        {
-        //            gameObject.GetComponent<NewPlayerMovement>().mouseAltMode = 1;
-        //            master.GetComponent<ThirdEnemySpawner>().playerBannedDodge = (int)ITEMLIST.SHOULDERBASH;
-        //        }
-        //        break;
-
-
-        //    case (int)ITEMLIST.PISTOL:
-        //        if (gameObject.GetComponent<weaponType>() != null)
-        //        {
-        //            gameObject.GetComponent<weaponType>().weaponHeld = (int)ITEMLIST.PISTOL;
-        //            gameObject.GetComponent<weaponType>().SetWeapon();
-
-        //            if (gameObject.tag == "Player")
-        //            {
-        //                master.GetComponent<ThirdEnemySpawner>().playerBannedWeapon = (int)ITEMLIST.PISTOL;
-        //            }
-        //        }
-        //        break;
-        //    case (int)ITEMLIST.GRENADELAUNCHER:
-        //        if (gameObject.GetComponent<weaponType>() != null)
-        //        {
-        //            gameObject.GetComponent<weaponType>().weaponHeld = (int)ITEMLIST.GRENADELAUNCHER;
-        //            gameObject.GetComponent<weaponType>().SetWeapon();
-
-        //            if (gameObject.tag == "Player")
-        //            {
-        //                master.GetComponent<ThirdEnemySpawner>().playerBannedWeapon = (int)ITEMLIST.GRENADELAUNCHER;
-        //            }
-        //        }
-        //        break;
-        //    case (int)ITEMLIST.LAZER:
-        //        if (gameObject.GetComponent<weaponType>() != null)
-        //        {
-        //            gameObject.GetComponent<weaponType>().weaponHeld = (int)ITEMLIST.LAZER;
-        //            gameObject.GetComponent<weaponType>().SetWeapon();
-
-        //            if (gameObject.tag == "Player")
-        //            {
-        //                master.GetComponent<ThirdEnemySpawner>().playerBannedWeapon = (int)ITEMLIST.LAZER ;
-        //            }
-        //        }
-        //        break;
-        //    case (int)ITEMLIST.BAT:
-        //        if (gameObject.GetComponent<weaponType>() != null)
-        //        {
-        //            gameObject.GetComponent<weaponType>().weaponHeld = (int)ITEMLIST.BAT;
-        //            gameObject.GetComponent<weaponType>().SetWeapon();
-
-        //            if (gameObject.tag == "Player")
-        //            {
-        //                master.GetComponent<ThirdEnemySpawner>().playerBannedWeapon = (int)ITEMLIST.BAT;
-        //            }
-        //        }
-        //        break;
-
-
-
-
-        //    case (int)ITEMLIST.CREEPSHOT:
-        //        if (isBullet)
-        //        {
-        //            gameObject.AddComponent<ItemCREEPSHOT>();
-        //        }
-        //        break;
-        //}
     }
 
-    //void OnTriggerEnter2D(Collider2D col)
-    //{
-    //    if (col.tag == "item")
-    //    {
-    //        GiveFunny(col.gameObject);
-    //    }
-    //}
+    public void SetWeapon(int weaponToGive)
+    {
+        if (gameObject.GetComponent<BatVisual>() != null)
+        {
+            gameObject.GetComponent<BatVisual>().Kill();
+        }
+
+        Debug.Log("weapon set xd");
+
+        switch (weaponToGive)
+        {
+            case 0: // For resetting enemies' shit back to their normie settings.
+                if (gameObject.GetComponent<Attack>() != null)
+                {
+                    gameObject.GetComponent<Attack>().specialFireType = previousFireType;
+                    gameObject.GetComponent<Attack>().fireTimerLengthMLT = previousFireTimerLengthMLT;
+                }
+                break;
+            case (int)ITEMLIST.PISTOL:
+                if (gameObject.GetComponent<Attack>() != null)
+                {
+                    gameObject.GetComponent<Attack>().specialFireType = 0;
+                    gameObject.GetComponent<Attack>().fireTimerLengthMLT = 1;
+                    gameObject.GetComponent<Attack>().shotSpeed = 15;
+                    gameObject.GetComponent<Attack>().holdDownToShoot = true;
+                    gameObject.GetComponent<Attack>().shotParticles = EntityReferencerGuy.Instance.regularShotParticle;
+                }
+                break;
+            case (int)ITEMLIST.GRENADELAUNCHER:
+                if (gameObject.GetComponent<Attack>() != null)
+                {
+                    gameObject.GetComponent<Attack>().specialFireType = 0;
+                    gameObject.GetComponent<Attack>().fireTimerLengthMLT = 1.5f;
+                    gameObject.GetComponent<Attack>().shotSpeed = 45;
+                    gameObject.GetComponent<Attack>().holdDownToShoot = true;
+                    gameObject.GetComponent<Attack>().shotParticles = EntityReferencerGuy.Instance.regularShotParticle;
+                }
+                if (gameObject.GetComponent<Attack>() == null)
+                {
+                    gameObject.GetComponent<DealDamage>().finalDamageMult *= 1.5f;
+                    gameObject.AddComponent<explodeOnHit>();
+                }
+                break;
+            case (int)ITEMLIST.DARKARTS:
+                if (gameObject.GetComponent<Attack>() != null)
+                {
+                    previousFireType = gameObject.GetComponent<Attack>().specialFireType;
+                    previousFireTimerLengthMLT = gameObject.GetComponent<Attack>().fireTimerLengthMLT;
+
+                    gameObject.GetComponent<Attack>().specialFireType = 3;
+                    gameObject.GetComponent<Attack>().fireTimerLengthMLT = 0.5f;
+                    gameObject.GetComponent<Attack>().holdDownToShoot = true;
+                    gameObject.GetComponent<Attack>().shotParticles = EntityReferencerGuy.Instance.empty;
+                }
+                break;
+            case (int)ITEMLIST.LAZER:
+                if (gameObject.GetComponent<Attack>() != null)
+                {
+                    gameObject.GetComponent<Attack>().specialFireType = 5;
+                    gameObject.GetComponent<Attack>().fireTimerLengthMLT = 1.2f;
+                    gameObject.GetComponent<Attack>().shotSpeed = 10;
+                    gameObject.GetComponent<Attack>().holdDownToShoot = true;
+                    gameObject.GetComponent<Attack>().shotParticles = EntityReferencerGuy.Instance.empty;
+                }
+                break;
+            case (int)ITEMLIST.BAT:
+                if (gameObject.GetComponent<Attack>() != null)
+                {
+                    //gameObject.GetComponent<NewPlayerMovement>().AttackStatus(false); // otherwise the player is slow (silly)
+                    //gameObject.GetComponent<Attack>().specialFireType = 6;
+                    gameObject.GetComponent<Attack>().fireTimerLengthMLT = 1;
+                    gameObject.GetComponent<Attack>().holdDownToShoot = false;
+                    //spawnedBat = Instantiate(EntityReferencerGuy.Instance.bat);
+                    //spawnedBat.GetComponent<faceInFunnyDirection>().owner = gameObject;
+                    gameObject.GetComponent<Attack>().shotParticles = EntityReferencerGuy.Instance.empty;
+                    gameObject.AddComponent<BatVisual>();
+
+                    gameObject.GetComponent<Attack>().meleeHitObj = EntityReferencerGuy.Instance.batHitbox;
+                    gameObject.GetComponent<Attack>().hitboxSpawnDelay = 0.1f;
+                    gameObject.GetComponent<Attack>().specialFireType = 3;
+                }
+                break;
+        }
+
+        weaponHeld = weaponToGive;
+
+        SendMessage("itemsAdded", false);
+    }
 
     public void itemsAdded()
     {
@@ -181,10 +201,9 @@ public class ItemHolder : MonoBehaviour
     {
         bool itemIsPassive = false;
         itemGained = bumbino.GetComponent<itemPedestal>().itemChosen;
-        if (bumbino.GetComponent<itemPedestal>().chosenQuality == (int)ITEMTIERS.WEAPON || bumbino.GetComponent<itemPedestal>().chosenQuality == (int)ITEMTIERS.DODGE) // Makes it so extra copies of items only get applied if they're NOT a weapon or dodge, otherwise you could waste them.
+        if (bumbino.GetComponent<itemPedestal>().chosenQuality == (int)ITEMTIERS.WEAPON) // Makes it so extra copies of items only get applied if they're NOT a weapon or dodge, otherwise you could waste them.
         {
-            itemsHeld.Add(itemGained);
-            ApplyItems();
+            SetWeapon(itemGained);
         }
         else
         {
@@ -195,7 +214,6 @@ public class ItemHolder : MonoBehaviour
                 ApplyItems();
             }
         }
-
         //Debug.Log(itemIsPassive.ToString());
 
         SendMessage("itemsAdded", itemIsPassive);

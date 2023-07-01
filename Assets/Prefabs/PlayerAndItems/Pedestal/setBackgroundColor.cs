@@ -9,14 +9,15 @@ public class setBackgroundColor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Invoke(nameof(LateStart), 0.02f);
+        //Invoke(nameof(LateStart), 0.02f);
         gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
     }
 
-    void LateStart()
+    public void SetColour()
     {
-        GameObject parent = transform.parent.gameObject;
-        qualityChosen = parent.GetComponent<itemPedestal>().chosenQuality;
+        Debug.Log("color moment");
+        //GameObject parent = transform.parent.gameObject;
+        //qualityChosen = parent.GetComponent<itemPedestal>().chosenQuality;
 
         switch (qualityChosen)
         {
@@ -30,13 +31,10 @@ public class setBackgroundColor : MonoBehaviour
                 gameObject.GetComponent<SpriteRenderer>().color = Color.yellow;
                 break;
             case (int)ITEMTIERS.NULL:
-                gameObject.GetComponent<SpriteRenderer>().color = Color.black;
+                gameObject.GetComponent<SpriteRenderer>().color = new Color(0.5f, 0, 1, 1);
                 break;
             case (int)ITEMTIERS.WEAPON:
                 gameObject.GetComponent<SpriteRenderer>().color = Color.red;
-                break;
-            case (int)ITEMTIERS.DODGE:
-                gameObject.GetComponent<SpriteRenderer>().color = Color.cyan;
                 break;
         }
     }

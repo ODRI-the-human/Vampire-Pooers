@@ -2,6 +2,7 @@ using System.ComponentModel;
 
 public enum ITEMLIST
 {
+    // Normal items. Keep HP25 first.
     HP25, // Increases HP by 25
     HP50, // Increases HP by 50
     DMGADDPT5, // Increases damage stat by 0.5
@@ -48,24 +49,14 @@ public enum ITEMLIST
     LUCKIER,
     MORECRITS,
     MARCEL,
+    CREEPSHOT,
 
-
-
-    //DODGEROLL,
-    //SHOULDERBASH,
-
+    // Weapons. Keep pistol first.
     PISTOL,
     GRENADELAUNCHER,
     LAZER,
     BAT,
 
-
+    // Weapons that only get added situationally. Set Dark Arts as the first.
     DARKARTS,
-
-
-
-
-
-    //This is for items that only enemies use.
-    CREEPSHOT,
 }

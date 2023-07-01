@@ -97,19 +97,19 @@ public class keepBestScore : MonoBehaviour
             switch (textToDisplay)
             {
                 case 0:
-                    bullyText.text = "If you had dodged some of those attacks you might've survived...";
+                    bullyText.text = "WOW you are horrible at this game! Nice job!!!!!!!!! (I still love you though)";
                     break;
                 case 1:
-                    bullyText.text = "Unfortunate, guess you ran out of luck - remember your luck decreases at an exponential rate! (not really!)";
+                    bullyText.text = "you died. that must feel bad.";
                     break;
                 case 2:
-                    bullyText.text = "Remember: oh the treachery, every single brightly coloured circle is an enemy. Well, most of them. Some aren't brightly coloured.";
+                    bullyText.text = "barry 63 is disappointed.";
                     break;
                 case 3:
-                    bullyText.text = "The Boberman is particularly susceptible to death - he can be killed by LITERALLY one single death. Be careful.";
+                    bullyText.text = "this is the single funniest death message ever";
                     break;
                 case 4:
-                    bullyText.text = "Tip: press 'Q' to enter turn-based RPG mode. It'll give you time to plan all your moves! Pressing it again toggles it off. This is definitely NOT a debug tool.";
+                    bullyText.text = "tip: don't die silly";
                     break;
             }
         }

@@ -50,9 +50,8 @@ public class ItemBERSERK : MonoBehaviour
         if (gameObject.GetComponent<weaponType>().weaponHeld != (int)ITEMLIST.DARKARTS && gameObject.GetComponent<LevelUp>().level % 2 == 0)
         {
             pastWeapon = gameObject.GetComponent<weaponType>().weaponHeld;
-            gameObject.GetComponent<weaponType>().weaponHeld = (int)ITEMLIST.DARKARTS;
             Debug.Log("Dingus");
-            gameObject.GetComponent<weaponType>().SetWeapon();
+            gameObject.GetComponent<weaponType>().SetWeapon((int)ITEMLIST.DARKARTS);
             if (gameObject.tag == "Player")
             {
                 master.GetComponent<AudioSource>().volume = 0;
@@ -75,8 +74,7 @@ public class ItemBERSERK : MonoBehaviour
         if (isActive && gameObject.GetComponent<weaponType>().weaponHeld != (int)ITEMLIST.DARKARTS) // For if the player picks up a new weapon while this is active.
         {
             pastWeapon = gameObject.GetComponent<weaponType>().weaponHeld;
-            gameObject.GetComponent<weaponType>().weaponHeld = (int)ITEMLIST.DARKARTS;
-            gameObject.GetComponent<weaponType>().SetWeapon();
+            gameObject.GetComponent<weaponType>().SetWeapon((int)ITEMLIST.DARKARTS);
         }
 
         if (timer == 75 + 75 * instances && gameObject.GetComponent<weaponType>().weaponHeld == (int)ITEMLIST.DARKARTS)
@@ -87,9 +85,8 @@ public class ItemBERSERK : MonoBehaviour
 
     public void EndBerserk()
     {
-        gameObject.GetComponent<weaponType>().weaponHeld = pastWeapon;
         Debug.Log("Bringus");
-        gameObject.GetComponent<weaponType>().SetWeapon();
+        gameObject.GetComponent<weaponType>().SetWeapon(pastWeapon);
         gameObject.GetComponent<Attack>().bulletPool.Dispose();
         if (gameObject.tag == "Player")
         {

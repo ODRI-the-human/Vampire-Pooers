@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: items
   m_EditorClassIdentifier: 
   hashCode: 128786246
-  material: {fileID: 634222693335488186}
+  material: {fileID: 772027922546500976}
   materialHashCode: 0
   m_Version: 1.1.0
   m_FaceInfo:
@@ -1020,8 +1020,8 @@ MonoBehaviour:
       m_HorizontalBearingY: 16
       m_HorizontalAdvance: 32
     m_GlyphRect:
-      m_X: 448
-      m_Y: 96
+      m_X: 0
+      m_Y: 32
       m_Width: 32
       m_Height: 32
     m_Scale: 1
@@ -1029,7 +1029,7 @@ MonoBehaviour:
     sprite: {fileID: 784971922, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
   spriteInfoList: []
   fallbackSpriteAssets: []
---- !u!21 &634222693335488186
+--- !u!21 &772027922546500976
 Material:
   serializedVersion: 8
   m_ObjectHideFlags: 1

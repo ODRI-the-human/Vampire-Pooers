@@ -44,14 +44,13 @@ public class OrbitalMovement2 : MonoBehaviour
 
         int currentWeapon = gameObject.GetComponent<weaponType>().weaponHeld;
         GameObject owner = gameObject.GetComponent<DealDamage>().owner;
-        int ownerWeapon = owner.GetComponent<weaponType>().weaponHeld;
+        int ownerWeapon = owner.GetComponent<ItemHolder>().weaponHeld;
         gameObject.GetComponent<Attack>().fireTimerLengthMLT = owner.GetComponent<Attack>().fireTimerLengthMLT;
         gameObject.GetComponent<Attack>().Crongus = owner.GetComponent<Attack>().Crongus;
         gameObject.GetComponent<Attack>().damageBonus = owner.GetComponent<Attack>().damageBonus;
         if (currentWeapon != ownerWeapon)
         {
-            gameObject.GetComponent<weaponType>().weaponHeld = ownerWeapon;
-            gameObject.GetComponent<weaponType>().SetWeapon();
+            gameObject.GetComponent<weaponType>().SetWeapon(ownerWeapon);
         }
 
         if (gameObject.GetComponent<Attack>().Bullet == null)

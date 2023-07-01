@@ -9,25 +9,25 @@ public class obstHP : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D col)
     {
-        owMyEntireRockIsInPain(col.gameObject);
-    }
-    
-    public void OnTriggerEnter2D(Collider2D col)
-    {
-        owMyEntireRockIsInPain(col.gameObject);
+        owMyEntireRockIsInPain(col.gameObject, col.gameObject.GetComponent<DealDamage>().GetDamageAmount());
     }
 
-    public void owMyEntireRockIsInPain(GameObject thingy)
+    public void OnTriggerEnter2D(Collider2D col)
+    {
+        owMyEntireRockIsInPain(col.gameObject, col.gameObject.GetComponent<DealDamage>().GetDamageAmount());
+    }
+
+    public void owMyEntireRockIsInPain(GameObject thingy, float damageAmt)
     {
         //Debug.Log("bebeb");
 
         if (thingy.tag == "PlayerBullet" || thingy.tag == "enemyBullet")
         {
-            HP -= thingy.GetComponent<DealDamage>().finalDamageStat / bulletResist;
+            HP -= damageAmt / bulletResist;
         }
         else if (thingy.tag == "ATGExplosion")
         {
-            HP -= thingy.GetComponent<DealDamage>().finalDamageStat;
+            HP -= damageAmt;
         }
 
         if (HP <= 0)

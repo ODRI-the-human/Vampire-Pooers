@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 4255455733749829592}
   - component: {fileID: 9080384525931548618}
   - component: {fileID: -1365107204755030205}
-  - component: {fileID: 5700807271172768676}
   - component: {fileID: 8210489353096964633}
   - component: {fileID: -3635382963841210237}
   m_Layer: 9
@@ -125,7 +124,11 @@ MonoBehaviour:
   itemsHeld: 
   master: {fileID: 0}
   itemGained: 0
+  weaponHeld: 0
   noToGive: 1
+  spawnedBat: {fileID: 0}
+  previousFireType: 0
+  previousFireTimerLengthMLT: 0
 --- !u!114 &-1365107204755030205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,7 +147,6 @@ MonoBehaviour:
   damageAdd: 0
   damageMult: 1
   finalDamageMult: 1
-  finalDamageDIV: 1
   critProb: 0.05
   critMult: 2
   owner: {fileID: 0}
@@ -159,23 +161,7 @@ MonoBehaviour:
   damageToPresent: 0
   damageType: 0
   procChainIndexes: 
---- !u!114 &5700807271172768676
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4255455733749829593}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1fa510d5f65fe4b429d86a4e95a6e22d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponHeld: 0
-  master: {fileID: 0}
-  spawnedBat: {fileID: 0}
-  previousFireType: 0
-  previousFireTimerLengthMLT: 0
+  damageToPassToVictim: 0
 --- !u!58 &8210489353096964633
 CircleCollider2D:
   m_ObjectHideFlags: 0

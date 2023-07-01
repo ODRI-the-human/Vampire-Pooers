@@ -54,8 +54,7 @@ public class boss1Moves : MonoBehaviour
         for (int i = 0; i < 4; i++)
         {
             yield return new WaitForSeconds(0.8f);
-            gameObject.GetComponent<weaponType>().weaponHeld = (int)ITEMLIST.LAZER;
-            gameObject.GetComponent<weaponType>().SetWeapon();
+            gameObject.GetComponent<ItemHolder>().SetWeapon((int)ITEMLIST.LAZER);
             gameObject.GetComponent<Attack>().noExtraShots++;
             gameObject.GetComponent<Attack>().UseWeapon(false);
         }
@@ -122,8 +121,7 @@ public class boss1Moves : MonoBehaviour
 
     void ResetAll()
     {
-        gameObject.GetComponent<weaponType>().weaponHeld = (int)ITEMLIST.PISTOL;
-        gameObject.GetComponent<weaponType>().SetWeapon();
+        gameObject.GetComponent<ItemHolder>().SetWeapon((int)ITEMLIST.PISTOL);
         gameObject.GetComponent<Attack>().getEnemyPos = true;
         gameObject.GetComponent<Attack>().noExtraShots = 0;
         gameObject.GetComponent<Attack>().shotAngleCoeff = 1;

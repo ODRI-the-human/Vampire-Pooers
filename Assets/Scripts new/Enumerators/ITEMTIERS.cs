@@ -7,5 +7,4 @@ public enum ITEMTIERS
     LEGENDARY,
     NULL,
     WEAPON,
-    DODGE,
 }

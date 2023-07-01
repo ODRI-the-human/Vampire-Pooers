@@ -96,26 +96,34 @@ public class NewPlayerMovement : MonoBehaviour
         }
     }
 
-    public void AttackStatus(bool didStart)
-    {
-        if (didStart)
-        {
-            speedMult *= 0.65f;
-            //Debug.Log("slowed");
-        }
-        else
-        {
-            speedMult /= 0.65f;
-            //Debug.Log("speeded");
-        }
-    }
+    //public void AttackStatus(bool didStart)
+    //{
+    //    if (didStart)
+    //    {
+    //        speedMult *= 0.65f;
+    //        //Debug.Log("slowed");
+    //    }
+    //    else
+    //    {
+    //        speedMult /= 0.65f;
+    //        //Debug.Log("speeded");
+    //    }
+    //}
 
     void Update()
     {
         rb.velocity = new Vector2(0, 0);
         transform.position += Time.deltaTime * new Vector3(knockBackVector.x, knockBackVector.y, 0);
 
-        currentMoveSpeed = baseMoveSpeed * speedMult / speedDiv;
+        switch (gameObject.GetComponent<Attack>().isFiring)
+        {
+            case true:
+                currentMoveSpeed = 0.7f * baseMoveSpeed * speedMult / speedDiv;
+                break;
+            case false:
+                currentMoveSpeed = baseMoveSpeed * speedMult / speedDiv;
+                break;
+        }
 
         if (gameObject.tag == "Player")
         {

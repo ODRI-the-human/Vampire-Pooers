@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+// This was deprecated and moved to ItemHolder, because ya know it's just simpler!
+
+
 public class weaponType : MonoBehaviour
 {
     public int weaponHeld;
@@ -27,17 +31,19 @@ public class weaponType : MonoBehaviour
         master = EntityReferencerGuy.Instance.master;
         //}
 
-        SetWeapon();
+        //SetWeapon(weaponHeld);
     }
 
-    public void SetWeapon()
+    public void SetWeapon(int weaponToGive)
     {
         if (gameObject.GetComponent<BatVisual>() != null)
         {
             gameObject.GetComponent<BatVisual>().Kill();
         }
 
-        switch (weaponHeld)
+        Debug.Log("weapon set xd");        
+
+        switch (weaponToGive)
         {
             case 0: // For resetting enemies' shit back to their normie settings.
                 if (gameObject.GetComponent<Attack>() != null)
@@ -96,7 +102,7 @@ public class weaponType : MonoBehaviour
             case (int)ITEMLIST.BAT:
                 if (gameObject.GetComponent<Attack>() != null)
                 {
-                    gameObject.GetComponent<NewPlayerMovement>().AttackStatus(false); // otherwise the player is slow (silly)
+                    //gameObject.GetComponent<NewPlayerMovement>().AttackStatus(false); // otherwise the player is slow (silly)
                     //gameObject.GetComponent<Attack>().specialFireType = 6;
                     gameObject.GetComponent<Attack>().fireTimerLengthMLT = 1;
                     gameObject.GetComponent<Attack>().holdDownToShoot = false;
@@ -111,5 +117,7 @@ public class weaponType : MonoBehaviour
                 }
                 break;
         }
+
+        weaponHeld = weaponToGive;
     }
 }

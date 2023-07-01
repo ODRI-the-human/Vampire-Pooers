@@ -59,7 +59,7 @@ public class EntityReferencerGuy : MonoBehaviour
     public Mesh saw;
     public Mesh bullet;
 
-    public int numItemsExist = 33;
+    public int numItemsExist;
 
     bool timerActive = true;
     [HideInInspector] public float time = 180;
@@ -87,7 +87,7 @@ public class EntityReferencerGuy : MonoBehaviour
     void Start()
     {
         GameObject pedestal = gameObject.GetComponent<ThirdEnemySpawner>().itemPedestal;
-        numItemsExist = pedestal.GetComponent<itemPedestal>().spriteArray.GetLength(0);
+        numItemsExist = (int)ITEMLIST.CREEPSHOT;
         playerInstance = GameObject.Find("newPlayer");
         //Application.targetFrameRate = 60;
 

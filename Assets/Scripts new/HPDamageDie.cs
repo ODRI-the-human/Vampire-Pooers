@@ -32,6 +32,9 @@ public class HPDamageDie : MonoBehaviour
 
     GameObject master;
 
+    public List<GameObject> DOTSources = new List<GameObject>();
+    public List<float> DOTDamages = new List<float>();
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -104,6 +107,14 @@ public class HPDamageDie : MonoBehaviour
 
         iFrames--;
         colorChangeTimer--;
+
+        if (iFrames % 10 == 0 && iFrames <= 0)
+        {
+            foreach (GameObject DOTSource in DOTSources)
+            {
+                Hurty(DOTSource.GetComponent<DealDamage>().GetDamageAmount(), false, true, 0.2f, DOTSource.GetComponent<DealDamage>().damageType, false, DOTSource);
+            }
+        }
     }
 
     public void Hurty(float damageAmount, bool isCrit, bool playSound, float iFrameFac, int damageType, bool bypassIframes, GameObject objectResponsible)
@@ -168,7 +179,7 @@ public class HPDamageDie : MonoBehaviour
                 //    damageAmount = damageAmount - gameObject.GetComponent<ItemHOLYMANTIS>().instances * damageAmount / (gameObject.GetComponent<ItemHOLYMANTIS>().instances + 1);
                 //}
 
-                master.GetComponent<showDamageNumbers>().showDamage(transform.position, damageAmount, damageType, isCrit);
+                master.GetComponent<showDamageNumbers>().showDamage(transform.position + new Vector3(0, 0, -2 - transform.position.z), damageAmount, damageType, isCrit);
                 SendMessage("OnHurtEffects");
 
                 if (objectResponsible != null)
@@ -234,40 +245,29 @@ public class HPDamageDie : MonoBehaviour
         {
             perfectWaves++;
         }
-    }
 
-    void OnTriggerStay2D(Collider2D col) // just creep/orbitals/sawshot/etc. lmao
-    {
         if (col.gameObject.GetComponent<DealDamage>() != null)
         {
-            //if (col.gameObject.tag != gameObject.tag && col.gameObject.GetComponent<DealDamage>().finalDamageStat != 0)
-            //{
-            //    float procMoment = 100f - 100f * col.gameObject.GetComponent<DealDamage>().critProb * col.gameObject.GetComponent<DealDamage>().procCoeff;
-            //    float pringle = Random.Range(0f, 100f);
-            //    float critMult = 1;
-            //    bool isCrit = false;
-            //    if (pringle > procMoment)
-            //    {
-            //        critMult = col.gameObject.GetComponent<DealDamage>().critMult;
-            //        isCrit = true;
-            //    }
-            //    float damageAmount = col.gameObject.GetComponent<DealDamage>().finalDamageStat * critMult;
             if (col.gameObject.GetComponent<DealDamage>().onlyDamageOnce)
             {
                 Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>(), true);
+                col.gameObject.GetComponent<DealDamage>().CalculateDamage(gameObject);
             }
+            else
+            {
+                DOTSources.Add(col.gameObject);
+            }
+        }
+    }
 
-            col.gameObject.GetComponent<DealDamage>().CalculateDamage(gameObject);
-
-            // Calculating damage falloff when hit by an explosoin (real)
-            //if (col.gameObject.GetComponent<explosionBONUSSCRIPTWOW>() != null)
-            //{
-            //    Vector3 vecFromCtr = (col.transform.position - transform.position) / (2.65f * col.transform.localScale.x);
-            //    float fracFromCtr = new Vector3(vecFromCtr.x, vecFromCtr.y, 0).magnitude;
-            //    damageAmount *= Mathf.Clamp(1.5f * (-3.33f * Mathf.Log(fracFromCtr + 1) + 1), 0, 1);
-            //}
-
-            //Hurty(damageAmount, isCrit, true, col.GetComponent<DealDamage>().iFrameFac, col.gameObject.GetComponent<DealDamage>().damageType, false, col.gameObject);
+    void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.gameObject.GetComponent<DealDamage>() != null)
+        {
+            if (!col.gameObject.GetComponent<DealDamage>().onlyDamageOnce)
+            {
+                DOTSources.Remove(col.gameObject);
+            }
         }
     }
 }

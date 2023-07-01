@@ -79,7 +79,7 @@ public class marcelFunny : MonoBehaviour
         Collider2D[] jimbob = Physics2D.OverlapCircleAll(transform.position, 2.5f * transform.localScale.x);
         foreach (var col in jimbob)
         {
-            Debug.Log("dog things");
+            //Debug.Log("dog things");
             if (gameObject.tag == "PlayerBullet")
             {
                 if (col.gameObject.tag == "enemyBullet")
