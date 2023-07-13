@@ -77,10 +77,8 @@ public class HPDamageDie : MonoBehaviour
             SendMessage("ApplyOwnOnDeaths");
             if (lastDamageSource != null && gameObject.tag == "Hostile") // otherwise it gets very funny
             {
-                if (gameObject.tag == "Hostile")
-                {
-                    lastDamageSource.SendMessage("ApplyItemOnDeaths", gameObject); // Calls the on-kill effects on the object responsible for the kill.
-                }
+                EntityReferencerGuy.Instance.GameManager.GetComponent<Director>().OnEnemiesKilled();
+                lastDamageSource.SendMessage("ApplyItemOnDeaths", gameObject); // Calls the on-kill effects on the object responsible for the kill.
             }
 
             if (gameObject.tag == "Player")
@@ -129,7 +127,7 @@ public class HPDamageDie : MonoBehaviour
         {
             responsibleName = objectResponsible.name.ToString();
         }
-        Debug.Log("damage taken, victim: " + gameObject.name.ToString() + ", responsible: " + responsibleName + ", amount: " + damageAmount.ToString());
+        //Debug.Log("damage taken, victim: " + gameObject.name.ToString() + ", responsible: " + responsibleName + ", amount: " + damageAmount.ToString());
 
         if (gameObject.GetComponent<ItemEASIERTIMES>() != null && Mathf.RoundToInt(100 * (0.8f - 1f / (gameObject.GetComponent<ItemEASIERTIMES>().instances + 1f))) > Random.Range(0, 100))
         {

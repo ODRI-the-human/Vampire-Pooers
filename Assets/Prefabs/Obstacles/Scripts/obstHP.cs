@@ -7,6 +7,16 @@ public class obstHP : MonoBehaviour
     public float HP;
     public float bulletResist;
 
+    void OnBecameVisible()
+    {
+        enabled = true;
+    }
+
+    void OnBecameInvisible()
+    {
+        enabled = false;
+    }
+
     public void OnCollisionEnter2D(Collision2D col)
     {
         owMyEntireRockIsInPain(col.gameObject, col.gameObject.GetComponent<DealDamage>().GetDamageAmount());

@@ -5,7 +5,7 @@ using System;
 
 public class giveEnemySpecificItem : MonoBehaviour
 {
-    public string[] itemNameToAdd;
+    public List<string> itemNameToAdd = new List<string>();
 
     // For some reason if you just fucking add an item the enemy's list, i.e. just do itemsHeld.Add(), it also adds it to the master, which fucks it all up.
     // So instead we do this. Nice one John Unity.

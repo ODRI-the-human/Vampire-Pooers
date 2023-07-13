@@ -39,6 +39,7 @@ public class EntityReferencerGuy : MonoBehaviour
     public GameObject darkArtHitbox;
     public GameObject chargeBar;
     public GameObject reticle;
+    public GameObject GameManager;
 
     public Sprite[] itemSprites;
     public Sprite[] weaponSprites;

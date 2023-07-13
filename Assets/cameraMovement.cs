@@ -11,18 +11,21 @@ public class cameraMovement : MonoBehaviour
     public bool moveCamera = true;
     int shakeTimer;
 
-    public GameObject LeftBorder;
-    public GameObject RightBorder;
-    public GameObject TopBorder;
-    public GameObject BottomBorder;
+    //public GameObject LeftBorder;
+    //public GameObject RightBorder;
+    //public GameObject TopBorder;
+    //public GameObject BottomBorder;
 
     public float xBound;
     public float yBound;
 
     void Start()
     {
-        xBound = RightBorder.transform.position.x - 10;
-        yBound = TopBorder.transform.position.y - 6;
+        //xBound = RightBorder.transform.position.x - 10;
+        //yBound = TopBorder.transform.position.y - 6;
+        GameObject levelGenerator = GameObject.Find("GameManager");
+        xBound = levelGenerator.GetComponent<GenerateTerrain>().mapHeight - 10.7f;
+        yBound = levelGenerator.GetComponent<GenerateTerrain>().mapHeight - 6;
         //CheckAlivePlayers();
     }
 

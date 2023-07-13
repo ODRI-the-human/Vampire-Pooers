@@ -17,7 +17,8 @@ public class setRockVisuals : MonoBehaviour
         pooper = Random.Range(0f, 1f);
         if (pooper > 0.95f)
         {
-            Instantiate(tnt, transform.position, Quaternion.Euler(180, 0, 180));
+            GameObject spawnedTNT = Instantiate(tnt, transform.position, Quaternion.Euler(180, 0, 180));
+            spawnedTNT.transform.SetParent(transform.parent);
             Destroy(gameObject);
         }
     }

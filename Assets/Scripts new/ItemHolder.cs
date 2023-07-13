@@ -110,7 +110,7 @@ public class ItemHolder : MonoBehaviour
             gameObject.GetComponent<BatVisual>().Kill();
         }
 
-        Debug.Log("weapon set xd");
+        //Debug.Log("weapon set xd");
         weaponHeld = weaponToGive;
 
         switch (weaponToGive)

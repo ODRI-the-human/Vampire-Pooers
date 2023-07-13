@@ -15,7 +15,7 @@ public class setBackgroundColor : MonoBehaviour
 
     public void SetColour()
     {
-        Debug.Log("color moment");
+        //Debug.Log("color moment");
         //GameObject parent = transform.parent.gameObject;
         //qualityChosen = parent.GetComponent<itemPedestal>().chosenQuality;
 

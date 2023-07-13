@@ -182,7 +182,7 @@ public class DealDamage : MonoBehaviour
         if (!scriptIsUsed)
         {
             float percentChance = value * source.GetComponent<DealDamage>().procCoeff * procChanceBonus;
-            Debug.Log("erm percentage chance do be: " + percentChance.ToString() + ", value: " + value.ToString());
+            //Debug.Log("erm percentage chance do be: " + percentChance.ToString() + ", value: " + value.ToString());
 
             for (int i = 0; i < 20; i++)
             {

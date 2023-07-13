@@ -45,7 +45,7 @@ public class playerManagement : MonoBehaviour
 
     public void OnPlayerJoined()
     {
-        Debug.Log("player joinersd");
+        //Debug.Log("player joinersd");
         GetPlayers();
         numPlayers = players.Length;
         GameObject newPlayer = null;
@@ -167,7 +167,7 @@ public class playerManagement : MonoBehaviour
 
         //GameObject player = null;
         //List<int> items = new List<int>();
-        Debug.Log("new Round Andy");
+        //Debug.Log("new Round Andy");
 
         if (reviveQueue.Count != 0)
         {
