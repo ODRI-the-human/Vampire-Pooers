@@ -9,17 +9,6 @@ public class usetogiveonlyplayeritem : MonoBehaviour
     void Awake()
     {
         gameObject.GetComponent<ItemHolder>().weaponHeld = (int)ITEMLIST.PISTOL;
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.SOY);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.DMGADDPT5);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.DMGMLT2);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.DMGMLT2);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.DMGMLT2);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.DMGMLT2);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.DMGMLT2);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.DMGMLT2);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.DMGMLT2);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.DMGMLT2);
-        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.DMGMLT2);
         //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.FAMILIAR);
         // For giving the player some number of random items.
         //for (int i = 0; i < 50; i++)

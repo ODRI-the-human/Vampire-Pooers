@@ -283,8 +283,16 @@ MonoBehaviour:
   camera: {fileID: 0}
   currentLevel: 0
   allEnemyTypes:
+  - {fileID: 11400000, guid: bd99edb86f48f9b4abc65fea10e699b5, type: 2}
+  - {fileID: 11400000, guid: 76094c64666f29a4594d5d31a80f0151, type: 2}
+  - {fileID: 11400000, guid: eecdfedeb7e4a7e41918c4e32b32c037, type: 2}
+  - {fileID: 11400000, guid: 3cfb1a78668a294409924b7377780600, type: 2}
   - {fileID: 11400000, guid: 01fdbae2cc2b40640b26f21d78d225ff, type: 2}
+  - {fileID: 11400000, guid: deaca55125a2e584e989a34b61589e73, type: 2}
+  - {fileID: 11400000, guid: 285f7ded29f17204288b83b310519c33, type: 2}
+  - {fileID: 11400000, guid: 886cabfb34109e440b4755508a5515e7, type: 2}
   - {fileID: 11400000, guid: 0b4ceb160707d8741b4198a3cecd5db9, type: 2}
+  - {fileID: 11400000, guid: 1c49737fd80af7e4396bb4acd77ba6a8, type: 2}
   currentEnemyTypes: []
   allEliteTypes:
   - {fileID: 11400000, guid: f0c803f41d70c314b9bab6badb30bff2, type: 2}

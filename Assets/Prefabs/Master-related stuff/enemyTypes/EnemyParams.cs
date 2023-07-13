@@ -4,7 +4,6 @@ using UnityEngine;
 public class EnemyParams : ScriptableObject
 {
     public string name;
-    public int ID = 0;
     public float spawnCost = 20f;
     public int spawnWeight = 100; // The weight of the enemy to spawn (lower is less common spawning!)
     public int minSpawnAmt = 3;

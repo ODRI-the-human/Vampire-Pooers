@@ -268,27 +268,20 @@ public class Director : MonoBehaviour
         {
             Vector3 pos = goodPositions[UnityEngine.Random.Range(0, goodPositions.Count)] + new Vector3(UnityEngine.Random.Range(-0.1f, 0.1f), UnityEngine.Random.Range(-0.1f, 0.1f), 0);
             GameObject johnSpawned = Instantiate(enemyToSpawnNext.enemyPrefab, pos, Quaternion.identity);
-            if (i < numElitesToSpawn)
-            {
-                if (johnSpawned.AddComponent<giveEnemySpecificItem>() == null)
-                {
-                    johnSpawned.AddComponent<giveEnemySpecificItem>();
-                }
-                johnSpawned.GetComponent<giveEnemySpecificItem>().itemNameToAdd.Add("SOY");
-                johnSpawned.GetComponent<giveEnemySpecificItem>().itemNameToAdd.Add("ATG");
-                johnSpawned.GetComponent<giveEnemySpecificItem>().itemNameToAdd.Add("DMGADDPT5");
-                johnSpawned.GetComponent<giveEnemySpecificItem>().itemNameToAdd.Add("HOMING");
-                johnSpawned.GetComponent<giveEnemySpecificItem>().itemNameToAdd.Add("LUCKIER");
-                johnSpawned.GetComponent<giveEnemySpecificItem>().itemNameToAdd.Add("HP50");
-            }
-            Debug.Log("position: " + johnSpawned.transform.position.ToString());
+            //if (i < numElitesToSpawn)
+            //{
+            //    if (johnSpawned.AddComponent<giveEnemySpecificItem>() == null)
+            //    {
+            //        johnSpawned.AddComponent<giveEnemySpecificItem>();
+            //    }
+            //    johnSpawned.GetComponent<giveEnemySpecificItem>().itemNameToAdd.Add("SOY");
+            //    johnSpawned.GetComponent<giveEnemySpecificItem>().itemNameToAdd.Add("ATG");
+            //    johnSpawned.GetComponent<giveEnemySpecificItem>().itemNameToAdd.Add("DMGADDPT5");
+            //    johnSpawned.GetComponent<giveEnemySpecificItem>().itemNameToAdd.Add("HOMING");
+            //    johnSpawned.GetComponent<giveEnemySpecificItem>().itemNameToAdd.Add("LUCKIER");
+            //    johnSpawned.GetComponent<giveEnemySpecificItem>().itemNameToAdd.Add("HP50");
+            //}
         }
-        // Hey so use the following stuff to find a position out of the camera's bounds that enemies can spawn, that exists on the navmesh!
-        //NavMeshHit hit;
-        //if (NavMesh.SamplePosition(GameObject.Find("actualPlayer").transform.position, out hit, 11.1f, NavMesh.AllAreas))
-        //{
-        //    Debug.Log("hit pos: " + hit.position.ToString());
-        //}
 
         Debug.Log("Spawned " + numEnemiesToSpawn.ToString() + " " + enemyToSpawnNext.name + "s! " + numElitesToSpawn.ToString() + " elites spawned, they are " + eliteType.name + " elites.");
         credits -= creditCost;
