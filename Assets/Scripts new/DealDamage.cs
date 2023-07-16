@@ -14,6 +14,7 @@ public class DealDamage : MonoBehaviour
     public float critMult = 2;
     public GameObject owner;
     public GameObject master;
+    public bool canDealDamage = true;
 
     public float massCoeff = 2;
 
@@ -111,37 +112,40 @@ public class DealDamage : MonoBehaviour
 
     public void CalculateDamage(GameObject victim) // When an object is hurt, it calls this method on the responsible object.
     {
-        float critChance = 100f * critProb;
-        int numCrits = ChanceRoll(critChance, gameObject, -5);
-        float critMult = 1;
-        bool isCrit = false;
-
-        if (!overwriteDamageCalc)
+        if (canDealDamage)
         {
-            for (int i = 0; i < numCrits; i++)
+            float critChance = 100f * critProb;
+            int numCrits = ChanceRoll(critChance, gameObject, -5);
+            float critMult = 1;
+            bool isCrit = false;
+
+            if (!overwriteDamageCalc)
             {
-                critMult *= 2;
-                isCrit = true;
+                for (int i = 0; i < numCrits; i++)
+                {
+                    critMult *= 2;
+                    isCrit = true;
+                }
+
+                damageToPassToVictim = (damageBase + damageAdd) * finalDamageMult * critMult;
+            }
+            else
+            {
+                damageToPassToVictim = finalDamageStat;
             }
 
-            damageToPassToVictim = (damageBase + damageAdd) * finalDamageMult * critMult;
-        }
-        else
-        {
-            damageToPassToVictim = finalDamageStat;
-        }
+            SendMessage("GetDamageMods");
 
-        SendMessage("GetDamageMods");
+            if (gameObject.GetComponent<explosionBONUSSCRIPTWOW>() != null)
+            {
+                Vector3 vecFromCtr = (transform.position - victim.transform.position) / (2.65f * victim.transform.localScale.x);
+                float fracFromCtr = Mathf.Clamp(1 - new Vector3(vecFromCtr.x, vecFromCtr.y, 0).magnitude * 0.75f, 0, 1);
+                Debug.Log("fracFromCtr: " + fracFromCtr.ToString());
+                damageToPassToVictim *= fracFromCtr;
+            }
 
-        if (gameObject.GetComponent<explosionBONUSSCRIPTWOW>() != null)
-        {
-            Vector3 vecFromCtr = (transform.position - victim.transform.position) / (2.65f * victim.transform.localScale.x);
-            float fracFromCtr = Mathf.Clamp(1 - new Vector3(vecFromCtr.x, vecFromCtr.y, 0).magnitude * 0.75f, 0, 1);
-            Debug.Log("fracFromCtr: " + fracFromCtr.ToString());
-            damageToPassToVictim *= fracFromCtr;
+            victim.GetComponent<HPDamageDie>().Hurty(damageToPassToVictim, isCrit, true, iFrameFac, damageType, false, gameObject);
         }
-
-        victim.GetComponent<HPDamageDie>().Hurty(damageToPassToVictim, isCrit, true, iFrameFac, damageType, false, gameObject);
     }
 
     public void SendRollOnHits(GameObject victim)

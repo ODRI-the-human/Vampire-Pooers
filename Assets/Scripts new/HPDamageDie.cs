@@ -86,6 +86,7 @@ public class HPDamageDie : MonoBehaviour
                 EntityReferencerGuy.Instance.master.SendMessage("ApplyItemOnDeaths", gameObject); // Calls the on-kill effects on the object responsible for the kill.
             }
 
+            gameObject.GetComponent<Attack>().bulletPool.Clear();
             Destroy(gameObject);
             //EventManager.DeathEffects(transform.position);
         }
@@ -108,9 +109,29 @@ public class HPDamageDie : MonoBehaviour
 
         if (iFrames % 10 == 0 && iFrames <= 0)
         {
+            GameObject[] owners = new GameObject[DOTSources.Count];
+            float[] damageAmounts = new float[DOTSources.Count];
+            int i = 0;
             foreach (GameObject DOTSource in DOTSources)
             {
-                Hurty(DOTSource.GetComponent<DealDamage>().GetDamageAmount(), false, true, 0.2f, DOTSource.GetComponent<DealDamage>().damageType, false, DOTSource);
+                bool doDamage = true; // This is all to make sure that damage is only dealt for the first owner and damage combo (i.e. two creep puddles, only one will hit, as the other has the same damage and owner.
+                for (int j = 0; j < i; j++)
+                {
+                    if (owners[j] == DOTSource.GetComponent<DealDamage>().owner && damageAmounts[j] == DOTSource.GetComponent<DealDamage>().GetDamageAmount())
+                    {
+                        doDamage = false;
+                        break;
+                    }
+                }
+
+                if (doDamage)
+                {
+                    Hurty(DOTSource.GetComponent<DealDamage>().GetDamageAmount(), false, true, 0.2f, DOTSource.GetComponent<DealDamage>().damageType, false, DOTSource);
+
+                    owners[i] = DOTSource.GetComponent<DealDamage>().owner;
+                    damageAmounts[i] = DOTSource.GetComponent<DealDamage>().GetDamageAmount();
+                }
+                i++;
             }
         }
     }

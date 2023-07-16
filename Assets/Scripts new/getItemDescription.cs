@@ -49,14 +49,11 @@ public class getItemDescription : MonoBehaviour
     {
         context.action.performed += ctx =>
         {
-            if (itemsExist)
-            {
-                Destroy(spawnedSelector);
+            Destroy(spawnedSelector);
 
-                spawnedSelector = Instantiate(itemSelector, position, transform.rotation);
-                spawnedSelector.transform.SetParent(gameObject.transform);
-                spawnedSelector.GetComponent<mouseItemSelection>().master = gameObject;
-            }
+            spawnedSelector = Instantiate(itemSelector, position, transform.rotation);
+            spawnedSelector.transform.SetParent(gameObject.transform);
+            spawnedSelector.GetComponent<mouseItemSelection>().master = gameObject;
         };
     }
 }

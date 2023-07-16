@@ -20,6 +20,6 @@ public class setTimeText : MonoBehaviour
         float timeLeft = master.GetComponent<EntityReferencerGuy>().time;
         int seconds = Mathf.FloorToInt(timeLeft % 60);
         int minutes = Mathf.FloorToInt(timeLeft / 60);
-        timeText.text = minutes.ToString() + ":" + seconds.ToString();//string.Format("{0:00} : {1:00}", minutes, seconds);
+        timeText.text = string.Format("{0:00} : {1:00}", minutes, seconds);
     }
 }

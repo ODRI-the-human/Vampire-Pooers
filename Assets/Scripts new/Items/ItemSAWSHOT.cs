@@ -31,7 +31,7 @@ public class ItemSAWSHOT : MonoBehaviour
     public void DetermineShotRolls()
     {
         canDoTheThing = true;
-        int numEffects = gameObject.GetComponent<DealDamage>().ChanceRoll(20, gameObject, 900);
+        int numEffects = gameObject.GetComponent<DealDamage>().ChanceRoll(20, gameObject, 900); // normally 20% chance
         if (numEffects > 0)
         {
             if (gameObject.GetComponent<checkAllLazerPositions>() == null && gameObject.GetComponent<meleeGeneral>() == null)
@@ -65,7 +65,7 @@ public class ItemSAWSHOT : MonoBehaviour
             GameObject Poop = Instantiate(EntityReferencerGuy.Instance.sawVisual, new Vector3(-9999, 9999), Quaternion.Euler(0, 0, 0));
             Poop.tag = gameObject.tag;
             Poop.GetComponent<DealDamage>().overwriteDamageCalc = true;
-            Poop.GetComponent<DealDamage>().damageAmt = gameObject.GetComponent<DealDamage>().finalDamageStat / 5;
+            Poop.GetComponent<DealDamage>().finalDamageStat = gameObject.GetComponent<DealDamage>().GetDamageAmount() / 5;
             Poop.GetComponent<SawRotation>().instances = instances;
 
             if (gameObject.GetComponent<Bullet_Movement>() == null)

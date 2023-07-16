@@ -268,6 +268,8 @@ MonoBehaviour:
   damageReduction: 0
   damageDiv: 1
   perfectWaves: 0
+  DOTSources: []
+  DOTDamages: []
 --- !u!114 &4518348393904611156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -290,8 +292,9 @@ MonoBehaviour:
   critMult: 2
   owner: {fileID: 0}
   master: {fileID: 0}
+  canDealDamage: 0
   massCoeff: 0
-  overwriteDamageCalc: 1
+  overwriteDamageCalc: 0
   onlyDamageOnce: 0
   tickInterval: 1
   timer: 0
@@ -300,6 +303,7 @@ MonoBehaviour:
   damageToPresent: 0
   damageType: 0
   procChainIndexes: 
+  procChanceBonus: 1
   damageToPassToVictim: 0
 --- !u!114 &1998500251313762096
 MonoBehaviour:
@@ -320,16 +324,12 @@ MonoBehaviour:
   noExtraShots: 0
   shotAngleCoeff: 1
   trueDamageValue: 0
-  fireTimerLengthMLT: 1
   Bullet: {fileID: 4255455733749829593, guid: 27160d46bf5b97a4898af82130ae1a42, type: 3}
-  fireTimerLength: 25
-  fireTimer: 0
   PlayerShootAudio: {fileID: 2894936639441958211, guid: f4849f6de8b809d48a7220ff85910c8b, type: 3}
   Player: {fileID: 0}
   playerControlled: 1
   specialFireType: 0
   darkArtSword: {fileID: 7955111713391121560, guid: 35c958ea85b00c144830eefba828d8c3, type: 3}
-  fireTimerDIV: 1
   setDamageAutomatically: 1
   doAim: 1
   fireTimerActualLength: 0
@@ -362,6 +362,11 @@ MonoBehaviour:
   reticlePos: {x: 0, y: 0, z: 0}
   meleeHitObj: {fileID: 0}
   hitboxSpawnDelay: 0
+  fireTimerLengthMLT: 1
+  fireTimerDIV: 1
+  fireRate: 2
+  fireTimer: 0
+  fireTimerThreshold: 0
 --- !u!114 &7385574667278638271
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -85,13 +85,17 @@ public class EntityReferencerGuy : MonoBehaviour
         {
             Instance = this;
         }
+
+        //camera = GameObject.Find("Main Camera");
+        //canvas = GameObject.Find("Canvas");
+        //canvasInnerBound = GameObject.Find("Bound Box");
     }
 
     void Start()
     {
         GameObject pedestal = gameObject.GetComponent<ThirdEnemySpawner>().itemPedestal;
         numItemsExist = (int)ITEMLIST.CREEPSHOT;
-        playerInstance = GameObject.Find("newPlayer");
+        //playerInstance = GameObject.Find("newPlayer");
         //Application.targetFrameRate = 60;
 
         DontDestroyOnLoad(keepBestStatObj);

@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7515ca90113e9e4abaff340d9253905, type: 3}
-  m_Name: Monstro
+  m_Name: Monstrosity
   m_EditorClassIdentifier: 
-  name: Telefragger
+  name: Monstro
   spawnCost: 20
   spawnWeight: 100
   minSpawnAmt: 2
   maxSpawnAmt: 2
   areasCanSpawnIn:
   - TESTING
-  enemyPrefab: {fileID: 8034279136360660190, guid: 3d35b398e9ce4194badbccf95fac8b63, type: 3}
+  enemyPrefab: {fileID: 8034279136360660190, guid: 971bc536625dac64599422fc25b79027, type: 3}

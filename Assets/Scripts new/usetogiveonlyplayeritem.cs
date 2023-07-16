@@ -9,7 +9,7 @@ public class usetogiveonlyplayeritem : MonoBehaviour
     void Awake()
     {
         gameObject.GetComponent<ItemHolder>().weaponHeld = (int)ITEMLIST.PISTOL;
-        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.FAMILIAR);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.CREEP);
         // For giving the player some number of random items.
         //for (int i = 0; i < 50; i++)
         //{

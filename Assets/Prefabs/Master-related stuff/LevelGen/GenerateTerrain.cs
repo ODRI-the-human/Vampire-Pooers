@@ -56,20 +56,21 @@ public class GenerateTerrain : MonoBehaviour // This is adapted from Six Dot's v
     {
         //floorObj = transform.Find("Floor").gameObject;
         //floorObj.transform.localScale = (0.2f + mapHeight / 5f) * new Vector3(1, 1, 1);
-        FOWfloorObj = transform.Find("FOWFloor").gameObject;
+        //FOWfloorObj = transform.Find("FOWFloor").gameObject;
         FOWfloorObj.transform.localScale = (0.2f + mapHeight / 5f) * new Vector3(1, 1, 1);
 
-        mapCam = GameObject.Find("minimapCamera");
+        //mapCam = GameObject.Find("minimapCamera");
         mapCam.GetComponent<Camera>().orthographicSize = mapHeight + 1;
-        FOWCam1 = GameObject.Find("currentFogPosCam");
+        //FOWCam1 = GameObject.Find("currentFogPosCam");
         FOWCam1.GetComponent<Camera>().orthographicSize = mapHeight + 1;
-        FOWCam2 = GameObject.Find("allFogCam");
+        //FOWCam2 = GameObject.Find("allFogCam");
         FOWCam2.GetComponent<Camera>().orthographicSize = mapHeight + 1;
 
-        GameObject upperWall = Instantiate(outerWallObj, new Vector3(0, mapHeight + 4, 0), Quaternion.identity);
-        GameObject lowerWall = Instantiate(outerWallObj, new Vector3(0, - mapHeight - 4, 0), Quaternion.identity);
-        GameObject rightWall = Instantiate(outerWallObj, new Vector3(mapHeight + 4, 0, 0), Quaternion.Euler(0, 0, 90));
-        GameObject LeftWall = Instantiate(outerWallObj, new Vector3( - mapHeight - 4, 0, 0), Quaternion.Euler(0, 0, 90));
+        GameObject upperWall = Instantiate(outerWallObj, new Vector3(0, mapHeight + 24, 0), Quaternion.identity);
+        GameObject lowerWall = Instantiate(outerWallObj, new Vector3(0, - mapHeight - 24, 0), Quaternion.identity);
+        GameObject rightWall = Instantiate(outerWallObj, new Vector3(mapHeight + 24, 0, 0), Quaternion.Euler(0, 0, 90));
+        GameObject LeftWall = Instantiate(outerWallObj, new Vector3( - mapHeight - 24, 0, 0), Quaternion.Euler(0, 0, 90));
+
 
         Setup();
         SetRooms();
