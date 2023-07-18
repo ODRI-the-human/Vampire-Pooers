@@ -23,9 +23,8 @@ public class cameraMovement : MonoBehaviour
     {
         //xBound = RightBorder.transform.position.x - 10;
         //yBound = TopBorder.transform.position.y - 6;
-        GameObject levelGenerator = GameObject.Find("GameManager");
-        xBound = levelGenerator.GetComponent<GenerateTerrain>().mapHeight - 10.7f;
-        yBound = levelGenerator.GetComponent<GenerateTerrain>().mapHeight - 6;
+        xBound = transform.parent.gameObject.GetComponent<GenerateTerrain>().mapHeight - 10.7f;
+        yBound = transform.parent.gameObject.GetComponent<GenerateTerrain>().mapHeight - 6;
         //CheckAlivePlayers();
     }
 

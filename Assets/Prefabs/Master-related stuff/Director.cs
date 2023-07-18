@@ -44,6 +44,8 @@ public class Director : MonoBehaviour
 
     void Start()
     {
+        //Application.targetFrameRate = -1;
+
         foreach (EnemyParams currentParam in allEnemyTypes) // Checks which enemies can spawn in this area, adds then to currentEnemyTypes.
         {
             for (int i = 0; i < currentParam.areasCanSpawnIn.Length; i++)

@@ -81,6 +81,15 @@ public class GenerateTerrain : MonoBehaviour // This is adapted from Six Dot's v
         }
 
         SetWalkers();
+        for (int i = 0; i < 10; i++) // Has ten attempts to generate a layout that is under 30% filled. If condition is filled it breaks from the loop.
+        {
+            CreateFloors();
+            Debug.Log("Attempt: " + (i + 1).ToString() + " / percent completion: " + percentCompletion().ToString());
+            if (percentCompletion() < 0.3f)
+            {
+                break;
+            }
+        }
         CreateFloors();
         CreateFiller(); // Checks for large enough areas of just plain floors, and rolls to add new obstacles there (prolly just rocks 99% of the time)
         SpawnLevel();
@@ -236,15 +245,15 @@ public class GenerateTerrain : MonoBehaviour // This is adapted from Six Dot's v
             int j = 0;
             foreach (walker myWalker in walkers)
             {
-                // If the walker moves onto a space whose room origin isn't this walker's origin. How to prevent things like rooms 1 and 2 connecting, rooms 3 and 4 connecting (so you can't get from 4 to 1)?
-                if (gridPosOwners[(int)myWalker.pos.x, (int)myWalker.pos.y] != myWalker.origin && gridPosOwners[(int)myWalker.pos.x, (int)myWalker.pos.y] != -5 && !roomsJoined[myWalker.origin])
+                // If the walker moves onto a space whose room origin isn't this walker's origin, the space is already taken (i.e. not 5), 
+                if (gridPosOwners[(int)myWalker.pos.x, (int)myWalker.pos.y] != myWalker.origin && gridPosOwners[(int)myWalker.pos.x, (int)myWalker.pos.y] != -5 && roomJoinResponsibles[myWalker.origin] != gridPosOwners[(int)myWalker.pos.x, (int)myWalker.pos.y])// && !roomsJoined[myWalker.origin])
                 {
                     roomsJoined[myWalker.origin] = true;
                     //roomsJoined[gridPosOwners[(int)myWalker.pos.x, (int)myWalker.pos.y]] = true;
                     //Debug.Log("wow cool this is the joining of isaac: " + ((int)myWalker.origin).ToString());
                     MarkWalkerForRemoval(myWalker);
                     roomJoinResponsibles[gridPosOwners[(int)myWalker.pos.x, (int)myWalker.pos.y]] = myWalker.origin;
-                    //Debug.Log("Origin: " + myWalker.origin.ToString() + " / position origin: " + gridPosOwners[(int)myWalker.pos.x, (int)myWalker.pos.y].ToString() + " / position: " + myWalker.pos.ToString());
+                    //Debug.Log("Origin: " + myWalker.origin.ToString() + " / connected to origin: " + gridPosOwners[(int)myWalker.pos.x, (int)myWalker.pos.y].ToString() + " / position: " + myWalker.pos.ToString());
                 }
                 //Debug.Log("walker pos: " + (myWalker.pos).ToString());
 
@@ -289,7 +298,7 @@ public class GenerateTerrain : MonoBehaviour // This is adapted from Six Dot's v
                 if (Random.value < chanceWalkerChangeDir && grid[Mathf.RoundToInt(walkers[i].pos.x), Mathf.RoundToInt(walkers[i].pos.y)] != gridSpace.room) // Only changes direction if it ISN'T currently in a room.
                 {
                     walker thisWalker = walkers[i];
-                    thisWalker.dir = RandomDirection();
+                    thisWalker.dir = WeightedRandomDirection(thisWalker.pos);
                     //int minSize = Mathf.CeilToInt((thisWalker.dir).magnitude); // To make it so if it's moving diagonally it can't have a size of 1.
                     //thisWalker.size = Mathf.Clamp(thisWalker.size, minSize - 1, 3);
                     //Debug.Log("dir change size moment. walker size: " + thisWalker.size.ToString() + " / min size: " + minSize.ToString() + " / dir: " + thisWalker.dir.ToString());
@@ -354,8 +363,8 @@ public class GenerateTerrain : MonoBehaviour // This is adapted from Six Dot's v
             }
 
             // exit loop
-            if (percentCompletion() > percentToFill)
-            {
+            //if (percentCompletion() > percentToFill)
+            //{
                 // Checks if all rooms have been joined or not, if so, it breaks out of the loop.
                 bool allRoomsJoined = true;
                 foreach (bool roomStatus in roomsJoined)
@@ -370,7 +379,7 @@ public class GenerateTerrain : MonoBehaviour // This is adapted from Six Dot's v
                 {
                     break;
                 }
-            }
+            //}
             iterations++;
             //Debug.Log("iterated");
         }
@@ -522,13 +531,42 @@ public class GenerateTerrain : MonoBehaviour // This is adapted from Six Dot's v
         int count = 0;
         foreach (gridSpace space in grid)
         {
-            if (space == gridSpace.floor)
+            if (space != gridSpace.wall)
             {
                 count++;
             }
         }
 
         return count;
+    }
+
+    Vector2 WeightedRandomDirection(Vector2 currentPos) // same as randomdirection, but the likelihood of each direction is dependent on the direction to the closest room.
+    {
+        float highestDistance = Mathf.Infinity;
+        Vector2 closestRoomPos = Vector2.zero;
+        int i = 0;
+
+        foreach (Vector2 roomPos in roomPositions)
+        {
+            if ((currentPos - roomPos).magnitude < highestDistance && !roomsJoined[i]) // Doesn't favour going towards already-joined rooms.
+            {
+                closestRoomPos = roomPos;
+            }
+            i++;
+        }
+
+        Vector2 dirToRoom = closestRoomPos - currentPos;
+
+        Vector2 vecChosen = RandomDirection();
+
+        while ((Mathf.Sign(dirToRoom.x) != Mathf.Sign(vecChosen.x) && Mathf.Sign(dirToRoom.y) != Mathf.Sign(vecChosen.y))) // The less than 8 is so it only does this when it's somewhat close to a room.
+        {
+            vecChosen = RandomDirection();
+            //Debug.Log("Vec chosen: " + vecChosen.ToString() + " / dirToRoom: " + dirToRoom.ToString());
+        }
+
+        //Debug.Log("Successfully chose direction, dirToRoom: " + dirToRoom.ToString() + "Vec chosen: " + vecChosen.ToString());
+        return vecChosen;
     }
 
     Vector2 RandomDirection()
