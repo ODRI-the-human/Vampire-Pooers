@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class GenerateTerrain : MonoBehaviour // This is adapted from Six Dot's video on the topic, so big thanks to them.
 {
@@ -8,10 +9,19 @@ public class GenerateTerrain : MonoBehaviour // This is adapted from Six Dot's v
     public GameObject outerWallObj;
     public GameObject FOWfloorObj;
     public Vector3 playerSpawnPos;
-
+    public GameObject levelParent;
+    public Texture2D FOWTex;
+    public RenderTexture FOWRenTex1;
+    public RenderTexture FOWRenTex2;
     public GameObject mapCam;
     public GameObject FOWCam1;
     public GameObject FOWCam2;
+    public GameObject portal;
+
+    public levelRoomParams[] allRoomSets;
+    public List<roomParams> currentRooms = new List<roomParams>();
+    int cumSumWeight = 0; // For the total sum of weights of rooms.
+    int currentLevel;
 
     // For spawning rooms, numroomsmean is the typical number of rooms, range is the deviation that can occur.
     public int numRoomsMean;
@@ -51,9 +61,34 @@ public class GenerateTerrain : MonoBehaviour // This is adapted from Six Dot's v
 
     GameObject spawnedObject; // Needed for 'storing' the spawned object (since spawn is generally not used as a return so ye idk)
 
-    // Start is called before the first frame update
     void Start()
     {
+        currentLevel = gameObject.GetComponent<Director>().currentLevel;
+        GenerateLevel();
+    }
+
+    void GenerateLevel()
+    {
+        foreach (levelRoomParams currentParam in allRoomSets) // Checks which rooms can spawn in this area, adds then to currentEnemyTypes.
+        {
+            int areaInt = (int)System.Enum.Parse(typeof(AREAS), currentParam.levelToUseIn);
+            if (areaInt == currentLevel)
+            {
+                foreach (roomParams roomParam in currentParam.roomsInLevel)
+                {
+                    currentRooms.Add(roomParam);
+                }
+                break;
+            }
+        }
+
+        cumSumWeight = 0;
+
+        for (int i = 0; i < currentRooms.Count; i++)
+        {
+            cumSumWeight += currentRooms[i].roomWeight;
+        }
+
         //floorObj = transform.Find("Floor").gameObject;
         //floorObj.transform.localScale = (0.2f + mapHeight / 5f) * new Vector3(1, 1, 1);
         //FOWfloorObj = transform.Find("FOWFloor").gameObject;
@@ -67,22 +102,20 @@ public class GenerateTerrain : MonoBehaviour // This is adapted from Six Dot's v
         FOWCam2.GetComponent<Camera>().orthographicSize = mapHeight + 1;
 
         GameObject upperWall = Instantiate(outerWallObj, new Vector3(0, mapHeight + 24, 0), Quaternion.identity);
+        upperWall.transform.SetParent(levelParent.transform);
         GameObject lowerWall = Instantiate(outerWallObj, new Vector3(0, - mapHeight - 24, 0), Quaternion.identity);
+        lowerWall.transform.SetParent(levelParent.transform);
         GameObject rightWall = Instantiate(outerWallObj, new Vector3(mapHeight + 24, 0, 0), Quaternion.Euler(0, 0, 90));
+        rightWall.transform.SetParent(levelParent.transform);
         GameObject LeftWall = Instantiate(outerWallObj, new Vector3( - mapHeight - 24, 0, 0), Quaternion.Euler(0, 0, 90));
-
-
-        Setup();
-        SetRooms();
-
-        foreach (GameObject player in EntityReferencerGuy.Instance.master.GetComponent<playerManagement>().players)
-        {
-            player.transform.position = MapSpaceToWorldSpace(roomPositions[0]);
-        }
-
-        SetWalkers();
+        LeftWall.transform.SetParent(levelParent.transform);
+        
         for (int i = 0; i < 10; i++) // Has ten attempts to generate a layout that is under 30% filled. If condition is filled it breaks from the loop.
         {
+            ClearRooms();
+            Setup();
+            SetRooms();
+            SetWalkers();
             CreateFloors();
             Debug.Log("Attempt: " + (i + 1).ToString() + " / percent completion: " + percentCompletion().ToString());
             if (percentCompletion() < 0.3f)
@@ -90,9 +123,21 @@ public class GenerateTerrain : MonoBehaviour // This is adapted from Six Dot's v
                 break;
             }
         }
-        CreateFloors();
+
+        foreach (GameObject player in EntityReferencerGuy.Instance.master.GetComponent<playerManagement>().players)
+        {
+            player.transform.position = MapSpaceToWorldSpace(roomPositions[0]);
+        }
+
+        //just placeholder, spawning the portal to progress to the next level.
+        GameObject spawnedPortal = Instantiate(portal);
+        spawnedPortal.transform.position = MapSpaceToWorldSpace(roomPositions[roomPositions.Count - 1]);
+        spawnedPortal.transform.SetParent(levelParent.transform);
+
         CreateFiller(); // Checks for large enough areas of just plain floors, and rolls to add new obstacles there (prolly just rocks 99% of the time)
         SpawnLevel();
+        SpawnRooms();
+        Resources.UnloadUnusedAssets();
     }
 
     void Setup()
@@ -115,8 +160,6 @@ public class GenerateTerrain : MonoBehaviour // This is adapted from Six Dot's v
             }
         }
 
-        playerSpawnPos = MapSpaceToWorldSpace(new Vector2(Mathf.RoundToInt(mapHeight / 2f), Mathf.RoundToInt(mapHeight / 2f)));
-
         walkers = new List<walker>();
 
         //for (int i = 0; i < 3; i++)
@@ -132,13 +175,13 @@ public class GenerateTerrain : MonoBehaviour // This is adapted from Six Dot's v
     // Create the rooms.
     void SetRooms()
     {
-        int numRooms = Random.Range(numRoomsMean - numRoomsRange, numRoomsMean + numRoomsRange);
+        int numRooms = UnityEngine.Random.Range(numRoomsMean - numRoomsRange, numRoomsMean + numRoomsRange);
         for (int i = 0; i < numRooms; i++)
         {
-            int roomHeight = Random.Range(roomHeightMin, roomHeightMax);
-            int roomWidth = Random.Range(roomWidthMin, roomWidthMax);
-            int roomXPos = Random.Range(Mathf.RoundToInt(mapHeight / 8), Mathf.RoundToInt(mapHeight - mapHeight / 8));
-            int roomYPos = Random.Range(Mathf.RoundToInt(mapHeight / 8), Mathf.RoundToInt(mapHeight - mapHeight / 8));
+            int roomHeight = UnityEngine.Random.Range(roomHeightMin, roomHeightMax);
+            int roomWidth = UnityEngine.Random.Range(roomWidthMin, roomWidthMax);
+            int roomXPos = UnityEngine.Random.Range(Mathf.RoundToInt(mapHeight / 8), Mathf.RoundToInt(mapHeight - mapHeight / 8));
+            int roomYPos = UnityEngine.Random.Range(Mathf.RoundToInt(mapHeight / 8), Mathf.RoundToInt(mapHeight - mapHeight / 8));
             Vector2 roomPos = new Vector2(roomXPos, roomYPos);
 
             bool positionIsOkay = false;
@@ -158,10 +201,10 @@ public class GenerateTerrain : MonoBehaviour // This is adapted from Six Dot's v
 
                 if (smallestDistance < (30 * (1 - iterationers * 0.005f)))
                 {
-                    roomHeight = Random.Range(roomHeightMin, roomHeightMax);
-                    roomWidth = Random.Range(roomWidthMin, roomWidthMax);
-                    roomXPos = Random.Range(Mathf.RoundToInt(mapHeight / 8), Mathf.RoundToInt(mapHeight - mapHeight / 8));
-                    roomYPos = Random.Range(Mathf.RoundToInt(mapHeight / 8), Mathf.RoundToInt(mapHeight - mapHeight / 8));
+                    roomHeight = UnityEngine.Random.Range(roomHeightMin, roomHeightMax);
+                    roomWidth = UnityEngine.Random.Range(roomWidthMin, roomWidthMax);
+                    roomXPos = UnityEngine.Random.Range(Mathf.RoundToInt(mapHeight / 8), Mathf.RoundToInt(mapHeight - mapHeight / 8));
+                    roomYPos = UnityEngine.Random.Range(Mathf.RoundToInt(mapHeight / 8), Mathf.RoundToInt(mapHeight - mapHeight / 8));
                     roomPos = new Vector2(roomXPos, roomYPos);
                 }
                 else
@@ -285,7 +328,7 @@ public class GenerateTerrain : MonoBehaviour // This is adapted from Six Dot's v
             for (int i = 0; i < numberChecks; i++)
             {
                 walker thisWalker = walkers[i];
-                if (((Random.value < chanceWalkerDestroy && walkers.Count > 1) && roomsJoined[thisWalker.origin]) || thisWalker.hasJoined) // The latter is so the walker dies if it has just joined.
+                if (((UnityEngine.Random.value < chanceWalkerDestroy && walkers.Count > 1) && roomsJoined[thisWalker.origin]) || thisWalker.hasJoined) // The latter is so the walker dies if it has just joined.
                 {
                     walkers.RemoveAt(i);
                     break;
@@ -295,7 +338,7 @@ public class GenerateTerrain : MonoBehaviour // This is adapted from Six Dot's v
             // Changing direction
             for (int i = 0; i < walkers.Count; i++)
             {
-                if (Random.value < chanceWalkerChangeDir && grid[Mathf.RoundToInt(walkers[i].pos.x), Mathf.RoundToInt(walkers[i].pos.y)] != gridSpace.room) // Only changes direction if it ISN'T currently in a room.
+                if (UnityEngine.Random.value < chanceWalkerChangeDir && grid[Mathf.RoundToInt(walkers[i].pos.x), Mathf.RoundToInt(walkers[i].pos.y)] != gridSpace.room) // Only changes direction if it ISN'T currently in a room.
                 {
                     walker thisWalker = walkers[i];
                     thisWalker.dir = WeightedRandomDirection(thisWalker.pos);
@@ -309,10 +352,10 @@ public class GenerateTerrain : MonoBehaviour // This is adapted from Six Dot's v
             // Changing size
             for (int i = 0; i < walkers.Count; i++)
             {
-                if (Random.value < chanceWalkerChangeSize)
+                if (UnityEngine.Random.value < chanceWalkerChangeSize)
                 {
                     walker thisWalker = walkers[i];
-                    int newSize = Random.Range(2, 4); // between 2 and 3.
+                    int newSize = UnityEngine.Random.Range(2, 4); // between 2 and 3.
                     thisWalker.size = newSize;
                     //Debug.Log("walker size: " + thisWalker.size.ToString());
                     walkers[i] = thisWalker;
@@ -323,7 +366,7 @@ public class GenerateTerrain : MonoBehaviour // This is adapted from Six Dot's v
             numberChecks = walkers.Count;
             for (int i = 0; i < numberChecks; i++)
             {
-                if (Random.value < chanceWalkerSpawn && walkers.Count < maxWalkers)
+                if (UnityEngine.Random.value < chanceWalkerSpawn && walkers.Count < maxWalkers)
                 {
                     walker newWalker = new walker();
                     newWalker.dir = RandomDirection();
@@ -408,9 +451,9 @@ public class GenerateTerrain : MonoBehaviour // This is adapted from Six Dot's v
                     }
                 }
 
-                if (Random.value < chanceSpawnFiller && spaceIsFree)
+                if (UnityEngine.Random.value < chanceSpawnFiller && spaceIsFree)
                 {
-                    int typeOfObst = Random.Range(0, 6); // Probably replace this with a kinda hand-made thing, like for the rooms.
+                    int typeOfObst = UnityEngine.Random.Range(0, 6); // Probably replace this with a kinda hand-made thing, like for the rooms.
                     switch (typeOfObst)
                     {
                         case 0:
@@ -512,8 +555,32 @@ public class GenerateTerrain : MonoBehaviour // This is adapted from Six Dot's v
     {
         Vector3 spawnPos = new Vector3(2 * x - mapHeight + 2, 2 * y - mapHeight + 2);//MapSpaceToWorldSpace(new Vector2(x, y));
         GameObject spawnedThing = Instantiate(toSpawn, spawnPos, Quaternion.identity);
-        spawnedThing.transform.SetParent(gameObject.transform);
+        spawnedThing.transform.SetParent(levelParent.transform);
         spawnedObject = spawnedThing;
+    }
+
+    void SpawnRooms()
+    {
+        foreach (Vector2 pos in roomPositions)
+        {
+            int roomToChoose = UnityEngine.Random.Range(0, cumSumWeight);
+            int cumSum = 0;
+            GameObject roomChosen = null;
+
+            for (int i = 0; i < currentRooms.Count; i++)
+            {
+                cumSum += currentRooms[i].roomWeight;
+
+                if (roomToChoose <= cumSum)
+                {
+                    roomChosen = currentRooms[i].roomPrefab;
+                    break;
+                }
+            }
+
+            GameObject roomba = Instantiate(roomChosen, MapSpaceToWorldSpace(pos), Quaternion.identity);
+            roomba.transform.SetParent(levelParent.transform);
+        }
     }
 
     float percentCompletion()
@@ -523,7 +590,7 @@ public class GenerateTerrain : MonoBehaviour // This is adapted from Six Dot's v
 
     Vector2 MapSpaceToWorldSpace(Vector2 mapCoords)
     {
-        return new Vector2(2 * mapCoords.x - mapHeight + 2, 2 * mapCoords.y - mapHeight + 2);
+        return new Vector2(2 * mapCoords.x - mapHeight + 1, 2 * mapCoords.y - mapHeight + 1);
     }
 
     int NumberOfFloors()
@@ -568,10 +635,40 @@ public class GenerateTerrain : MonoBehaviour // This is adapted from Six Dot's v
         //Debug.Log("Successfully chose direction, dirToRoom: " + dirToRoom.ToString() + "Vec chosen: " + vecChosen.ToString());
         return vecChosen;
     }
+    
+    public void ClearRooms()
+    {
+        roomPositions.Clear();
+        roomSizes.Clear();
+        roomsJoined.Clear();
+        roomJoinResponsibles.Clear();
+    }
+
+    public void ProceedToNextLevel()
+    {
+        ClearRooms();
+        FOWRenTex1.Release();
+        FOWRenTex2.Release();
+        FOWTex = new Texture2D(300, 300);
+        FOWTex.Apply();
+        cumSumWeight = 0;
+
+        FOWCam1.active = false;
+        FOWCam2.active = false;
+
+        foreach (Transform child in levelParent.transform) // Destroys all level's objects.
+        {
+            Destroy(child.gameObject);
+        }
+
+        GenerateLevel();
+        FOWCam1.active = true;
+        FOWCam2.active = true;
+    }
 
     Vector2 RandomDirection()
     {
-        int choice = Mathf.FloorToInt(Random.value * 7.999f);
+        int choice = Mathf.FloorToInt(UnityEngine.Random.value * 7.999f);
         switch (choice)
         {
             case 0:

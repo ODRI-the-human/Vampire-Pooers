@@ -20,7 +20,13 @@ public class visualPoopoo : MonoBehaviour
             actions.FindActionMap("menus").Enable();
             actions.FindActionMap("menus").FindAction("restart").performed += OnRestart;
             actions.FindActionMap("menus").FindAction("slowmo").performed += OnSlowmo;
+            actions.FindActionMap("menus").FindAction("nextLevel").performed += GoToNextLevel;
         }
+    }
+
+    void GoToNextLevel(InputAction.CallbackContext context)
+    {
+        gameObject.GetComponent<GenerateTerrain>().ProceedToNextLevel();
     }
 
     void OnRestart(InputAction.CallbackContext context)

@@ -192,7 +192,7 @@ CircleCollider2D:
   m_Radius: 0.25
 --- !u!95 &8862382948265281371
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -209,7 +209,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!114 &2780488846903510234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -757,6 +757,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 4217320d-f1e6-467a-b9a2-8ad08d39ceb8
     m_ActionName: gameplay/abilityTwo[/Keyboard/space,/XInputControllerWindows/rightShoulder]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f30ce7a6-379d-4a91-a665-fd0304627deb
+    m_ActionName: menus/nextLevel[/Keyboard/equals]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: keyboard
   m_DefaultActionMap: gameplay
