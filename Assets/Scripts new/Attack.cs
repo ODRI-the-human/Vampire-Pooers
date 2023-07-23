@@ -29,9 +29,10 @@ public class Attack : MonoBehaviour
 
     public int visionRange = 8;
 
-    public int reTargetTimerLength = 100;
+    public int reTargetTimerLength = 250;
     public int reTargetTimer = 0;
     public GameObject currentTarget;
+    public GameObject lastTarget;
 
     public int timesFired = 0;
     public int newAttack; // alternates between 0 and 1 when the player fires. Used for certain items.
@@ -284,7 +285,7 @@ public class Attack : MonoBehaviour
         //    }
         //}
 
-        if (reTargetTimer <= 0)
+        if (reTargetTimer <= 0 || currentTarget == null)
         {
             ReTarget();
             reTargetTimer = reTargetTimerLength;

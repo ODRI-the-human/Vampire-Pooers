@@ -15,5 +15,5 @@ MonoBehaviour:
   roomName: testy2
   roomHeight: 12
   roomWidth: 12
-  roomWeight: 50
+  roomWeight: 15
   roomPrefab: {fileID: 18349200360947006, guid: 83c20b36929a4b7489d5bf1a97fd0637, type: 3}

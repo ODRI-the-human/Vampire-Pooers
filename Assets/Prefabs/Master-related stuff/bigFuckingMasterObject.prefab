@@ -1769,12 +1769,12 @@ MonoBehaviour:
   m_GenerateLinks: 0
   m_IgnoreNavMeshAgent: 1
   m_IgnoreNavMeshObstacle: 1
-  m_OverrideTileSize: 0
-  m_TileSize: 256
+  m_OverrideTileSize: 1
+  m_TileSize: 20
   m_OverrideVoxelSize: 1
   m_VoxelSize: 0.1
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: a7278d888d4016944864500630327fe5, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: e396251593e20c14b80067b42b66f2ad, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1 &6620000889269057199
 GameObject:
@@ -2011,7 +2011,7 @@ MonoBehaviour:
   darkArtHitbox: {fileID: 2061944661215622530, guid: 2a6acb6290a703e429ea463f4898e3c1, type: 3}
   chargeBar: {fileID: 4188144092211136378, guid: be34825c5fc5ca14abc3804e1d661da1, type: 3}
   reticle: {fileID: 4754094839536224065, guid: 3cf94e0441922d44c8ce3505152e57bb, type: 3}
-  GameManager: {fileID: 0}
+  GameManager: {fileID: 7002239379606652682}
   itemSprites:
   - {fileID: 357339062, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
   - {fileID: -1583978067, guid: 0f8055850bad2ba408e2ebda56eb7d0d, type: 3}
@@ -2476,7 +2476,6 @@ MonoBehaviour:
   FOWCam1: {fileID: 3648687764485610928}
   FOWCam2: {fileID: 8841207354843533286}
   portal: {fileID: 3099306356998662558, guid: 3c7be67dc49c0474c84d5129fa9477a2, type: 3}
-  rooms: []
   allRoomSets:
   - {fileID: 11400000, guid: a0e04704b2e1e9340a7de2b253d8fd94, type: 2}
   currentRooms: []
@@ -2502,7 +2501,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7002239379606652682}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c05841eae35a00a4da4e5cddf7a23d98, type: 3}
   m_Name: 

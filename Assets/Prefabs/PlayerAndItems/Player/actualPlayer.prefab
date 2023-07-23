@@ -25,13 +25,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1779359711597560978}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -0.07696827, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3448173853718531069}
-  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &960980295219793360
 SpriteRenderer:
@@ -140,6 +140,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3448173853718531064}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -151,7 +152,6 @@ Transform:
   - {fileID: 6274563996402688109}
   - {fileID: 6328040572665349089}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &3448173853718531070
 Rigidbody2D:
@@ -170,6 +170,12 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -182,17 +188,37 @@ CircleCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3448173853718531064}
   m_Enabled: 1
+  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
   m_Radius: 0.25
 --- !u!95 &8862382948265281371
 Animator:
-  serializedVersion: 5
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -206,10 +232,12 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &2780488846903510234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -644,7 +672,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: 0fc52bd7-247a-4d6e-a179-954b09527c5e
-    m_ActionName: gameplay/move[/XInputControllerWindows/leftStick,/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+    m_ActionName: 'gameplay/move[/XInputControllerWindows/leftStick,/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]'
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2780488846903510234}
@@ -660,7 +688,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: 9773a763-f1a3-453a-9a0a-16c78b74e42d
-    m_ActionName: gameplay/dodge[/Mouse/rightButton,/XInputControllerWindows/leftTrigger]
+    m_ActionName: 'gameplay/dodge[/Mouse/rightButton,/XInputControllerWindows/leftTrigger]'
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1998500251313762096}
@@ -688,7 +716,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: 1d91efab-03d6-4cd8-ad94-d726967c240d
-    m_ActionName: gameplay/aim[/XInputControllerWindows/rightStick,/Mouse/position]
+    m_ActionName: 'gameplay/aim[/XInputControllerWindows/rightStick,/Mouse/position]'
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1998500251313762096}
@@ -716,15 +744,15 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: 18dbaa31-e82a-4e96-868b-143572ec8bb9
-    m_ActionName: gameplay/shoot[/Mouse/leftButton,/XInputControllerWindows/rightTrigger]
+    m_ActionName: 'gameplay/shoot[/Mouse/leftButton,/XInputControllerWindows/rightTrigger]'
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: e8a9b557-0955-4450-b0f5-4d2392cba5cb
-    m_ActionName: menus/restart[/Keyboard/1]
+    m_ActionName: 'menus/restart[/Keyboard/1]'
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 830bd37b-28eb-4406-8b81-0110870422d5
-    m_ActionName: menus/slowmo[/Keyboard/2]
+    m_ActionName: 'menus/slowmo[/Keyboard/2]'
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: -4800039110049089029}
@@ -740,7 +768,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: 8f8ae074-d443-4a30-a2d6-d64ac881c7ea
-    m_ActionName: gameplay/abilityOne[/Keyboard/shift,/XInputControllerWindows/leftShoulder]
+    m_ActionName: 'gameplay/abilityOne[/Keyboard/shift,/XInputControllerWindows/leftShoulder]'
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: -4800039110049089029}
@@ -756,12 +784,12 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: 4217320d-f1e6-467a-b9a2-8ad08d39ceb8
-    m_ActionName: gameplay/abilityTwo[/Keyboard/space,/XInputControllerWindows/rightShoulder]
+    m_ActionName: 'gameplay/abilityTwo[/Keyboard/space,/XInputControllerWindows/rightShoulder]'
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: f30ce7a6-379d-4a91-a665-fd0304627deb
-    m_ActionName: menus/nextLevel[/Keyboard/equals]
-  m_NeverAutoSwitchControlSchemes: 1
+    m_ActionName: 'menus/nextLevel[/Keyboard/equals]'
+  m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: keyboard
   m_DefaultActionMap: gameplay
   m_SplitScreenIndex: -1
@@ -790,13 +818,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5655907316717730026}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 110, y: 110, z: 110}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3448173853718531069}
-  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1445661771630983229
 SpriteRenderer:
@@ -874,13 +902,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8656407280293583622}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3448173853718531069}
-  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &4536953045812582370
 CircleCollider2D:
@@ -890,19 +918,40 @@ CircleCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8656407280293583622}
   m_Enabled: 1
+  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
   m_Radius: 9.68
 --- !u!1001 &1717869420194927235
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 3448173853718531069}
     m_Modifications:
     - target: {fileID: 3616513699099699532, guid: 60144d236f99e61488c7f949bb853116, type: 3}
@@ -958,6 +1007,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3616513699099699532, guid: 60144d236f99e61488c7f949bb853116, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2731267347612597196}
   m_SourcePrefab: {fileID: 100100000, guid: 60144d236f99e61488c7f949bb853116, type: 3}
 --- !u!1 &2731267347612597199 stripped
 GameObject:
@@ -987,6 +1042,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 3448173853718531069}
     m_Modifications:
     - target: {fileID: -2346603862675002404, guid: b5a9d08efb5533a43b709dc5c65e4ebe, type: 3}
@@ -1042,6 +1098,9 @@ PrefabInstance:
       value: XPPickerUpper
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5a9d08efb5533a43b709dc5c65e4ebe, type: 3}
 --- !u!4 &5525728751373638907 stripped
 Transform:

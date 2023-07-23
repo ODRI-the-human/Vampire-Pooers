@@ -234,11 +234,6 @@ public class Director : MonoBehaviour
         }
 
         creditsForNextSpawn = credits - creditsForNextSpawn;
-        //else
-        //{
-        //    eliteType = null;
-        //    enemyToSpawnNext = null;
-        //}
     }
 
     void GetAvailablePositions()

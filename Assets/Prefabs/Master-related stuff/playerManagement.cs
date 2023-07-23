@@ -84,6 +84,7 @@ public class playerManagement : MonoBehaviour
         }
 
         CreateNewPlayerUI(newPlayer);//, newPlayer.GetComponent<managePlayer>().playerID);
+        newPlayer.transform.position = EntityReferencerGuy.Instance.camera.transform.position;
 
         if (numPlayers == 2) // For now I'll just make it so 2-player co-op is possible, just to make UI shit easier. In future I'll add 4 player co-op.
         {
