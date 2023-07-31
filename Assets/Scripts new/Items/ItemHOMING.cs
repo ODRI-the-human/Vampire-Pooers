@@ -21,7 +21,7 @@ public class ItemHOMING : MonoBehaviour
 
     void Start()
     {
-        if (gameObject.GetComponent<checkAllLazerPositions>() == null)
+        if (gameObject.GetComponent<Bullet_Movement>() != null)
         {
             rb = gameObject.GetComponent<Rigidbody2D>();
             speed = rb.velocity.magnitude;

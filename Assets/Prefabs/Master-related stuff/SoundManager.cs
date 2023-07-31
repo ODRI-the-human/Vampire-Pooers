@@ -18,7 +18,9 @@ public class SoundManager : MonoBehaviour
 
     public void PlaySound(AudioClip clip, float randPitchAmt)
     {
-        effectsSource.PlayOneShot(clip);
+        effectsSource.time = 0;
+        effectsSource.clip = clip;
+        effectsSource.Play();
         effectsSource.pitch = Random.Range(1f - randPitchAmt, 1f + randPitchAmt);
     }
 }

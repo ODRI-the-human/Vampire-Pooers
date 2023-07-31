@@ -253,7 +253,7 @@ public class HPDamageDie : MonoBehaviour
             {
                 Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>(), true);
             }
-            col.gameObject.GetComponent<DealDamage>().CalculateDamage(gameObject);
+            col.gameObject.GetComponent<DealDamage>().CalculateDamage(gameObject, col.gameObject);
             //Hurty(damageAmount, isCrit, true, 1, col.gameObject.GetComponent<DealDamage>().damageType, false, col.gameObject);
         }
     }
@@ -270,7 +270,8 @@ public class HPDamageDie : MonoBehaviour
             if (col.gameObject.GetComponent<DealDamage>().onlyDamageOnce)
             {
                 Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>(), true);
-                col.gameObject.GetComponent<DealDamage>().CalculateDamage(gameObject);
+                
+                col.gameObject.GetComponent<DealDamage>().CalculateDamage(gameObject, col.gameObject);
             }
             else
             {

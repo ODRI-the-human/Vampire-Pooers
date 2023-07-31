@@ -145,7 +145,7 @@ public class checkAllLazerPositions : MonoBehaviour
                         //    //Instantiate(CritAudio);
                         //    isCrit = true;
                         //}
-                        gameObject.GetComponent<DealDamage>().CalculateDamage(col.gameObject);
+                        gameObject.GetComponent<DealDamage>().CalculateDamage(col.gameObject, gameObject);
                         //float damageAmount = gameObject.GetComponent<DealDamage>().finalDamageStat * critMult;
                         //col.gameObject.GetComponent<HPDamageDie>().Hurty(gameObject.GetComponent<DealDamage>().damageAmt, isCrit, true, 1, (int)DAMAGETYPES.ELECTRIC, false, gameObject);
                         //gameObject.GetComponent<ParticleSystem>().Emit(50);
@@ -204,7 +204,7 @@ public class checkAllLazerPositions : MonoBehaviour
                         //    //Instantiate(CritAudio);
                         //    isCrit = true;
                         //}
-                        gameObject.GetComponent<DealDamage>().CalculateDamage(col.gameObject);
+                        gameObject.GetComponent<DealDamage>().CalculateDamage(col.gameObject, gameObject);
                         //float damageAmount = gameObject.GetComponent<DealDamage>().finalDamageStat * critMult;
                         //col.gameObject.GetComponent<HPDamageDie>().Hurty(gameObject.GetComponent<DealDamage>().damageAmt, isCrit, true, 1, (int)DAMAGETYPES.ELECTRIC, false, gameObject);
                         //gameObject.GetComponent<ParticleSystem>().Emit(50);

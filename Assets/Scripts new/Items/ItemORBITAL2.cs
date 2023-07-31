@@ -34,8 +34,17 @@ public class ItemORBITAL2 : MonoBehaviour
         {
             //Vector3 vec3 = gameObject.GetComponent<Attack>().mouseVector - orb.transform.position;
             //orb.GetComponent<Attack>().vectorToTarget = new Vector2(vec3.x, vec3.y).normalized;
-            orb.GetComponent<Attack>().vectorToTarget = gameObject.GetComponent<Attack>().vectorToTarget;
-            orb.GetComponent<Attack>().UseAttack(gameObject.GetComponent<Attack>().abilityTypes[0], 0, gameObject.GetComponent<Attack>().isPlayerTeam, gameObject.GetComponent<Attack>().lastAttackCharged);
+            Vector3 vec3 = Vector3.zero;
+            if (gameObject.tag == "Player")
+            {
+                vec3 = gameObject.GetComponent<Attack>().reticle.transform.position - transform.position;
+            }
+            else
+            {
+                vec3 = gameObject.GetComponent<Attack>().currentTarget.transform.position - transform.position;
+            }
+            gameObject.GetComponent<Attack>().vectorToTarget = new Vector2(vec3.x, vec3.y).normalized;
+            orb.GetComponent<Attack>().UseAttack(gameObject.GetComponent<Attack>().abilityTypes[0], 0, gameObject.GetComponent<Attack>().isPlayerTeam, gameObject.GetComponent<Attack>().lastAttackCharged, true);
         }
     }
 

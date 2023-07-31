@@ -110,7 +110,7 @@ public class DealDamage : MonoBehaviour
         return damageToPassToVictim;
     }
 
-    public void CalculateDamage(GameObject victim) // When an object is hurt, it calls this method on the responsible object.
+    public void CalculateDamage(GameObject victim, GameObject responsible) // When an object is hurt, it calls this method on the responsible object.
     {
         if (canDealDamage)
         {
@@ -138,10 +138,12 @@ public class DealDamage : MonoBehaviour
 
             if (gameObject.GetComponent<explosionBONUSSCRIPTWOW>() != null)
             {
-                Vector3 vecFromCtr = (transform.position - victim.transform.position) / (2.65f * victim.transform.localScale.x);
-                float fracFromCtr = Mathf.Clamp(1 - new Vector3(vecFromCtr.x, vecFromCtr.y, 0).magnitude * 0.75f, 0, 1);
-                Debug.Log("fracFromCtr: " + fracFromCtr.ToString());
+                float maxDist = responsible.transform.localScale.x * responsible.GetComponent<CircleCollider2D>().radius + victim.transform.localScale.x * victim.GetComponent<CircleCollider2D>().radius;
+                float actualDist = (responsible.transform.position - victim.transform.position).magnitude;
+                float fracFromCtr = Mathf.Clamp(2f * (1 - (actualDist / maxDist)), 0f, 1f);
                 damageToPassToVictim *= fracFromCtr;
+
+                //Debug.Log("bunguloj exploding distance moment: " + fracFromCtr.ToString());
             }
 
             victim.GetComponent<HPDamageDie>().Hurty(damageToPassToVictim, isCrit, true, iFrameFac, damageType, false, gameObject);

@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 6465258072512375914}
   - component: {fileID: 6465258072512375927}
   - component: {fileID: 4350419538097284281}
-  - component: {fileID: 8984978239919591108}
   - component: {fileID: 4094460240105576254}
   - component: {fileID: 6596505954230717738}
+  - component: {fileID: 2890924716809795015}
   m_Layer: 0
   m_Name: familiar
   m_TagString: Familiar
@@ -28,13 +28,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6465258072512375926}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3, y: 3, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6465258072512375927
 SpriteRenderer:
@@ -103,13 +103,13 @@ MonoBehaviour:
   finalDamageStat: 20
   procCoeff: 0
   damageBase: 0
-  damageAdd: 0
   damageMult: 0
   finalDamageMult: 0
   critProb: 0
   critMult: 0
   owner: {fileID: 0}
   master: {fileID: 0}
+  canDealDamage: 1
   massCoeff: 0
   overwriteDamageCalc: 0
   onlyDamageOnce: 1
@@ -122,68 +122,6 @@ MonoBehaviour:
   procChainIndexes: 
   procChanceBonus: 1
   damageToPassToVictim: 0
---- !u!114 &8984978239919591108
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6465258072512375926}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a79b14745a3e2fd4f8a0b5a259cfcb25, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shotSpeed: 13
-  bulletLengthMult: 1.5
-  currentAngle: 0
-  vectorToTarget: {x: 0, y: 0}
-  noExtraShots: 0
-  shotAngleCoeff: 1
-  trueDamageValue: 0
-  Bullet: {fileID: 4255455733749829593, guid: 27160d46bf5b97a4898af82130ae1a42, type: 3}
-  PlayerShootAudio: {fileID: 2232971130497578917, guid: dc46db39e4e70b144915e7a0652cc396, type: 3}
-  Player: {fileID: 0}
-  playerControlled: 1
-  specialFireType: 0
-  darkArtSword: {fileID: 7955111713391121560, guid: 35c958ea85b00c144830eefba828d8c3, type: 3}
-  setDamageAutomatically: 0
-  doAim: 1
-  fireTimerActualLength: 0
-  visionRange: 6
-  reTargetTimerLength: 100
-  reTargetTimer: 0
-  currentTarget: {fileID: 0}
-  timesFired: 0
-  newAttack: 0
-  Crongus: 0
-  damageBonus: 0
-  scaleAddMult: 1
-  mouseVector: {x: 0, y: 0, z: 0}
-  stopwatchDebuffAmount: 0
-  doShootAutomatically: 1
-  getEnemyPos: 0
-  angleAddAmount: 0
-  velToGiveBullets: {x: 0, y: 0, z: 0}
-  massToGiveBullets: 0.5
-  holdDownToShoot: 1
-  numBulletsPossible: 16
-  autoFire: 1
-  isFiring: 0
-  isHoldingFire: 0
-  shotParticles: {fileID: 2232971130497578917, guid: dc46db39e4e70b144915e7a0652cc396, type: 3}
-  chargeTime: 0
-  isChargedAttack: 0
-  chargeBar: {fileID: 0}
-  reticle: {fileID: 0}
-  reticlePos: {x: 0, y: 0, z: 0}
-  meleeHitObj: {fileID: 0}
-  hitboxSpawnDelay: 0
-  fireTimerLengthMLT: 1
-  fireTimerDIV: 1
-  fireRate: 1.5
-  fireTimer: 0
-  fireTimerThreshold: 0
 --- !u!114 &4094460240105576254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,8 +140,6 @@ MonoBehaviour:
   weaponHeld: 0
   noToGive: 1
   spawnedBat: {fileID: 0}
-  previousFireType: 0
-  previousFireTimerLengthMLT: 0
 --- !u!114 &6596505954230717738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,3 +155,34 @@ MonoBehaviour:
   gunnerType: 0
   toFollow: {fileID: 0}
   owner: {fileID: 0}
+--- !u!114 &2890924716809795015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6465258072512375926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 141aaa04646c8364f9a42e69e3065f23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  masterCooldown: 0
+  abilityTypes:
+  - {fileID: 11400000, guid: a02445f87f770534a9a6cd2a2058b033, type: 2}
+  coolDowns: 
+  charges: 
+  attackWeights: 
+  isHoldingAttack: 
+  isAttacking: 0
+  chargeTimers: 
+  lastAttackCharged: 0
+  cooldownFac: 1
+  cooldownFacIndiv: []
+  currentTarget: {fileID: 0}
+  vectorToTarget: {x: 0, y: 0}
+  cameron: {fileID: 0}
+  reticle: {fileID: 0}
+  chargeBar: {fileID: 0}
+  isPlayerTeam: 1
+  attackAutomatically: 0

@@ -2080,6 +2080,7 @@ MonoBehaviour:
   time: 180
   keepBestStatObj: {fileID: 5459875686069988955}
   itemsHeldVisualiser: {fileID: 8484845968839686508}
+  daggerThrow: {fileID: 11400000, guid: 6b07d56638725614994273219689accd, type: 2}
 --- !u!114 &179530921809487071
 MonoBehaviour:
   m_ObjectHideFlags: 0

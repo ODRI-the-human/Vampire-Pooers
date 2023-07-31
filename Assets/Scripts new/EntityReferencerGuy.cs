@@ -73,8 +73,22 @@ public class EntityReferencerGuy : MonoBehaviour
     public GameObject itemsHeldVisualiser;
 
 
+
+
+
+
     // Any global variables, like the stopwatchdebuff amount, should go here!
     [System.NonSerialized] public float stopWatchDebuffAmt = 1;
+
+
+
+
+
+
+    // Any scriptableobjects that need to be referenced globally go here.
+    public AbilityParams daggerThrow;
+
+
 
 
     public static EntityReferencerGuy Instance { get; private set; }

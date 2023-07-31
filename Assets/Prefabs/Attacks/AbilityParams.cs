@@ -18,7 +18,7 @@ public abstract class AbilityParams : ScriptableObject
     public bool isCharged = false; // This gets set/reset every attack, just to easily keep track of whether the last attack was charged or not.
     public abstract void ActivateAbility(GameObject dealer, GameObject target, Vector2 direction, bool isPlayerTeam, Material mat, int layer, string tag);
 
-    public void UseAttack(GameObject dealer, GameObject target, Vector2 direction, bool isPlayerTeam, int abilityIndex, bool chargeStatus)
+    public void UseAttack(GameObject dealer, GameObject target, Vector2 direction, bool isPlayerTeam, int abilityIndex, bool chargeStatus, bool overrideCooldownSetting)
     {
         isCharged = chargeStatus;
         int LayerPlayerBullet = LayerMask.NameToLayer("PlayerBullets");
@@ -61,10 +61,11 @@ public abstract class AbilityParams : ScriptableObject
             if (spawnedAttackObjs[i].GetComponent<DealDamage>() != null)
             {
                 spawnedAttackObjs[i].GetComponent<DealDamage>().finalDamageMult = dealer.GetComponent<DealDamage>().finalDamageMult * dealer.GetComponent<DealDamage>().damageBonus;
+                spawnedAttackObjs[i].GetComponent<DealDamage>().owner = dealer;
             }
         }
 
-        if (dealer.GetComponent<Attack>().abilityTypes.Length > 0)
+        if (!overrideCooldownSetting)
         {
             dealer.GetComponent<Attack>().coolDowns[abilityIndex] = Mathf.RoundToInt(coolDownTime * dealer.GetComponent<Attack>().cooldownFacIndiv[abilityIndex] * dealer.GetComponent<Attack>().cooldownFac);
             if (!isPlayerTeam) // For adding extra to the cooldown timer based on stopwatch shenanigans if this is an enemy

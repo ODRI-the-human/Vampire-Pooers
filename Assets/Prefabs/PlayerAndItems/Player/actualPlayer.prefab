@@ -515,9 +515,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   masterCooldown: 0
   abilityTypes:
-  - {fileID: 11400000, guid: 80360e7dbb7f2a84f8b0a874d757671e, type: 2}
-  - {fileID: 11400000, guid: 245e9dc2f96a8b148a452d35ee626cb9, type: 2}
   - {fileID: 11400000, guid: a02445f87f770534a9a6cd2a2058b033, type: 2}
+  - {fileID: 11400000, guid: 80360e7dbb7f2a84f8b0a874d757671e, type: 2}
+  - {fileID: 11400000, guid: ed23bf43dd85064488a960e1e5d04d86, type: 2}
   coolDowns: 
   charges: 
   attackWeights: 

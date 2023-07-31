@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 110440509597865849}
   - component: {fileID: -3033583009772547652}
   - component: {fileID: 8031604352272101920}
-  - component: {fileID: -5903357068065279301}
   - component: {fileID: 5716069322335169520}
   - component: {fileID: 2322724339281642898}
   - component: {fileID: -1529151102796488646}
@@ -32,13 +31,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 110440509597865848}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.03999996, z: 1.2}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &110440509597865851
 MeshFilter:
@@ -110,6 +109,12 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -126,16 +131,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30830851ecf01fa4e8e1c859ed98de6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  finalDamageStat: 50
-  procCoeff: 1
-  damageBase: 50
-  damageAdd: 0
+  finalDamageStat: 0
+  procCoeff: 0
+  damageBase: 0
   damageMult: 1
   finalDamageMult: 1
   critProb: 0
   critMult: 2
   owner: {fileID: 0}
   master: {fileID: 0}
+  canDealDamage: 1
   massCoeff: 0.5
   overwriteDamageCalc: 1
   onlyDamageOnce: 1
@@ -146,6 +151,7 @@ MonoBehaviour:
   damageToPresent: 0
   damageType: 0
   procChainIndexes: 
+  procChanceBonus: 1
   damageToPassToVictim: 0
 --- !u!114 &8031604352272101920
 MonoBehaviour:
@@ -162,24 +168,9 @@ MonoBehaviour:
   itemsHeld: 
   master: {fileID: 0}
   itemGained: 0
-  noToGive: 1
---- !u!114 &-5903357068065279301
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 110440509597865848}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1fa510d5f65fe4b429d86a4e95a6e22d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   weaponHeld: 0
-  master: {fileID: 0}
+  noToGive: 1
   spawnedBat: {fileID: 0}
-  previousFireType: 0
-  previousFireTimerLengthMLT: 0
 --- !u!58 &5716069322335169520
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -188,13 +179,33 @@ CircleCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 110440509597865848}
   m_Enabled: 1
+  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
   m_Radius: 1
 --- !u!114 &2322724339281642898
 MonoBehaviour:
@@ -237,3 +248,5 @@ MonoBehaviour:
   damageReduction: 0
   damageDiv: 1
   perfectWaves: 0
+  DOTSources: []
+  DOTDamages: []

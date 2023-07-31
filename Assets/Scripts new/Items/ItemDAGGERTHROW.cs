@@ -1,40 +1,58 @@
-//using System.Collections;
-//using System.Collections.Generic;
-//using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-//public class ItemDAGGERTHROW : MonoBehaviour
-//{
-//    public bool hasShot = false;
-//    int shotSpeed = 12;
-//    GameObject Bullet;
-//    Rigidbody2D bulletRB;
-//    Vector2 newShotVector;
-//    Vector2 vectorToTarget;
-//    GameObject Player;
-//    float currentAngle;
-//    public int instances = 1;
+public class ItemDAGGERTHROW : MonoBehaviour
+{
+    public bool hasShot = false;
+    int shotSpeed = 12;
+    GameObject Bullet;
+    Rigidbody2D bulletRB;
+    Vector2 newShotVector;
+    Vector2 vectorToTarget;
+    float currentAngle;
 
-//    void IncreaseInstances(string name)
-//    {
-//        if (name == this.GetType().ToString())
-//        {
-//            instances++;
-//        }
-//    }
+    public int instances = 1;
+    int timesFired = 0;
+    [SerializeField] AbilityParams daggerThrow;
 
-//    void Start()
-//    {        
-//        Bullet = EntityReferencerGuy.Instance.playerBullet;
+    void IncreaseInstances(string name)
+    {
+        if (name == this.GetType().ToString())
+        {
+            instances++;
+        }
+    }
 
-//        Player = gameObject.GetComponent<Attack>().Player;
+    void Start()
+    {
+        daggerThrow = EntityReferencerGuy.Instance.daggerThrow;
 
-//        if (gameObject.tag == "Hostile" || gameObject.tag == "enemyBullet")
-//        {
-//            shotSpeed = 8;
-//        }
-//    }
+        if (gameObject.tag == "Hostile" || gameObject.tag == "enemyBullet")
+        {
+            shotSpeed = 8;
 
-//    // Start is called before the first frame update
+        }
+    }
+
+    void OnShootEffects()
+    {
+        timesFired++;
+        if (timesFired % 3 == 0)
+        {
+            for (int i = 0; i < 2 * instances + 1; i++)
+            {
+                float currentAngle = (Mathf.PI / 6.5f) * (- 2 * instances * 0.5f + i);
+                Vector2 vecToUse = new Vector2(gameObject.GetComponent<Attack>().vectorToTarget.x * Mathf.Cos(currentAngle) - gameObject.GetComponent<Attack>().vectorToTarget.y * Mathf.Sin(currentAngle), gameObject.GetComponent<Attack>().vectorToTarget.x * Mathf.Sin(currentAngle) + gameObject.GetComponent<Attack>().vectorToTarget.y * Mathf.Cos(currentAngle)).normalized;
+                //Debug.Log("dagg ers! vecToUse: " + vecToUse.ToString());
+                //gameObject.GetComponent<Attack>().UseAttack(daggerThrow, 2, gameObject.GetComponent<Attack>().isPlayerTeam, false, true);
+                daggerThrow.UseAttack(gameObject, gameObject.GetComponent<Attack>().currentTarget, vecToUse, gameObject.GetComponent<Attack>().isPlayerTeam, 2, false, true);
+            }
+        }
+    }
+}
+
+    // Start is called before the first frame update
 //    void Update()
 //    {
 //        if (gameObject.GetComponent<Attack>().timesFired % 3 == 0 && !hasShot)
@@ -81,7 +99,7 @@
 //                }
 //            }
 //        }
-        
+
 //        if (gameObject.GetComponent<Attack>().timesFired % 3 != 0)
 //        {
 //            {

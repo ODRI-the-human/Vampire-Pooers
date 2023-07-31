@@ -193,7 +193,7 @@ public class Attack : MonoBehaviour
 
                 if (abilityTypes[i].chargeLength == 0 && isHoldingAttack[i] && charges[i] > 0) // For non-charged attacks.
                 {
-                    UseAttack(abilityTypes[i], i, true, false);
+                    UseAttack(abilityTypes[i], i, true, false, false);
                     isAttacking = true;
                 }
                 else if (abilityTypes[i].chargeLength > 0 && isHoldingAttack[i] && charges[i] > 0) // Setting timers for charged attacks.
@@ -214,12 +214,12 @@ public class Attack : MonoBehaviour
                 {
                     if (chargeTimers[i] > abilityTypes[i].chargeLength * cooldownFac * cooldownFacIndiv[i])
                     {
-                        UseAttack(abilityTypes[i], i, true, true);
+                        UseAttack(abilityTypes[i], i, true, true, false);
                         Destroy(chargeBar);
                     }
                     else if (chargeTimers[i] > 0)
                     {
-                        UseAttack(abilityTypes[i], i, true, false);
+                        UseAttack(abilityTypes[i], i, true, false, false);
                         Destroy(chargeBar);
                         
                     }
@@ -248,7 +248,7 @@ public class Attack : MonoBehaviour
                 cumSumWeights += attackWeights[i];
                 if (cumSumWeights > attackChosen)
                 {
-                    UseAttack(abilityTypes[i], i, false, false);
+                    UseAttack(abilityTypes[i], i, false, false, false);
                     break;
                 }
             }
@@ -265,7 +265,7 @@ public class Attack : MonoBehaviour
         //do nothing nerd
     }
 
-    public void UseAttack(AbilityParams abilityToUse, int abilityIndex, bool isPlayer, bool isCharged)
+    public void UseAttack(AbilityParams abilityToUse, int abilityIndex, bool isPlayer, bool isCharged, bool overrideCooldownSetting)
     {
         // Here goes any stuff like moreshot and the like that augment how attacks are used but aren't intrinsic to the specific attack type.
 
@@ -277,9 +277,9 @@ public class Attack : MonoBehaviour
 
         for (int i = 0; i < noExtraShots + 1; i++)
         {
-            float currentAngle = 0.9f * (-noExtraShots * 0.5f + i);
+            float currentAngle = (Mathf.PI / 6) * (-noExtraShots * 0.5f + i);
             Vector2 vecToUse = new Vector2(vectorToTarget.x * Mathf.Cos(currentAngle) - vectorToTarget.y * Mathf.Sin(currentAngle), vectorToTarget.x * Mathf.Sin(currentAngle) + vectorToTarget.y * Mathf.Cos(currentAngle)).normalized;
-            abilityToUse.UseAttack(gameObject, currentTarget, vecToUse, isPlayerTeam, abilityIndex, isCharged);
+            abilityToUse.UseAttack(gameObject, currentTarget, vecToUse, isPlayerTeam, abilityIndex, isCharged, overrideCooldownSetting);
         }
         SendMessage("OnUseAbility", abilityIndex);
         lastAttackCharged = isCharged;

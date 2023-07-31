@@ -40,7 +40,7 @@ public class ItemATG : MonoBehaviour
         Component[] components = gameObject.GetComponents(typeof(Component));
         int scriptIndex = System.Array.IndexOf(components, this);
 
-        int numEffects = gameObject.GetComponent<DealDamage>().ChanceRoll(10, source, scriptIndex);
+        int numEffects = gameObject.GetComponent<DealDamage>().ChanceRoll(100, source, scriptIndex); //10
         for (int i = 0; i < numEffects; i++)
         {
             GameObject ARSEMAN = Instantiate(ATGMissile, owner.transform.position, owner.transform.rotation);
