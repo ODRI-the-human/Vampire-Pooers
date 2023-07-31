@@ -72,6 +72,11 @@ public class EntityReferencerGuy : MonoBehaviour
 
     public GameObject itemsHeldVisualiser;
 
+
+    // Any global variables, like the stopwatchdebuff amount, should go here!
+    [System.NonSerialized] public float stopWatchDebuffAmt = 1;
+
+
     public static EntityReferencerGuy Instance { get; private set; }
     private void Awake()
     {
@@ -93,7 +98,6 @@ public class EntityReferencerGuy : MonoBehaviour
 
     void Start()
     {
-        GameObject pedestal = gameObject.GetComponent<ThirdEnemySpawner>().itemPedestal;
         numItemsExist = (int)ITEMLIST.CREEPSHOT;
         //playerInstance = GameObject.Find("newPlayer");
         //Application.targetFrameRate = 60;
@@ -111,20 +115,15 @@ public class EntityReferencerGuy : MonoBehaviour
 
     void Update()
     {
+        time -= Time.deltaTime;
         if (time < 0)
         {
             for (int i = 0; i < bosNumToSpawn; i++)
             {
                 Instantiate(boss, transform.position + new Vector3(Random.Range(-1.5f, 1.5f), Random.Range(-1.5f, 1.5f), 0), Quaternion.Euler(0, 0, 0));
             }
-            gameObject.GetComponent<ThirdEnemySpawner>().spawnTimer = 999999999999;
             bosNumToSpawn++;
             time = 180;
-        }
-
-        if (gameObject.GetComponent<ThirdEnemySpawner>().enemiesAreSpawning)
-        {
-            time -= Time.deltaTime;
         }
     }
 }

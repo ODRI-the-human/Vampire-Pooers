@@ -6,10 +6,9 @@ using System;
 
 public class Director : MonoBehaviour
 {
-    float scaleConst = 1; // this increases through the run, to scale up credit gain n shit.
+    [SerializeField] float levelProgressBonus = 1; // Starts at 1 each level, decreases as the level progresses to increase the spawn rate and credit gain rate over the course of a level.
     [SerializeField] float credits = 0;
     [SerializeField] float creditsForNextSpawn = 0; // sets the number of credits required for the next spawn, so FixedUpdate knows when to call the Spawn function.
-    [SerializeField] float spawnCost = 0; // sets the number of credits required for the next spawn, so FixedUpdate knows when to call the Spawn function.
     float creditIncreaseRate = 0.2f;
     public int numEnemyThreshold = 0; // this is the number of enemies at which the director will force spawning some enemies.
     public int numEnemies; // Counts num of enemies alive.
@@ -134,7 +133,7 @@ public class Director : MonoBehaviour
     {
         timer++;
         timeSinceLastSpawn += spawnTimerRate;
-        credits += creditIncreaseRate * scaleConst; // Director gains creditIncreaseRate * scaleConst * 50 credits per sec.
+        credits += creditIncreaseRate * (1 / levelProgressBonus); // Director gains creditIncreaseRate * scaleConst * 50 credits per sec.
         //creditIncreaseRate += 0.0001f;
 
         if (timer % 250 == 0) // Every 5 secs
@@ -286,7 +285,8 @@ public class Director : MonoBehaviour
     {
         GetAvailablePositions();
         timeSinceLastSpawn = 0;
-        timeTillNextSpawn = UnityEngine.Random.Range(5 * 50, 11 * 50); // Next enemy spawn is in 5 - 11 secs.
+        levelProgressBonus = Mathf.Clamp(1f, 0.5f, levelProgressBonus - 0.02f);
+        timeTillNextSpawn = UnityEngine.Random.Range(Mathf.RoundToInt(5 * 50 * levelProgressBonus), Mathf.RoundToInt(11 * 50 * levelProgressBonus)); // Next enemy spawn is in 5 - 11 secs.
 
 
         for (int i = 0; i < numEnemiesToSpawn; i++)
@@ -320,6 +320,5 @@ public class Director : MonoBehaviour
 
         GetNoOfEnemies();
         spawnTimerRate = 1;
-        numEnemyThreshold = Mathf.CeilToInt(numEnemies / 2f);
     }
 }

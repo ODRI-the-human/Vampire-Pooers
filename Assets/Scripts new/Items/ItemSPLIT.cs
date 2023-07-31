@@ -23,7 +23,7 @@ public class ItemSPLIT : MonoBehaviour
     void Start()
     {
         owner = gameObject.GetComponent<DealDamage>().owner;
-        Buuleter = owner.GetComponent<Attack>().Bullet;
+        Buuleter = gameObject;
         if (gameObject.GetComponent<Rigidbody2D>() != null)
         {
             speed = gameObject.GetComponent<Rigidbody2D>().velocity.magnitude;
@@ -57,10 +57,8 @@ public class ItemSPLIT : MonoBehaviour
                         Splitman1.GetComponent<DealDamage>().finalDamageMult *= 0.3f * gameObject.GetComponent<DealDamage>().finalDamageMult;
                         Splitman1.GetComponent<DealDamage>().massCoeff = 0.5f * gameObject.GetComponent<DealDamage>().massCoeff;
                         Splitman1.GetComponent<DealDamage>().owner = owner;
-                        Splitman1.GetComponent<DealDamage>().damageBase += owner.GetComponent<Attack>().Crongus;
                         Splitman1.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
                         Splitman1.GetComponent<Rigidbody2D>().simulated = true;
-                        Splitman1.GetComponent<Bullet_Movement>().isPooledBullet = false;
                         Physics2D.IgnoreCollision(victim.GetComponent<Collider2D>(), Splitman1.GetComponent<Collider2D>(), true);
                         Splitman1.AddComponent<ItemSPLIT>();
                         Splitman1.GetComponent<ItemSPLIT>().canSplit = false;
@@ -79,7 +77,7 @@ public class ItemSPLIT : MonoBehaviour
                 for (int i = 0; i < 2; i++)
                 {
                     GameObject owner = gameObject.GetComponent<DealDamage>().owner;
-                    StartCoroutine(owner.GetComponent<Attack>().SpawnMelee(Random.Range(0f, 10000f) * (1 + 2 * i) / 2, victim.transform.position - owner.transform.position, victim, 0.3f * instances * gameObject.GetComponent<DealDamage>().finalDamageMult, 0, 0.8f, false));
+                    //StartCoroutine(owner.GetComponent<Attack>().SpawnMelee(Random.Range(0f, 10000f) * (1 + 2 * i) / 2, victim.transform.position - owner.transform.position, victim, 0.3f * instances * gameObject.GetComponent<DealDamage>().finalDamageMult, 0, 0.8f, false));
                 }
             }
         }

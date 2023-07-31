@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de93251bb5bf5654d8bb86880fec8668, type: 3}
+  m_Name: BulletNormal
+  m_EditorClassIdentifier: 
+  name: Normal Shot
+  weight: 100
+  maxCharges: 1
+  delayTime: 0
+  coolDownTime: 25
+  objectsToUse:
+  - {fileID: 4255455733749829593, guid: 27160d46bf5b97a4898af82130ae1a42, type: 3}
+  sfx:
+  - {fileID: 8300000, guid: 997791360c51a1d458187624008f6877, type: 3}
+  range: 99999
+  effectsToAdd: []
+  defaultSpeed: 6

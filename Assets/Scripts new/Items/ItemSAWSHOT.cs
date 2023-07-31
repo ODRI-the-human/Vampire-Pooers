@@ -84,10 +84,10 @@ public class ItemSAWSHOT : MonoBehaviour
 
             GameObject owner = gameObject.GetComponent<DealDamage>().owner;
             Poop.GetComponent<DealDamage>().owner = owner;
-            if (gameObject.GetComponent<Bullet_Movement>() != null)
-            {
-                owner.GetComponent<Attack>().bulletPool.Release(gameObject);
-            }
+            //if (gameObject.GetComponent<Bullet_Movement>() != null)
+            //{
+            //    owner.GetComponent<Attack>().bulletPool.Release(gameObject);
+            //}
         }
     }
 

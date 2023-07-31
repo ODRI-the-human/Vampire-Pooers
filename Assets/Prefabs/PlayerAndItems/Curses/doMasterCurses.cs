@@ -23,7 +23,7 @@ public class doMasterCurses : MonoBehaviour
         if (numRoundsDropItemLeft > 0)
         {
             enemy.AddComponent<dropItemOnHit>();
-            enemy.GetComponent<dropItemOnHit>().itemPedestal = gameObject.GetComponent<ThirdEnemySpawner>().itemPedestal;
+            enemy.GetComponent<dropItemOnHit>().itemPedestal = gameObject.GetComponent<Director>().itemPedestal;
         }
     }
 }

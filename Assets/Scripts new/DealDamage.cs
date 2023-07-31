@@ -7,7 +7,7 @@ public class DealDamage : MonoBehaviour
     public float finalDamageStat;
     public float procCoeff;
     public float damageBase;
-    public float damageAdd;
+    [System.NonSerialized] public float damageBonus = 1; // For things like converter and the bonus funny level up.
     public float damageMult;
     public float finalDamageMult = 1;
     public float critProb = 0.05f;
@@ -100,7 +100,7 @@ public class DealDamage : MonoBehaviour
     {
         if (!overwriteDamageCalc)
         {
-            damageToPassToVictim = (damageBase + damageAdd) * finalDamageMult;
+            damageToPassToVictim = damageBase * finalDamageMult;
             SendMessage("GetDamageMods");
         }
         else
@@ -127,7 +127,7 @@ public class DealDamage : MonoBehaviour
                     isCrit = true;
                 }
 
-                damageToPassToVictim = (damageBase + damageAdd) * finalDamageMult * critMult;
+                damageToPassToVictim = damageBase * finalDamageMult * critMult;
             }
             else
             {

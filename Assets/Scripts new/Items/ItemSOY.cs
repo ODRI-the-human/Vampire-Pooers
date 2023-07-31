@@ -21,10 +21,9 @@ public class ItemSOY : MonoBehaviour
     {
         if (gameObject.GetComponent<Attack>() != null)
         {
-            gameObject.GetComponent<Attack>().PlayerShootAudio = EntityReferencerGuy.Instance.soyShotAudio;
-            gameObject.GetComponent<Attack>().fireTimerDIV = 1 + 2 * instances;
+            gameObject.GetComponent<Attack>().cooldownFac *= 0.5f;
+            gameObject.GetComponent<DealDamage>().massCoeff *= 0.5f;
         }
-        gameObject.GetComponent<DealDamage>().massCoeff = 1 / (2 * instances);
     }
     //void GetDamVal()
     //{
@@ -55,23 +54,11 @@ public class ItemSOY : MonoBehaviour
         }
     }
 
-    void ResetVal()
-    {
-        if (gameObject.GetComponent<Attack>() != null)
-        {
-            gameObject.GetComponent<Attack>().fireTimerDIV = 1;
-        }
-        gameObject.GetComponent<DealDamage>().massCoeff = 1;
-        //gameObject.GetComponent<DealDamage>().damageBase *= bonusDamage;
-    }
-
     public void Undo()
     {
         //ResetVal();
-        instances = 0;
-        gameObject.GetComponent<Attack>().PlayerShootAudio = EntityReferencerGuy.Instance.normieShotAudio;
-        gameObject.GetComponent<Attack>().fireTimerDIV = 1 + 2 * instances;
-        gameObject.GetComponent<DealDamage>().massCoeff = 1;
+        gameObject.GetComponent<Attack>().cooldownFac /= 0.5f;
+        gameObject.GetComponent<DealDamage>().massCoeff /= 0.5f;
         Destroy(this);
     }
 

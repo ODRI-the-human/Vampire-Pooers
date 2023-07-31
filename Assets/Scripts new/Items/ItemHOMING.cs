@@ -4,16 +4,11 @@ using UnityEngine;
 
 public class ItemHOMING : MonoBehaviour
 {
-    int homingCheckTimer;
-    Vector3 currentNearest;
-    Vector2 closestEnemyPos;
-    Vector2 bulletPos;
-    Vector2 vectorToEnemy;
     Rigidbody2D rb;
     GameObject closest;
+    GameObject[] gos;
     bool isBullet = false;
     public int instances = 1;
-    GameObject[] gos;
     public float speed;
 
     void IncreaseInstances(string name)
@@ -29,6 +24,7 @@ public class ItemHOMING : MonoBehaviour
         if (gameObject.GetComponent<checkAllLazerPositions>() == null)
         {
             rb = gameObject.GetComponent<Rigidbody2D>();
+            speed = rb.velocity.magnitude;
             if (gameObject.GetComponent<Bullet_Movement>() != null)
             {
                 isBullet = true;
@@ -84,12 +80,28 @@ public class ItemHOMING : MonoBehaviour
         }
     }
 
-    void Update()
+    void FindNewTarget()
     {
-        if (isBullet)
+        if (gameObject.tag == "PlayerBullet")
         {
-            GameObject bumbo = gameObject.GetComponent<DealDamage>().owner;
-            speed = bumbo.GetComponent<Attack>().shotSpeed;
+            gos = GameObject.FindGameObjectsWithTag("Hostile");
+        }
+        if (gameObject.tag == "enemyBullet")
+        {
+            gos = GameObject.FindGameObjectsWithTag("Player");
+        }
+        closest = null;
+        float distance = Mathf.Infinity;
+        Vector3 position = transform.position;
+        foreach (GameObject go in gos)
+        {
+            Vector3 diff = go.transform.position - position;
+            float curDistance = diff.sqrMagnitude;
+            if (curDistance < distance)
+            {
+                closest = go;
+                distance = curDistance;
+            }
         }
     }
 
@@ -97,47 +109,16 @@ public class ItemHOMING : MonoBehaviour
     {
         if (isBullet)
         {
-            homingCheckTimer--;
-            if (homingCheckTimer <= 0)
+            if (closest == null)
             {
-                currentNearest = Vector3.zero;
-
-                homingCheckTimer = 25;
-                if (gameObject.tag == "PlayerBullet")
-                {
-                    gos = GameObject.FindGameObjectsWithTag("Hostile");
-                }
-                if (gameObject.tag == "enemyBullet")
-                {
-                    gos = GameObject.FindGameObjectsWithTag("Player");
-                }
-                closest = null;
-                float distance = Mathf.Infinity;
-                Vector3 position = transform.position;
-                foreach (GameObject go in gos)
-                {
-                    Vector3 diff = go.transform.position - position;
-                    float curDistance = diff.sqrMagnitude;
-                    if (curDistance < distance)
-                    {
-                        closest = go;
-                        distance = curDistance;
-                    }
-                }
+                FindNewTarget();
             }
 
-            if (closest != null)
+            if ((transform.position - closest.transform.position).magnitude < 5 * instances && closest != null)
             {
-                currentNearest = closest.transform.position;
-            }
-
-            if ((transform.position - currentNearest).magnitude < 5 * instances && currentNearest != Vector3.zero)
-            {
-                closestEnemyPos.x = currentNearest.x;
-                closestEnemyPos.y = currentNearest.y;
-                bulletPos.x = gameObject.transform.position.x;
-                bulletPos.y = gameObject.transform.position.y;
-                vectorToEnemy = (closestEnemyPos - bulletPos).normalized;
+                Vector2 closestEnemyPos = new Vector2(closest.transform.position.x, closest.transform.position.y);
+                Vector2 bulletPos = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+                Vector2 vectorToEnemy = (closestEnemyPos - bulletPos).normalized;
                 rb.velocity = speed * (rb.velocity + vectorToEnemy.normalized).normalized;
             }
         }

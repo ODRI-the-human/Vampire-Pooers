@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09020ebaf5687344b9b24509207c17bb, type: 3}
+  m_Name: LightningShot
+  m_EditorClassIdentifier: 
+  name: LightningShot
+  weight: 100
+  maxCharges: 1
+  delayTime: 0
+  coolDownTime: 25
+  objectsToUse:
+  - {fileID: 6152856860940002557, guid: 13c90bc400ac46f4383416a674875beb, type: 3}
+  range: 99999

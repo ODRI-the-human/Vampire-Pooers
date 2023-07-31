@@ -100,7 +100,7 @@ public class ItemDescriptions : MonoBehaviour
             case (int)ITEMLIST.SOY:
                 itemDescription = "Per stack, increases firerate by 5x, but quarters damage and bullet knockback.";
                 quality = (int)ITEMTIERS.UNCOMMON;
-                addNewScriptForNewInstance = false;
+                addNewScriptForNewInstance = true;
                 whatUses = (int)ITEMOWNERS.ALL;
                 break;
             case (int)ITEMLIST.HOMING:

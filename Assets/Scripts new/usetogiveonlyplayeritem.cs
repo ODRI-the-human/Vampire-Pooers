@@ -8,8 +8,8 @@ public class usetogiveonlyplayeritem : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        gameObject.GetComponent<ItemHolder>().weaponHeld = (int)ITEMLIST.PISTOL;
-        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.CREEP);
+        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.HOMING);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.MORESHOT);
         // For giving the player some number of random items.
         //for (int i = 0; i < 50; i++)
         //{

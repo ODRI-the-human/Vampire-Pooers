@@ -9,7 +9,13 @@ public class giveEnemySpecificItem : MonoBehaviour
 
     // For some reason if you just fucking add an item the enemy's list, i.e. just do itemsHeld.Add(), it also adds it to the master, which fucks it all up.
     // So instead we do this. Nice one John Unity.
+
     void Start()
+    {
+        Invoke("GiveTheDamnItems", 0.01f);
+    }
+
+    void GiveTheDamnItems()
     {
         List<int> fuckedItems = new List<int>();
         foreach (int item in gameObject.GetComponent<ItemHolder>().itemsHeld)

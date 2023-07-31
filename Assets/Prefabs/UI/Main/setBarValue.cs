@@ -151,12 +151,12 @@ public class setBarValue : MonoBehaviour
                 maxValue = nextXP - floorXP;
                 break;
             case 4:
-                value = owner.GetComponent<secondaryAbility>().abilityOneCooldown;
-                maxValue = owner.GetComponent<secondaryAbility>().abilityOneMaxCooldown;
+                //value = owner.GetComponent<secondaryAbility>().abilityOneCooldown;
+                //maxValue = owner.GetComponent<secondaryAbility>().abilityOneMaxCooldown;
                 break;
             case 5:
-                value = owner.GetComponent<secondaryAbility>().abilityTwoCooldown;
-                maxValue = owner.GetComponent<secondaryAbility>().abilityTwoMaxCooldown;
+                //value = owner.GetComponent<secondaryAbility>().abilityTwoCooldown;
+                //maxValue = owner.GetComponent<secondaryAbility>().abilityTwoMaxCooldown;
                 break;
         }
 

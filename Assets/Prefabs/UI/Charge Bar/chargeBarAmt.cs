@@ -7,12 +7,13 @@ public class chargeBarAmt : MonoBehaviour
 {
     public float valueFac;
     public GameObject owner;
+    public int indexToTrack;
     public Slider slider;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -24,7 +25,7 @@ public class chargeBarAmt : MonoBehaviour
         }
 
         transform.position = owner.transform.position + new Vector3(0, 1, 0);
-        valueFac = (Time.time - owner.gameObject.GetComponent<Attack>().chargeTime) / (2 / owner.gameObject.GetComponent<Attack>().fireTimerActualLength);
+        valueFac = ((float)owner.GetComponent<Attack>().chargeTimers[indexToTrack]) / ((float)owner.GetComponent<Attack>().abilityTypes[indexToTrack].chargeLength * owner.GetComponent<Attack>().cooldownFac * owner.GetComponent<Attack>().cooldownFacIndiv[indexToTrack]);
         SetValue();
     }
 

@@ -24,8 +24,6 @@ public class Bullet_Movement : MonoBehaviour
     float xSpeed;
     float ySpeed;
 
-    public bool isPooledBullet = true;
-
     void Start()
     {
         LayerPlayerBullet = LayerMask.NameToLayer("PlayerBullets");
@@ -65,7 +63,7 @@ public class Bullet_Movement : MonoBehaviour
 
     void Update()
     {
-        if (rb.velocity != Vector2.zero)
+        if (rb.velocity.magnitude > 3f)
         {
             transform.rotation = Quaternion.LookRotation(rb.velocity) * Quaternion.Euler(0, 90, 0);
             xSpeed = rb.velocity.normalized.x;
@@ -124,10 +122,6 @@ public class Bullet_Movement : MonoBehaviour
                 else
                 {
                     KillBullet();
-                    if (gameObject.GetComponent<lazerMovement>() != null)
-                    {
-                        SendMessage("DoOnDestroys");
-                    }
                 }
             }
         }
@@ -167,10 +161,6 @@ public class Bullet_Movement : MonoBehaviour
             else
             {
                 KillBullet();
-                if (gameObject.GetComponent<lazerMovement>() != null)
-                {
-                    SendMessage("DoOnDestroys");
-                }
             }
         }
     }
@@ -187,24 +177,17 @@ public class Bullet_Movement : MonoBehaviour
     {
         //Destroy(gameObject);
         GameObject owner = gameObject.GetComponent<DealDamage>().owner;
-        if (owner != null && isPooledBullet) // Returns object to pool if owner is still alive, kills the bullet if owner is dead.
-        {
-            Invoke(nameof(DisableBullet), 0.001f);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        Destroy(gameObject);
     }
 
-    void DisableBullet()
-    {
-        if (gameObject.active == true)
-        {
-            GameObject owner = gameObject.GetComponent<DealDamage>().owner;
-            owner.GetComponent<Attack>().bulletPool.Release(gameObject);
-        }
-    }
+    //void DisableBullet()
+    //{
+    //    if (gameObject.active == true)
+    //    {
+    //        GameObject owner = gameObject.GetComponent<DealDamage>().owner;
+    //        //owner.GetComponent<Attack>().bulletPool.Release(gameObject);
+    //    }
+    //}
 
     void OnTriggerEnter2D(Collider2D col)
     {

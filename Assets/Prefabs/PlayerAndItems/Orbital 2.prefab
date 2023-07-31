@@ -14,10 +14,8 @@ GameObject:
   - component: {fileID: 158271131209982303}
   - component: {fileID: -5280010251924161033}
   - component: {fileID: 7481803557711047057}
-  - component: {fileID: -6396675878852606996}
   - component: {fileID: 7158769378574457366}
-  - component: {fileID: -8236665987620775442}
-  - component: {fileID: -4307571621972070911}
+  - component: {fileID: 4940772191416045124}
   m_Layer: 17
   m_Name: Orbital 2
   m_TagString: PlayerBullet
@@ -32,13 +30,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 158271131209982302}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3, y: 3, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &158271131209982301
 Rigidbody2D:
@@ -57,6 +55,12 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -69,13 +73,33 @@ CircleCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 158271131209982302}
   m_Enabled: 1
+  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
   m_Radius: 0.08
 --- !u!212 &158271131209982303
 SpriteRenderer:
@@ -159,14 +183,13 @@ MonoBehaviour:
   finalDamageStat: 0
   procCoeff: 0
   damageBase: 0
-  damageAdd: 0
   damageMult: 0
   finalDamageMult: 0
-  finalDamageDIV: 1
   critProb: 0
   critMult: 2
   owner: {fileID: 0}
   master: {fileID: 0}
+  canDealDamage: 1
   massCoeff: 2
   overwriteDamageCalc: 0
   onlyDamageOnce: 0
@@ -177,57 +200,8 @@ MonoBehaviour:
   damageToPresent: 0
   damageType: 0
   procChainIndexes: 
---- !u!114 &-6396675878852606996
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 158271131209982302}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a79b14745a3e2fd4f8a0b5a259cfcb25, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shotSpeed: 8
-  bulletLengthMult: 1
-  currentAngle: 0
-  vectorToTarget: {x: 0, y: 0}
-  noExtraShots: 0
-  shotAngleCoeff: 1
-  trueDamageValue: 0
-  fireTimerLengthMLT: 1
-  Bullet: {fileID: 4255455733749829593, guid: 27160d46bf5b97a4898af82130ae1a42, type: 3}
-  fireTimerLength: 25
-  fireTimer: 0
-  PlayerShootAudio: {fileID: 2232971130497578917, guid: dc46db39e4e70b144915e7a0652cc396, type: 3}
-  Player: {fileID: 0}
-  playerControlled: 1
-  specialFireType: 0
-  darkArtSword: {fileID: 7955111713391121560, guid: 35c958ea85b00c144830eefba828d8c3, type: 3}
-  fireTimerDIV: 1
-  attachItems: 1
-  doAim: 1
-  fireTimerActualLength: 0
-  visionRange: 8
-  reTargetTimerLength: 100
-  reTargetTimer: 0
-  currentTarget: {fileID: 0}
-  timesFired: 0
-  newAttack: 0
-  Crongus: 0
-  levelDamageBonus: 0
-  scaleAddMult: 1
-  stopwatchDebuffAmount: 0
-  doShootAutomatically: 1
-  getEnemyPos: 1
-  angleAddAmount: 0
-  velToGiveBullets: {x: 0, y: 0, z: 0}
-  massToGiveBullets: 0.5
-  holdDownToShoot: 1
-  numBulletsPossible: 16
-  canShoot: 1
-  shotParticles: {fileID: 0}
+  procChanceBonus: 1
+  damageToPassToVictim: 0
 --- !u!114 &7158769378574457366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,25 +217,10 @@ MonoBehaviour:
   itemsHeld: 
   master: {fileID: 0}
   itemGained: 0
-  noToGive: 1
---- !u!114 &-8236665987620775442
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 158271131209982302}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1fa510d5f65fe4b429d86a4e95a6e22d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   weaponHeld: 0
-  master: {fileID: 0}
+  noToGive: 1
   spawnedBat: {fileID: 0}
-  previousFireType: 0
-  previousFireTimerLengthMLT: 0
---- !u!114 &-4307571621972070911
+--- !u!114 &4940772191416045124
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -270,12 +229,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 158271131209982302}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ebd05e0711f32d4fba4968c14b37756, type: 3}
+  m_Script: {fileID: 11500000, guid: 141aaa04646c8364f9a42e69e3065f23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activeAngles: []
-  vecToTarget: {x: 0, y: 0, z: 0}
-  moleProj: {fileID: 6152856860940002557, guid: 13c90bc400ac46f4383416a674875beb, type: 3}
-  mainMaterial: {fileID: 2100000, guid: bd23e476d69d9124fb911731384e2053, type: 2}
-  sprongleAudio: {fileID: 2232971130497578917, guid: dc46db39e4e70b144915e7a0652cc396, type: 3}
-  spawnedSprongleAudio: {fileID: 0}
+  masterCooldown: 0
+  abilityTypes: []
+  coolDowns: 
+  charges: 
+  attackWeights: 
+  isHoldingAttack: 
+  isAttacking: 0
+  chargeTimers: 
+  cooldownFac: 1
+  cooldownFacIndiv: []
+  currentTarget: {fileID: 0}
+  vectorToTarget: {x: 0, y: 0}
+  cameron: {fileID: 0}
+  reticle: {fileID: 0}
+  chargeBar: {fileID: 0}
+  isPlayerTeam: 1
+  attackAutomatically: 0

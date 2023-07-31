@@ -44,6 +44,10 @@ public class NewPlayerMovement : MonoBehaviour
         LayerPlayer = LayerMask.NameToLayer("Player");
         LayerNone = LayerMask.NameToLayer("OnlyHitWalls");
         LayerSB = LayerMask.NameToLayer("OnlyHitWallsAndEnemies");
+        if (!gameObject.GetComponent<Attack>().isPlayerTeam)
+        {
+            baseMoveSpeed /= EntityReferencerGuy.Instance.stopWatchDebuffAmt;
+        }
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -115,15 +119,15 @@ public class NewPlayerMovement : MonoBehaviour
         rb.velocity = new Vector2(0, 0);
         transform.position += Time.deltaTime * new Vector3(knockBackVector.x, knockBackVector.y, 0);
 
-        switch (gameObject.GetComponent<Attack>().isFiring)
-        {
-            case true:
-                currentMoveSpeed = 0.7f * baseMoveSpeed * speedMult / speedDiv;
-                break;
-            case false:
+        //switch (gameObject.GetComponent<Attack>().isFiring)
+        //{
+        //    case true:
+        //        currentMoveSpeed = 0.7f * baseMoveSpeed * speedMult / speedDiv;
+        //        break;
+        //    case false:
                 currentMoveSpeed = baseMoveSpeed * speedMult / speedDiv;
-                break;
-        }
+        //        break;
+        //}
 
         if (gameObject.tag == "Player")
         {

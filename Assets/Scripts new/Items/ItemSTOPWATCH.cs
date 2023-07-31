@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class ItemSTOPWATCH : MonoBehaviour
 {
-    float amountLol = 1.3f;
+    float amountLol = 1.2f;
 
     void Start()
     {
         if (gameObject.tag == "Player")
         {
-            EntityReferencerGuy.Instance.master.GetComponent<MasterItemManager>().stopWatchInstances *= amountLol;
+            EntityReferencerGuy.Instance.stopWatchDebuffAmt *= amountLol;
         }
         else
         {
-            EntityReferencerGuy.Instance.master.GetComponent<MasterItemManager>().stopWatchInstances /= amountLol;
+            EntityReferencerGuy.Instance.stopWatchDebuffAmt /= amountLol;
         }
     }
 
@@ -22,11 +22,11 @@ public class ItemSTOPWATCH : MonoBehaviour
     {
         if (gameObject.tag == "Player")
         {
-            EntityReferencerGuy.Instance.master.GetComponent<MasterItemManager>().stopWatchInstances *= amountLol;
+            EntityReferencerGuy.Instance.stopWatchDebuffAmt /= amountLol;
         }
         else
         {
-            EntityReferencerGuy.Instance.master.GetComponent<MasterItemManager>().stopWatchInstances /= amountLol;
+            EntityReferencerGuy.Instance.stopWatchDebuffAmt *= amountLol;
         }
         Destroy(this);
     }

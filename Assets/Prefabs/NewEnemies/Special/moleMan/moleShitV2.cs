@@ -110,11 +110,6 @@ public class moleShitV2 : MonoBehaviour
         {
             StartCycle();
         }
-
-        if (timer == 5)
-        {
-            speedDebuffAmt = gameObject.GetComponent<Attack>().stopwatchDebuffAmount;
-        }
     }
 
     public void StartCycle()

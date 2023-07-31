@@ -86,7 +86,7 @@ public class HPDamageDie : MonoBehaviour
                 EntityReferencerGuy.Instance.master.SendMessage("ApplyItemOnDeaths", gameObject); // Calls the on-kill effects on the object responsible for the kill.
             }
 
-            gameObject.GetComponent<Attack>().bulletPool.Clear();
+            //gameObject.GetComponent<Attack>().bulletPool.Clear();
             Destroy(gameObject);
             //EventManager.DeathEffects(transform.position);
         }

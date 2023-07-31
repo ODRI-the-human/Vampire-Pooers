@@ -27,7 +27,7 @@ public class telefragEnemyBehaviour : MonoBehaviour
     {
         timer++;
 
-        if (timer == Mathf.Round(rateMult * 185 / gameObject.GetComponent<Attack>().stopwatchDebuffAmount))
+        if (timer == Mathf.Round(rateMult * 185)) /// gameObject.GetComponent<Attack>().stopwatchDebuffAmount))
         {
             prevSpeed = gameObject.GetComponent<NewPlayerMovement>().baseMoveSpeed;
             gameObject.GetComponent<NewPlayerMovement>().baseMoveSpeed = 0;
@@ -37,7 +37,7 @@ public class telefragEnemyBehaviour : MonoBehaviour
             spawnedWarn.GetComponent<ownerDestroy>().owner = gameObject;
         }
 
-        if (timer == Mathf.Round(rateMult * 225 / gameObject.GetComponent<Attack>().stopwatchDebuffAmount))
+        if (timer == Mathf.Round(rateMult * 225))// / gameObject.GetComponent<Attack>().stopwatchDebuffAmount))
         {
             gameObject.GetComponent<NavMeshAgent>().enabled = false;
             transform.position = posToTP;

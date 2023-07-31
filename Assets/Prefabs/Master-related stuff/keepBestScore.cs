@@ -65,23 +65,23 @@ public class keepBestScore : MonoBehaviour
 
     public void ShowStats()
     {
-        if (master.GetComponent<ThirdEnemySpawner>().totalSpawnsSurvived > bestWave)
-        {
-            bestWave = master.GetComponent<ThirdEnemySpawner>().totalSpawnsSurvived;
-            bestLevel = master.GetComponent<StatsText>().lastLevel;
-            bestDamage = Mathf.Round(master.GetComponent<StatsText>().lastDMG * 100) / 100;
-            bestFirerate = Mathf.Round(master.GetComponent<StatsText>().lastFirerate * 100) / 100;
-            bestHP = master.GetComponent<StatsText>().lastMaxHP;
-        }
+        //if (master.GetComponent<ThirdEnemySpawner>().totalSpawnsSurvived > bestWave)
+        //{
+        //    bestWave = master.GetComponent<ThirdEnemySpawner>().totalSpawnsSurvived;
+        //    bestLevel = master.GetComponent<StatsText>().lastLevel;
+        //    bestDamage = Mathf.Round(master.GetComponent<StatsText>().lastDMG * 100) / 100;
+        //    bestFirerate = Mathf.Round(master.GetComponent<StatsText>().lastFirerate * 100) / 100;
+        //    bestHP = master.GetComponent<StatsText>().lastMaxHP;
+        //}
 
-        if (master.GetComponent<ThirdEnemySpawner>().totalSpawnsSurvived < worstWave)
-        {
-            worstWave = master.GetComponent<ThirdEnemySpawner>().totalSpawnsSurvived;
-            worstLevel = master.GetComponent<StatsText>().lastLevel;
-            worstDamage = Mathf.Round(master.GetComponent<StatsText>().lastDMG * 100) / 100;
-            worstFirerate = Mathf.Round(master.GetComponent<StatsText>().lastFirerate * 100) / 100;
-            worstHP = master.GetComponent<StatsText>().lastMaxHP;
-        }
+        //if (master.GetComponent<ThirdEnemySpawner>().totalSpawnsSurvived < worstWave)
+        //{
+        //    worstWave = master.GetComponent<ThirdEnemySpawner>().totalSpawnsSurvived;
+        //    worstLevel = master.GetComponent<StatsText>().lastLevel;
+        //    worstDamage = Mathf.Round(master.GetComponent<StatsText>().lastDMG * 100) / 100;
+        //    worstFirerate = Mathf.Round(master.GetComponent<StatsText>().lastFirerate * 100) / 100;
+        //    worstHP = master.GetComponent<StatsText>().lastMaxHP;
+        //}
 
         bestTextObj.SetActive(true);
         worstTextObj.SetActive(true);

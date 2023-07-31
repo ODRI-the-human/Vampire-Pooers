@@ -30,14 +30,7 @@ public class gunnerManagement : MonoBehaviour
         GameObject spawnedGuy = Instantiate(EntityReferencerGuy.Instance.normieFamiliar, transform.position, transform.rotation);
         spawnedGuy.GetComponent<familiarMovement>().owner = gameObject;
         spawnedGuy.GetComponent<DealDamage>().owner = spawnedGuy;
-        if (gameObject.tag == "Player")
-        {
-            spawnedGuy.GetComponent<Attack>().Bullet = EntityReferencerGuy.Instance.playerBullet;
-        }
-        else
-        {
-            spawnedGuy.GetComponent<Attack>().Bullet = EntityReferencerGuy.Instance.enemyBullet;
-        }
+
         spawnedGuy.GetComponent<familiarMovement>().gunnerType = item;
         if (gunners.Count > 0)
         {
@@ -52,24 +45,24 @@ public class gunnerManagement : MonoBehaviour
         {
             case (int)ITEMLIST.FAMILIAR:
                 spawnedGuy.GetComponent<DealDamage>().finalDamageMult = 0.4f;
-                spawnedGuy.GetComponent<Attack>().getEnemyPos = false;
-                spawnedGuy.GetComponent<Attack>().playerControlled = true;
+                spawnedGuy.GetComponent<Attack>().attackAutomatically = false;
+                spawnedGuy.GetComponent<Attack>().isPlayerTeam = true;
                 gunners.Add(spawnedGuy);
                 gunnerIDs.Add(item);
                 numDamageBonuses++;
                 break;
             case (int)ITEMLIST.HOMINGFAMILIAR:
                 spawnedGuy.GetComponent<DealDamage>().finalDamageMult = 0.4f;
-                spawnedGuy.GetComponent<Attack>().getEnemyPos = false;
-                spawnedGuy.GetComponent<Attack>().playerControlled = true;
+                spawnedGuy.GetComponent<Attack>().attackAutomatically = false;
+                spawnedGuy.GetComponent<Attack>().isPlayerTeam = true;
                 gunners.Add(spawnedGuy);
                 gunnerIDs.Add(item);
                 numHomingBonuses++;
                 break;
             case (int)ITEMLIST.AUTOFAMILIAR:
                 spawnedGuy.GetComponent<DealDamage>().finalDamageMult = 0.3f;
-                spawnedGuy.GetComponent<Attack>().getEnemyPos = true;
-                spawnedGuy.GetComponent<Attack>().playerControlled = false;
+                spawnedGuy.GetComponent<Attack>().attackAutomatically = true;
+                spawnedGuy.GetComponent<Attack>().isPlayerTeam = false;
                 gunners.Add(spawnedGuy);
                 gunnerIDs.Add(item);
                 numFireRateBonuses++;
@@ -87,7 +80,7 @@ public class gunnerManagement : MonoBehaviour
                 
             gunner.GetComponent<DealDamage>().finalDamageMult *= 1 + 0.5f * numDamageBonuses;
 
-            gunner.GetComponent<Attack>().fireRate += 0.5f * numFireRateBonuses;
+            //gunner.GetComponent<Attack>().fireRate += 0.5f * numFireRateBonuses;
         }
     }
 

@@ -34,8 +34,8 @@ public class ItemORBITAL2 : MonoBehaviour
         {
             //Vector3 vec3 = gameObject.GetComponent<Attack>().mouseVector - orb.transform.position;
             //orb.GetComponent<Attack>().vectorToTarget = new Vector2(vec3.x, vec3.y).normalized;
-            //orb.GetComponent<Attack>().vectorToTarget = gameObject.GetComponent<Attack>().vectorToTarget;
-            orb.GetComponent<Attack>().UseWeapon(false);
+            orb.GetComponent<Attack>().vectorToTarget = gameObject.GetComponent<Attack>().vectorToTarget;
+            orb.GetComponent<Attack>().UseAttack(gameObject.GetComponent<Attack>().abilityTypes[0], 0, gameObject.GetComponent<Attack>().isPlayerTeam, gameObject.GetComponent<Attack>().lastAttackCharged);
         }
     }
 
@@ -46,8 +46,7 @@ public class ItemORBITAL2 : MonoBehaviour
             myGuy = Instantiate(orbSkothos2);
             myGuy.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
             myGuy.GetComponent<DealDamage>().owner = gameObject;
-            myGuy.GetComponent<Attack>().getEnemyPos = false;
-            myGuy.GetComponent<Attack>().autoFire = false;
+            myGuy.GetComponent<Attack>().attackAutomatically = false;
             myGuy.GetComponent<OrbitalMovement2>().timerDelay = i * (2 * Mathf.PI / 0.03f) / instances;
             myGuy.GetComponent<OrbitalMovement2>().distanceFromPlayer = 1 + 0.08f * instances;
             Orbs.Add(myGuy);
@@ -60,35 +59,23 @@ public class ItemORBITAL2 : MonoBehaviour
     {
         foreach (GameObject orb in Orbs)
         {
-            //orb.GetComponent<ItemHolder>().ApplyAll();
-            if (gameObject.GetComponent<weaponType>() != null) // && gameObject.GetComponent<weaponType>().weaponHeld == (int)WEAPONS.DARKARTS
-            {
-                orb.GetComponent<weaponType>().weaponHeld = gameObject.GetComponent<weaponType>().weaponHeld;
-                orb.GetComponent<Attack>().newAttack = gameObject.GetComponent<Attack>().newAttack;
-            }
-
             if (gameObject.tag == "Player")
             {
                 orb.tag = "PlayerBullet";
-                orb.GetComponent<Attack>().playerControlled = true;
+                orb.GetComponent<Attack>().isPlayerTeam = true;
             }
             else
             {
                 orb.tag = "enemyBullet";
-                orb.GetComponent<Attack>().playerControlled = false;
+                orb.GetComponent<Attack>().isPlayerTeam = false;
                 int LayerEnemy = LayerMask.NameToLayer("HitPlayerBulletsAndPlayer");
                 orb.layer = LayerEnemy;
             }
 
             orb.GetComponent<DealDamage>().damageBase = gameObject.GetComponent<DealDamage>().damageBase;
             orb.GetComponent<DealDamage>().damageMult = gameObject.GetComponent<DealDamage>().damageMult;
-            orb.GetComponent<Attack>().Bullet = gameObject.GetComponent<Attack>().Bullet;
-            orb.GetComponent<Attack>().specialFireType = gameObject.GetComponent<Attack>().specialFireType;
-            orb.GetComponent<Attack>().fireTimerThreshold = gameObject.GetComponent<Attack>().fireTimerThreshold;
+            //orb.GetComponent<Attack>().Bullet = gameObject.GetComponent<Attack>().Bullet;
             orb.GetComponent<Attack>().noExtraShots = gameObject.GetComponent<Attack>().noExtraShots;
-            orb.GetComponent<Attack>().shotAngleCoeff = gameObject.GetComponent<Attack>().shotAngleCoeff;
-            orb.GetComponent<Attack>().shotSpeed = gameObject.GetComponent<Attack>().shotSpeed;
-            orb.GetComponent<Attack>().fireTimerThreshold = gameObject.GetComponent<Attack>().fireTimerThreshold;
             orb.GetComponent<DealDamage>().finalDamageMult = 0.25f;
         }
     }

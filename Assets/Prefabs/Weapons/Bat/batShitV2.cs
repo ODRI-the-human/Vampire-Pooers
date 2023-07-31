@@ -39,7 +39,7 @@ public class batShitV2 : MonoBehaviour
             }
         }
 
-        if (col.gameObject.tag == "enemyBullet" && col.gameObject.GetComponent<Bullet_Movement>() != null && isChargedHit)
+        if (col.gameObject.tag != gameObject.tag && col.gameObject.GetComponent<Bullet_Movement>() != null && isChargedHit)
         {
             if (gameObject.GetComponent<dieOnContactWithBullet>() == null)
             {
@@ -53,7 +53,7 @@ public class batShitV2 : MonoBehaviour
             col.gameObject.GetComponent<DealDamage>().owner = gameObject.GetComponent<DealDamage>().owner;
             if (col.gameObject.GetComponent<Bullet_Movement>() != null)
             {
-                col.gameObject.GetComponent<Bullet_Movement>().speed *= 5;
+                col.gameObject.GetComponent<Bullet_Movement>().speed = 30;
             }
         }
     }

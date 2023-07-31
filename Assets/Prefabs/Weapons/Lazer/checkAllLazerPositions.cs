@@ -8,6 +8,7 @@ public class checkAllLazerPositions : MonoBehaviour
     public List<GameObject> ignoredHomings = new List<GameObject>();
     public List<GameObject> ignoredHits = new List<GameObject>();
 
+    [System.NonSerialized] public float delay = 0.02f;
     public Vector3 vecToMove;
     public GameObject owner;
     public LineRenderer line;
@@ -31,7 +32,7 @@ public class checkAllLazerPositions : MonoBehaviour
     void Start()
     {
         thinguy = gameObject;
-        StartCoroutine(LateStart(0.02f));
+        StartCoroutine(LateStart(delay));
     }
 
     void LightFunny()
