@@ -8,13 +8,59 @@ public class ItemBERSERK : MonoBehaviour
     int pastWeapon;
 
     GameObject master;
-    GameObject music;
-    GameObject spawnedMusic;
     GameObject redPlane;
-    GameObject spawnedRedPlane;
 
     public int instances = 1;
     bool isActive = false;
+    AbilityParams lastPrimary;
+
+    void LevelEffects()
+    {
+        if (gameObject.GetComponent<LevelUp>().level % 2 == 0)
+        {
+            if (!isActive)
+            {
+                isActive = true;
+                lastPrimary = gameObject.GetComponent<Attack>().abilityTypes[0];
+                gameObject.GetComponent<Attack>().abilityTypes[0] = EntityReferencerGuy.Instance.berserkAttack;
+                redPlane = Instantiate(EntityReferencerGuy.Instance.berserkPlane);
+                timer = 100 * (instances + 1);
+            }
+            else
+            {
+                timer = 100 * (instances + 1);
+            }
+        }
+    }
+
+    public void ApplyItemOnDeaths(GameObject who)
+    {
+        if (isActive)
+        {
+            timer = Mathf.Clamp(timer + 50, 0, 100 * (instances + 1));
+        }
+    }
+
+    void EndAbility()
+    {
+        gameObject.GetComponent<Attack>().abilityTypes[0] = lastPrimary;
+        Destroy(redPlane);
+    }
+
+    void FixedUpdate()
+    {
+        if (isActive && gameObject.GetComponent<Attack>().abilityTypes[0] != EntityReferencerGuy.Instance.berserkAttack)
+        {
+            lastPrimary = gameObject.GetComponent<Attack>().abilityTypes[0];
+            gameObject.GetComponent<Attack>().abilityTypes[0] = EntityReferencerGuy.Instance.berserkAttack;
+        }
+
+        timer--;
+        if (timer <= 0 && isActive)
+        {
+            EndAbility();
+        }
+    }
 
     //void IncreaseInstances(string name)
     //{

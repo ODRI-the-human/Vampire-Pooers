@@ -87,6 +87,7 @@ public class EntityReferencerGuy : MonoBehaviour
 
     // Any scriptableobjects that need to be referenced globally go here.
     public AbilityParams daggerThrow;
+    public AbilityParams berserkAttack;
 
 
 

@@ -6,7 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "AbilityParams", menuName = "AbilityParams/MiscAlsoCollideWithBullets")]
 public class MiscColWithBulletsAndEntity : AbilityParams
 {
-    public override void ActivateAbility(GameObject dealer, GameObject target, Vector2 direction, bool isPlayerTeam, Material mat, int layer, string tag)
+    public override void ActivateAbility(GameObject dealer, GameObject target, Vector2 direction, bool isPlayerTeam, Material mat, int layer, string tag, bool overrideBulletSpawnMethod)
     {
         GameObject objoct = spawnedAttackObjs[0];
         if (isPlayerTeam)

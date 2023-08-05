@@ -159,23 +159,6 @@ public class checkAllLazerPositions : MonoBehaviour
                         gameObject.GetComponent<DealDamage>().finalDamageStat = gameObject.GetComponent<DealDamage>().damageAmt;
                         ignoredHits.Add(col.gameObject);
                     }
-
-                    // Applying split shots.
-                    if (doContinue && gameObject.GetComponent<ItemSPLIT>() != null && gameObject.GetComponent<ItemSPLIT>().canSplit && actuallyHit)
-                    {
-                        for (int j = 0; j < 2 * gameObject.GetComponent<ItemSPLIT>().instances; j++)
-                        {
-                            GameObject merman = Instantiate(thinguy, transform.position, Quaternion.Euler(0, 0, 0));
-                            merman.GetComponent<checkAllLazerPositions>().vecToMove = vecToMove.magnitude * new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0).normalized;//(2 * j - 1) * new Vector3(vecToMove.y, -vecToMove.x, 0); // Rotates vector 90 degrees.
-                            merman.GetComponent<checkAllLazerPositions>().setVecToMoveAutomatically = false;
-                            //merman.GetComponent<DealDamage>().overwriteDamageCalc = false;
-                            merman.GetComponent<DealDamage>().damageBase *= 0.3f;// * gameObject.GetComponent<DealDamage>().damageAmt;
-                            //merman.GetComponent<DealDamage>().CalcDamage();// * gameObject.GetComponent<DealDamage>().damageAmt;
-                            //merman.GetComponent<DealDamage>().finalDamageStat = gameObject.GetComponent<DealDamage>().damageAmt;
-                            merman.GetComponent<ItemSPLIT>().canSplit = false;
-                            ignoredHits.Add(col.gameObject);
-                        }
-                    }
                 }
 
                 if ((col.gameObject.tag == "PlayerBullet" && gameObject.tag == "enemyBullet") || (col.gameObject.tag == "enemyBullet" && gameObject.tag == "PlayerBullet"))

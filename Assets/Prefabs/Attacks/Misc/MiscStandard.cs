@@ -6,7 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "AbilityParams", menuName = "AbilityParams/GeneralParams")]
 public class MiscStandard : AbilityParams
 {
-    public override void ActivateAbility(GameObject dealer, GameObject target, Vector2 direction, bool isPlayerTeam, Material mat, int layer, string tag)
+    public override void ActivateAbility(GameObject dealer, GameObject target, Vector2 direction, bool isPlayerTeam, Material mat, int layer, string tag, bool overrideBulletSpawnMethod)
     {
         // nothing please get fricked up buddy!
     }

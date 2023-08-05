@@ -16,10 +16,11 @@ MonoBehaviour:
   weight: 100
   maxCharges: 1
   delayTime: 0
-  coolDownTime: 18
+  coolDownTime: 13
   objectsToUse:
   - {fileID: 2061944661215622530, guid: 2a6acb6290a703e429ea463f4898e3c1, type: 3}
   sfx: []
+  spawnedAttackObjs: []
   range: 3
   chargeLength: 0
   isCharged: 0

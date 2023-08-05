@@ -14,12 +14,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: ExplodingShot
   weight: 100
-  maxCharges: 1
-  delayTime: 0
-  coolDownTime: 25
+  maxCharges: 3
+  delayTime: 25
+  coolDownTime: 85
   objectsToUse:
   - {fileID: 4255455733749829593, guid: 27160d46bf5b97a4898af82130ae1a42, type: 3}
+  sfx: []
+  spawnedAttackObjs:
+  - {fileID: 0}
   range: 99999
+  damageMultiplier: 1.5
+  massCoeffMult: 1
+  procCoeffMult: 1
+  iFrameFracMult: 1
+  chargeLength: 0
+  isCharged: 0
+  rechargeAllShotsAfterCooldown: 1
   effectsToAdd:
-  - ExplodeOnHit
-  defaultSpeed: 45
+  - SLOWOVERTIME
+  - EXPLODEONHIT
+  defaultSpeed: 21

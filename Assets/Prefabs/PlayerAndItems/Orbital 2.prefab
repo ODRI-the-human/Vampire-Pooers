@@ -190,7 +190,7 @@ MonoBehaviour:
   owner: {fileID: 0}
   master: {fileID: 0}
   canDealDamage: 1
-  massCoeff: 2
+  massCoeff: 0
   overwriteDamageCalc: 0
   onlyDamageOnce: 0
   tickInterval: 4
@@ -202,6 +202,8 @@ MonoBehaviour:
   procChainIndexes: 
   procChanceBonus: 1
   damageToPassToVictim: 0
+  abilityIndex: 0
+  abilityType: {fileID: 0}
 --- !u!114 &7158769378574457366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -217,7 +219,6 @@ MonoBehaviour:
   itemsHeld: 
   master: {fileID: 0}
   itemGained: 0
-  weaponHeld: 0
   noToGive: 1
   spawnedBat: {fileID: 0}
 --- !u!114 &4940772191416045124
@@ -240,6 +241,7 @@ MonoBehaviour:
   isHoldingAttack: 
   isAttacking: 0
   chargeTimers: 
+  lastAttackCharged: 0
   cooldownFac: 1
   cooldownFacIndiv: []
   currentTarget: {fileID: 0}

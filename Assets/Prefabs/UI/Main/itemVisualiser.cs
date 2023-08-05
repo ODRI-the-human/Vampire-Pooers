@@ -50,15 +50,12 @@ public class itemVisualiser : MonoBehaviour
         {
             EntityReferencerGuy.Instance.master.GetComponent<ItemDescriptions>().itemChosen = item;
             EntityReferencerGuy.Instance.master.GetComponent<ItemDescriptions>().getItemDescription();
-            if (EntityReferencerGuy.Instance.master.GetComponent<ItemDescriptions>().quality != (int)ITEMTIERS.WEAPON)
+            if (itemStacks[item] == 0)
             {
-                if (itemStacks[item] == 0)
-                {
-                    stringToPass += "<sprite=" + item.ToString() + ">";
-                    itemPresOrder.Add(item);
-                }
-                itemStacks[item]++;
+                stringToPass += "<sprite=" + item.ToString() + ">";
+                itemPresOrder.Add(item);
             }
+            itemStacks[item]++;
         }
 
         int numStacks = 0;

@@ -7,10 +7,12 @@ public class ItemSPLIT : MonoBehaviour
     Vector2 ShotVector;
     Rigidbody2D bulletRB;
     GameObject owner;
+    GameObject ignoredColObject; // When an attack splits, the split shots have the victim of the split set as this, and the nocollision between the split shots and this is removed.
     float speed;
     public bool canSplit = true;
     public int instances = 1;
-    GameObject Buuleter;
+    public AbilityParams weaponToUse;
+    //GameObject Buuleter;
 
     void IncreaseInstances(string name)
     {
@@ -23,7 +25,8 @@ public class ItemSPLIT : MonoBehaviour
     void Start()
     {
         owner = gameObject.GetComponent<DealDamage>().owner;
-        Buuleter = gameObject;
+        weaponToUse = gameObject.GetComponent<DealDamage>().abilityType;
+
         if (gameObject.GetComponent<Rigidbody2D>() != null)
         {
             speed = gameObject.GetComponent<Rigidbody2D>().velocity.magnitude;
@@ -32,53 +35,46 @@ public class ItemSPLIT : MonoBehaviour
         {
             speed = 15;
         }
+
+        if (!canSplit)
+        {
+            Invoke(nameof(EnableCollision), 0.2f);
+        }
+    }
+
+    void EnableCollision()
+    {
+        Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), ignoredColObject.GetComponent<Collider2D>(), false);
     }
 
     // Start is called before the first frame update
     void RollOnHit(GameObject[] gameObjects)
     {
-        GameObject victim = gameObjects[0];
-
-        if (gameObject.GetComponent<meleeGeneral>() == null)
+        if (canSplit)
         {
-            Vector2 enemyPos = new Vector2(transform.position.x, transform.position.y);
-            Vector2 bulletPos = new Vector2(victim.transform.position.x, victim.transform.position.y);
-            ShotVector = speed * (bulletPos - enemyPos).normalized;
-
-            Debug.Log("Splimt");
-            if (canSplit && victim.tag != "Wall")
+            GameObject victim = gameObjects[0];
+            //AbilityParams weaponToUse = owner.GetComponent<Attack>().abilityTypes[gameObject.GetComponent<DealDamage>().abilityIndex];
+            for (int i = 0; i < 3 * instances; i++)
             {
-                if (gameObject.tag == "PlayerBullet" || gameObject.tag == "enemyBullet")
+                Vector2 randVector = new Vector2(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f)).normalized;
+                weaponToUse.UseAttack(owner, null, victim.transform.position, randVector, owner.GetComponent<Attack>().isPlayerTeam, 0, false, true, false, true);
+                GameObject spawnedObj = weaponToUse.spawnedAttackObjs[0];
+                spawnedObj.AddComponent<ItemSPLIT>();
+                spawnedObj.GetComponent<ItemSPLIT>().canSplit = false;
+                spawnedObj.GetComponent<DealDamage>().transform.localScale /= 1.5f;
+                spawnedObj.GetComponent<DealDamage>().finalDamageMult /= 5f;
+                spawnedObj.GetComponent<DealDamage>().massCoeff /= 10f;
+                if (spawnedObj.GetComponent<checkAllLazerPositions>() != null)
                 {
-                    for (int i = 0; i < 2 * instances; i++)
-                    {
-                        GameObject Splitman1 = Instantiate(Buuleter, transform.position, transform.rotation);
-                        Splitman1.transform.localScale = 0.8f * instances * gameObject.transform.localScale;
-                        Splitman1.GetComponent<DealDamage>().finalDamageMult *= 0.3f * gameObject.GetComponent<DealDamage>().finalDamageMult;
-                        Splitman1.GetComponent<DealDamage>().massCoeff = 0.5f * gameObject.GetComponent<DealDamage>().massCoeff;
-                        Splitman1.GetComponent<DealDamage>().owner = owner;
-                        Splitman1.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
-                        Splitman1.GetComponent<Rigidbody2D>().simulated = true;
-                        Physics2D.IgnoreCollision(victim.GetComponent<Collider2D>(), Splitman1.GetComponent<Collider2D>(), true);
-                        Splitman1.AddComponent<ItemSPLIT>();
-                        Splitman1.GetComponent<ItemSPLIT>().canSplit = false;
-                        speed = 15;
-                        Splitman1.transform.position = victim.transform.position;
-                        Splitman1.transform.localScale = 0.3f * new Vector3(1, 1, 1);
-                        Splitman1.GetComponent<Rigidbody2D>().velocity = speed * new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0).normalized;
-                    }
+                    spawnedObj.GetComponent<checkAllLazerPositions>().ignoredHits.Add(victim);
                 }
-            }
-        }
-        else
-        {
-            if (canSplit)
-            {
-                for (int i = 0; i < 2; i++)
+                else
                 {
-                    GameObject owner = gameObject.GetComponent<DealDamage>().owner;
-                    //StartCoroutine(owner.GetComponent<Attack>().SpawnMelee(Random.Range(0f, 10000f) * (1 + 2 * i) / 2, victim.transform.position - owner.transform.position, victim, 0.3f * instances * gameObject.GetComponent<DealDamage>().finalDamageMult, 0, 0.8f, false));
+                    Physics2D.IgnoreCollision(spawnedObj.GetComponent<Collider2D>(), victim.GetComponent<Collider2D>(), true);
+                    spawnedObj.GetComponent<ItemSPLIT>().ignoredColObject = victim;
                 }
+                Debug.Log("splitmsed");
+                canSplit = false;
             }
         }
     }
@@ -88,6 +84,14 @@ public class ItemSPLIT : MonoBehaviour
         if (!canSplit)
         {
             Destroy(gameObject);
+        }
+        else
+        {
+            if (collision.gameObject.tag != "Wall")
+            {
+                GameObject[] grobules = new GameObject[] { collision.gameObject, gameObject };
+                RollOnHit(grobules);
+            }
         }
     }
 

@@ -34,6 +34,8 @@ public class DealDamage : MonoBehaviour
     public float procChanceBonus = 1;
 
     public float damageToPassToVictim;
+    public int abilityIndex = 0; // This is used to store the ability index to have spawned this particular attack. Used for items that need to reference this, like split shot.
+    public AbilityParams abilityType; // This is used to store the ability to have spawned this particular attack. Used for items that need to reference this, like split shot.
 
     void Start()
     {
@@ -146,7 +148,7 @@ public class DealDamage : MonoBehaviour
                 //Debug.Log("bunguloj exploding distance moment: " + fracFromCtr.ToString());
             }
 
-            victim.GetComponent<HPDamageDie>().Hurty(damageToPassToVictim, isCrit, true, iFrameFac, damageType, false, gameObject);
+            victim.GetComponent<HPDamageDie>().Hurty(damageToPassToVictim, isCrit, iFrameFac, damageType, false, gameObject);
         }
     }
 

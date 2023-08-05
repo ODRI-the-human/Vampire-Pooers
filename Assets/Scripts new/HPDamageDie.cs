@@ -7,9 +7,9 @@ public class HPDamageDie : MonoBehaviour
 
     public float HP;
     public float MaxHP;
-    public GameObject PlayerDieAudio;
-    public GameObject PlayerHurtAudio;
-    public GameObject CritAudio;
+    public AudioClip hurtAudio;
+    public GameObject hurtPlane; // To replace with proper post processing.
+    public AudioClip dieAudio;
     public float iFramesTimer = 50;
     [HideInInspector] public float iFrames = 0;
     public SpriteRenderer sprite;
@@ -64,9 +64,9 @@ public class HPDamageDie : MonoBehaviour
     public void ApplyOwnOnDeaths()
     {
         Instantiate(XP, transform.position, Quaternion.Euler(0, 0, 0));
-        if (makeKillSound)
+        if (dieAudio != null)
         {
-            Instantiate(PlayerDieAudio);
+            SoundManager.Instance.PlaySound(dieAudio);
         }
     }
 
@@ -126,7 +126,7 @@ public class HPDamageDie : MonoBehaviour
 
                 if (doDamage)
                 {
-                    Hurty(DOTSource.GetComponent<DealDamage>().GetDamageAmount(), false, true, 0.2f, DOTSource.GetComponent<DealDamage>().damageType, false, DOTSource);
+                    Hurty(DOTSource.GetComponent<DealDamage>().GetDamageAmount(), false, 0.2f, DOTSource.GetComponent<DealDamage>().damageType, false, DOTSource);
 
                     owners[i] = DOTSource.GetComponent<DealDamage>().owner;
                     damageAmounts[i] = DOTSource.GetComponent<DealDamage>().GetDamageAmount();
@@ -136,7 +136,7 @@ public class HPDamageDie : MonoBehaviour
         }
     }
 
-    public void Hurty(float damageAmount, bool isCrit, bool playSound, float iFrameFac, int damageType, bool bypassIframes, GameObject objectResponsible)
+    public void Hurty(float damageAmount, bool isCrit, float iFrameFac, int damageType, bool bypassIframes, GameObject objectResponsible)
     {
         // Just doing the message to show that hurty happened xd!
         string responsibleName;
@@ -150,11 +150,19 @@ public class HPDamageDie : MonoBehaviour
         }
         //Debug.Log("damage taken, victim: " + gameObject.name.ToString() + ", responsible: " + responsibleName + ", amount: " + damageAmount.ToString());
 
+        bool doDealDamage = true;
+        if (objectResponsible != null && !objectResponsible.GetComponent<DealDamage>().canDealDamage)
+        {
+            doDealDamage = false;
+        }
+
         if (gameObject.GetComponent<ItemEASIERTIMES>() != null && Mathf.RoundToInt(100 * (0.8f - 1f / (gameObject.GetComponent<ItemEASIERTIMES>().instances + 1f))) > Random.Range(0, 100))
         {
-            //arse
+            doDealDamage = false;
         }
-        else
+
+
+        if (doDealDamage)
         {
             if (playerControlled == false && gameObject.GetComponent<SpriteRenderer>() != null)
             {
@@ -164,19 +172,16 @@ public class HPDamageDie : MonoBehaviour
 
             if ((iFrames < 0 || bypassIframes) && damageAmount != 0)
             {
-                if (playSound)
+                SoundManager.Instance.PlayTypicalSound((int)COMMONSNDCLPS.HITMARKER);
+
+                if (hurtAudio != null)
                 {
-                    GameObject hurteo = Instantiate(PlayerHurtAudio, new Vector3(0,0,-5), transform.rotation);
-                    hurteo.GetComponent<AudioSource>().volume /= 1.5f;
+                    SoundManager.Instance.PlaySound(hurtAudio);
                 }
 
                 if (isCrit)
                 {
-                    GameObject hurtzeo = Instantiate(CritAudio, new Vector3(0, 0, -5), transform.rotation);
-                    if (damageAmount < gameObject.GetComponent<DealDamage>().damageAmt)
-                    {
-                        hurtzeo.GetComponent<AudioSource>().volume /= 1.5f;
-                    }
+                    SoundManager.Instance.PlayTypicalSound((int)COMMONSNDCLPS.CRIT);
                 }
 
                 damageAmount -= damageAmount * (resistVals[damageType] / 100);
@@ -187,6 +192,7 @@ public class HPDamageDie : MonoBehaviour
                 if (playerControlled == true)
                 {
                     iFrames = iFramesTimer * iFrameFac;
+                    Instantiate(hurtPlane);
                 }
                 else
                 {

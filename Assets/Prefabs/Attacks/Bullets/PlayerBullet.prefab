@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: -1365107204755030205}
   - component: {fileID: 8210489353096964633}
   - component: {fileID: -3635382963841210237}
+  - component: {fileID: 6488331636442788295}
   m_Layer: 9
   m_Name: PlayerBullet
   m_TagString: PlayerBullet
@@ -130,11 +131,8 @@ MonoBehaviour:
   itemsHeld: 
   master: {fileID: 0}
   itemGained: 0
-  weaponHeld: 0
   noToGive: 1
   spawnedBat: {fileID: 0}
-  previousFireType: 0
-  previousFireTimerLengthMLT: 0
 --- !u!114 &-1365107204755030205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,7 +148,6 @@ MonoBehaviour:
   finalDamageStat: 50
   procCoeff: 1
   damageBase: 50
-  damageAdd: 0
   damageMult: 1
   finalDamageMult: 1
   critProb: 0.05
@@ -170,6 +167,8 @@ MonoBehaviour:
   procChainIndexes: 
   procChanceBonus: 1
   damageToPassToVictim: 0
+  abilityIndex: 0
+  abilityType: {fileID: 0}
 --- !u!58 &8210489353096964633
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -223,4 +222,15 @@ MonoBehaviour:
   doKillBullet: 1
   canCollide: 1
   piercesLeft: 0
-  isPooledBullet: 0
+--- !u!114 &6488331636442788295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4255455733749829593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee0313ae9f18675449e7077b8438efb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

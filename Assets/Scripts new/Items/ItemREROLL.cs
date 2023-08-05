@@ -28,7 +28,7 @@ public class ItemREROLL : MonoBehaviour
                 int newItemQuality = 0;
                 while (itemChosen == (int)ITEMLIST.REROLL || oldItemQuality != newItemQuality)
                 {
-                    itemChosen = Random.Range(0, (int)ITEMLIST.PISTOL);
+                    itemChosen = Random.Range(0, (int)ITEMLIST.CREEPSHOT);
                     EntityReferencerGuy.Instance.master.GetComponent<ItemDescriptions>().itemChosen = itemChosen;
                     EntityReferencerGuy.Instance.master.GetComponent<ItemDescriptions>().getItemDescription();
                     newItemQuality = EntityReferencerGuy.Instance.master.GetComponent<ItemDescriptions>().quality;
@@ -39,10 +39,10 @@ public class ItemREROLL : MonoBehaviour
 
             for (int i = 1; i < instances; i++) // For adding extra items if the player picks up a 3x of this!
             {
-                int itemChosen = Random.Range(0, (int)ITEMLIST.PISTOL);
+                int itemChosen = Random.Range(0, (int)ITEMLIST.CREEPSHOT);
                 while (itemChosen == (int)ITEMLIST.REROLL)
                 {
-                    itemChosen = Random.Range(0, (int)ITEMLIST.PISTOL);
+                    itemChosen = Random.Range(0, (int)ITEMLIST.CREEPSHOT);
                 }
                 newItems.Add(itemChosen);
             }

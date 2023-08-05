@@ -30,7 +30,7 @@ public class ItemFOURDIRMARTY : MonoBehaviour
                 Vector2 vecToUse = new Vector2(gameObject.GetComponent<Attack>().vectorToTarget.x * Mathf.Cos(currentAngle) - gameObject.GetComponent<Attack>().vectorToTarget.y * Mathf.Sin(currentAngle), gameObject.GetComponent<Attack>().vectorToTarget.x * Mathf.Sin(currentAngle) + gameObject.GetComponent<Attack>().vectorToTarget.y * Mathf.Cos(currentAngle)).normalized;
                 //Debug.Log("dagg ers! vecToUse: " + vecToUse.ToString());
                 //gameObject.GetComponent<Attack>().UseAttack(daggerThrow, 2, gameObject.GetComponent<Attack>().isPlayerTeam, false, true);
-                gameObject.GetComponent<Attack>().abilityTypes[0].UseAttack(gameObject, gameObject.GetComponent<Attack>().currentTarget, vecToUse, gameObject.GetComponent<Attack>().isPlayerTeam, 2, false, true);
+                gameObject.GetComponent<Attack>().abilityTypes[0].UseAttack(gameObject, gameObject.GetComponent<Attack>().currentTarget, transform.position, vecToUse, gameObject.GetComponent<Attack>().isPlayerTeam, 0, false, true, false, true);
             }
         }
     }

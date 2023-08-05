@@ -16,13 +16,19 @@ MonoBehaviour:
   weight: 100
   maxCharges: 1
   delayTime: 0
-  coolDownTime: 50
+  coolDownTime: 150
   objectsToUse:
   - {fileID: 4255455733749829593, guid: 27160d46bf5b97a4898af82130ae1a42, type: 3}
   sfx: []
+  spawnedAttackObjs:
+  - {fileID: 0}
   range: 99999
+  damageMultiplier: 1
+  massCoeffMult: 1
+  procCoeffMult: 1
   chargeLength: 0
   isCharged: 0
+  rechargeAllShotsAfterCooldown: 0
   effectsToAdd:
-  - BMSlowOverTime
-  defaultSpeed: 6
+  - SLOWOVERTIME
+  defaultSpeed: 36

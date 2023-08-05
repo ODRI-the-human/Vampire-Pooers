@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "AbilityParams", menuName = "AbilityParams/LightningShot")]
 public class LightningShot : AbilityParams
 {
-    public override void ActivateAbility(GameObject dealer, GameObject target, Vector2 direction, bool isPlayerTeam, Material mat, int layer, string tag)
+    public override void ActivateAbility(GameObject dealer, GameObject target, Vector2 direction, bool isPlayerTeam, Material mat, int layer, string tag, bool overrideBulletSpawnMethod)
     {
         Vector3 vecToTarget = new Vector3(direction.x, direction.y, 0);
         GameObject Harrybo = spawnedAttackObjs[0];
@@ -17,6 +17,7 @@ public class LightningShot : AbilityParams
         Harrybo.GetComponent<ItemHolder>().itemsHeld = dealer.GetComponent<ItemHolder>().itemsHeld;
         Harrybo.GetComponent<DealDamage>().owner = dealer;
         Harrybo.GetComponent<checkAllLazerPositions>().master = dealer.GetComponent<DealDamage>().master;
+        //Debug.Log("transform.up for lazer: " + Harrybo.transform.up.ToString() + " / direction: " + direction.ToString());
 
         if (!isPlayerTeam)
         {

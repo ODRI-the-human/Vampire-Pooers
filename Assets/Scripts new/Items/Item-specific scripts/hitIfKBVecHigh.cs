@@ -23,14 +23,14 @@ public class hitIfKBVecHigh : MonoBehaviour
             col.gameObject.AddComponent<hitIfKBVecHigh>();
             col.gameObject.GetComponent<hitIfKBVecHigh>().responsible = gameObject;
             //col.gameObject.GetComponent<HPDamageDie>().Hurty(damageAmt, false, true);
-            gameObject.GetComponent<HPDamageDie>().Hurty(damageAmt, false, true, 1, (int)DAMAGETYPES.NORMAL, false, gameObject);
+            gameObject.GetComponent<HPDamageDie>().Hurty(damageAmt, false, 1, (int)DAMAGETYPES.NORMAL, false, gameObject);
             gameObject.GetComponent<NewPlayerMovement>().knockBackVector = new Vector2(0, 0);
         }
 
         if (col.gameObject.tag == "Wall")
         {
             float damageAmt = 2.5f * gameObject.GetComponent<NewPlayerMovement>().knockBackVector.magnitude;
-            gameObject.GetComponent<HPDamageDie>().Hurty(0.5f * damageAmt, false, true, 1, (int)DAMAGETYPES.NORMAL, false, gameObject);
+            gameObject.GetComponent<HPDamageDie>().Hurty(0.5f * damageAmt, false, 1, (int)DAMAGETYPES.NORMAL, false, gameObject);
             gameObject.GetComponent<NewPlayerMovement>().knockBackVector = new Vector2(0, 0);
         }
     }

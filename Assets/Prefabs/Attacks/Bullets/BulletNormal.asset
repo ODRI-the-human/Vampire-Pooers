@@ -14,13 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Normal Shot
   weight: 100
-  maxCharges: 1
-  delayTime: 0
-  coolDownTime: 25
+  maxCharges: 6
+  delayTime: 17
+  coolDownTime: 60
   objectsToUse:
   - {fileID: 4255455733749829593, guid: 27160d46bf5b97a4898af82130ae1a42, type: 3}
   sfx:
   - {fileID: 8300000, guid: 997791360c51a1d458187624008f6877, type: 3}
+  spawnedAttackObjs:
+  - {fileID: 0}
   range: 99999
+  damageMultiplier: 1
+  massCoeffMult: 1
+  procCoeffMult: 1
+  iFrameFracMult: 1
+  chargeLength: 0
+  isCharged: 0
+  rechargeAllShotsAfterCooldown: 1
   effectsToAdd: []
-  defaultSpeed: 6
+  defaultSpeed: 9

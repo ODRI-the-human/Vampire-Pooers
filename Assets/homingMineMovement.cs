@@ -7,6 +7,7 @@ public class homingMineMovement : MonoBehaviour
     GameObject target;
     float HP = 100;
     GameObject[] gos;
+    public Vector3 currVector;
 
     float xRotFac;
     float yRotFac;
@@ -55,9 +56,17 @@ public class homingMineMovement : MonoBehaviour
     }
 
     // Update is called once per frame
+    void FixedUpdate()
+    {
+        currVector = 0.75f * speed * (10 * currVector.normalized + (target.transform.position - transform.position).normalized).normalized;
+        gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+
+        transform.rotation *= Quaternion.Euler(xRotFac, yRotFac, zRotFac);
+    }
+
     void Update()
     {
-        transform.position += 0.75f * speed * Time.deltaTime * (target.transform.position - transform.position).normalized;
+        transform.position += currVector * Time.deltaTime;
         gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
 
         transform.rotation *= Quaternion.Euler(xRotFac, yRotFac, zRotFac);
@@ -66,8 +75,7 @@ public class homingMineMovement : MonoBehaviour
     public void ApplyOwnOnDeaths()
     {
         GameObject splod = Instantiate(splosoin, transform.position, Quaternion.Euler(0, 0, 0));
-        splod.transform.localScale /= 2f;
-        splod.GetComponent<DealDamage>().damageBase = gameObject.GetComponent<DealDamage>().GetDamageAmount();
+        splod.GetComponent<DealDamage>().finalDamageStat = 3 * gameObject.GetComponent<DealDamage>().GetDamageAmount();
         splod.GetComponent<DealDamage>().owner = gameObject.GetComponent<DealDamage>().owner;
         Destroy(gameObject);
     }

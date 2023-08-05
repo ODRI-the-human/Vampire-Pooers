@@ -2081,6 +2081,7 @@ MonoBehaviour:
   keepBestStatObj: {fileID: 5459875686069988955}
   itemsHeldVisualiser: {fileID: 8484845968839686508}
   daggerThrow: {fileID: 11400000, guid: 6b07d56638725614994273219689accd, type: 2}
+  berserkAttack: {fileID: 11400000, guid: 8b211c6db3f2f9a4daabb416cc641c4f, type: 2}
 --- !u!114 &179530921809487071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2160,7 +2161,6 @@ MonoBehaviour:
   itemsHeld: 
   master: {fileID: 0}
   itemGained: 0
-  weaponHeld: 0
   noToGive: 1
   spawnedBat: {fileID: 0}
 --- !u!114 &-2547675152280945318
@@ -2418,6 +2418,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSource: {fileID: 677035536607740680}
   effectsSource: {fileID: 5936375230563483820}
+  clips:
+  - {fileID: 8300000, guid: e6ad9210d953c5f479a81824f6f51994, type: 3}
+  - {fileID: 8300000, guid: f2bf0ef4058cbb04c9666d44719566da, type: 3}
 --- !u!1 &7075679080005617977
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,7 +8,6 @@ public class ItemHolder : MonoBehaviour
     public List<int> itemsHeld = new List<int>();
     public GameObject master;
     public int itemGained;
-    public int weaponHeld;
     public int noToGive = 1;
     int timermf;
 
@@ -193,18 +192,11 @@ public class ItemHolder : MonoBehaviour
     {
         bool itemIsPassive = false;
         itemGained = bumbino.GetComponent<itemPedestal>().itemChosen;
-        if (bumbino.GetComponent<itemPedestal>().chosenQuality == (int)ITEMTIERS.WEAPON) // Makes it so extra copies of items only get applied if they're NOT a weapon or dodge, otherwise you could waste them.
+        itemIsPassive = true;
+        for (int i = 0; i < noToGive; i++)
         {
-            //SetWeapon(itemGained);
-        }
-        else
-        {
-            itemIsPassive = true;
-            for (int i = 0; i < noToGive; i++)
-            {
-                itemsHeld.Add(itemGained);
-                ApplyItems();
-            }
+            itemsHeld.Add(itemGained);
+            ApplyItems();
         }
         //Debug.Log(itemIsPassive.ToString());
 

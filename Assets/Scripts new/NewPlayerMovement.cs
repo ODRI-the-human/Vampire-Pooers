@@ -131,11 +131,18 @@ public class NewPlayerMovement : MonoBehaviour
 
         if (gameObject.tag == "Player")
         {
+            float speed = currentMoveSpeed;
             if (isDodging == 0)
             {
                 moveDirection = desiredVector;
             }
-            Vector3 moveDir = currentMoveSpeed * moveDirection * Time.deltaTime;
+
+            if (gameObject.GetComponent<Attack>().isAttacking)
+            {
+                speed *= 0.75f;
+            }
+
+            Vector3 moveDir = speed * moveDirection * Time.deltaTime;
             transform.position += moveDir;
         }
         else
@@ -225,29 +232,34 @@ public class NewPlayerMovement : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if ((col.gameObject.tag == "Hostile" || col.gameObject.tag == "enemyBullet" || col.gameObject.tag == "Player" || col.gameObject.tag == "PlayerBullet") && col.gameObject.tag != gameObject.tag && recievesKnockback)
+        ApplyKnockBack(col.gameObject);
+    }
+
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        ApplyKnockBack(collider.gameObject);
+    }
+
+    void ApplyKnockBack(GameObject col)
+    {
+        if (col.GetComponent<DealDamage>() != null && col.tag != gameObject.tag && recievesKnockback)
         {
-            if (gameObject.GetComponent<HPDamageDie>().iFrames <= 0)
+            if (gameObject.GetComponent<HPDamageDie>().iFrames <= 0 && col.GetComponent<DealDamage>().massCoeff > 0)
             {
                 GameObject referenceObj;
 
                 if (col.gameObject.GetComponent<meleeGeneral>() != null) // if the col object is a melee weapon, the ref obj is the owner! else it's the collision obj itself.
                 {
-                    referenceObj = col.gameObject.GetComponent<DealDamage>().owner;
+                    referenceObj = col.GetComponent<DealDamage>().owner;
                 }
                 else
                 {
-                    referenceObj = col.gameObject;
+                    referenceObj = col;
                 }
 
-                knockBackVector += 10 * col.gameObject.GetComponent<DealDamage>().massCoeff * new Vector2(transform.position.x - referenceObj.transform.position.x, transform.position.y - referenceObj.transform.position.y).normalized;
-            }
-
-            if (isDodging == 1 && mouseAltMode == 1)
-            {
-                col.gameObject.AddComponent<hitIfKBVecHigh>();
-                GameObject master = EntityReferencerGuy.Instance.master;
-                master.GetComponent<visualPoopoo>().bigHitFreeze(0.1f);
+                knockBackVector += 10 * col.GetComponent<DealDamage>().massCoeff * new Vector2(transform.position.x - referenceObj.transform.position.x, transform.position.y - referenceObj.transform.position.y).normalized;
+                Debug.Log("knockback moment " + col.ToString());
+                //Debug.Log("knockbackvector magnitude: " + knockBackVector.magnitude.ToString() + " / mass coeff: " + col.GetComponent<DealDamage>().massCoeff.ToString());
             }
         }
     }

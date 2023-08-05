@@ -14,9 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: LightningShot
   weight: 100
-  maxCharges: 1
-  delayTime: 0
-  coolDownTime: 25
+  maxCharges: 4
+  delayTime: 5
+  coolDownTime: 40
   objectsToUse:
   - {fileID: 6152856860940002557, guid: 13c90bc400ac46f4383416a674875beb, type: 3}
+  sfx:
+  - {fileID: 8300000, guid: bd05329de65f072439463e8714303904, type: 3}
+  - {fileID: 8300000, guid: 3bea340e057904f4398d7d2d111c93b3, type: 3}
+  - {fileID: 8300000, guid: a9a2509bc51ab9d44a789aa02f356468, type: 3}
+  spawnedAttackObjs:
+  - {fileID: 0}
   range: 99999
+  chargeLength: 0
+  isCharged: 0

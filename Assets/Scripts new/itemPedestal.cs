@@ -21,20 +21,18 @@ public class itemPedestal : MonoBehaviour
     public bool enemiesCanUse;
 
     int[] specialItemWeights = new int[] { 20, 20, 20, 10, 10, 10, 4, 1 }; //{ 20, 20, 20, 10, 10, 10, 4, 1 };
-    int[] itemQualWeights = new int[] { 20, 10, 2, 0, 6};
+    int[] itemQualWeights = new int[] { 20, 10, 2, 0 };
     public int chosenQuality;
     public int qualityWeightsSum;
     public int randomedQuality; // This stores the quality of the item the random.range picked when rolling for an item.
     public int specialItemWeightsSum;
-
-    bool isWeapon = false;
 
     // Start is called before the first frame update
     void Start()
     {
         //bannedItems.Add((int)ITEMLIST.HP25);
         master = EntityReferencerGuy.Instance.master;
-        maxRange = (int)ITEMLIST.DARKARTS;
+        maxRange = (int)ITEMLIST.CREEPSHOT;
         gameObject.GetComponent<Collider2D>().enabled = false;
         //maxRange = 5;
         gos = GameObject.FindGameObjectsWithTag("item");
@@ -139,12 +137,7 @@ public class itemPedestal : MonoBehaviour
         description = master.GetComponent<ItemDescriptions>().itemDescription;
 
         curseType = -2;
-        int sproinkle = -2;
-
-        if (chosenQuality != (int)ITEMTIERS.WEAPON)
-        {
-            sproinkle = Random.Range(0, 21); // Determines whether the item is cursed or not (1/20 chance)
-        }
+        int sproinkle = Random.Range(0, 21); // Determines whether the item is cursed or not (1/20 chance)
 
         if (sproinkle == 5)
         {

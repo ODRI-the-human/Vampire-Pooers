@@ -33,9 +33,6 @@ public class setBackgroundColor : MonoBehaviour
             case (int)ITEMTIERS.NULL:
                 gameObject.GetComponent<SpriteRenderer>().color = new Color(0.5f, 0, 1, 1);
                 break;
-            case (int)ITEMTIERS.WEAPON:
-                gameObject.GetComponent<SpriteRenderer>().color = Color.red;
-                break;
         }
     }
 }

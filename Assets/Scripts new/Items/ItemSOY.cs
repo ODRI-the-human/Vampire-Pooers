@@ -22,8 +22,8 @@ public class ItemSOY : MonoBehaviour
         if (gameObject.GetComponent<Attack>() != null)
         {
             gameObject.GetComponent<Attack>().cooldownFac *= 0.5f;
-            gameObject.GetComponent<DealDamage>().massCoeff *= 0.5f;
         }
+        gameObject.GetComponent<DealDamage>().massCoeff *= 0.5f;
     }
     //void GetDamVal()
     //{

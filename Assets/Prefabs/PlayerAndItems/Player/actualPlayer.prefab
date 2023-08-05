@@ -278,9 +278,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: 0
   MaxHP: 100
-  PlayerDieAudio: {fileID: 2232971130497578917, guid: dc46db39e4e70b144915e7a0652cc396, type: 3}
-  PlayerHurtAudio: {fileID: 5963825423898132415, guid: e7b6397eaf92c834aaecbf3499716cb0, type: 3}
-  CritAudio: {fileID: 4189199820661322247, guid: cfea01d8a8cd2594fa1446da0a6dd1b2, type: 3}
+  hurtAudio: {fileID: 8300000, guid: 727eb682a4e3a6541a2befa8fba63935, type: 3}
+  hurtPlane: {fileID: 5963825423898132415, guid: e7b6397eaf92c834aaecbf3499716cb0, type: 3}
+  dieAudio: {fileID: 0}
   iFramesTimer: 50
   iFrames: 0
   sprite: {fileID: 8706545436728507647}
@@ -316,7 +316,7 @@ MonoBehaviour:
   owner: {fileID: 0}
   master: {fileID: 0}
   canDealDamage: 0
-  massCoeff: 0
+  massCoeff: 1
   overwriteDamageCalc: 0
   onlyDamageOnce: 0
   tickInterval: 1
@@ -328,6 +328,8 @@ MonoBehaviour:
   procChainIndexes: 
   procChanceBonus: 1
   damageToPassToVictim: 0
+  abilityIndex: 0
+  abilityType: {fileID: 0}
 --- !u!114 &7385574667278638271
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -343,7 +345,6 @@ MonoBehaviour:
   itemsHeld: 
   master: {fileID: 0}
   itemGained: 0
-  weaponHeld: 0
   noToGive: 1
   spawnedBat: {fileID: 0}
 --- !u!212 &8706545436728507647
@@ -516,8 +517,8 @@ MonoBehaviour:
   masterCooldown: 0
   abilityTypes:
   - {fileID: 11400000, guid: a02445f87f770534a9a6cd2a2058b033, type: 2}
-  - {fileID: 11400000, guid: 80360e7dbb7f2a84f8b0a874d757671e, type: 2}
-  - {fileID: 11400000, guid: ed23bf43dd85064488a960e1e5d04d86, type: 2}
+  - {fileID: 11400000, guid: 245e9dc2f96a8b148a452d35ee626cb9, type: 2}
+  - {fileID: 11400000, guid: f2b123e4cb346f44a8d942cc30aad42a, type: 2}
   coolDowns: 
   charges: 
   attackWeights: 

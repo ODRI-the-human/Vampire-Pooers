@@ -54,6 +54,7 @@ public class Attack : MonoBehaviour
         for (int i = 0; i < cooldownFacIndiv.Length; i++)
         {
             cooldownFacIndiv[i] = 1;
+            charges[i] = abilityTypes[i].maxCharges;
         }
     }
 
@@ -179,21 +180,35 @@ public class Attack : MonoBehaviour
         for (int i = 0; i < abilityTypes.Length; i++) // For resetting cooldowns/availability of abilities.
         {
             coolDowns[i]--;
-            if (coolDowns[i] <= 0 && abilityTypes[i] != null && charges[i] <= abilityTypes[i].maxCharges) // Only does the following if this entity doesn't already have the max number of charges of the ability.
+            if (coolDowns[i] <= 0 && abilityTypes[i] != null && charges[i] < abilityTypes[i].maxCharges) // Only does the following if this entity doesn't already have the max number of charges of the ability.
             {
-                charges[i] = Mathf.Clamp(0, abilityTypes[i].maxCharges, charges[i] + 1);
+                charges[i] = Mathf.Clamp(charges[i] + 1, 0, abilityTypes[i].maxCharges);
+
+                if (abilityTypes[i].rechargeAllShotsAfterCooldown)
+                {
+                    charges[i] = abilityTypes[i].maxCharges;
+                }
+
+                if (charges[i] != abilityTypes[i].maxCharges)
+                {
+                    coolDowns[i] = Mathf.RoundToInt(abilityTypes[i].coolDownTime * cooldownFacIndiv[i] * cooldownFac);
+                }
+
+                if (!isPlayerTeam) // For adding extra to the cooldown timer based on stopwatch shenanigans if this is an enemy
+                {
+                    coolDowns[i] = Mathf.RoundToInt(coolDowns[i] * EntityReferencerGuy.Instance.stopWatchDebuffAmt);
+                }
             }
         }
 
         if (masterCooldown <= 0 && !attackAutomatically) // For the player's attacks
         {
+            isAttacking = false;
             for (int i = 0; i < abilityTypes.Length; i++)
             {
-                isAttacking = false;
-
                 if (abilityTypes[i].chargeLength == 0 && isHoldingAttack[i] && charges[i] > 0) // For non-charged attacks.
                 {
-                    UseAttack(abilityTypes[i], i, true, false, false);
+                    UseAttack(abilityTypes[i], i, true, false, false, true);
                     isAttacking = true;
                 }
                 else if (abilityTypes[i].chargeLength > 0 && isHoldingAttack[i] && charges[i] > 0) // Setting timers for charged attacks.
@@ -214,12 +229,12 @@ public class Attack : MonoBehaviour
                 {
                     if (chargeTimers[i] > abilityTypes[i].chargeLength * cooldownFac * cooldownFacIndiv[i])
                     {
-                        UseAttack(abilityTypes[i], i, true, true, false);
+                        UseAttack(abilityTypes[i], i, true, true, false, true);
                         Destroy(chargeBar);
                     }
                     else if (chargeTimers[i] > 0)
                     {
-                        UseAttack(abilityTypes[i], i, true, false, false);
+                        UseAttack(abilityTypes[i], i, true, false, false, true);
                         Destroy(chargeBar);
                         
                     }
@@ -248,7 +263,7 @@ public class Attack : MonoBehaviour
                 cumSumWeights += attackWeights[i];
                 if (cumSumWeights > attackChosen)
                 {
-                    UseAttack(abilityTypes[i], i, false, false, false);
+                    UseAttack(abilityTypes[i], i, false, false, false, true);
                     break;
                 }
             }
@@ -265,7 +280,7 @@ public class Attack : MonoBehaviour
         //do nothing nerd
     }
 
-    public void UseAttack(AbilityParams abilityToUse, int abilityIndex, bool isPlayer, bool isCharged, bool overrideCooldownSetting)
+    public void UseAttack(AbilityParams abilityToUse, int abilityIndex, bool isPlayer, bool isCharged, bool overrideCooldownSetting, bool playSound)
     {
         // Here goes any stuff like moreshot and the like that augment how attacks are used but aren't intrinsic to the specific attack type.
 
@@ -277,9 +292,14 @@ public class Attack : MonoBehaviour
 
         for (int i = 0; i < noExtraShots + 1; i++)
         {
+            if (i != 0) // Just so it only plays the shot sound on the first attack of the iteration.
+            {
+                playSound = true;
+            }
+
             float currentAngle = (Mathf.PI / 6) * (-noExtraShots * 0.5f + i);
             Vector2 vecToUse = new Vector2(vectorToTarget.x * Mathf.Cos(currentAngle) - vectorToTarget.y * Mathf.Sin(currentAngle), vectorToTarget.x * Mathf.Sin(currentAngle) + vectorToTarget.y * Mathf.Cos(currentAngle)).normalized;
-            abilityToUse.UseAttack(gameObject, currentTarget, vecToUse, isPlayerTeam, abilityIndex, isCharged, overrideCooldownSetting);
+            abilityToUse.UseAttack(gameObject, currentTarget, transform.position, vecToUse, isPlayerTeam, abilityIndex, isCharged, overrideCooldownSetting, playSound, false);
         }
         SendMessage("OnUseAbility", abilityIndex);
         lastAttackCharged = isCharged;

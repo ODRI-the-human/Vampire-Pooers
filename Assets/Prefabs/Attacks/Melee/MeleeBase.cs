@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "AbilityParams", menuName = "AbilityParams/MeleeBasic")]
 public class MeleeBase : AbilityParams
 {
-    public override void ActivateAbility(GameObject dealer, GameObject target, Vector2 direction, bool isPlayerTeam, Material mat, int layer, string tag)
+    public override void ActivateAbility(GameObject dealer, GameObject target, Vector2 direction, bool isPlayerTeam, Material mat, int layer, string tag, bool overrideBulletSpawnMethod)
     {
         //bool isThisAttackCharged = isChargedAttack;
 

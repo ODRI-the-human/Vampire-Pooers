@@ -352,48 +352,6 @@ public class ItemDescriptions : MonoBehaviour
                 addNewScriptForNewInstance = false;
                 whatUses = (int)ITEMOWNERS.BULLET;
                 break;
-
-
-            // RMB abilities
-            //case (int)ITEMLIST.DODGEROLL:
-            //    quality = (int)ITEMTIERS.DODGE;
-            //    itemDescription = "Swap your dodge ability back to dodge roll.";
-            //    addNewScriptForNewInstance = true;
-            //    whatUses = (int)ITEMOWNERS.BEING;
-            //    break;
-            //case (int)ITEMLIST.SHOULDERBASH:
-            //    quality = (int)ITEMTIERS.DODGE;
-            //    itemDescription = "Swap your dodge ability to shoulderbash - dodge a shorter distance, but faster, and knock enemies back greatly. Enemies take damage upon hitting a wall or another enemy.";
-            //    addNewScriptForNewInstance = true;
-            //    whatUses = (int)ITEMOWNERS.BEING;
-            //    break;
-
-
-            // Weapons
-            case (int)ITEMLIST.PISTOL:
-                quality = (int)ITEMTIERS.WEAPON;
-                itemDescription = "Swap your weapon back to the pistol.";
-                addNewScriptForNewInstance = true;
-                whatUses = (int)ITEMOWNERS.ALL;
-                break;
-            case (int)ITEMLIST.GRENADELAUNCHER:
-                quality = (int)ITEMTIERS.WEAPON;
-                itemDescription = "Swap your weapon to the grenade launcher - half the rate of fire, but shots explode on hit for 2x your bullet damage (can hit you!)";
-                addNewScriptForNewInstance = true;
-                whatUses = (int)ITEMOWNERS.ALL;
-                break;
-            case (int)ITEMLIST.LAZER:
-                quality = (int)ITEMTIERS.WEAPON;
-                itemDescription = "Swap your weapon to the lazer pistol - slightly lower fire rate but infinite piercing and infinite shotspeed";
-                addNewScriptForNewInstance = true;
-                whatUses = (int)ITEMOWNERS.ALL;
-                break;
-            case (int)ITEMLIST.BAT:
-                quality = (int)ITEMTIERS.WEAPON;
-                itemDescription = "Swap your weapon to the bat - deals high knockback to enemies, and blocked bullets are given all your bullet effects.";
-                addNewScriptForNewInstance = true;
-                whatUses = (int)ITEMOWNERS.ALL;
-                break;
         }
     }
 }

@@ -49,14 +49,7 @@ public enum ITEMLIST
     LUCKIER,
     MORECRITS,
     MARCEL,
+
+    // Enemy-only items. Keep creepshot as the last item, so things that pick a random item implicitly know the max item range.
     CREEPSHOT,
-
-    // Weapons. Keep pistol first.
-    PISTOL,
-    GRENADELAUNCHER,
-    LAZER,
-    BAT,
-
-    // Weapons that only get added situationally. Set Dark Arts as the first.
-    DARKARTS,
 }

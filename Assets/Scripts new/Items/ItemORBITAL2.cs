@@ -43,8 +43,8 @@ public class ItemORBITAL2 : MonoBehaviour
             {
                 vec3 = gameObject.GetComponent<Attack>().currentTarget.transform.position - transform.position;
             }
-            gameObject.GetComponent<Attack>().vectorToTarget = new Vector2(vec3.x, vec3.y).normalized;
-            orb.GetComponent<Attack>().UseAttack(gameObject.GetComponent<Attack>().abilityTypes[0], 0, gameObject.GetComponent<Attack>().isPlayerTeam, gameObject.GetComponent<Attack>().lastAttackCharged, true);
+            orb.GetComponent<Attack>().vectorToTarget = new Vector2(vec3.x, vec3.y).normalized;
+            orb.GetComponent<Attack>().UseAttack(gameObject.GetComponent<Attack>().abilityTypes[0], 0, gameObject.GetComponent<Attack>().isPlayerTeam, gameObject.GetComponent<Attack>().lastAttackCharged, true, false);
         }
     }
 
@@ -58,6 +58,7 @@ public class ItemORBITAL2 : MonoBehaviour
             myGuy.GetComponent<Attack>().attackAutomatically = false;
             myGuy.GetComponent<OrbitalMovement2>().timerDelay = i * (2 * Mathf.PI / 0.03f) / instances;
             myGuy.GetComponent<OrbitalMovement2>().distanceFromPlayer = 1 + 0.08f * instances;
+            myGuy.GetComponent<Attack>().abilityTypes = gameObject.GetComponent<Attack>().abilityTypes;
             Orbs.Add(myGuy);
             //Debug.Log("fhdgdsifgds");
         }

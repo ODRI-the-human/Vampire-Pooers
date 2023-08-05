@@ -6,5 +6,4 @@ public enum ITEMTIERS
     UNCOMMON,
     LEGENDARY,
     NULL,
-    WEAPON,
 }

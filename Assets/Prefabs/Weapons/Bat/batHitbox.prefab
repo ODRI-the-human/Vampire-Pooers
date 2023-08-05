@@ -66,7 +66,6 @@ MonoBehaviour:
   finalDamageStat: 0
   procCoeff: 1
   damageBase: 75
-  damageAdd: 0
   damageMult: 0
   finalDamageMult: 1
   critProb: 0.05
@@ -101,11 +100,8 @@ MonoBehaviour:
   itemsHeld: 
   master: {fileID: 0}
   itemGained: 0
-  weaponHeld: 0
   noToGive: 1
   spawnedBat: {fileID: 0}
-  previousFireType: 0
-  previousFireTimerLengthMLT: 0
 --- !u!114 &-4933221265213043764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,7 +161,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0

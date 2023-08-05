@@ -8,6 +8,8 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioSource musicSource;
     [SerializeField] private AudioSource effectsSource;
 
+    public AudioClip[] clips;
+
     void Awake()
     {
         if (Instance == null)
@@ -16,11 +18,16 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    public void PlaySound(AudioClip clip, float randPitchAmt)
+    public void PlayTypicalSound(int ID) // For playing sounds that happen all the time, like hitmarkers, crit sound, etc. ID as per COMMONSNDCLPS enum.
     {
-        effectsSource.time = 0;
-        effectsSource.clip = clip;
-        effectsSource.Play();
-        effectsSource.pitch = Random.Range(1f - randPitchAmt, 1f + randPitchAmt);
+        PlaySound(clips[ID]);
+    }
+
+    public void PlaySound(AudioClip clip)
+    {
+        //effectsSource.time = 0;
+        //effectsSource.clip = clip;
+        effectsSource.PlayOneShot(clip);
+        effectsSource.pitch = Random.Range(1f - 0.05f, 1f + 0.05f);
     }
 }

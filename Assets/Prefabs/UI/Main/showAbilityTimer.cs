@@ -17,16 +17,7 @@ public class showAbilityTimer : MonoBehaviour
     void Update()
     {
         float remainingTime = 0;
-
-        switch(ability)
-        {
-            case 1:
-                //remainingTime = Mathf.Ceil(owner.GetComponent<secondaryAbility>().abilityOneCooldown / 50);
-                break;
-            case 2:
-                //remainingTime = Mathf.Ceil(owner.GetComponent<secondaryAbility>().abilityTwoCooldown / 50);
-                break;
-        }
+        remainingTime = Mathf.Ceil(owner.GetComponent<Attack>().coolDowns[ability] / 50f);
 
         if (remainingTime <= 0)
         {
