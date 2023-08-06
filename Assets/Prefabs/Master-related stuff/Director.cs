@@ -296,10 +296,14 @@ public class Director : MonoBehaviour
             posInit = posInit - new Vector3(camera.transform.position.x, camera.transform.position.y, 0); // Essentially turns it back into the 'vecToCheck'.
             GameObject johnSpawned = Instantiate(enemyToSpawnNext.enemyPrefab, pos, Quaternion.identity);
             johnSpawned.GetComponent<LevelUp>().GiveXP(currentLevel);
-            GameObject spawnedIndicator = Instantiate(spawnPosIndicator, new Vector3(camera.transform.position.x, camera.transform.position.y, -5) + 0.3f * posInit, Quaternion.identity);
-            spawnedIndicator.transform.rotation = Quaternion.LookRotation(posInit, Vector3.forward) * Quaternion.Euler(-90, 0, 0);
-            spawnedIndicator.GetComponent<enlargeThenShrink>().camera = camera;
-            spawnedIndicator.transform.Find("enemySprite").GetComponent<SpriteRenderer>().color = johnSpawned.GetComponent<SpriteRenderer>().color; // Replace with showing the model!
+            enemyToSpawnNext.SetEnemyParams(johnSpawned);
+            if (spawnPosIndicator != null)
+            {
+                GameObject spawnedIndicator = Instantiate(spawnPosIndicator, new Vector3(camera.transform.position.x, camera.transform.position.y, -5) + 0.3f * posInit, Quaternion.identity);
+                spawnedIndicator.transform.rotation = Quaternion.LookRotation(posInit, Vector3.forward) * Quaternion.Euler(-90, 0, 0);
+                spawnedIndicator.GetComponent<enlargeThenShrink>().camera = camera;
+                spawnedIndicator.transform.Find("enemySprite").GetComponent<SpriteRenderer>().color = johnSpawned.GetComponent<SpriteRenderer>().color; // Replace with showing the model!
+            }
             //if (i < numElitesToSpawn)
             //{
             //    if (johnSpawned.AddComponent<giveEnemySpecificItem>() == null)

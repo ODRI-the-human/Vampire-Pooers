@@ -19,6 +19,16 @@ MonoBehaviour:
   coolDownTime: 50
   objectsToUse:
   - {fileID: 4255455733749829593, guid: 27160d46bf5b97a4898af82130ae1a42, type: 3}
+  sfx: []
+  spawnedAttackObjs:
+  - {fileID: 0}
   range: 99999
+  damageMultiplier: 1
+  massCoeffMult: 1
+  procCoeffMult: 1
+  iFrameFracMult: 1
+  chargeLength: 0
+  isCharged: 0
+  rechargeAllShotsAfterCooldown: 0
   effectsToAdd: []
-  defaultSpeed: 6
+  defaultSpeed: 8

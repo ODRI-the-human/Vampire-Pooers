@@ -26,9 +26,10 @@ MonoBehaviour:
   damageMultiplier: 1
   massCoeffMult: 1
   procCoeffMult: 1
+  iFrameFracMult: 1
   chargeLength: 0
   isCharged: 0
   rechargeAllShotsAfterCooldown: 0
   effectsToAdd:
   - SLOWOVERTIME
-  defaultSpeed: 36
+  defaultSpeed: 20

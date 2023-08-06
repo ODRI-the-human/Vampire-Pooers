@@ -19,11 +19,11 @@ public class LightningShot : AbilityParams
         Harrybo.GetComponent<checkAllLazerPositions>().master = dealer.GetComponent<DealDamage>().master;
         //Debug.Log("transform.up for lazer: " + Harrybo.transform.up.ToString() + " / direction: " + direction.ToString());
 
-        if (!isPlayerTeam)
-        {
-            Debug.Log("changed delay ok");
-            Harrybo.GetComponent<checkAllLazerPositions>().delay = 0.5f;
-        }
+        //if (!isPlayerTeam)
+        //{
+        //    Debug.Log("changed delay ok");
+        //    Harrybo.GetComponent<checkAllLazerPositions>().delay = 0.5f;
+        //}
     }
 
     public override bool CheckUsability(GameObject dealer, GameObject target)

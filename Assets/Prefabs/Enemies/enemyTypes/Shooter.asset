@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7515ca90113e9e4abaff340d9253905, type: 3}
+  m_Name: Shooter
+  m_EditorClassIdentifier: 
+  name: Shooter
+  spawnCost: 20
+  spawnWeight: 100
+  minSpawnAmt: 3
+  maxSpawnAmt: 8
+  areasCanSpawnIn:
+  - TESTING
+  enemyPrefab: {fileID: 6100428923212637479, guid: 61641aea3f3721f43875760a226557f5, type: 3}
+  moveSpeed: 3.5
+  recieveKnockback: 1
+  numExtraShots: 0
+  maxHP: 150
+  damageMult: 1
+  colorToSet: {r: 1, g: 0, b: 0, a: 1}
+  abilities:
+  - {fileID: 11400000, guid: f9d8fde044939d24e81e62c9b5133b7f, type: 2}
+  itemsToGive: []
+  resistValues:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0

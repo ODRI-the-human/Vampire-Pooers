@@ -2080,6 +2080,9 @@ MonoBehaviour:
   time: 180
   keepBestStatObj: {fileID: 5459875686069988955}
   itemsHeldVisualiser: {fileID: 8484845968839686508}
+  telefragWarn: {fileID: 8300000, guid: 03a018ae16185cc4e83e4ff90b1ac4ad, type: 3}
+  telefragDo: {fileID: 8300000, guid: ef47f7f21edfb174d87722a143ac82ef, type: 3}
+  targetWarn: {fileID: 5815860708793426789, guid: 5171e96bd872f22449431e84036bbf5f, type: 3}
   daggerThrow: {fileID: 11400000, guid: 6b07d56638725614994273219689accd, type: 2}
   berserkAttack: {fileID: 11400000, guid: 8b211c6db3f2f9a4daabb416cc641c4f, type: 2}
 --- !u!114 &179530921809487071
@@ -2325,7 +2328,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7002239379606652682}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 586742f1586a02a4382643bbe88c97dc, type: 3}
   m_Name: 
@@ -2367,7 +2370,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7002239379606652682}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c05841eae35a00a4da4e5cddf7a23d98, type: 3}
   m_Name: 
@@ -2384,16 +2387,16 @@ MonoBehaviour:
   timeTillNextSpawn: 50
   spawnTimerRate: 1
   allEnemyTypes:
-  - {fileID: 11400000, guid: bd99edb86f48f9b4abc65fea10e699b5, type: 2}
-  - {fileID: 11400000, guid: 76094c64666f29a4594d5d31a80f0151, type: 2}
-  - {fileID: 11400000, guid: eecdfedeb7e4a7e41918c4e32b32c037, type: 2}
-  - {fileID: 11400000, guid: 3cfb1a78668a294409924b7377780600, type: 2}
-  - {fileID: 11400000, guid: 01fdbae2cc2b40640b26f21d78d225ff, type: 2}
-  - {fileID: 11400000, guid: deaca55125a2e584e989a34b61589e73, type: 2}
-  - {fileID: 11400000, guid: 285f7ded29f17204288b83b310519c33, type: 2}
-  - {fileID: 11400000, guid: 886cabfb34109e440b4755508a5515e7, type: 2}
-  - {fileID: 11400000, guid: 0b4ceb160707d8741b4198a3cecd5db9, type: 2}
-  - {fileID: 11400000, guid: 1c49737fd80af7e4396bb4acd77ba6a8, type: 2}
+  - {fileID: 11400000, guid: acbad36f553fbe34798ab4685350de1e, type: 2}
+  - {fileID: 11400000, guid: 9ab9d1f4bc36e92459ccb7679cf8b862, type: 2}
+  - {fileID: 11400000, guid: 58a5e3774c519db4caeeec5b3529ee4c, type: 2}
+  - {fileID: 11400000, guid: 68d1fb4a544b0b942883e50e97d2dd33, type: 2}
+  - {fileID: 11400000, guid: 577cf0b055745734493b7b87153eef98, type: 2}
+  - {fileID: 11400000, guid: 9eea3d58e74a63d45ac07480b0d71d2b, type: 2}
+  - {fileID: 11400000, guid: 23171665c4da37a44a4738a716fb3908, type: 2}
+  - {fileID: 11400000, guid: 5218bbbaf74262b45b31bc34add9d4f3, type: 2}
+  - {fileID: 11400000, guid: 47d5cd10ae1e9064bb9fe00622032200, type: 2}
+  - {fileID: 11400000, guid: bd13d06fbd27daa4c95dd7afc5b43d16, type: 2}
   currentEnemyTypes: []
   allEliteTypes:
   - {fileID: 11400000, guid: f0c803f41d70c314b9bab6badb30bff2, type: 2}
@@ -2403,7 +2406,7 @@ MonoBehaviour:
   numEnemiesToSpawn: 0
   eliteType: {fileID: 0}
   numElitesToSpawn: 0
-  spawnPosIndicator: {fileID: 3196977395209695017, guid: e710198f2bf0e5a49a3e253d9ba74e15, type: 3}
+  spawnPosIndicator: {fileID: 0}
 --- !u!114 &-240439303081201205
 MonoBehaviour:
   m_ObjectHideFlags: 0

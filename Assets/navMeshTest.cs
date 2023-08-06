@@ -26,7 +26,14 @@ public class navMeshTest : MonoBehaviour
 
     void FixedUpdate()
     {
-        agent.speed = gameObject.GetComponent<NewPlayerMovement>().currentMoveSpeed;
+        if (gameObject.GetComponent<NewPlayerMovement>().moveTowardsPlayer)
+        {
+            agent.speed = gameObject.GetComponent<NewPlayerMovement>().currentMoveSpeed;
+        }
+        else
+        {
+            agent.speed = 0f;
+        }
         agent.SetDestination((gameObject.GetComponent<Attack>().currentTarget).transform.position);
     }
 }

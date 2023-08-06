@@ -27,16 +27,17 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6152856860940002557}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!120 &-8539403832840598318
 LineRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -124,16 +125,20 @@ LineRenderer:
       atime6: 0
       atime7: 0
       m_Mode: 0
+      m_ColorSpace: -1
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 0
     numCapVertices: 0
     alignment: 0
     textureMode: 0
+    textureScale: {x: 1, y: 1}
     shadowBias: 0.5
     generateLightingData: 0
+  m_MaskInteraction: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+  m_ApplyActiveColorSpace: 0
 --- !u!114 &-2537609482680151459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,6 +154,10 @@ MonoBehaviour:
   hitboxPosses: []
   ignoredHomings: []
   ignoredHits: []
+  sounds:
+  - {fileID: 8300000, guid: bd05329de65f072439463e8714303904, type: 3}
+  - {fileID: 8300000, guid: 3bea340e057904f4398d7d2d111c93b3, type: 3}
+  - {fileID: 8300000, guid: a9a2509bc51ab9d44a789aa02f356468, type: 3}
   vecToMove: {x: 0, y: 0, z: 0}
   owner: {fileID: 0}
   line: {fileID: -8539403832840598318}
@@ -178,6 +187,7 @@ MonoBehaviour:
   master: {fileID: 0}
   itemGained: 0
   noToGive: 1
+  spawnedBat: {fileID: 0}
 --- !u!114 &7014380716498838798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,14 +203,13 @@ MonoBehaviour:
   finalDamageStat: 0
   procCoeff: 1
   damageBase: 50
-  damageAdd: 0
   damageMult: 1
   finalDamageMult: 1
-  finalDamageDIV: 1
   critProb: 0.05
   critMult: 2
   owner: {fileID: 0}
   master: {fileID: 0}
+  canDealDamage: 1
   massCoeff: 2
   overwriteDamageCalc: 0
   onlyDamageOnce: 0
@@ -211,3 +220,7 @@ MonoBehaviour:
   damageToPresent: 0
   damageType: 0
   procChainIndexes: 
+  procChanceBonus: 1
+  damageToPassToVictim: 0
+  abilityIndex: 0
+  abilityType: {fileID: 0}

@@ -24,7 +24,7 @@ public abstract class FireBulletsBase : AbilityParams
         spawnedBullet.GetComponent<Rigidbody2D>().velocity = defaultSpeed * direction.normalized;
         if (isPlayerTeam)
         {
-            spawnedBullet.GetComponent<Rigidbody2D>().velocity *= 1.5f;
+            spawnedBullet.GetComponent<Rigidbody2D>().velocity *= 2.5f;
         }
 
         SpawnBullets(spawnedBullet, direction, dealer, target, overrideBulletSpawnMethod);

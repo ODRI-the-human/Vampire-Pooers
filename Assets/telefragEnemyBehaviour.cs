@@ -9,8 +9,6 @@ public class telefragEnemyBehaviour : MonoBehaviour
     Vector3 posToTP;
     float prevSpeed;
 
-    public GameObject warnAudio;
-    public GameObject doAudio;
     public GameObject targetWarn;
     GameObject spawnedWarn;
 
@@ -31,9 +29,9 @@ public class telefragEnemyBehaviour : MonoBehaviour
         {
             prevSpeed = gameObject.GetComponent<NewPlayerMovement>().baseMoveSpeed;
             gameObject.GetComponent<NewPlayerMovement>().baseMoveSpeed = 0;
-            Instantiate(warnAudio);
+            SoundManager.Instance.PlaySound(EntityReferencerGuy.Instance.telefragWarn);
             posToTP = gameObject.GetComponent<Attack>().currentTarget.transform.position;
-            spawnedWarn = Instantiate(targetWarn, posToTP, Quaternion.Euler(0, 0, 0));
+            spawnedWarn = Instantiate(EntityReferencerGuy.Instance.targetWarn, posToTP, Quaternion.Euler(0, 0, 0));
             spawnedWarn.GetComponent<ownerDestroy>().owner = gameObject;
         }
 
@@ -42,7 +40,7 @@ public class telefragEnemyBehaviour : MonoBehaviour
             gameObject.GetComponent<NavMeshAgent>().enabled = false;
             transform.position = posToTP;
             gameObject.GetComponent<NavMeshAgent>().enabled = true;
-            Instantiate(doAudio);
+            SoundManager.Instance.PlaySound(EntityReferencerGuy.Instance.telefragDo);
             Destroy(spawnedWarn);
             timer = 0;
             gameObject.GetComponent<NewPlayerMovement>().baseMoveSpeed = prevSpeed;

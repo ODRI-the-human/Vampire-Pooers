@@ -27,7 +27,7 @@ public class homingMineMovement : MonoBehaviour
 
         transform.position += new Vector3(Random.Range(-0.01f, 0.01f), Random.Range(-0.01f, 0.01f), 0);
 
-        speed = 8f;
+        speed = 5f;
     }
 
     void GetTarget()
@@ -74,7 +74,7 @@ public class homingMineMovement : MonoBehaviour
 
     public void ApplyOwnOnDeaths()
     {
-        GameObject splod = Instantiate(splosoin, transform.position, Quaternion.Euler(0, 0, 0));
+        GameObject splod = Instantiate(splosoin, transform.position, Quaternion.identity);
         splod.GetComponent<DealDamage>().finalDamageStat = 3 * gameObject.GetComponent<DealDamage>().GetDamageAmount();
         splod.GetComponent<DealDamage>().owner = gameObject.GetComponent<DealDamage>().owner;
         Destroy(gameObject);

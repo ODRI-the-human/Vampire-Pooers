@@ -8,11 +8,13 @@ public class ItemMORESHOT : MonoBehaviour
     void Start()
     {
         gameObject.GetComponent<Attack>().noExtraShots++;
+        gameObject.GetComponent<Attack>().cooldownFac *= 1.25f;
     }
 
     public void Undo()
     {
         gameObject.GetComponent<Attack>().noExtraShots--;
+        gameObject.GetComponent<Attack>().cooldownFac /= 1.25f;
         Destroy(this);
     }
 }

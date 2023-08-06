@@ -33,4 +33,4 @@ MonoBehaviour:
   effectsToAdd:
   - SLOWOVERTIME
   - EXPLODEONHIT
-  defaultSpeed: 21
+  defaultSpeed: 20

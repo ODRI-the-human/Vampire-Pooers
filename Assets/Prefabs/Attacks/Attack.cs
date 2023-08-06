@@ -300,6 +300,10 @@ public class Attack : MonoBehaviour
             float currentAngle = (Mathf.PI / 6) * (-noExtraShots * 0.5f + i);
             Vector2 vecToUse = new Vector2(vectorToTarget.x * Mathf.Cos(currentAngle) - vectorToTarget.y * Mathf.Sin(currentAngle), vectorToTarget.x * Mathf.Sin(currentAngle) + vectorToTarget.y * Mathf.Cos(currentAngle)).normalized;
             abilityToUse.UseAttack(gameObject, currentTarget, transform.position, vecToUse, isPlayerTeam, abilityIndex, isCharged, overrideCooldownSetting, playSound, false);
+            if (!overrideCooldownSetting)
+            {
+                charges[abilityIndex]--;
+            }
         }
         SendMessage("OnUseAbility", abilityIndex);
         lastAttackCharged = isCharged;

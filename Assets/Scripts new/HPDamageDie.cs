@@ -39,6 +39,12 @@ public class HPDamageDie : MonoBehaviour
     void Awake()
     {
         HP = MaxHP;
+    }
+
+    void Start()
+    {
+        master = EntityReferencerGuy.Instance.master;
+
         if (gameObject.tag == "Hostile")
         {
             Player = GameObject.Find("newPlayer");
@@ -54,11 +60,6 @@ public class HPDamageDie : MonoBehaviour
         {
             playerControlled = true;
         }
-    }
-
-    void Start()
-    {
-        master = EntityReferencerGuy.Instance.master;
     }
 
     public void ApplyOwnOnDeaths()

@@ -47,6 +47,11 @@ public class obstHP : MonoBehaviour
         }
     }
 
+    //void OnWallHit()
+    //{
+
+    //}
+
     public void doOnDestroy()
     {
         //shut up!

@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class checkAllLazerPositions : MonoBehaviour
 {
-    public List<Vector3> hitboxPosses = new List<Vector3>();
     public List<GameObject> ignoredHomings = new List<GameObject>();
     public List<GameObject> ignoredHits = new List<GameObject>();
+
+    public AudioClip[] sounds;
 
     [System.NonSerialized] public float delay = 0.02f;
     public Vector3 vecToMove;
@@ -15,6 +16,7 @@ public class checkAllLazerPositions : MonoBehaviour
     public GameObject hitParticles;
     public GameObject light;
     public float lineRandPos = 0.2f;
+    bool slimLine = false;
 
     int contacts = 0;
 
@@ -25,57 +27,109 @@ public class checkAllLazerPositions : MonoBehaviour
     GameObject thinguy;
     public GameObject master;
     public bool setVecToMoveAutomatically = true;
-    public bool actuallyHit = true;
+    //public bool actuallyHit = true;
     public float splitDamMult = 1;
+
+    Vector3 originalPosition;
+    Vector3 originalDirection;
+
+    bool previousMoveToPlayer;
+    bool previousRecieveKnockBack;
 
     // Start is called before the first frame update
     void Start()
     {
+        originalPosition = transform.position;
+        originalDirection = new Vector3(transform.up.x, transform.up.y, 0).normalized;
+        line.positionCount = 150;
+
+        if (owner.GetComponent<NewPlayerMovement>() != null)
+        {
+            previousMoveToPlayer = owner.GetComponent<NewPlayerMovement>().moveTowardsPlayer;
+            previousRecieveKnockBack = owner.GetComponent<NewPlayerMovement>().recievesKnockback;
+
+        }
+
         thinguy = gameObject;
-        StartCoroutine(LateStart(delay));
+        if (owner.GetComponent<Attack>().isPlayerTeam)
+        {
+            thinguy = gameObject;
+            StartCoroutine(LateStart(delay, true));
+            slimLine = true;
+        }
+        else
+        {
+            StartCoroutine(LateStart(delay, false));
+            StartCoroutine(LateStart(delay + 0.5f, true));
+        }
     }
 
-    void LightFunny()
-    {
-        //GameObject lighty = Instantiate(light, transform.position, transform.rotation);
-        //lighty.GetComponent<Light>().color = shoot.color;
-    }
-
-    IEnumerator LateStart(float waitTime)
+    IEnumerator LateStart(float waitTime, bool actuallyHit)
     {
         yield return new WaitForSeconds(waitTime);
+        transform.position = originalPosition;
 
         if (setVecToMoveAutomatically)
         {
-            vecToMove = new Vector3(transform.up.x, transform.up.y, 0).normalized;
+            vecToMove = originalDirection;
         }
         transform.rotation = Quaternion.Euler(0, 0, 0);
-        line.positionCount = 150;
 
         if (actuallyHit)
         {
             Invoke(nameof(DIE), 0.25f);
-            //LightFunny();
+            SoundManager.Instance.PlaySound(sounds[Random.Range(0, sounds.Length)]);
+        }
+
+        int mode = 0; // A mode to determine the current behaviour of the lazer (0 for player shot, 1 for enemy warn, 2 for enemy shot)
+        if (!owner.GetComponent<Attack>().isPlayerTeam)
+        {
+            if (actuallyHit)
+            {
+                mode = 2;
+            }
+            else
+            {
+                mode = 1;
+            }
         }
 
         for (int i = 0; i < 150; i++)
         {
             //Debug.Log(vecToMove.ToString());
 
-            line.SetPosition(i, new Vector3(transform.position.x, transform.position.y, -1) + new Vector3(Random.Range(-lineRandPos, lineRandPos), Random.Range(-lineRandPos, lineRandPos), 0));
+            if (i + 1 >= line.positionCount) // Breaking out of loop if the enemy's actual shot is at its final iteration.
+            {
+                break;
+            }
 
-            if (vecToMove == Vector3.zero)
+            switch (mode)
+            {
+                case 0:
+                    line.SetPosition(i, new Vector3(transform.position.x, transform.position.y, -1) + new Vector3(Random.Range(-lineRandPos, lineRandPos), Random.Range(-lineRandPos, lineRandPos), 0));
+                    transform.position += 0.6f * vecToMove;
+                    break;
+                case 1:
+                    line.SetPosition(i, new Vector3(transform.position.x, transform.position.y, -1));
+                    transform.position += 0.6f * vecToMove;
+                    break;
+                case 2:
+                    line.SetPosition(i, new Vector3(transform.position.x, transform.position.y, -1) + new Vector3(Random.Range(-lineRandPos, lineRandPos), Random.Range(-lineRandPos, lineRandPos), 0));
+                    transform.position = line.GetPosition(i + 1) + new Vector3(0, 0, 1);
+                    break;
+            }
+
+            // ending the loop if the lazer is not moving.
+            if (vecToMove == Vector3.zero && (mode == 0 || mode == 1))
             {
                 line.positionCount = i;
                 break;
             }
 
-            hitboxPosses.Add(transform.position);
-
-            transform.position += 0.6f * vecToMove;
-
+            Debug.Log("mode: " + mode.ToString() + " / i: " + i.ToString());
+            
             // Applying homing effect.
-            if (gameObject.GetComponent<ItemHOMING>() != null && actuallyHit)
+            if (gameObject.GetComponent<ItemHOMING>() != null)
             {
                 //Debug.Log("pdaspodfsj");
                 Collider2D[] shitColliders = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y), 3 * gameObject.GetComponent<ItemHOMING>().instances);
@@ -98,7 +152,7 @@ public class checkAllLazerPositions : MonoBehaviour
                         {
                             Vector3 vectorToEnemy = col.gameObject.transform.position - transform.position;
                             vectorToEnemy = new Vector3(vectorToEnemy.x, vectorToEnemy.y, 0);
-                            vecToMove = (vecToMove + 0.3f * gameObject.GetComponent<ItemHOMING>().instances * vectorToEnemy.normalized / (0.02f + Mathf.Pow(vectorToEnemy.magnitude, 1.2f))).normalized;
+                            vecToMove = (vecToMove + 0.3f * gameObject.GetComponent<ItemHOMING>().instances * vectorToEnemy.normalized / (1.1f + Mathf.Pow(vectorToEnemy.magnitude, 1.2f))).normalized;
 
                             Vector3 colVec = col.transform.position - transform.position;
                             colVec = new Vector3(colVec.x, colVec.y, 0);
@@ -243,18 +297,10 @@ public class checkAllLazerPositions : MonoBehaviour
                 {
                     if (actuallyHit)
                     {
-                        GameObject particles = Instantiate(hitParticles, transform.position, Quaternion.Euler(0, 0, 0));
-                        var renderer = particles.GetComponent<ParticleSystemRenderer>();
-                        renderer.trailMaterial = shoot; // Applies the new value directly to the Particle System
-                        LightFunny();
-                        SendMessage("OnWallHit");
-                    }
-
-                    // Damaging rocks.
-                    if (col.gameObject.GetComponent<obstHP>() != null)
-                    {
-                        float damageToDo = gameObject.GetComponent<DealDamage>().GetDamageAmount();
-                        col.gameObject.GetComponent<obstHP>().owMyEntireRockIsInPain(gameObject, damageToDo);
+                        //GameObject particles = Instantiate(hitParticles, transform.position, Quaternion.Euler(0, 0, 0));
+                        //var renderer = particles.GetComponent<ParticleSystemRenderer>();
+                        //renderer.trailMaterial = shoot; // Applies the new value directly to the Particle System
+                        //SendMessage("OnWallHit");
                     }
 
                     // Applying bouncy effect.
@@ -293,17 +339,22 @@ public class checkAllLazerPositions : MonoBehaviour
         {
             line.material = shoot;
             line.widthMultiplier = (gameObject.GetComponent<DealDamage>().finalDamageStat / 2 + 25) / 100;
+            slimLine = true;
+            owner.GetComponent<NewPlayerMovement>().moveTowardsPlayer = previousMoveToPlayer;
+            owner.GetComponent<NewPlayerMovement>().recievesKnockback = previousRecieveKnockBack;
         }
         else
         {
             line.material = warn;
             line.widthMultiplier = 0.1f;
+            owner.GetComponent<NewPlayerMovement>().moveTowardsPlayer = false;
+            owner.GetComponent<NewPlayerMovement>().recievesKnockback = false;
         }
     }
 
     void Update()
     {
-        if (actuallyHit)
+        if (slimLine)
         {
             line.widthMultiplier /= 1 + 8 * Time.deltaTime;
         }

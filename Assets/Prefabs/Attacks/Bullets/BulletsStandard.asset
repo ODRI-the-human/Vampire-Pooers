@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: de93251bb5bf5654d8bb86880fec8668, type: 3}
-  m_Name: BulletNormal
+  m_Name: BulletsStandard
   m_EditorClassIdentifier: 
   name: Normal Shot
   weight: 100
-  maxCharges: 6
-  delayTime: 17
-  coolDownTime: 60
+  maxCharges: 1
+  delayTime: 0
+  coolDownTime: 25
   objectsToUse:
   - {fileID: 4255455733749829593, guid: 27160d46bf5b97a4898af82130ae1a42, type: 3}
   sfx:
@@ -32,4 +32,4 @@ MonoBehaviour:
   isCharged: 0
   rechargeAllShotsAfterCooldown: 1
   effectsToAdd: []
-  defaultSpeed: 9
+  defaultSpeed: 8

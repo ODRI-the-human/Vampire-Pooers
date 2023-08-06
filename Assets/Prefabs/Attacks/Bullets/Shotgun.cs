@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "AbilityParams", menuName = "AbilityParams/Shotgun")]
 public class Shotgun : FireBulletsBase
 {
-    public float angleMag = 0.3f;
+    public float angleMag = 0.6f;
 
     public override void SpawnBullets(GameObject spawnedBullet, Vector2 targetDir, GameObject owner, GameObject target, bool overrideBulletSpawnMethod)
     {

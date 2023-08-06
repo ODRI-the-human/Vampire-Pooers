@@ -10,6 +10,9 @@ public class ReloadBarBehaviour : MonoBehaviour
     public GameObject barItself;
     public GameObject tick;
     public GameObject tickMask;
+
+    public GameObject allAmmoObj;
+
     public GameObject ammoBar;
     public TextMeshProUGUI texterz;
 
@@ -28,7 +31,7 @@ public class ReloadBarBehaviour : MonoBehaviour
         transform.position = owner.transform.position - new Vector3(0, 1.5f, 0);
         barItself.transform.position = transform.position;
         float chargeProportion = (float)owner.GetComponent<Attack>().charges[0] / (float)owner.GetComponent<Attack>().abilityTypes[0].maxCharges;
-        Debug.Log("charge proportion: " + chargeProportion.ToString());
+        //Debug.Log("charge proportion: " + chargeProportion.ToString());
         if (chargeProportion <= 0.4f)
         {
             ammoBar.GetComponent<Image>().color = Color.red;
@@ -38,6 +41,16 @@ public class ReloadBarBehaviour : MonoBehaviour
             ammoBar.GetComponent<Image>().color = new Color(1, 1, 1, 1);
         }
         ammoBar.GetComponent<RectTransform>().localScale = new Vector3(chargeProportion, 1, 1);
+
+        if (owner.GetComponent<Attack>().abilityTypes[0].maxCharges == 1)
+        {
+            allAmmoObj.transform.localScale = Vector3.zero;
+        }
+        else
+        {
+            allAmmoObj.transform.localScale = new Vector3(1, 1, 1);
+        }
+
         if ((!owner.GetComponent<Attack>().isHoldingAttack[0] || !owner.GetComponent<Attack>().isAttacking) && owner.GetComponent<Attack>().coolDowns[0] >= 0)
         {
             if (initialAmount == 0)

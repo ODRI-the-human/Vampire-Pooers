@@ -31,4 +31,4 @@ MonoBehaviour:
   isCharged: 0
   rechargeAllShotsAfterCooldown: 1
   effectsToAdd: []
-  defaultSpeed: 15
+  defaultSpeed: 8

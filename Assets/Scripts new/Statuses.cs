@@ -90,7 +90,7 @@ public class Statuses : MonoBehaviour
                 break;
             case (int)STATUSES.ELECTRIC:
                 // For electric, just add the status if the thing doesn't already have it, else do nothing.
-                electricDealers.Add(responsibleObj);
+                electricDealers.Add(responsibleObj.GetComponent<DealDamage>().owner);
                 break;
             case (int)STATUSES.SLOW:
                 if (!hasSlow)

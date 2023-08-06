@@ -74,6 +74,10 @@ public class EntityReferencerGuy : MonoBehaviour
 
 
 
+    // Enemy shit
+    public AudioClip telefragWarn;
+    public AudioClip telefragDo;
+    public GameObject targetWarn;
 
 
 

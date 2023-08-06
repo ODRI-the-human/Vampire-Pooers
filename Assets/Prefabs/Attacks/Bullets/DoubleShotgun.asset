@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9effa95e95701d46a12f98490f45aad, type: 3}
-  m_Name: Shotgun
+  m_Name: DoubleShotgun
   m_EditorClassIdentifier: 
-  name: Shotgun
+  name: DoubleShotgun
   weight: 100
   maxCharges: 2
   delayTime: 10
@@ -31,5 +31,5 @@ MonoBehaviour:
   isCharged: 0
   rechargeAllShotsAfterCooldown: 1
   effectsToAdd: []
-  defaultSpeed: 15
-  angleMag: 0.3
+  defaultSpeed: 8
+  angleMag: 0.6

@@ -88,7 +88,6 @@ public abstract class AbilityParams : ScriptableObject
             {
                 dealer.GetComponent<Attack>().coolDowns[abilityIndex] = Mathf.RoundToInt(dealer.GetComponent<Attack>().coolDowns[abilityIndex] * EntityReferencerGuy.Instance.stopWatchDebuffAmt);
             }
-            dealer.GetComponent<Attack>().charges[abilityIndex]--;
             dealer.GetComponent<Attack>().masterCooldown = Mathf.RoundToInt(delayTime * dealer.GetComponent<Attack>().cooldownFacIndiv[abilityIndex] * dealer.GetComponent<Attack>().cooldownFac);
             dealer.GetComponent<Attack>().chargeTimers[abilityIndex] = 0;
         }
