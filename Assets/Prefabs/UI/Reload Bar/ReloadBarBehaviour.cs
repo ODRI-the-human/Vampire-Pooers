@@ -58,7 +58,7 @@ public class ReloadBarBehaviour : MonoBehaviour
                 initialAmount = owner.GetComponent<Attack>().coolDowns[0];
             }
 
-            float fracComplete = -2 * owner.GetComponent<Attack>().coolDowns[0] / initialAmount + 1;
+            float fracComplete = Mathf.Clamp(-2 * owner.GetComponent<Attack>().coolDowns[0] / initialAmount + 1, -1, 1);
 
             barItself.transform.localScale = new Vector3(1, 1, 1);
             tick.transform.position = barItself.transform.position + new Vector3(0.675f * fracComplete, 0, 0);

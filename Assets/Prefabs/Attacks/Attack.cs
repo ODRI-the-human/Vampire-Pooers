@@ -297,9 +297,7 @@ public class Attack : MonoBehaviour
                 playSound = true;
             }
 
-            float currentAngle = (Mathf.PI / 6) * (-noExtraShots * 0.5f + i);
-            Vector2 vecToUse = new Vector2(vectorToTarget.x * Mathf.Cos(currentAngle) - vectorToTarget.y * Mathf.Sin(currentAngle), vectorToTarget.x * Mathf.Sin(currentAngle) + vectorToTarget.y * Mathf.Cos(currentAngle)).normalized;
-            abilityToUse.UseAttack(gameObject, currentTarget, transform.position, vecToUse, isPlayerTeam, abilityIndex, isCharged, overrideCooldownSetting, playSound, false);
+            StartCoroutine(SpawnAttack(abilityToUse, abilityIndex, isPlayer, isCharged, overrideCooldownSetting, playSound, i));
             if (!overrideCooldownSetting)
             {
                 charges[abilityIndex]--;
@@ -312,5 +310,32 @@ public class Attack : MonoBehaviour
         {
             SendMessage("OnShootEffects");
         }
+    }
+
+    IEnumerator SpawnAttack(AbilityParams abilityToUse, int abilityIndex, bool isPlayer, bool isCharged, bool overrideCooldownSetting, bool playSound, int i)
+    {
+        if (!overrideCooldownSetting)
+        {
+            coolDowns[abilityIndex] = Mathf.RoundToInt(abilityToUse.coolDownTime * cooldownFacIndiv[abilityIndex] * cooldownFac);
+            masterCooldown = Mathf.RoundToInt(abilityToUse.masterCooldownTime * cooldownFacIndiv[abilityIndex] * cooldownFac);
+            if (!isPlayerTeam) // For adding extra to the cooldown timer based on stopwatch shenanigans if this is an enemy
+            {
+                coolDowns[abilityIndex] = Mathf.RoundToInt(coolDowns[abilityIndex] * EntityReferencerGuy.Instance.stopWatchDebuffAmt);
+                masterCooldown = Mathf.RoundToInt(masterCooldown * EntityReferencerGuy.Instance.stopWatchDebuffAmt);
+            }
+            chargeTimers[abilityIndex] = 0;
+        }
+        float additionalMult = 1f; // To add to the delay if this is an enemy and stopwatches are in use
+        if (!isPlayerTeam)
+        {
+            additionalMult = EntityReferencerGuy.Instance.stopWatchDebuffAmt;
+        }
+        Debug.Log("holy brsh attacking am i right");
+
+        yield return new WaitForSecondsRealtime(additionalMult * abilityToUse.spawnDelay * cooldownFacIndiv[abilityIndex] * cooldownFac);
+
+        float currentAngle = (Mathf.PI / 6) * (-noExtraShots * 0.5f + i);
+        Vector2 vecToUse = new Vector2(vectorToTarget.x * Mathf.Cos(currentAngle) - vectorToTarget.y * Mathf.Sin(currentAngle), vectorToTarget.x * Mathf.Sin(currentAngle) + vectorToTarget.y * Mathf.Cos(currentAngle)).normalized;
+        abilityToUse.UseAttack(gameObject, currentTarget, transform.position, vecToUse, isPlayerTeam, abilityIndex, isCharged, overrideCooldownSetting, playSound, false);
     }
 }

@@ -6,12 +6,17 @@ public class hitIfKBVecHigh : MonoBehaviour
 {
     public GameObject responsible;
 
-    void Update()
+    void FixedUpdate()
     {
-        if (gameObject.GetComponent<NewPlayerMovement>().knockBackVector.magnitude < 2)
+        if (gameObject.GetComponent<NewPlayerMovement>().knockBackVector.magnitude < 0.1f)
         {
-            Destroy(this);
+            Invoke(nameof(RemoveScript), 0.02f); // Makes sure the damage has enough time to be dealt.
         }
+    }
+
+    void RemoveScript()
+    {
+        Destroy(this);
     }
 
     void OnCollisionEnter2D(Collision2D col)

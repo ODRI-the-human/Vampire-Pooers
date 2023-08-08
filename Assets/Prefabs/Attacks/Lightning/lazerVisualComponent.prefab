@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -2537609482680151459}
   - component: {fileID: 7319165172531854056}
   - component: {fileID: 7014380716498838798}
+  - component: {fileID: 3623181651395340044}
   m_Layer: 7
   m_Name: lazerVisualComponent
   m_TagString: enemyBullet
@@ -151,7 +152,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc15cae853bd24a46a1bc33e62ee494c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitboxPosses: []
   ignoredHomings: []
   ignoredHits: []
   sounds:
@@ -169,8 +169,7 @@ MonoBehaviour:
   warn: {fileID: 2100000, guid: fba9229bb5d773248b7d70e956c6b896, type: 2}
   master: {fileID: 0}
   setVecToMoveAutomatically: 1
-  actuallyHit: 1
-  splitDamMult: 1
+  attackMode: 0
 --- !u!114 &7319165172531854056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,3 +223,17 @@ MonoBehaviour:
   damageToPassToVictim: 0
   abilityIndex: 0
   abilityType: {fileID: 0}
+--- !u!114 &3623181651395340044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6152856860940002557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f25f0742887b454c85a239aaf840ba1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectNames: []
+  attackEffects: 

@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 8283838186001966846}
   - component: {fileID: 1319991554950079764}
   - component: {fileID: 2011308639569851162}
+  - component: {fileID: -1288739121515133730}
   m_Layer: 17
   m_Name: batHitbox
   m_TagString: PlayerBullet
@@ -85,6 +86,8 @@ MonoBehaviour:
   procChainIndexes: 
   procChanceBonus: 1
   damageToPassToVictim: 0
+  abilityIndex: 0
+  abilityType: {fileID: 0}
 --- !u!114 &6575710697619101876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220,3 +223,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-1288739121515133730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2061944661215622530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f25f0742887b454c85a239aaf840ba1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectNames: []
+  attackEffects: 

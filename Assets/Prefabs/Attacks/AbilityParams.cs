@@ -8,10 +8,12 @@ public abstract class AbilityParams : ScriptableObject
     public string name;
     public int weight = 100;
     public int maxCharges = 1;
-    public int delayTime = 0; // When enemy is using this ability, how long to delay them till their next abiltiy use
+    public int masterCooldownTime = 0; // When enemy is using this ability, how long to delay them till their next abiltiy use
+    public float spawnDelay = 0f; // Delay IN SECONDS until this ability actually gets used.
     public int coolDownTime = 25; // The cooldown for this specific ability.
     public GameObject[] objectsToUse; // Objects this particular attack spawns and such.
     public AudioClip[] sfx;
+    public string[] attackEffectsToAdd;
     public GameObject[] spawnedAttackObjs;
     public float range = 99999f;
 
@@ -67,6 +69,11 @@ public abstract class AbilityParams : ScriptableObject
 
             }
             
+            if (spawnedAttackObjs[i].GetComponent<ApplyAttackModifiers>() != null)
+            {
+                spawnedAttackObjs[i].GetComponent<ApplyAttackModifiers>().effectNames = attackEffectsToAdd;
+            }
+
             if (spawnedAttackObjs[i].GetComponent<DealDamage>() != null)
             {
                 spawnedAttackObjs[i].GetComponent<DealDamage>().finalDamageMult = dealer.GetComponent<DealDamage>().finalDamageMult * dealer.GetComponent<DealDamage>().damageBonus;
@@ -81,16 +88,6 @@ public abstract class AbilityParams : ScriptableObject
             }
         }
 
-        if (!overrideCooldownSetting)
-        {
-            dealer.GetComponent<Attack>().coolDowns[abilityIndex] = Mathf.RoundToInt(coolDownTime * dealer.GetComponent<Attack>().cooldownFacIndiv[abilityIndex] * dealer.GetComponent<Attack>().cooldownFac);
-            if (!isPlayerTeam) // For adding extra to the cooldown timer based on stopwatch shenanigans if this is an enemy
-            {
-                dealer.GetComponent<Attack>().coolDowns[abilityIndex] = Mathf.RoundToInt(dealer.GetComponent<Attack>().coolDowns[abilityIndex] * EntityReferencerGuy.Instance.stopWatchDebuffAmt);
-            }
-            dealer.GetComponent<Attack>().masterCooldown = Mathf.RoundToInt(delayTime * dealer.GetComponent<Attack>().cooldownFacIndiv[abilityIndex] * dealer.GetComponent<Attack>().cooldownFac);
-            dealer.GetComponent<Attack>().chargeTimers[abilityIndex] = 0;
-        }
         //Debug.Log("direction: " + direction.ToString());
         ActivateAbility(dealer, target, direction, isPlayerTeam, mat, layer, tag, overrideBulletSpawnMethod);
     }

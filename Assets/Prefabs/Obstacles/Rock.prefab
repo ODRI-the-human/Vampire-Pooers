@@ -100,7 +100,7 @@ GameObject:
   - component: {fileID: 7905540234928558929}
   - component: {fileID: 7905540234928558943}
   - component: {fileID: 7905540234928558928}
-  - component: {fileID: -6414721154087378927}
+  - component: {fileID: -8133163967753786227}
   m_Layer: 10
   m_Name: Rock
   m_TagString: Wall
@@ -296,7 +296,7 @@ MonoBehaviour:
   m_IgnoreFromBuild: 1
   m_ApplyToChildren: 1
   m_AffectedAgents: 00000000
---- !u!114 &-6414721154087378927
+--- !u!114 &-8133163967753786227
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -305,8 +305,35 @@ MonoBehaviour:
   m_GameObject: {fileID: 7023213143370542604}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f51b4da77b518ef4ea90a8704dda45b0, type: 3}
+  m_Script: {fileID: 11500000, guid: a80deaad377472c4f9bd9cbf71b651a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 150
-  bulletResist: 50
+  HP: 0
+  MaxHP: 100
+  hurtAudio: {fileID: 0}
+  hurtPlane: {fileID: 0}
+  dieAudio: {fileID: 0}
+  iFramesTimer: 50
+  iFrames: 0
+  sprite: {fileID: 0}
+  material: {fileID: 0}
+  colorChangeTimer: 0
+  XP: {fileID: 0}
+  resistVals:
+  - 99
+  - 100
+  - 0
+  - 100
+  - 100
+  - 0
+  - 0
+  - 0
+  lastDamageSourceName: 
+  makeKillSound: 0
+  showDamageNumber: 0
+  makeHurtSound: 0
+  damageReduction: 0
+  damageDiv: 1
+  perfectWaves: 0
+  DOTSources: []
+  DOTDamages: []

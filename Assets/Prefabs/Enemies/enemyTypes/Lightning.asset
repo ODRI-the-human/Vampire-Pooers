@@ -31,8 +31,7 @@ MonoBehaviour:
   abilities:
   - {fileID: 11400000, guid: 4dfef8ee7c15d75418557dcbcdb6c60b, type: 2}
   canDealDamage: 0
-  itemsToGive:
-  - HOMING
+  itemsToGive: []
   scriptsToAdd: []
   resistValues:
   - 0

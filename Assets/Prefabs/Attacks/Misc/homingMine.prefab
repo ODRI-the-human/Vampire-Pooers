@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 5716069322335169520}
   - component: {fileID: 2322724339281642898}
   - component: {fileID: -1529151102796488646}
+  - component: {fileID: -8445504377402361836}
   m_Layer: 18
   m_Name: homingMine
   m_TagString: enemyBullet
@@ -245,10 +246,34 @@ MonoBehaviour:
   material: {fileID: 0}
   colorChangeTimer: 0
   XP: {fileID: 2232971130497578917, guid: dc46db39e4e70b144915e7a0652cc396, type: 3}
+  resistVals:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
   lastDamageSourceName: 
   makeKillSound: 1
+  showDamageNumber: 1
   damageReduction: 0
   damageDiv: 1
   perfectWaves: 0
   DOTSources: []
   DOTDamages: []
+--- !u!114 &-8445504377402361836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110440509597865848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f25f0742887b454c85a239aaf840ba1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectNames: []
+  attackEffects: 

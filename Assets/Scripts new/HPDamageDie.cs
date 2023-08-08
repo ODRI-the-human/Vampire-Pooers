@@ -19,11 +19,13 @@ public class HPDamageDie : MonoBehaviour
     Color originalColor;
     GameObject Player;
     public GameObject XP;
-    [System.NonSerialized] public float[] resistVals = new float[] { 0, 0, 0, 0, 0, 0, 0, 0 }; // Should be a minimum of one entry for each actual real damage type.
+    [SerializeField] public float[] resistVals = new float[] { 0, 0, 0, 0, 0, 0, 0, 0 }; // Should be a minimum of one entry for each actual real damage type.
     public string lastDamageSourceName;
     GameObject lastDamageSource;
 
     public bool makeKillSound = true;
+    public bool showDamageNumber = true;
+    public bool makeHurtSound = true;
 
     public float damageReduction = 0;
     public float damageDiv = 1;
@@ -52,7 +54,7 @@ public class HPDamageDie : MonoBehaviour
             sprite = gameObject.GetComponent<SpriteRenderer>();
             originalColor = sprite.color;
         }
-        else if (gameObject.tag == "enemyBullet")
+        else if (gameObject.tag == "enemyBullet" || gameObject.tag == "Wall")
         {
             playerControlled = false;
         }
@@ -71,38 +73,16 @@ public class HPDamageDie : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        if (HP <= 0)
-        {
-            SendMessage("ApplyOwnOnDeaths");
-            if (lastDamageSource != null && gameObject.tag == "Hostile") // otherwise it gets very funny
-            {
-                EntityReferencerGuy.Instance.GameManager.GetComponent<Director>().OnEnemiesKilled();
-                lastDamageSource.SendMessage("ApplyItemOnDeaths", gameObject); // Calls the on-kill effects on the object responsible for the kill.
-            }
-
-            if (gameObject.tag == "Player")
-            {
-                EntityReferencerGuy.Instance.master.SendMessage("ApplyItemOnDeaths", gameObject); // Calls the on-kill effects on the object responsible for the kill.
-            }
-
-            //gameObject.GetComponent<Attack>().bulletPool.Clear();
-            Destroy(gameObject);
-            //EventManager.DeathEffects(transform.position);
-        }
-
-        if (HP > MaxHP)
-        {
-            HP = MaxHP;
-        }
-    }
-
     void FixedUpdate()
     {
         if (colorChangeTimer == 0 && gameObject.GetComponent<SpriteRenderer>() != null)
         {
             sprite.color = originalColor;
+        }
+
+        if (HP > MaxHP)
+        {
+            HP = MaxHP;
         }
 
         iFrames--;
@@ -173,16 +153,18 @@ public class HPDamageDie : MonoBehaviour
 
             if ((iFrames < 0 || bypassIframes) && damageAmount != 0)
             {
-                SoundManager.Instance.PlayTypicalSound((int)COMMONSNDCLPS.HITMARKER);
-
-                if (hurtAudio != null)
+                if (makeHurtSound)
                 {
-                    SoundManager.Instance.PlaySound(hurtAudio);
-                }
+                    SoundManager.Instance.PlayTypicalSound((int)COMMONSNDCLPS.HITMARKER);
+                    if (hurtAudio != null)
+                    {
+                        SoundManager.Instance.PlaySound(hurtAudio);
+                    }
 
-                if (isCrit)
-                {
-                    SoundManager.Instance.PlayTypicalSound((int)COMMONSNDCLPS.CRIT);
+                    if (isCrit)
+                    {
+                        SoundManager.Instance.PlayTypicalSound((int)COMMONSNDCLPS.CRIT);
+                    }
                 }
 
                 damageAmount -= damageAmount * (resistVals[damageType] / 100);
@@ -205,7 +187,10 @@ public class HPDamageDie : MonoBehaviour
                 //    damageAmount = damageAmount - gameObject.GetComponent<ItemHOLYMANTIS>().instances * damageAmount / (gameObject.GetComponent<ItemHOLYMANTIS>().instances + 1);
                 //}
 
-                master.GetComponent<showDamageNumbers>().showDamage(transform.position + new Vector3(0, 0, -2 - transform.position.z), damageAmount, damageType, isCrit);
+                if (showDamageNumber)
+                {
+                    master.GetComponent<showDamageNumbers>().showDamage(transform.position + new Vector3(0, 0, -2 - transform.position.z), damageAmount, damageType, isCrit);
+                }
                 SendMessage("OnHurtEffects");
 
                 if (objectResponsible != null)
@@ -215,6 +200,25 @@ public class HPDamageDie : MonoBehaviour
                     objectResponsible.SendMessage("SendRollOnHits", gameObject);
                 }
             }
+        }
+
+        if (HP <= 0)
+        {
+            SendMessage("ApplyOwnOnDeaths");
+            if (lastDamageSource != null && gameObject.tag == "Hostile") // otherwise it gets very funny
+            {
+                EntityReferencerGuy.Instance.GameManager.GetComponent<Director>().OnEnemiesKilled();
+                lastDamageSource.SendMessage("ApplyItemOnDeaths", gameObject); // Calls the on-kill effects on the object responsible for the kill.
+            }
+
+            if (gameObject.tag == "Player")
+            {
+                EntityReferencerGuy.Instance.master.SendMessage("ApplyItemOnDeaths", gameObject); // Calls the on-kill effects on the object responsible for the kill.
+            }
+
+            //gameObject.GetComponent<Attack>().bulletPool.Clear();
+            Destroy(gameObject);
+            //EventManager.DeathEffects(transform.position);
         }
     }
 

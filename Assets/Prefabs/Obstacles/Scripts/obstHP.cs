@@ -5,7 +5,7 @@ using UnityEngine;
 public class obstHP : MonoBehaviour
 {
     public float HP;
-    public float bulletResist;
+    public float[] resistVals = new float[] { 99f, 99f, 0, 0, 0, 0, 0, 0 };
 
     void OnBecameVisible()
     {
@@ -29,16 +29,11 @@ public class obstHP : MonoBehaviour
 
     public void owMyEntireRockIsInPain(GameObject thingy, float damageAmt)
     {
-        //Debug.Log("bebeb");
+        Debug.Log("bebeb rock damage momentz " + damageAmt);
+        int damageType = thingy.GetComponent<DealDamage>().damageType;
+        float resistVal = resistVals[damageType];
 
-        if (thingy.tag == "PlayerBullet" || thingy.tag == "enemyBullet")
-        {
-            HP -= damageAmt / bulletResist;
-        }
-        else if (thingy.tag == "ATGExplosion")
-        {
-            HP -= damageAmt;
-        }
+        HP -= damageAmt / resistVal;
 
         if (HP <= 0)
         {

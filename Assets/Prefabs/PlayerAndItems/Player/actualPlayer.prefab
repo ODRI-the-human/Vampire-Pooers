@@ -288,8 +288,19 @@ MonoBehaviour:
   material: {fileID: 0}
   colorChangeTimer: 0
   XP: {fileID: 2232971130497578917, guid: dc46db39e4e70b144915e7a0652cc396, type: 3}
+  resistVals:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
   lastDamageSourceName: 
   makeKillSound: 1
+  showDamageNumber: 1
+  makeHurtSound: 1
   damageReduction: 0
   damageDiv: 1
   perfectWaves: 0

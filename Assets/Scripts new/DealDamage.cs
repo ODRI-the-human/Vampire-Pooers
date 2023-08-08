@@ -140,7 +140,7 @@ public class DealDamage : MonoBehaviour
 
             if (gameObject.GetComponent<explosionBONUSSCRIPTWOW>() != null)
             {
-                float maxDist = responsible.transform.localScale.x * responsible.GetComponent<CircleCollider2D>().radius + victim.transform.localScale.x * victim.GetComponent<CircleCollider2D>().radius;
+                float maxDist = responsible.transform.localScale.x * responsible.GetComponent<CircleCollider2D>().radius + victim.transform.localScale.x * 2f;
                 float actualDist = (responsible.transform.position - victim.transform.position).magnitude;
                 float fracFromCtr = Mathf.Clamp(2f * (1 - (actualDist / maxDist)), 0f, 1f);
                 damageToPassToVictim *= fracFromCtr;
@@ -154,7 +154,7 @@ public class DealDamage : MonoBehaviour
 
     public void SendRollOnHits(GameObject victim)
     {
-        if (procCoeff > 0)
+        if (procCoeff > 0 && victim.tag != "Wall")
         {
             owner.SendMessage("RollOnHit", new GameObject[] { victim, gameObject });
             gameObject.SendMessage("RollOnHit", new GameObject[] { victim, gameObject });

@@ -6,7 +6,7 @@ public class tntExplodeOnDeath : MonoBehaviour
 {
     public GameObject neutralExplosion;
 
-    public void doOnDestroy()
+    public void ApplyOwnOnDeaths()
     {
         Instantiate(neutralExplosion, transform.position, Quaternion.Euler(0, 0, 0));
     }

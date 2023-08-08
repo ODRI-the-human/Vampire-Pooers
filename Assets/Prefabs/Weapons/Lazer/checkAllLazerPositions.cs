@@ -28,7 +28,6 @@ public class checkAllLazerPositions : MonoBehaviour
     public GameObject master;
     public bool setVecToMoveAutomatically = true;
     //public bool actuallyHit = true;
-    public float splitDamMult = 1;
 
     Vector3 originalPosition;
     Vector3 originalDirection;
@@ -36,12 +35,17 @@ public class checkAllLazerPositions : MonoBehaviour
     bool previousMoveToPlayer;
     bool previousRecieveKnockBack;
 
+    public int attackMode = 0; // As both lazer and crossbow use this script (since they're fairly similar), this differentiates between them. 0 for lazer, 1 for crossbow.
+    int numItersSoFar = 0; // Counts up over time, used by crossbow.
+
     // Start is called before the first frame update
     void Start()
     {
+        transform.localScale = Vector3.zero;
         originalPosition = transform.position;
         originalDirection = new Vector3(transform.up.x, transform.up.y, 0).normalized;
-        line.positionCount = 150;
+        vecToMove = originalDirection;
+
 
         if (owner.GetComponent<NewPlayerMovement>() != null)
         {
@@ -60,27 +64,37 @@ public class checkAllLazerPositions : MonoBehaviour
         else
         {
             StartCoroutine(LateStart(delay, false));
-            StartCoroutine(LateStart(delay + 0.5f, true));
+            StartCoroutine(LateStart(delay + 0.75f, true));
+        }
+
+        if (attackMode == 1)
+        {
+            Invoke(nameof(DIE), 0.25f);
+            line.material = shoot;
+            line.widthMultiplier *= 0.5f;
         }
     }
 
-    IEnumerator LateStart(float waitTime, bool actuallyHit)
+    void FixedUpdate()
     {
-        yield return new WaitForSeconds(waitTime);
-        transform.position = originalPosition;
-
-        if (setVecToMoveAutomatically)
+        if (attackMode == 1)
         {
-            vecToMove = originalDirection;
+            if (vecToMove != Vector3.zero)
+            {
+                line.positionCount = numItersSoFar + 7;
+                DoMotion(true, numItersSoFar, 7); // The higher numIterations with, the faster the projectile will move.
+                numItersSoFar += 7;
+            }
+            else
+            {
+                Destroy(gameObject.GetComponent<MeshFilter>());
+                Destroy(gameObject.GetComponent<MeshRenderer>());
+            }
         }
-        transform.rotation = Quaternion.Euler(0, 0, 0);
+    }
 
-        if (actuallyHit)
-        {
-            Invoke(nameof(DIE), 0.25f);
-            SoundManager.Instance.PlaySound(sounds[Random.Range(0, sounds.Length)]);
-        }
-
+    void DoMotion(bool actuallyHit, int startingIterations, int numIterations)
+    {
         int mode = 0; // A mode to determine the current behaviour of the lazer (0 for player shot, 1 for enemy warn, 2 for enemy shot)
         if (!owner.GetComponent<Attack>().isPlayerTeam)
         {
@@ -94,11 +108,23 @@ public class checkAllLazerPositions : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < 150; i++)
+        if (owner.GetComponent<Attack>().isPlayerTeam)
+        {
+            if (attackMode == 0)
+            {
+                mode = 0;
+            }
+            else
+            {
+                mode = 1;
+            }
+        }
+
+        for (int i = startingIterations; i < startingIterations + numIterations; i++)
         {
             //Debug.Log(vecToMove.ToString());
-
-            if (i + 1 >= line.positionCount) // Breaking out of loop if the enemy's actual shot is at its final iteration.
+            transform.rotation = Quaternion.LookRotation(vecToMove) * Quaternion.Euler(0, 90, 0);
+            if (i + 1 >= line.positionCount && mode == 2) // Breaking out of loop if the enemy's actual shot is at its final iteration.
             {
                 break;
             }
@@ -126,8 +152,6 @@ public class checkAllLazerPositions : MonoBehaviour
                 break;
             }
 
-            Debug.Log("mode: " + mode.ToString() + " / i: " + i.ToString());
-            
             // Applying homing effect.
             if (gameObject.GetComponent<ItemHOMING>() != null)
             {
@@ -205,6 +229,10 @@ public class checkAllLazerPositions : MonoBehaviour
                         //gameObject.GetComponent<ParticleSystem>().Emit(50);
                         //gameObject.GetComponent<DealDamage>().TriggerTheOnHits(col.gameObject);
                         ignoredHits.Add(col.gameObject);
+                        if (attackMode == 1)
+                        {
+                            col.gameObject.GetComponent<NewPlayerMovement>().knockBackVector = vecToMove * 25f;
+                        }
                     }
 
                     if (doContinue && gameObject.GetComponent<ItemPIERCING>() != null)
@@ -301,6 +329,7 @@ public class checkAllLazerPositions : MonoBehaviour
                         //var renderer = particles.GetComponent<ParticleSystemRenderer>();
                         //renderer.trailMaterial = shoot; // Applies the new value directly to the Particle System
                         //SendMessage("OnWallHit");
+                        gameObject.GetComponent<DealDamage>().CalculateDamage(col.gameObject, gameObject);
                     }
 
                     // Applying bouncy effect.
@@ -322,7 +351,6 @@ public class checkAllLazerPositions : MonoBehaviour
                         }
 
                         vecToMove = new Vector3(colVector.x, colVector.y, 0).normalized;
-                        transform.rotation = Quaternion.Euler(0, 0, 0);
                         gameObject.GetComponent<ItemBOUNCY>().bouncesLeft--;
                         ignoredHits.Clear();
                         break;
@@ -334,21 +362,48 @@ public class checkAllLazerPositions : MonoBehaviour
                 }
             }
         }
+    }
+
+    IEnumerator LateStart(float waitTime, bool actuallyHit)
+    {
+        yield return new WaitForSeconds(waitTime);
+        transform.localScale = new Vector3(1, 1, 1);
+
+        if (setVecToMoveAutomatically)
+        {
+            vecToMove = originalDirection;
+        }
 
         if (actuallyHit)
         {
-            line.material = shoot;
-            line.widthMultiplier = (gameObject.GetComponent<DealDamage>().finalDamageStat / 2 + 25) / 100;
-            slimLine = true;
-            owner.GetComponent<NewPlayerMovement>().moveTowardsPlayer = previousMoveToPlayer;
-            owner.GetComponent<NewPlayerMovement>().recievesKnockback = previousRecieveKnockBack;
+            SoundManager.Instance.PlaySound(sounds[Random.Range(0, sounds.Length)]);
         }
-        else
+
+        if (attackMode == 0)
         {
-            line.material = warn;
-            line.widthMultiplier = 0.1f;
-            owner.GetComponent<NewPlayerMovement>().moveTowardsPlayer = false;
-            owner.GetComponent<NewPlayerMovement>().recievesKnockback = false;
+            transform.position = originalPosition;
+            if (!actuallyHit) // only do this on the warn shot.
+            {
+                line.positionCount = 150;
+            }
+            DoMotion(actuallyHit, 0, 150);
+
+            if (actuallyHit)
+            {
+                Invoke(nameof(DIE), 0.25f);
+                line.material = shoot;
+                line.widthMultiplier = (gameObject.GetComponent<DealDamage>().finalDamageStat / 2 + 25) / 100;
+                slimLine = true;
+                owner.GetComponent<NewPlayerMovement>().moveTowardsPlayer = previousMoveToPlayer;
+                owner.GetComponent<NewPlayerMovement>().recievesKnockback = previousRecieveKnockBack;
+            }
+            else
+            {
+                line.material = warn;
+                line.widthMultiplier = 0.1f;
+                owner.GetComponent<NewPlayerMovement>().moveTowardsPlayer = false;
+                owner.GetComponent<NewPlayerMovement>().recievesKnockback = false;
+            }
         }
     }
 
