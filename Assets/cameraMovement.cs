@@ -5,11 +5,12 @@ using UnityEngine;
 public class cameraMovement : MonoBehaviour
 {
     public GameObject[] players;
-    public float amountToChangeWithMouse = 0.05f;
-    public float moveSpeed = 0.04f;
-    public float camShakeAmount = 1.5f;
+    float amountToChangeWithMouse = 1.4f;
+    float moveSpeed = 0.08f;
+    public Vector3 camPushVec = Vector3.zero; // This is for things that do camera shake by 'pushing' the camera in a direction
+    float timeOfLastPush = 0f;
+    public float shakeAmount = 0;
     public bool moveCamera = true;
-    int shakeTimer;
 
     //public GameObject LeftBorder;
     //public GameObject RightBorder;
@@ -75,21 +76,31 @@ public class cameraMovement : MonoBehaviour
                 transform.position = new Vector3(transform.position.x, yBound, -10.6f);
             }
 
-            if (shakeTimer > 0)
-            {
-                float xRand = Random.Range(-0.5f, 0.5f);
-                float yRand = Random.Range(-0.5f, 0.5f);
-                transform.position = transform.position + camShakeAmount * 0.01f * shakeTimer * new Vector3(xRand, yRand, 0);
-                shakeTimer--;
-            }
+            //Vector3 sinShake = Mathf.Sin(Time.time * shakeAmount) * camPushVec;
+            float recipPush = Mathf.Pow(Time.time - timeOfLastPush + 1, -80.1f); // Increase the magnitude of the power to make the push decay faster.
+            transform.position = transform.position + camPushVec * recipPush / 200f;
         }
     }
 
-    public void CameraShake(int amount)
+    //void FixedUpdate()
+    //{
+    //    //camPushVec *= 0.15f;
+    //}
+
+    public void CameraShake(float amount, Vector3 pushDir)
     {
-        if (amount > shakeTimer)
+        if (pushDir == Vector3.zero)
         {
-            shakeTimer = amount;
+            camPushVec = amount * new Vector3(Random.value * 2 - 1, Random.value * 2 - 1, 0).normalized;
         }
+        else
+        {
+            camPushVec = pushDir;
+        }
+        timeOfLastPush = Time.time;
+        //if (amount > shakeTimer)
+        //{
+        //    shakeTimer = amount;
+        //}
     }
 }

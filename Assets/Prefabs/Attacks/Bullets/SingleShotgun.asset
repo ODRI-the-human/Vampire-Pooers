@@ -16,6 +16,8 @@ MonoBehaviour:
   weight: 100
   maxCharges: 1
   masterCooldownTime: 0
+  spawnDelay: 0
+  cameraPushAmount: 150
   coolDownTime: 75
   objectsToUse:
   - {fileID: 4255455733749829593, guid: 27160d46bf5b97a4898af82130ae1a42, type: 3}

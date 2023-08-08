@@ -15,12 +15,21 @@ MonoBehaviour:
   name: DarkArts
   weight: 100
   maxCharges: 1
-  delayTime: 0
+  masterCooldownTime: 0
+  spawnDelay: 0
+  cameraPushAmount: 100
+  alignCamPushWithDir: 0
   coolDownTime: 13
   objectsToUse:
   - {fileID: 2061944661215622530, guid: 2a6acb6290a703e429ea463f4898e3c1, type: 3}
   sfx: []
+  attackEffectsToAdd: []
   spawnedAttackObjs: []
   range: 3
+  damageMultiplier: 1
+  massCoeffMult: 1
+  procCoeffMult: 1
+  iFrameFracMult: 1
   chargeLength: 0
   isCharged: 0
+  rechargeAllShotsAfterCooldown: 0

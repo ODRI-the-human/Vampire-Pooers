@@ -12,8 +12,7 @@ public class explosionBONUSSCRIPTWOW : MonoBehaviour
         transform.localScale = (2f + gameObject.GetComponent<DealDamage>().finalDamageStat / 150f) * new Vector3(1, 1, 1);
         gameObject.GetComponent<DealDamage>().massCoeff = transform.localScale.x / 2f;
         Instantiate(explosionAudio);
-        GameObject cameron = GameObject.Find("Main Camera");
-        cameron.GetComponent<cameraMovement>().CameraShake(Mathf.RoundToInt(transform.localScale.x * 10));
+        EntityReferencerGuy.Instance.camera.GetComponent<cameraMovement>().CameraShake(Mathf.RoundToInt(transform.localScale.x * 200), Vector3.zero);
         gameObject.GetComponent<DealDamage>().damageType = (int)DAMAGETYPES.EXPLOSION;
     }
 }

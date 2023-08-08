@@ -10,27 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: de93251bb5bf5654d8bb86880fec8668, type: 3}
-  m_Name: BulletsStandard
+  m_Name: MachineGun
   m_EditorClassIdentifier: 
-  name: Normal Shot
+  name: MachineGun
   weight: 100
-  maxCharges: 1
-  masterCooldownTime: 0
+  maxCharges: 15
+  masterCooldownTime: 10
   spawnDelay: 0
-  cameraPushAmount: 50
-  coolDownTime: 25
+  cameraPushAmount: 30
+  alignCamPushWithDir: 1
+  coolDownTime: 50
   objectsToUse:
   - {fileID: 4255455733749829593, guid: 27160d46bf5b97a4898af82130ae1a42, type: 3}
   sfx:
-  - {fileID: 8300000, guid: 997791360c51a1d458187624008f6877, type: 3}
+  - {fileID: 8300000, guid: 2d70bac8ac507d84784f0d0e3c93c370, type: 3}
   attackEffectsToAdd: []
   spawnedAttackObjs:
   - {fileID: 0}
   range: 99999
-  damageMultiplier: 1
-  massCoeffMult: 1
-  procCoeffMult: 1
-  iFrameFracMult: 1
+  damageMultiplier: 0.5
+  massCoeffMult: 0.5
+  procCoeffMult: 0.5
+  iFrameFracMult: 0.5
   chargeLength: 0
   isCharged: 0
   rechargeAllShotsAfterCooldown: 1

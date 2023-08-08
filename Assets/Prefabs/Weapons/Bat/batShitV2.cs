@@ -30,7 +30,6 @@ public class batShitV2 : MonoBehaviour
                 col.gameObject.GetComponent<NewPlayerMovement>().knockBackVector = 55 * new Vector2(hitVec.x, hitVec.y).normalized;
                 gameObject.GetComponent<DealDamage>().massCoeff = 2;
                 master.GetComponent<visualPoopoo>().bigHitFreeze(0.02f);
-                camera.GetComponent<cameraMovement>().CameraShake(30);
             }
 
             if (col.gameObject.GetComponent<HPDamageDie>().iFrames <= 0)

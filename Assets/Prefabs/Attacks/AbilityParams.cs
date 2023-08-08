@@ -10,6 +10,8 @@ public abstract class AbilityParams : ScriptableObject
     public int maxCharges = 1;
     public int masterCooldownTime = 0; // When enemy is using this ability, how long to delay them till their next abiltiy use
     public float spawnDelay = 0f; // Delay IN SECONDS until this ability actually gets used.
+    public float cameraPushAmount = 0f;
+    public bool alignCamPushWithDir = true;
     public int coolDownTime = 25; // The cooldown for this specific ability.
     public GameObject[] objectsToUse; // Objects this particular attack spawns and such.
     public AudioClip[] sfx;
@@ -43,6 +45,14 @@ public abstract class AbilityParams : ScriptableObject
             mat = EntityReferencerGuy.Instance.playerBulletMaterial;
             layer = LayerPlayerBullet;
             tag = "PlayerBullet";
+            if (alignCamPushWithDir)
+            {
+                EntityReferencerGuy.Instance.camera.GetComponent<cameraMovement>().CameraShake(0, -direction * cameraPushAmount);
+            }
+            else
+            {
+                EntityReferencerGuy.Instance.camera.GetComponent<cameraMovement>().CameraShake(cameraPushAmount, Vector3.zero);
+            }
         }
         else
         {

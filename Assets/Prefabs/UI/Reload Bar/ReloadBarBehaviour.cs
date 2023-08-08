@@ -28,7 +28,7 @@ public class ReloadBarBehaviour : MonoBehaviour
     void Update()
     {
         texterz.text = owner.GetComponent<Attack>().charges[0].ToString();
-        transform.position = owner.transform.position - new Vector3(0, 1.5f, 0);
+        transform.position = owner.transform.position - new Vector3(0, 1.7f, 0);
         barItself.transform.position = transform.position;
         float chargeProportion = (float)owner.GetComponent<Attack>().charges[0] / (float)owner.GetComponent<Attack>().abilityTypes[0].maxCharges;
         //Debug.Log("charge proportion: " + chargeProportion.ToString());

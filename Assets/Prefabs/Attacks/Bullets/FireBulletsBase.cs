@@ -12,6 +12,7 @@ public abstract class FireBulletsBase : AbilityParams
 
     public override void ActivateAbility(GameObject dealer, GameObject target, Vector2 direction, bool isPlayerTeam, Material mat, int layer, string tag, bool overrideBulletSpawnMethod)
     {
+
         // Some of this stuff, like shot speed, the spawn location, and whatever will be overridden in some spawnbullets scripts.
         GameObject spawnedBullet = spawnedAttackObjs[0];
         spawnedBullet.GetComponent<MeshRenderer>().material = mat;

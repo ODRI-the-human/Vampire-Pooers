@@ -15,19 +15,23 @@ MonoBehaviour:
   name: BurstRifle
   weight: 100
   maxCharges: 8
-  masterCooldownTime: 5
-  coolDownTime: 60
+  masterCooldownTime: 2
+  spawnDelay: 0
+  cameraPushAmount: 35
+  alignCamPushWithDir: 1
+  coolDownTime: 50
   objectsToUse:
   - {fileID: 4255455733749829593, guid: 27160d46bf5b97a4898af82130ae1a42, type: 3}
-  sfx: []
+  sfx:
+  - {fileID: 8300000, guid: 2d70bac8ac507d84784f0d0e3c93c370, type: 3}
   attackEffectsToAdd: []
   spawnedAttackObjs:
   - {fileID: 0}
   range: 99999
-  damageMultiplier: 0.5
-  massCoeffMult: 0.5
-  procCoeffMult: 0.5
-  iFrameFracMult: 0.5
+  damageMultiplier: 0.2
+  massCoeffMult: 0.2
+  procCoeffMult: 0.2
+  iFrameFracMult: 0.2
   chargeLength: 0
   isCharged: 0
   rechargeAllShotsAfterCooldown: 1
