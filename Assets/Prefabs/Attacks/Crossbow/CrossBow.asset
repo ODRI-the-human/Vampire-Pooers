@@ -18,6 +18,7 @@ MonoBehaviour:
   masterCooldownTime: 0
   spawnDelay: 0
   cameraPushAmount: 1000
+  alignCamPushWithDir: 1
   coolDownTime: 50
   objectsToUse:
   - {fileID: 6152856860940002557, guid: 4d23deb5981427c4a898802c4fe5738a, type: 3}
@@ -31,5 +32,5 @@ MonoBehaviour:
   procCoeffMult: 1
   iFrameFracMult: 1
   chargeLength: 50
-  isCharged: 1
+  isCharged: 0
   rechargeAllShotsAfterCooldown: 0
