@@ -7,6 +7,7 @@ public class cameraMovement : MonoBehaviour
     public GameObject[] players;
     float amountToChangeWithMouse = 1.4f;
     float moveSpeed = 0.08f;
+    bool oneFrameSinceCamPushHasPassed = true;
     public Vector3 camPushVec = Vector3.zero; // This is for things that do camera shake by 'pushing' the camera in a direction
     float timeOfLastPush = 0f;
     public float shakeAmount = 0;
@@ -52,7 +53,7 @@ public class cameraMovement : MonoBehaviour
             avgVector /= players.Length;
 
             Vector3 distFromPlayer = avgVector - transform.position;
-            transform.position = new Vector3(transform.position.x, transform.position.y, -10.6f) + moveSpeed * distFromPlayer;
+            transform.position = new Vector3(transform.position.x, transform.position.y, -10.6f) + 100f * Time.deltaTime * moveSpeed * distFromPlayer;
 
             //Vector3 distFromPlayer = Player.transform.position - transform.position + amountToChangeWithMouse * new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x - gameObject.transform.position.x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y - gameObject.transform.position.y, 0).normalized;
             //distFromPlayer.z = 0;
@@ -76,8 +77,14 @@ public class cameraMovement : MonoBehaviour
                 transform.position = new Vector3(transform.position.x, yBound, -10.6f);
             }
 
-            //Vector3 sinShake = Mathf.Sin(Time.time * shakeAmount) * camPushVec;
             float recipPush = Mathf.Pow(Time.time - timeOfLastPush + 1, -80.1f); // Increase the magnitude of the power to make the push decay faster.
+            //Vector3 sinShake = Mathf.Sin(Time.time * shakeAmount) * camPushVec;
+            if (!oneFrameSinceCamPushHasPassed)
+            {
+                recipPush = 1f; // Increase the magnitude of the power to make the push decay faster.
+                oneFrameSinceCamPushHasPassed = true;
+                timeOfLastPush = Time.time;
+            }
             transform.position = transform.position + camPushVec * recipPush / 200f;
         }
     }
@@ -97,7 +104,7 @@ public class cameraMovement : MonoBehaviour
         {
             camPushVec = pushDir;
         }
-        timeOfLastPush = Time.time;
+        oneFrameSinceCamPushHasPassed = false;
         //if (amount > shakeTimer)
         //{
         //    shakeTimer = amount;

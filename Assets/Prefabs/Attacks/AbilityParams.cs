@@ -6,6 +6,7 @@ using UnityEngine;
 public abstract class AbilityParams : ScriptableObject
 {
     public string name;
+    public int attackMode = 0; // Effects the mechanics of actually using the attack. 0 = full auto, 1 = not full auto, 2 = chargeable attack
     public int weight = 100;
     public int maxCharges = 1;
     public int masterCooldownTime = 0; // When enemy is using this ability, how long to delay them till their next abiltiy use

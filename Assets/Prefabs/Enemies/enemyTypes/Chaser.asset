@@ -25,6 +25,7 @@ MonoBehaviour:
   numExtraShots: 0
   maxHP: 150
   damageMult: 1
+  massCoeff: 1
   fireDelayMult: 1
   colorToSet: {r: 1, g: 0.9138253, b: 0, a: 1}
   abilities: []

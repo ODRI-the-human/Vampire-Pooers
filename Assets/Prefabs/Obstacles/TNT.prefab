@@ -101,6 +101,7 @@ GameObject:
   - component: {fileID: 7905540234928558928}
   - component: {fileID: 1861364134433001168}
   - component: {fileID: -2167227741757832912}
+  - component: {fileID: 4255892997635414124}
   m_Layer: 10
   m_Name: TNT
   m_TagString: Wall
@@ -336,3 +337,15 @@ MonoBehaviour:
   perfectWaves: 0
   DOTSources: []
   DOTDamages: []
+--- !u!114 &4255892997635414124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7023213143370542604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bb4bcb8f0e40514593557b53d1bd75a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

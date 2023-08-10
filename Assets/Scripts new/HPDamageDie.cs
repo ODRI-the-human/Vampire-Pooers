@@ -119,6 +119,8 @@ public class HPDamageDie : MonoBehaviour
 
     public void Hurty(float damageAmount, bool isCrit, float iFrameFac, int damageType, bool bypassIframes, GameObject objectResponsible)
     {
+        //Debug.Log("enemy meant to take damage, damage amount: " + damageAmount.ToString());
+
         // Just doing the message to show that hurty happened xd!
         string responsibleName;
         if (objectResponsible == null)
@@ -129,7 +131,6 @@ public class HPDamageDie : MonoBehaviour
         {
             responsibleName = objectResponsible.name.ToString();
         }
-        //Debug.Log("damage taken, victim: " + gameObject.name.ToString() + ", responsible: " + responsibleName + ", amount: " + damageAmount.ToString());
 
         bool doDealDamage = true;
         if (objectResponsible != null && !objectResponsible.GetComponent<DealDamage>().canDealDamage)
@@ -141,7 +142,6 @@ public class HPDamageDie : MonoBehaviour
         {
             doDealDamage = false;
         }
-
 
         if (doDealDamage)
         {
@@ -166,10 +166,12 @@ public class HPDamageDie : MonoBehaviour
                         SoundManager.Instance.PlayTypicalSound((int)COMMONSNDCLPS.CRIT);
                     }
                 }
+                //Debug.Log("resistVal to this damage: " + resistVals[damageType].ToString());
 
                 damageAmount -= damageAmount * (resistVals[damageType] / 100);
                 damageAmount /= damageDiv;
 
+                //Debug.Log("damage taken, victim: " + gameObject.name.ToString() + ", responsible: " + responsibleName + ", amount: " + damageAmount.ToString());
                 HP -= damageAmount;
                 perfectWaves = -1;
                 if (playerControlled == true)

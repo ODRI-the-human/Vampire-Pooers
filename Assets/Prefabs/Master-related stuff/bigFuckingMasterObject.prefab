@@ -301,9 +301,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   players: []
-  amountToChangeWithMouse: 0.4
-  moveSpeed: 0.04
-  camShakeAmount: 1.2
+  camPushVec: {x: 0, y: 0, z: 0}
+  shakeAmount: 0
   moveCamera: 1
   xBound: 0
   yBound: 0
@@ -2080,6 +2079,7 @@ MonoBehaviour:
   time: 180
   keepBestStatObj: {fileID: 5459875686069988955}
   itemsHeldVisualiser: {fileID: 8484845968839686508}
+  numVisibleWalls: 0
   telefragWarn: {fileID: 8300000, guid: 03a018ae16185cc4e83e4ff90b1ac4ad, type: 3}
   telefragDo: {fileID: 8300000, guid: ef47f7f21edfb174d87722a143ac82ef, type: 3}
   targetWarn: {fileID: 5815860708793426789, guid: 5171e96bd872f22449431e84036bbf5f, type: 3}
@@ -2370,7 +2370,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7002239379606652682}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c05841eae35a00a4da4e5cddf7a23d98, type: 3}
   m_Name: 
@@ -2704,7 +2704,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 0
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500

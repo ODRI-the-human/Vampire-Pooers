@@ -9,31 +9,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09020ebaf5687344b9b24509207c17bb, type: 3}
-  m_Name: LightningShot
+  m_Script: {fileID: 11500000, guid: 625ab9e544104ba4a9e767d4a6d972eb, type: 3}
+  m_Name: AutoCrossbow
   m_EditorClassIdentifier: 
-  name: LightningShot
-  attackMode: 1
+  name: Auto Crossbow
+  attackMode: 0
   weight: 100
-  maxCharges: 1
-  masterCooldownTime: 0
+  maxCharges: 5
+  masterCooldownTime: 12
   spawnDelay: 0
-  cameraPushAmount: 0
+  cameraPushAmount: 500
   alignCamPushWithDir: 1
   dirRandAmt: 0
   randomiseDirAtStart: 1
-  coolDownTime: 25
+  coolDownTime: 150
   objectsToUse:
-  - {fileID: 6152856860940002557, guid: 13c90bc400ac46f4383416a674875beb, type: 3}
+  - {fileID: 6152856860940002557, guid: 4d23deb5981427c4a898802c4fe5738a, type: 3}
   sfx: []
   attackEffectsToAdd: []
   spawnedAttackObjs:
   - {fileID: 0}
   range: 99999
-  damageMultiplier: 1
+  damageMultiplier: 2
   massCoeffMult: 1
   procCoeffMult: 1
   iFrameFracMult: 1
   chargeLength: 0
   isCharged: 0
-  rechargeAllShotsAfterCooldown: 0
+  rechargeAllShotsAfterCooldown: 1

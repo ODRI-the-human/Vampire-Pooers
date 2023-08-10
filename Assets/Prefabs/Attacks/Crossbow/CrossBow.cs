@@ -17,6 +17,7 @@ public class CrossBow : AbilityParams
         Harrybo.GetComponent<ItemHolder>().itemsHeld = dealer.GetComponent<ItemHolder>().itemsHeld;
         Harrybo.GetComponent<DealDamage>().owner = dealer;
         Harrybo.GetComponent<checkAllLazerPositions>().master = dealer.GetComponent<DealDamage>().master;
+        Debug.Log("dog ggig, is charged: " + isCharged.ToString());
         if (isCharged)
         {
             Harrybo.GetComponent<ApplyAttackModifiers>().attackEffects.Add((int)ATTACKMODIFIERS.DEALLARGEKNOCKBACK);

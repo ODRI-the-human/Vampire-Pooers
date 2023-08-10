@@ -13,12 +13,15 @@ MonoBehaviour:
   m_Name: DarkArts
   m_EditorClassIdentifier: 
   name: DarkArts
+  attackMode: 0
   weight: 100
   maxCharges: 1
   masterCooldownTime: 0
   spawnDelay: 0
   cameraPushAmount: 100
   alignCamPushWithDir: 0
+  dirRandAmt: 0
+  randomiseDirAtStart: 1
   coolDownTime: 13
   objectsToUse:
   - {fileID: 2061944661215622530, guid: 2a6acb6290a703e429ea463f4898e3c1, type: 3}

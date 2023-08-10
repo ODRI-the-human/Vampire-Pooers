@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: DoubleShotgun
   m_EditorClassIdentifier: 
   name: DoubleShotgun
+  attackMode: 1
   weight: 100
   maxCharges: 2
   masterCooldownTime: 15
@@ -39,4 +40,3 @@ MonoBehaviour:
   rechargeAllShotsAfterCooldown: 1
   effectsToAdd: []
   defaultSpeed: 8
-  angleMag: 0.6

@@ -122,6 +122,8 @@ MonoBehaviour:
   procChainIndexes: 
   procChanceBonus: 1
   damageToPassToVictim: 0
+  abilityIndex: 0
+  abilityType: {fileID: 0}
 --- !u!114 &4094460240105576254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,7 +139,6 @@ MonoBehaviour:
   itemsHeld: 
   master: {fileID: 0}
   itemGained: 0
-  weaponHeld: 0
   noToGive: 1
   spawnedBat: {fileID: 0}
 --- !u!114 &6596505954230717738
@@ -169,7 +170,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   masterCooldown: 0
   abilityTypes:
-  - {fileID: 11400000, guid: a02445f87f770534a9a6cd2a2058b033, type: 2}
+  - {fileID: 11400000, guid: f9d8fde044939d24e81e62c9b5133b7f, type: 2}
   coolDowns: 
   charges: 
   attackWeights: 
@@ -181,6 +182,7 @@ MonoBehaviour:
   cooldownFacIndiv: []
   currentTarget: {fileID: 0}
   vectorToTarget: {x: 0, y: 0}
+  reticlePos: {x: 0, y: 0, z: 0}
   cameron: {fileID: 0}
   reticle: {fileID: 0}
   chargeBar: {fileID: 0}

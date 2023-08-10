@@ -6,6 +6,7 @@ public class checkAllLazerPositions : MonoBehaviour
 {
     public List<GameObject> ignoredHomings = new List<GameObject>();
     public List<GameObject> ignoredHits = new List<GameObject>();
+    public GameObject ignoredObst;
 
     public AudioClip[] sounds;
 
@@ -81,7 +82,6 @@ public class checkAllLazerPositions : MonoBehaviour
         {
             if (vecToMove != Vector3.zero)
             {
-                line.positionCount = numItersSoFar + 7;
                 DoMotion(true, numItersSoFar, 7); // The higher numIterations with, the faster the projectile will move.
                 numItersSoFar += 7;
             }
@@ -95,7 +95,7 @@ public class checkAllLazerPositions : MonoBehaviour
 
     void DoMotion(bool actuallyHit, int startingIterations, int numIterations)
     {
-        int mode = 0; // A mode to determine the current behaviour of the lazer (0 for player shot, 1 for enemy warn, 2 for enemy shot)
+        int mode = 0; // A mode to determine the current behaviour of the lazer (0 for bendy shot, 1 for straight shot, 2 for tracing over some already set positions.)
         if (!owner.GetComponent<Attack>().isPlayerTeam)
         {
             if (actuallyHit)
@@ -129,6 +129,16 @@ public class checkAllLazerPositions : MonoBehaviour
                 break;
             }
 
+            if (mode != 2)
+            {
+                if (vecToMove == Vector3.zero)
+                {
+                    break;
+                }
+                line.positionCount = i + 1;
+            }
+            Debug.Log("i: " + i.ToString() + " / position: " + transform.position.ToString());
+
             switch (mode)
             {
                 case 0:
@@ -145,12 +155,7 @@ public class checkAllLazerPositions : MonoBehaviour
                     break;
             }
 
-            // ending the loop if the lazer is not moving.
-            if (vecToMove == Vector3.zero && (mode == 0 || mode == 1))
-            {
-                line.positionCount = i;
-                break;
-            }
+
 
             // Applying homing effect.
             if (gameObject.GetComponent<ItemHOMING>() != null)
@@ -223,16 +228,16 @@ public class checkAllLazerPositions : MonoBehaviour
                         //    //Instantiate(CritAudio);
                         //    isCrit = true;
                         //}
+                        if (attackMode == 1)
+                        {
+                            col.gameObject.GetComponent<NewPlayerMovement>().knockBackVector = vecToMove * 25f;
+                        }
                         gameObject.GetComponent<DealDamage>().CalculateDamage(col.gameObject, gameObject);
                         //float damageAmount = gameObject.GetComponent<DealDamage>().finalDamageStat * critMult;
                         //col.gameObject.GetComponent<HPDamageDie>().Hurty(gameObject.GetComponent<DealDamage>().damageAmt, isCrit, true, 1, (int)DAMAGETYPES.ELECTRIC, false, gameObject);
                         //gameObject.GetComponent<ParticleSystem>().Emit(50);
                         //gameObject.GetComponent<DealDamage>().TriggerTheOnHits(col.gameObject);
                         ignoredHits.Add(col.gameObject);
-                        if (attackMode == 1)
-                        {
-                            col.gameObject.GetComponent<NewPlayerMovement>().knockBackVector = vecToMove * 25f;
-                        }
                     }
 
                     if (doContinue && gameObject.GetComponent<ItemPIERCING>() != null)
@@ -323,13 +328,16 @@ public class checkAllLazerPositions : MonoBehaviour
 
                 if (col.gameObject.tag == "Wall")
                 {
-                    if (actuallyHit)
+                    if (actuallyHit && ignoredObst != col.gameObject)
                     {
                         //GameObject particles = Instantiate(hitParticles, transform.position, Quaternion.Euler(0, 0, 0));
                         //var renderer = particles.GetComponent<ParticleSystemRenderer>();
                         //renderer.trailMaterial = shoot; // Applies the new value directly to the Particle System
                         //SendMessage("OnWallHit");
+                        //Debug.Log("certified wall hit moment. vecToMove: " + vecToMove.ToString() + " / i: " + i.ToString() + " / mode: " + mode.ToString());
                         gameObject.GetComponent<DealDamage>().CalculateDamage(col.gameObject, gameObject);
+                        ignoredHits.Clear();
+                        ignoredObst = col.gameObject;
                     }
 
                     // Applying bouncy effect.
@@ -352,12 +360,12 @@ public class checkAllLazerPositions : MonoBehaviour
 
                         vecToMove = new Vector3(colVector.x, colVector.y, 0).normalized;
                         gameObject.GetComponent<ItemBOUNCY>().bouncesLeft--;
-                        ignoredHits.Clear();
                         break;
                     }
                     else
                     {
                         vecToMove = Vector3.zero;
+                        break;
                     }
                 }
             }
@@ -374,7 +382,7 @@ public class checkAllLazerPositions : MonoBehaviour
             vecToMove = originalDirection;
         }
 
-        if (actuallyHit)
+        if (actuallyHit && attackMode == 0)
         {
             SoundManager.Instance.PlaySound(sounds[Random.Range(0, sounds.Length)]);
         }
@@ -382,10 +390,6 @@ public class checkAllLazerPositions : MonoBehaviour
         if (attackMode == 0)
         {
             transform.position = originalPosition;
-            if (!actuallyHit) // only do this on the warn shot.
-            {
-                line.positionCount = 150;
-            }
             DoMotion(actuallyHit, 0, 150);
 
             if (actuallyHit)

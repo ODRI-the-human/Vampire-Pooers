@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09020ebaf5687344b9b24509207c17bb, type: 3}
-  m_Name: LightningShot
+  m_Script: {fileID: 11500000, guid: 778e8985dac76544ea5550e93e2130a2, type: 3}
+  m_Name: CrossbowBallFunny
   m_EditorClassIdentifier: 
-  name: LightningShot
-  attackMode: 1
+  name: Crossbow Ball
+  attackMode: 0
   weight: 100
   maxCharges: 1
   masterCooldownTime: 0
@@ -22,13 +22,12 @@ MonoBehaviour:
   alignCamPushWithDir: 1
   dirRandAmt: 0
   randomiseDirAtStart: 1
-  coolDownTime: 25
+  coolDownTime: 750
   objectsToUse:
-  - {fileID: 6152856860940002557, guid: 13c90bc400ac46f4383416a674875beb, type: 3}
+  - {fileID: 4563701214010773671, guid: b4b5727265906df45b277f3e6fa53179, type: 3}
   sfx: []
   attackEffectsToAdd: []
-  spawnedAttackObjs:
-  - {fileID: 0}
+  spawnedAttackObjs: []
   range: 99999
   damageMultiplier: 1
   massCoeffMult: 1

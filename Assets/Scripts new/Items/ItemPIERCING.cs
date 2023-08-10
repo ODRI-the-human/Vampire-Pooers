@@ -38,7 +38,10 @@ public class ItemPIERCING : MonoBehaviour
     void DetermineShotRolls()
     {
         damBonus = 1;
-        gameObject.GetComponent<Bullet_Movement>().piercesLeft += 1;
+        if (gameObject.GetComponent<Bullet_Movement>() != null)
+        {
+            gameObject.GetComponent<Bullet_Movement>().piercesLeft += 1;
+        }
     }
 
     public void Undo()

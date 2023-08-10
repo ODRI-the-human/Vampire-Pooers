@@ -63,7 +63,8 @@ public class ApplyAttackModifiers : MonoBehaviour
                     victim.GetComponent<NewPlayerMovement>().knockBackVector *= 5f;
                     if (gameObject.GetComponent<checkAllLazerPositions>() != null)
                     {
-                        victim.GetComponent<NewPlayerMovement>().knockBackVector = gameObject.GetComponent<checkAllLazerPositions>().vecToMove * 75f;
+                        victim.GetComponent<NewPlayerMovement>().knockBackVector = gameObject.GetComponent<DealDamage>().GetDamageAmount() * gameObject.GetComponent<checkAllLazerPositions>().vecToMove;
+                        //Debug.Log("knog bag: " + victim.GetComponent<NewPlayerMovement>().knockBackVector.magnitude);
                     }
                     victim.AddComponent<hitIfKBVecHigh>();
                     victim.GetComponent<hitIfKBVecHigh>().responsible = gameObject;

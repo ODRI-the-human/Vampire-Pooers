@@ -9,34 +9,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9effa95e95701d46a12f98490f45aad, type: 3}
-  m_Name: SingleShotgun
+  m_Script: {fileID: 11500000, guid: 625ab9e544104ba4a9e767d4a6d972eb, type: 3}
+  m_Name: BallShot
   m_EditorClassIdentifier: 
-  name: SingleShotgun
-  attackMode: 1
+  name: CrossBowBallShot
+  attackMode: 0
   weight: 100
-  maxCharges: 1
-  masterCooldownTime: 0
+  maxCharges: 5
+  masterCooldownTime: 12
   spawnDelay: 0
-  cameraPushAmount: 150
+  cameraPushAmount: 10
   alignCamPushWithDir: 1
-  dirRandAmt: 0.6
-  randomiseDirAtStart: 0
-  coolDownTime: 50
+  dirRandAmt: 0
+  randomiseDirAtStart: 1
+  coolDownTime: 150
   objectsToUse:
-  - {fileID: 4255455733749829593, guid: 27160d46bf5b97a4898af82130ae1a42, type: 3}
-  sfx:
-  - {fileID: 8300000, guid: 997791360c51a1d458187624008f6877, type: 3}
+  - {fileID: 6152856860940002557, guid: 4d23deb5981427c4a898802c4fe5738a, type: 3}
+  sfx: []
   attackEffectsToAdd: []
   spawnedAttackObjs:
   - {fileID: 0}
   range: 99999
   damageMultiplier: 0.2
   massCoeffMult: 0.2
-  procCoeffMult: 0.5
-  iFrameFracMult: 0.2
+  procCoeffMult: 0.2
+  iFrameFracMult: 1
   chargeLength: 0
   isCharged: 0
   rechargeAllShotsAfterCooldown: 1
-  effectsToAdd: []
-  defaultSpeed: 8

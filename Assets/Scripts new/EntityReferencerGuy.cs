@@ -72,6 +72,8 @@ public class EntityReferencerGuy : MonoBehaviour
 
     public GameObject itemsHeldVisualiser;
 
+    public int numVisibleWalls = 0; // This is just a little variable for looking at obstacles' onbecomevisible and stuff.
+
 
 
     // Enemy shit

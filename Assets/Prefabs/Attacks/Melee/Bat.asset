@@ -13,12 +13,15 @@ MonoBehaviour:
   m_Name: Bat
   m_EditorClassIdentifier: 
   name: Bat
+  attackMode: 2
   weight: 100
   maxCharges: 1
   masterCooldownTime: 0
   spawnDelay: 0
   cameraPushAmount: 500
   alignCamPushWithDir: 0
+  dirRandAmt: 0
+  randomiseDirAtStart: 1
   coolDownTime: 25
   objectsToUse:
   - {fileID: 2061944661215622530, guid: b3f228f4731f7a944b43ad93aa54e41f, type: 3}

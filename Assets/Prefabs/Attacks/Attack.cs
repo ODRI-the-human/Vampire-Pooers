@@ -21,7 +21,7 @@ public class Attack : MonoBehaviour
     public GameObject currentTarget;
     public Vector2 vectorToTarget;
     Vector2 mouseVector;
-    Vector3 reticlePos;
+    public Vector3 reticlePos;
     public GameObject cameron;
     public GameObject reticle;
     public GameObject chargeBar;
@@ -40,10 +40,10 @@ public class Attack : MonoBehaviour
             reticle.transform.SetParent(gameObject.transform);
         }
 
-        if (!isPlayerTeam)
-        {
-            attackAutomatically = true;
-        }
+        //if (!isPlayerTeam)
+        //{
+        //    attackAutomatically = true;
+        //}
 
         coolDowns = new int[abilityTypes.Length];
         charges = new int[abilityTypes.Length];
@@ -206,39 +206,86 @@ public class Attack : MonoBehaviour
             isAttacking = false;
             for (int i = 0; i < abilityTypes.Length; i++)
             {
-                if (abilityTypes[i].chargeLength == 0 && isHoldingAttack[i] && charges[i] > 0) // For non-charged attacks.
+                switch (abilityTypes[i].attackMode)
                 {
-                    UseAttack(abilityTypes[i], i, true, false, false, true);
-                    isAttacking = true;
-                }
-                else if (abilityTypes[i].chargeLength > 0 && isHoldingAttack[i] && charges[i] > 0) // Setting timers for charged attacks.
-                {
-                    if (chargeBar == null)
-                    {
-                        chargeBar = Instantiate(EntityReferencerGuy.Instance.chargeBar);
-                        chargeBar.GetComponent<chargeBarAmt>().owner = gameObject;
-                        chargeBar.GetComponent<chargeBarAmt>().indexToTrack = i;
-                        chargeBar.transform.SetParent(GameObject.Find("worldSpaceCanvas").transform);
-                        chargeBar.transform.localScale = new Vector3(1, 1, 1);
-                    }
-                    chargeTimers[i]++;
-                    isAttacking = true;
-                }
+                    case 0: // automatic abilities (don't need to release firing to fire again)
+                        if (isHoldingAttack[i] && charges[i] > 0) // For non-charged attacks.
+                        {
+                            UseAttack(abilityTypes[i], i, true, false, false, true);
+                            isAttacking = true;
+                        }
+                        break;
+                    case 1: // non-automatic abilities like pistol and shotguns and such
+                        if (isHoldingAttack[i] && charges[i] > 0) // For non-charged attacks.
+                        {
+                            UseAttack(abilityTypes[i], i, true, false, false, true);
+                            isHoldingAttack[i] = false;
+                        }
+                        break;
+                    case 2: // chargeable attacks
+                        if (abilityTypes[i].chargeLength > 0 && isHoldingAttack[i] && charges[i] > 0) // Setting timers for charged attacks.
+                        {
+                            if (chargeBar == null)
+                            {
+                                chargeBar = Instantiate(EntityReferencerGuy.Instance.chargeBar);
+                                chargeBar.GetComponent<chargeBarAmt>().owner = gameObject;
+                                chargeBar.GetComponent<chargeBarAmt>().indexToTrack = i;
+                                chargeBar.transform.SetParent(GameObject.Find("worldSpaceCanvas").transform);
+                                chargeBar.transform.localScale = new Vector3(1, 1, 1);
+                            }
+                            chargeTimers[i]++;
+                            isAttacking = true;
+                        }
+                        if (!isHoldingAttack[i] && charges[i] > 0) // Activating the attack.
+                        {
+                            if (chargeTimers[i] > abilityTypes[i].chargeLength * cooldownFac * cooldownFacIndiv[i])
+                            {
+                                UseAttack(abilityTypes[i], i, true, true, false, true);
+                                Destroy(chargeBar);
+                            }
+                            else if (chargeTimers[i] > 0)
+                            {
+                                UseAttack(abilityTypes[i], i, true, false, false, true);
+                                Destroy(chargeBar);
 
-                if (abilityTypes[i].chargeLength != 0 && !isHoldingAttack[i] && charges[i] > 0) // For charged attacks.
-                {
-                    if (chargeTimers[i] > abilityTypes[i].chargeLength * cooldownFac * cooldownFacIndiv[i])
-                    {
-                        UseAttack(abilityTypes[i], i, true, true, false, true);
-                        Destroy(chargeBar);
-                    }
-                    else if (chargeTimers[i] > 0)
-                    {
-                        UseAttack(abilityTypes[i], i, true, false, false, true);
-                        Destroy(chargeBar);
-                        
-                    }
+                            }
+                        }
+                        break;
                 }
+                //    if (abilityTypes[i].chargeLength == 0 && isHoldingAttack[i] && charges[i] > 0) // For non-charged attacks.
+                //    {
+                //        UseAttack(abilityTypes[i], i, true, false, false, true);
+                //        isAttacking = true;
+                //    }
+                //    else if (abilityTypes[i].chargeLength > 0 && isHoldingAttack[i] && charges[i] > 0) // Setting timers for charged attacks.
+                //    {
+                //        if (chargeBar == null)
+                //        {
+                //            chargeBar = Instantiate(EntityReferencerGuy.Instance.chargeBar);
+                //            chargeBar.GetComponent<chargeBarAmt>().owner = gameObject;
+                //            chargeBar.GetComponent<chargeBarAmt>().indexToTrack = i;
+                //            chargeBar.transform.SetParent(GameObject.Find("worldSpaceCanvas").transform);
+                //            chargeBar.transform.localScale = new Vector3(1, 1, 1);
+                //        }
+                //        chargeTimers[i]++;
+                //        isAttacking = true;
+                //    }
+
+                //    if (abilityTypes[i].chargeLength != 0 && !isHoldingAttack[i] && charges[i] > 0) // For charged attacks.
+                //    {
+                //        if (chargeTimers[i] > abilityTypes[i].chargeLength * cooldownFac * cooldownFacIndiv[i])
+                //        {
+                //            UseAttack(abilityTypes[i], i, true, true, false, true);
+                //            Destroy(chargeBar);
+                //        }
+                //        else if (chargeTimers[i] > 0)
+                //        {
+                //            UseAttack(abilityTypes[i], i, true, false, false, true);
+                //            Destroy(chargeBar);
+
+                //        }
+                //    }
+                //}
             }
         }
 
@@ -312,17 +359,22 @@ public class Attack : MonoBehaviour
         }
     }
 
+    public float GetCoolDownFac(int abilityIndex)
+    {
+        float amount = cooldownFacIndiv[abilityIndex] * cooldownFac;
+        if (!isPlayerTeam) // For adding extra to the cooldown timer based on stopwatch shenanigans if this is an enemy. the 1.5x is just so their cooldowns are 50% longer.
+        {
+            amount *= 1.5f * EntityReferencerGuy.Instance.stopWatchDebuffAmt;
+        }
+        return amount;
+    }
+
     IEnumerator SpawnAttack(AbilityParams abilityToUse, int abilityIndex, bool isPlayer, bool isCharged, bool overrideCooldownSetting, bool playSound, int i)
     {
         if (!overrideCooldownSetting)
         {
-            coolDowns[abilityIndex] = Mathf.RoundToInt(abilityToUse.coolDownTime * cooldownFacIndiv[abilityIndex] * cooldownFac);
-            masterCooldown = Mathf.RoundToInt(abilityToUse.masterCooldownTime * cooldownFacIndiv[abilityIndex] * cooldownFac);
-            if (!isPlayerTeam) // For adding extra to the cooldown timer based on stopwatch shenanigans if this is an enemy
-            {
-                coolDowns[abilityIndex] = Mathf.RoundToInt(coolDowns[abilityIndex] * EntityReferencerGuy.Instance.stopWatchDebuffAmt);
-                masterCooldown = Mathf.RoundToInt(masterCooldown * EntityReferencerGuy.Instance.stopWatchDebuffAmt);
-            }
+            coolDowns[abilityIndex] = Mathf.RoundToInt(abilityToUse.coolDownTime * GetCoolDownFac(abilityIndex));
+            masterCooldown = Mathf.RoundToInt(abilityToUse.masterCooldownTime * GetCoolDownFac(abilityIndex));
             chargeTimers[abilityIndex] = 0;
         }
         float additionalMult = 1f; // To add to the delay if this is an enemy and stopwatches are in use
@@ -330,7 +382,6 @@ public class Attack : MonoBehaviour
         {
             additionalMult = EntityReferencerGuy.Instance.stopWatchDebuffAmt;
         }
-        Debug.Log("holy brsh attacking am i right");
 
         yield return new WaitForSecondsRealtime(additionalMult * abilityToUse.spawnDelay * cooldownFacIndiv[abilityIndex] * cooldownFac);
 

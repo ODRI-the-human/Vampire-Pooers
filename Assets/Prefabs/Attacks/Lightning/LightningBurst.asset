@@ -13,9 +13,15 @@ MonoBehaviour:
   m_Name: LightningBurst
   m_EditorClassIdentifier: 
   name: LightningShot
+  attackMode: 0
   weight: 100
   maxCharges: 4
   masterCooldownTime: 10
+  spawnDelay: 0
+  cameraPushAmount: 0
+  alignCamPushWithDir: 1
+  dirRandAmt: 0
+  randomiseDirAtStart: 1
   coolDownTime: 40
   objectsToUse:
   - {fileID: 6152856860940002557, guid: 13c90bc400ac46f4383416a674875beb, type: 3}
