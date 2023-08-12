@@ -41,16 +41,23 @@ public class hitIfKBVecHigh : MonoBehaviour
         //    }
         //}
 
-        float damageAmt = 2 * gameObject.GetComponent<NewPlayerMovement>().knockBackVector.magnitude;
+        float damageAmt = 1.5f * gameObject.GetComponent<NewPlayerMovement>().knockBackVector.magnitude;
         if (col.gameObject.GetComponent<NewPlayerMovement>() != null)
         {
             col.gameObject.GetComponent<NewPlayerMovement>().knockBackVector = (col.gameObject.transform.position - transform.position).normalized * gameObject.GetComponent<NewPlayerMovement>().knockBackVector.magnitude;
-            col.gameObject.AddComponent<hitIfKBVecHigh>();
+            if (col.gameObject.GetComponent<hitIfKBVecHigh>() == null)
+            {
+                col.gameObject.AddComponent<hitIfKBVecHigh>();
+            }
             col.gameObject.GetComponent<hitIfKBVecHigh>().responsible = gameObject;
         }
+
+        if (responsible == null || responsible != col.gameObject)
+        {
+            gameObject.GetComponent<HPDamageDie>().Hurty(damageAmt, false, 1, (int)DAMAGETYPES.NORMAL, false, null, true);
+            gameObject.GetComponent<NewPlayerMovement>().knockBackVector = new Vector2(0, 0);
+            Debug.Log("who shat myself, extent of penis: " + lastSpeed.magnitude);
+        }
         //col.gameObject.GetComponent<HPDamageDie>().Hurty(damageAmt, false, true);
-        gameObject.GetComponent<HPDamageDie>().Hurty(damageAmt, false, 1, (int)DAMAGETYPES.NORMAL, false, null);
-        gameObject.GetComponent<NewPlayerMovement>().knockBackVector = new Vector2(0, 0);
-        Debug.Log("who shat myself, extent of penis: " + lastSpeed.magnitude);
     }
 }

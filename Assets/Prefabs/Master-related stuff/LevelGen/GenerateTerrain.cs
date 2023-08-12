@@ -16,6 +16,8 @@ public class GenerateTerrain : MonoBehaviour // This is adapted from Six Dot's v
     public GameObject mapCam;
     public GameObject FOWCam1;
     public GameObject FOWCam2;
+    public GameObject mainCamera;
+    public GameObject boss;
     public GameObject portal;
 
     public levelRoomParams[] allRoomSets;
@@ -60,6 +62,9 @@ public class GenerateTerrain : MonoBehaviour // This is adapted from Six Dot's v
     public GameObject roomVisObj;
 
     GameObject spawnedObject; // Needed for 'storing' the spawned object (since spawn is generally not used as a return so ye idk)
+    GameObject spawnedBoss;
+    Vector3 bossPosition;
+    bool bossIsDead = false;
 
     void Start()
     {
@@ -130,14 +135,36 @@ public class GenerateTerrain : MonoBehaviour // This is adapted from Six Dot's v
         }
 
         //just placeholder, spawning the portal to progress to the next level.
-        GameObject spawnedPortal = Instantiate(portal);
-        spawnedPortal.transform.position = MapSpaceToWorldSpace(roomPositions[roomPositions.Count - 1]);
-        spawnedPortal.transform.SetParent(levelParent.transform);
+        spawnedBoss = Instantiate(boss);
+        spawnedBoss.transform.position = MapSpaceToWorldSpace(roomPositions[roomPositions.Count - 1]);
+        spawnedBoss.SetActive(false);
+        bossIsDead = false;
 
         CreateFiller(); // Checks for large enough areas of just plain floors, and rolls to add new obstacles there (prolly just rocks 99% of the time)
         SpawnLevel();
         SpawnRooms();
         Resources.UnloadUnusedAssets();
+    }
+
+    void Update()
+    {
+        if (spawnedBoss != null)
+        {
+            float distFromBoss = (mainCamera.transform.position - spawnedBoss.transform.position).magnitude;
+            bossPosition = spawnedBoss.transform.position;
+            if (distFromBoss < 10f)
+            {
+                spawnedBoss.SetActive(true);
+            }
+        }
+        else
+        {
+            if (!bossIsDead)
+            {
+                bossIsDead = true;
+                Instantiate(portal, bossPosition, Quaternion.identity);
+            }
+        }
     }
 
     void Setup()

@@ -54,13 +54,16 @@ public abstract class AbilityParams : ScriptableObject
             mat = EntityReferencerGuy.Instance.playerBulletMaterial;
             layer = LayerPlayerBullet;
             tag = "PlayerBullet";
-            if (alignCamPushWithDir)
+            if (dealer.GetComponent<Attack>().isPlayer)
             {
-                EntityReferencerGuy.Instance.camera.GetComponent<cameraMovement>().CameraShake(0, -direction * cameraPushAmount);
-            }
-            else
-            {
-                EntityReferencerGuy.Instance.camera.GetComponent<cameraMovement>().CameraShake(cameraPushAmount, Vector3.zero);
+                if (alignCamPushWithDir)
+                {
+                    EntityReferencerGuy.Instance.camera.GetComponent<cameraMovement>().CameraShake(0, -direction * cameraPushAmount);
+                }
+                else
+                {
+                    EntityReferencerGuy.Instance.camera.GetComponent<cameraMovement>().CameraShake(cameraPushAmount, Vector3.zero);
+                }
             }
         }
         else

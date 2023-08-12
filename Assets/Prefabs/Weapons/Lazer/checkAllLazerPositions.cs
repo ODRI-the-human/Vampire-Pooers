@@ -38,6 +38,7 @@ public class checkAllLazerPositions : MonoBehaviour
 
     public int attackMode = 0; // As both lazer and crossbow use this script (since they're fairly similar), this differentiates between them. 0 for lazer, 1 for crossbow.
     int numItersSoFar = 0; // Counts up over time, used by crossbow.
+    bool actuallyHit = false;
 
     // Start is called before the first frame update
     void Start()
@@ -58,7 +59,6 @@ public class checkAllLazerPositions : MonoBehaviour
         thinguy = gameObject;
         if (owner.GetComponent<Attack>().isPlayerTeam)
         {
-            thinguy = gameObject;
             StartCoroutine(LateStart(delay, true));
             slimLine = true;
         }
@@ -68,21 +68,21 @@ public class checkAllLazerPositions : MonoBehaviour
             StartCoroutine(LateStart(delay + 0.75f, true));
         }
 
-        if (attackMode == 1)
-        {
-            Invoke(nameof(DIE), 0.25f);
-            line.material = shoot;
-            line.widthMultiplier *= 0.5f;
-        }
+        //if (attackMode == 1)
+        //{
+        //    Invoke(nameof(DIE), 0.25f);
+        //    line.material = shoot;
+        //    line.widthMultiplier *= 0.5f;
+        //}
     }
 
     void FixedUpdate()
     {
-        if (attackMode == 1)
+        if (attackMode == 1 && actuallyHit)
         {
             if (vecToMove != Vector3.zero)
             {
-                DoMotion(true, numItersSoFar, 7); // The higher numIterations with, the faster the projectile will move.
+                DoMotion(numItersSoFar, 7); // The higher numIterations with, the faster the projectile will move.
                 numItersSoFar += 7;
             }
             else
@@ -93,14 +93,22 @@ public class checkAllLazerPositions : MonoBehaviour
         }
     }
 
-    void DoMotion(bool actuallyHit, int startingIterations, int numIterations)
+    void DoMotion(int startingIterations, int numIterations)
     {
         int mode = 0; // A mode to determine the current behaviour of the lazer (0 for bendy shot, 1 for straight shot, 2 for tracing over some already set positions.)
         if (!owner.GetComponent<Attack>().isPlayerTeam)
         {
             if (actuallyHit)
             {
-                mode = 2;
+                switch (attackMode)
+                {
+                    case 0:
+                        mode = 2;
+                        break;
+                    case 1:
+                        mode = 3;
+                        break;
+                }
             }
             else
             {
@@ -110,13 +118,14 @@ public class checkAllLazerPositions : MonoBehaviour
 
         if (owner.GetComponent<Attack>().isPlayerTeam)
         {
-            if (attackMode == 0)
+            switch (attackMode)
             {
-                mode = 0;
-            }
-            else
-            {
-                mode = 1;
+                case 0:
+                    mode = 0;
+                    break;
+                case 1:
+                    mode = 1;
+                    break;
             }
         }
 
@@ -124,12 +133,12 @@ public class checkAllLazerPositions : MonoBehaviour
         {
             //Debug.Log(vecToMove.ToString());
             transform.rotation = Quaternion.LookRotation(vecToMove) * Quaternion.Euler(0, 90, 0);
-            if (i + 1 >= line.positionCount && mode == 2) // Breaking out of loop if the enemy's actual shot is at its final iteration.
+            if (i + 1 >= line.positionCount && (mode == 2 || mode == 3)) // Breaking out of loop if the enemy's actual shot is at its final iteration.
             {
                 break;
             }
 
-            if (mode != 2)
+            if (mode == 0 || mode == 1)
             {
                 if (vecToMove == Vector3.zero)
                 {
@@ -137,7 +146,6 @@ public class checkAllLazerPositions : MonoBehaviour
                 }
                 line.positionCount = i + 1;
             }
-            Debug.Log("i: " + i.ToString() + " / position: " + transform.position.ToString());
 
             switch (mode)
             {
@@ -153,9 +161,13 @@ public class checkAllLazerPositions : MonoBehaviour
                     line.SetPosition(i, new Vector3(transform.position.x, transform.position.y, -1) + new Vector3(Random.Range(-lineRandPos, lineRandPos), Random.Range(-lineRandPos, lineRandPos), 0));
                     transform.position = line.GetPosition(i + 1) + new Vector3(0, 0, 1);
                     break;
+                case 3:
+                    line.SetPosition(i, new Vector3(transform.position.x, transform.position.y, -1));
+                    transform.position = line.GetPosition(i + 1) + new Vector3(0, 0, 1);
+                    break;
             }
 
-
+            Debug.Log("lazer/crossbow wow. i: " + i.ToString() + " / position: " + transform.position.ToString() + " / vecToMove: " + vecToMove.ToString() + " / mode: " + mode.ToString());
 
             // Applying homing effect.
             if (gameObject.GetComponent<ItemHOMING>() != null)
@@ -198,6 +210,7 @@ public class checkAllLazerPositions : MonoBehaviour
                 }
             }
 
+            // For hits and the like.
             Collider2D[] hitColliders = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y), 0.12f);
             foreach (var col in hitColliders)
             {
@@ -228,7 +241,7 @@ public class checkAllLazerPositions : MonoBehaviour
                         //    //Instantiate(CritAudio);
                         //    isCrit = true;
                         //}
-                        if (attackMode == 1)
+                        if (attackMode == 1 && col.gameObject.GetComponent<NewPlayerMovement>() != null && col.gameObject.GetComponent<NewPlayerMovement>().isDodging == 0)
                         {
                             col.gameObject.GetComponent<NewPlayerMovement>().knockBackVector = vecToMove * 25f;
                         }
@@ -372,32 +385,49 @@ public class checkAllLazerPositions : MonoBehaviour
         }
     }
 
-    IEnumerator LateStart(float waitTime, bool actuallyHit)
+    IEnumerator LateStart(float waitTime, bool doHit)
     {
         yield return new WaitForSeconds(waitTime);
+        actuallyHit = doHit;
         transform.localScale = new Vector3(1, 1, 1);
+        transform.position = originalPosition;
 
         if (setVecToMoveAutomatically)
         {
             vecToMove = originalDirection;
         }
 
-        if (actuallyHit && attackMode == 0)
+        if (actuallyHit)
         {
             SoundManager.Instance.PlaySound(sounds[Random.Range(0, sounds.Length)]);
+            Invoke(nameof(DIE), 0.25f);
+            line.material = shoot;
+            switch (attackMode)
+            {
+                case 0:
+                    line.endWidth = 1f;
+                    line.startWidth = 1f;
+                    break;
+                case 1:
+                    line.endWidth = 1f;
+                    line.startWidth = 0f;
+                    break;
+            }
+            slimLine = true;
+        }
+        else
+        {
+            line.endWidth = 1f;
+            line.startWidth = 1f;
         }
 
-        if (attackMode == 0)
+        if (attackMode == 0 || !actuallyHit)
         {
-            transform.position = originalPosition;
-            DoMotion(actuallyHit, 0, 150);
+            DoMotion(0, 150);
 
-            if (actuallyHit)
+            if (actuallyHit) // Only enemies ever encounter this case.
             {
-                Invoke(nameof(DIE), 0.25f);
-                line.material = shoot;
                 line.widthMultiplier = (gameObject.GetComponent<DealDamage>().finalDamageStat / 2 + 25) / 100;
-                slimLine = true;
                 owner.GetComponent<NewPlayerMovement>().moveTowardsPlayer = previousMoveToPlayer;
                 owner.GetComponent<NewPlayerMovement>().recievesKnockback = previousRecieveKnockBack;
             }
@@ -405,8 +435,11 @@ public class checkAllLazerPositions : MonoBehaviour
             {
                 line.material = warn;
                 line.widthMultiplier = 0.1f;
-                owner.GetComponent<NewPlayerMovement>().moveTowardsPlayer = false;
-                owner.GetComponent<NewPlayerMovement>().recievesKnockback = false;
+                if (!owner.GetComponent<Attack>().isPlayerTeam)
+                {
+                    owner.GetComponent<NewPlayerMovement>().moveTowardsPlayer = false;
+                    owner.GetComponent<NewPlayerMovement>().recievesKnockback = false;
+                }
             }
         }
     }

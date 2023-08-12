@@ -13,13 +13,15 @@ MonoBehaviour:
   m_Name: ExplodingShot
   m_EditorClassIdentifier: 
   name: ExplodingShot
+  attackMode: 0
   weight: 100
   maxCharges: 3
   masterCooldownTime: 30
   spawnDelay: 0
-  cameraPushAmount: 50
+  cameraPushAmount: 15
   alignCamPushWithDir: 1
   dirRandAmt: 0.05
+  randomiseDirAtStart: 1
   coolDownTime: 85
   objectsToUse:
   - {fileID: 4255455733749829593, guid: 27160d46bf5b97a4898af82130ae1a42, type: 3}

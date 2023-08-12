@@ -9,34 +9,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de93251bb5bf5654d8bb86880fec8668, type: 3}
-  m_Name: Revolver
+  m_Script: {fileID: 11500000, guid: 39a4af7f6d56dfb4cbfda5cec2e4f7bd, type: 3}
+  m_Name: ChestSpawn
   m_EditorClassIdentifier: 
-  name: Revolver
-  attackMode: 1
+  name: Chest Spawn
+  attackMode: 0
   weight: 100
-  maxCharges: 6
-  masterCooldownTime: 10
+  maxCharges: 1
+  masterCooldownTime: 0
   spawnDelay: 0
-  cameraPushAmount: 25
+  cameraPushAmount: 0
   alignCamPushWithDir: 1
-  dirRandAmt: 0.05
+  dirRandAmt: 0
   randomiseDirAtStart: 1
-  coolDownTime: 75
+  coolDownTime: 250
   objectsToUse:
-  - {fileID: 4255455733749829593, guid: 27160d46bf5b97a4898af82130ae1a42, type: 3}
-  sfx:
-  - {fileID: 8300000, guid: 997791360c51a1d458187624008f6877, type: 3}
+  - {fileID: 4815995352738192273, guid: 812fb0ecd5501fb40a1997d6b171a287, type: 3}
+  sfx: []
   attackEffectsToAdd: []
   spawnedAttackObjs:
   - {fileID: 0}
   range: 99999
-  damageMultiplier: 1
-  massCoeffMult: 1
+  damageMultiplier: 4
+  massCoeffMult: 4
   procCoeffMult: 1
   iFrameFracMult: 1
   chargeLength: 0
   isCharged: 0
-  rechargeAllShotsAfterCooldown: 1
-  effectsToAdd: []
-  defaultSpeed: 8
+  rechargeAllShotsAfterCooldown: 0

@@ -58,7 +58,7 @@ public class playerManagement : MonoBehaviour
             {
                 //Debug.Log("new player ID: " + numPlayers.ToString());
                 newPlayer = player;
-                player.GetComponent<getItemDescription>().itemsExist = true;
+                player.GetComponent<getItemDescription>().itemsExist = 0;
                 player.GetComponent<managePlayer>().playerID = numPlayers;
                 player.GetComponent<managePlayer>().IDSet = true;
             }

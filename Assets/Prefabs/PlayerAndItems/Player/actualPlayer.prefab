@@ -430,6 +430,7 @@ MonoBehaviour:
   healMult: 0
   nextXP: 0
   PlayerXPAudio: {fileID: 8667424581410965265, guid: 49d370b240303f34381b4ae05a28b442, type: 3}
+  itemChestSpawn: {fileID: 11400000, guid: c7b72fa93b8d7fa478bbd7bc27d44cd3, type: 2}
 --- !u!114 &3451283441647153064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -528,9 +529,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   masterCooldown: 0
   abilityTypes:
-  - {fileID: 11400000, guid: c8d5061c08980d444ac981ed5ecb64c5, type: 2}
+  - {fileID: 11400000, guid: 51e97f8595dda2d4fac24637585c8261, type: 2}
   - {fileID: 11400000, guid: 245e9dc2f96a8b148a452d35ee626cb9, type: 2}
-  - {fileID: 11400000, guid: ca35c4a16727e9b44b1a9861288cc35a, type: 2}
+  - {fileID: 11400000, guid: c8d5061c08980d444ac981ed5ecb64c5, type: 2}
   coolDowns: 
   charges: 
   attackWeights: 
@@ -547,6 +548,7 @@ MonoBehaviour:
   reticle: {fileID: 4754094839536224065, guid: 3cf94e0441922d44c8ce3505152e57bb, type: 3}
   chargeBar: {fileID: 0}
   isPlayerTeam: 1
+  isPlayer: 1
   attackAutomatically: 0
 --- !u!114 &5850393742412172751
 MonoBehaviour:

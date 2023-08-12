@@ -25,9 +25,11 @@ MonoBehaviour:
   numExtraShots: 0
   maxHP: 150
   damageMult: 1
+  massCoeff: 1
   fireDelayMult: 1
   colorToSet: {r: 0.14961895, g: 0.7924528, b: 0, a: 1}
   abilities: []
+  canDealDamage: 0
   itemsToGive: []
   scriptsToAdd:
   - chargeAtCardDirections

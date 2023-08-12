@@ -107,7 +107,7 @@ public class HPDamageDie : MonoBehaviour
 
                 if (doDamage)
                 {
-                    Hurty(DOTSource.GetComponent<DealDamage>().GetDamageAmount(), false, 0.2f, DOTSource.GetComponent<DealDamage>().damageType, false, DOTSource);
+                    Hurty(DOTSource.GetComponent<DealDamage>().GetDamageAmount(), false, 0.2f, DOTSource.GetComponent<DealDamage>().damageType, false, DOTSource, false);
 
                     owners[i] = DOTSource.GetComponent<DealDamage>().owner;
                     damageAmounts[i] = DOTSource.GetComponent<DealDamage>().GetDamageAmount();
@@ -117,9 +117,10 @@ public class HPDamageDie : MonoBehaviour
         }
     }
 
-    public void Hurty(float damageAmount, bool isCrit, float iFrameFac, int damageType, bool bypassIframes, GameObject objectResponsible)
+    public void Hurty(float damageAmount, bool isCrit, float iFrameFac, int damageType, bool bypassIframes, GameObject objectResponsible, bool isNewAttack)
     {
-        //Debug.Log("enemy meant to take damage, damage amount: " + damageAmount.ToString());
+        // isNewAttack is essentially for anything that isn't like a status effect - attacks for which this is true get bypassed when dodging.
+        // This is needed for like lazers and stuff, which otherwise would hit even when dodging.
 
         // Just doing the message to show that hurty happened xd!
         string responsibleName;
@@ -138,7 +139,9 @@ public class HPDamageDie : MonoBehaviour
             doDealDamage = false;
         }
 
-        if (gameObject.GetComponent<ItemEASIERTIMES>() != null && Mathf.RoundToInt(100 * (0.8f - 1f / (gameObject.GetComponent<ItemEASIERTIMES>().instances + 1f))) > Random.Range(0, 100))
+        if (gameObject.GetComponent<ItemEASIERTIMES>() != null 
+            && Mathf.RoundToInt(100 * (0.8f - 1f / (gameObject.GetComponent<ItemEASIERTIMES>().instances + 1f))) > Random.Range(0, 100)
+            || (isNewAttack && gameObject.GetComponent<NewPlayerMovement>() != null && gameObject.GetComponent<NewPlayerMovement>().isDodging == 1))
         {
             doDealDamage = false;
         }

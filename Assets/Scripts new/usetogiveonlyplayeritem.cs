@@ -8,6 +8,52 @@ public class usetogiveonlyplayeritem : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.DMGMLT2);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.DMGMLT2);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.DMGMLT2);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.DMGMLT2);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.DMGMLT2);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.DMGMLT2);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.DMGMLT2);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.DMGMLT2);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.DMGMLT2);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.DMGMLT2);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.DMGMLT2);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.DMGMLT2);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.DMGMLT2);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.DMGMLT2);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.DMGMLT2);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.DMGMLT2);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.DMGMLT2);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.DMGMLT2);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.DMGMLT2);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.DMGMLT2);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.DMGMLT2);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.DMGMLT2);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.DMGMLT2);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.DMGMLT2);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.DMGMLT2);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.DMGMLT2);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.DMGMLT2);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.DMGMLT2);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.FIRERATE);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.FIRERATE);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.FIRERATE);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.FIRERATE);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.FIRERATE);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.FIRERATE);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.FIRERATE);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.FIRERATE);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.FIRERATE);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.FIRERATE);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.FIRERATE);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.FIRERATE);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.FIRERATE);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.FIRERATE);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.FIRERATE);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.FIRERATE);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.FIRERATE);
+        //gameObject.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.FIRERATE);
         // For giving the player some number of random items.
         //for (int i = 0; i < 50; i++)
         //{

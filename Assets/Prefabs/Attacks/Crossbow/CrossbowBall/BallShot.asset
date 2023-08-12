@@ -30,9 +30,9 @@ MonoBehaviour:
   spawnedAttackObjs:
   - {fileID: 0}
   range: 99999
-  damageMultiplier: 0.2
-  massCoeffMult: 0.2
-  procCoeffMult: 0.2
+  damageMultiplier: 1
+  massCoeffMult: 0.05
+  procCoeffMult: 0.5
   iFrameFracMult: 1
   chargeLength: 0
   isCharged: 0

@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 public class getItemDescription : MonoBehaviour
 {
     GameObject spawnedSelector;
-    public bool itemsExist = false;
+    public int itemsExist = 0;
     int itemNearest = 0;
     public string itemDescription;
     Vector3 position;
@@ -16,7 +16,7 @@ public class getItemDescription : MonoBehaviour
 
     public void InputAim(InputAction.CallbackContext context)
     {
-        if (itemsExist)
+        if (itemsExist > 0)
         {
             GameObject[] gos = GameObject.FindGameObjectsWithTag("item");
             GameObject closest = null;
@@ -49,11 +49,14 @@ public class getItemDescription : MonoBehaviour
     {
         context.action.performed += ctx =>
         {
-            Destroy(spawnedSelector);
-
             spawnedSelector = Instantiate(itemSelector, position, transform.rotation);
             spawnedSelector.transform.SetParent(gameObject.transform);
             spawnedSelector.GetComponent<mouseItemSelection>().master = gameObject;
+        };
+
+        context.action.canceled += ctx =>
+        {
+            Destroy(spawnedSelector);
         };
     }
 }

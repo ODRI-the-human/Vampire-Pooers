@@ -58,21 +58,26 @@ public class Bullet_Movement : MonoBehaviour
             canCollide = true;
         }
 
+        if (timer > 250)
+        {
+            KillBullet();
+        }
+
         lastColTime++;
     }
 
     void Update()
     {
-        if (rb.velocity.magnitude > 3f)
+        if (rb.velocity.magnitude > 0.1f)
         {
             transform.rotation = Quaternion.LookRotation(rb.velocity) * Quaternion.Euler(0, 90, 0);
             xSpeed = rb.velocity.normalized.x;
             ySpeed = rb.velocity.normalized.y;
         }
-        else
-        {
-            KillBullet();
-        }
+        //else
+        //{
+        //    KillBullet();
+        //}
     }
 
     void HitShit(Collider2D col)

@@ -27,12 +27,14 @@ public class Attack : MonoBehaviour
     public GameObject chargeBar;
 
     public bool isPlayerTeam = true;
+    public bool isPlayer = false; // Mainly for setting screen shake, so only player characters can apply the shake.
     public bool attackAutomatically = false;
 
     int targetChangeTimer = 0;
 
     void Start()
     {
+        FindNearestTarget();
         cameron = GameObject.Find("Main Camera");
         if (gameObject.tag == "Player")
         {
@@ -337,6 +339,11 @@ public class Attack : MonoBehaviour
             vectorToTarget = new Vector2(vecToTarget3.x, vecToTarget3.y).normalized;
         }
 
+        if (!overrideCooldownSetting)
+        {
+            charges[abilityIndex]--;
+        }
+
         for (int i = 0; i < noExtraShots + 1; i++)
         {
             if (i != 0) // Just so it only plays the shot sound on the first attack of the iteration.
@@ -345,10 +352,6 @@ public class Attack : MonoBehaviour
             }
 
             StartCoroutine(SpawnAttack(abilityToUse, abilityIndex, isPlayer, isCharged, overrideCooldownSetting, playSound, i));
-            if (!overrideCooldownSetting)
-            {
-                charges[abilityIndex]--;
-            }
         }
         SendMessage("OnUseAbility", abilityIndex);
         lastAttackCharged = isCharged;

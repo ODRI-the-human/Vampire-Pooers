@@ -11,6 +11,7 @@ public class LevelUp : MonoBehaviour
     public float healMult = 0;
     public float nextXP;
     public GameObject PlayerXPAudio;
+    public AbilityParams itemChestSpawn;
 
     void Start()
     {
@@ -33,6 +34,11 @@ public class LevelUp : MonoBehaviour
         gameObject.GetComponent<HPDamageDie>().HP += effectMult * 5f;
         gameObject.GetComponent<Attack>().cooldownFac *= 1f - effectMult * 0.03f;
         gameObject.GetComponent<NewPlayerMovement>().baseMoveSpeed += effectMult * 0.07f;
+
+        if (itemChestSpawn != null)
+        {
+            itemChestSpawn.UseAttack(gameObject, null, transform.position, Vector2.zero, true, 0, false, true, false, true);
+        }
 
         if(gameObject.GetComponent<ItemMORELEVELSTATS>() != null)
         {

@@ -224,7 +224,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 2097141
+    m_Bits: 2097149
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -2068,7 +2068,6 @@ MonoBehaviour:
   master: {fileID: 7002239379606652682}
   bat: {fileID: 8491726996849524496, guid: b510ff97fa994b74da0480ee3dff6515, type: 3}
   darkArt: {fileID: 8491726996849524496, guid: 8606347ad08776542a84153651ceb453, type: 3}
-  boss: {fileID: 8034279136360660190, guid: ba03c7a7f11754c44a59ce345ca2ef30, type: 3}
   playerInstance: {fileID: 0}
   playerBulletMaterial: {fileID: 2100000, guid: 161673f30987dd64e96682430ebe21d9, type: 2}
   enemyBulletMaterial: {fileID: 2100000, guid: 3bdc199c65efb784299c0d1d6afbf800, type: 2}
@@ -2226,6 +2225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numRoundsDropItemLeft: 0
+  itemPedestal: {fileID: 9051745121226363957, guid: 72417c4e267300a49a8f5f6b6e1e3f5c, type: 3}
 --- !u!114 &6494547038156782421
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2328,7 +2328,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7002239379606652682}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 586742f1586a02a4382643bbe88c97dc, type: 3}
   m_Name: 
@@ -2344,6 +2344,8 @@ MonoBehaviour:
   mapCam: {fileID: 2392157705757960801}
   FOWCam1: {fileID: 3648687764485610928}
   FOWCam2: {fileID: 8841207354843533286}
+  mainCamera: {fileID: 292324531604132118}
+  boss: {fileID: 8034279136360660190, guid: ba03c7a7f11754c44a59ce345ca2ef30, type: 3}
   portal: {fileID: 3099306356998662558, guid: 3c7be67dc49c0474c84d5129fa9477a2, type: 3}
   allRoomSets:
   - {fileID: 11400000, guid: a0e04704b2e1e9340a7de2b253d8fd94, type: 2}
@@ -2370,7 +2372,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7002239379606652682}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c05841eae35a00a4da4e5cddf7a23d98, type: 3}
   m_Name: 
@@ -2381,7 +2383,6 @@ MonoBehaviour:
   numEnemyThreshold: 0
   numEnemies: 0
   camera: {fileID: 292324531604132118}
-  itemPedestal: {fileID: 9051745121226363957, guid: 72417c4e267300a49a8f5f6b6e1e3f5c, type: 3}
   currentLevel: 0
   timeSinceLastSpawn: 0
   timeTillNextSpawn: 50

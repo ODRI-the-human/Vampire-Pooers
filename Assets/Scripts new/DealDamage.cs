@@ -140,15 +140,15 @@ public class DealDamage : MonoBehaviour
 
             if (gameObject.GetComponent<explosionBONUSSCRIPTWOW>() != null)
             {
-                float maxDist = responsible.transform.localScale.x * responsible.GetComponent<CircleCollider2D>().radius + victim.transform.localScale.x * 2f;
+                float maxDist = responsible.transform.localScale.x * responsible.GetComponent<CircleCollider2D>().radius;
                 float actualDist = (responsible.transform.position - victim.transform.position).magnitude;
-                float fracFromCtr = Mathf.Clamp(2f * (1 - (actualDist / maxDist)), 0f, 1f);
+                float fracFromCtr = Mathf.Clamp(2f * (1 - (actualDist / maxDist)), 0.1667f, 1f);
                 damageToPassToVictim *= fracFromCtr;
 
                 //Debug.Log("bunguloj exploding distance moment: " + fracFromCtr.ToString());
             }
 
-            victim.GetComponent<HPDamageDie>().Hurty(damageToPassToVictim, isCrit, iFrameFac, damageType, false, gameObject);
+            victim.GetComponent<HPDamageDie>().Hurty(damageToPassToVictim, isCrit, iFrameFac, damageType, false, gameObject, true);
         }
     }
 

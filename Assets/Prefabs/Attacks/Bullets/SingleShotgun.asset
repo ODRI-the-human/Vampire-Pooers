@@ -18,7 +18,7 @@ MonoBehaviour:
   maxCharges: 1
   masterCooldownTime: 0
   spawnDelay: 0
-  cameraPushAmount: 150
+  cameraPushAmount: 50
   alignCamPushWithDir: 1
   dirRandAmt: 0.6
   randomiseDirAtStart: 0

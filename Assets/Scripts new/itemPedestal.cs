@@ -11,7 +11,6 @@ public class itemPedestal : MonoBehaviour
     public Sprite[] spriteArray;
     public SpriteRenderer spriteRenderer;
     int maxRange;
-    GameObject[] gos;
     public GameObject master;
     bool cursed = false;
     public int curseType = -2;
@@ -35,13 +34,7 @@ public class itemPedestal : MonoBehaviour
         maxRange = (int)ITEMLIST.CREEPSHOT;
         gameObject.GetComponent<Collider2D>().enabled = false;
         //maxRange = 5;
-        gos = GameObject.FindGameObjectsWithTag("item");
-
         GameObject[] gosser = GameObject.FindGameObjectsWithTag("Player");
-        foreach (GameObject guy in gosser)
-        {
-            guy.GetComponent<getItemDescription>().itemsExist = true;
-        }
 
         //Invoke(nameof(SetDescription), 0.1f);
 
@@ -95,7 +88,7 @@ public class itemPedestal : MonoBehaviour
     {
         if (doRandomiseItem)
         {
-            foreach (GameObject go in gos)
+            foreach (GameObject go in transform.parent.GetComponent<ChestThings>().pedestalInstances)
             {
                 bool isFine = true;
 
@@ -250,14 +243,6 @@ public class itemPedestal : MonoBehaviour
             master.GetComponent<ItemHolder>().itemsHeld.Add(itemChosen);
         }
 
-        foreach (GameObject go in gos)
-        {
-            Destroy(go);
-            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-            foreach (GameObject player in players)
-            {
-                player.GetComponent<getItemDescription>().itemsExist = false;
-            }
-        }
+        transform.parent.gameObject.GetComponent<ChestThings>().KillItems(barry);
     }
 }

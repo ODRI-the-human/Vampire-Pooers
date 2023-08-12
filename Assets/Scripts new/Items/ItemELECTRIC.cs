@@ -70,7 +70,7 @@ public class ItemELECTRIC : MonoBehaviour
                 {
                     //Gareth.GetComponent<HPDamageDie>().HP -= 10 * instances;
                     //Gareth.GetComponent<HPDamageDie>().sprite.color = Color.red;
-                    Gareth.GetComponent<HPDamageDie>().Hurty(10 * instances, false, 0, (int)DAMAGETYPES.ELECTRIC, true, null);
+                    Gareth.GetComponent<HPDamageDie>().Hurty(10 * instances, false, 0, (int)DAMAGETYPES.ELECTRIC, true, null, false);
                     //Gareth.GetComponent<HPDamageDie>().colorChangeTimer = 1;
                     //masterObject.GetComponent<showDamageNumbers>().showDamage(Gareth.transform.position, 10 * instances, (int)DAMAGETYPES.ELECTRIC, false);
                 }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class doMasterCurses : MonoBehaviour
 {
     public int numRoundsDropItemLeft;
+    public GameObject itemPedestal;
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +24,7 @@ public class doMasterCurses : MonoBehaviour
         if (numRoundsDropItemLeft > 0)
         {
             enemy.AddComponent<dropItemOnHit>();
-            enemy.GetComponent<dropItemOnHit>().itemPedestal = gameObject.GetComponent<Director>().itemPedestal;
+            enemy.GetComponent<dropItemOnHit>().itemPedestal = itemPedestal;
         }
     }
 }

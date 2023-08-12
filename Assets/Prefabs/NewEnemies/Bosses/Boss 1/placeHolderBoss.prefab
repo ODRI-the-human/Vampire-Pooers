@@ -14,15 +14,11 @@ GameObject:
   - component: {fileID: -585692803091798654}
   - component: {fileID: -5622376081394152181}
   - component: {fileID: 6146499720883180670}
-  - component: {fileID: 373114558742256855}
   - component: {fileID: 8437550650503696219}
   - component: {fileID: -226583629137854842}
   - component: {fileID: 687514019896633325}
   - component: {fileID: 1637301172094922029}
   - component: {fileID: 2794491946153304301}
-  - component: {fileID: 106767412706403394}
-  - component: {fileID: 3067822075689377420}
-  - component: {fileID: 7424845868694179722}
   - component: {fileID: 5909263633821951691}
   m_Layer: 6
   m_Name: placeHolderBoss
@@ -38,13 +34,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8034279136360660190}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &8034279136360660184
 Rigidbody2D:
@@ -63,6 +59,12 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -75,13 +77,33 @@ CircleCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8034279136360660190}
   m_Enabled: 1
+  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
   m_Radius: 0.1
 --- !u!114 &-585692803091798654
 MonoBehaviour:
@@ -127,17 +149,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: 0
   MaxHP: 10000
-  PlayerDieAudio: {fileID: 1098745368026675434, guid: 26556f7af7586304588a534b37c199bc, type: 3}
-  PlayerHurtAudio: {fileID: 5472873928898165319, guid: 1edb877ad01c07344b1cad0d27b62330, type: 3}
-  CritAudio: {fileID: 4189199820661322247, guid: cfea01d8a8cd2594fa1446da0a6dd1b2, type: 3}
+  hurtAudio: {fileID: 0}
+  hurtPlane: {fileID: 0}
+  dieAudio: {fileID: 0}
   iFramesTimer: 50
   iFrames: 0
   sprite: {fileID: 0}
   material: {fileID: 0}
   colorChangeTimer: 0
   XP: {fileID: 96973257286344921, guid: 22d6db0417daabd439462715775352f1, type: 3}
+  resistVals:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
   lastDamageSourceName: 
   makeKillSound: 1
+  showDamageNumber: 1
+  makeHurtSound: 1
   damageReduction: 0
   damageDiv: 1
   perfectWaves: 0
@@ -158,13 +191,13 @@ MonoBehaviour:
   finalDamageStat: 50
   procCoeff: 0
   damageBase: 50
-  damageAdd: 0
   damageMult: 1
   finalDamageMult: 1
   critProb: 0.05
   critMult: 2
   owner: {fileID: 0}
   master: {fileID: 0}
+  canDealDamage: 1
   massCoeff: 2
   overwriteDamageCalc: 0
   onlyDamageOnce: 0
@@ -177,67 +210,8 @@ MonoBehaviour:
   procChainIndexes: 
   procChanceBonus: 1
   damageToPassToVictim: 0
---- !u!114 &373114558742256855
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8034279136360660190}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a79b14745a3e2fd4f8a0b5a259cfcb25, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shotSpeed: 4
-  bulletLengthMult: 1
-  currentAngle: 0
-  vectorToTarget: {x: 0, y: 0}
-  noExtraShots: 0
-  shotAngleCoeff: 1
-  trueDamageValue: 0
-  fireTimerLengthMLT: 1
-  Bullet: {fileID: 110440509597865848, guid: 86b090c27b6523a4c99b4b66761df257, type: 3}
-  fireTimerLength: 50
-  fireTimer: 0
-  PlayerShootAudio: {fileID: 1343821369956803891, guid: 04da9c57f71492c40818fe9dcb49315f, type: 3}
-  Player: {fileID: 0}
-  playerControlled: 0
-  specialFireType: 0
-  darkArtSword: {fileID: 0}
-  fireTimerDIV: 1
-  setDamageAutomatically: 1
-  doAim: 1
-  fireTimerActualLength: 0
-  visionRange: 8
-  reTargetTimerLength: 100
-  reTargetTimer: 0
-  currentTarget: {fileID: 0}
-  timesFired: 0
-  newAttack: 0
-  Crongus: 0
-  damageBonus: 0
-  scaleAddMult: 1
-  mouseVector: {x: 0, y: 0, z: 0}
-  stopwatchDebuffAmount: 0
-  doShootAutomatically: 0
-  getEnemyPos: 1
-  angleAddAmount: 0
-  velToGiveBullets: {x: 0, y: 0, z: 0}
-  massToGiveBullets: 0.5
-  holdDownToShoot: 1
-  numBulletsPossible: 16
-  autoFire: 1
-  isFiring: 0
-  isHoldingFire: 0
-  shotParticles: {fileID: 0}
-  chargeTime: 0
-  isChargedAttack: 0
-  chargeBar: {fileID: 0}
-  reticle: {fileID: 0}
-  reticlePos: {x: 0, y: 0, z: 0}
-  meleeHitObj: {fileID: 0}
-  hitboxSpawnDelay: 0
+  abilityIndex: 0
+  abilityType: {fileID: 0}
 --- !u!114 &8437550650503696219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253,11 +227,8 @@ MonoBehaviour:
   itemsHeld: 
   master: {fileID: 0}
   itemGained: 0
-  weaponHeld: 0
   noToGive: 1
   spawnedBat: {fileID: 0}
-  previousFireType: 0
-  previousFireTimerLengthMLT: 0
 --- !u!114 &-226583629137854842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -368,55 +339,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 687514019896633325}
---- !u!114 &106767412706403394
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8034279136360660190}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1fa510d5f65fe4b429d86a4e95a6e22d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponHeld: 0
-  master: {fileID: 0}
-  spawnedBat: {fileID: 0}
-  previousFireType: 0
-  previousFireTimerLengthMLT: 0
---- !u!114 &3067822075689377420
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8034279136360660190}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ebd05e0711f32d4fba4968c14b37756, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  activeAngles: []
-  vecToTarget: {x: 0, y: 0, z: 0}
-  moleProj: {fileID: 6152856860940002557, guid: 13c90bc400ac46f4383416a674875beb, type: 3}
-  mainMaterial: {fileID: 0}
-  sprongleAudio: {fileID: 527891173530036625, guid: c3aea6758bc7f7e41904bf8de9427d8a, type: 3}
-  spawnedSprongleAudio: {fileID: 0}
---- !u!114 &7424845868694179722
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8034279136360660190}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efa0e253fa55bcf4dbf6b2086c341b69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletHeckAngleMult: 0
-  sawner: {fileID: 4820591921083151624, guid: e35c03421eca3de49bd035462533dead, type: 3}
 --- !u!82 &5909263633821951691
 AudioSource:
   m_ObjectHideFlags: 0

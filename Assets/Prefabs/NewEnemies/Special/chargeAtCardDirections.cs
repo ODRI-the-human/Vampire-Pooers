@@ -83,11 +83,11 @@ public class chargeAtCardDirections : MonoBehaviour
     {
         if (col.gameObject.tag == "Player" || col.gameObject.tag == "Hostile")
         {
-            if (col.gameObject.tag == "Hostile")
+            col.gameObject.GetComponent<NewPlayerMovement>().knockBackVector = 5 * gameObject.GetComponent<DealDamage>().massCoeff * new Vector2(-transform.position.x + col.gameObject.transform.position.x, -transform.position.y + col.gameObject.transform.position.y).normalized;
+            if (col.gameObject.GetComponent<hitIfKBVecHigh>() == null)
             {
-                col.gameObject.GetComponent<NewPlayerMovement>().knockBackVector = 10 * gameObject.GetComponent<DealDamage>().massCoeff * new Vector2(-transform.position.x + col.gameObject.transform.position.x, -transform.position.y + col.gameObject.transform.position.y).normalized;
+                col.gameObject.AddComponent<hitIfKBVecHigh>();
             }
-            col.gameObject.AddComponent<hitIfKBVecHigh>();
             col.gameObject.GetComponent<hitIfKBVecHigh>().responsible = gameObject;
         }
 

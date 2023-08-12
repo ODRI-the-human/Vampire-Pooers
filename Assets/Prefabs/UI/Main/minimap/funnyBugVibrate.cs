@@ -83,7 +83,7 @@ public class funnyBugVibrate : MonoBehaviour
             deathStatObject.GetComponent<keepBestScore>().doRandomiseMeme = false;
             deathStatObject.GetComponent<keepBestScore>().bullyText.text = "ALL HAIL HUMPHREY, LORD OF COSMOS AND HARBINGER OF ANNIHILATION";
             deathStatObject.GetComponent<keepBestScore>().resetText.text = "PRESS R TO SURRENDER YOUR SOUL";
-            player.GetComponent<HPDamageDie>().Hurty(2147483647.001f, true, 0, 0, true, null);
+            player.GetComponent<HPDamageDie>().Hurty(2147483647.001f, true, 0, 0, true, null, true);
             gameObject.GetComponent<AudioDistortionFilter>().enabled = false;
             gameObject.GetComponent<AudioSource>().enabled = false;
         }

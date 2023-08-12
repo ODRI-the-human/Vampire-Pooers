@@ -16,7 +16,6 @@ public class Director : MonoBehaviour
     int numKillsForNextItem = 5;
     int lastItemKills = 0;
     public GameObject camera;
-    public GameObject itemPedestal;
     int xpPerWave = 8;
     int currentXP = 0;
 
@@ -87,12 +86,6 @@ public class Director : MonoBehaviour
         {
             lastItemKills = killCounter;
             numKillsForNextItem = Mathf.FloorToInt(numKillsForNextItem * 1.2f);
-
-            for (int i = 0; i < 3; i++)
-            {
-                GameObject newObject = Instantiate(itemPedestal, new Vector3(5 * i - 5, 3, 8) + camera.transform.position, transform.rotation);
-                newObject.transform.localScale = new Vector3(5, 5, 5);
-            }
 
             foreach (GameObject player in EntityReferencerGuy.Instance.master.GetComponent<playerManagement>().players)
             {
@@ -270,11 +263,11 @@ public class Director : MonoBehaviour
                     break;
             }
 
-            vecToCheck *= 11.2f;
+            vecToCheck *= 15.2f;
             NavMeshHit hit;
             Vector3 thisPosition = new Vector3(camera.transform.position.x, camera.transform.position.y, 0) + vecToCheck;
             //Debug.Log("pos checked: " + (vecToCheck + new Vector3(camera.transform.position.x, camera.transform.position.y, 0)).ToString());
-            if (NavMesh.SamplePosition(thisPosition, out hit, 4.5f, NavMesh.AllAreas))
+            if (NavMesh.SamplePosition(thisPosition, out hit, 2.5f, NavMesh.AllAreas))
             {
                 goodPositions.Add(hit.position);
             }

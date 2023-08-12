@@ -49,7 +49,6 @@ public class EntityReferencerGuy : MonoBehaviour
     public GameObject bat;
     public GameObject darkArt;
 
-    public GameObject boss; //SHOULD JUST BE A TEMPORARY SOLUTION. BOSS SPAWNING SHOULD BE HANDLED BY THE SPAWNER.
     int bosNumToSpawn = 1;
 
 
@@ -139,11 +138,6 @@ public class EntityReferencerGuy : MonoBehaviour
         time -= Time.deltaTime;
         if (time < 0)
         {
-            for (int i = 0; i < bosNumToSpawn; i++)
-            {
-                Instantiate(boss, transform.position + new Vector3(Random.Range(-1.5f, 1.5f), Random.Range(-1.5f, 1.5f), 0), Quaternion.Euler(0, 0, 0));
-            }
-            bosNumToSpawn++;
             time = 180;
         }
     }
