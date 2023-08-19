@@ -23,6 +23,7 @@ MonoBehaviour:
   dirRandAmt: 0
   randomiseDirAtStart: 1
   coolDownTime: 25
+  chargeUpTime: 0
   objectsToUse:
   - {fileID: 6152856860940002557, guid: 13c90bc400ac46f4383416a674875beb, type: 3}
   sfx: []
@@ -37,3 +38,5 @@ MonoBehaviour:
   chargeLength: 0
   isCharged: 0
   rechargeAllShotsAfterCooldown: 0
+  dropWeight: 100
+  weaponMesh: {fileID: 0}

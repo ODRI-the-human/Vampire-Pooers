@@ -18,21 +18,25 @@ MonoBehaviour:
   maxCharges: 1
   masterCooldownTime: 0
   spawnDelay: 0
-  cameraPushAmount: 500
+  cameraPushAmount: 50
   alignCamPushWithDir: 0
   dirRandAmt: 0
   randomiseDirAtStart: 1
   coolDownTime: 25
+  chargeUpTime: 0
   objectsToUse:
   - {fileID: 2061944661215622530, guid: b3f228f4731f7a944b43ad93aa54e41f, type: 3}
   sfx: []
   attackEffectsToAdd: []
-  spawnedAttackObjs: []
+  spawnedAttackObjs:
+  - {fileID: 0}
   range: 3
   damageMultiplier: 1
   massCoeffMult: 1
   procCoeffMult: 1
   iFrameFracMult: 1
   chargeLength: 50
-  isCharged: 0
+  isCharged: 1
   rechargeAllShotsAfterCooldown: 0
+  dropWeight: 100
+  weaponMesh: {fileID: 0}

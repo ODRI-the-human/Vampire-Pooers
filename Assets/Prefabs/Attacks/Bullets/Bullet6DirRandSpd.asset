@@ -13,13 +13,21 @@ MonoBehaviour:
   m_Name: Bullet6DirRandSpd
   m_EditorClassIdentifier: 
   name: Bullet6DirRandSpd
+  attackMode: 0
   weight: 100
   maxCharges: 1
-  delayTime: 0
+  masterCooldownTime: 0
+  spawnDelay: 0
+  cameraPushAmount: 0
+  alignCamPushWithDir: 1
+  dirRandAmt: 0
+  randomiseDirAtStart: 1
   coolDownTime: 150
+  chargeUpTime: 0
   objectsToUse:
   - {fileID: 4255455733749829593, guid: 27160d46bf5b97a4898af82130ae1a42, type: 3}
   sfx: []
+  attackEffectsToAdd: []
   spawnedAttackObjs:
   - {fileID: 0}
   range: 99999
@@ -30,6 +38,8 @@ MonoBehaviour:
   chargeLength: 0
   isCharged: 0
   rechargeAllShotsAfterCooldown: 0
+  dropWeight: 100
+  weaponMesh: {fileID: 0}
   effectsToAdd:
   - SLOWOVERTIME
   defaultSpeed: 20

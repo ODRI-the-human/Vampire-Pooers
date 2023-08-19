@@ -5,7 +5,6 @@ using UnityEngine;
 public class mouseItemSelection : MonoBehaviour
 {
     public GameObject master;
-    public float timer = 0;
     GameObject selectedPedestal;
 
     void Start()
@@ -18,21 +17,18 @@ public class mouseItemSelection : MonoBehaviour
             if (posDiff.magnitude < 1f)
             {
                 selectedPedestal = pedestal;
-                if (pedestal.transform.parent != null)
-                {
-
-                }
             }
         }
-    }
+        Debug.Log("position: " + transform.position.ToString());//"selected pedestal: " + selectedPedestal.name);
 
-    void Update()
-    {
-        if (timer >= 25)
+        if (selectedPedestal.GetComponent<itemPedestal>() != null)
         {
             selectedPedestal.GetComponent<itemPedestal>().GiveDaItem(master);
             master.GetComponent<ItemHolder>().GiveFunny(selectedPedestal);
         }
-        timer += 50 * Time.deltaTime;
+        else
+        {
+            selectedPedestal.GetComponent<WeaponPedestal>().StartPickup(master);
+        }
     }
 }

@@ -58,6 +58,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "pickItem",
+                    "type": "Button",
+                    "id": "e3581a13-59c3-4daa-8a3b-5fbfabbd5c6d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -236,6 +245,28 @@
                     "action": "abilityTwo",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c4926d01-f7a1-49e0-8cbd-4ae0bc5678ca",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "keyboard",
+                    "action": "pickItem",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "00b3580d-5b25-449f-bbae-6244dc66c344",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "controller",
+                    "action": "pickItem",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -275,7 +306,7 @@
                 {
                     "name": "",
                     "id": "3ac508e4-1378-428d-9b2a-5a26b59eb63d",
-                    "path": "<Keyboard>/r",
+                    "path": "<Keyboard>/1",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

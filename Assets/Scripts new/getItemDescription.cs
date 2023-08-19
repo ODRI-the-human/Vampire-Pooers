@@ -16,13 +16,13 @@ public class getItemDescription : MonoBehaviour
 
     public void InputAim(InputAction.CallbackContext context)
     {
+        position = gameObject.GetComponent<Attack>().reticle.transform.position; //new Vector3(Camera.main.ScreenToWorldPoint(context.ReadValue<Vector2>()).x, Camera.main.ScreenToWorldPoint(context.ReadValue<Vector2>()).y, 0);
+        position = new Vector3(position.x, position.y, 0);
         if (itemsExist > 0)
         {
             GameObject[] gos = GameObject.FindGameObjectsWithTag("item");
             GameObject closest = null;
             float distance = Mathf.Infinity;
-            position = gameObject.GetComponent<Attack>().reticle.transform.position; //new Vector3(Camera.main.ScreenToWorldPoint(context.ReadValue<Vector2>()).x, Camera.main.ScreenToWorldPoint(context.ReadValue<Vector2>()).y, 0);
-            position = new Vector3(position.x, position.y, 0);
             foreach (GameObject go in gos)
             {
                 Vector3 diff = go.transform.position - position;
@@ -45,7 +45,7 @@ public class getItemDescription : MonoBehaviour
         }
     }
 
-    public void OnShoot(InputAction.CallbackContext context)
+    public void OnSelectItem(InputAction.CallbackContext context)
     {
         context.action.performed += ctx =>
         {

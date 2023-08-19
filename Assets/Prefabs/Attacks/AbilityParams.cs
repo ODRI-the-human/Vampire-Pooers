@@ -6,7 +6,7 @@ using UnityEngine;
 public abstract class AbilityParams : ScriptableObject
 {
     public string name;
-    public int attackMode = 0; // Effects the mechanics of actually using the attack. 0 = full auto, 1 = not full auto, 2 = chargeable attack
+    public int attackMode = 0; // Effects the mechanics of actually using the attack. 0 = full auto, 1 = not full auto, 2 = chargeable attack, 3 = charge up, then auto once charged.
     public int weight = 100;
     public int maxCharges = 1;
     public int masterCooldownTime = 0; // When enemy is using this ability, how long to delay them till their next abiltiy use
@@ -16,6 +16,7 @@ public abstract class AbilityParams : ScriptableObject
     public float dirRandAmt = 0f;
     public bool randomiseDirAtStart = true;
     public int coolDownTime = 25; // The cooldown for this specific ability.
+    public int chargeUpTime = 0; // The minimum length of time this ability's button needs to be held to start attacking. For like miniguns n shit. Used when attack mode = 3.
     public GameObject[] objectsToUse; // Objects this particular attack spawns and such.
     public AudioClip[] sfx;
     public string[] attackEffectsToAdd;
@@ -30,6 +31,10 @@ public abstract class AbilityParams : ScriptableObject
     public int chargeLength = 0; // For if the ability can be charged up for a funny effect, leave at 0 if the ability is not to be charged.
     public bool isCharged = false; // This gets set/reset every attack, just to easily keep track of whether the last attack was charged or not.
     public bool rechargeAllShotsAfterCooldown = false; // For things like shotgun, where both charges get given back at the same time, have this be true.
+
+    public int dropWeight = 100; // The likelihood of this weapon being selected by a pedestal.
+    public Mesh weaponMesh;
+
     public abstract void ActivateAbility(GameObject dealer, GameObject target, Vector2 direction, bool isPlayerTeam, Material mat, int layer, string tag, bool overrideBulletSpawnMethod);
 
     public Vector2 RandomiseDirection(Vector2 inVec, float randAmtToUse)

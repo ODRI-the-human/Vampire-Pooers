@@ -13,15 +13,30 @@ MonoBehaviour:
   m_Name: homingMine
   m_EditorClassIdentifier: 
   name: homingMine
+  attackMode: 0
   weight: 100
   maxCharges: 1
-  delayTime: 0
+  masterCooldownTime: 0
+  spawnDelay: 0
+  cameraPushAmount: 0
+  alignCamPushWithDir: 1
+  dirRandAmt: 0
+  randomiseDirAtStart: 1
   coolDownTime: 250
+  chargeUpTime: 0
   objectsToUse:
   - {fileID: 110440509597865848, guid: ce046727068bf2447949d6cac0c8eaf6, type: 3}
   sfx: []
+  attackEffectsToAdd: []
   spawnedAttackObjs:
   - {fileID: 0}
   range: 99999
+  damageMultiplier: 1
+  massCoeffMult: 1
+  procCoeffMult: 1
+  iFrameFracMult: 1
   chargeLength: 0
   isCharged: 0
+  rechargeAllShotsAfterCooldown: 0
+  dropWeight: 100
+  weaponMesh: {fileID: 0}

@@ -174,7 +174,7 @@ public class HPDamageDie : MonoBehaviour
                 damageAmount -= damageAmount * (resistVals[damageType] / 100);
                 damageAmount /= damageDiv;
 
-                //Debug.Log("damage taken, victim: " + gameObject.name.ToString() + ", responsible: " + responsibleName + ", amount: " + damageAmount.ToString());
+                Debug.Log("damage taken, victim: " + gameObject.name.ToString() + ", responsible: " + responsibleName + ", amount: " + damageAmount.ToString());
                 HP -= damageAmount;
                 perfectWaves = -1;
                 if (playerControlled == true)

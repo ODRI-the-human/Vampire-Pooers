@@ -135,22 +135,13 @@ public class marcelFunny : MonoBehaviour
 
         canvas.SetActive(false);
 
-        float HPToRefund = 0;
-
         if (gameObject.tag == "PlayerBullet")
         {
             GameObject[] enemies = GameObject.FindGameObjectsWithTag("Hostile");
             foreach (GameObject enemo in enemies)
             {
                 enemo.GetComponent<HPDamageDie>().makeKillSound = false;
-                enemo.GetComponent<HPDamageDie>().HP -= 2000;
-                HPToRefund += 10;
-            }
-
-            GameObject[] sounds = GameObject.FindGameObjectsWithTag("audio");
-            foreach (GameObject sound in sounds)
-            {
-                Destroy(sound);
+                enemo.GetComponent<HPDamageDie>().Hurty(1337f, true, 0, (int)DAMAGETYPES.NORMAL, true, null, false); // isNewAttack is false so dodging doesn't avoid the attack.
             }
 
             GameObject[] enemyShots = GameObject.FindGameObjectsWithTag("enemyBullet");
@@ -165,27 +156,17 @@ public class marcelFunny : MonoBehaviour
             foreach (GameObject enemo in players)
             {
                 enemo.GetComponent<HPDamageDie>().makeKillSound = false;
-                enemo.GetComponent<HPDamageDie>().HP -= 2000;
-            }
-
-            GameObject[] enemoes = GameObject.FindGameObjectsWithTag("Hostile");
-            foreach (GameObject enemo in enemoes)
-            {
-                Destroy(enemo);
-            }
-
-            GameObject[] enemyShots = GameObject.FindGameObjectsWithTag("enemyBullet");
-            foreach (GameObject bulletter in enemyShots)
-            {
-                Destroy(bulletter);
+                enemo.GetComponent<HPDamageDie>().Hurty(1337f, true, 0, (int)DAMAGETYPES.NORMAL, true, null, false);
             }
 
             GameObject[] playerShots = GameObject.FindGameObjectsWithTag("PlayerBullet");
-            foreach (GameObject bulletter in enemyShots)
+            foreach (GameObject bulletter in playerShots)
             {
                 Destroy(bulletter);
             }
         }
+
+        Debug.Log("dogule moment");
 
         yield return new WaitForSecondsRealtime(0.75f);
 
@@ -197,7 +178,6 @@ public class marcelFunny : MonoBehaviour
         }
 
         Destroy(gameObject);
-        owner.GetComponent<Healing>().Healo(HPToRefund);
         foreach (GameObject Letter in spawnedLetters)
         {
             Destroy(Letter);
@@ -225,7 +205,6 @@ public class marcelFunny : MonoBehaviour
     void ChangeToEvil()
     {
         GameObject squarer = Instantiate(squarezy);
-        squarer.GetComponent<AudioSource>().volume = 0;
         int letterNumber = letterOrders[thingUpTo];
         spawnedLetters[thingUpTo].GetComponent<SpriteRenderer>().sprite = evilLetters[letterNumber];
         spawnedLetters[thingUpTo].GetComponent<letterPositioning>().isEvil = true;

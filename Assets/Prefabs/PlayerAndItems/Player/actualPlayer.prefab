@@ -529,7 +529,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   masterCooldown: 0
   abilityTypes:
-  - {fileID: 11400000, guid: 51e97f8595dda2d4fac24637585c8261, type: 2}
+  - {fileID: 11400000, guid: a02445f87f770534a9a6cd2a2058b033, type: 2}
   - {fileID: 11400000, guid: 245e9dc2f96a8b148a452d35ee626cb9, type: 2}
   - {fileID: 11400000, guid: c8d5061c08980d444ac981ed5ecb64c5, type: 2}
   coolDowns: 
@@ -649,18 +649,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 8089619415578574566}
-        m_TargetAssemblyTypeName: getItemDescription, Assembly-CSharp
-        m_MethodName: OnShoot
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
     m_ActionId: 18dbaa31-e82a-4e96-868b-143572ec8bb9
     m_ActionName: 'gameplay/shoot[/Mouse/leftButton,/XInputControllerWindows/rightTrigger]'
   - m_PersistentCalls:
@@ -707,6 +695,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: f30ce7a6-379d-4a91-a665-fd0304627deb
     m_ActionName: 'menus/nextLevel[/Keyboard/equals]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8089619415578574566}
+        m_TargetAssemblyTypeName: getItemDescription, Assembly-CSharp
+        m_MethodName: OnSelectItem
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: e3581a13-59c3-4daa-8a3b-5fbfabbd5c6d
+    m_ActionName: 'gameplay/pickItem[/Keyboard/r,/XInputControllerWindows/rightTrigger]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: keyboard
   m_DefaultActionMap: gameplay

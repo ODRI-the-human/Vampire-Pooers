@@ -73,7 +73,7 @@ public class EntityReferencerGuy : MonoBehaviour
 
     public int numVisibleWalls = 0; // This is just a little variable for looking at obstacles' onbecomevisible and stuff.
 
-
+    public Mesh defaultWeaponMesh;
 
     // Enemy shit
     public AudioClip telefragWarn;

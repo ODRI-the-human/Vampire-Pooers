@@ -244,13 +244,33 @@ public class Attack : MonoBehaviour
                             {
                                 UseAttack(abilityTypes[i], i, true, true, false, true);
                                 Destroy(chargeBar);
+                                chargeTimers[i] = 0;
                             }
                             else if (chargeTimers[i] > 0)
                             {
                                 UseAttack(abilityTypes[i], i, true, false, false, true);
                                 Destroy(chargeBar);
+                                chargeTimers[i] = 0;
 
                             }
+                        }
+                        break;
+                    case 3: // attacks that need to charge to use, like minigun.
+                        if (isHoldingAttack[i] && charges[i] > 0)
+                        {
+                            isAttacking = true;
+                            if (chargeTimers[i] < abilityTypes[i].chargeUpTime * GetCoolDownFac(i)) // Setting timers for charged attacks.
+                            {
+                                chargeTimers[i]++;
+                            }
+                            else
+                            {
+                                UseAttack(abilityTypes[i], i, true, false, false, true);
+                            }
+                        }
+                        else
+                        {
+                            chargeTimers[i] = 0;
                         }
                         break;
                 }
@@ -378,7 +398,6 @@ public class Attack : MonoBehaviour
         {
             coolDowns[abilityIndex] = Mathf.RoundToInt(abilityToUse.coolDownTime * GetCoolDownFac(abilityIndex));
             masterCooldown = Mathf.RoundToInt(abilityToUse.masterCooldownTime * GetCoolDownFac(abilityIndex));
-            chargeTimers[abilityIndex] = 0;
         }
         float additionalMult = 1f; // To add to the delay if this is an enemy and stopwatches are in use
         if (!isPlayerTeam)

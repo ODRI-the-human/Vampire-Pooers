@@ -47,6 +47,7 @@ public class checkAllLazerPositions : MonoBehaviour
         originalPosition = transform.position;
         originalDirection = new Vector3(transform.up.x, transform.up.y, 0).normalized;
         vecToMove = originalDirection;
+        transform.rotation = Quaternion.LookRotation(vecToMove) * Quaternion.Euler(0, 90, 0);
 
 
         if (owner.GetComponent<NewPlayerMovement>() != null)
@@ -414,6 +415,7 @@ public class checkAllLazerPositions : MonoBehaviour
                     break;
             }
             slimLine = true;
+            line.widthMultiplier = (gameObject.GetComponent<DealDamage>().finalDamageStat / 2 + 25) / 100;
         }
         else
         {
@@ -427,7 +429,6 @@ public class checkAllLazerPositions : MonoBehaviour
 
             if (actuallyHit) // Only enemies ever encounter this case.
             {
-                line.widthMultiplier = (gameObject.GetComponent<DealDamage>().finalDamageStat / 2 + 25) / 100;
                 owner.GetComponent<NewPlayerMovement>().moveTowardsPlayer = previousMoveToPlayer;
                 owner.GetComponent<NewPlayerMovement>().recievesKnockback = previousRecieveKnockBack;
             }

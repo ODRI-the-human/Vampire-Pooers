@@ -18,11 +18,12 @@ MonoBehaviour:
   maxCharges: 5
   masterCooldownTime: 12
   spawnDelay: 0
-  cameraPushAmount: 500
+  cameraPushAmount: 100
   alignCamPushWithDir: 1
   dirRandAmt: 0
   randomiseDirAtStart: 1
   coolDownTime: 150
+  chargeUpTime: 0
   objectsToUse:
   - {fileID: 6152856860940002557, guid: 4d23deb5981427c4a898802c4fe5738a, type: 3}
   sfx: []
@@ -37,3 +38,5 @@ MonoBehaviour:
   chargeLength: 0
   isCharged: 0
   rechargeAllShotsAfterCooldown: 1
+  dropWeight: 100
+  weaponMesh: {fileID: 0}

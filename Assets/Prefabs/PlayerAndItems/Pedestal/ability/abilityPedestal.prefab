@@ -1,0 +1,120 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1450536631608725012
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8485919643149452285}
+  - component: {fileID: -7314141912280483871}
+  - component: {fileID: 3574898951315276290}
+  - component: {fileID: 8155648704096305808}
+  m_Layer: 12
+  m_Name: abilityPedestal
+  m_TagString: item
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8485919643149452285
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1450536631608725012}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &-7314141912280483871
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1450536631608725012}
+  m_Mesh: {fileID: 0}
+--- !u!23 &3574898951315276290
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1450536631608725012}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: bc3edea3156999e47a0752c93ef4ee97, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8155648704096305808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1450536631608725012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3ea89dfb14553840926e48c83c49dd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  primaryAbilities:
+  - {fileID: 11400000, guid: b1ad5fd7c3654414aa1d75f18ac750a4, type: 2}
+  - {fileID: 11400000, guid: ec8b6bb169a55a849854ea51afa3a96d, type: 2}
+  - {fileID: 11400000, guid: 6bafc300592a30c4fa4938bb0031d053, type: 2}
+  - {fileID: 11400000, guid: 1ce8e9cbcd8e66845a1e19e56950c485, type: 2}
+  - {fileID: 11400000, guid: 65641be0a9d639c4d82b82a19f28c660, type: 2}
+  - {fileID: 11400000, guid: a02445f87f770534a9a6cd2a2058b033, type: 2}
+  - {fileID: 11400000, guid: ebe3d882e6763a648940e2b0096b7cc2, type: 2}
+  - {fileID: 11400000, guid: 51e97f8595dda2d4fac24637585c8261, type: 2}
+  - {fileID: 11400000, guid: ca35c4a16727e9b44b1a9861288cc35a, type: 2}
+  - {fileID: 11400000, guid: 962541aef6a5086469ff703beeb4c5b8, type: 2}
+  - {fileID: 11400000, guid: 245e9dc2f96a8b148a452d35ee626cb9, type: 2}
+  - {fileID: 11400000, guid: 4dfef8ee7c15d75418557dcbcdb6c60b, type: 2}
+  - {fileID: 11400000, guid: 9c74d94ceb1b687418f6a1222cf57956, type: 2}
+  secondaryAbilities:
+  - {fileID: 11400000, guid: f2b123e4cb346f44a8d942cc30aad42a, type: 2}
+  - {fileID: 11400000, guid: c8d5061c08980d444ac981ed5ecb64c5, type: 2}
+  paramsToUse: []
+  isPrimary: 1
+  overrideRandomSelection: 0
+  chosenAbility: {fileID: 0}
+  abilityWeightsSum: 0

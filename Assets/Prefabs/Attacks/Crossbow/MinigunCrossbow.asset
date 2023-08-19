@@ -9,30 +9,34 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 778e8985dac76544ea5550e93e2130a2, type: 3}
-  m_Name: CrossbowBallFunny
+  m_Script: {fileID: 11500000, guid: 625ab9e544104ba4a9e767d4a6d972eb, type: 3}
+  m_Name: MinigunCrossbow
   m_EditorClassIdentifier: 
-  name: Crossbow Ball
-  attackMode: 0
+  name: Minigun Crossbow
+  attackMode: 3
   weight: 100
-  maxCharges: 1
-  masterCooldownTime: 0
+  maxCharges: 10
+  masterCooldownTime: 2
   spawnDelay: 0
-  cameraPushAmount: 0
+  cameraPushAmount: 50
   alignCamPushWithDir: 1
   dirRandAmt: 0
   randomiseDirAtStart: 1
-  coolDownTime: 750
+  coolDownTime: 50
+  chargeUpTime: 25
   objectsToUse:
-  - {fileID: 4563701214010773671, guid: b4b5727265906df45b277f3e6fa53179, type: 3}
+  - {fileID: 6152856860940002557, guid: 4d23deb5981427c4a898802c4fe5738a, type: 3}
   sfx: []
   attackEffectsToAdd: []
-  spawnedAttackObjs: []
+  spawnedAttackObjs:
+  - {fileID: 0}
   range: 99999
-  damageMultiplier: 1
+  damageMultiplier: 0.5
   massCoeffMult: 1
   procCoeffMult: 1
   iFrameFracMult: 1
   chargeLength: 0
   isCharged: 0
-  rechargeAllShotsAfterCooldown: 0
+  rechargeAllShotsAfterCooldown: 1
+  dropWeight: 100
+  weaponMesh: {fileID: 0}

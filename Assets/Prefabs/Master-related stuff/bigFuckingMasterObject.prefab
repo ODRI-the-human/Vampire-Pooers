@@ -2004,7 +2004,7 @@ MonoBehaviour:
   normieShotAudio: {fileID: 2894936639441958211, guid: f4849f6de8b809d48a7220ff85910c8b, type: 3}
   neutralExplosion: {fileID: 2618228907162695756, guid: 7f79e2f82bb11774d8a215a10dc5e6c5, type: 3}
   camera: {fileID: 292324531604132118}
-  marcelageloo: {fileID: 7857503925817718452, guid: 7f3ca3868f23d754aa5a7782a9472ec4, type: 3}
+  marcelageloo: {fileID: 8931664151580459564, guid: 1190fa63183dd194eae1dacd823f3d36, type: 3}
   regularShotParticle: {fileID: 4986113990878371290, guid: 5251b42d6c448694c98012722de6e439, type: 3}
   empty: {fileID: 2232971130497578917, guid: dc46db39e4e70b144915e7a0652cc396, type: 3}
   batHitbox: {fileID: 2061944661215622530, guid: b3f228f4731f7a944b43ad93aa54e41f, type: 3}
@@ -2079,6 +2079,7 @@ MonoBehaviour:
   keepBestStatObj: {fileID: 5459875686069988955}
   itemsHeldVisualiser: {fileID: 8484845968839686508}
   numVisibleWalls: 0
+  defaultWeaponMesh: {fileID: 2458039309944120304, guid: f4efb05586e0dcb4498ec46d8a649140, type: 3}
   telefragWarn: {fileID: 8300000, guid: 03a018ae16185cc4e83e4ff90b1ac4ad, type: 3}
   telefragDo: {fileID: 8300000, guid: ef47f7f21edfb174d87722a143ac82ef, type: 3}
   targetWarn: {fileID: 5815860708793426789, guid: 5171e96bd872f22449431e84036bbf5f, type: 3}
