@@ -196,13 +196,13 @@ public class HPDamageDie : MonoBehaviour
                 {
                     master.GetComponent<showDamageNumbers>().showDamage(transform.position + new Vector3(0, 0, -2 - transform.position.z), damageAmount, damageType, isCrit);
                 }
-                SendMessage("OnHurtEffects");
+                gameObject.GetComponent<ItemHolder2>().OnHurts();
 
                 if (objectResponsible != null)
                 {
                     lastDamageSource = objectResponsible.GetComponent<DealDamage>().owner;
                     lastDamageSourceName = lastDamageSource.ToString();
-                    objectResponsible.SendMessage("SendRollOnHits", gameObject);
+                    lastDamageSource.GetComponent<ItemHolder2>().OnHits(gameObject, objectResponsible);
                 }
             }
         }
@@ -276,11 +276,6 @@ public class HPDamageDie : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.tag == "item")
-        {
-            perfectWaves++;
-        }
-
         if (col.gameObject.GetComponent<DealDamage>() != null)
         {
             if (col.gameObject.GetComponent<DealDamage>().onlyDamageOnce)

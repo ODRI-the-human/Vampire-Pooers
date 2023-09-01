@@ -136,7 +136,7 @@ public class DealDamage : MonoBehaviour
                 damageToPassToVictim = finalDamageStat;
             }
 
-            SendMessage("GetDamageMods");
+            damageToPassToVictim *= owner.GetComponent<ItemHolder2>().DamageMult();
 
             if (gameObject.GetComponent<explosionBONUSSCRIPTWOW>() != null)
             {

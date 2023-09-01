@@ -51,6 +51,7 @@ public class LevelUp : MonoBehaviour
         {
             gameObject.GetComponent<Healing>().Healo(25 * healMult);
         }
+        gameObject.GetComponent<ItemHolder2>().OnLevels();
     }
 
     public void GiveXP(int amount)

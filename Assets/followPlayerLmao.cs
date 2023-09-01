@@ -43,7 +43,7 @@ public class followPlayerLmao : MonoBehaviour
         Quaternion actualRotation = Quaternion.LookRotation(-vectorMan, new Vector3(0, 0, -1));
 
         transform.rotation = actualRotation;
-        transform.Rotate(0, 0, 40, Space.World);
+        transform.Rotate(30, 0, 40, Space.World);
 
         lastMoveDir = vectorMan;
     }

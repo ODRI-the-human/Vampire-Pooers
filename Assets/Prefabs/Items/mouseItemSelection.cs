@@ -21,14 +21,6 @@ public class mouseItemSelection : MonoBehaviour
         }
         Debug.Log("position: " + transform.position.ToString());//"selected pedestal: " + selectedPedestal.name);
 
-        if (selectedPedestal.GetComponent<itemPedestal>() != null)
-        {
-            selectedPedestal.GetComponent<itemPedestal>().GiveDaItem(master);
-            master.GetComponent<ItemHolder>().GiveFunny(selectedPedestal);
-        }
-        else
-        {
-            selectedPedestal.GetComponent<WeaponPedestal>().StartPickup(master);
-        }
+        selectedPedestal.GetComponent<Pedestal>().StartPickup(master);
     }
 }

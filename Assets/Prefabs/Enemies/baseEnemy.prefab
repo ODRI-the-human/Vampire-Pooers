@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5995587767610169085}
   - component: {fileID: 8105219862034842594}
   - component: {fileID: 8813250936750238906}
+  - component: {fileID: -7969083093363647916}
   - component: {fileID: 4833557093581527316}
   - component: {fileID: 3154182370111447405}
   - component: {fileID: 6287719621797760978}
@@ -170,6 +171,19 @@ MonoBehaviour:
   itemGained: 0
   noToGive: 1
   spawnedBat: {fileID: 0}
+--- !u!114 &-7969083093363647916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6100428923212637479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90f6695f6c1c15948bcc7048d7669010, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemScripts: []
 --- !u!114 &4833557093581527316
 MonoBehaviour:
   m_ObjectHideFlags: 0

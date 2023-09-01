@@ -113,6 +113,7 @@ GameObject:
   - component: {fileID: 7596469364382762940}
   - component: {fileID: 4518348393904611156}
   - component: {fileID: 7385574667278638271}
+  - component: {fileID: -4092621057135600834}
   - component: {fileID: 8706545436728507647}
   - component: {fileID: 2304901379503929912}
   - component: {fileID: 3451283441647153064}
@@ -359,6 +360,19 @@ MonoBehaviour:
   itemGained: 0
   noToGive: 1
   spawnedBat: {fileID: 0}
+--- !u!114 &-4092621057135600834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3448173853718531064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90f6695f6c1c15948bcc7048d7669010, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemScripts: []
 --- !u!212 &8706545436728507647
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -876,9 +890,33 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3448173853718531069}
     m_Modifications:
+    - target: {fileID: 105748014807491993, guid: 60144d236f99e61488c7f949bb853116, type: 3}
+      propertyPath: m_Layer
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 276014984664709872, guid: 60144d236f99e61488c7f949bb853116, type: 3}
+      propertyPath: m_Layer
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 522282692362866464, guid: 60144d236f99e61488c7f949bb853116, type: 3}
+      propertyPath: m_Layer
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 2149430808730389076, guid: 60144d236f99e61488c7f949bb853116, type: 3}
+      propertyPath: m_Layer
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 2908998416416087202, guid: 60144d236f99e61488c7f949bb853116, type: 3}
+      propertyPath: m_Layer
+      value: 28
+      objectReference: {fileID: 0}
     - target: {fileID: 3616513699099699532, guid: 60144d236f99e61488c7f949bb853116, type: 3}
       propertyPath: m_Name
       value: cringe
+      objectReference: {fileID: 0}
+    - target: {fileID: 3616513699099699532, guid: 60144d236f99e61488c7f949bb853116, type: 3}
+      propertyPath: m_Layer
+      value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 3616513699099699532, guid: 60144d236f99e61488c7f949bb853116, type: 3}
       propertyPath: m_IsActive
@@ -927,6 +965,22 @@ PrefabInstance:
     - target: {fileID: 4142080894617498614, guid: 60144d236f99e61488c7f949bb853116, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4846921511888866087, guid: 60144d236f99e61488c7f949bb853116, type: 3}
+      propertyPath: m_Layer
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 5032431507405918661, guid: 60144d236f99e61488c7f949bb853116, type: 3}
+      propertyPath: m_Layer
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 6864742279110286570, guid: 60144d236f99e61488c7f949bb853116, type: 3}
+      propertyPath: m_Layer
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 8800410815742325389, guid: 60144d236f99e61488c7f949bb853116, type: 3}
+      propertyPath: m_Layer
+      value: 28
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

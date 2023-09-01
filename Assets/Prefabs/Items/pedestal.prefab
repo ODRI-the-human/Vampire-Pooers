@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3574898951315276290}
   - component: {fileID: 8155648704096305808}
   m_Layer: 12
-  m_Name: abilityPedestal
+  m_Name: pedestal
   m_TagString: item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -96,6 +96,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3ea89dfb14553840926e48c83c49dd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weightsSum: 0
+  isItemPedestal: 0
+  items:
+  - {fileID: 11400000, guid: 20c028e2a52ba2f42b1f92d187be4f36, type: 2}
+  qual1Items: []
+  qual2Items: []
+  qual3Items: []
+  chosenItem: {fileID: 0}
   primaryAbilities:
   - {fileID: 11400000, guid: b1ad5fd7c3654414aa1d75f18ac750a4, type: 2}
   - {fileID: 11400000, guid: ec8b6bb169a55a849854ea51afa3a96d, type: 2}
@@ -117,4 +125,3 @@ MonoBehaviour:
   isPrimary: 1
   overrideRandomSelection: 0
   chosenAbility: {fileID: 0}
-  abilityWeightsSum: 0

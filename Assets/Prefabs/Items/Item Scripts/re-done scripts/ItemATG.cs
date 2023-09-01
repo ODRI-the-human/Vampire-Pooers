@@ -2,41 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemATG : MonoBehaviour
+public class ItemATG : ItemScript
 {
     public GameObject ATGMissile;
     public GameObject owner;
     float procMoment;
-    public int instances = 1;
     float pringle;
 
-    void IncreaseInstances(string name)
+    public override void AddInstance()
     {
-        if (name == this.GetType().ToString())
+        Debug.Log("instances of atg increased, pog1!");
+        instances++;
+    }
+
+    public override void RemoveInstance()
+    {
+        instances--;
+        if (instances == 0)
         {
-            instances++;
+            Destroy(this);
         }
     }
 
-    void Start()
+    public override void OnHit(GameObject victim, GameObject source)
     {
-        if (gameObject.tag == "PlayerBullet" || gameObject.tag == "Player")
-        {
-            ATGMissile = EntityReferencerGuy.Instance.ATGMissile;//MasterObject.GetComponent<EntityReferencerGuy>().ATGMissile;
-        }
-        else
-        {
-            ATGMissile = EntityReferencerGuy.Instance.ATGMissileHostile;
-        }
-
-        owner = gameObject.GetComponent<DealDamage>().owner;
-    }
-
-    void RollOnHit(GameObject[] objects)
-    {
-        GameObject victim = objects[0];
-        GameObject source = objects[1];
-
         Component[] components = gameObject.GetComponents(typeof(Component));
         int scriptIndex = System.Array.IndexOf(components, this);
 
@@ -60,8 +49,37 @@ public class ItemATG : MonoBehaviour
         }
     }
 
-    public void Undo()
+    public override void OnKill()
     {
-        Destroy(this);
+
+    }
+
+    public override void OnHurt()
+    {
+
+    }
+
+    public override void OnLevel()
+    {
+
+    }
+
+    public override float DamageMult()
+    {
+        return 1f;
+    }
+
+    void Start()
+    {
+        if (gameObject.tag == "PlayerBullet" || gameObject.tag == "Player")
+        {
+            ATGMissile = EntityReferencerGuy.Instance.ATGMissile;//MasterObject.GetComponent<EntityReferencerGuy>().ATGMissile;
+        }
+        else
+        {
+            ATGMissile = EntityReferencerGuy.Instance.ATGMissileHostile;
+        }
+
+        owner = gameObject.GetComponent<DealDamage>().owner;
     }
 }
