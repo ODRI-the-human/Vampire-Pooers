@@ -103,6 +103,27 @@ public class gunnerManagement : MonoBehaviour
                 gunner.GetComponent<Attack>().cooldownFac *= 0.9f;
             }
         }
+
+        Debug.Log("you got famileiar this is bonekrs");
+    }
+
+    public void RemoveGunner(int item)
+    {
+        for (int i = 0; i < gunners.Count; i++)
+        {
+            if (i == item)
+            {
+                if (gunners.Count > 1)
+                {
+                    GameObject gunnerAfter = gunners[i + 1];
+                    GameObject afterToFollow = gunners[i].GetComponent<familiarMovement>().toFollow;
+                }
+
+                Destroy(gunners[i]);
+                gunners.RemoveAt(i);
+                gunnerIDs.RemoveAt(i);
+            }
+        }
     }
 
     // Update is called once per frame

@@ -18,7 +18,6 @@ public abstract class FireBulletsBase : AbilityParams
         spawnedBullet.GetComponent<MeshRenderer>().material = mat;
         spawnedBullet.GetComponent<DealDamage>().owner = dealer;
         spawnedBullet.GetComponent<Rigidbody2D>().simulated = true;
-        spawnedBullet.GetComponent<ItemHolder>().itemsHeld = dealer.GetComponent<ItemHolder>().itemsHeld;
 
         spawnedBullet.GetComponent<BulletModifiers>().effectNames = effectsToAdd;
 

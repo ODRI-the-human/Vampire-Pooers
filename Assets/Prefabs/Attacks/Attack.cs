@@ -373,12 +373,12 @@ public class Attack : MonoBehaviour
 
             StartCoroutine(SpawnAttack(abilityToUse, abilityIndex, isPlayer, isCharged, overrideCooldownSetting, playSound, i));
         }
-        SendMessage("OnUseAbility", abilityIndex);
+        gameObject.GetComponent<ItemHolder2>().OnAbilityUses();
         lastAttackCharged = isCharged;
 
         if (abilityIndex == 0)
         {
-            SendMessage("OnShootEffects");
+            gameObject.GetComponent<ItemHolder2>().OnPrimaryUses();
         }
     }
 

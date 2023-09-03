@@ -11,6 +11,7 @@ public class cameraMovement : MonoBehaviour
     public Vector3 camPushVec = Vector3.zero; // This is for things that do camera shake by 'pushing' the camera in a direction
     float timeOfLastPush = 0f;
     public float shakeAmount = 0;
+    public bool shakeCamera = true;
     public bool moveCamera = true;
 
     //public GameObject LeftBorder;
@@ -96,15 +97,18 @@ public class cameraMovement : MonoBehaviour
 
     public void CameraShake(float amount, Vector3 pushDir)
     {
-        if (pushDir == Vector3.zero)
+        if (shakeCamera)
         {
-            camPushVec = amount * new Vector3(Random.value * 2 - 1, Random.value * 2 - 1, 0).normalized;
+            if (pushDir == Vector3.zero)
+            {
+                camPushVec = amount * new Vector3(Random.value * 2 - 1, Random.value * 2 - 1, 0).normalized;
+            }
+            else
+            {
+                camPushVec = pushDir;
+            }
+            oneFrameSinceCamPushHasPassed = false;
         }
-        else
-        {
-            camPushVec = pushDir;
-        }
-        oneFrameSinceCamPushHasPassed = false;
         //if (amount > shakeTimer)
         //{
         //    shakeTimer = amount;

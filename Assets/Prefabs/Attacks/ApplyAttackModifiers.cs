@@ -39,22 +39,25 @@ public class ApplyAttackModifiers : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        foreach (int effect in attackEffects)
+        if (col.gameObject.tag == "Wall")
         {
-            switch (effect)
+            GameObject owner = gameObject.GetComponent<DealDamage>().owner;
+            owner.GetComponent<ItemHolder2>().OnWallHits(col.gameObject, gameObject);
+
+            foreach (int effect in attackEffects)
             {
-                case (int)ATTACKMODIFIERS.EXPLODEONHIT: // Bullets explode on hit.
-                    exploSoin();
-                    break;
+                switch (effect)
+                {
+                    case (int)ATTACKMODIFIERS.EXPLODEONHIT: // Bullets explode on hit.
+                        exploSoin();
+                        break;
+                }
             }
         }
     }
 
-    void RollOnHit(GameObject[] gos)
+    public void ModifierOnHits(GameObject victim, GameObject owner)
     {
-        GameObject victim = gos[0];
-        GameObject dealer = gos[1];
-
         foreach (int effect in attackEffects)
         {
             switch (effect)
@@ -69,9 +72,35 @@ public class ApplyAttackModifiers : MonoBehaviour
                     victim.AddComponent<hitIfKBVecHigh>();
                     victim.GetComponent<hitIfKBVecHigh>().responsible = gameObject;
                     break;
+                case (int)ATTACKMODIFIERS.HEALONHIT:
+                    owner.GetComponent<Healing>().Healo(5);
+                    break;
             }
         }
     }
+
+    //void RollOnHit(GameObject[] gos)
+    //{
+    //    GameObject victim = gos[0];
+    //    GameObject dealer = gos[1];
+
+    //    foreach (int effect in attackEffects)
+    //    {
+    //        switch (effect)
+    //        {
+    //            case (int)ATTACKMODIFIERS.DEALLARGEKNOCKBACK: // Bullets explode on hit.
+    //                victim.GetComponent<NewPlayerMovement>().knockBackVector *= 5f;
+    //                if (gameObject.GetComponent<checkAllLazerPositions>() != null)
+    //                {
+    //                    victim.GetComponent<NewPlayerMovement>().knockBackVector = gameObject.GetComponent<DealDamage>().GetDamageAmount() * gameObject.GetComponent<checkAllLazerPositions>().vecToMove;
+    //                    //Debug.Log("knog bag: " + victim.GetComponent<NewPlayerMovement>().knockBackVector.magnitude);
+    //                }
+    //                victim.AddComponent<hitIfKBVecHigh>();
+    //                victim.GetComponent<hitIfKBVecHigh>().responsible = gameObject;
+    //                break;
+    //        }
+    //    }
+    //}
 
     // Methods for doing the various effects.
     void exploSoin()

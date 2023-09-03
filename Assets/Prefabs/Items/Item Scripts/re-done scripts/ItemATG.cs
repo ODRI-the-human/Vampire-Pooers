@@ -9,21 +9,6 @@ public class ItemATG : ItemScript
     float procMoment;
     float pringle;
 
-    public override void AddInstance()
-    {
-        Debug.Log("instances of atg increased, pog1!");
-        instances++;
-    }
-
-    public override void RemoveInstance()
-    {
-        instances--;
-        if (instances == 0)
-        {
-            Destroy(this);
-        }
-    }
-
     public override void OnHit(GameObject victim, GameObject source)
     {
         Component[] components = gameObject.GetComponents(typeof(Component));
@@ -47,26 +32,6 @@ public class ItemATG : ItemScript
                 ARSEMAN.tag = "PlayerBullet";
             }
         }
-    }
-
-    public override void OnKill()
-    {
-
-    }
-
-    public override void OnHurt()
-    {
-
-    }
-
-    public override void OnLevel()
-    {
-
-    }
-
-    public override float DamageMult()
-    {
-        return 1f;
     }
 
     void Start()

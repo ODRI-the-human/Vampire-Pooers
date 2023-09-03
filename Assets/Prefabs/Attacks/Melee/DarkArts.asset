@@ -27,7 +27,8 @@ MonoBehaviour:
   objectsToUse:
   - {fileID: 2061944661215622530, guid: 2a6acb6290a703e429ea463f4898e3c1, type: 3}
   sfx: []
-  attackEffectsToAdd: []
+  attackEffectsToAdd:
+  - HEALONHIT
   spawnedAttackObjs:
   - {fileID: 0}
   range: 3

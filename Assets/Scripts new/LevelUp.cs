@@ -34,6 +34,7 @@ public class LevelUp : MonoBehaviour
         gameObject.GetComponent<HPDamageDie>().HP += effectMult * 5f;
         gameObject.GetComponent<Attack>().cooldownFac *= 1f - effectMult * 0.03f;
         gameObject.GetComponent<NewPlayerMovement>().baseMoveSpeed += effectMult * 0.07f;
+        gameObject.GetComponent<Healing>().Healo(effectMult * 5);
 
         if (itemChestSpawn != null)
         {

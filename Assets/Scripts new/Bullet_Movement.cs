@@ -159,7 +159,7 @@ public class Bullet_Movement : MonoBehaviour
                     col.gameObject.GetComponent<dieOnContactWithBullet>().instances -= 1;
                     if (col.gameObject.GetComponent<dieOnContactWithBullet>().instances == 0)
                     {
-                        KillBullet();
+                        col.gameObject.GetComponent<dieOnContactWithBullet>().Kill();
                     }
                 }
             }

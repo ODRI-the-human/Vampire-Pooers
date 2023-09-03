@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 35789708266299417}
   - component: {fileID: -8539403832840598318}
   - component: {fileID: -2537609482680151459}
-  - component: {fileID: 7319165172531854056}
+  - component: {fileID: -7958917610634845678}
   - component: {fileID: 7014380716498838798}
   - component: {fileID: 3623181651395340044}
   m_Layer: 7
@@ -154,6 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ignoredHomings: []
   ignoredHits: []
+  ignoredObst: {fileID: 0}
   sounds:
   - {fileID: 8300000, guid: bd05329de65f072439463e8714303904, type: 3}
   - {fileID: 8300000, guid: 3bea340e057904f4398d7d2d111c93b3, type: 3}
@@ -170,7 +171,7 @@ MonoBehaviour:
   master: {fileID: 0}
   setVecToMoveAutomatically: 1
   attackMode: 0
---- !u!114 &7319165172531854056
+--- !u!114 &-7958917610634845678
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -179,14 +180,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6152856860940002557}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a77b42edf27e0ec40bdef5d44226c8e8, type: 3}
+  m_Script: {fileID: 11500000, guid: 90f6695f6c1c15948bcc7048d7669010, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemsHeld: 
-  master: {fileID: 0}
-  itemGained: 0
-  noToGive: 1
-  spawnedBat: {fileID: 0}
+  itemScripts: []
+  itemsHeld: []
 --- !u!114 &7014380716498838798
 MonoBehaviour:
   m_ObjectHideFlags: 0

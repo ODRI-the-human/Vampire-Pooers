@@ -8,11 +8,74 @@ public abstract class ItemScript : MonoBehaviour
     public GameObject[] objectsToUse;
     public AbilityParams[] abilitiesToUse;
 
-    public abstract void AddInstance(); // applies any stat changes n shit that the item needs to do; for HP, fire rate ups, and such
-    public abstract void RemoveInstance();
-    public abstract void OnHit(GameObject victim, GameObject responsible);
-    public abstract void OnKill();
-    public abstract void OnHurt();
-    public abstract void OnLevel();
-    public abstract float DamageMult(); // Called for damage mult calculations.
+    public virtual void AddInstance() // applies any stat changes n shit that the item needs to do; for HP, fire rate ups, and such
+    {
+        AddStack();
+        instances++;
+    }
+
+    public virtual void AddStack()
+    {
+
+    }
+
+    public virtual void RemoveInstance()
+    {
+        RemoveStack();
+        instances--;
+        if (instances == 0)
+        {
+            Destroy(this);
+        }
+    }
+
+    public virtual void RemoveStack()
+    {
+
+    }
+
+    public virtual void OnHit(GameObject victim, GameObject responsible)
+    {
+
+    }
+    
+    public virtual void OnWallHit(GameObject victim, GameObject responsible)
+    {
+
+    }
+    
+    public virtual void OnPrimaryUse()
+    {
+
+    }
+    
+    public virtual void OnAbilityUse()
+    {
+
+    }
+    
+    public virtual void OnDodgeEnd()
+    {
+
+    }
+
+    public virtual void OnKill()
+    {
+
+    }
+
+    public virtual void OnHurt()
+    {
+
+    }
+
+    public virtual void OnLevel()
+    {
+
+    }
+
+    public virtual float DamageMult()
+    {
+        return 1f;
+    }
 }

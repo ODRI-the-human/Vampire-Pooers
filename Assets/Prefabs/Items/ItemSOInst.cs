@@ -18,17 +18,6 @@ public class ItemSOInst : ScriptableObject
 
     public void AddItemScript(GameObject itemOwner)
     {
-        System.Type m_ScriptClass = itemScript.GetClass();
-        ItemHolder2 itemHolderScript = itemOwner.GetComponent<ItemHolder2>();
-        if (itemOwner.GetComponent(m_ScriptClass) == null)
-        {
-            itemOwner.AddComponent(m_ScriptClass);
-            ItemScript scriptToFunny = itemOwner.GetComponent(m_ScriptClass).GetComponent<ItemScript>();
-            itemHolderScript.itemScripts.Add(scriptToFunny);
-            scriptToFunny.objectsToUse = objectsUsedByItem;
-            scriptToFunny.abilitiesToUse = abilitiesUsedByItem;
-        }
-
-        (itemOwner.GetComponent(m_ScriptClass).GetComponent<ItemScript>()).AddInstance();
+        itemOwner.GetComponent<ItemHolder2>().ApplyItem(this);
     }
 }

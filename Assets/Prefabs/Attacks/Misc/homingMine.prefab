@@ -13,11 +13,11 @@ GameObject:
   - component: {fileID: 110440509597865850}
   - component: {fileID: 110440509597865849}
   - component: {fileID: -3033583009772547652}
-  - component: {fileID: 8031604352272101920}
   - component: {fileID: 5716069322335169520}
   - component: {fileID: 2322724339281642898}
   - component: {fileID: -1529151102796488646}
   - component: {fileID: -8445504377402361836}
+  - component: {fileID: 4108981216123024228}
   m_Layer: 18
   m_Name: homingMine
   m_TagString: enemyBullet
@@ -156,23 +156,6 @@ MonoBehaviour:
   damageToPassToVictim: 0
   abilityIndex: 0
   abilityType: {fileID: 0}
---- !u!114 &8031604352272101920
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 110440509597865848}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a77b42edf27e0ec40bdef5d44226c8e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemsHeld: 
-  master: {fileID: 0}
-  itemGained: 0
-  noToGive: 1
-  spawnedBat: {fileID: 0}
 --- !u!58 &5716069322335169520
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -258,6 +241,7 @@ MonoBehaviour:
   lastDamageSourceName: 
   makeKillSound: 1
   showDamageNumber: 1
+  makeHurtSound: 1
   damageReduction: 0
   damageDiv: 1
   perfectWaves: 0
@@ -277,3 +261,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effectNames: []
   attackEffects: 
+--- !u!114 &4108981216123024228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110440509597865848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90f6695f6c1c15948bcc7048d7669010, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemScripts: []
+  itemsHeld: []

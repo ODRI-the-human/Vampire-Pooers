@@ -303,6 +303,7 @@ MonoBehaviour:
   players: []
   camPushVec: {x: 0, y: 0, z: 0}
   shakeAmount: 0
+  shakeCamera: 0
   moveCamera: 1
   xBound: 0
   yBound: 0

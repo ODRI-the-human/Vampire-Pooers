@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f7220a510c80f646bcb2c12786c2936, type: 3}
+  m_Name: ItemBERSERK
+  m_EditorClassIdentifier: 
+  rarity: 0
+  objectsUsedByItem: []
+  abilitiesUsedByItem: []
+  addToProjectiles: 0
+  itemScript: {fileID: 11500000, guid: 8619db9208c4ae5498d7145f804b92a7, type: 3}
+  itemMesh: {fileID: 0}
+  name: Berserk
+  description: On even level-ups, briefly gain a fast melee weapon that heals 5HP
+    per hit.
+  flavourText: Tinted Samson

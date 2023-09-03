@@ -112,7 +112,6 @@ GameObject:
   - component: {fileID: 2780488846903510234}
   - component: {fileID: 7596469364382762940}
   - component: {fileID: 4518348393904611156}
-  - component: {fileID: 7385574667278638271}
   - component: {fileID: -4092621057135600834}
   - component: {fileID: 8706545436728507647}
   - component: {fileID: 2304901379503929912}
@@ -343,23 +342,6 @@ MonoBehaviour:
   damageToPassToVictim: 0
   abilityIndex: 0
   abilityType: {fileID: 0}
---- !u!114 &7385574667278638271
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3448173853718531064}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a77b42edf27e0ec40bdef5d44226c8e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemsHeld: 
-  master: {fileID: 0}
-  itemGained: 0
-  noToGive: 1
-  spawnedBat: {fileID: 0}
 --- !u!114 &-4092621057135600834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -373,6 +355,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemScripts: []
+  itemsHeld: []
 --- !u!212 &8706545436728507647
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -25,16 +25,19 @@ public class dieOnContactWithBullet : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
+    public void Kill()
     {
-        if (master == null)
-        {
-            Destroy(gameObject);
-        }
+        Destroy(master);
+        Destroy(gameObject);
     }
 
     void Update()
     {
         transform.position = master.transform.position;
+
+        if (master == null)
+        {
+            Destroy(gameObject);
+        }
     }
 }

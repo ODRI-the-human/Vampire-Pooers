@@ -17,20 +17,20 @@ public class giveEnemySpecificItem : MonoBehaviour
 
     void GiveTheDamnItems()
     {
-        List<int> fuckedItems = new List<int>();
-        foreach (int item in gameObject.GetComponent<ItemHolder>().itemsHeld)
-        {
-            fuckedItems.Add(item);
-        }
+        //List<int> fuckedItems = new List<int>();
+        //foreach (int item in gameObject.GetComponent<ItemHolder>().itemsHeld)
+        //{
+        //    fuckedItems.Add(item);
+        //}
 
-        foreach (string name in itemNameToAdd)
-        {
-            int itemToAdd = (int)Enum.Parse(typeof(ITEMLIST), name, false);
-            fuckedItems.Add(itemToAdd);
-            gameObject.GetComponent<ItemHolder>().itemGained = itemToAdd;
-            gameObject.GetComponent<ItemHolder>().ApplyItems();
-        }
+        //foreach (string name in itemNameToAdd)
+        //{
+        //    int itemToAdd = (int)Enum.Parse(typeof(ITEMLIST), name, false);
+        //    fuckedItems.Add(itemToAdd);
+        //    gameObject.GetComponent<ItemHolder>().itemGained = itemToAdd;
+        //    gameObject.GetComponent<ItemHolder>().ApplyItems();
+        //}
 
-        gameObject.GetComponent<ItemHolder>().itemsHeld = fuckedItems;
+        //gameObject.GetComponent<ItemHolder>().itemsHeld = fuckedItems;
     }
 }

@@ -196,13 +196,22 @@ public class HPDamageDie : MonoBehaviour
                 {
                     master.GetComponent<showDamageNumbers>().showDamage(transform.position + new Vector3(0, 0, -2 - transform.position.z), damageAmount, damageType, isCrit);
                 }
-                gameObject.GetComponent<ItemHolder2>().OnHurts();
 
-                if (objectResponsible != null)
+                if (gameObject.GetComponent<ItemHolder2>() != null) // Only does the following if it's an actual player or enemy or such (no rocks allowed)
                 {
-                    lastDamageSource = objectResponsible.GetComponent<DealDamage>().owner;
-                    lastDamageSourceName = lastDamageSource.ToString();
-                    lastDamageSource.GetComponent<ItemHolder2>().OnHits(gameObject, objectResponsible);
+                    gameObject.GetComponent<ItemHolder2>().OnHurts();
+                    if (objectResponsible != null)
+                    {
+                        lastDamageSource = objectResponsible.GetComponent<DealDamage>().owner;
+                        lastDamageSourceName = lastDamageSource.ToString();
+                        lastDamageSource.GetComponent<ItemHolder2>().OnHits(gameObject, objectResponsible);
+                        objectResponsible.GetComponent<ItemHolder2>().OnHits(gameObject, objectResponsible);
+
+                        if (objectResponsible.GetComponent<ApplyAttackModifiers>() != null)
+                        {
+                            objectResponsible.GetComponent<ApplyAttackModifiers>().ModifierOnHits(gameObject, objectResponsible.GetComponent<DealDamage>().owner);
+                        }
+                    }
                 }
             }
         }

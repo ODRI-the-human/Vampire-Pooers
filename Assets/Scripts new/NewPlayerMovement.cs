@@ -207,6 +207,8 @@ public class NewPlayerMovement : MonoBehaviour
                     gameObject.GetComponent<HPDamageDie>().iFrames = 10;
                     break;
             }
+
+            gameObject.GetComponent<ItemHolder2>().OnDodgeEnds();
         }
 
         if (slowTimer == 0)

@@ -90,10 +90,13 @@ public abstract class AbilityParams : ScriptableObject
             spawnedAttackObjs[i].tag = tag;
             spawnedAttackObjs[i].layer = layer;
 
-            if (spawnedAttackObjs[i].GetComponent<ItemHolder>() != null)
+            if (spawnedAttackObjs[i].GetComponent<ItemHolder2>() != null)
             {
-                spawnedAttackObjs[i].GetComponent<ItemHolder>().itemsHeld = dealer.GetComponent<ItemHolder>().itemsHeld;
-
+                spawnedAttackObjs[i].GetComponent<ItemHolder2>().itemsHeldTransferred = new ItemSOInst[dealer.GetComponent<ItemHolder2>().itemsHeld.Count];
+                for (int j = 0; j < dealer.GetComponent<ItemHolder2>().itemsHeld.Count; j++)
+                {
+                    spawnedAttackObjs[i].GetComponent<ItemHolder2>().itemsHeldTransferred[j] = dealer.GetComponent<ItemHolder2>().itemsHeld[j];
+                }
             }
             
             if (spawnedAttackObjs[i].GetComponent<ApplyAttackModifiers>() != null)

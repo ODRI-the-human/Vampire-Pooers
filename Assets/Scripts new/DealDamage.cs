@@ -130,13 +130,13 @@ public class DealDamage : MonoBehaviour
                 }
 
                 damageToPassToVictim = damageBase * finalDamageMult * critMult;
+                damageToPassToVictim *= owner.GetComponent<ItemHolder2>().DamageMult();
+                damageToPassToVictim *= gameObject.GetComponent<ItemHolder2>().DamageMult();
             }
             else
             {
                 damageToPassToVictim = finalDamageStat;
             }
-
-            damageToPassToVictim *= owner.GetComponent<ItemHolder2>().DamageMult();
 
             if (gameObject.GetComponent<explosionBONUSSCRIPTWOW>() != null)
             {
