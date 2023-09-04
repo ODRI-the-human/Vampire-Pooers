@@ -89,10 +89,11 @@ public class gunnerManagement : MonoBehaviour
                     gunner.GetComponent<DealDamage>().finalDamageMult = 0.3f;
                     break;
             }
-        
+
+            gunner.GetComponent<ItemHolder2>().itemsHeldTransferred = new ItemSOInst[numHomingBonuses];
             for (int i = 0; i < numHomingBonuses; i++)
             {
-                gunner.GetComponent<ItemHolder>().itemsHeld.Add((int)ITEMLIST.HOMING);
+                gunner.GetComponent<ItemHolder2>().itemsHeldTransferred[i] = EntityReferencerGuy.Instance.itemHoming;
             }
                 
             gunner.GetComponent<DealDamage>().finalDamageMult *= 1 + 0.5f * numDamageBonuses;

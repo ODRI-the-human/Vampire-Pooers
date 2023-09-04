@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemAUTOFAMILIAR : ItemScript
+public class ItemHOMINGFAMILIAR : ItemScript
 {
     public override void AddStack()
     {
@@ -10,11 +10,11 @@ public class ItemAUTOFAMILIAR : ItemScript
         {
             gameObject.AddComponent<gunnerManagement>();
         }
-        gameObject.GetComponent<gunnerManagement>().AddNew((int)ITEMLIST.AUTOFAMILIAR);
+        gameObject.GetComponent<gunnerManagement>().AddNew((int)ITEMLIST.HOMINGFAMILIAR);
     }
 
     public override void RemoveStack()
     {
-        gameObject.GetComponent<gunnerManagement>().RemoveGunner((int)ITEMLIST.AUTOFAMILIAR);
+        gameObject.GetComponent<gunnerManagement>().RemoveGunner((int)ITEMLIST.HOMINGFAMILIAR);
     }
 }

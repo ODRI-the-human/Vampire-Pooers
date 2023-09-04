@@ -6,7 +6,7 @@ public class marcelFunny : MonoBehaviour
 {
     public Sprite[] niceLetters;
     public Sprite[] evilLetters;
-    public int[] letterOrders = new int[] { 0, 1, 2, 3, 4, 5, 1, 6, 4, 5, 7, 7 };
+    public int[] letterOrders = new int[] { 0, 1, 2, 3, 4, 5, 1, 6, 4, 5, 7, 7, 0 };
     public string[] keyThings = new string[] { "Marcel M", "Marcel A", "Marcel R", "Marcel C", "Marcel E", "Marcel L", "Marcel G", "Marcel O" };
     string nextButtonName;
     public List<GameObject> spawnedLetters = new List<GameObject>();

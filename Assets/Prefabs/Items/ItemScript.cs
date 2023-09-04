@@ -10,8 +10,8 @@ public abstract class ItemScript : MonoBehaviour
 
     public virtual void AddInstance() // applies any stat changes n shit that the item needs to do; for HP, fire rate ups, and such
     {
-        AddStack();
         instances++;
+        AddStack();
     }
 
     public virtual void AddStack()
@@ -21,12 +21,12 @@ public abstract class ItemScript : MonoBehaviour
 
     public virtual void RemoveInstance()
     {
-        RemoveStack();
         instances--;
         if (instances == 0)
         {
             Destroy(this);
         }
+        RemoveStack();
     }
 
     public virtual void RemoveStack()
@@ -49,7 +49,7 @@ public abstract class ItemScript : MonoBehaviour
 
     }
     
-    public virtual void OnAbilityUse()
+    public virtual void OnAbilityUse(int abilityIndex)
     {
 
     }
@@ -59,7 +59,7 @@ public abstract class ItemScript : MonoBehaviour
 
     }
 
-    public virtual void OnKill()
+    public virtual void OnKill(GameObject victim)
     {
 
     }
@@ -70,6 +70,11 @@ public abstract class ItemScript : MonoBehaviour
     }
 
     public virtual void OnLevel()
+    {
+
+    }
+    
+    public virtual void OnXPPickup()
     {
 
     }

@@ -34,7 +34,7 @@ public class ItemBERSERK : ItemScript
         }
     }
 
-    public override void OnKill()
+    public override void OnKill(GameObject victim)
     {
         if (isActive)
         {

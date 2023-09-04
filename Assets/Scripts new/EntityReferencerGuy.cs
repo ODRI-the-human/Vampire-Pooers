@@ -94,6 +94,8 @@ public class EntityReferencerGuy : MonoBehaviour
     public AbilityParams daggerThrow;
     public AbilityParams berserkAttack;
 
+    public ItemSOInst itemHoming;
+
 
 
 

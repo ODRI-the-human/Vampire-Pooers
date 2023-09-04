@@ -219,15 +219,10 @@ public class HPDamageDie : MonoBehaviour
         if (HP <= 0)
         {
             SendMessage("ApplyOwnOnDeaths");
-            if (lastDamageSource != null && gameObject.tag == "Hostile") // otherwise it gets very funny
+            if (lastDamageSource != null) // otherwise it gets very funny
             {
-                EntityReferencerGuy.Instance.GameManager.GetComponent<Director>().OnEnemiesKilled();
-                lastDamageSource.SendMessage("ApplyItemOnDeaths", gameObject); // Calls the on-kill effects on the object responsible for the kill.
-            }
-
-            if (gameObject.tag == "Player")
-            {
-                EntityReferencerGuy.Instance.master.SendMessage("ApplyItemOnDeaths", gameObject); // Calls the on-kill effects on the object responsible for the kill.
+                //EntityReferencerGuy.Instance.GameManager.GetComponent<Director>().OnEnemiesKilled();
+                lastDamageSource.GetComponent<ItemHolder2>().OnKills(gameObject);
             }
 
             //gameObject.GetComponent<Attack>().bulletPool.Clear();

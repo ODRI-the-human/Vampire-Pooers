@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemREROLL : MonoBehaviour
+public class ItemREROLL : ItemScript
 {
     public List<int> newItems = new List<int>();
-    public int instances = 1;
     GameObject master;
     GameObject guy;
 

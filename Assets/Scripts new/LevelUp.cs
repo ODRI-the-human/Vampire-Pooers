@@ -32,6 +32,7 @@ public class LevelUp : MonoBehaviour
     {
         gameObject.GetComponent<HPDamageDie>().MaxHP += effectMult * 5f;
         gameObject.GetComponent<HPDamageDie>().HP += effectMult * 5f;
+        gameObject.GetComponent<HPDamageDie>().perfectWaves++;
         gameObject.GetComponent<Attack>().cooldownFac *= 1f - effectMult * 0.03f;
         gameObject.GetComponent<NewPlayerMovement>().baseMoveSpeed += effectMult * 0.07f;
         gameObject.GetComponent<Healing>().Healo(effectMult * 5);
@@ -68,6 +69,7 @@ public class LevelUp : MonoBehaviour
     {
         if (col.gameObject.tag == "XP")
         {
+            gameObject.GetComponent<ItemHolder2>().OnXPPickups();
             XP += Mathf.RoundToInt(10 * xpMult);
             Instantiate(PlayerXPAudio);
         }

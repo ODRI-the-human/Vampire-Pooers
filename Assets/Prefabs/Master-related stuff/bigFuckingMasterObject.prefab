@@ -2086,6 +2086,7 @@ MonoBehaviour:
   targetWarn: {fileID: 5815860708793426789, guid: 5171e96bd872f22449431e84036bbf5f, type: 3}
   daggerThrow: {fileID: 11400000, guid: 6b07d56638725614994273219689accd, type: 2}
   berserkAttack: {fileID: 11400000, guid: 8b211c6db3f2f9a4daabb416cc641c4f, type: 2}
+  itemHoming: {fileID: 11400000, guid: a4778279e8e52f64691a923466f0a37c, type: 2}
 --- !u!114 &179530921809487071
 MonoBehaviour:
   m_ObjectHideFlags: 0

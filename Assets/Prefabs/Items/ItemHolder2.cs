@@ -68,11 +68,11 @@ public class ItemHolder2 : MonoBehaviour
         }
     }
     
-    public void OnAbilityUses()
+    public void OnAbilityUses(int abilityIndex)
     {
         foreach (ItemScript item in itemScripts)
         {
-            item.OnAbilityUse();
+            item.OnAbilityUse(abilityIndex);
         }
     }
     
@@ -84,11 +84,11 @@ public class ItemHolder2 : MonoBehaviour
         }
     }
 
-    public void OnKills()
+    public void OnKills(GameObject victim)
     {
         foreach (ItemScript item in itemScripts)
         {
-            item.OnKill();
+            item.OnKill(victim);
         }
     }
 
@@ -105,6 +105,14 @@ public class ItemHolder2 : MonoBehaviour
         foreach (ItemScript item in itemScripts)
         {
             item.OnLevel();
+        }
+    }
+    
+    public void OnXPPickups()
+    {
+        foreach (ItemScript item in itemScripts)
+        {
+            item.OnXPPickup();
         }
     }
 
