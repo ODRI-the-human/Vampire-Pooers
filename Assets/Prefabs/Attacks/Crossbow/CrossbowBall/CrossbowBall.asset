@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: CrossbowBall
   m_EditorClassIdentifier: 
   name: Crossbow Ball
+  description: Fire a Max Buggins that fires bolts around him for a few seconds.
+  flavourText: 
   attackMode: 0
   weight: 100
   maxCharges: 1

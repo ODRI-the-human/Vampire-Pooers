@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: CrossBowStandard
   m_EditorClassIdentifier: 
   name: Crossbow
+  description: Shoots high damage bolts. Charge up to deal large knockback to enemies
+    and 2x chance to proc items.
+  flavourText: 
   attackMode: 2
   weight: 100
   maxCharges: 1

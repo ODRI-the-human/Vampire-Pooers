@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Minigun
   m_EditorClassIdentifier: 
   name: Minigun
+  description: Inaccurately fires low damage bullets VERY quickly. Has a brief charge
+    up time.
   attackMode: 3
   weight: 100
   maxCharges: 256
@@ -39,5 +41,7 @@ MonoBehaviour:
   chargeLength: 0
   isCharged: 0
   rechargeAllShotsAfterCooldown: 1
+  dropWeight: 100
+  weaponMesh: {fileID: 0}
   effectsToAdd: []
   defaultSpeed: 8

@@ -6,6 +6,8 @@ using UnityEngine;
 public abstract class AbilityParams : ScriptableObject
 {
     public string name;
+    public string description;
+    public string flavourText;
     public int attackMode = 0; // Effects the mechanics of actually using the attack. 0 = full auto, 1 = not full auto, 2 = chargeable attack, 3 = charge up, then auto once charged.
     public int weight = 100;
     public int maxCharges = 1;

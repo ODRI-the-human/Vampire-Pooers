@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09020ebaf5687344b9b24509207c17bb, type: 3}
   m_Name: LightningShot
   m_EditorClassIdentifier: 
-  name: LightningShot
+  name: Lightning Rifle
+  description: Shoot lightning. Medium damage, infinite piercing, slightly longer
+    reload.
+  flavourText: 
   attackMode: 1
   weight: 100
   maxCharges: 1

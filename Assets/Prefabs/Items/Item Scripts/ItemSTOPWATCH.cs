@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemSTOPWATCH : MonoBehaviour
+public class ItemSTOPWATCH : ItemScript
 {
     float amountLol = 1.2f;
 
-    void Start()
+    public override void AddStack()
     {
         if (gameObject.tag == "Player")
         {
@@ -18,7 +18,7 @@ public class ItemSTOPWATCH : MonoBehaviour
         }
     }
 
-    public void Undo()
+    public override void RemoveStack()
     {
         if (gameObject.tag == "Player")
         {
@@ -28,6 +28,5 @@ public class ItemSTOPWATCH : MonoBehaviour
         {
             EntityReferencerGuy.Instance.stopWatchDebuffAmt *= amountLol;
         }
-        Destroy(this);
     }
 }

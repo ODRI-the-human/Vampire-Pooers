@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: ChestSpawn
   m_EditorClassIdentifier: 
   name: Chest Spawn
+  description: Spawn an item chest.
+  flavourText: 
   attackMode: 0
   weight: 100
   maxCharges: 1
@@ -23,6 +25,7 @@ MonoBehaviour:
   dirRandAmt: 0
   randomiseDirAtStart: 1
   coolDownTime: 250
+  chargeUpTime: 0
   objectsToUse:
   - {fileID: 4815995352738192273, guid: 812fb0ecd5501fb40a1997d6b171a287, type: 3}
   sfx: []
@@ -37,3 +40,5 @@ MonoBehaviour:
   chargeLength: 0
   isCharged: 0
   rechargeAllShotsAfterCooldown: 0
+  dropWeight: 100
+  weaponMesh: {fileID: 0}

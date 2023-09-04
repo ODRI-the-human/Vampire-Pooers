@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: AutoCrossbow
   m_EditorClassIdentifier: 
   name: Auto Crossbow
+  description: Automatic, shoots high damage bolts.
+  flavourText: 
   attackMode: 0
   weight: 100
   maxCharges: 5

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemSPLIT : MonoBehaviour
+public class ItemSPLIT : ItemScript
 {
     Vector2 ShotVector;
     Rigidbody2D bulletRB;
@@ -10,17 +10,8 @@ public class ItemSPLIT : MonoBehaviour
     GameObject ignoredColObject; // When an attack splits, the split shots have the victim of the split set as this, and the nocollision between the split shots and this is removed.
     float speed;
     public bool canSplit = true;
-    public int instances = 1;
     public AbilityParams weaponToUse;
     //GameObject Buuleter;
-
-    void IncreaseInstances(string name)
-    {
-        if (name == this.GetType().ToString())
-        {
-            instances++;
-        }
-    }
 
     void Start()
     {
@@ -48,11 +39,10 @@ public class ItemSPLIT : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void RollOnHit(GameObject[] gameObjects)
+    public override void OnHit(GameObject victim, GameObject sussy)
     {
         if (canSplit)
         {
-            GameObject victim = gameObjects[0];
             //AbilityParams weaponToUse = owner.GetComponent<Attack>().abilityTypes[gameObject.GetComponent<DealDamage>().abilityIndex];
             for (int i = 0; i < 3 * instances; i++)
             {
@@ -79,21 +69,21 @@ public class ItemSPLIT : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (!canSplit)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            if (collision.gameObject.tag != "Wall")
-            {
-                GameObject[] grobules = new GameObject[] { collision.gameObject, gameObject };
-                RollOnHit(grobules);
-            }
-        }
-    }
+    //void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (!canSplit)
+    //    {
+    //        Destroy(gameObject);
+    //    }
+    //    else
+    //    {
+    //        if (collision.gameObject.tag != "Wall")
+    //        {
+    //            GameObject[] grobules = new GameObject[] { collision.gameObject, gameObject };
+    //            RollOnHit(grobules);
+    //        }
+    //    }
+    //}
 
     public void Undo()
     {

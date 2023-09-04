@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 625ab9e544104ba4a9e767d4a6d972eb, type: 3}
   m_Name: MinigunCrossbow
   m_EditorClassIdentifier: 
-  name: Minigun Crossbow
+  name: Crossbow Minigun
+  description: Quickly shoots up to 10 bolts. Long reload time.
+  flavourText: 
   attackMode: 3
   weight: 100
   maxCharges: 10

@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Bat
   m_EditorClassIdentifier: 
   name: Bat
+  description: Melee. Charged shots give hit projectiles your attack modifiers.
+  flavourText: 
   attackMode: 2
   weight: 100
   maxCharges: 1

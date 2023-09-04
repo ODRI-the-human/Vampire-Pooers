@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de93251bb5bf5654d8bb86880fec8668, type: 3}
   m_Name: BulletsStandard
   m_EditorClassIdentifier: 
-  name: Normal Shot
+  name: Normie Bullets
+  description: Regular, normal bullets. Jesus fucking Christ.
   attackMode: 0
   weight: 100
   maxCharges: 1
@@ -23,6 +24,7 @@ MonoBehaviour:
   dirRandAmt: 0
   randomiseDirAtStart: 1
   coolDownTime: 25
+  chargeUpTime: 0
   objectsToUse:
   - {fileID: 4255455733749829593, guid: 27160d46bf5b97a4898af82130ae1a42, type: 3}
   sfx:
@@ -38,5 +40,7 @@ MonoBehaviour:
   chargeLength: 0
   isCharged: 0
   rechargeAllShotsAfterCooldown: 1
+  dropWeight: 100
+  weaponMesh: {fileID: 0}
   effectsToAdd: []
   defaultSpeed: 8

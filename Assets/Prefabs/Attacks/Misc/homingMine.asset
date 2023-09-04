@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e342c2a1446b77f4ebaf54ea34879fce, type: 3}
   m_Name: homingMine
   m_EditorClassIdentifier: 
-  name: homingMine
+  name: Homing Mine
+  description: Fires a slow-moving homing mine that targets and explodes on enemies.
+  flavourText: 
   attackMode: 0
   weight: 100
   maxCharges: 1

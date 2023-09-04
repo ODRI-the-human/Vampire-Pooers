@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemSAWSHOT : MonoBehaviour
+public class ItemSAWSHOT : ItemScript
 {
-    public int instances = 1;
     int timer = 0;
     public Vector3 bulletOffset = new Vector3(0, 0, 0);
     public GameObject guyLatchedTo;
@@ -13,14 +12,6 @@ public class ItemSAWSHOT : MonoBehaviour
     public bool isAProc = false;
 
     public GameObject SawShotVisual;
-
-    void IncreaseInstances(string name)
-    {
-        if (name == this.GetType().ToString())
-        {
-            instances++;
-        }
-    }
 
     // Start is called before the first frame update
     void Start()
@@ -37,29 +28,16 @@ public class ItemSAWSHOT : MonoBehaviour
             if (gameObject.GetComponent<checkAllLazerPositions>() == null && gameObject.GetComponent<meleeGeneral>() == null)
             {
                 gameObject.GetComponent<MeshFilter>().mesh = EntityReferencerGuy.Instance.saw;
-                gameObject.GetComponent<Bullet_Movement>().piercesLeft += 1;
+                //gameObject.GetComponent<Bullet_Movement>().piercesLeft += 1;
             }
 
             isAProc = true;
         }
     }
 
-    public void EndOfShotRolls()
+
+    public override void OnHit(GameObject enemo, GameObject shmenemo)
     {
-        if (isAProc && (gameObject.GetComponent<checkAllLazerPositions>() == null && gameObject.GetComponent<meleeGeneral>() == null))
-        {
-            gameObject.GetComponent<MeshFilter>().mesh = EntityReferencerGuy.Instance.bullet;
-            gameObject.GetComponent<Bullet_Movement>().piercesLeft -= 1;
-        }
-
-        isAProc = false;
-    }
-
-
-    void RollOnHit(GameObject[] objects)
-    {
-        GameObject enemo = objects[0];
-
         if (isAProc)
         {
             GameObject Poop = Instantiate(EntityReferencerGuy.Instance.sawVisual, new Vector3(-9999, 9999), Quaternion.Euler(0, 0, 0));
@@ -80,7 +58,7 @@ public class ItemSAWSHOT : MonoBehaviour
             Poop.GetComponent<SawRotation>().guyLatchedTo = enemo;
             Poop.GetComponent<SawRotation>().advanceTimer = true;
             Poop.GetComponent<SawRotation>().bulletOffset = 0.5f * (transform.position - (Poop.GetComponent<SawRotation>().guyLatchedTo).transform.position).normalized;
-            //Poop.AddComponent<SawShotCreep>();
+            Poop.AddComponent<SawShotCreep>();
 
             GameObject owner = gameObject.GetComponent<DealDamage>().owner;
             Poop.GetComponent<DealDamage>().owner = owner;
@@ -89,15 +67,5 @@ public class ItemSAWSHOT : MonoBehaviour
             //    owner.GetComponent<Attack>().bulletPool.Release(gameObject);
             //}
         }
-    }
-
-    //void OnCollisionEnter2D(Collision2D col)
-    //{
-    //    RollOnHits(col.gameObject);
-    //}
-
-    void Undo()
-    {
-        Destroy(this);
     }
 }

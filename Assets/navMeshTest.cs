@@ -28,7 +28,7 @@ public class navMeshTest : MonoBehaviour
     {
         if (gameObject.GetComponent<NewPlayerMovement>().moveTowardsPlayer)
         {
-            agent.speed = gameObject.GetComponent<NewPlayerMovement>().currentMoveSpeed;
+            agent.speed = gameObject.GetComponent<NewPlayerMovement>().currentMoveSpeed / EntityReferencerGuy.Instance.stopWatchDebuffAmt;
         }
         else
         {

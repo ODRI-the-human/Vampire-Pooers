@@ -43,6 +43,18 @@ public class ChestThings : MonoBehaviour
         {
             pedestalInstances[i] = Instantiate(pedestalObj, transform.position + new Vector3(2, 0, 0) * (-1f + i) - new Vector3(0, 0, 1), Quaternion.identity);
             pedestalInstances[i].transform.SetParent(transform);
+            pedestalInstances[i].GetComponent<Pedestal>().doPickAutomatically = false;
+            pedestalInstances[i].GetComponent<Pedestal>().isItemPedestal = true;
+            pedestalInstances[i].GetComponent<Pedestal>().DoStartThings();
+        }
+
+        // Ensures the items are all different.
+        for (int i = 1; i < 3; i++)
+        {
+            while (pedestalInstances[i].GetComponent<Pedestal>().chosenItem == pedestalInstances[i - 1].GetComponent<Pedestal>().chosenItem)
+            {
+                pedestalInstances[i].GetComponent<Pedestal>().DoStartThings();
+            }
         }
     }
 

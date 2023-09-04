@@ -2,27 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemORBITAL1 : MonoBehaviour
+public class ItemORBITAL1 : ItemScript
 {
     GameObject orbSkothos;
-    public int instances = 1;
-
-    void IncreaseInstances(string name)
-    {
-        if (name == this.GetType().ToString())
-        {
-            instances++;
-        }
-    }
+    public GameObject[] spawnedOrbs = new GameObject[0];
 
     //void Start()
     //{
     //    SpawnGaries();
     //}
 
-    void SpawnGaries()
+    public override void AddStack()
     {
         Debug.Log("spawned orbz");
+        foreach (GameObject item in spawnedOrbs)
+        {
+            Destroy(item);
+        }
+        spawnedOrbs = new GameObject[instances];
 
         if (gameObject.tag == "Player" || gameObject.tag == "Hostile")
         {
@@ -46,35 +43,13 @@ public class ItemORBITAL1 : MonoBehaviour
                     int LayerEnemy = LayerMask.NameToLayer("HitPlayerBulletsAndPlayer");
                     newObject.layer = LayerEnemy;
                 }
+                spawnedOrbs[i] = newObject;
             }
         }
     }
 
-    void itemsAdded(bool isPassive)
+    public override void RemoveStack()
     {
-        GameObject[] orboes = GameObject.FindGameObjectsWithTag("PlayerBullet");
-        foreach (GameObject friend in orboes)
-        {
-            if (friend.GetComponent<OrbitalMovement>() != null)
-            {
-                Destroy(friend);
-            }
-        }
-
-        SpawnGaries();
-    }
-
-    public void Undo()
-    {
-        GameObject[] orboes = GameObject.FindGameObjectsWithTag("PlayerBullet");
-        foreach (GameObject friend in orboes)
-        {
-            if (friend.GetComponent<OrbitalMovement>() != null)
-            {
-                Destroy(friend);
-            }
-        }
-
-        Destroy(this);
+        AddStack();
     }
 }

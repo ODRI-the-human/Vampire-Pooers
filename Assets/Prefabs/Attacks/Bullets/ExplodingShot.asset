@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de93251bb5bf5654d8bb86880fec8668, type: 3}
   m_Name: ExplodingShot
   m_EditorClassIdentifier: 
-  name: ExplodingShot
+  name: Grenade Launcher
+  description: Fires high-damage bullets that slow over time and explode on hit.
   attackMode: 0
   weight: 100
   maxCharges: 3

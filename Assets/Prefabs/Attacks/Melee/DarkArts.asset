@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a46bff4be9eef254baec4ba39407d6de, type: 3}
   m_Name: DarkArts
   m_EditorClassIdentifier: 
-  name: DarkArts
+  name: Dark Arts
+  description: Fast melee, heals on hit.
+  flavourText: 
   attackMode: 0
   weight: 100
   maxCharges: 1

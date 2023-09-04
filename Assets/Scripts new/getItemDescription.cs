@@ -18,9 +18,10 @@ public class getItemDescription : MonoBehaviour
     {
         position = gameObject.GetComponent<Attack>().reticle.transform.position; //new Vector3(Camera.main.ScreenToWorldPoint(context.ReadValue<Vector2>()).x, Camera.main.ScreenToWorldPoint(context.ReadValue<Vector2>()).y, 0);
         position = new Vector3(position.x, position.y, 0);
-        if (itemsExist > 0)
+
+        GameObject[] gos = GameObject.FindGameObjectsWithTag("item");
+        if (gos.Length > 0)
         {
-            GameObject[] gos = GameObject.FindGameObjectsWithTag("item");
             GameObject closest = null;
             float distance = Mathf.Infinity;
             foreach (GameObject go in gos)
@@ -34,9 +35,16 @@ public class getItemDescription : MonoBehaviour
                 }
             }
 
-            itemDescription = closest.GetComponent<itemPedestal>().description;
-            curseDescription = closest.GetComponent<itemPedestal>().curseDescription;
-
+            if (closest.GetComponent<Pedestal>().isItemPedestal)
+            {
+                ItemSOInst item = closest.GetComponent<Pedestal>().chosenItem;
+                itemDescription = item.name + ": " + item.description;
+            }
+            else
+            {
+                AbilityParams item = closest.GetComponent<Pedestal>().chosenAbility;
+                itemDescription = item.name + ": " + item.description;
+            }
         }
         else
         {

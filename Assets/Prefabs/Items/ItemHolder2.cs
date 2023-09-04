@@ -35,13 +35,18 @@ public class ItemHolder2 : MonoBehaviour
         noToGive = 1;
     }
 
-    void Start()
+    public void ApplyAll() // Applies all items.
     {
         foreach (ItemSOInst item in itemsHeldTransferred)
         {
             ApplyItem(item);
             Debug.Log("application of item");
         }
+    }
+
+    void Start()
+    {
+        ApplyAll();
     }
 
     public void OnHits(GameObject victim, GameObject responsible)

@@ -13,13 +13,22 @@ MonoBehaviour:
   m_Name: Dagger
   m_EditorClassIdentifier: 
   name: Dagger Throw
+  description: Throws a dagger, inflicting bleeding.
+  attackMode: 0
   weight: 100
   maxCharges: 1
-  delayTime: 0
+  masterCooldownTime: 0
+  spawnDelay: 0
+  cameraPushAmount: 0
+  alignCamPushWithDir: 1
+  dirRandAmt: 0
+  randomiseDirAtStart: 1
   coolDownTime: 25
+  chargeUpTime: 0
   objectsToUse:
   - {fileID: 4255455733749829593, guid: 82756edb021b09e42a16f38b68f79615, type: 3}
   sfx: []
+  attackEffectsToAdd: []
   spawnedAttackObjs:
   - {fileID: 0}
   range: 99999
@@ -30,5 +39,7 @@ MonoBehaviour:
   chargeLength: 0
   isCharged: 0
   rechargeAllShotsAfterCooldown: 0
+  dropWeight: 100
+  weaponMesh: {fileID: 0}
   effectsToAdd: []
   defaultSpeed: 10

@@ -95,6 +95,8 @@ public class EntityReferencerGuy : MonoBehaviour
     public AbilityParams berserkAttack;
 
     public ItemSOInst itemHoming;
+    public ItemSOInst[] allItems;
+    public AbilityParams[] allAbilities;
 
 
 

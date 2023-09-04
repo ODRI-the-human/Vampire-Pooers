@@ -205,7 +205,11 @@ public class HPDamageDie : MonoBehaviour
                         lastDamageSource = objectResponsible.GetComponent<DealDamage>().owner;
                         lastDamageSourceName = lastDamageSource.ToString();
                         lastDamageSource.GetComponent<ItemHolder2>().OnHits(gameObject, objectResponsible);
-                        objectResponsible.GetComponent<ItemHolder2>().OnHits(gameObject, objectResponsible);
+
+                        if (objectResponsible.GetComponent<ItemHolder2>() != null)
+                        {
+                            objectResponsible.GetComponent<ItemHolder2>().OnHits(gameObject, objectResponsible);
+                        }
 
                         if (objectResponsible.GetComponent<ApplyAttackModifiers>() != null)
                         {

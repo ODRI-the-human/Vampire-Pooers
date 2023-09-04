@@ -44,10 +44,6 @@ public class NewPlayerMovement : MonoBehaviour
         LayerPlayer = LayerMask.NameToLayer("Player");
         LayerNone = LayerMask.NameToLayer("OnlyHitWalls");
         LayerSB = LayerMask.NameToLayer("OnlyHitWallsAndEnemies");
-        if (!gameObject.GetComponent<Attack>().isPlayerTeam)
-        {
-            baseMoveSpeed /= EntityReferencerGuy.Instance.stopWatchDebuffAmt;
-        }
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -156,7 +152,7 @@ public class NewPlayerMovement : MonoBehaviour
             if (!gameObject.GetComponent<NavMeshAgent>().enabled)
             {
                 desiredVector = moveDirection;
-                Vector3 moveDir = currentMoveSpeed * desiredVector * Time.deltaTime;
+                Vector3 moveDir = currentMoveSpeed * desiredVector * Time.deltaTime / EntityReferencerGuy.Instance.stopWatchDebuffAmt;
                 transform.position += moveDir;
             }
         }

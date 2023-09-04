@@ -2,21 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemWAPANT : MonoBehaviour
+public class ItemWAPANT : ItemScript
 {
     float wapantTimer = 0;
     public float wapantTimerLength = 150f;
-    public int instances = 1;
     public GameObject wapantCircle;
     bool isActive = false;
-
-    void IncreaseInstances(string name)
-    {
-        if (name == this.GetType().ToString())
-        {
-            instances++;
-        }
-    }
 
     void Start()
     {
@@ -49,10 +40,5 @@ public class ItemWAPANT : MonoBehaviour
             Fatty.transform.localScale *= 0.5f + 0.3f * instances;
             Fatty.transform.position = new Vector3(Fatty.transform.position.x, Fatty.transform.position.y, 0);
         }
-    }
-
-    public void Undo()
-    {
-        Destroy(this);
     }
 }

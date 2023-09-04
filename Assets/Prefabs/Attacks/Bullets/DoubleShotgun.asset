@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9effa95e95701d46a12f98490f45aad, type: 3}
   m_Name: DoubleShotgun
   m_EditorClassIdentifier: 
-  name: DoubleShotgun
+  name: Double Shotgun
+  description: Shotgun with 2 charges.
   attackMode: 1
   weight: 100
   maxCharges: 2

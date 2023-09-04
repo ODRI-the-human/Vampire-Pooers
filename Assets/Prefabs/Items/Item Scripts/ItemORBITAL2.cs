@@ -2,35 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemORBITAL2 : MonoBehaviour
+public class ItemORBITAL2 : ItemScript
 {
     GameObject orbSkothos2;
     GameObject myGuy;
-    public int instances = 1;
-    public List<GameObject> Orbs = new List<GameObject>();
+    public GameObject[] spawnedOrbs = new GameObject[0];
 
     int timey = 0;
 
-    void IncreaseInstances(string name)
+    public override void OnPrimaryUse()
     {
-        if (name == this.GetType().ToString())
-        {
-            instances++;
-        }
-    }
-
-    void Start()
-    {
-        if (gameObject.tag == "Player" || gameObject.tag == "Hostile")
-        {
-            orbSkothos2 = EntityReferencerGuy.Instance.orbSkothos2;
-            Invoke(nameof(SetStats),0.1f);
-        }
-    }
-
-    public void OnShootEffects()
-    {
-        foreach (GameObject orb in Orbs)
+        foreach (GameObject orb in spawnedOrbs)
         {
             //Vector3 vec3 = gameObject.GetComponent<Attack>().mouseVector - orb.transform.position;
             //orb.GetComponent<Attack>().vectorToTarget = new Vector2(vec3.x, vec3.y).normalized;
@@ -48,26 +30,40 @@ public class ItemORBITAL2 : MonoBehaviour
         }
     }
 
-    void SetStats()
+    public override void AddStack()
     {
-        for (int i = 0; i < instances; i++)
+        if (gameObject.GetComponent<OrbitalMovement2>() == null)
         {
-            myGuy = Instantiate(orbSkothos2);
-            myGuy.GetComponent<ItemHolder>().itemsHeld = gameObject.GetComponent<ItemHolder>().itemsHeld;
-            myGuy.GetComponent<DealDamage>().owner = gameObject;
-            myGuy.GetComponent<Attack>().attackAutomatically = false;
-            myGuy.GetComponent<OrbitalMovement2>().timerDelay = i * (2 * Mathf.PI / 0.03f) / instances;
-            myGuy.GetComponent<OrbitalMovement2>().distanceFromPlayer = 1 + 0.08f * instances;
-            myGuy.GetComponent<Attack>().abilityTypes = gameObject.GetComponent<Attack>().abilityTypes;
-            Orbs.Add(myGuy);
-            //Debug.Log("fhdgdsifgds");
+            orbSkothos2 = EntityReferencerGuy.Instance.orbSkothos2;
+            foreach (GameObject item in spawnedOrbs)
+            {
+                Destroy(item);
+            }
+            spawnedOrbs = new GameObject[instances];
+
+            for (int i = 0; i < instances; i++)
+            {
+                myGuy = Instantiate(orbSkothos2);
+                myGuy.GetComponent<ItemHolder2>().itemsHeldTransferred = new ItemSOInst[gameObject.GetComponent<ItemHolder2>().itemsHeld.Count];
+                for (int j = 0; j < gameObject.GetComponent<ItemHolder2>().itemsHeld.Count; j++)
+                {
+                    myGuy.GetComponent<ItemHolder2>().itemsHeldTransferred[j] = gameObject.GetComponent<ItemHolder2>().itemsHeld[j];
+                }
+                myGuy.GetComponent<DealDamage>().owner = gameObject;
+                myGuy.GetComponent<Attack>().attackAutomatically = false;
+                myGuy.GetComponent<OrbitalMovement2>().timerDelay = i * (2 * Mathf.PI / 0.03f) / instances;
+                myGuy.GetComponent<OrbitalMovement2>().distanceFromPlayer = 1 + 0.08f * instances;
+                myGuy.GetComponent<Attack>().abilityTypes = gameObject.GetComponent<Attack>().abilityTypes;
+                spawnedOrbs[i] = myGuy;
+                //Debug.Log("fhdgdsifgds");
+            }
+            Invoke(nameof(FinaliseStats), 0.1f);
         }
-        Invoke(nameof(FinaliseStats), 0.1f);
     }
 
     void FinaliseStats()
     {
-        foreach (GameObject orb in Orbs)
+        foreach (GameObject orb in spawnedOrbs)
         {
             if (gameObject.tag == "Player")
             {
@@ -90,40 +86,13 @@ public class ItemORBITAL2 : MonoBehaviour
         }
     }
 
+    public override void RemoveStack()
+    {
+        AddStack();
+    }
+
     void FixedUpdate()
     {
         timey++;
-    }
-
-    void itemsAdded(bool isPassive)
-    {
-        if (timey > 5)
-        {
-            Orbs.Clear();
-            GameObject[] orboes = GameObject.FindGameObjectsWithTag("PlayerBullet");
-            foreach (GameObject friend in orboes)
-            {
-                if (friend.GetComponent<OrbitalMovement2>() != null)
-                {
-                    Destroy(friend);
-                }
-            }
-
-            Invoke(nameof(SetStats), 0.1f);
-        }
-    }
-
-    public void Undo()
-    {
-        GameObject[] orboes = GameObject.FindGameObjectsWithTag("PlayerBullet");
-        foreach (GameObject friend in orboes)
-        {
-            if (friend.GetComponent<OrbitalMovement2>() != null)
-            {
-                Destroy(friend);
-            }
-        }
-
-        Destroy(this);
     }
 }

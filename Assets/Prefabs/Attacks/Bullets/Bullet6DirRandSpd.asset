@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bc8f07bf8ec2c344aa3978f0fa5312a, type: 3}
   m_Name: Bullet6DirRandSpd
   m_EditorClassIdentifier: 
-  name: Bullet6DirRandSpd
+  name: 6-Direction Andy
+  description: Shoot 6 lines of bullets around you.
   attackMode: 0
   weight: 100
   maxCharges: 1
